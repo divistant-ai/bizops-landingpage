@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 import { servicesItems } from '../../data/navData';
 import NotificationCenter from '../NotificationCenter';
+import { ThemeToggle } from '../ThemeToggle';
 import Button from '../ui/Button';
 import MegaMenu from './MegaMenu';
 import { getCTAButtonClasses, getIconButtonClasses, getMenuItemClasses, getTextButtonClasses, navbarStyles } from './navbarStyles';
@@ -19,7 +20,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       {/* Navigation Menu */}
       <nav className={navbarStyles.container.nav} aria-label="Main Navigation">
         {/* MENU 1: PLATFORM */}
-        <div className="group relative flex h-full items-center">
+        <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/platform"
             className={getMenuItemClasses(pathname?.startsWith('/platform') || false)}
@@ -32,7 +33,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         </div>
 
         {/* MENU 2: SOLUTIONS */}
-        <div className="group relative flex h-full items-center">
+        <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/solutions"
             className={getMenuItemClasses(pathname?.startsWith('/solutions') || false)}
@@ -45,7 +46,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         </div>
 
         {/* MENU 3: SERVICES */}
-        <div className="group relative flex h-full items-center">
+        <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/services"
             className={getMenuItemClasses(pathname?.startsWith('/services') || false)}
@@ -70,14 +71,14 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
 
         <Link
           href="/pricing"
-          className={getMenuItemClasses(pathname?.startsWith('/pricing') || false)}
+          className={`${getMenuItemClasses(pathname?.startsWith('/pricing') || false)} flex-shrink-0`}
           aria-current={pathname?.startsWith('/pricing') ? 'page' : undefined}
         >
           Pricing
         </Link>
 
         {/* MENU 4: RESOURCES */}
-        <div className="group relative flex h-full items-center">
+        <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/resources"
             className={getMenuItemClasses(pathname?.startsWith('/resources') || false)}
@@ -90,7 +91,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         </div>
 
         {/* MENU 5: COMPANY */}
-        <div className="group relative flex h-full items-center">
+        <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/about"
             className={getMenuItemClasses(pathname?.startsWith('/about') || pathname?.startsWith('/company') || pathname?.startsWith('/careers') || pathname?.startsWith('/partners') || false)}
@@ -107,8 +108,9 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       <div className={navbarStyles.container.separator} aria-hidden="true" />
 
       {/* Action Buttons */}
-      <div className={navbarStyles.container.actions}>
+      <div className={`${navbarStyles.container.actions} flex-shrink-0`}>
         <NotificationCenter />
+        <ThemeToggle />
         <Link
           href="/search"
           className={getIconButtonClasses()}

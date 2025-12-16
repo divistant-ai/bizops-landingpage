@@ -30,9 +30,9 @@ export const navbarStyles = {
 
   // Container Styles
   container: {
-    nav: 'flex h-full items-center gap-1.5',
+    nav: 'flex h-full items-center gap-1.5 flex-nowrap overflow-visible',
     actions: 'flex flex-shrink-0 items-center gap-2 sm:gap-3',
-    separator: 'mx-4 hidden h-8 w-px bg-slate-200 dark:bg-slate-700 xl:block',
+    separator: 'mx-4 hidden h-8 w-px bg-slate-200 dark:bg-slate-700 xl:block flex-shrink-0',
   },
 
   // Icon Sizes

@@ -3,6 +3,7 @@ import { Menu, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import NotificationCenter from '../NotificationCenter';
+import { ThemeToggle } from '../ThemeToggle';
 import MobileMenu from './MobileMenu';
 import { getIconButtonClasses, navbarStyles } from './navbarStyles';
 
@@ -18,6 +19,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({ isOpen, onToggle, onClose, 
     <>
       <div className="flex items-center gap-2 sm:gap-3 lg:hidden">
         <NotificationCenter />
+        <ThemeToggle />
         <Link
           href="/search"
           className={getIconButtonClasses(true)}

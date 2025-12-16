@@ -50,13 +50,13 @@ export default function HomePageContent() {
   return (
     <>
       {/* 1. HERO SECTION */}
-      <div className="relative overflow-hidden bg-white pt-32 pb-20 lg:pt-48 lg:pb-32 dark:bg-slate-950">
+      <div className="relative overflow-hidden bg-white pt-32 pb-20 transition-colors duration-300 lg:pt-48 lg:pb-32 dark:bg-slate-950">
         {/* Background Elements */}
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay dark:opacity-10"></div>
         <div className="pointer-events-none absolute top-0 left-1/2 h-full w-full max-w-7xl -translate-x-1/2">
-          <div className="animate-pulse-slow absolute top-[10%] left-[10%] h-96 w-96 rounded-full bg-blue-500/20 blur-[100px]"></div>
-          <div className="animate-pulse-slow absolute right-[10%] bottom-[20%] h-80 w-80 rounded-full bg-sky-500/20 blur-[100px]"></div>
-          <div className="animate-pulse-slow absolute top-[40%] left-[60%] h-64 w-64 rounded-full bg-indigo-500/20 blur-[80px]"></div>
+          <div className="animate-pulse-slow absolute top-[10%] left-[10%] h-96 w-96 rounded-full bg-blue-500/20 blur-[100px] dark:bg-blue-500/10"></div>
+          <div className="animate-pulse-slow absolute right-[10%] bottom-[20%] h-80 w-80 rounded-full bg-sky-500/20 blur-[100px] dark:bg-sky-500/10"></div>
+          <div className="animate-pulse-slow absolute top-[40%] left-[60%] h-64 w-64 rounded-full bg-indigo-500/20 blur-[80px] dark:bg-indigo-500/10"></div>
         </div>
 
         <Container size="7xl" className="relative z-10 text-center">
@@ -108,7 +108,7 @@ export default function HomePageContent() {
                 href="/pricing/calculator"
                 className="h-14 bg-white px-10 text-lg font-medium text-slate-700 shadow-sm hover:bg-slate-50 hover:text-slate-900 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
               >
-                <Calculator className="mr-2 h-5 w-5 text-slate-400" />
+                <Calculator className="mr-2 h-5 w-5 text-slate-400 dark:text-slate-500" />
                 {' '}
                 {t('cta_pricing')}
               </BouncyLink>
@@ -117,8 +117,8 @@ export default function HomePageContent() {
 
           {/* Hero Visual / Dashboard Preview */}
           <div className="group relative mx-auto mt-8 max-w-6xl">
-            <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-gradient-to-t from-white via-transparent to-transparent"></div>
-            <div className="relative aspect-[16/9] transform overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-[1.01] group-hover:shadow-[0_20px_60px_-12px_rgba(37,99,235,0.2)] md:aspect-[21/9]">
+            <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-gradient-to-t from-white via-transparent to-transparent dark:from-slate-950"></div>
+            <div className="relative aspect-[16/9] transform overflow-hidden rounded-2xl border border-slate-300 bg-slate-100 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-transform duration-700 group-hover:scale-[1.01] group-hover:shadow-[0_20px_60px_-12px_rgba(37,99,235,0.2)] md:aspect-[21/9] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)]">
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
                 alt="Preview dashboard BizOps ERP"
@@ -131,8 +131,8 @@ export default function HomePageContent() {
               />
 
               {/* Overlay UI Badge */}
-              <Stack direction="horizontal" gap={2} align="center" className="absolute top-4 left-4 z-30 rounded-full border border-slate-800 bg-slate-950/80 px-3 py-1.5 text-[10px] text-slate-300 shadow-lg backdrop-blur-md">
-                <Lock className="h-3 w-3 text-green-400" />
+              <Stack direction="horizontal" gap={2} align="center" className="absolute top-4 left-4 z-30 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-[10px] text-slate-700 shadow-lg backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300">
+                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />
                 {' '}
                 <span className="font-mono">secure://bizops.id/dashboard</span>
               </Stack>
@@ -140,11 +140,11 @@ export default function HomePageContent() {
           </div>
 
           {/* Social Proof Logos */}
-          <div className="mt-20 overflow-hidden border-t border-slate-100 pt-10">
-            <p className="mb-6 text-sm leading-normal text-slate-500">Dipercaya oleh Pemimpin Industri</p>
+          <div className="mt-20 overflow-hidden border-t border-slate-100 pt-10 dark:border-slate-800">
+            <p className="mb-6 text-sm leading-normal text-slate-500 dark:text-slate-400">Dipercaya oleh Pemimpin Industri</p>
             <div className="flex items-center justify-center gap-8 opacity-70 grayscale transition-all duration-500 hover:grayscale-0">
               {['Divistant', 'Dikstra', 'Arena Rasa Nusantara', 'Aero Travel Indonesia', 'TechCorp', 'BuildCo'].map(brand => (
-                <span key={brand} className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl">{brand}</span>
+                <span key={brand} className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl dark:text-slate-200">{brand}</span>
               ))}
             </div>
           </div>
@@ -160,16 +160,16 @@ export default function HomePageContent() {
         </div>
 
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
+          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
             Mengapa Bisnis Anda
             {' '}
-            <span className="relative inline-block text-red-500">
+            <span className="relative inline-block text-red-500 dark:text-red-400">
               Stuck?
               {' '}
-              <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30"></span>
+              <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30 dark:bg-red-900 dark:opacity-40"></span>
             </span>
           </h2>
-          <p className="mt-4 text-lg text-slate-600 md:text-lg">
+          <p className="mt-4 text-lg text-slate-600 md:text-lg dark:text-slate-300">
             Pertumbuhan bisnis seringkali terhambat bukan karena kurangnya penjualan, tapi karena kekacauan operasional internal.
           </p>
         </div>
@@ -183,9 +183,9 @@ export default function HomePageContent() {
                   <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${prob.bg} ring-1 ring-black/5 ring-inset`}>
                     <Icon className={`h-7 w-7 ${prob.color}`} aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-2xl font-bold text-slate-900">{prob.title}</h3>
-                  <p className="mb-3 text-sm font-bold tracking-wide text-red-500 uppercase">{prob.subtitle}</p>
-                  <p className="flex-grow leading-relaxed text-slate-600">{prob.desc}</p>
+                  <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">{prob.title}</h3>
+                  <p className="mb-3 text-sm font-bold tracking-wide text-red-500 uppercase dark:text-red-400">{prob.subtitle}</p>
+                  <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-300">{prob.desc}</p>
                 </div>
               </SpotlightCard>
             );
@@ -194,20 +194,20 @@ export default function HomePageContent() {
       </Section>
 
       {/* 3. SOLUTIONS SECTION */}
-      <Section id="solutions" className="relative overflow-hidden !bg-slate-900" noPadding containerClassName="py-24 md:py-32">
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-900 to-slate-950"></div>
-        <div className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-slate-950 to-transparent"></div>
+      <Section id="solutions" className="relative overflow-hidden bg-white dark:bg-slate-950" noPadding containerClassName="py-24 md:py-32">
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent dark:from-blue-900/20 dark:via-slate-900 dark:to-slate-950"></div>
+        <div className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-transparent to-transparent dark:from-slate-950"></div>
 
         <Stack direction="vertical" gap={8} className="relative z-10 mb-16 items-end justify-between md:flex-row">
           <div className="max-w-2xl">
             <Badge variant="outline-white" className="mb-4">BizOps Platform</Badge>
-            <h2 className="text-3xl leading-tight font-bold text-white md:text-4xl lg:text-5xl">
+            <h2 className="text-3xl leading-tight font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
               Satu Solusi,
               {' '}
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Tak Terbatas Kemungkinan.</span>
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">Tak Terbatas Kemungkinan.</span>
             </h2>
-            <p className="mt-4 text-lg text-slate-400">
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
               Modul yang saling berbicara satu sama lain. Input di satu tempat, terupdate di mana-mana.
             </p>
           </div>
@@ -235,19 +235,19 @@ export default function HomePageContent() {
                   id={`tab-${sol.id}`}
                   className={`group flex w-full items-center justify-between rounded-2xl border px-6 py-5 text-left transition-all duration-300 ${
                     activeTab === sol.id
-                      ? 'translate-x-2 border-slate-700 bg-gradient-to-r from-slate-800 to-slate-800/50 shadow-lg'
-                      : 'border-transparent text-slate-400 hover:bg-slate-800/30'
+                      ? 'translate-x-2 border-slate-200 bg-gradient-to-r from-slate-100 to-slate-50 shadow-lg dark:border-slate-700 dark:from-slate-800 dark:to-slate-800/50'
+                      : 'border-transparent text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/30'
                   }`}
                 >
                   <Stack direction="horizontal" gap={4} align="center">
-                    <div className={`rounded-xl p-2.5 transition-colors ${activeTab === sol.id ? sol.bg : 'bg-slate-800 group-hover:bg-slate-700'}`}>
-                      <Icon className={`h-5 w-5 ${activeTab === sol.id ? sol.color : 'text-slate-500'}`} aria-hidden="true" />
+                    <div className={`rounded-xl p-2.5 transition-colors ${activeTab === sol.id ? sol.bg : 'bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-800 dark:group-hover:bg-slate-700'}`}>
+                      <Icon className={`h-5 w-5 ${activeTab === sol.id ? sol.color : 'text-slate-500 dark:text-slate-500'}`} aria-hidden="true" />
                     </div>
                     <div>
-                      <div className={`text-base font-bold ${activeTab === sol.id ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
+                      <div className={`text-base font-bold ${activeTab === sol.id ? 'text-slate-900 dark:text-white' : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}>
                         {sol.label}
                       </div>
-                      <div className="mt-0.5 text-xs font-medium tracking-wider text-slate-500 uppercase">
+                      <div className="mt-0.5 text-xs font-medium tracking-wider text-slate-500 uppercase dark:text-slate-500">
                         {sol.category}
                       </div>
                     </div>
@@ -265,7 +265,7 @@ export default function HomePageContent() {
               role="tabpanel"
               id={`panel-${activeTab}`}
               aria-labelledby={`tab-${activeTab}`}
-              className="animate-fade-in relative flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-slate-700 bg-slate-800/40 p-8 backdrop-blur-md transition-all duration-500 md:p-12"
+              className="animate-fade-in relative flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-md transition-all duration-500 md:p-12 dark:border-slate-700 dark:bg-slate-800/40"
             >
               <div className={`absolute top-0 right-0 h-96 w-96 ${activeSolution.bg} pointer-events-none rounded-full opacity-20 blur-[120px]`}></div>
 
@@ -278,9 +278,9 @@ export default function HomePageContent() {
                         return <Icon className={`h-6 w-6 ${activeSolution.color}`} aria-hidden="true" />;
                       })()}
                     </div>
-                    <h3 className="text-3xl leading-tight font-bold text-white">{activeSolution.label}</h3>
+                    <h3 className="text-3xl leading-tight font-bold text-slate-900 dark:text-white">{activeSolution.label}</h3>
                   </Stack>
-                  <p className="border-l-4 border-slate-700 pl-4 text-xl leading-relaxed text-slate-300 italic">
+                  <p className="border-l-4 border-slate-300 pl-4 text-xl leading-relaxed text-slate-600 italic dark:border-slate-700 dark:text-slate-300">
                     "
                     {activeSolution.impact}
                     "
@@ -289,22 +289,22 @@ export default function HomePageContent() {
 
                 <Grid cols={1} mdCols={2} gap={8}>
                   <div>
-                    <h4 className="mb-4 text-xl font-semibold text-white">Fitur Utama</h4>
+                    <h4 className="mb-4 text-xl font-semibold text-slate-900 dark:text-white">Fitur Utama</h4>
                     <ul className="space-y-4">
                       {activeSolution.modules.map((mod, idx) => (
                         <li key={idx} className="group flex items-start gap-3">
                           <CheckCircle2 className={`h-5 w-5 ${activeSolution.color} mt-0.5 flex-shrink-0 transition-transform group-hover:scale-110`} aria-hidden="true" />
-                          <span className="text-sm text-slate-300 transition-colors group-hover:text-white md:text-base">{mod}</span>
+                          <span className="text-sm text-slate-700 transition-colors group-hover:text-slate-900 md:text-base dark:text-slate-300 dark:group-hover:text-white">{mod}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <Stack direction="vertical" gap={4} align="center" justify="center" className="rounded-2xl border border-slate-700/50 bg-slate-900/60 p-8 text-center transition-colors hover:border-slate-600">
-                    <div className="group mb-2 cursor-pointer rounded-full bg-slate-800 p-4 ring-1 ring-slate-700 transition-all hover:ring-slate-600">
+                  <Stack direction="vertical" gap={4} align="center" justify="center" className="rounded-2xl border border-slate-200 bg-white/50 p-8 text-center transition-colors hover:border-slate-300 dark:border-slate-700/50 dark:bg-slate-900/60 dark:hover:border-slate-600">
+                    <div className="group mb-2 cursor-pointer rounded-full bg-slate-100 p-4 ring-1 ring-slate-200 transition-all hover:ring-slate-300 dark:bg-slate-800 dark:ring-slate-700 dark:hover:ring-slate-600">
                       <PlayCircle className={`h-10 w-10 ${activeSolution.color} transition-transform group-hover:scale-110`} aria-hidden="true" />
                     </div>
-                    <h5 className="text-lg font-semibold text-white">Lihat Demo Modul Ini</h5>
-                    <p className="text-sm text-slate-400">Video singkat 2 menit penjelasan fitur.</p>
+                    <h5 className="text-lg font-semibold text-slate-900 dark:text-white">Lihat Demo Modul Ini</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Video singkat 2 menit penjelasan fitur.</p>
                     <Button asChild size="sm" variant="outline-white" className="mt-2">
                       <Link href="/platform">Tonton Video</Link>
                     </Button>
@@ -317,12 +317,12 @@ export default function HomePageContent() {
       </Section>
 
       {/* 4. VALUE PROPOSITION (UVP) */}
-      <Section id="uvp" className="!bg-white" noPadding containerClassName="py-24 md:py-32">
+      <Section id="uvp" className="bg-white dark:bg-slate-950" noPadding containerClassName="py-24 md:py-32">
         <Container size="3xl" className="mb-16 text-center">
-          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl">
+          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
             Bukan Sekadar ERP Biasa
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             Kami membangun BizOps dengan filosofi "Indonesia-First". Sesuai regulasi lokal, fleksibel untuk budaya kerja lokal.
           </p>
         </Container>
@@ -353,18 +353,18 @@ export default function HomePageContent() {
 
       {/* 5. PRICING COMPARISON */}
       <Section id="pricing-comparison" className="relative overflow-hidden border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900" noPadding containerClassName="py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent"></div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent dark:from-blue-900/20"></div>
 
         <div className="relative z-10 mb-20 text-center">
-          <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+            <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent dark:from-white dark:to-slate-300">
               Bandingkan Nilai Investasi Anda
             </span>
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600">
+          <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             BizOps bukan hanya soal "lebih murah". Ini soal
             {' '}
-            <span className="font-semibold text-slate-900">efisiensi total</span>
+            <span className="font-semibold text-slate-900 dark:text-white">efisiensi total</span>
             . Bandingkan kompleksitas, waktu implementasi, dan hidden cost.
           </p>
         </div>
@@ -480,10 +480,10 @@ export default function HomePageContent() {
 
           {/* RIGHT COLUMN: The Solution */}
           <div className="lg:col-span-7">
-            <div className="group relative h-full rounded-[2.5rem] bg-slate-950 p-1 shadow-2xl ring-1 shadow-blue-900/40 ring-white/10">
+            <div className="group relative h-full rounded-[2.5rem] bg-slate-50 p-1 shadow-2xl ring-1 shadow-blue-900/10 ring-slate-200 dark:bg-slate-950 dark:shadow-blue-900/40 dark:ring-white/10">
               <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 p-[2px] opacity-100"></div>
 
-              <Stack direction="vertical" gap={4} justify="between" className="relative h-full overflow-hidden rounded-[2.4rem] bg-slate-900 p-8 md:p-12">
+              <Stack direction="vertical" gap={4} justify="between" className="relative h-full overflow-hidden rounded-[2.4rem] bg-white p-8 md:p-12 dark:bg-slate-900">
                 <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px]"></div>
                 <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-indigo-500/10 blur-[100px]"></div>
                 <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
@@ -496,53 +496,53 @@ export default function HomePageContent() {
                       The BizOps Way
                     </Stack>
                     <div className="text-left md:text-right">
-                      <span className="text-xs font-semibold tracking-widest text-slate-400 uppercase">Best Value Choice</span>
+                      <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">Best Value Choice</span>
                     </div>
                   </Stack>
 
-                  <h3 className="mb-4 text-3xl leading-tight font-black tracking-tight text-white md:text-4xl">
+                  <h3 className="mb-4 text-3xl leading-tight font-black tracking-tight text-slate-900 md:text-4xl dark:text-white">
                     Satu Platform.
                     <br />
-                    <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Tanpa Batas User.</span>
+                    <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">Tanpa Batas User.</span>
                   </h3>
-                  <p className="mb-8 text-lg text-slate-300">
+                  <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
                     Platform terintegrasi dengan harga flat yang adil. Infrastruktur managed service, siap mendukung pertumbuhan bisnis Anda tanpa penalti biaya.
                   </p>
 
-                  <div className="relative mb-8 flex-grow rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-colors duration-500 group-hover:bg-white/10 md:p-8">
+                  <div className="relative mb-8 flex-grow rounded-3xl border border-slate-200 bg-slate-50/50 p-6 backdrop-blur-md transition-colors duration-500 group-hover:bg-slate-100 md:p-8 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
                     <div className="absolute top-0 bottom-0 left-0 w-1.5 rounded-l-3xl bg-gradient-to-b from-green-400 to-emerald-600"></div>
                     <Grid cols={1} mdCols={2} gap={8} className="h-full items-center">
                       <div>
-                        <span className="text-sm font-medium tracking-wider text-slate-400">Flat Monthly Cost</span>
-                        <p className="my-2 text-4xl leading-tight font-black tracking-tighter text-white md:text-5xl">Rp 3 Jt</p>
-                        <p className="text-sm text-slate-500">Paket Business (50 User)</p>
+                        <span className="text-sm font-medium tracking-wider text-slate-500 dark:text-slate-400">Flat Monthly Cost</span>
+                        <p className="my-2 text-4xl leading-tight font-black tracking-tighter text-slate-900 md:text-5xl dark:text-white">Rp 3 Jt</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-500">Paket Business (50 User)</p>
                       </div>
-                      <Stack direction="vertical" gap={2} align="end" justify="center" className="border-white/10 text-right md:border-l md:pl-6">
-                        <div className="mb-1 ml-auto w-fit rounded-lg border border-green-500/30 bg-green-500/20 px-3 py-1.5 text-sm font-bold text-green-400">
+                      <Stack direction="vertical" gap={2} align="end" justify="center" className="border-slate-200 text-right md:border-l md:pl-6 dark:border-white/10">
+                        <div className="mb-1 ml-auto w-fit rounded-lg border border-green-500/30 bg-green-500/20 px-3 py-1.5 text-sm font-bold text-green-600 dark:text-green-400">
                           HEMAT 85%
                         </div>
-                        <span className="text-xs text-slate-400">vs Fragmented Stack</span>
-                        <span className="mt-2 text-xs text-slate-400">
+                        <span className="text-xs text-slate-500 dark:text-slate-400">vs Fragmented Stack</span>
+                        <span className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                           Go-Live:
-                          <span className="font-bold text-white">14 Hari</span>
+                          <span className="font-bold text-slate-900 dark:text-white">14 Hari</span>
                         </span>
                       </Stack>
                     </Grid>
                   </div>
 
                   <Grid cols={1} smCols={2} gap={4} className="mb-8">
-                    <Stack direction="horizontal" gap={3} align="start" className="rounded-xl border border-white/5 bg-slate-900/50 p-4">
-                      <div className="mt-1 text-green-400"><CheckCircle2 className="h-5 w-5" /></div>
+                    <Stack direction="horizontal" gap={3} align="start" className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/5 dark:bg-slate-900/50">
+                      <div className="mt-1 text-green-600 dark:text-green-400"><CheckCircle2 className="h-5 w-5" /></div>
                       <div>
-                        <h4 className="text-sm font-bold text-white">Local Compliance</h4>
-                        <p className="text-xs text-slate-400">Pajak, BPJS, Kasbon Ready.</p>
+                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">Local Compliance</h4>
+                        <p className="text-xs text-slate-600 dark:text-slate-400">Pajak, BPJS, Kasbon Ready.</p>
                       </div>
                     </Stack>
-                    <Stack direction="horizontal" gap={3} align="start" className="rounded-xl border border-white/5 bg-slate-900/50 p-4">
-                      <div className="mt-1 text-blue-400"><CheckCircle2 className="h-5 w-5" /></div>
+                    <Stack direction="horizontal" gap={3} align="start" className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/5 dark:bg-slate-900/50">
+                      <div className="mt-1 text-blue-600 dark:text-blue-400"><CheckCircle2 className="h-5 w-5" /></div>
                       <div>
-                        <h4 className="text-sm font-bold text-white">Managed Infrastructure</h4>
-                        <p className="text-xs text-slate-400">Server & Security Included.</p>
+                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">Managed Infrastructure</h4>
+                        <p className="text-xs text-slate-600 dark:text-slate-400">Server & Security Included.</p>
                       </div>
                     </Stack>
                   </Grid>
@@ -560,24 +560,24 @@ export default function HomePageContent() {
       </Section>
 
       {/* 6. PROCESS SECTION */}
-      <Section id="process" className="relative overflow-hidden !bg-slate-950" noPadding containerClassName="py-24 md:py-32">
+      <Section id="process" className="relative overflow-hidden bg-white dark:bg-slate-900" noPadding containerClassName="py-24 md:py-32">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
         <Stack direction="vertical" gap={6} className="relative z-10 mb-16 items-end justify-between md:flex-row">
           <div className="max-w-2xl">
-            <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-white md:text-4xl">
+            <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-4xl dark:text-white">
               Go-Live dalam
               {' '}
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">30 Hari.</span>
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">30 Hari.</span>
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-300">
+            <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
               Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.
               {' '}
-              <strong className="font-medium text-white">Tanpa drama</strong>
+              <strong className="font-medium text-slate-900 dark:text-white">Tanpa drama</strong>
               , tanpa biaya konsultan yang membengkak.
             </p>
           </div>
-          <Button asChild size="md" variant="outline-white" className="border-white/20 px-6 font-medium text-white hover:bg-white/10">
+          <Button asChild size="md" variant="outline-white" className="border-slate-300 px-6 font-medium text-slate-700 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10">
             <Link href="/services">Pelajari Metodologi Kami</Link>
           </Button>
         </Stack>
@@ -592,10 +592,10 @@ export default function HomePageContent() {
                   </div>
                 )}
 
-                <div className="relative z-10 flex h-full flex-col rounded-2xl border border-slate-700/50 bg-slate-900/50 p-8 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-1 hover:border-blue-500/50 hover:bg-slate-800 hover:shadow-2xl hover:shadow-blue-900/20">
-                  <div className="mb-6 text-5xl leading-tight font-black text-slate-700/30 transition-colors duration-500 group-hover:text-blue-500/20">{step.step}</div>
-                  <h3 className="mb-3 text-2xl font-bold text-white group-hover:text-blue-400">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400 group-hover:text-slate-300">{step.desc}</p>
+                <div className="relative z-10 flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-1 hover:border-blue-500/50 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/20 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:bg-slate-800 dark:hover:shadow-blue-900/20">
+                  <div className="mb-6 text-5xl leading-tight font-black text-slate-200 transition-colors duration-500 group-hover:text-blue-500/20 dark:text-slate-700/30">{step.step}</div>
+                  <h3 className="mb-3 text-2xl font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-300">{step.desc}</p>
                 </div>
               </div>
             );
@@ -660,14 +660,14 @@ export default function HomePageContent() {
       </Section>
 
       {/* 8. INFRASTRUCTURE & SECURITY */}
-      <Section id="security" className="relative overflow-hidden border-t border-slate-800/50 !bg-slate-900" noPadding containerClassName="py-24 md:py-32">
+      <Section id="security" className="relative overflow-hidden border-t border-slate-200 bg-white dark:border-slate-800/50 dark:bg-slate-950" noPadding containerClassName="py-24 md:py-32">
         <div className="pointer-events-none absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-900/10 blur-[120px]"></div>
 
         <Grid cols={1} mdCols={2} gap={12} className="relative z-10 mb-16 items-center">
           <div>
             <Badge variant="outline-white" className="mb-4">Reliability & Security</Badge>
-            <h2 className="text-3xl leading-tight font-bold tracking-tight text-white md:text-4xl">Tenang, Data Anda Aman.</h2>
-            <p className="mt-4 mb-8 text-lg leading-relaxed text-slate-300">
+            <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">Tenang, Data Anda Aman.</h2>
+            <p className="mt-4 mb-8 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
               Fokuslah mengembangkan bisnis, biarkan kami menjaga infrastruktur Anda. BizOps menjamin keamanan data setara standar perbankan.
             </p>
 
@@ -684,8 +684,8 @@ export default function HomePageContent() {
                       <Icon className="h-6 w-6 text-blue-400" aria-hidden="true" />
                     </Stack>
                     <div>
-                      <h3 className="mb-1 text-lg font-bold text-white">{item.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-400">{item.desc}</p>
+                      <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{item.desc}</p>
                     </div>
                   </div>
                 );
@@ -695,21 +695,21 @@ export default function HomePageContent() {
 
           <div className="relative mt-8 md:mt-0">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20 blur-2xl"></div>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/80 p-8 backdrop-blur-xl">
-              <Stack direction="horizontal" gap={4} align="center" justify="between" className="mb-8 border-b border-white/10 pb-6">
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80">
+              <Stack direction="horizontal" gap={4} align="center" justify="between" className="mb-8 border-b border-slate-200 pb-6 dark:border-white/10">
                 <div>
-                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-400 uppercase">System Status</div>
+                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">System Status</div>
                   <Stack direction="horizontal" gap={2} align="center">
                     <span className="relative flex h-3 w-3">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
                       <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
                     </span>
-                    <span className="font-bold text-white">All Systems Operational</span>
+                    <span className="font-bold text-slate-900 dark:text-white">All Systems Operational</span>
                   </Stack>
                 </div>
                 <div className="text-right">
-                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-400 uppercase">Uptime (30 Hari)</div>
-                  <div className="font-bold text-white">99.98%</div>
+                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">Uptime (30 Hari)</div>
+                  <div className="font-bold text-slate-900 dark:text-white">99.98%</div>
                 </div>
               </Stack>
 
@@ -761,7 +761,7 @@ export default function HomePageContent() {
 
       {/* 10. CTA / FOOTER PREVIEW */}
       <Section id="cta" className="relative overflow-hidden" noPadding containerClassName="py-24 md:py-32">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-900 to-slate-900"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-900 to-slate-900 dark:from-slate-950 dark:to-slate-900"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-500/20 blur-[120px]"></div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-indigo-500/20 blur-[100px]"></div>
 

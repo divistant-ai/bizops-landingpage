@@ -82,12 +82,18 @@ export default async function RootLayout(props: {
               (function() {
                 try {
                   const theme = localStorage.getItem('theme');
-                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const shouldBeDark = theme === 'dark' || (!theme && systemPrefersDark);
-                  if (shouldBeDark) {
-                    document.documentElement.classList.add('dark');
+                  const root = document.documentElement;
+                  if (theme === 'dark') {
+                    root.classList.add('dark');
+                    root.setAttribute('data-theme', 'dark');
+                    root.style.setProperty('--background', '240 10% 3.9%');
+                    root.style.setProperty('--foreground', '0 0% 98%');
                   } else {
-                    document.documentElement.classList.remove('dark');
+                    root.classList.remove('dark');
+                    root.removeAttribute('data-theme');
+                    root.setAttribute('data-theme', 'light');
+                    root.style.setProperty('--background', '0 0% 100%');
+                    root.style.setProperty('--foreground', '240 10% 3.9%');
                   }
                 } catch (e) {}
               })();
@@ -97,7 +103,7 @@ export default async function RootLayout(props: {
         {/* Structured Data for SEO */}
         <StructuredData data={[getOrganizationSchema(), getWebSiteSchema()]} />
       </head>
-      <body className={`${inter.variable} ${plusJakartaSans.variable} bg-background text-foreground font-sans antialiased transition-colors`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} bg-white font-sans text-slate-900 antialiased transition-colors duration-200 dark:bg-slate-950 dark:text-white`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <PWAInit />

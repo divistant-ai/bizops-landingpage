@@ -43,7 +43,8 @@
     --radius: 0.75rem;
   }
 
-  .dark {
+  html.dark,
+  html[data-theme='dark'] {
     /* Base - Rich Deep Black (Not washed out gray) */
     --background: 240 10% 3.9%; /* #09090b (Zinc-950) - Deep, premium dark */
     --foreground: 0 0% 98%;
@@ -89,10 +90,17 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Ensure CSS variables are inherited */
+    color-scheme: light dark;
+  }
+  html:not(.dark):not([data-theme='dark']) {
+    color-scheme: light;
+  }
+  html.dark,
+  html[data-theme='dark'] {
+    color-scheme: dark;
   }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

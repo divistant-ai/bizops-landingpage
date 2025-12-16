@@ -19,9 +19,9 @@ export default function WhatsAppFloat() {
     <div className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3">
       {/* Tooltip/Message Bubble (on hover) */}
       {isHovered && (
-        <div className="animate-fade-in-up rounded-2xl border border-green-200 bg-white px-4 py-3 shadow-2xl">
-          <p className="mb-1 text-sm font-semibold text-slate-900">Butuh Bantuan?</p>
-          <p className="text-xs text-slate-600">Chat dengan tim kami via WhatsApp</p>
+        <div className="animate-fade-in-up rounded-2xl border border-green-200 bg-white px-4 py-3 shadow-2xl dark:border-green-800 dark:bg-slate-900">
+          <p className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">Butuh Bantuan?</p>
+          <p className="text-xs text-slate-600 dark:text-slate-400">Chat dengan tim kami via WhatsApp</p>
         </div>
       )}
 
@@ -30,7 +30,7 @@ export default function WhatsAppFloat() {
         {/* Close button (small X) */}
         <button
           onClick={() => setIsMinimized(true)}
-          className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-lg transition-all hover:bg-slate-100 hover:text-slate-900"
+          className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-lg transition-all hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
           aria-label="Close WhatsApp button"
         >
           <X className="h-3 w-3" />
