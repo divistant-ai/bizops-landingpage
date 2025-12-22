@@ -1,13 +1,17 @@
-import { ChevronDown, Search } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
-import { servicesItems } from '../../data/navData';
-import NotificationCenter from '../NotificationCenter';
-import { ThemeToggle } from '../ThemeToggle';
-import Button from '../ui/Button';
-import MegaMenu from './MegaMenu';
-import { getCTAButtonClasses, getIconButtonClasses, getMenuItemClasses, getTextButtonClasses, navbarStyles } from './navbarStyles';
+import { ChevronDown, Search } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+import { servicesItems } from "../../data/navData";
+import NotificationCenter from "../NotificationCenter";
+import { ThemeToggle } from "../ThemeToggle";
+import MegaMenu from "./MegaMenu";
+import {
+  getIconButtonClasses,
+  getMenuItemClasses,
+  getTextButtonClasses,
+  navbarStyles,
+} from "./navbarStyles";
 
 type NavbarDesktopProps = {
   onDemoClick: () => void;
@@ -23,11 +27,13 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/platform"
-            className={getMenuItemClasses(pathname?.startsWith('/platform') || false)}
-            aria-current={pathname?.startsWith('/platform') ? 'page' : undefined}
+            className={getMenuItemClasses(pathname?.startsWith("/platform") || false)}
+            aria-current={pathname?.startsWith("/platform") ? "page" : undefined}
           >
             Platform
-            <ChevronDown className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`} />
+            <ChevronDown
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`}
+            />
           </Link>
           <MegaMenu type="platform" />
         </div>
@@ -36,11 +42,13 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/solutions"
-            className={getMenuItemClasses(pathname?.startsWith('/solutions') || false)}
-            aria-current={pathname?.startsWith('/solutions') ? 'page' : undefined}
+            className={getMenuItemClasses(pathname?.startsWith("/solutions") || false)}
+            aria-current={pathname?.startsWith("/solutions") ? "page" : undefined}
           >
             Solutions
-            <ChevronDown className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`} />
+            <ChevronDown
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`}
+            />
           </Link>
           <MegaMenu type="solutions" />
         </div>
@@ -49,11 +57,13 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/services"
-            className={getMenuItemClasses(pathname?.startsWith('/services') || false)}
-            aria-current={pathname?.startsWith('/services') ? 'page' : undefined}
+            className={getMenuItemClasses(pathname?.startsWith("/services") || false)}
+            aria-current={pathname?.startsWith("/services") ? "page" : undefined}
           >
             Services
-            <ChevronDown className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`} />
+            <ChevronDown
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`}
+            />
           </Link>
           <div className="invisible absolute top-full left-0 z-50 mt-2 w-72 origin-top-left translate-y-1 transform rounded-xl border border-slate-200/80 bg-white/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 dark:border-slate-700/50 dark:bg-slate-900/95">
             {servicesItems.map(item => (
@@ -71,8 +81,8 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
 
         <Link
           href="/pricing"
-          className={`${getMenuItemClasses(pathname?.startsWith('/pricing') || false)} flex-shrink-0`}
-          aria-current={pathname?.startsWith('/pricing') ? 'page' : undefined}
+          className={`${getMenuItemClasses(pathname?.startsWith("/pricing") || false)} flex-shrink-0`}
+          aria-current={pathname?.startsWith("/pricing") ? "page" : undefined}
         >
           Pricing
         </Link>
@@ -81,11 +91,13 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/resources"
-            className={getMenuItemClasses(pathname?.startsWith('/resources') || false)}
-            aria-current={pathname?.startsWith('/resources') ? 'page' : undefined}
+            className={getMenuItemClasses(pathname?.startsWith("/resources") || false)}
+            aria-current={pathname?.startsWith("/resources") ? "page" : undefined}
           >
             Resources
-            <ChevronDown className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`} />
+            <ChevronDown
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`}
+            />
           </Link>
           <MegaMenu type="resources" />
         </div>
@@ -94,11 +106,23 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="group relative flex h-full flex-shrink-0 items-center">
           <Link
             href="/about"
-            className={getMenuItemClasses(pathname?.startsWith('/about') || pathname?.startsWith('/company') || pathname?.startsWith('/careers') || pathname?.startsWith('/partners') || false)}
-            aria-current={pathname?.startsWith('/about') || pathname?.startsWith('/company') ? 'page' : undefined}
+            className={getMenuItemClasses(
+              pathname?.startsWith("/about")
+              || pathname?.startsWith("/company")
+              || pathname?.startsWith("/careers")
+              || pathname?.startsWith("/partners")
+              || false,
+            )}
+            aria-current={
+              pathname?.startsWith("/about") || pathname?.startsWith("/company")
+                ? "page"
+                : undefined
+            }
           >
             Company
-            <ChevronDown className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`} />
+            <ChevronDown
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 group-hover:rotate-180`}
+            />
           </Link>
           <MegaMenu type="company" />
         </div>
@@ -111,26 +135,15 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       <div className={`${navbarStyles.container.actions} flex-shrink-0`}>
         <NotificationCenter />
         <ThemeToggle />
-        <Link
-          href="/search"
-          className={getIconButtonClasses()}
-          aria-label="Search"
-        >
+        <Link href="/search" className={getIconButtonClasses()} aria-label="Search">
           <Search className={navbarStyles.iconSize.medium} />
         </Link>
-        <Link
-          href="/login"
-          className={getTextButtonClasses()}
-        >
+        <Link href="/login" className={getTextButtonClasses()}>
           Login
         </Link>
-        <Button
-          size="sm"
-          className={getCTAButtonClasses()}
-          onClick={onDemoClick}
-        >
+        <button className={getTextButtonClasses()} onClick={onDemoClick}>
           Book a Demo
-        </Button>
+        </button>
       </div>
     </div>
   );

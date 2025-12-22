@@ -1,11 +1,19 @@
-import { ArrowRight, CheckCircle2, ChevronRight, Quote, Share2, Smartphone, Table as TableIcon } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import FAQAccordion from '@/components/FAQAccordion';
-import { Container, Section } from '@/components/layout';
-import { Button } from '@/components/ui';
-import { FadeIn } from '@/components/ui/FadeIn';
+import {
+  ArrowRight,
+  CheckCircle2,
+  ChevronRight,
+  Quote,
+  Share2,
+  Smartphone,
+  Table as TableIcon,
+} from "lucide-react";
+import Link from "next/link";
+import React from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQAccordion from "@/components/FAQAccordion";
+import { Container, Section } from "@/components/layout";
+import { Button } from "@/components/ui";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 // Flexible types to accommodate different data structures (Industries vs Roles vs Services)
 type Metric = {
@@ -116,14 +124,17 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
   const featuresList = data.solutions || data.features || [];
 
   // Normalize CTA
-  const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || 'Jadwalkan Demo';
-  const ctaHeadText = typeof data.cta === 'string' ? 'Siap Memulai?' : data.cta?.head || 'Siap untuk Transformasi?';
+  const ctaBtnText
+    = typeof data.cta === "string" ? data.cta : data.cta?.btn || "Jadwalkan Demo";
+  const ctaHeadText
+    = typeof data.cta === "string"
+      ? "Siap Memulai?"
+      : data.cta?.head || "Siap untuk Transformasi?";
 
   return (
     <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
-
       {/* --- HERO SECTION --- */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32">
+      <section className="relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-slate-950">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         {/* Animated Glow Orbs */}
         <div className="bg-primary-100/50 pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full opacity-60 blur-[120px]"></div>
@@ -139,33 +150,40 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <div className="text-center">
             {data.icon && (
               <FadeIn>
-                <div className="bg-primary-50 text-primary-600 border-primary-100 mx-auto mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl border shadow-sm">
+                <div className="bg-primary-50 mx-auto mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 text-slate-800 shadow-sm dark:border-slate-800 dark:text-slate-200">
                   {data.icon}
                 </div>
               </FadeIn>
             )}
 
             <FadeIn delay={0.1}>
-              <h1 className="mb-6 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white">
+              <h1 className="mb-6 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-slate-50">
                 {headline}
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed font-normal text-slate-600 md:text-2xl dark:text-slate-400">
+              <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed font-normal text-slate-600 md:text-2xl dark:text-slate-50">
                 {subheadline}
               </p>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <div className="flex justify-center gap-4">
-                <Button size="lg" className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-white shadow-xl transition-all hover:-translate-y-1">
+                <Button
+                  size="lg"
+                  className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
+                >
                   {ctaBtnText}
-                  {' '}
+                  {" "}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="rounded-full border-neutral-300 px-8 text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full border-neutral-300 px-8 text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
+                  >
                     Hubungi Kami
                   </Button>
                 </Link>
@@ -179,8 +197,12 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
               <div className="mx-auto grid max-w-4xl grid-cols-3 divide-x divide-neutral-200 md:gap-8">
                 {data.metrics.map((m, i) => (
                   <div key={i} className="px-4">
-                    <div className="mb-1 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">{m.value}</div>
-                    <div className="text-sm font-medium tracking-wide text-neutral-500 uppercase md:text-base">{m.label}</div>
+                    <div className="mb-1 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+                      {m.value}
+                    </div>
+                    <div className="text-sm font-medium tracking-wide text-neutral-500 uppercase md:text-base">
+                      {m.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -220,7 +242,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 <FadeIn delay={0.3}>
                   <div className="group relative flex aspect-video transform items-center justify-center overflow-hidden rounded-2xl border border-neutral-700 bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
                     <div className="bg-primary-500/5 group-hover:bg-primary-500/10 absolute inset-0 transition-colors"></div>
-                    <div className="z-10 font-mono text-sm text-neutral-500">Dashboard Visual Preview</div>
+                    <div className="z-10 font-mono text-sm text-neutral-500">
+                      Dashboard Visual Preview
+                    </div>
 
                     {/* Fake UI Elements */}
                     <div className="absolute top-4 right-4 left-4 h-8 rounded border border-neutral-700 bg-neutral-800"></div>
@@ -240,17 +264,27 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
         <Section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
           <Container size="6xl">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Metodologi Kami</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Pendekatan terstruktur untuk hasil yang terukur.</p>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                Metodologi Kami
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Pendekatan terstruktur untuk hasil yang terukur.
+              </p>
             </div>
             <div className="grid gap-6 md:grid-cols-4">
               {data.methodology.map((m, i) => (
                 <FadeIn key={i} delay={i * 0.1} className="relative">
                   <div className="relative z-10 h-full rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800">
-                    <div className="absolute top-4 right-4 z-0 text-4xl font-black text-neutral-100">{i + 1}</div>
+                    <div className="absolute top-4 right-4 z-0 text-4xl font-black text-neutral-100">
+                      {i + 1}
+                    </div>
                     <div className="relative z-10">
-                      <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">{m.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{m.desc}</p>
+                      <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
+                        {m.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        {m.desc}
+                      </p>
                     </div>
                   </div>
                   {/* Connector Line (Desktop) */}
@@ -269,12 +303,19 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
         <Section className="bg-white">
           <Container size="6xl">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Nilai Tambah</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Mengapa memilih layanan kami?</p>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                Nilai Tambah
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Mengapa memilih layanan kami?
+              </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
               {data.benefits.map((b, i) => (
-                <div key={i} className="bg-primary-50/50 border-primary-100 rounded-3xl border p-8">
+                <div
+                  key={i}
+                  className="bg-primary-50/50 border-primary-100 rounded-3xl border p-8"
+                >
                   <h3 className="text-primary-900 mb-3 text-xl font-bold">{b.title}</h3>
                   <p className="text-primary-800/80 leading-relaxed">{b.desc}</p>
                 </div>
@@ -290,7 +331,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <Container size="4xl">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">Apa yang Anda Dapatkan?</h2>
+              <h2 className="mb-4 text-3xl font-bold text-white">
+                Apa yang Anda Dapatkan?
+              </h2>
               <p className="text-neutral-400">Deliverables nyata, bukan sekadar konsep.</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md">
@@ -312,8 +355,12 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
         <Section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
           <Container size="6xl">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Mengapa Cara Lama Tidak Cukup?</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Tantangan yang sering dihadapi tanpa sistem yang tepat.</p>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                Mengapa Cara Lama Tidak Cukup?
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Tantangan yang sering dihadapi tanpa sistem yang tepat.
+              </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-3">
@@ -323,8 +370,12 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                     {/* Industry Style Challenge */}
                     {c.title && (
                       <>
-                        <h3 className="mb-3 text-xl font-bold text-red-600">{c.title}</h3>
-                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">{c.desc}</p>
+                        <h3 className="mb-3 text-xl font-bold text-slate-950 dark:text-white">
+                          {c.title}
+                        </h3>
+                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">
+                          {c.desc}
+                        </p>
                       </>
                     )}
 
@@ -332,14 +383,26 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                     {c.pain && (
                       <>
                         <div className="mb-6">
-                          <div className="mb-2 text-xs font-bold tracking-wider text-red-500 uppercase">Pain Point</div>
-                          <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">{c.pain}</h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{c.context}</p>
+                          <div className="mb-2 text-xs font-bold tracking-wider text-red-500 uppercase">
+                            Pain Point
+                          </div>
+                          <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                            {c.pain}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                            {c.context}
+                          </p>
                         </div>
                         <div className="border-t border-slate-100 pt-6 dark:border-slate-800">
-                          <div className="mb-2 text-xs font-bold tracking-wider text-green-600 uppercase">The BizOps Way</div>
-                          <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">{c.gain}</h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{c.gainDesc}</p>
+                          <div className="mb-2 text-xs font-bold tracking-wider text-green-600 uppercase">
+                            The BizOps Way
+                          </div>
+                          <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                            {c.gain}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                            {c.gainDesc}
+                          </p>
                         </div>
                       </>
                     )}
@@ -356,8 +419,12 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
         <Section className="bg-white">
           <Container size="7xl">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Solusi BizOps</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Fitur yang dirancang khusus untuk kebutuhan Anda.</p>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                Solusi BizOps
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Fitur yang dirancang khusus untuk kebutuhan Anda.
+              </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-3">
@@ -368,10 +435,14 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       <div className="text-primary-600 mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-100 bg-white shadow-sm transition-transform duration-300 group-hover:scale-110 dark:border-slate-800 dark:bg-slate-900">
                         {f.icon ? f.icon : <CheckCircle2 className="h-7 w-7" />}
                       </div>
-                      <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{f.title || f.desc}</h3>
-                      {' '}
+                      <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                        {f.title || f.desc}
+                      </h3>
+                      {" "}
                       {/* Handle generic lists */}
-                      <p className="leading-relaxed text-slate-600 dark:text-slate-400">{f.desc || f.description}</p>
+                      <p className="leading-relaxed text-slate-600 dark:text-slate-400">
+                        {f.desc || f.description}
+                      </p>
                     </div>
                   </FadeIn>
                 );
@@ -389,8 +460,12 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             <div className="bg-primary-500/20 text-primary-400 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full">
               <Smartphone className="h-8 w-8" />
             </div>
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">{data.mobileAdvantage.title}</h2>
-            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300 dark:text-slate-400">{data.mobileAdvantage.desc}</p>
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+              {data.mobileAdvantage.title}
+            </h2>
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300 dark:text-slate-400">
+              {data.mobileAdvantage.desc}
+            </p>
           </Container>
         </Section>
       )}
@@ -405,15 +480,26 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   <Share2 className="text-primary-600 h-6 w-6" />
                   Ecosystem Connections
                 </h2>
-                <p className="mt-2 text-slate-600 dark:text-slate-400">Bagaimana modul ini terhubung dengan sistem lainnya.</p>
+                <p className="mt-2 text-slate-600 dark:text-slate-400">
+                  Bagaimana modul ini terhubung dengan sistem lainnya.
+                </p>
               </div>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
               {data.connections.map((c, i) => (
-                <div key={i} className="hover:border-primary-300 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-slate-800">
-                  <div className="text-primary-600 mb-2 text-xs font-bold tracking-wider uppercase">Connected to</div>
-                  <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">{c.target}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{c.desc}</p>
+                <div
+                  key={i}
+                  className="hover:border-primary-300 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-slate-800"
+                >
+                  <div className="text-primary-600 mb-2 text-xs font-bold tracking-wider uppercase">
+                    Connected to
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                    {c.target}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                    {c.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -422,29 +508,39 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
       )}
 
       {/* --- EXTRA SECTION (TABLES) --- */}
-      {data.extraSection && data.extraSection.type === 'table' && (
+      {data.extraSection && data.extraSection.type === "table" && (
         <Section className="bg-white">
           <Container size="5xl">
             <div className="mb-10 text-center">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-slate-600 dark:text-slate-400">
                 <TableIcon className="h-6 w-6" />
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{data.extraSection.title}</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                {data.extraSection.title}
+              </h2>
             </div>
             <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm dark:border-slate-800">
               <table className="w-full text-left text-sm">
                 <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold tracking-wider text-slate-900 uppercase dark:border-slate-800 dark:bg-slate-950 dark:text-white">
                   <tr>
                     {data.extraSection.headers.map((h, i) => (
-                      <th key={i} className="px-6 py-4">{h}</th>
+                      <th key={i} className="px-6 py-4">
+                        {h}
+                      </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-100 bg-white">
                   {data.extraSection.rows.map((row, i) => (
-                    <tr key={i} className="transition-colors hover:bg-slate-50 dark:bg-slate-950/50">
+                    <tr
+                      key={i}
+                      className="transition-colors hover:bg-slate-50 dark:bg-slate-950/50"
+                    >
                       {row.map((cell, j) => (
-                        <td key={j} className="first:text-primary-600 px-6 py-4 font-medium whitespace-nowrap text-slate-600 first:font-bold dark:text-slate-400">
+                        <td
+                          key={j}
+                          className="first:text-primary-600 px-6 py-4 font-medium whitespace-nowrap text-slate-600 first:font-bold dark:text-slate-400"
+                        >
                           {cell}
                         </td>
                       ))}
@@ -459,7 +555,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- CASE STUDY / TESTIMONIAL --- */}
       {(data.caseStudy || data.testimonial) && (
-        <Section className="relative overflow-hidden bg-slate-900 text-white">
+        <Section className="relative overflow-hidden bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
           <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
           <div className="bg-primary-600/10 absolute top-0 right-0 h-[600px] w-[600px] rounded-full blur-[120px]"></div>
 
@@ -467,44 +563,52 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             <div className="grid items-center gap-16 md:grid-cols-2">
               <div>
                 {data.caseStudyTitle && (
-                  <div className="mb-6 inline-block rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-xs font-bold tracking-wider text-green-300 uppercase">
+                  <div className="mb-6 inline-block rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-xs font-bold tracking-wider text-green-500 uppercase dark:text-green-300">
                     Impact Story
                   </div>
                 )}
                 <h2 className="mb-6 text-3xl leading-tight font-bold md:text-4xl">
-                  {data.caseStudyTitle || 'Real Results'}
+                  {data.caseStudyTitle || "Real Results"}
                 </h2>
-                <p className="mb-8 text-xl leading-relaxed text-slate-300 dark:text-slate-400">
-                  {data.caseStudy || 'Lihat bagaimana klien kami bertransformasi.'}
+                <p className="mb-8 text-xl leading-relaxed text-slate-900 dark:text-slate-400">
+                  {data.caseStudy || "Lihat bagaimana klien kami bertransformasi."}
                 </p>
                 <Button variant="white" className="rounded-full">
                   Baca Use Case Lengkap
-                  {' '}
+                  {" "}
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
 
               {data.testimonial && (
-                <div className="relative rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md md:p-10">
+                <div className="relative rounded-3xl border border-white/10 bg-slate-50 p-8 backdrop-blur-md md:p-10 dark:bg-white/10">
                   <Quote className="text-primary-400 mb-6 h-10 w-10 opacity-50" />
-                  <p className="mb-8 text-lg leading-relaxed font-medium text-white italic md:text-xl">
+                  <p className="mb-8 text-lg leading-relaxed font-medium text-slate-950 italic md:text-xl dark:text-white">
                     "
                     {data.testimonial.quote}
                     "
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-white">
-                      {data.testimonial.avatar?.includes('http')
+                    <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-slate-800 dark:text-white">
+                      {data.testimonial.avatar?.includes("http")
                         ? (
-                            <img src={data.testimonial.avatar} alt={data.testimonial.author} className="h-full w-full object-cover" />
+                            <img
+                              src={data.testimonial.avatar}
+                              alt={data.testimonial.author}
+                              className="h-full w-full object-cover"
+                            />
                           )
                         : (
                             data.testimonial.author.charAt(0)
                           )}
                     </div>
                     <div>
-                      <div className="font-bold text-white">{data.testimonial.author}</div>
-                      <div className="text-primary-300 text-sm">{data.testimonial.role}</div>
+                      <div className="font-bold text-slate-800 dark:text-white">
+                        {data.testimonial.author}
+                      </div>
+                      <div className="text-primary-300 text-sm">
+                        {data.testimonial.role}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -519,7 +623,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
         <Section className="bg-white">
           <Container size="4xl">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Common Questions</h2>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                Common Questions
+              </h2>
             </div>
             <FAQAccordion faqs={data.faqs.map(f => ({ q: f.question, a: f.answer }))} />
           </Container>
@@ -533,19 +639,26 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             {ctaHeadText}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Jangan biarkan operasional manual menghambat pertumbuhan bisnis Anda. Mulai digitalisasi sekarang.
+            Jangan biarkan operasional manual menghambat pertumbuhan bisnis Anda. Mulai
+            digitalisasi sekarang.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-700 h-14 rounded-xl px-10 text-lg text-white shadow-xl">
+            <Button
+              size="lg"
+              className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-700 h-14 rounded-xl px-10 text-lg text-slate-950 shadow-xl dark:text-white"
+            >
               {ctaBtnText}
             </Button>
-            <Button size="lg" variant="outline" className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300">
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
+            >
               Jadwalkan Konsultasi Gratis
             </Button>
           </div>
         </Container>
       </Section>
-
     </div>
   );
 };

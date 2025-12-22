@@ -1,13 +1,13 @@
-import type { NextConfig } from 'next';
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import { withSentryConfig } from '@sentry/nextjs';
-import createNextIntlPlugin from 'next-intl/plugin';
-import './src/libs/Env';
+import type { NextConfig } from "next";
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
+import "./src/libs/Env";
 
 // Define the base Next.js configuration
 const baseConfig: NextConfig = {
   devIndicators: {
-    position: 'bottom-right',
+    position: "bottom-right",
   },
   poweredByHeader: false,
   reactStrictMode: true,
@@ -16,51 +16,51 @@ const baseConfig: NextConfig = {
     turbopackFileSystemCacheForDev: true,
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
       {
-        protocol: 'https',
-        hostname: '**.unsplash.com',
+        protocol: "https",
+        hostname: "**.unsplash.com",
       },
     ],
   },
   async headers() {
     return [
       {
-        source: '/:path*',
+        source: "/:path*",
         headers: [
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
           },
           {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
           },
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
           },
           {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
         ],
       },
@@ -69,13 +69,13 @@ const baseConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/tour',
-        destination: '/product-tour',
+        source: "/tour",
+        destination: "/product-tour",
         permanent: true,
       },
       {
-        source: '/pricing-calculator',
-        destination: '/pricing/calculator',
+        source: "/pricing-calculator",
+        destination: "/pricing/calculator",
         permanent: true,
       },
     ];
@@ -83,10 +83,10 @@ const baseConfig: NextConfig = {
 };
 
 // Initialize the Next-Intl plugin
-let configWithPlugins = createNextIntlPlugin('./src/libs/I18n.ts')(baseConfig);
+let configWithPlugins = createNextIntlPlugin("./src/libs/I18n.ts")(baseConfig);
 
 // Conditionally enable bundle analysis
-if (process.env.ANALYZE === 'true') {
+if (process.env.ANALYZE === "true") {
   configWithPlugins = withBundleAnalyzer()(configWithPlugins);
 }
 
@@ -116,7 +116,7 @@ if (!process.env.NEXT_PUBLIC_SENTRY_DISABLED) {
     // This can increase your server load as well as your hosting bill.
     // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
     // side errors will fail.
-    tunnelRoute: '/monitoring',
+    tunnelRoute: "/monitoring",
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
