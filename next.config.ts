@@ -27,6 +27,10 @@ const baseConfig: NextConfig = {
         protocol: "https",
         hostname: "**.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.pravatar.cc",
+      },
     ],
   },
   async headers() {
