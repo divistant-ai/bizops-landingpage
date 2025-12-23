@@ -134,7 +134,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
   return (
     <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
       {/* --- HERO SECTION --- */}
-      <section className="relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-slate-950">
+      <section className="relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-36 lg:pb-32 dark:bg-slate-950">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         {/* Animated Glow Orbs */}
         <div className="bg-primary-100/50 pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full opacity-60 blur-[120px]"></div>
@@ -194,17 +194,19 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           {/* Metrics Grid */}
           {data.metrics && (
             <FadeIn delay={0.4} className="mt-20">
-              <div className="mx-auto grid max-w-4xl grid-cols-3 divide-x divide-neutral-200 md:gap-8">
-                {data.metrics.map((m, i) => (
-                  <div key={i} className="px-4">
-                    <div className="mb-1 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-                      {m.value}
+              <div className="mx-auto max-w-4xl">
+                <div className="grid grid-cols-3 divide-x divide-neutral-200 text-center md:gap-8">
+                  {data.metrics.map((m, i) => (
+                    <div key={i} className="px-4">
+                      <div className="mb-1 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+                        {m.value}
+                      </div>
+                      <div className="text-sm font-medium tracking-wide text-neutral-500 uppercase md:text-base dark:text-neutral-400">
+                        {m.label}
+                      </div>
                     </div>
-                    <div className="text-sm font-medium tracking-wide text-neutral-500 uppercase md:text-base">
-                      {m.label}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </FadeIn>
           )}
@@ -213,44 +215,57 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- DASHBOARD HIGHLIGHTS (ROLES) --- */}
       {data.dashboardInsight && (
-        <Section className="relative overflow-hidden bg-slate-900 text-white">
-          <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-          <Container>
-            <div className="grid items-center gap-12 lg:grid-cols-2">
+        <Section className="relative overflow-hidden bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
+          {/* Background Texture */}
+          <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
+
+          <Container size="6xl">
+            <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+              {/* Left Content */}
               <div>
-                <h2 className="mb-6 text-3xl font-bold">{data.dashboardInsight}</h2>
-                <p className="mb-8 text-lg text-neutral-400">
+                <h2 className="mb-6 text-3xl font-bold text-slate-900 dark:text-white">
+                  {data.dashboardInsight}
+                </h2>
+                <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
                   Dapatkan visibilitas total tanpa perlu menunggu laporan manual.
                 </p>
+
+                {/* Features List */}
                 {data.dashboardFeatures && (
                   <div className="grid gap-4">
                     {data.dashboardFeatures.map((feat, i) => (
                       <FadeIn key={i} delay={i * 0.1}>
-                        <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:bg-white/10">
-                          <div className="bg-primary-600 shadow-primary-500/30 mr-4 flex h-8 w-8 items-center justify-center rounded-lg text-white shadow-lg">
-                            <CheckCircle2 className="h-5 w-5" />
+                        <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
+                          <div className="bg-primary-600 shadow-primary-500/30 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-white shadow-lg">
+                            <CheckCircle2 className="h-5 w-5 text-slate-600 dark:text-white" />
                           </div>
-                          <span className="font-semibold">{feat}</span>
+                          <span className="font-semibold text-slate-900 dark:text-white">
+                            {feat}
+                          </span>
                         </div>
                       </FadeIn>
                     ))}
                   </div>
                 )}
               </div>
+
+              {/* Right Visual Preview */}
               <div className="relative">
-                {/* Placeholder for Dashboard UI Image - simplified as abstract visual or mock */}
                 <FadeIn delay={0.3}>
-                  <div className="group relative flex aspect-video transform items-center justify-center overflow-hidden rounded-2xl border border-neutral-700 bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
-                    <div className="bg-primary-500/5 group-hover:bg-primary-500/10 absolute inset-0 transition-colors"></div>
-                    <div className="z-10 font-mono text-sm text-neutral-500">
+                  <div className="group relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 shadow-2xl transition-transform duration-500 hover:scale-[1.02] dark:border-slate-600 dark:from-slate-700 dark:to-slate-800">
+                    {/* Hover Overlay */}
+                    <div className="bg-primary-500/5 group-hover:bg-primary-500/10 absolute inset-0 transition-colors" />
+
+                    {/* Center Text */}
+                    <div className="relative z-10 font-mono text-sm text-slate-500 dark:text-slate-400">
                       Dashboard Visual Preview
                     </div>
 
-                    {/* Fake UI Elements */}
-                    <div className="absolute top-4 right-4 left-4 h-8 rounded border border-neutral-700 bg-neutral-800"></div>
-                    <div className="absolute top-16 bottom-4 left-4 w-1/3 rounded border border-neutral-700 bg-neutral-800 opacity-50"></div>
-                    <div className="absolute top-16 right-4 h-32 w-1/2 rounded border border-neutral-700 bg-neutral-800 opacity-50"></div>
-                    <div className="absolute right-4 bottom-4 h-20 w-1/2 rounded border border-neutral-700 bg-neutral-800 opacity-50"></div>
+                    {/* Mock UI Elements */}
+                    <div className="absolute top-4 right-4 left-4 h-8 rounded border border-slate-300 bg-slate-200/80 dark:border-slate-600 dark:bg-slate-700/80" />
+                    <div className="absolute top-16 bottom-4 left-4 w-1/3 rounded border border-slate-300 bg-slate-200/80 opacity-60 dark:border-slate-600 dark:bg-slate-700/80" />
+                    <div className="absolute top-16 right-4 h-32 w-1/2 rounded border border-slate-300 bg-slate-200/80 opacity-60 dark:border-slate-600 dark:bg-slate-700/80" />
+                    <div className="absolute right-4 bottom-4 h-20 w-1/2 rounded border border-slate-300 bg-slate-200/80 opacity-60 dark:border-slate-600 dark:bg-slate-700/80" />
                   </div>
                 </FadeIn>
               </div>
@@ -300,7 +315,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- BENEFITS (SERVICES) --- */}
       {data.benefits && (
-        <Section className="bg-white">
+        <Section className="bg-white dark:bg-slate-900">
           <Container size="6xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
@@ -363,7 +378,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2">
               {data.challenges.map((c, i) => (
                 <FadeIn key={i} delay={i * 0.1} className="h-full">
                   <div className="h-full rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
@@ -416,7 +431,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- SOLUTIONS / FEATURES --- */}
       {featuresList.length > 0 && (
-        <Section className="bg-white">
+        <Section className="bg-white dark:bg-slate-900">
           <Container size="7xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
@@ -509,7 +524,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- EXTRA SECTION (TABLES) --- */}
       {data.extraSection && data.extraSection.type === "table" && (
-        <Section className="bg-white">
+        <Section className="bg-white dark:bg-slate-900">
           <Container size="5xl">
             <div className="mb-10 text-center">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-slate-600 dark:text-slate-400">
@@ -620,7 +635,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- FAQ SECTION --- */}
       {data.faqs && (
-        <Section className="bg-white">
+        <Section className="bg-white dark:bg-slate-900">
           <Container size="4xl">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">

@@ -16,10 +16,11 @@ import {
 
 type MegaMenuProps = {
   type: "platform" | "solutions" | "resources" | "company";
+  isOpen?: boolean;
   onClose?: () => void;
 };
 
-const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
+const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) => {
   const getTabs = () => {
     switch (type) {
       case "platform":
@@ -71,17 +72,39 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
 
   const activeContent = content[activeTab];
 
+  const visibilityClasses = isOpen ? "visible opacity-100" : "invisible opacity-0";
+
+  const handleBackdropClick = () => {
+    onClose?.();
+  };
+
+  const handleContentClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <>
-      {/* Backdrop */}
-      <div className="invisible fixed inset-0 top-[64px] z-[90] bg-slate-900/20 opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:top-[80px]" />
+      {/* Full screen clickable backdrop - clicking anywhere here closes the menu */}
+      <div
+        className={`fixed inset-0 top-[70px] z-90 transition-all duration-200 lg:top-[80px] ${visibilityClasses}`}
+        onClick={handleBackdropClick}
+        onKeyDown={e => e.key === "Escape" && onClose?.()}
+        role="button"
+        tabIndex={-1}
+        aria-label="Close menu"
+      >
+        {/* Semi-transparent overlay background */}
+        <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm" />
 
-      {/* Mega Menu Content */}
-      <div className="invisible fixed top-[64px] right-0 left-0 z-[100] opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:top-[80px]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-950">
+        {/* Centered container - clicking inside the white box won't close */}
+        <div className="relative z-100 mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+          <div
+            className="flex overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-950"
+            onClick={handleContentClick}
+          >
             {/* Sidebar (Tabs) */}
-            <div className="w-64 flex-shrink-0 border-r border-slate-200 bg-slate-50 py-6 dark:border-slate-800 dark:bg-slate-900">
+            <div className="w-64 shrink-0 border-r border-slate-200 bg-slate-50 py-6 dark:border-slate-800 dark:bg-slate-900">
               <div className="mb-3 px-4 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
                 {type === "platform" && "Platform Overview"}
                 {type === "solutions" && "Find Solutions"}
@@ -122,6 +145,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
                 <div className="mt-6 px-4">
                   <Link
                     href="/product-tour"
+                    onClick={onClose}
                     className="mb-2 flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
                     <MousePointer className="h-4 w-4 text-slate-600 dark:text-white" />
@@ -129,6 +153,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
                   </Link>
                   <Link
                     href="/download"
+                    onClick={onClose}
                     className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
                     <Download className="h-4 w-4" />
@@ -141,12 +166,13 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
                 <div className="mt-6 px-4">
                   <Link
                     href="/contact"
-                    className="group/btn hover:border-primary-200 flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-bold text-slate-700 shadow-sm transition-all hover:bg-slate-50"
+                    onClick={onClose}
+                    className="group/btn hover:border-primary-200 flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-bold text-slate-700 shadow-sm transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:hover:bg-slate-700"
                   >
-                    <div className="bg-primary-50 text-primary-600 group-hover/btn:bg-primary-100 flex h-6 w-6 items-center justify-center rounded-md transition-colors">
+                    <div className="bg-primary-50 group-hover/btn:bg-primary-100 flex h-6 w-6 items-center justify-center rounded-md text-slate-800 transition-colors dark:text-white">
                       <Phone className="h-3.5 w-3.5" />
                     </div>
-                    Contact Us
+                    <span className="text-slate-800 dark:text-white">Contact Us</span>
                   </Link>
                 </div>
               )}
@@ -154,7 +180,6 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
 
             {/* Content Area */}
             <div className="min-h-[350px] flex-1 bg-white p-7 dark:bg-slate-950">
-              {" "}
               {activeContent && (
                 <>
                   <div className="mb-6">
@@ -181,7 +206,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, onClose }) => {
                           className="group/item focus-visible:ring-primary-500 -ml-2 flex items-start gap-3 rounded-xl p-3 transition-all duration-200 hover:bg-slate-50 focus-visible:ring-2 focus-visible:outline-none dark:hover:bg-slate-900"
                         >
                           <div
-                            className={`mt-0.5 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-200 ${bgColor}`}
+                            className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg transition-all duration-200 ${bgColor}`}
                           >
                             <item.icon className={`h-5 w-5 ${iconColor}`} />
                           </div>
