@@ -29,9 +29,7 @@ export default function NotFound() {
           </div>
 
           <h1 className="mb-6 text-3xl leading-tight font-extrabold text-slate-900 md:text-5xl dark:text-white">
-            Halaman Ini Sedang
-            {" "}
-            <br />
+            Halaman Ini Sedang <br />
             <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
               &quot;Cuti Di Luar Tanggungan&quot;
             </span>
@@ -47,7 +45,7 @@ export default function NotFound() {
                 size="lg"
                 className="h-14 rounded-2xl px-8 text-lg shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20"
               >
-                Kembali ke Dashboard
+                <span className="text-slate-800 dark:text-white">Kembali ke Dashboard</span>
               </Button>
             </Link>
             <Link href="/">
@@ -56,7 +54,7 @@ export default function NotFound() {
                 variant="outline"
                 className="h-14 rounded-2xl border-slate-300 px-8 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-900"
               >
-                Kembali ke Beranda
+                <span className="text-slate-800 dark:text-white">Kembali ke Beranda</span>
               </Button>
             </Link>
           </div>
@@ -71,8 +69,7 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Produk</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Lihat solusi
-                {" "}
+                Lihat solusi{" "}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
@@ -85,8 +82,7 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Blog</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Baca wawasan
-                {" "}
+                Baca wawasan{" "}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
@@ -99,8 +95,7 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Support</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Hubungi kami
-                {" "}
+                Hubungi kami{" "}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
@@ -113,8 +108,7 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Login</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Masuk akun
-                {" "}
+                Masuk akun{" "}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>

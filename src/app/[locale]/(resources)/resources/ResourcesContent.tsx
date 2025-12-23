@@ -89,7 +89,7 @@ const latestBlogs = [
 
 export default function ResourcesContent() {
   return (
-    <div className="min-h-screen bg-white pt-20 dark:bg-slate-950">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero Section */}
       <section className="relative border-b border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 md:py-24 lg:px-8 dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl text-center">
@@ -98,9 +98,7 @@ export default function ResourcesContent() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white"
           >
-            Resource
-            {" "}
-            <span className="text-primary-600 dark:text-primary-400">Center</span>
+            Resource <span className="text-primary-600 dark:text-primary-400">Center</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -161,9 +159,7 @@ export default function ResourcesContent() {
             href="/blog"
             className="text-primary-600 dark:text-primary-400 hidden items-center font-bold hover:underline sm:flex"
           >
-            View All Articles
-            {" "}
-            <ArrowRight className="ml-2 h-4 w-4" />
+            View All Articles <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
 
@@ -215,9 +211,7 @@ export default function ResourcesContent() {
                   {post.summary}
                 </p>
                 <div className="mt-auto text-xs text-slate-500 dark:text-slate-500">
-                  {post.date}
-                  {" "}
-                  • 5 min read
+                  {post.date} • 5 min read
                 </div>
               </div>
             ))}
@@ -226,13 +220,13 @@ export default function ResourcesContent() {
       </section>
 
       {/* Featured Tool / Interactive */}
-      <section className="relative overflow-hidden bg-slate-900 py-16 text-white md:py-24">
+      <section className="relative overflow-hidden bg-white py-16 text-slate-800 md:py-24 dark:bg-slate-900 dark:text-white">
         <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-indigo-600/20 blur-[100px]"></div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="mb-6 text-3xl font-bold">Ukur Kesiapan Digital Anda</h2>
-              <p className="mb-8 text-lg leading-relaxed text-slate-300">
+              <p className="mb-8 text-lg leading-relaxed text-slate-800 dark:text-slate-300">
                 Apakah perusahaan Anda siap untuk transformasi digital? Gunakan alat asesmen
                 gratis kami untuk mendapatkan skor maturitas dan rekomendasi personal dalam
                 5 menit.
@@ -243,7 +237,9 @@ export default function ResourcesContent() {
                     size="lg"
                     className="bg-primary-600 hover:bg-primary-500 w-full border-none sm:w-auto"
                   >
-                    Mulai Assessment Gratis
+                    <span className="text-slate-800 dark:text-white">
+                      Mulai Assessment Gratis
+                    </span>
                   </Button>
                 </Link>
                 <Link href="/tools/roi-calculator">
@@ -252,7 +248,9 @@ export default function ResourcesContent() {
                     variant="outline"
                     className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto"
                   >
-                    Hitung ROI Project
+                    <span className="text-slate-800 dark:text-white">
+                      Hitung ROI Project
+                    </span>
                   </Button>
                 </Link>
               </div>
@@ -306,7 +304,9 @@ export default function ResourcesContent() {
                     size="lg"
                     className="bg-primary-600 hover:bg-primary-700 rounded-full text-white"
                   >
-                    Lihat Panduan Migrasi
+                    <span className="text-slate-800 dark:text-white">
+                      Lihat Panduan Migrasi
+                    </span>
                   </Button>
                 </Link>
                 <Link href="/migration">
@@ -314,9 +314,7 @@ export default function ResourcesContent() {
                     variant="outline"
                     className="gap-2 rounded-full border-slate-300 hover:bg-slate-50 dark:border-slate-600 dark:text-white dark:hover:bg-slate-800"
                   >
-                    <Download className="h-4 w-4" />
-                    {" "}
-                    Download Template
+                    <Download className="h-4 w-4" /> Download Template
                   </Button>
                 </Link>
               </div>

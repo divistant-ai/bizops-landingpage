@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 const Loading: React.FC = memo(() => {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-colors duration-300">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-colors duration-300 dark:bg-slate-900">
       <div className="relative">
         {/* Outer Ring */}
         <div className="h-16 w-16 rounded-full border-4 border-slate-200"></div>

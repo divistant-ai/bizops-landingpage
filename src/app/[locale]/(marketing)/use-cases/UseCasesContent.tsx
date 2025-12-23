@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { ArrowRight, Briefcase, Filter, Search, X } from 'lucide-react';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import Pagination from '@/components/Pagination';
-import Button from '@/components/ui/Button';
-import { StaggeredText } from '@/components/ui/motion-text';
-import { useCasesData } from '@/data/useCasesContent';
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { ArrowRight, Briefcase, Filter, Search, X } from "lucide-react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import Pagination from "@/components/Pagination";
+import Button from "@/components/ui/Button";
+import { StaggeredText } from "@/components/ui/motion-text";
+import { useCasesData } from "@/data/useCasesContent";
 
 const FADE_UP_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
@@ -25,7 +25,15 @@ const STAGGER_CONTAINER = {
 };
 
 // SpotlightCard Component
-const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(14, 165, 233, 0.15)' }: { children: React.ReactNode; className?: string; spotlightColor?: string }) => {
+const SpotlightCard = ({
+  children,
+  className = "",
+  spotlightColor = "rgba(14, 165, 233, 0.15)",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  spotlightColor?: string;
+}) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -60,23 +68,24 @@ const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(14, 16
 const ITEMS_PER_PAGE = 6;
 
 export default function UseCasesContent() {
-  const [selectedIndustry, setSelectedIndustry] = useState<string>('All');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIndustry, setSelectedIndustry] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const cases = Object.values(useCasesData);
 
   // Extract unique industries and categories
-  const industries = ['All', ...Array.from(new Set(cases.map(c => c.industry))).sort()];
-  const categories = ['All', ...Array.from(new Set(cases.map(c => c.category))).sort()];
+  const industries = ["All", ...Array.from(new Set(cases.map((c) => c.industry))).sort()];
+  const categories = ["All", ...Array.from(new Set(cases.map((c) => c.category))).sort()];
 
   // Filtering Logic
   const filteredCases = cases.filter((c) => {
-    const matchIndustry = selectedIndustry === 'All' || c.industry === selectedIndustry;
-    const matchCategory = selectedCategory === 'All' || c.category === selectedCategory;
-    const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase())
-      || c.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
-      || c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchIndustry = selectedIndustry === "All" || c.industry === selectedIndustry;
+    const matchCategory = selectedCategory === "All" || c.category === selectedCategory;
+    const matchSearch =
+      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
     return matchIndustry && matchCategory && matchSearch;
   });
 
@@ -84,7 +93,7 @@ export default function UseCasesContent() {
   const totalPages = Math.ceil(filteredCases.length / ITEMS_PER_PAGE);
   const paginatedCases = filteredCases.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
   );
 
   // Reset page when filters change
@@ -94,52 +103,59 @@ export default function UseCasesContent() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    document.getElementById('case-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document
+      .getElementById("case-grid")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   // Calculate counts for filters
   const getIndustryCount = (industry: string) => {
     let filtered = cases;
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter(c => c.category === selectedCategory);
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((c) => c.category === selectedCategory);
     }
-    if (industry === 'All') {
+    if (industry === "All") {
       return filtered.length;
     }
-    return filtered.filter(c => c.industry === industry).length;
+    return filtered.filter((c) => c.industry === industry).length;
   };
 
   const getCategoryCount = (category: string) => {
     let filtered = cases;
-    if (selectedIndustry !== 'All') {
-      filtered = filtered.filter(c => c.industry === selectedIndustry);
+    if (selectedIndustry !== "All") {
+      filtered = filtered.filter((c) => c.industry === selectedIndustry);
     }
-    if (category === 'All') {
+    if (category === "All") {
       return filtered.length;
     }
-    return filtered.filter(c => c.category === category).length;
+    return filtered.filter((c) => c.category === category).length;
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-20 transition-colors dark:bg-slate-950">
+    <div className="min-h-screen bg-slate-50 transition-colors dark:bg-slate-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8 dark:border-slate-800 dark:bg-slate-900">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="bg-primary-500/10 pointer-events-none absolute top-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full blur-[100px]"></div>
 
         <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={STAGGER_CONTAINER}
-          >
-            <motion.div variants={FADE_UP_VARIANTS} className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-2 dark:border-slate-700 dark:bg-slate-800">
-              <Briefcase className="text-primary-500 h-4 w-4" />
-              <span className="text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-300">Customer Success</span>
+          <motion.div initial="hidden" animate="visible" variants={STAGGER_CONTAINER}>
+            <motion.div
+              variants={FADE_UP_VARIANTS}
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-2 dark:border-slate-700 dark:bg-slate-800"
+            >
+              <Briefcase className="h-4 w-4 text-slate-900 dark:text-white" />
+              <span className="text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-300">
+                Customer Success
+              </span>
             </motion.div>
 
             <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white">
-              <StaggeredText text="Bukti Nyata," className="mb-2 flex w-full justify-center" delay={0.1} />
+              <StaggeredText
+                text="Bukti Nyata,"
+                className="mb-2 flex w-full justify-center"
+                delay={0.1}
+              />
               <motion.span
                 variants={FADE_UP_VARIANTS}
                 initial="hidden"
@@ -155,7 +171,9 @@ export default function UseCasesContent() {
               variants={FADE_UP_VARIANTS}
               className="mx-auto mb-12 max-w-3xl text-lg text-slate-600 dark:text-slate-400"
             >
-              Kumpulan studi kasus implementasi BizOps yang berhasil memecahkan masalah operasional kompleks di lapangan. Dari startup hingga enterprise, dari manufaktur hingga retail.
+              Kumpulan studi kasus implementasi BizOps yang berhasil memecahkan masalah
+              operasional kompleks di lapangan. Dari startup hingga enterprise, dari
+              manufaktur hingga retail.
             </motion.p>
           </motion.div>
 
@@ -172,12 +190,12 @@ export default function UseCasesContent() {
                 type="text"
                 placeholder="Cari studi kasus..."
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-200 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => setSearchQuery("")}
                   className="absolute top-1/2 right-4 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-300"
                 >
                   <X className="h-5 w-5" />
@@ -191,7 +209,6 @@ export default function UseCasesContent() {
       {/* Main Content with Sidebar */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-12">
-
           {/* Sidebar Filters */}
           <aside className="lg:col-span-3">
             <div className="sticky top-24 space-y-6">
@@ -202,21 +219,19 @@ export default function UseCasesContent() {
                   Industry
                 </h3>
                 <div className="space-y-2">
-                  {industries.map(industry => (
+                  {industries.map((industry) => (
                     <button
                       key={industry}
                       onClick={() => setSelectedIndustry(industry)}
                       className={`w-full rounded-lg px-3 py-2 text-left text-sm transition-all ${
                         selectedIndustry === industry
-                          ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold'
-                          : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800'
+                          ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold"
+                          : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800"
                       }`}
                     >
                       <span>{industry}</span>
                       <span className="float-right text-xs opacity-70">
-                        (
-                        {getIndustryCount(industry)}
-                        )
+                        ({getIndustryCount(industry)})
                       </span>
                     </button>
                   ))}
@@ -225,23 +240,23 @@ export default function UseCasesContent() {
 
               {/* Category Filter */}
               <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-                <h3 className="mb-4 text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">Category</h3>
+                <h3 className="mb-4 text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
+                  Category
+                </h3>
                 <div className="space-y-2">
-                  {categories.map(category => (
+                  {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
                       className={`w-full rounded-lg px-3 py-2 text-left text-sm transition-all ${
                         selectedCategory === category
-                          ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold'
-                          : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800'
+                          ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold"
+                          : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800"
                       }`}
                     >
                       <span>{category}</span>
                       <span className="float-right text-xs opacity-70">
-                        (
-                        {getCategoryCount(category)}
-                        )
+                        ({getCategoryCount(category)})
                       </span>
                     </button>
                   ))}
@@ -249,12 +264,14 @@ export default function UseCasesContent() {
               </div>
 
               {/* Reset Button */}
-              {(selectedIndustry !== 'All' || selectedCategory !== 'All' || searchQuery) && (
+              {(selectedIndustry !== "All" ||
+                selectedCategory !== "All" ||
+                searchQuery) && (
                 <Button
                   onClick={() => {
-                    setSelectedIndustry('All');
-                    setSelectedCategory('All');
-                    setSearchQuery('');
+                    setSelectedIndustry("All");
+                    setSelectedCategory("All");
+                    setSearchQuery("");
                   }}
                   variant="outline"
                   className="w-full"
@@ -269,10 +286,10 @@ export default function UseCasesContent() {
           <div className="lg:col-span-9">
             <div className="mb-8 flex items-center justify-between">
               <p className="text-slate-600 dark:text-slate-400">
-                Menampilkan
-                {' '}
-                <span className="font-bold text-slate-900 dark:text-white">{filteredCases.length}</span>
-                {' '}
+                Menampilkan{" "}
+                <span className="font-bold text-slate-900 dark:text-white">
+                  {filteredCases.length}
+                </span>{" "}
                 studi kasus
               </p>
             </div>
@@ -284,9 +301,9 @@ export default function UseCasesContent() {
                 </p>
                 <Button
                   onClick={() => {
-                    setSearchQuery('');
-                    setSelectedIndustry('All');
-                    setSelectedCategory('All');
+                    setSearchQuery("");
+                    setSelectedIndustry("All");
+                    setSelectedCategory("All");
                   }}
                 >
                   Reset Filter
@@ -327,7 +344,9 @@ export default function UseCasesContent() {
                               </p>
 
                               <div className="mb-6 flex-grow">
-                                <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">Challenge:</h4>
+                                <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
+                                  Challenge:
+                                </h4>
                                 <p className="line-clamp-3 text-sm text-slate-600 dark:text-slate-400">
                                   {useCase.challenge}
                                 </p>
@@ -336,10 +355,15 @@ export default function UseCasesContent() {
                               {/* Results Preview */}
                               {useCase.results && useCase.results.length > 0 && (
                                 <div className="border-t border-slate-100 pt-4 dark:border-slate-800">
-                                  <h4 className="mb-3 text-xs font-bold tracking-wider text-green-600 uppercase dark:text-green-400">Key Results:</h4>
+                                  <h4 className="mb-3 text-xs font-bold tracking-wider text-green-600 uppercase dark:text-green-400">
+                                    Key Results:
+                                  </h4>
                                   <ul className="space-y-2">
                                     {useCase.results.slice(0, 2).map((result, idx) => (
-                                      <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                      <li
+                                        key={idx}
+                                        className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300"
+                                      >
                                         <span className="mt-0.5 text-green-500">✓</span>
                                         <span className="line-clamp-1">{result}</span>
                                       </li>
@@ -349,9 +373,7 @@ export default function UseCasesContent() {
                               )}
 
                               <div className="text-primary-600 dark:text-primary-400 mt-6 flex items-center text-sm font-bold transition-all group-hover:gap-2">
-                                Baca Studi Kasus
-                                {' '}
-                                <ArrowRight className="ml-1 h-4 w-4" />
+                                Baca Studi Kasus <ArrowRight className="ml-1 h-4 w-4" />
                               </div>
                             </article>
                           </SpotlightCard>
@@ -378,23 +400,31 @@ export default function UseCasesContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-slate-800 bg-slate-900 px-4 py-16 sm:px-6 lg:px-8 dark:bg-slate-950">
+      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8 dark:border-t dark:border-slate-800 dark:bg-slate-900 dark:bg-slate-950">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
             Ingin Hasil Serupa untuk Bisnis Anda?
           </h2>
-          <p className="mb-8 text-lg text-slate-300">
-            Diskusikan tantangan operasional Anda dengan tim konsultan kami. Gratis dan tanpa komitmen.
+          <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
+            Diskusikan tantangan operasional Anda dengan tim konsultan kami. Gratis dan
+            tanpa komitmen.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact">
-              <Button size="lg" className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto">
-                Jadwalkan Konsultasi
+              <Button
+                size="lg"
+                className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto"
+              >
+                <span className="text-slate-900 dark:text-white">Jadwalkan Konsultasi</span>
               </Button>
             </Link>
             <Link href="/demo">
-              <Button size="lg" variant="outline" className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto">
-                Lihat Demo Platform
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto"
+              >
+                <span className="text-slate-900 dark:text-white">Lihat Demo Platform</span>
               </Button>
             </Link>
           </div>

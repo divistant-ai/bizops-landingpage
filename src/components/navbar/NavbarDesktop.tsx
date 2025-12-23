@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { servicesItems } from "../../data/navData";
-import NotificationCenter from "../NotificationCenter";
 import { ThemeToggle } from "../ThemeToggle";
 import MegaMenu from "./MegaMenu";
 import {
@@ -55,7 +54,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   }, []);
 
   const handleMenuClick = useCallback((menu: MenuType) => {
-    setActiveMenu(prev => (prev === menu ? null : menu));
+    setActiveMenu((prev) => (prev === menu ? null : menu));
   }, []);
 
   const handleCloseMenu = useCallback(() => {
@@ -131,7 +130,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
                 : "invisible translate-y-1 opacity-0"
             }`}
           >
-            {servicesItems.map(item => (
+            {servicesItems.map((item) => (
               <Link
                 key={item.to}
                 href={item.to}
@@ -179,11 +178,11 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             type="button"
             onClick={() => handleMenuClick("company")}
             className={getMenuItemClasses(
-              pathname?.startsWith("/about")
-              || pathname?.startsWith("/company")
-              || pathname?.startsWith("/careers")
-              || pathname?.startsWith("/partners")
-              || false,
+              pathname?.startsWith("/about") ||
+                pathname?.startsWith("/company") ||
+                pathname?.startsWith("/careers") ||
+                pathname?.startsWith("/partners") ||
+                false
             )}
             aria-expanded={isMenuOpen("company")}
           >
@@ -204,8 +203,8 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       <div className={navbarStyles.container.separator} aria-hidden="true" />
 
       {/* Action Buttons */}
-      <div className={`${navbarStyles.container.actions} shrink-0`}>
-        <NotificationCenter />
+      <div className="flex w-full items-center gap-2">
+        {/* <NotificationCenter /> */}
         <ThemeToggle />
         <Link href="/search" className={getIconButtonClasses()} aria-label="Search">
           <Search className={navbarStyles.iconSize.medium} />
