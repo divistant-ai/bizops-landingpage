@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useLocale } from "next-intl";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
@@ -31,12 +32,7 @@ import { routing } from "@/libs/I18nRouting";
 
 // SVG Assets for App Stores
 const AppleIcon = () => (
-  <svg
-    className="h-6 w-6 fill-current"
-    viewBox="0 0 24 24"
-    role="img"
-    aria-label="Apple Logo"
-  >
+  <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24" role="img" aria-label="Apple Logo">
     <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.74 1.18 0 2.21-.93 3.69-.74 1.6.19 2.72.79 3.42 1.82-3.06 1.86-2.51 5.71.6 7.02-.62 1.58-1.53 3.14-2.79 4.13zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
   </svg>
 );
@@ -194,23 +190,34 @@ export const Footer: React.FC = () => {
         {/* MAIN GRID */}
         <div className="mb-12 grid grid-cols-1 gap-10 md:mb-20 md:grid-cols-12 md:gap-12 xl:gap-12">
           {/* BRAND COLUMN (Left) */}
-          <div className="space-y-6 md:col-span-12 md:space-y-8 lg:col-span-4">
+          <div className="flex flex-col items-start space-y-6 md:col-span-12 md:space-y-8 lg:col-span-4">
             <Link
               href="/"
-              className="group flex w-fit items-center gap-3 focus:outline-none"
+              className="group flex items-center focus:outline-none"
               aria-label="BizOps Home"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 shadow-lg shadow-slate-900/10 transition-transform group-hover:rotate-6 dark:bg-white dark:shadow-white/5">
-                <div className="h-5 w-5 rotate-45 transform rounded-sm bg-white dark:bg-[#0B0F19]"></div>
-              </div>
-              <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-                BizOps
-              </span>
+              {mounted
+                ? (
+                    <Image
+                      src={
+                        resolvedTheme === "dark"
+                          ? "/assets/images/Logo BizOps - Dark.svg"
+                          : "/assets/images/Logo BizOps - Light.svg"
+                      }
+                      alt="BizOps Logo"
+                      width={120}
+                      height={40}
+                      className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
+                    />
+                  )
+                : (
+                    <div className="h-10 w-[120px]" />
+                  )}
             </Link>
 
             <p className="w-full text-sm leading-relaxed text-slate-600 md:max-w-sm dark:text-slate-400">
-              Sistem operasi bisnis adaptif yang menyatukan HR, Finance, dan Operasional
-              dalam satu platform aman terintegrasi.
+              Sistem operasi bisnis adaptif yang menyatukan HR, Finance, dan Operasional dalam satu
+              platform aman terintegrasi.
             </p>
 
             <div className="space-y-5 pt-2">
@@ -263,16 +270,8 @@ export const Footer: React.FC = () => {
                 icon={Linkedin}
                 label="LinkedIn"
               />
-              <SocialLink
-                href="https://twitter.com/bizops"
-                icon={Twitter}
-                label="Twitter"
-              />
-              <SocialLink
-                href="https://youtube.com/@bizops"
-                icon={Youtube}
-                label="YouTube"
-              />
+              <SocialLink href="https://twitter.com/bizops" icon={Twitter} label="Twitter" />
+              <SocialLink href="https://youtube.com/@bizops" icon={Youtube} label="YouTube" />
               <SocialLink
                 href="https://instagram.com/bizops.id"
                 icon={Instagram}
@@ -289,9 +288,7 @@ export const Footer: React.FC = () => {
                 <FooterLink href="/platform/modules/hr">HR System</FooterLink>
                 <FooterLink href="/platform/modules/finance">Finance</FooterLink>
                 <FooterLink href="/platform/modules/operations">Operations</FooterLink>
-                <FooterLink href="/platform/technologies/integration">
-                  Integrations
-                </FooterLink>
+                <FooterLink href="/platform/technologies/integration">Integrations</FooterLink>
                 <FooterLink href="/pricing">Pricing</FooterLink>
                 <FooterLink href="/roadmap">Roadmap</FooterLink>
               </ul>
@@ -328,9 +325,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-8 md:col-span-5 lg:col-span-3">
             {/* Newsletter */}
             <div className="relative space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-white/10 dark:bg-white/5 dark:backdrop-blur-sm">
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                Stay Updated
-              </h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Stay Updated</h3>
 
               {subscribed
                 ? (
@@ -395,16 +390,15 @@ export const Footer: React.FC = () => {
                   </div>
                 </Link>
                 <Link
-                  href="#"
+                  href="https://play.google.com/store/apps/details?id=com.divistant.ex_mobile.ex_mobile"
+                  target="_blank"
                   className="group flex items-center gap-3 rounded-lg border border-slate-300 bg-white p-2.5 pr-4 shadow-sm transition-all hover:border-slate-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800"
                 >
                   <div className="flex h-8 w-8 items-center justify-center rounded border border-slate-300 bg-slate-100 text-slate-900 transition-transform group-hover:scale-105 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                     <PlayStoreIcon />
                   </div>
                   <div className="text-left">
-                    <div className="text-[9px] font-bold text-slate-500 uppercase">
-                      Get it on
-                    </div>
+                    <div className="text-[9px] font-bold text-slate-500 uppercase">Get it on</div>
                     <div className="text-xs leading-tight font-bold text-slate-900 dark:text-white">
                       Google Play
                     </div>
@@ -424,8 +418,7 @@ export const Footer: React.FC = () => {
               {" "}
               {new Date().getFullYear()}
               {" "}
-              PT Divistant Teknologi Indonesia. All rights
-              reserved.
+              PT Divistant Teknologi Indonesia. All rights reserved.
             </p>
 
             {/* Language & Theme Switcher Pill - Mobile */}

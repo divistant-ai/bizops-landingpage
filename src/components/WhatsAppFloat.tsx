@@ -17,7 +17,6 @@ export default function WhatsAppFloat() {
 
   return (
     <div className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3">
-      {/* Tooltip/Message Bubble (on hover) */}
       {isHovered && (
         <div className="animate-fade-in-up rounded-2xl border border-green-200 bg-white px-4 py-3 shadow-2xl dark:border-green-800 dark:bg-slate-900">
           <p className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">
@@ -29,8 +28,20 @@ export default function WhatsAppFloat() {
         </div>
       )}
 
-      {/* WhatsApp Button Wrapper */}
       <div className="group relative">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl transition-all hover:scale-110 hover:bg-green-600 hover:shadow-green-500/50"
+          aria-label="Chat via WhatsApp"
+        >
+          <span className="pointer-events-none absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+          <MessageCircle className="relative h-8 w-8 transition-transform group-hover:rotate-12" />
+        </a>
+
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -41,19 +52,6 @@ export default function WhatsAppFloat() {
         >
           <X className="h-4 w-4" />
         </button>
-
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl transition-all hover:scale-110 hover:bg-green-600 hover:shadow-green-500/50"
-          aria-label="Chat via WhatsApp"
-        >
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-          <MessageCircle className="relative h-8 w-8 transition-transform group-hover:rotate-12" />
-        </a>
       </div>
     </div>
   );
