@@ -54,7 +54,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   }, []);
 
   const handleMenuClick = useCallback((menu: MenuType) => {
-    setActiveMenu((prev) => (prev === menu ? null : menu));
+    setActiveMenu(prev => (prev === menu ? null : menu));
   }, []);
 
   const handleCloseMenu = useCallback(() => {
@@ -64,10 +64,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   const isMenuOpen = (menu: MenuType) => activeMenu === menu;
 
   return (
-    <div
-      ref={navRef}
-      className="hidden flex-1 items-center justify-between gap-4 lg:flex xl:gap-6"
-    >
+    <div ref={navRef} className="hidden flex-1 items-center justify-between gap-4 lg:flex xl:gap-6">
       {/* Navigation Menu */}
       <nav className={navbarStyles.container.nav} aria-label="Main Navigation">
         {/* MENU 1: PLATFORM */}
@@ -83,11 +80,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("platform") ? "rotate-180" : ""}`}
             />
           </button>
-          <MegaMenu
-            type="platform"
-            isOpen={isMenuOpen("platform")}
-            onClose={handleCloseMenu}
-          />
+          <MegaMenu type="platform" isOpen={isMenuOpen("platform")} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 2: SOLUTIONS */}
@@ -103,11 +96,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("solutions") ? "rotate-180" : ""}`}
             />
           </button>
-          <MegaMenu
-            type="solutions"
-            isOpen={isMenuOpen("solutions")}
-            onClose={handleCloseMenu}
-          />
+          <MegaMenu type="solutions" isOpen={isMenuOpen("solutions")} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 3: SERVICES */}
@@ -130,7 +119,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
                 : "invisible translate-y-1 opacity-0"
             }`}
           >
-            {servicesItems.map((item) => (
+            {servicesItems.map(item => (
               <Link
                 key={item.to}
                 href={item.to}
@@ -165,11 +154,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("resources") ? "rotate-180" : ""}`}
             />
           </button>
-          <MegaMenu
-            type="resources"
-            isOpen={isMenuOpen("resources")}
-            onClose={handleCloseMenu}
-          />
+          <MegaMenu type="resources" isOpen={isMenuOpen("resources")} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 5: COMPANY */}
@@ -178,11 +163,11 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             type="button"
             onClick={() => handleMenuClick("company")}
             className={getMenuItemClasses(
-              pathname?.startsWith("/about") ||
-                pathname?.startsWith("/company") ||
-                pathname?.startsWith("/careers") ||
-                pathname?.startsWith("/partners") ||
-                false
+              pathname?.startsWith("/about")
+              || pathname?.startsWith("/company")
+              || pathname?.startsWith("/careers")
+              || pathname?.startsWith("/partners")
+              || false,
             )}
             aria-expanded={isMenuOpen("company")}
           >
@@ -191,11 +176,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("company") ? "rotate-180" : ""}`}
             />
           </button>
-          <MegaMenu
-            type="company"
-            isOpen={isMenuOpen("company")}
-            onClose={handleCloseMenu}
-          />
+          <MegaMenu type="company" isOpen={isMenuOpen("company")} onClose={handleCloseMenu} />
         </div>
       </nav>
 
@@ -204,15 +185,17 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
 
       {/* Action Buttons */}
       <div className="flex w-full items-center gap-2">
+        {/* Disabled Temporary */}
         {/* <NotificationCenter /> */}
         <ThemeToggle />
         <Link href="/search" className={getIconButtonClasses()} aria-label="Search">
           <Search className={navbarStyles.iconSize.medium} />
         </Link>
-        <Link href="/login" className={getTextButtonClasses()}>
+        {/* Disabled Temporary */}
+        {/* <Link href="/login" className={getTextButtonClasses()}>
           Login
-        </Link>
-        <button type="button" className={getTextButtonClasses()} onClick={onDemoClick}>
+        </Link> */}
+        <button type="button" className={`${getTextButtonClasses()} ml-5`} onClick={onDemoClick}>
           Book a Demo
         </button>
       </div>

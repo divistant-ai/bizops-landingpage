@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, MousePointer, X } from 'lucide-react';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { usePathname } from '@/libs/I18nNavigation';
-import { companyContent, platformContent, resourcesContent, servicesItems, solutionsContent } from '../../data/navData';
-import Button from '../ui/Button';
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown, MousePointer, X } from "lucide-react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { usePathname } from "@/libs/I18nNavigation";
+import {
+  companyContent,
+  platformContent,
+  resourcesContent,
+  servicesItems,
+  solutionsContent,
+} from "../../data/navData";
+import Button from "../ui/Button";
 
 type MobileMenuProps = {
   isOpen: boolean;
@@ -34,12 +40,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -61,15 +67,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
         aria-expanded={isOpen}
       >
         {title}
-        <ChevronDown className={`h-4 w-4 transition-all duration-200 ${isOpen ? 'text-primary-600 dark:text-primary-400 rotate-180' : 'text-slate-400'}`} />
+        <ChevronDown
+          className={`h-4 w-4 transition-all duration-200 ${isOpen ? "text-primary-600 dark:text-primary-400 rotate-180" : "text-slate-400"}`}
+        />
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden bg-white dark:bg-slate-950"
           >
             {children}
@@ -94,10 +102,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
           {/* Menu Drawer */}
           <motion.div
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-y-0 right-0 z-50 w-full max-w-md overflow-y-auto bg-white shadow-2xl lg:hidden dark:bg-slate-950"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/95">
@@ -136,7 +144,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -161,7 +171,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -186,7 +198,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -232,7 +246,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -257,7 +273,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -286,7 +304,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         <div className="flex flex-col">
                           <span>{item.label}</span>
                           {item.desc && (
-                            <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                            <span className="text-xs text-slate-400 dark:text-slate-500">
+                              {item.desc}
+                            </span>
                           )}
                         </div>
                       </Link>
@@ -319,7 +339,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -333,7 +355,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       Customer Tools
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['customer-tools']?.items.slice(0, 5).map(item => (
+                      {resourcesContent["customer-tools"]?.items.slice(0, 5).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -344,7 +366,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -365,7 +389,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       Strategic Tools
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map(item => (
+                      {resourcesContent["strategic-tools"]?.items.slice(0, 4).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -376,7 +400,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -401,7 +427,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -435,7 +463,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -460,7 +490,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                           <div className="flex flex-col">
                             <span>{item.label}</span>
                             {item.desc && (
-                              <span className="text-xs text-slate-400 dark:text-slate-500">{item.desc}</span>
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
                             )}
                           </div>
                         </Link>
@@ -481,13 +513,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
               {/* Mobile Login & CTA */}
               <div className="mt-6 space-y-3 border-t border-slate-200 pt-6 dark:border-slate-800">
-                <Link
+                {/* <Link
                   href="/login"
                   onClick={onClose}
                   className="focus-visible:ring-primary-500 flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-bold text-slate-700 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:bg-slate-50 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
                 >
                   Login
-                </Link>
+                </Link> */}
                 <Button
                   fullWidth
                   size="lg"

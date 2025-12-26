@@ -10,7 +10,7 @@ export const navbarStyles = {
 
   // Icon Button Styles - Improved for accessibility (44x44 touch target)
   iconButton: {
-    base: "flex h-11 w-11 items-center justify-center rounded-lg transition-all duration-200 hover:bg-slate-100 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
+    base: "flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200 hover:bg-slate-100 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
     colors:
       "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-white",
     mobile: "active:scale-95 sm:h-10 sm:w-10",
@@ -19,8 +19,7 @@ export const navbarStyles = {
   // Text Button Styles
   textButton: {
     base: "rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
-    colors:
-      "text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/70 dark:hover:text-white",
+    colors: "text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800/70 dark:hover:text-white",
   },
 
   // CTA Button Enhancement
