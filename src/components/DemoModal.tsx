@@ -1,16 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Building2,
-  CheckCircle,
-  MessageSquare,
-  Send,
-  Shield,
-  Users,
-  Video,
-  X,
-} from "lucide-react";
+import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } from "lucide-react";
 import React, { useState } from "react";
 import { Input, Select, TextArea } from "./Form";
 import Button from "./ui/Button";
@@ -37,8 +28,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     const email = (form.elements.namedItem("modalEmail") as HTMLInputElement).value;
     const phoneInput = (form.elements.namedItem("modalPhone") as HTMLInputElement).value;
     const company = (form.elements.namedItem("modalCompany") as HTMLInputElement).value;
-    const employees = (form.elements.namedItem("modalEmployees") as HTMLSelectElement)
-      .value;
+    const employees = (form.elements.namedItem("modalEmployees") as HTMLSelectElement).value;
     const jobTitle = (form.elements.namedItem("modalJobTitle") as HTMLInputElement).value;
     const interest = (form.elements.namedItem("modalInterest") as HTMLSelectElement).value;
     const message = (form.elements.namedItem("modalMessage") as HTMLTextAreaElement).value;
@@ -57,9 +47,9 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         + `No HP: ${phoneInput}\n\n`
         + `*Profil Bisnis:*\n`
         + `Ukuran: ${employees} karyawan\n`
-      + `Minat: ${interest}\n\n`
-      + `*Catatan:*\n${message || "-"}\n\n`
-      + `Mohon info ketersediaan jadwal. Terima kasih.`;
+        + `Minat: ${interest}\n\n`
+        + `*Catatan:*\n${message || "-"}\n\n`
+        + `Mohon info ketersediaan jadwal. Terima kasih.`;
 
     const url = `https://wa.me/${salesPhone}?text=${encodeURIComponent(text)}`;
 
@@ -111,8 +101,8 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     Experience the Future of ERP
                   </h2>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Lihat bagaimana BizOps dapat mengotomatisasi proses bisnis Anda dalam
-                    sesi demo privat.
+                    Lihat bagaimana BizOps dapat mengotomatisasi proses bisnis Anda dalam sesi demo
+                    privat.
                   </p>
                 </div>
 
@@ -126,8 +116,8 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                         Tailored Walkthrough
                       </h4>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                        Demo disesuaikan dengan alur kerja spesifik industri Anda, bukan
-                        sekadar overview umum.
+                        Demo disesuaikan dengan alur kerja spesifik industri Anda, bukan sekadar
+                        overview umum.
                       </p>
                     </div>
                   </div>
@@ -153,8 +143,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                         No Commitment
                       </h4>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                        Eksplorasi fitur tanpa tekanan. Kami fokus pada solusi, bukan
-                        hard-selling.
+                        Eksplorasi fitur tanpa tekanan. Kami fokus pada solusi, bukan hard-selling.
                       </p>
                     </div>
                   </div>
@@ -291,14 +280,14 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     size="lg"
                     type="submit"
                     disabled={isLoading}
-                    className="h-12"
+                    className="h-12 border border-slate-300 dark:border-slate-600"
                   >
                     {isLoading
                       ? (
                           "Redirecting..."
                         )
                       : (
-                          <span className="flex items-center gap-2">
+                          <span className="flex items-center gap-2 text-slate-700 dark:text-white">
                             <Send className="h-5 w-5" />
                             {" "}
                             Request Demo via WhatsApp
