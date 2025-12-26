@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
@@ -44,7 +45,7 @@
   }
 
   html.dark,
-  html[data-theme='dark'] {
+  html[data-theme="dark"] {
     /* Base - Rich Deep Black (Not washed out gray) */
     --background: 240 10% 3.9%; /* #09090b (Zinc-950) - Deep, premium dark */
     --foreground: 0 0% 98%;
@@ -93,17 +94,17 @@
     /* Ensure CSS variables are inherited */
     color-scheme: light dark;
   }
-  html:not(.dark):not([data-theme='dark']) {
+  html:not(.dark):not([data-theme="dark"]) {
     color-scheme: light;
   }
   html.dark,
-  html[data-theme='dark'] {
+  html[data-theme="dark"] {
     color-scheme: dark;
   }
   body {
     font-feature-settings:
-      'rlig' 1,
-      'calt' 1;
+      "rlig" 1,
+      "calt" 1;
   }
 
   /* Modern scrollbar */

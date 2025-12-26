@@ -1,7 +1,9 @@
-import React from 'react';
+"use client";
 
-import { LanguageProvider } from '@/contexts/LanguageContext';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ThemeProvider } from "next-themes";
+import React from "react";
+
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -9,10 +11,14 @@ type ProvidersProps = {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        {children}
-      </LanguageProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      storageKey="theme"
+      enableColorScheme
+    >
+      <LanguageProvider>{children}</LanguageProvider>
     </ThemeProvider>
   );
 }
