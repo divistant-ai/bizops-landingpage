@@ -36,16 +36,16 @@ import {
 } from '@/data/needsAnalysisData';
 import { logger } from '@/utils/logger';
 
-type StepType
-  = | 'intro'
-    | 'context'
-    | 'tech-stack'
-    | 'operational-context'
-    | 'pain-points'
-    | 'goals'
-    | 'expectations'
-    | 'analyzing'
-    | 'result';
+type StepType =
+  | 'intro'
+  | 'context'
+  | 'tech-stack'
+  | 'operational-context'
+  | 'pain-points'
+  | 'goals'
+  | 'expectations'
+  | 'analyzing'
+  | 'result';
 
 const STEPS_ORDER: StepType[] = [
   'intro',
@@ -75,7 +75,7 @@ const ProgressBar = ({
   const progress = (displayStep / totalSteps) * 100;
 
   return (
-    <div className="fixed top-20 left-0 z-50 h-1 w-full bg-slate-900">
+    <div className="fixed top-20 left-0 z-50 h-1 w-full bg-slate-200 dark:bg-slate-900">
       <motion.div
         className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
         initial={{ width: 0 }}
@@ -98,18 +98,12 @@ const StepLayout = ({
   totalSteps,
   handleFinish,
 }: any) => (
-  <div className="min-h-screen bg-slate-950 px-4 pt-24 pb-12 text-white">
+  <div className="min-h-screen bg-slate-50 px-4 pt-24 pb-12 text-slate-900 dark:bg-slate-950 dark:text-white">
     <ProgressBar step="context" displayStep={displayStep} totalSteps={totalSteps} />
     <div className="mx-auto max-w-4xl">
       <div className="mb-8">
         <div className="mb-2 text-xs font-bold tracking-widest text-blue-500 uppercase">
-          Step
-          {' '}
-          {displayStep}
-          {' '}
-          of
-          {' '}
-          {totalSteps}
+          Step {displayStep} of {totalSteps}
         </div>
         <h2 className="mb-2 text-3xl font-bold">{title}</h2>
         <p className="text-slate-400">{desc}</p>
@@ -127,20 +121,25 @@ const StepLayout = ({
       <div className="flex justify-between border-t border-white/10 pt-6">
         <button
           onClick={() => setStep(prevStep)}
-          className="flex items-center gap-2 text-slate-500 hover:text-white"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white"
         >
-          <ArrowLeft className="size-4" />
-          {' '}
-          Kembali
+          <ArrowLeft className="size-4" />{' '}
+          <span className="text-slate-800 dark:text-white">Kembali</span>
         </button>
         <Button
           onClick={typeof nextStep === 'string' ? () => setStep(nextStep) : nextStep}
           disabled={disableNext}
           className={
-            disableNext ? 'opacity-50' : nextStep === handleFinish ? 'bg-emerald-600 hover:bg-emerald-500' : ''
+            disableNext
+              ? 'opacity-50'
+              : nextStep === handleFinish
+                ? 'bg-emerald-600 hover:bg-emerald-500'
+                : ''
           }
         >
-          {nextStep === handleFinish ? 'Lihat Hasil Analisis' : 'Lanjut'}
+          <span className="text-white dark:text-slate-600">
+            {nextStep === handleFinish ? 'Lihat Hasil Analisis' : 'Lanjut'}
+          </span>
           {nextStep !== handleFinish && <ChevronRight className="ml-2 size-4" />}
           {nextStep === handleFinish && <Search className="ml-2 size-4" />}
         </Button>
@@ -173,9 +172,14 @@ export default function NeedsAnalysis() {
   });
 
   // --- LOGIC ---
-  const toggleSelection = (list: string[], item: string, setList: (l: string[]) => void, max: number = 10) => {
+  const toggleSelection = (
+    list: string[],
+    item: string,
+    setList: (l: string[]) => void,
+    max: number = 10,
+  ) => {
     if (list.includes(item)) {
-      setList(list.filter(i => i !== item));
+      setList(list.filter((i) => i !== item));
     } else {
       if (list.length < max) {
         setList([...list, item]);
@@ -198,12 +202,12 @@ export default function NeedsAnalysis() {
 
     return modules
       .map((mod) => {
-        const matchCount = mod.relevance.filter(tag => allTags.includes(tag)).length;
+        const matchCount = mod.relevance.filter((tag) => allTags.includes(tag)).length;
         const industryBonus = mod.relevance.includes(contextData.industry) ? 3 : 0;
-        const holisticBonus = mod.relevance.some(r => selectedHolisticIssues.includes(r)) ? 2 : 0;
+        const holisticBonus = mod.relevance.some((r) => selectedHolisticIssues.includes(r)) ? 2 : 0;
         return { ...mod, matchScore: matchCount + industryBonus + holisticBonus };
       })
-      .filter(mod => mod.matchScore > 0)
+      .filter((mod) => mod.matchScore > 0)
       .sort((a, b) => b.matchScore - a.matchScore)
       .slice(0, 3);
   };
@@ -213,10 +217,10 @@ export default function NeedsAnalysis() {
 
     return serviceSolutions
       .map((svc) => {
-        const matchCount = svc.relevance.filter(tag => allTags.includes(tag)).length;
+        const matchCount = svc.relevance.filter((tag) => allTags.includes(tag)).length;
         return { ...svc, matchScore: matchCount };
       })
-      .filter(svc => svc.matchScore > 0)
+      .filter((svc) => svc.matchScore > 0)
       .sort((a, b) => b.matchScore - a.matchScore)
       .slice(0, 2);
   };
@@ -252,7 +256,7 @@ export default function NeedsAnalysis() {
 
   if (step === 'intro') {
     return (
-      <div className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 text-white">
+      <div className="relative flex min-h-screen items-center overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
         {/* Background Effects */}
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
         <div className="absolute top-0 right-0 size-[500px] rounded-full bg-blue-900/20 blur-[120px]" />
@@ -268,27 +272,20 @@ export default function NeedsAnalysis() {
               className="text-left"
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 backdrop-blur-sm">
-                <Crosshair className="size-4" />
-                {' '}
-                Solution Finder 2.0
+                <Crosshair className="size-4" /> Solution Finder 2.0
               </div>
 
               <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight md:text-6xl">
-                Temukan Solusi BizOps
-                {' '}
-                <br />
+                Temukan Solusi BizOps <br />
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                   Yang Paling Tepat.
                 </span>
               </h1>
 
               <p className="mb-8 max-w-xl text-lg leading-relaxed text-slate-400">
-                Bingung mulai dari mana? Dapatkan
-                {' '}
-                <strong>Strategic Blueprint</strong>
-                {' '}
-                yang dipersonalisasi—mencakup
-                rekomendasi software dan strategi implementasi (PPT) hanya dalam 2 menit.
+                Bingung mulai dari mana? Dapatkan <strong>Strategic Blueprint</strong> yang
+                dipersonalisasi—mencakup rekomendasi software dan strategi implementasi (PPT) hanya
+                dalam 2 menit.
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -297,22 +294,17 @@ export default function NeedsAnalysis() {
                   size="lg"
                   className="h-14 rounded-xl bg-blue-600 px-8 text-lg shadow-lg shadow-blue-900/20 hover:bg-blue-500"
                 >
-                  Mulai Diagnosa Gratis
-                  {' '}
+                  <span className="text-white dark:text-slate-600">Mulai Diagnosa Gratis</span>{' '}
                   <ArrowRight className="ml-2 size-5" />
                 </Button>
               </div>
 
               <div className="mt-8 flex items-center gap-6 text-sm text-slate-500">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="size-4 text-emerald-500" />
-                  {' '}
-                  Free Analysis
+                  <CheckCircle className="size-4 text-emerald-500" /> Free Analysis
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="size-4 text-emerald-500" />
-                  {' '}
-                  No Sign-up Required
+                  <CheckCircle className="size-4 text-emerald-500" /> No Sign-up Required
                 </div>
               </div>
             </motion.div>
@@ -334,20 +326,22 @@ export default function NeedsAnalysis() {
                   <div>
                     <h3 className="mb-1 text-lg font-bold text-white">Holistic Diagnosis</h3>
                     <p className="text-sm leading-relaxed text-slate-400">
-                      Kami tidak hanya melihat software, tapi juga kesiapan tim (People) dan alur kerja (Process).
+                      Kami tidak hanya melihat software, tapi juga kesiapan tim (People) dan alur
+                      kerja (Process).
                     </p>
                   </div>
                 </div>
 
                 {/* Card 2: Roadmap */}
-                <div className="flex translate-x-8 items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md transition-transform duration-300 hover:translate-x-8 hover:-translate-y-1">
+                <div className="flex translate-x-8 items-start gap-4 rounded-2xl border border-slate-200 bg-slate-100 p-6 backdrop-blur-md transition-transform duration-300 hover:translate-x-8 hover:-translate-y-1 dark:border-white/10 dark:bg-slate-900/60">
                   <div className="rounded-xl bg-emerald-500/20 p-3 text-emerald-400">
                     <Calendar className="size-6" />
                   </div>
                   <div>
                     <h3 className="mb-1 text-lg font-bold text-white">Actionable Roadmap</h3>
                     <p className="text-sm leading-relaxed text-slate-400">
-                      Dapatkan timeline implementasi langkah demi langkah, dari Quick Win hingga Optimization.
+                      Dapatkan timeline implementasi langkah demi langkah, dari Quick Win hingga
+                      Optimization.
                     </p>
                   </div>
                 </div>
@@ -360,7 +354,8 @@ export default function NeedsAnalysis() {
                   <div>
                     <h3 className="mb-1 text-lg font-bold text-white">Practical Solution</h3>
                     <p className="text-sm leading-relaxed text-slate-400">
-                      Berbeda dengan Maturity Assessment yang hanya memberi skor, kami memberi resep solusi.
+                      Berbeda dengan Maturity Assessment yang hanya memberi skor, kami memberi resep
+                      solusi.
                     </p>
                   </div>
                 </div>
@@ -389,28 +384,26 @@ export default function NeedsAnalysis() {
         totalSteps={totalSteps}
         handleFinish={handleFinish}
       >
-        <div className="space-y-5 rounded-2xl border border-white/10 bg-slate-900/50 p-8 backdrop-blur-sm">
+        <div className="space-y-5 rounded-2xl border border-slate-200 bg-slate-100 p-8 backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">Nama Lengkap</label>
               <input
                 type="text"
                 value={contextData.name}
-                onChange={e => setContextData({ ...contextData, name: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, name: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 placeholder="John Doe"
               />
             </div>
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">
-                Nama Perusahaan
-                {' '}
-                <span className="text-red-500">*</span>
+                Nama Perusahaan <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={contextData.company}
-                onChange={e => setContextData({ ...contextData, company: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, company: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 placeholder="PT. Contoh Indonesia"
               />
@@ -420,24 +413,24 @@ export default function NeedsAnalysis() {
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">
-                Email
-                {' '}
-                <span className="text-red-500">*</span>
+                Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
                 value={contextData.email}
-                onChange={e => setContextData({ ...contextData, email: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, email: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 placeholder="john@company.com"
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">No. Telepon (WA)</label>
+              <label className="mb-2 block text-sm font-medium text-slate-300">
+                No. Telepon (WA)
+              </label>
               <input
                 type="tel"
                 value={contextData.phone}
-                onChange={e => setContextData({ ...contextData, phone: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, phone: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 placeholder="+62 812 3456 7890"
               />
@@ -446,20 +439,24 @@ export default function NeedsAnalysis() {
 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">Posisi/Jabatan</label>
+              <label className="mb-2 block text-sm font-medium text-slate-300">
+                Posisi/Jabatan
+              </label>
               <input
                 type="text"
                 value={contextData.role}
-                onChange={e => setContextData({ ...contextData, role: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, role: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 placeholder="IT Manager"
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">Jumlah Karyawan</label>
+              <label className="mb-2 block text-sm font-medium text-slate-300">
+                Jumlah Karyawan
+              </label>
               <select
                 value={contextData.teamSize}
-                onChange={e => setContextData({ ...contextData, teamSize: e.target.value })}
+                onChange={(e) => setContextData({ ...contextData, teamSize: e.target.value })}
                 className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
               >
                 <option value="">Pilih...</option>
@@ -476,11 +473,11 @@ export default function NeedsAnalysis() {
             <label className="mb-2 block text-sm font-medium text-slate-300">Industri</label>
             <select
               value={contextData.industry}
-              onChange={e => setContextData({ ...contextData, industry: e.target.value })}
+              onChange={(e) => setContextData({ ...contextData, industry: e.target.value })}
               className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
             >
               <option value="">Pilih Industri...</option>
-              {industries.map(ind => (
+              {industries.map((ind) => (
                 <option key={ind.id} value={ind.id}>
                   {ind.label}
                 </option>
@@ -507,9 +504,11 @@ export default function NeedsAnalysis() {
       >
         <div className="space-y-6">
           <div>
-            <label className="mb-3 block text-sm font-bold text-white">Sistem yang Sedang Digunakan</label>
+            <label className="mb-3 block text-sm font-bold text-white">
+              Sistem yang Sedang Digunakan
+            </label>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-              {techStackOptions.map(opt => (
+              {techStackOptions.map((opt) => (
                 <button
                   key={opt.id}
                   onClick={() => setContextData({ ...contextData, techStack: opt.id })}
@@ -549,14 +548,23 @@ export default function NeedsAnalysis() {
             {[
               ...holisticIssues.people,
               ...holisticIssues.process,
-              ...(contextData.techStack && holisticIssues.technology[contextData.techStack as keyof typeof holisticIssues.technology]
-                ? holisticIssues.technology[contextData.techStack as keyof typeof holisticIssues.technology]
+              ...(contextData.techStack &&
+              holisticIssues.technology[
+                contextData.techStack as keyof typeof holisticIssues.technology
+              ]
+                ? holisticIssues.technology[
+                    contextData.techStack as keyof typeof holisticIssues.technology
+                  ]
                 : []),
             ].map((issue: { id: string; label: string; desc?: string; icon?: any }) => (
               <button
                 key={issue.id}
-                onClick={() => toggleSelection(selectedHolisticIssues, issue.id, setSelectedHolisticIssues, 5)}
-                disabled={!selectedHolisticIssues.includes(issue.id) && selectedHolisticIssues.length >= 5}
+                onClick={() =>
+                  toggleSelection(selectedHolisticIssues, issue.id, setSelectedHolisticIssues, 5)
+                }
+                disabled={
+                  !selectedHolisticIssues.includes(issue.id) && selectedHolisticIssues.length >= 5
+                }
                 className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                   selectedHolisticIssues.includes(issue.id)
                     ? 'border-amber-500 bg-amber-500/10 text-white ring-1 ring-amber-500'
@@ -566,7 +574,9 @@ export default function NeedsAnalysis() {
                 {issue.icon && <issue.icon className="mt-1 size-5 flex-shrink-0" />}
                 <div>
                   <div className="mb-1 text-sm font-bold">{issue.label}</div>
-                  {issue.desc && <div className="text-xs leading-relaxed opacity-80">{issue.desc}</div>}
+                  {issue.desc && (
+                    <div className="text-xs leading-relaxed opacity-80">{issue.desc}</div>
+                  )}
                 </div>
               </button>
             ))}
@@ -590,12 +600,16 @@ export default function NeedsAnalysis() {
         handleFinish={handleFinish}
       >
         <div className="space-y-4">
-          <div className="mb-2 text-sm text-slate-400">Pilih minimal 1, maksimal 5 pain points.</div>
+          <div className="mb-2 text-sm text-slate-400">
+            Pilih minimal 1, maksimal 5 pain points.
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {painPoints.map(pain => (
+            {painPoints.map((pain) => (
               <button
                 key={pain.id}
-                onClick={() => toggleSelection(selectedPainPoints, pain.id, setSelectedPainPoints, 5)}
+                onClick={() =>
+                  toggleSelection(selectedPainPoints, pain.id, setSelectedPainPoints, 5)
+                }
                 disabled={!selectedPainPoints.includes(pain.id) && selectedPainPoints.length >= 5}
                 className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                   selectedPainPoints.includes(pain.id)
@@ -632,7 +646,7 @@ export default function NeedsAnalysis() {
         <div className="space-y-4">
           <div className="mb-2 text-sm text-slate-400">Pilih minimal 1, maksimal 5 goals.</div>
           <div className="grid gap-3 md:grid-cols-2">
-            {goals.map(goal => (
+            {goals.map((goal) => (
               <button
                 key={goal.id}
                 onClick={() => toggleSelection(selectedGoals, goal.id, setSelectedGoals, 5)}
@@ -673,7 +687,7 @@ export default function NeedsAnalysis() {
           <div>
             <label className="mb-3 block text-sm font-bold text-white">Timeline Implementasi</label>
             <div className="grid gap-3 md:grid-cols-3">
-              {timelines.map(t => (
+              {timelines.map((t) => (
                 <button
                   key={t.id}
                   onClick={() => setSelectedTimeline(t.id)}
@@ -692,9 +706,11 @@ export default function NeedsAnalysis() {
           </div>
 
           <div>
-            <label className="mb-3 block text-sm font-bold text-white">Budget Range (Tahunan)</label>
+            <label className="mb-3 block text-sm font-bold text-white">
+              Budget Range (Tahunan)
+            </label>
             <div className="grid gap-3 md:grid-cols-3">
-              {budgets.map(b => (
+              {budgets.map((b) => (
                 <button
                   key={b.id}
                   onClick={() => setSelectedBudget(b.id)}
@@ -718,7 +734,7 @@ export default function NeedsAnalysis() {
 
   if (step === 'analyzing') {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
         <div className="text-center">
           <motion.div
             animate={{ rotate: 360 }}
@@ -735,11 +751,11 @@ export default function NeedsAnalysis() {
   if (step === 'result') {
     const recommended = getRecommendedModules();
     const recommendedServices = getRecommendedServices();
-    const timelineLabel = timelines.find(t => t.id === selectedTimeline)?.label || 'N/A';
-    const budgetLabel = budgets.find(b => b.id === selectedBudget)?.label || 'N/A';
+    const timelineLabel = timelines.find((t) => t.id === selectedTimeline)?.label || 'N/A';
+    const budgetLabel = budgets.find((b) => b.id === selectedBudget)?.label || 'N/A';
 
     return (
-      <div className="min-h-screen bg-slate-950 px-4 pt-24 pb-12 text-white">
+      <div className="min-h-screen bg-slate-50 px-4 pt-24 pb-12 text-slate-900 dark:bg-slate-950 dark:text-white">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <motion.div
@@ -752,10 +768,7 @@ export default function NeedsAnalysis() {
             </motion.div>
             <h1 className="mb-4 text-4xl font-bold">Analisis Selesai!</h1>
             <p className="text-lg text-slate-400">
-              Berikut rekomendasi solusi yang dipersonalisasi untuk
-              {' '}
-              {contextData.company}
-              .
+              Berikut rekomendasi solusi yang dipersonalisasi untuk {contextData.company}.
             </p>
           </div>
 
@@ -764,9 +777,7 @@ export default function NeedsAnalysis() {
             <div className="space-y-6 lg:col-span-4">
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6">
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-blue-100">
-                  <Briefcase className="size-5 text-blue-500" />
-                  {' '}
-                  Ringkasan Profil
+                  <Briefcase className="size-5 text-blue-500" /> Ringkasan Profil
                 </h2>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between border-b border-white/5 pb-2">
@@ -776,7 +787,7 @@ export default function NeedsAnalysis() {
                   <div className="flex justify-between border-b border-white/5 pb-2">
                     <span className="text-slate-500">Industri</span>
                     <span className="font-medium">
-                      {industries.find(i => i.id === contextData.industry)?.label || 'N/A'}
+                      {industries.find((i) => i.id === contextData.industry)?.label || 'N/A'}
                     </span>
                   </div>
                   <div className="flex justify-between border-b border-white/5 pb-2">
@@ -800,9 +811,7 @@ export default function NeedsAnalysis() {
               {/* 1. VISUAL ROADMAP */}
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6">
                 <h2 className="mb-6 flex items-center gap-2 text-lg font-bold text-blue-100">
-                  <Calendar className="size-5 text-blue-500" />
-                  {' '}
-                  Rencana Implementasi (Roadmap)
+                  <Calendar className="size-5 text-blue-500" /> Rencana Implementasi (Roadmap)
                 </h2>
                 <div className="relative px-2 pt-6 pb-2">
                   <div className="absolute top-8 left-0 h-1 w-full rounded-full bg-slate-800" />
@@ -814,33 +823,29 @@ export default function NeedsAnalysis() {
                       <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
                         <div className="mb-1 font-medium text-white">Quick Win</div>
                         <div className="text-xs text-slate-400">
-                          Setup
-                          {' '}
-                          {recommended[0]?.title}
-                          {' '}
-                          & Data Migration
+                          Setup {recommended[0]?.title} & Data Migration
                         </div>
                       </div>
                     </div>
                     {/* Phase 2 */}
                     <div className="text-center">
                       <div className="mx-auto mb-3 size-4 rounded-full border-4 border-slate-900 bg-slate-700" />
-                      <div className="mb-1 text-xs font-bold text-slate-500 uppercase">Bulan 2-3</div>
+                      <div className="mb-1 text-xs font-bold text-slate-500 uppercase">
+                        Bulan 2-3
+                      </div>
                       <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
                         <div className="mb-1 font-medium text-white">Expansion</div>
                         <div className="text-xs text-slate-400">
-                          Integrasi
-                          {' '}
-                          {recommended[1]?.title}
-                          {' '}
-                          & User Training
+                          Integrasi {recommended[1]?.title} & User Training
                         </div>
                       </div>
                     </div>
                     {/* Phase 3 */}
                     <div className="text-center">
                       <div className="mx-auto mb-3 size-4 rounded-full border-4 border-slate-900 bg-slate-700" />
-                      <div className="mb-1 text-xs font-bold text-slate-500 uppercase">Bulan 4+</div>
+                      <div className="mb-1 text-xs font-bold text-slate-500 uppercase">
+                        Bulan 4+
+                      </div>
                       <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
                         <div className="mb-1 font-medium text-white">Optimization</div>
                         <div className="text-xs text-slate-400">Full Automation & Dashboarding</div>
@@ -854,15 +859,13 @@ export default function NeedsAnalysis() {
                 {/* 2. TECHNOLOGY SOLUTIONS */}
                 <div>
                   <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-400 uppercase">
-                    <Server className="size-4" />
-                    {' '}
-                    Solusi Teknologi
+                    <Server className="size-4" /> Solusi Teknologi
                   </h3>
                   <div className="space-y-3">
-                    {recommended.map(mod => (
+                    {recommended.map((mod) => (
                       <div
                         key={mod.id}
-                        className="flex items-start gap-3 rounded-xl border border-white/10 bg-slate-900 p-4"
+                        className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-900"
                       >
                         <div className="mt-1 rounded-lg bg-blue-500/10 p-1.5 text-blue-400">
                           <Layers className="size-4" />
@@ -879,33 +882,29 @@ export default function NeedsAnalysis() {
                 {/* 3. SERVICE SOLUTIONS */}
                 <div>
                   <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-400 uppercase">
-                    <Users className="size-4" />
-                    {' '}
-                    Pendampingan (Services)
+                    <Users className="size-4" /> Pendampingan (Services)
                   </h3>
                   <div className="space-y-3">
-                    {recommendedServices.length > 0
-                      ? (
-                          recommendedServices.map(svc => (
-                            <div
-                              key={svc.id}
-                              className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-900/20 to-slate-900 p-4"
-                            >
-                              <div className="mt-1 rounded-lg bg-emerald-500/10 p-1.5 text-emerald-400">
-                                <svc.icon className="size-4" />
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold text-white">{svc.title}</h4>
-                                <p className="mt-1 line-clamp-2 text-xs text-slate-400">{svc.desc}</p>
-                              </div>
-                            </div>
-                          ))
-                        )
-                      : (
-                          <div className="rounded-xl border border-dashed border-white/5 p-4 text-center text-sm text-slate-500">
-                            Tidak ada rekomendasi service khusus diperlukan.
+                    {recommendedServices.length > 0 ? (
+                      recommendedServices.map((svc) => (
+                        <div
+                          key={svc.id}
+                          className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-900/20 to-slate-900 p-4"
+                        >
+                          <div className="mt-1 rounded-lg bg-emerald-500/10 p-1.5 text-emerald-400">
+                            <svc.icon className="size-4" />
                           </div>
-                        )}
+                          <div>
+                            <h4 className="text-sm font-bold text-white">{svc.title}</h4>
+                            <p className="mt-1 line-clamp-2 text-xs text-slate-400">{svc.desc}</p>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="rounded-xl border border-dashed border-white/5 p-4 text-center text-sm text-slate-500">
+                        Tidak ada rekomendasi service khusus diperlukan.
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -915,66 +914,65 @@ export default function NeedsAnalysis() {
           {/* NEXT STEPS / CROSS-SELL SECTION */}
           <div className="mt-16 border-t border-white/10 pt-10 print:hidden">
             <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
-              <Lightbulb className="size-5 text-amber-400" />
-              {' '}
-              Langkah Selanjutnya
+              <Lightbulb className="size-5 text-amber-400" /> Langkah Selanjutnya
             </h3>
 
             <div className="grid gap-5 md:grid-cols-3">
               {/* ROI Calculator */}
               <Link
                 href="/tools/roi-calculator"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-blue-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-slate-100 p-5 transition-all hover:border-blue-500/30 hover:bg-slate-200 dark:border-white/5 dark:bg-slate-900/40 dark:hover:bg-slate-800"
               >
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400 transition-colors group-hover:bg-blue-500 group-hover:text-white">
                   <Calculator className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">Hitung Potensi ROI</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">
+                  Hitung Potensi ROI
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
-                  Hitung potensi penghematan operasional dan keuntungan investasi (ROI) dari solusi ini.
+                  Hitung potensi penghematan operasional dan keuntungan investasi (ROI) dari solusi
+                  ini.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-blue-500">
-                  Buka Kalkulator ROI
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Buka Kalkulator ROI <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
               {/* Maturity Assessment */}
               <Link
                 href="/tools/assessment"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-emerald-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-slate-100 p-5 transition-all hover:border-emerald-500/30 hover:bg-slate-200 dark:border-white/5 dark:bg-slate-900/40 dark:hover:bg-slate-800"
               >
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
                   <PieChart className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">Maturity Assessment</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">
+                  Maturity Assessment
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
                   Belum yakin dengan skor kematangan Anda? Lakukan audit komprehensif (0-5 Level).
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-emerald-500">
-                  Mulai Audit
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Mulai Audit <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
               {/* Expert Consultation */}
               <Link
                 href="/contact"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-amber-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-slate-100 p-5 transition-all hover:border-amber-500/30 hover:bg-slate-200 dark:border-white/5 dark:bg-slate-900/40 dark:hover:bg-slate-800"
               >
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 transition-colors group-hover:bg-amber-500 group-hover:text-white">
                   <Briefcase className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">Konsultasi Ahli</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">
+                  Konsultasi Ahli
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
                   Diskusi mendalam tentang temuan ini dengan konsultan BizOps senior kami.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-amber-500">
-                  Hubungi Kami
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Hubungi Kami <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
             </div>
@@ -985,9 +983,7 @@ export default function NeedsAnalysis() {
               onClick={handleReset}
               className="mx-auto flex items-center justify-center gap-2 text-sm text-slate-500 transition-colors hover:text-white"
             >
-              <RefreshCw className="size-3" />
-              {' '}
-              Ulangi Diagnosa
+              <RefreshCw className="size-3" /> Ulangi Diagnosa
             </button>
           </div>
         </div>

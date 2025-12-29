@@ -179,17 +179,21 @@ export default function MigrationContent() {
 
   const getIcon = (id: string) => {
     switch (id) {
-      case 'spreadsheet': return FileSpreadsheet;
-      case 'saas': return Cloud;
-      case 'legacy': return Server;
-      default: return FileSpreadsheet;
+      case 'spreadsheet':
+        return FileSpreadsheet;
+      case 'saas':
+        return Cloud;
+      case 'legacy':
+        return Server;
+      default:
+        return FileSpreadsheet;
     }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Hero */}
-      <Section className="bg-gradient-to-br from-slate-900 to-slate-800 pt-32 pb-20 text-white">
+      <Section className="bg-slate-50 pt-32 pb-20 text-white dark:bg-slate-800">
         <Container size="6xl">
           <div className="mb-16 text-center">
             <motion.div
@@ -197,14 +201,18 @@ export default function MigrationContent() {
               animate={{ opacity: 1, y: 0 }}
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium"
             >
-              <Database className="h-4 w-4" />
-              Migration Center
+              <Database className="h-4 w-4 text-slate-800 dark:text-slate-50" />
+              <span className="text-slate-800 dark:text-slate-50">
+                Migration Center
+              </span>
+
             </motion.div>
-            <Typography variant="h1" as="h1" className="mb-6 text-white">
+            <Typography variant="h1" as="h1" className="mb-6 text-slate-800 dark:text-white">
               Migrasi Data dengan Aman & Efisien
             </Typography>
-            <Typography variant="body" className="mx-auto max-w-3xl text-lg text-slate-300">
-              Panduan lengkap untuk migrasi data Anda dari sistem lama ke BizOps. Setiap sumber memiliki tantangan unik—kami siap membantu.
+            <Typography variant="body" className="mx-auto max-w-3xl text-lg text-slate-700 dark:text-slate-300">
+              Panduan lengkap untuk migrasi data Anda dari sistem lama ke BizOps. Setiap sumber
+              memiliki tantangan unik—kami siap membantu.
             </Typography>
           </div>
         </Container>
@@ -214,8 +222,12 @@ export default function MigrationContent() {
       <Section>
         <Container size="7xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Sumber Data Anda</h2>
-            <p className="text-slate-600 dark:text-slate-400">Pilih sumber data untuk panduan spesifik</p>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+              Sumber Data Anda
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400">
+              Pilih sumber data untuk panduan spesifik
+            </p>
           </div>
 
           <Grid cols={3} gap={8}>
@@ -232,23 +244,41 @@ export default function MigrationContent() {
                   <div className="bg-primary-50 dark:bg-primary-900/20 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl">
                     <Icon className="text-primary-600 dark:text-primary-400 h-8 w-8" />
                   </div>
-                  <Typography variant="h3" as="h3" className="mb-2 font-bold">{item.title}</Typography>
-                  <Typography variant="body" className="mb-6 text-slate-500 dark:text-slate-400">{item.desc}</Typography>
+                  <Typography variant="h3" as="h3" className="mb-2 font-bold">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body" className="mb-6 text-slate-500 dark:text-slate-400">
+                    {item.desc}
+                  </Typography>
 
                   <div className="mb-6 space-y-4">
                     <div className="rounded-xl border border-red-100 bg-red-50 p-4 dark:border-red-900/20 dark:bg-red-900/10">
                       <div className="mb-2 flex items-center gap-2">
                         <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
-                        <Typography variant="small" className="font-bold text-red-700 dark:text-red-400">Challenge</Typography>
+                        <Typography
+                          variant="small"
+                          className="font-bold text-red-700 dark:text-red-400"
+                        >
+                          Challenge
+                        </Typography>
                       </div>
-                      <Typography variant="small" className="text-slate-700 dark:text-slate-300">{item.challenge}</Typography>
+                      <Typography variant="small" className="text-slate-700 dark:text-slate-300">
+                        {item.challenge}
+                      </Typography>
                     </div>
                     <div className="rounded-xl border border-green-100 bg-green-50 p-4 dark:border-green-900/20 dark:bg-green-900/10">
                       <div className="mb-2 flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
-                        <Typography variant="small" className="font-bold text-green-700 dark:text-green-400">Solution</Typography>
+                        <Typography
+                          variant="small"
+                          className="font-bold text-green-700 dark:text-green-400"
+                        >
+                          Solution
+                        </Typography>
                       </div>
-                      <Typography variant="small" className="text-slate-700 dark:text-slate-300">{item.solution}</Typography>
+                      <Typography variant="small" className="text-slate-700 dark:text-slate-300">
+                        {item.solution}
+                      </Typography>
                     </div>
                   </div>
 
@@ -268,9 +298,12 @@ export default function MigrationContent() {
       <Section className="bg-white dark:bg-slate-900">
         <Container size="7xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Template Data Structure</h2>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+              Template Data Structure
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
-              Download template Excel untuk setiap jenis data. Urutan import sangat penting untuk menjaga integritas referensi.
+              Download template Excel untuk setiap jenis data. Urutan import sangat penting untuk
+              menjaga integritas referensi.
             </p>
           </div>
 
@@ -287,10 +320,14 @@ export default function MigrationContent() {
                           <Icon className="text-primary-600 dark:text-primary-400 h-5 w-5" />
                         </div>
                         <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white">{structure.label}</h3>
+                          <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                            {structure.label}
+                          </h3>
                         </div>
                       </div>
-                      <p className="mb-4 text-xs text-slate-600 dark:text-slate-400">{structure.desc}</p>
+                      <p className="mb-4 text-xs text-slate-600 dark:text-slate-400">
+                        {structure.desc}
+                      </p>
                       <Button
                         variant="outline"
                         size="sm"
@@ -325,10 +362,14 @@ export default function MigrationContent() {
                       <Icon className="text-primary-600 dark:text-primary-400 h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">{structure.label}</h3>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                        {structure.label}
+                      </h3>
                     </div>
                   </div>
-                  <p className="mb-4 text-xs text-slate-600 dark:text-slate-400">{structure.desc}</p>
+                  <p className="mb-4 text-xs text-slate-600 dark:text-slate-400">
+                    {structure.desc}
+                  </p>
                   <div className="text-primary-600 dark:text-primary-400 flex items-center text-xs font-medium">
                     <Table className="mr-1 h-3 w-3" />
                     {structure.columns.length}
@@ -371,8 +412,12 @@ export default function MigrationContent() {
                               <Icon className="text-primary-600 dark:text-primary-400 h-6 w-6" />
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{structure.label}</h3>
-                              <p className="text-sm text-slate-600 dark:text-slate-400">{structure.desc}</p>
+                              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                                {structure.label}
+                              </h3>
+                              <p className="text-sm text-slate-600 dark:text-slate-400">
+                                {structure.desc}
+                              </p>
                             </div>
                           </div>
                           <button
@@ -385,16 +430,23 @@ export default function MigrationContent() {
 
                         <div className="space-y-3">
                           {structure.columns.map((col, idx) => (
-                            <div key={idx} className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950">
+                            <div
+                              key={idx}
+                              className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950"
+                            >
                               <div className="mb-2 flex items-center gap-2">
-                                <span className="font-bold text-slate-900 dark:text-white">{col.name}</span>
+                                <span className="font-bold text-slate-900 dark:text-white">
+                                  {col.name}
+                                </span>
                                 {col.req && (
                                   <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700 dark:bg-red-900/30 dark:text-red-400">
                                     Required
                                   </span>
                                 )}
                               </div>
-                              <p className="text-sm text-slate-600 dark:text-slate-400">{col.desc}</p>
+                              <p className="text-sm text-slate-600 dark:text-slate-400">
+                                {col.desc}
+                              </p>
                             </div>
                           ))}
                         </div>
@@ -422,8 +474,12 @@ export default function MigrationContent() {
       <Section className="bg-slate-50 dark:bg-slate-950">
         <Container size="6xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Timeline Migrasi</h2>
-            <p className="text-slate-600 dark:text-slate-400">Proses end-to-end biasanya 4-6 minggu</p>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+              Timeline Migrasi
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400">
+              Proses end-to-end biasanya 4-6 minggu
+            </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
@@ -441,8 +497,12 @@ export default function MigrationContent() {
                     {idx + 1}
                   </div>
                   <div className="mb-4">
-                    <div className="text-primary-600 dark:text-primary-400 mb-1 text-sm font-medium">{step.phase}</div>
-                    <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">{step.title}</h3>
+                    <div className="text-primary-600 dark:text-primary-400 mb-1 text-sm font-medium">
+                      {step.phase}
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                      {step.title}
+                    </h3>
                     <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                       <Calendar className="h-4 w-4" />
                       {step.duration}
@@ -450,7 +510,10 @@ export default function MigrationContent() {
                   </div>
                   <ul className="space-y-2">
                     {step.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
+                      >
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
                         {item}
                       </li>
@@ -467,7 +530,9 @@ export default function MigrationContent() {
       <Section className="bg-white dark:bg-slate-900">
         <Container size="4xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+              Frequently Asked Questions
+            </h2>
           </div>
 
           <div className="space-y-4">
@@ -510,20 +575,30 @@ export default function MigrationContent() {
       {/* CTA */}
       <Section className="from-primary-900 to-primary-800 bg-gradient-to-br text-white">
         <Container size="6xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">Butuh Bantuan Migrasi?</h2>
-          <p className="text-primary-200 mx-auto mb-10 max-w-2xl text-lg">
-            Tim implementasi kami siap membantu migrasi data Anda dengan aman dan efisien. Konsultasi gratis untuk assess kompleksitas migrasi Anda.
+          <h2 className="mb-6 text-3xl font-bold text-slate-800 md:text-4xl dark:text-white">
+            Butuh Bantuan Migrasi?
+          </h2>
+          <p className="text-primary-200 mx-auto mb-10 max-w-2xl text-lg text-slate-800 dark:text-white">
+            Tim implementasi kami siap membantu migrasi data Anda dengan aman dan efisien.
+            Konsultasi gratis untuk assess kompleksitas migrasi Anda.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/demo">
-              <Button size="lg" className="text-primary-900 w-full bg-white hover:bg-slate-100 sm:w-auto">
-                <Headphones className="mr-2 h-5 w-5" />
-                Konsultasi Gratis
+              <Button
+                size="lg"
+                className="text-primary-900 w-full bg-white hover:bg-slate-100 sm:w-auto dark:bg-slate-800"
+              >
+                <Headphones className="mr-2 h-5 w-5 text-slate-800 dark:text-white" />
+                <span className="text-slate-800 dark:text-white">Konsultasi Gratis</span>
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="w-full border-white/30 text-white hover:bg-white/10 sm:w-auto">
-                Contact Migration Team
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full border-white/30 text-white hover:bg-white/10 sm:w-auto"
+              >
+                <span className="text-slate-800 dark:text-white">Contact Migration Team</span>
               </Button>
             </Link>
           </div>
