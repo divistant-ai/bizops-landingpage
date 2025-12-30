@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { AlertTriangle, CheckCircle2, Quote } from "lucide-react";
-import { Typography } from "@/components/ui";
-import Stack from "@/components/ui/Stack";
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { AlertTriangle, CheckCircle2, Quote } from 'lucide-react';
+import { Typography } from '@/components/ui';
+import Stack from '@/components/ui/Stack';
 
 type CustomerStory = {
   client: string;
@@ -35,7 +35,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: idx * 0.1 }}
       className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-lg transition-all duration-500 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900"
       onMouseMove={handleMouseMove}
@@ -72,11 +72,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
               {story.industry}
             </Typography>
 
-            <Stack
-              direction="horizontal"
-              gap={6}
-              className="w-full border-t border-white/10 pt-8"
-            >
+            <Stack direction="horizontal" gap={6} className="w-full border-t border-white/10 pt-8">
               {story.metrics.map((m, i) => (
                 <div key={i}>
                   <div className="mb-1 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-4xl leading-tight font-bold text-transparent">
