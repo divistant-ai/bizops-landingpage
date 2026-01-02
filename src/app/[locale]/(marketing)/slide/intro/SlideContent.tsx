@@ -396,10 +396,10 @@ export default function SlideContent() {
 
                 <MotionItem className="z-10">
                   <div className="relative scale-110 transform overflow-hidden rounded-[2.5rem] border border-blue-500/50 bg-gradient-to-b from-blue-100 to-slate-100 p-12 shadow-[0_0_80px_rgba(37,99,235,0.3)] dark:from-blue-900 dark:to-slate-900">
-                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-6 py-2 text-sm font-bold tracking-wider text-white uppercase shadow-lg">
+                    <div className="absolute top-7 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-6 py-2 text-sm font-bold tracking-wider text-white uppercase shadow-lg">
                       <span className="text-white dark:text-slate-600">The Winner</span>
                     </div>
-                    <h3 className="mt-4 mb-8 text-center text-4xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="mt-7 mb-8 text-center text-4xl font-bold text-slate-900 dark:text-white">
                       <span className="text-slate-800 dark:text-white">BizOps</span>
                     </h3>
                     <ul className="space-y-4 text-lg text-blue-900 dark:text-blue-100">

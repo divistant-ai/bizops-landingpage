@@ -202,15 +202,15 @@ export default function MigrationContent() {
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium"
             >
               <Database className="h-4 w-4 text-slate-800 dark:text-slate-50" />
-              <span className="text-slate-800 dark:text-slate-50">
-                Migration Center
-              </span>
-
+              <span className="text-slate-800 dark:text-slate-50">Migration Center</span>
             </motion.div>
             <Typography variant="h1" as="h1" className="mb-6 text-slate-800 dark:text-white">
               Migrasi Data dengan Aman & Efisien
             </Typography>
-            <Typography variant="body" className="mx-auto max-w-3xl text-lg text-slate-700 dark:text-slate-300">
+            <Typography
+              variant="body"
+              className="mx-auto max-w-3xl text-lg text-slate-700 dark:text-slate-300"
+            >
               Panduan lengkap untuk migrasi data Anda dari sistem lama ke BizOps. Setiap sumber
               memiliki tantangan unik—kami siap membantu.
             </Typography>
@@ -283,9 +283,7 @@ export default function MigrationContent() {
                   </div>
 
                   <Button variant="outline" size="sm" className="w-full">
-                    <Download className="mr-2 h-4 w-4" />
-                    {' '}
-                    {item.asset}
+                    <Download className="mr-2 h-4 w-4" /> {item.asset}
                   </Button>
                 </motion.div>
               );
@@ -372,9 +370,7 @@ export default function MigrationContent() {
                   </p>
                   <div className="text-primary-600 dark:text-primary-400 flex items-center text-xs font-medium">
                     <Table className="mr-1 h-3 w-3" />
-                    {structure.columns.length}
-                    {' '}
-                    columns
+                    {structure.columns.length} columns
                   </div>
                 </motion.div>
               );
@@ -396,10 +392,10 @@ export default function MigrationContent() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.95, opacity: 0 }}
                   className="max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-8 dark:bg-slate-900"
-                  onClick={e => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   {(() => {
-                    const structure = sampleStructures.find(s => s.id === selectedStructure);
+                    const structure = sampleStructures.find((s) => s.id === selectedStructure);
                     if (!structure) {
                       return null;
                     }
