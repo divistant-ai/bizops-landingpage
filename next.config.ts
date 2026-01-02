@@ -31,6 +31,10 @@ const baseConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.pravatar.cc',
       },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+      },
     ],
   },
   async headers() {

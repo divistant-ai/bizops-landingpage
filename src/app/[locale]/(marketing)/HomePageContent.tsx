@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   ArrowRight,
@@ -8,21 +8,21 @@ import {
   ChevronRight,
   Lock,
   PlayCircle,
-} from "lucide-react";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useState } from "react";
-import { Container, Section } from "@/components/layout";
-import { Badge, Button, Grid, OptimizedImage, Stack } from "@/components/ui";
-import { BouncyLink } from "@/components/ui/BouncyLink";
-import { FadeIn } from "@/components/ui/FadeIn";
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Container, Section } from '@/components/layout';
+import { Badge, Button, Grid, OptimizedImage, Stack } from '@/components/ui';
+import { BouncyLink } from '@/components/ui/BouncyLink';
+import { FadeIn } from '@/components/ui/FadeIn';
 import {
   BarChart,
   CardSlider,
   InfiniteScrollLoop,
   SpotlightCard,
-} from "@/components/ui/LazyComponents";
-import { StaggeredText } from "@/components/ui/motion-text";
+} from '@/components/ui/LazyComponents';
+import { StaggeredText } from '@/components/ui/motion-text';
 import {
   homeIndustriesData,
   homeIntegrations,
@@ -31,12 +31,12 @@ import {
   homeRolesData,
   homeSolutions,
   homeUVP,
-} from "@/data/homeContent";
+} from '@/data/homeContent';
 
 export default function HomePageContent() {
-  const t = useTranslations("Homepage");
-  const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || "");
-  const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
+  const t = useTranslations('Homepage');
+  const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
+  const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
 
   if (!activeSolution) {
     return null; // Early return if no solution found
@@ -70,7 +70,7 @@ export default function HomePageContent() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
               </span>
               <span className="text-sm font-semibold text-slate-600 transition-colors group-hover:text-blue-700 dark:text-slate-400 dark:group-hover:text-blue-400">
-                {t("announcement")}
+                {t('announcement')}
               </span>
               <ArrowRight className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400" />
             </div>
@@ -80,12 +80,12 @@ export default function HomePageContent() {
           <div className="mx-auto mb-8 max-w-6xl">
             <h1 className="text-5xl leading-[1.1] font-bold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white">
               <StaggeredText
-                text={t("hero_title_prefix")}
+                text={t('hero_title_prefix')}
                 className="mb-2 flex w-full justify-center"
                 delay={0.2}
               />
               <span className="mt-2 block bg-gradient-to-r from-slate-900 via-blue-700 to-blue-600 bg-clip-text pb-4 text-transparent dark:from-white dark:via-blue-400 dark:to-blue-500">
-                {t("hero_title_highlight")}
+                {t('hero_title_highlight')}
               </span>
             </h1>
           </div>
@@ -93,7 +93,7 @@ export default function HomePageContent() {
           {/* Subheadline */}
           <FadeIn delay={0.3}>
             <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-normal text-slate-500 md:text-2xl dark:text-slate-400">
-              {t("hero_description")}
+              {t('hero_description')}
             </p>
           </FadeIn>
 
@@ -104,17 +104,14 @@ export default function HomePageContent() {
                 href="/demo"
                 className="h-14 px-10 text-lg font-semibold shadow-xl shadow-blue-900/10"
               >
-                {t("cta_demo")}
+                {t('cta_demo')}
               </BouncyLink>
               <BouncyLink
                 href="/pricing/calculator"
-                className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50  dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
+                className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50 dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
               >
-                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />
-                {" "}
-                <p className="text-slate-900 dark:text-white">
-                  {t("cta_pricing")}
-                </p>
+                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />{' '}
+                <p className="text-slate-900 dark:text-white">{t('cta_pricing')}</p>
               </BouncyLink>
             </div>
           </FadeIn>
@@ -141,8 +138,7 @@ export default function HomePageContent() {
                 align="center"
                 className="absolute top-4 left-4 z-30 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-[10px] text-slate-700 shadow-lg backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300"
               >
-                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />
-                {" "}
+                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />{' '}
                 <span className="font-mono">secure://bizops.id/dashboard</span>
               </Stack>
             </div>
@@ -155,13 +151,13 @@ export default function HomePageContent() {
             </p>
             <div className="flex items-center justify-center gap-8 opacity-70 grayscale transition-all duration-500 hover:grayscale-0">
               {[
-                "Divistant",
-                "Dikstra",
-                "Arena Rasa Nusantara",
-                "Aero Travel Indonesia",
-                "TechCorp",
-                "BuildCo",
-              ].map(brand => (
+                'Divistant',
+                'Dikstra',
+                'Arena Rasa Nusantara',
+                'Aero Travel Indonesia',
+                'TechCorp',
+                'BuildCo',
+              ].map((brand) => (
                 <span
                   key={brand}
                   className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl dark:text-slate-200"
@@ -186,22 +182,19 @@ export default function HomePageContent() {
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
-        >
-        </div>
+        ></div>
 
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-            Mengapa Bisnis Anda
-            {" "}
+            Mengapa Bisnis Anda{' '}
             <span className="relative inline-block text-red-500 dark:text-red-400">
-              Stuck?
-              {" "}
+              Stuck?{' '}
               <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30 dark:bg-red-900 dark:opacity-40"></span>
             </span>
           </h2>
           <p className="mt-4 text-lg text-slate-600 md:text-lg dark:text-slate-300">
-            Pertumbuhan bisnis seringkali terhambat bukan karena kurangnya penjualan, tapi
-            karena kekacauan operasional internal.
+            Pertumbuhan bisnis seringkali terhambat bukan karena kurangnya penjualan, tapi karena
+            kekacauan operasional internal.
           </p>
         </div>
 
@@ -259,9 +252,7 @@ export default function HomePageContent() {
               BizOps Platform
             </Badge>
             <h2 className="text-3xl leading-tight font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-              Satu Solusi,
-              {" "}
-              <br />
+              Satu Solusi, <br />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                 Tak Terbatas Kemungkinan.
               </span>
@@ -273,8 +264,7 @@ export default function HomePageContent() {
           </div>
           <Button asChild size="md" variant="white" className="group">
             <Link href="/platform">
-              Lihat Semua Modul
-              {" "}
+              Lihat Semua Modul{' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -282,11 +272,7 @@ export default function HomePageContent() {
 
         <Grid cols={12} gap={8} className="relative z-10">
           {/* Navigation Tabs */}
-          <div
-            className="space-y-3 lg:col-span-4"
-            role="tablist"
-            aria-label="Solution categories"
-          >
+          <div className="space-y-3 lg:col-span-4" role="tablist" aria-label="Solution categories">
             {homeSolutions.map((sol) => {
               const Icon = sol.icon;
               return (
@@ -299,22 +285,22 @@ export default function HomePageContent() {
                   id={`tab-${sol.id}`}
                   className={`group flex w-full items-center justify-between rounded-2xl border px-6 py-5 text-left transition-all duration-300 ${
                     activeTab === sol.id
-                      ? "translate-x-2 border-slate-200 bg-gradient-to-r from-slate-100 to-slate-50 shadow-lg dark:border-slate-700 dark:from-slate-800 dark:to-slate-800/50"
-                      : "border-transparent text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/30"
+                      ? 'translate-x-2 border-slate-200 bg-gradient-to-r from-slate-100 to-slate-50 shadow-lg dark:border-slate-700 dark:from-slate-800 dark:to-slate-800/50'
+                      : 'border-transparent text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/30'
                   }`}
                 >
                   <Stack direction="horizontal" gap={4} align="center">
                     <div
-                      className={`rounded-xl p-2.5 transition-colors ${activeTab === sol.id ? sol.bg : "bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-800 dark:group-hover:bg-slate-700"}`}
+                      className={`rounded-xl p-2.5 transition-colors ${activeTab === sol.id ? sol.bg : 'bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-800 dark:group-hover:bg-slate-700'}`}
                     >
                       <Icon
-                        className={`h-5 w-5 ${activeTab === sol.id ? sol.color : "text-slate-500 dark:text-slate-500"}`}
+                        className={`h-5 w-5 ${activeTab === sol.id ? sol.color : 'text-slate-500 dark:text-slate-500'}`}
                         aria-hidden="true"
                       />
                     </div>
                     <div>
                       <div
-                        className={`text-base font-bold ${activeTab === sol.id ? "text-slate-900 dark:text-white" : "text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white"}`}
+                        className={`text-base font-bold ${activeTab === sol.id ? 'text-slate-900 dark:text-white' : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
                       >
                         {sol.label}
                       </div>
@@ -342,8 +328,7 @@ export default function HomePageContent() {
             >
               <div
                 className={`absolute top-0 right-0 h-96 w-96 ${activeSolution.bg} pointer-events-none rounded-full opacity-20 blur-[120px]`}
-              >
-              </div>
+              ></div>
 
               <div className="relative z-10">
                 <div className="mb-10">
@@ -352,10 +337,7 @@ export default function HomePageContent() {
                       {(() => {
                         const Icon = activeSolution.icon;
                         return (
-                          <Icon
-                            className={`h-6 w-6 ${activeSolution.color}`}
-                            aria-hidden="true"
-                          />
+                          <Icon className={`h-6 w-6 ${activeSolution.color}`} aria-hidden="true" />
                         );
                       })()}
                     </div>
@@ -364,9 +346,7 @@ export default function HomePageContent() {
                     </h3>
                   </Stack>
                   <p className="border-l-4 border-slate-300 pl-4 text-xl leading-relaxed text-slate-600 italic dark:border-slate-700 dark:text-slate-300">
-                    "
-                    {activeSolution.impact}
-                    "
+                    "{activeSolution.impact}"
                   </p>
                 </div>
 
@@ -471,9 +451,7 @@ export default function HomePageContent() {
                     <p className="mb-3 font-medium tracking-wide text-blue-600 dark:text-blue-400">
                       {uvp.subtitle}
                     </p>
-                    <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                      {uvp.desc}
-                    </p>
+                    <p className="leading-relaxed text-slate-600 dark:text-slate-400">{uvp.desc}</p>
                   </div>
                 </div>
               </SpotlightCard>
@@ -498,12 +476,9 @@ export default function HomePageContent() {
             </span>
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            BizOps bukan hanya soal "lebih murah". Ini soal
-            {" "}
-            <span className="font-semibold text-slate-900 dark:text-white">
-              efisiensi total
-            </span>
-            . Bandingkan kompleksitas, waktu implementasi, dan hidden cost.
+            BizOps bukan hanya soal "lebih murah". Ini soal{' '}
+            <span className="font-semibold text-slate-900 dark:text-white">efisiensi total</span>.
+            Bandingkan kompleksitas, waktu implementasi, dan hidden cost.
           </p>
         </div>
 
@@ -527,12 +502,7 @@ export default function HomePageContent() {
                     Problem #1
                   </span>
                   <div className="rounded-xl bg-red-50 p-2 text-red-500 dark:bg-red-950 dark:text-red-400">
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -547,8 +517,7 @@ export default function HomePageContent() {
                   Fragmented Stack
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Menggabungkan 3-5 aplikasi SaaS berbeda. Akibatnya:
-                  {" "}
+                  Menggabungkan 3-5 aplikasi SaaS berbeda. Akibatnya:{' '}
                   <span className="font-semibold text-red-600 dark:text-red-400">
                     Data Silo & Vendor Fatigue.
                   </span>
@@ -561,9 +530,9 @@ export default function HomePageContent() {
                     className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
                   >
                     {[
-                      { label: "CRM License", price: "Rp 150rb" },
-                      { label: "Accounting App", price: "Rp 250rb" },
-                      { label: "HRIS App", price: "Rp 20rb" },
+                      { label: 'CRM License', price: 'Rp 150rb' },
+                      { label: 'Accounting App', price: 'Rp 250rb' },
+                      { label: 'HRIS App', price: 'Rp 20rb' },
                     ].map((item, i) => (
                       <Stack
                         key={i}
@@ -581,12 +550,7 @@ export default function HomePageContent() {
                   </Stack>
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-                    <Stack
-                      direction="horizontal"
-                      align="end"
-                      justify="between"
-                      className="mb-2"
-                    >
+                    <Stack direction="horizontal" align="end" justify="between" className="mb-2">
                       <span className="text-sm text-slate-600 dark:text-slate-400">
                         Total Cost (50 Users)
                       </span>
@@ -606,9 +570,7 @@ export default function HomePageContent() {
                       className="text-[10px] text-slate-500 dark:text-slate-400"
                     >
                       <span>Integration Time:</span>
-                      <span className="font-bold text-red-600 dark:text-red-400">
-                        3-6 Bulan
-                      </span>
+                      <span className="font-bold text-red-600 dark:text-red-400">3-6 Bulan</span>
                     </Stack>
                   </div>
                 </div>
@@ -626,12 +588,7 @@ export default function HomePageContent() {
                     Problem #2
                   </span>
                   <div className="rounded-xl bg-amber-50 p-2 text-amber-500 dark:bg-amber-950 dark:text-amber-400">
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -645,8 +602,7 @@ export default function HomePageContent() {
                   Legacy / Global ERP
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Model lisensi per user yang kaku. Akibatnya:
-                  {" "}
+                  Model lisensi per user yang kaku. Akibatnya:{' '}
                   <span className="font-semibold text-amber-600 dark:text-amber-400">
                     Growth Penalty & Mahal.
                   </span>
@@ -659,9 +615,9 @@ export default function HomePageContent() {
                     className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
                   >
                     {[
-                      { label: "Standard License", price: "~Rp 210rb" },
-                      { label: "Implementation", price: "$$$ (Extra)" },
-                      { label: "Maintenance", price: "~20% / year" },
+                      { label: 'Standard License', price: '~Rp 210rb' },
+                      { label: 'Implementation', price: '$$$ (Extra)' },
+                      { label: 'Maintenance', price: '~20% / year' },
                     ].map((item, i) => (
                       <Stack
                         key={i}
@@ -672,7 +628,7 @@ export default function HomePageContent() {
                         <span>{item.label}</span>
                         <span className="font-bold text-slate-800 dark:text-slate-200">
                           {item.price}
-                          {item.label.includes("License") && (
+                          {item.label.includes('License') && (
                             <span className="font-normal opacity-70">/user</span>
                           )}
                         </span>
@@ -681,12 +637,7 @@ export default function HomePageContent() {
                   </Stack>
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-                    <Stack
-                      direction="horizontal"
-                      align="end"
-                      justify="between"
-                      className="mb-2"
-                    >
+                    <Stack direction="horizontal" align="end" justify="between" className="mb-2">
                       <span className="text-sm text-slate-600 dark:text-slate-400">
                         Total Cost (50 Users)
                       </span>
@@ -743,9 +694,7 @@ export default function HomePageContent() {
                       align="center"
                       className="w-fit rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase shadow-lg shadow-blue-500/20"
                     >
-                      <CheckCircle2 className="h-3.5 w-3.5" />
-                      {" "}
-                      The BizOps Way
+                      <CheckCircle2 className="h-3.5 w-3.5" /> The BizOps Way
                     </Stack>
                     <div className="text-left md:text-right">
                       <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">
@@ -795,9 +744,7 @@ export default function HomePageContent() {
                         </span>
                         <span className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                           Go-Live:
-                          <span className="font-bold text-slate-900 dark:text-white">
-                            14 Hari
-                          </span>
+                          <span className="font-bold text-slate-900 dark:text-white">14 Hari</span>
                         </span>
                       </Stack>
                     </Grid>
@@ -875,19 +822,15 @@ export default function HomePageContent() {
         >
           <div className="max-w-2xl">
             <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              Go-Live dalam
-              {" "}
+              Go-Live dalam{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                 30 Hari.
               </span>
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.
-              {" "}
-              <strong className="font-medium text-slate-900 dark:text-white">
-                Tanpa drama
-              </strong>
-              , tanpa biaya konsultan yang membengkak.
+              Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.{' '}
+              <strong className="font-medium text-slate-900 dark:text-white">Tanpa drama</strong>,
+              tanpa biaya konsultan yang membengkak.
             </p>
           </div>
           <Button
@@ -954,11 +897,7 @@ export default function HomePageContent() {
           {industries.map((ind) => {
             const Icon = ind.icon;
             return (
-              <Link
-                key={ind.id}
-                href={`/solutions/${ind.id}`}
-                className="group block h-full"
-              >
+              <Link key={ind.id} href={`/solutions/${ind.id}`} className="group block h-full">
                 <SpotlightCard
                   className="h-full rounded-3xl"
                   spotlightColor="rgba(37, 99, 235, 0.1)"
@@ -985,9 +924,7 @@ export default function HomePageContent() {
                       align="center"
                       className="-translate-x-2 text-sm font-bold text-blue-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-blue-400"
                     >
-                      Explore
-                      {" "}
-                      <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                      Explore <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
                     </Stack>
                   </div>
                 </SpotlightCard>
@@ -1030,9 +967,7 @@ export default function HomePageContent() {
                     <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
                       {role.title}
                     </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400">
-                      {role.subtitle}
-                    </p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">{role.subtitle}</p>
                   </div>
                 </SpotlightCard>
               </Link>
@@ -1066,18 +1001,18 @@ export default function HomePageContent() {
             <Stack direction="vertical" gap={6}>
               {[
                 {
-                  title: "Enkripsi End-to-End",
-                  desc: "Data sensitif (gaji, profit) terenkripsi saat dikirim dan disimpan (AES-256).",
+                  title: 'Enkripsi End-to-End',
+                  desc: 'Data sensitif (gaji, profit) terenkripsi saat dikirim dan disimpan (AES-256).',
                   icon: Lock,
                 },
                 {
-                  title: "99.9% Uptime SLA",
-                  desc: "Server kami selalu aktif. Redundansi otomatis mencegah downtime saat jam sibuk.",
+                  title: '99.9% Uptime SLA',
+                  desc: 'Server kami selalu aktif. Redundansi otomatis mencegah downtime saat jam sibuk.',
                   icon: CheckCircle2,
                 },
                 {
-                  title: "Backup Otomatis Harian",
-                  desc: "Data di-backup setiap hari ke lokasi terpisah. Restore data kapan saja dalam hitungan menit.",
+                  title: 'Backup Otomatis Harian',
+                  desc: 'Data di-backup setiap hari ke lokasi terpisah. Restore data kapan saja dalam hitungan menit.',
                   icon: PlayCircle,
                 },
               ].map((item, idx) => {
@@ -1213,9 +1148,7 @@ export default function HomePageContent() {
             href="/platform/technologies/integration"
             className="inline-flex items-center gap-2 font-bold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            Lihat 50+ Integrasi Lainnya
-            {" "}
-            <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
+            Lihat 50+ Integrasi Lainnya <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </Section>
@@ -1235,8 +1168,8 @@ export default function HomePageContent() {
             Siap Mengubah Cara Anda Bekerja?
           </h2>
           <p className="mb-10 text-xl text-slate-600 dark:text-slate-300">
-            Bergabunglah dengan 500+ perusahaan yang telah beralih ke BizOps. Tanpa komitmen
-            jangka panjang, batalkan kapan saja.
+            Bergabunglah dengan 500+ perusahaan yang telah beralih ke BizOps. Tanpa komitmen jangka
+            panjang, batalkan kapan saja.
           </p>
           <Stack direction="vertical" gap={4} className="justify-center sm:flex-row">
             <Button
