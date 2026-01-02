@@ -31,12 +31,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bizops.id'),
   icons: {
-    icon: { url: '/FavIcon BizOps.svg', type: 'image/svg+xml' },
+    icon: { url: '/favicon.svg', type: 'image/svg+xml' },
   },
 };
 
 export function generateStaticParams() {
-  return routing.locales.map(locale => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout(props: {
