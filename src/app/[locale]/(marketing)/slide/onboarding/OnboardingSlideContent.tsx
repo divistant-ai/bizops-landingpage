@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import type { SlideData } from "@/components/presentation/SlideDeck";
-import { motion } from "framer-motion";
+import type { SlideData } from '@/components/presentation/SlideDeck';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   BarChart3,
@@ -23,11 +23,11 @@ import {
   UserCheck,
   Users,
   Zap,
-} from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import SlideDeck from "@/components/presentation/SlideDeck";
-import { Badge, Button } from "@/components/ui";
+} from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import SlideDeck from '@/components/presentation/SlideDeck';
+import { Badge, Button } from '@/components/ui';
 
 // --- ANIMATION HELPERS ---
 const containerVariants = {
@@ -46,13 +46,13 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
+    transition: { type: 'spring' as const, stiffness: 100, damping: 20 },
   },
 };
 
 const AnimatedSlide = ({
   children,
-  className = "",
+  className = '',
 }: {
   children: React.ReactNode;
   className?: string;
@@ -93,11 +93,24 @@ const TimelineItem = ({
           {duration}
         </Badge>
       </div>
-      <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-        {subtitle}
-      </p>
+      <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">{subtitle}</p>
     </div>
   </motion.div>
+);
+
+const SlideBg = ({ variant = 'default' }: { variant?: 'default' | 'blue' }) => (
+  <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    {variant === 'default' && (
+      <>
+        <div className="absolute top-0 left-0 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-900/10"></div>
+        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-900/10"></div>
+      </>
+    )}
+    {variant === 'blue' && (
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-slate-100 to-slate-100 dark:from-blue-950 dark:via-slate-950 dark:to-slate-950"></div>
+    )}
+    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+  </div>
 );
 
 const FeatureCard = ({
@@ -128,51 +141,52 @@ export default function OnboardingSlideContent() {
   const slides: SlideData[] = [
     // SLIDE 1: Cover
     {
-      id: "cover",
-      title: "BizOps Onboarding Journey",
+      id: 'cover',
+      title: 'BizOps Onboarding Journey',
       content: (
-        <AnimatedSlide className="bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white">
-          <motion.div
-            variants={itemVariants}
-            className="mb-8 inline-flex rounded-2xl bg-white/10 p-4 backdrop-blur-sm"
-          >
-            <Rocket className="h-16 w-16" />
-          </motion.div>
-          <motion.h1
-            variants={itemVariants}
-            className="mb-6 text-center text-6xl leading-tight font-bold"
-          >
-            BizOps Onboarding Journey
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className="mb-12 max-w-3xl text-center text-2xl text-blue-100"
-          >
-            Panduan Lengkap Implementasi End-to-End
-            <br />
-            <span className="text-lg text-blue-200">
-              Dari Kickoff hingga Go-Live dalam 90 Hari
-            </span>
-          </motion.p>
-          <motion.div variants={itemVariants}>
-            <Link href="/demo">
-              <Button
-                size="lg"
-                className="h-14 rounded-xl bg-white px-10 text-lg font-semibold text-blue-600 hover:bg-blue-50"
-              >
-                Jadwalkan Onboarding
-                {" "}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </motion.div>
-        </AnimatedSlide>
+        <>
+          <SlideBg variant="blue" />
+          <AnimatedSlide className="relative z-10 w-full">
+            <motion.div
+              variants={itemVariants}
+              className="mb-8 inline-flex rounded-2xl bg-slate-900 p-4 shadow-[0_0_50px_rgba(59,130,246,0.3)] dark:bg-white"
+            >
+              <Rocket className="h-16 w-16 text-white dark:text-slate-950" />
+            </motion.div>
+            <motion.h1
+              variants={itemVariants}
+              className="mb-6 text-center text-6xl leading-tight font-bold text-slate-900 dark:text-white"
+            >
+              BizOps Onboarding Journey
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="mb-12 max-w-3xl text-center text-2xl text-slate-700 dark:text-slate-300"
+            >
+              Panduan Lengkap Implementasi End-to-End
+              <br />
+              <span className="text-lg text-slate-600 dark:text-slate-400">
+                Dari Kickoff hingga Go-Live dalam 90 Hari
+              </span>
+            </motion.p>
+            <motion.div variants={itemVariants}>
+              <Link href="/demo">
+                <Button
+                  size="lg"
+                  className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
+                >
+                  Jadwalkan Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </motion.div>
+          </AnimatedSlide>
+        </>
       ),
     },
 
     // SLIDE 2: Why Onboarding Matters
     {
-      id: "why-onboarding",
+      id: 'why-onboarding',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -189,12 +203,8 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/30 dark:bg-green-900/10"
             >
-              <div className="mb-4 text-6xl font-bold text-green-600 dark:text-green-400">
-                95%
-              </div>
-              <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                Success Rate
-              </p>
+              <div className="mb-4 text-6xl font-bold text-green-600 dark:text-green-400">95%</div>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">Success Rate</p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
                 Proyek dengan onboarding terstruktur berhasil tepat waktu
               </p>
@@ -204,9 +214,7 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="rounded-2xl border border-blue-200 bg-blue-50 p-8 text-center dark:border-blue-900/30 dark:bg-blue-900/10"
             >
-              <div className="mb-4 text-6xl font-bold text-blue-600 dark:text-blue-400">
-                50%
-              </div>
+              <div className="mb-4 text-6xl font-bold text-blue-600 dark:text-blue-400">50%</div>
               <p className="text-lg font-semibold text-slate-900 dark:text-white">
                 Faster Adoption
               </p>
@@ -222,9 +230,7 @@ export default function OnboardingSlideContent() {
               <div className="mb-4 text-6xl font-bold text-purple-600 dark:text-purple-400">
                 30%
               </div>
-              <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                Cost Reduction
-              </p>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">Cost Reduction</p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
                 Hemat biaya support dan rework dengan persiapan yang baik
               </p>
@@ -236,8 +242,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 3: Complete Timeline
     {
-      id: "timeline-overview",
-      title: "90-Day Onboarding Timeline",
+      id: 'timeline-overview',
+      title: '90-Day Onboarding Timeline',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-12 text-center">
@@ -292,8 +298,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 4: Phase 1 - Kickoff & Discovery
     {
-      id: "phase1-kickoff",
-      title: "Phase 1: Kickoff & Discovery",
+      id: 'phase1-kickoff',
+      title: 'Phase 1: Kickoff & Discovery',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -342,9 +348,7 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Key Deliverable:
-                </p>
+                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
                 <p className="text-slate-600 dark:text-slate-400">
                   Project Charter, Requirement Document, Environment Access
                 </p>
@@ -357,8 +361,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 5: Phase 2 - Configuration
     {
-      id: "phase2-configuration",
-      title: "Phase 2: Configuration & Setup",
+      id: 'phase2-configuration',
+      title: 'Phase 2: Configuration & Setup',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -419,9 +423,7 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-purple-600 dark:text-purple-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Key Deliverable:
-                </p>
+                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
                 <p className="text-slate-600 dark:text-slate-400">
                   Fully configured system ready for data import
                 </p>
@@ -434,8 +436,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 6: Phase 3 - Data Migration
     {
-      id: "phase3-migration",
-      title: "Phase 3: Data Migration",
+      id: 'phase3-migration',
+      title: 'Phase 3: Data Migration',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -463,8 +465,8 @@ export default function OnboardingSlideContent() {
                   Data Cleansing
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400">
-                  Clean legacy data: remove duplicates, fix inconsistencies, validate
-                  formats before import
+                  Clean legacy data: remove duplicates, fix inconsistencies, validate formats before
+                  import
                 </p>
               </div>
             </motion.div>
@@ -481,8 +483,8 @@ export default function OnboardingSlideContent() {
                   Field Mapping
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400">
-                  Map old system fields to BizOps structure: Customer → Contact, Product →
-                  Item, etc.
+                  Map old system fields to BizOps structure: Customer → Contact, Product → Item,
+                  etc.
                 </p>
               </div>
             </motion.div>
@@ -516,8 +518,7 @@ export default function OnboardingSlideContent() {
                   Validation & Reconciliation
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400">
-                  Verify data integrity: compare totals, check references, reconcile
-                  balances
+                  Verify data integrity: compare totals, check references, reconcile balances
                 </p>
               </div>
             </motion.div>
@@ -530,9 +531,7 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-amber-600 dark:text-amber-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Key Deliverable:
-                </p>
+                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
                 <p className="text-slate-600 dark:text-slate-400">
                   100% data migrated and validated, ready for UAT
                 </p>
@@ -545,8 +544,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 7: Phase 4 - Training & Testing
     {
-      id: "phase4-training",
-      title: "Phase 4: Training & Testing",
+      id: 'phase4-training',
+      title: 'Phase 4: Training & Testing',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -574,37 +573,26 @@ export default function OnboardingSlideContent() {
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Admin Training:</strong>
-                      {" "}
-                      System admin, configuration, report
-                      builder
+                      <strong>Admin Training:</strong> System admin, configuration, report builder
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>End-User Training:</strong>
-                      {" "}
-                      Role-specific workflows, daily
-                      operations
+                      <strong>End-User Training:</strong> Role-specific workflows, daily operations
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Train-the-Trainer:</strong>
-                      {" "}
-                      Internal champions for ongoing
-                      support
+                      <strong>Train-the-Trainer:</strong> Internal champions for ongoing support
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Documentation:</strong>
-                      {" "}
-                      User manuals, video tutorials, FAQ
-                      knowledge base
+                      <strong>Documentation:</strong> User manuals, video tutorials, FAQ knowledge
+                      base
                     </span>
                   </li>
                 </ul>
@@ -615,43 +603,32 @@ export default function OnboardingSlideContent() {
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 dark:border-emerald-900/30 dark:bg-emerald-900/10">
                 <div className="mb-4 flex items-center gap-3">
                   <Target className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    UAT Testing
-                  </h3>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">UAT Testing</h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Test Scenarios:</strong>
-                      {" "}
-                      End-to-end process testing with real
-                      data
+                      <strong>Test Scenarios:</strong> End-to-end process testing with real data
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Bug Tracking:</strong>
-                      {" "}
-                      Log issues, prioritize fixes, retest
+                      <strong>Bug Tracking:</strong> Log issues, prioritize fixes, retest
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Performance Testing:</strong>
-                      {" "}
-                      Load testing, stress testing,
+                      <strong>Performance Testing:</strong> Load testing, stress testing,
                       optimization
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Sign-off:</strong>
-                      {" "}
-                      Formal UAT acceptance from business owners
+                      <strong>Sign-off:</strong> Formal UAT acceptance from business owners
                     </span>
                   </li>
                 </ul>
@@ -666,9 +643,7 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-green-600 dark:text-green-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
-                  Key Deliverable:
-                </p>
+                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
                 <p className="text-slate-600 dark:text-slate-400">
                   All users trained, UAT passed, ready for Go-Live
                 </p>
@@ -681,8 +656,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 8: Phase 5 - Go-Live
     {
-      id: "phase5-golive",
-      title: "Phase 5: Go-Live & Hypercare",
+      id: 'phase5-golive',
+      title: 'Phase 5: Go-Live & Hypercare',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -775,8 +750,8 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 9: Success Metrics
     {
-      id: "success-metrics",
-      title: "Success Metrics & KPIs",
+      id: 'success-metrics',
+      title: 'Success Metrics & KPIs',
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-12 text-center">
@@ -851,60 +826,59 @@ export default function OnboardingSlideContent() {
 
     // SLIDE 10: CTA
     {
-      id: "cta",
-      title: "Ready to Start Your Journey?",
+      id: 'cta',
+      title: 'Ready to Start Your Journey?',
       content: (
-        <AnimatedSlide className="bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white">
-          <motion.div
-            variants={itemVariants}
-            className="mb-8 inline-flex rounded-2xl bg-white/10 p-4 backdrop-blur-sm"
-          >
-            <Rocket className="h-16 w-16" />
-          </motion.div>
-          <motion.h1
-            variants={itemVariants}
-            className="mb-6 text-center text-5xl leading-tight font-bold"
-          >
-            Ready to Start Your
-            {" "}
-            <br />
-            BizOps Journey?
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className="mb-12 max-w-3xl text-center text-xl text-blue-100"
-          >
-            Mari kita mulai onboarding Anda dengan pendampingan tim expert kami.
-            <br />
-            <span className="text-lg text-blue-200">
-              90 hari dari kickoff hingga Go-Live yang sukses.
-            </span>
-          </motion.p>
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-4 sm:flex-row sm:justify-center"
-          >
-            <Link href="/demo">
-              <Button
-                size="lg"
-                className="h-14 rounded-xl bg-white px-10 text-lg font-semibold text-blue-600 hover:bg-blue-50"
-              >
-                Jadwalkan Kickoff Meeting
-                {" "}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 rounded-xl border-2 border-white bg-transparent px-10 text-lg font-semibold text-white hover:bg-white/10"
-              >
-                Hubungi Implementation Team
-              </Button>
-            </Link>
-          </motion.div>
-        </AnimatedSlide>
+        <>
+          <SlideBg variant="blue" />
+          <AnimatedSlide className="relative z-10 w-full">
+            <motion.div
+              variants={itemVariants}
+              className="mb-8 inline-flex rounded-2xl bg-slate-900 p-4 shadow-[0_0_50px_rgba(59,130,246,0.3)] dark:bg-white"
+            >
+              <Rocket className="h-16 w-16 text-white dark:text-slate-950" />
+            </motion.div>
+            <motion.h1
+              variants={itemVariants}
+              className="mb-6 text-center text-5xl leading-tight font-bold text-slate-900 dark:text-white"
+            >
+              Ready to Start Your <br />
+              BizOps Journey?
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="mb-12 max-w-3xl text-center text-xl text-slate-700 dark:text-slate-300"
+            >
+              Mari kita mulai onboarding Anda dengan pendampingan tim expert kami.
+              <br />
+              <span className="text-lg text-slate-600 dark:text-slate-400">
+                90 hari dari kickoff hingga Go-Live yang sukses.
+              </span>
+            </motion.p>
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col gap-4 sm:flex-row sm:justify-center"
+            >
+              <Link href="/demo">
+                <Button
+                  size="lg"
+                  className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
+                >
+                  Jadwalkan Kickoff Meeting <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-14 rounded-xl border-2 border-slate-900 bg-transparent px-10 text-lg font-semibold text-slate-900 hover:bg-slate-900/10 dark:border-white dark:text-white dark:hover:bg-white/10"
+                >
+                  Hubungi Implementation Team
+                </Button>
+              </Link>
+            </motion.div>
+          </AnimatedSlide>
+        </>
       ),
     },
   ];

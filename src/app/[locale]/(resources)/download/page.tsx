@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import {
   Bell,
   Download,
@@ -12,13 +12,13 @@ import {
   Star,
   WifiOff,
   Zap,
-} from "lucide-react";
-import Link from "next/link";
-import { Section } from "@/components/layout";
-import Container from "@/components/layout/Container";
-import { CardSlider, Grid, Typography } from "@/components/ui";
-import Button from "@/components/ui/Button";
-import Stack from "@/components/ui/Stack";
+} from 'lucide-react';
+import Link from 'next/link';
+import { Section } from '@/components/layout';
+import Container from '@/components/layout/Container';
+import { CardSlider, Grid, Typography } from '@/components/ui';
+import Button from '@/components/ui/Button';
+import Stack from '@/components/ui/Stack';
 
 export default function DownloadPage() {
   return (
@@ -30,9 +30,7 @@ export default function DownloadPage() {
             {/* Left Content */}
             <div className="relative z-10">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold tracking-wider text-blue-600 uppercase dark:bg-blue-900/30 dark:text-blue-400">
-                <Smartphone className="h-3 w-3" />
-                {" "}
-                BizOps Mobile v4.2
+                <Smartphone className="h-3 w-3" /> BizOps Mobile v4.2
               </div>
 
               <Typography
@@ -40,9 +38,7 @@ export default function DownloadPage() {
                 as="h1"
                 className="leading-[1.1] font-extrabold tracking-tight text-slate-900 dark:text-white"
               >
-                Your entire business,
-                {" "}
-                <br />
+                Your entire business, <br />
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                   in your pocket.
                 </span>
@@ -56,7 +52,7 @@ export default function DownloadPage() {
               {/* Store Buttons */}
               <Stack direction="vertical" gap={4} className="mb-10">
                 <Link
-                  href="https://play.google.com/store/apps/details?id=com.divistant.ex_mobile.ex_mobile"
+                  href="https://apps.apple.com/id/app/bizops/id6733236612?l=id"
                   target="_blank"
                   className="flex items-center gap-3 rounded-xl bg-slate-900 px-6 py-3.5 text-white shadow-xl transition-opacity hover:opacity-90 dark:bg-white dark:text-slate-900"
                 >
@@ -98,7 +94,7 @@ export default function DownloadPage() {
                 <div className="hidden h-12 w-px bg-slate-200 sm:block dark:bg-slate-800"></div>
                 <div>
                   <div className="mb-1 flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map(i => (
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                     ))}
                     <span className="ml-2 text-sm font-bold text-slate-900 dark:text-white">
@@ -160,29 +156,28 @@ export default function DownloadPage() {
                           </span>
                         </div>
                         <div className="flex gap-3 overflow-x-auto pb-2">
-                          {[1, 2, 3].map(i => (
+                          {[1, 2, 3].map((i) => (
                             <div
                               key={i}
                               className="h-10 w-10 flex-shrink-0 rounded-full border-2 border-white bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
-                            >
-                            </div>
+                            ></div>
                           ))}
                         </div>
                       </div>
 
                       <Grid cols={2} gap={4}>
                         {[
-                          { icon: Layers, label: "Stock", color: "bg-blue-100 text-blue-600" },
-                          { icon: Zap, label: "Sales", color: "bg-amber-100 text-amber-600" },
+                          { icon: Layers, label: 'Stock', color: 'bg-blue-100 text-blue-600' },
+                          { icon: Zap, label: 'Sales', color: 'bg-amber-100 text-amber-600' },
                           {
                             icon: FileCode,
-                            label: "Report",
-                            color: "bg-purple-100 text-purple-600",
+                            label: 'Report',
+                            color: 'bg-purple-100 text-purple-600',
                           },
                           {
                             icon: ShieldCheck,
-                            label: "Audit",
-                            color: "bg-green-100 text-green-600",
+                            label: 'Audit',
+                            color: 'bg-green-100 text-green-600',
                           },
                         ].map((item, i) => (
                           <div
@@ -312,15 +307,16 @@ export default function DownloadPage() {
       </Section>
 
       {/* --- ENTERPRISE SIDELOAD --- */}
-      <Section className="dark relative overflow-hidden bg-slate-900 py-24 text-white">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+      <Section className="relative overflow-hidden bg-white py-24 text-white dark:bg-slate-900">
         <Container size="7xl" className="relative z-10 text-center">
           <Typography variant="h2" as="h2">
-            Enterprise Deployment?
+            <span className="text-slate-800 dark:text-white">Enterprise Deployment?</span>
           </Typography>
           <Typography variant="body" className="text-slate-400">
-            Untuk penggunaan di perangkat industri (Zebra, Honeywell) tanpa Google Mobile Services
-            (GMS), atau deployment via MDM (Mobile Device Management) internal.
+            <span className="text-slate-800 dark:text-white">
+              Untuk penggunaan di perangkat industri (Zebra, Honeywell) tanpa Google Mobile Services
+              (GMS), atau deployment via MDM (Mobile Device Management) internal.
+            </span>
           </Typography>
           <Stack direction="vertical" gap={4} className="mt-8 justify-center">
             <Button
@@ -328,18 +324,16 @@ export default function DownloadPage() {
               variant="outline"
               className="border-slate-700 text-white hover:bg-slate-800"
             >
-              <FileCode className="mr-2 h-4 w-4" />
-              {" "}
-              Download APK (v4.2.1)
+              <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <span className="text-slate-700 dark:text-white">Download APK (v4.2.1)</span>
             </Button>
             <Button
               size="md"
               variant="outline"
               className="border-slate-700 text-white hover:bg-slate-800"
             >
-              <ShieldCheck className="mr-2 h-4 w-4" />
-              {" "}
-              MDM Config Guide
+              <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <span className="text-slate-700 dark:text-white">MDM Config Guide</span>
             </Button>
           </Stack>
         </Container>

@@ -33,12 +33,7 @@ import {
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
-import {
-  assessmentQuestions,
-  maturityLevels,
-
-  recommendations,
-} from '@/data/assessmentQuestions';
+import { assessmentQuestions, maturityLevels, recommendations } from '@/data/assessmentQuestions';
 import { MethodologyReference } from './MethodologyReference';
 
 // --- TYPES ---
@@ -120,7 +115,9 @@ export default function MaturityAssessment() {
           setLeadForm(parsed.leadForm || { name: '', company: '', email: '', phone: '', role: '' });
 
           const answeredIds = Object.keys(parsed.answers || {});
-          const lastAnsweredIndex = assessmentQuestions.findIndex(q => !answeredIds.includes(q.id));
+          const lastAnsweredIndex = assessmentQuestions.findIndex(
+            (q) => !answeredIds.includes(q.id),
+          );
           setCurrentStep(lastAnsweredIndex !== -1 ? lastAnsweredIndex : 0);
         }
       } catch (e) {
@@ -179,7 +176,7 @@ export default function MaturityAssessment() {
     setAnswers(newAnswers);
 
     if (currentStep < assessmentQuestions.length - 1) {
-      setTimeout(() => setCurrentStep(prev => prev + 1), 250);
+      setTimeout(() => setCurrentStep((prev) => prev + 1), 250);
     } else if (Object.keys(newAnswers).length >= assessmentQuestions.length) {
       finishAssessment();
     }
@@ -219,7 +216,7 @@ export default function MaturityAssessment() {
 
     Object.entries(answers).forEach(([qId, score]) => {
       totalScore += score;
-      const question = assessmentQuestions.find(q => q.id === qId);
+      const question = assessmentQuestions.find((q) => q.id === qId);
       if (question) {
         const cat = question.category as CategoryKey;
         if (categoryScores[cat]) {
@@ -231,8 +228,9 @@ export default function MaturityAssessment() {
 
     const avgScore = totalScore / assessmentQuestions.length;
 
-    const maturityLevel
-      = maturityLevels.find(m => avgScore >= m.minScore && avgScore <= m.maxScore) || maturityLevels[0]!;
+    const maturityLevel =
+      maturityLevels.find((m) => avgScore >= m.minScore && avgScore <= m.maxScore) ||
+      maturityLevels[0]!;
 
     return { avgScore, categoryScores, maturityLevel };
   };
@@ -258,7 +256,7 @@ export default function MaturityAssessment() {
   // 1. INTRO SCREEN
   if (viewState === 'intro') {
     return (
-      <div className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 text-white">
+      <div className="relative flex min-h-screen items-center overflow-hidden bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
         {/* Ambient Background */}
         <div className="pointer-events-none absolute top-0 left-0 z-0 size-full overflow-hidden">
           <div className="bg-primary-900/20 absolute -top-[10%] -left-[10%] size-[60%] rounded-full blur-[80px] md:size-[40%] md:blur-[120px]" />
@@ -266,24 +264,24 @@ export default function MaturityAssessment() {
         </div>
 
         <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-16 px-4 pt-20 pb-12 lg:grid-cols-2">
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-            <div className="text-primary-400 mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/50 px-4 py-1.5 text-sm font-medium backdrop-blur-md">
-              <LayoutDashboard className="size-4" />
-              <span>Executive Assessment Tool</span>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-primary-400 mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-800 px-4 py-1.5 text-sm font-medium backdrop-blur-md dark:bg-slate-900/50">
+              <LayoutDashboard className="size-4 text-white dark:text-slate-50" />
+              <span className="text-white dark:text-slate-50">Executive Assessment Tool</span>
             </div>
 
-            <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white lg:text-6xl">
-              Unlock Your
-              {' '}
-              <br />
-              <span className="from-primary-400 bg-gradient-to-r to-indigo-400 bg-clip-text text-transparent">
-                Digital Potential
-              </span>
+            <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-800 lg:text-6xl dark:text-white">
+              Unlock Your <br />
+              Digital Potential
             </h1>
 
             <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-400">
-              Evaluasi tingkat kematangan digital perusahaan Anda secara komprehensif. Dapatkan roadmap strategis yang
-              dipersonalisasi dalam hitungan menit.
+              Evaluasi tingkat kematangan digital perusahaan Anda secara komprehensif. Dapatkan
+              roadmap strategis yang dipersonalisasi dalam hitungan menit.
             </p>
 
             <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -297,12 +295,12 @@ export default function MaturityAssessment() {
                   key={idx}
                   className="flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10"
                 >
-                  <div className="text-primary-400 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-900">
+                  <div className="text-primary-400 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-900">
                     <item.icon className="size-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">{item.text}</div>
-                    <div className="text-xs text-slate-500">{item.desc}</div>
+                    <div className="font-semibold text-slate-600 dark:text-white">{item.text}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-50">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -311,10 +309,9 @@ export default function MaturityAssessment() {
             <Button
               onClick={handleStartIntro}
               size="lg"
-              className="from-primary-600 shadow-primary-900/20 hover:from-primary-500 h-14 bg-gradient-to-r to-indigo-600 px-8 text-lg shadow-lg hover:to-indigo-500"
+              className="group w-fit bg-slate-50 px-8 text-lg font-bold text-slate-900 shadow-lg hover:bg-slate-100 sm:px-10 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
             >
-              Mulai Assessment Sekarang
-              {' '}
+              <span className="text-slate-600 dark:text-white">Mulai Assessment Sekarang</span>{' '}
               <ArrowRight className="ml-2 size-5" />
             </Button>
 
@@ -322,9 +319,7 @@ export default function MaturityAssessment() {
               onClick={() => setShowMethodology(!showMethodology)}
               className="hover:text-primary-400 mx-auto mt-6 flex items-center gap-2 text-sm text-slate-500 transition-colors lg:mx-0"
             >
-              <Info className="size-4" />
-              {' '}
-              Pelajari Metodologi & Leveling
+              <Info className="size-4" /> Pelajari Metodologi & Leveling
             </button>
           </motion.div>
 
@@ -335,60 +330,63 @@ export default function MaturityAssessment() {
             transition={{ duration: 0.8 }}
             className="relative hidden lg:block"
           >
-            {showMethodology
-              ? (
-                  <div className="custom-scrollbar relative z-10 h-full max-h-[600px] overflow-y-auto rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl">
-                    <div className="mb-6 flex items-center justify-between">
-                      <h3 className="text-xl font-bold text-white">Framework Reference</h3>
-                      <button onClick={() => setShowMethodology(false)} className="text-slate-500 hover:text-white">
-                        Tutup
-                      </button>
-                    </div>
-                    <MethodologyReference />
+            {showMethodology ? (
+              <div className="custom-scrollbar relative z-10 h-full max-h-[600px] overflow-y-auto rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl">
+                <div className="mb-6 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-white">Framework Reference</h3>
+                  <button
+                    onClick={() => setShowMethodology(false)}
+                    className="text-slate-500 hover:text-white"
+                  >
+                    Tutup
+                  </button>
+                </div>
+                <MethodologyReference />
+              </div>
+            ) : (
+              <div className="relative z-10 rounded-3xl border border-white/10 bg-slate-600 p-8 shadow-2xl backdrop-blur-xl dark:bg-slate-900/80">
+                <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
+                  <h3 className="text-xl font-bold text-white">Assessment Preview</h3>
+                  <div className="flex gap-2">
+                    <div className="size-3 rounded-full bg-red-500/50" />
+                    <div className="size-3 rounded-full bg-yellow-500/50" />
+                    <div className="size-3 rounded-full bg-green-500/50" />
                   </div>
-                )
-              : (
-                  <div className="relative z-10 rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl">
-                    <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
-                      <h3 className="text-xl font-bold text-white">Assessment Preview</h3>
-                      <div className="flex gap-2">
-                        <div className="size-3 rounded-full bg-red-500/50" />
-                        <div className="size-3 rounded-full bg-yellow-500/50" />
-                        <div className="size-3 rounded-full bg-green-500/50" />
+                </div>
+                <div className="space-y-4">
+                  {Object.entries(categoryLabels).map(([key, label], idx) => (
+                    <div
+                      key={key}
+                      className="group hover:border-primary-500/30 flex items-center gap-4 rounded-xl border border-white/5 bg-slate-200 p-4 transition-all dark:bg-slate-800"
+                    >
+                      <div
+                        className={`rounded-lg bg-slate-950 p-3 shadow-inner ${
+                          idx === 0
+                            ? 'text-amber-400'
+                            : idx === 1
+                              ? 'text-red-400'
+                              : idx === 2
+                                ? 'text-blue-400'
+                                : idx === 3
+                                  ? 'text-purple-400'
+                                  : 'text-green-400'
+                        }`}
+                      >
+                        {categoryIcons[key as CategoryKey]}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-800 dark:text-slate-200">
+                          {label}
+                        </div>
+                        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white">
+                          <div className="group-hover:bg-primary-500 h-full w-2/3 bg-slate-800 opacity-30 transition-all duration-500 group-hover:opacity-100 dark:bg-slate-600" />
+                        </div>
                       </div>
                     </div>
-                    <div className="space-y-4">
-                      {Object.entries(categoryLabels).map(([key, label], idx) => (
-                        <div
-                          key={key}
-                          className="group hover:border-primary-500/30 flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-4 transition-all"
-                        >
-                          <div
-                            className={`rounded-lg bg-slate-950 p-3 shadow-inner ${
-                              idx === 0
-                                ? 'text-amber-400'
-                                : idx === 1
-                                  ? 'text-red-400'
-                                  : idx === 2
-                                    ? 'text-blue-400'
-                                    : idx === 3
-                                      ? 'text-purple-400'
-                                      : 'text-green-400'
-                            }`}
-                          >
-                            {categoryIcons[key as CategoryKey]}
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-slate-200">{label}</div>
-                            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-                              <div className="group-hover:bg-primary-500 h-full w-2/3 bg-slate-600 opacity-30 transition-all duration-500 group-hover:opacity-100" />
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Decorative elements */}
             <div className="bg-primary-500/30 absolute -top-10 -right-10 size-32 rounded-full blur-[60px]" />
@@ -417,7 +415,7 @@ export default function MaturityAssessment() {
   // 2. LEAD FORM
   if (viewState === 'lead-form') {
     return (
-      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 p-4 text-white">
+      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white p-4 text-slate-900 dark:bg-slate-950 dark:text-white">
         {/* Background Mesh */}
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
         <div className="bg-primary-900/10 absolute -top-[20%] -right-[10%] size-[50%] rounded-full blur-[100px]" />
@@ -449,7 +447,7 @@ export default function MaturityAssessment() {
                     required
                     className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
                     value={leadForm.name}
-                    onChange={e => setLeadForm({ ...leadForm, name: e.target.value })}
+                    onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                     placeholder="Nama Anda"
                     autoFocus
                   />
@@ -463,7 +461,7 @@ export default function MaturityAssessment() {
                     required
                     className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
                     value={leadForm.company}
-                    onChange={e => setLeadForm({ ...leadForm, company: e.target.value })}
+                    onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
                     placeholder="Nama PT"
                   />
                 </div>
@@ -472,9 +470,7 @@ export default function MaturityAssessment() {
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                    <Mail className="size-3" />
-                    {' '}
-                    Email Bisnis
+                    <Mail className="size-3" /> Email Bisnis
                   </label>
                   <input
                     type="email"
@@ -495,23 +491,19 @@ export default function MaturityAssessment() {
                   />
                   {emailError && (
                     <p className="mt-1 ml-1 flex items-center text-xs text-red-400">
-                      <AlertCircle className="mr-1 size-3" />
-                      {' '}
-                      {emailError}
+                      <AlertCircle className="mr-1 size-3" /> {emailError}
                     </p>
                   )}
                 </div>
                 <div>
                   <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                    <Phone className="size-3" />
-                    {' '}
-                    WhatsApp (Opsional)
+                    <Phone className="size-3" /> WhatsApp (Opsional)
                   </label>
                   <input
                     type="tel"
                     className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
                     value={leadForm.phone}
-                    onChange={e => setLeadForm({ ...leadForm, phone: e.target.value })}
+                    onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
                     placeholder="0812..."
                   />
                 </div>
@@ -525,7 +517,7 @@ export default function MaturityAssessment() {
                   type="text"
                   className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
                   value={leadForm.role}
-                  onChange={e => setLeadForm({ ...leadForm, role: e.target.value })}
+                  onChange={(e) => setLeadForm({ ...leadForm, role: e.target.value })}
                   placeholder="Manager IT / Ops"
                 />
               </div>
@@ -537,8 +529,7 @@ export default function MaturityAssessment() {
                   size="lg"
                   className="bg-primary-600 shadow-primary-900/20 hover:bg-primary-500 shadow-lg"
                 >
-                  Lanjut ke Pertanyaan
-                  {' '}
+                  <span className="text-white dark:text-slate-600">Lanjut ke Pertanyaan</span>{' '}
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
                 <button
@@ -559,7 +550,7 @@ export default function MaturityAssessment() {
   // 3. ANALYZING / LOADING
   if (viewState === 'analyzing') {
     return (
-      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 text-center">
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white text-center dark:bg-slate-950">
         <div className="absolute inset-0 bg-slate-950">
           <div className="bg-primary-900/20 absolute top-1/2 left-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full blur-[100px]" />
         </div>
@@ -590,7 +581,7 @@ export default function MaturityAssessment() {
       return null; // Should never happen
     }
     return (
-      <div className="min-h-screen bg-slate-950 px-4 pt-24 pb-12 text-white sm:px-6 lg:px-8 print:bg-white print:pt-0 print:pb-0 print:text-black">
+      <div className="min-h-screen bg-white px-4 pt-24 pb-12 text-slate-900 sm:px-6 lg:px-8 dark:bg-slate-950 dark:text-white print:bg-white print:pt-0 print:pb-0 print:text-black">
         <div className="mx-auto max-w-6xl">
           {/* REPORT HEADER */}
           <div className="relative mb-8 rounded-2xl border border-white/10 bg-slate-900/50 p-6 print:rounded-none print:border-b-2 print:border-gray-200 print:bg-transparent print:pb-8 print:shadow-none">
@@ -598,9 +589,7 @@ export default function MaturityAssessment() {
               <div>
                 <div className="mb-3 flex items-center gap-3">
                   <div className="inline-flex items-center gap-2 rounded-full border border-green-800 bg-green-900/30 px-3 py-1 text-xs font-bold tracking-wider text-green-400 uppercase print:hidden">
-                    <CheckCircle className="size-3" />
-                    {' '}
-                    Assessment Completed
+                    <CheckCircle className="size-3" /> Assessment Completed
                   </div>
                   <button
                     onClick={handleReset}
@@ -612,11 +601,11 @@ export default function MaturityAssessment() {
                   </button>
                 </div>
 
-                <h1 className="text-3xl font-bold text-white print:text-black">Laporan Digital Maturity</h1>
+                <h1 className="text-3xl font-bold text-white print:text-black">
+                  Laporan Digital Maturity
+                </h1>
                 <p className="mt-1 text-sm text-slate-400 print:text-gray-500">
-                  ID Dokumen:
-                  {' '}
-                  {`RPT-${new Date().getFullYear()}${Math.floor(Math.random() * 1000)}`}
+                  ID Dokumen: {`RPT-${new Date().getFullYear()}${Math.floor(Math.random() * 1000)}`}
                 </p>
               </div>
 
@@ -689,9 +678,7 @@ export default function MaturityAssessment() {
                   <div
                     className={`mb-4 rounded-full px-3 py-1 text-xs font-bold text-white ${results.maturityLevel.color} print:bg-gray-200 print:text-black`}
                   >
-                    Level
-                    {' '}
-                    {results.maturityLevel.level}
+                    Level {results.maturityLevel.level}
                   </div>
                 </div>
               </div>
@@ -702,24 +689,18 @@ export default function MaturityAssessment() {
                   Executive Summary
                 </h3>
                 <p className="mb-4 text-sm leading-relaxed text-slate-300 print:text-slate-700">
-                  Perusahaan Anda berada pada tahap
-                  {' '}
-                  <strong>{results.maturityLevel.title}</strong>
-                  .
-                  {' '}
+                  Perusahaan Anda berada pada tahap <strong>{results.maturityLevel.title}</strong>.{' '}
                   {results.maturityLevel.description}
                   <br />
                   <br />
-                  Untuk mencapai level berikutnya, fokus utama Anda harus pada integrasi lintas fungsi dan pemanfaatan
-                  data yang lebih strategis.
+                  Untuk mencapai level berikutnya, fokus utama Anda harus pada integrasi lintas
+                  fungsi dan pemanfaatan data yang lebih strategis.
                 </p>
                 <button
                   onClick={() => setShowMethodology(!showMethodology)}
                   className="text-primary-400 hover:text-primary-300 flex items-center gap-2 text-xs font-medium transition-colors print:hidden"
                 >
-                  <Info className="size-3" />
-                  {' '}
-                  Bagaimana skor ini dihitung?
+                  <Info className="size-3" /> Bagaimana skor ini dihitung?
                 </button>
               </div>
             </div>
@@ -810,7 +791,9 @@ export default function MaturityAssessment() {
                             {score < 3 ? 'Priority' : 'On Track'}
                           </span>
                         </div>
-                        <p className="mb-3 text-lg font-bold text-white print:text-black">{rec.title}</p>
+                        <p className="mb-3 text-lg font-bold text-white print:text-black">
+                          {rec.title}
+                        </p>
                         <p className="mb-5 text-sm leading-relaxed text-slate-400 print:text-slate-700">
                           {rec.advice}
                         </p>
@@ -835,9 +818,7 @@ export default function MaturityAssessment() {
           {/* NEXT STEPS / CROSS-SELL SECTION */}
           <div className="mt-16 break-before-page border-t border-white/10 pt-10 pb-24 print:hidden">
             <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
-              <Lightbulb className="size-5 text-amber-400" />
-              {' '}
-              Rekomendasi Tindak Lanjut
+              <Lightbulb className="size-5 text-amber-400" /> Rekomendasi Tindak Lanjut
             </h3>
 
             <div className="grid gap-5 md:grid-cols-3">
@@ -849,14 +830,15 @@ export default function MaturityAssessment() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400 transition-colors group-hover:bg-blue-500 group-hover:text-white">
                   <Search className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">Solution Finder</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">
+                  Solution Finder
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
-                  Diagnosis spesifik untuk menemukan modul software yang tepat mengatasi gap skor Anda.
+                  Diagnosis spesifik untuk menemukan modul software yang tepat mengatasi gap skor
+                  Anda.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-blue-500">
-                  Cari Solusi
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Cari Solusi <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
@@ -868,14 +850,15 @@ export default function MaturityAssessment() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
                   <Calculator className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">Estimasi Investasi</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">
+                  Estimasi Investasi
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
-                  Hitung biaya implementasi digital transformation untuk menaikkan level maturity Anda.
+                  Hitung biaya implementasi digital transformation untuk menaikkan level maturity
+                  Anda.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-emerald-500">
-                  Hitung Biaya
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Hitung Biaya <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
@@ -887,14 +870,14 @@ export default function MaturityAssessment() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 transition-colors group-hover:bg-amber-500 group-hover:text-white">
                   <Briefcase className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">Konsultasi Ahli</h4>
+                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">
+                  Konsultasi Ahli
+                </h4>
                 <p className="text-sm leading-relaxed text-slate-400">
                   Diskusi mendalam tentang temuan skor ini dengan konsultan senior kami.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-amber-500">
-                  Hubungi Kami
-                  {' '}
-                  <ChevronRight className="ml-1 size-3" />
+                  Hubungi Kami <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
             </div>
@@ -912,17 +895,15 @@ export default function MaturityAssessment() {
                   variant="outline-white"
                   className="h-10 flex-1 items-center gap-2 sm:flex-none"
                 >
-                  <Download className="size-4" />
-                  {' '}
-                  Save PDF
+                  <Download className="size-4" />{' '}
+                  <span className="text-white dark:text-slate-600">Save PDF</span>
                 </Button>
                 <Link href="/contact" className="flex-1 sm:flex-none">
                   <Button
                     variant="primary"
                     className="from-primary-600 shadow-primary-900/20 h-10 w-full items-center gap-2 border-0 bg-gradient-to-r to-indigo-600 shadow-lg"
                   >
-                    Consultation
-                    {' '}
+                    <span className="text-white dark:text-slate-600">Consultation</span>{' '}
                     <ArrowRight className="size-4" />
                   </Button>
                 </Link>
@@ -957,16 +938,13 @@ export default function MaturityAssessment() {
 
   // 5. ACTIVE ASSESSMENT (SPLIT LAYOUT)
   return (
-    <div className="min-h-screen bg-slate-950 px-4 pt-24 pb-12 text-white sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white px-4 pt-24 pb-12 text-slate-900 sm:px-6 lg:px-8 dark:bg-slate-950 dark:text-white">
       <div className="mx-auto max-w-7xl">
         {/* Mobile Nav Toggle / Progress */}
         <div className="sticky top-20 z-30 -mx-4 mb-8 border-b border-white/10 bg-slate-950/90 p-4 backdrop-blur-md lg:hidden">
           <div className="mb-3 flex items-center justify-between text-xs font-bold tracking-widest text-slate-400 uppercase">
             <span>Progress</span>
-            <span>
-              {Math.round(progress)}
-              %
-            </span>
+            <span>{Math.round(progress)}%</span>
           </div>
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
             <div
@@ -993,7 +971,9 @@ export default function MaturityAssessment() {
                   <div key={cat} className="relative z-10">
                     <div className="mb-3 flex items-center gap-3 text-sm font-bold text-slate-300">
                       <div className="z-10 rounded-full border border-white/10 bg-slate-950 p-1">
-                        <div className="text-primary-400 size-4">{categoryIcons[cat as CategoryKey]}</div>
+                        <div className="text-primary-400 size-4">
+                          {categoryIcons[cat as CategoryKey]}
+                        </div>
                       </div>
                       {categoryLabels[cat as CategoryKey]}
                     </div>
@@ -1006,16 +986,13 @@ export default function MaturityAssessment() {
                           <button
                             key={q.id}
                             onClick={() => setCurrentStep(q.index)}
-                            className={`
-                              relative h-8 overflow-hidden rounded-lg text-xs font-bold transition-all
-                              ${
-                          isCurrent
-                            ? 'bg-primary-600 shadow-primary-900/50 ring-primary-400 z-20 scale-110 text-white shadow-lg ring-2 ring-offset-2 ring-offset-slate-900'
-                            : isAnswered
-                              ? 'border-primary-500/30 bg-primary-900/20 text-primary-400 border'
-                              : 'bg-slate-800/50 text-slate-600 hover:bg-slate-800'
-                          }
-                            `}
+                            className={`relative h-8 overflow-hidden rounded-lg text-xs font-bold transition-all ${
+                              isCurrent
+                                ? 'bg-primary-600 shadow-primary-900/50 ring-primary-400 z-20 scale-110 text-white shadow-lg ring-2 ring-offset-2 ring-offset-slate-900'
+                                : isAnswered
+                                  ? 'border-primary-500/30 bg-primary-900/20 text-primary-400 border'
+                                  : 'bg-slate-800/50 text-slate-600 hover:bg-slate-800'
+                            } `}
                             title={`Question ${q.index + 1}`}
                           >
                             {q.index + 1}
@@ -1030,10 +1007,7 @@ export default function MaturityAssessment() {
               <div className="mt-8 border-t border-white/10 pt-6">
                 <div className="mb-2 flex justify-between text-xs font-bold tracking-widest text-slate-500 uppercase">
                   <span>Completion</span>
-                  <span>
-                    {Math.round(progress)}
-                    %
-                  </span>
+                  <span>{Math.round(progress)}%</span>
                 </div>
                 <div className="h-2 w-full rounded-full border border-white/5 bg-slate-950 p-0.5">
                   <div
@@ -1061,17 +1035,12 @@ export default function MaturityAssessment() {
 
                 <div className="relative z-10 mb-8">
                   <div className="mb-6 flex items-center justify-between">
-                    <span
-                      className="text-primary-400 inline-flex items-center gap-2 rounded-full border border-white/5 bg-slate-800 px-3 py-1.5 text-xs font-bold tracking-wider uppercase"
-                    >
+                    <span className="text-primary-400 inline-flex items-center gap-2 rounded-full border border-white/5 bg-slate-800 px-3 py-1.5 text-xs font-bold tracking-wider uppercase">
                       {categoryIcons[currentCategory]}
                       {categoryLabels[currentCategory]}
                     </span>
                     <span className="text-sm text-slate-500">
-                      {currentStep + 1}
-                      {' '}
-                      /
-                      {totalQuestions}
+                      {currentStep + 1} /{totalQuestions}
                     </span>
                   </div>
 
@@ -1095,7 +1064,9 @@ export default function MaturityAssessment() {
                       >
                         <div
                           className={`mt-0.5 mr-5 flex size-6 flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                            isSelected ? 'border-primary-500' : 'group-hover:border-primary-400 border-slate-600'
+                            isSelected
+                              ? 'border-primary-500'
+                              : 'group-hover:border-primary-400 border-slate-600'
                           }`}
                         >
                           {isSelected && <div className="bg-primary-500 size-3 rounded-full" />}
@@ -1116,39 +1087,34 @@ export default function MaturityAssessment() {
                 <div className="relative z-10 mt-10 flex items-center justify-between border-t border-white/10 pt-8">
                   <Button
                     variant="ghost"
-                    onClick={() => currentStep > 0 && setCurrentStep(prev => prev - 1)}
+                    onClick={() => currentStep > 0 && setCurrentStep((prev) => prev - 1)}
                     disabled={currentStep === 0}
                     className="text-slate-400 hover:bg-white/5 hover:text-white"
                   >
-                    <ArrowLeft className="mr-1 size-4" />
-                    {' '}
-                    Previous
+                    <ArrowLeft className="mr-1 size-4" />{' '}
+                    <span className="text-white dark:text-slate-600">Previous</span>
                   </Button>
 
-                  {currentStep < totalQuestions - 1
-                    ? (
-                        <Button
-                          variant="primary"
-                          onClick={() => setCurrentStep(prev => prev + 1)}
-                          className="ml-auto border-0 bg-white text-slate-900 hover:bg-slate-200"
-                        >
-                          Next Question
-                          {' '}
-                          <ArrowRight className="ml-1 size-4" />
-                        </Button>
-                      )
-                    : (
-                        <Button
-                          variant="primary"
-                          onClick={finishAssessment}
-                          disabled={Object.keys(answers).length < totalQuestions}
-                          className="ml-auto border-0 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-900/20 hover:from-green-400 hover:to-emerald-500"
-                        >
-                          See Results
-                          {' '}
-                          <CheckCircle className="ml-1 size-4" />
-                        </Button>
-                      )}
+                  {currentStep < totalQuestions - 1 ? (
+                    <Button
+                      variant="primary"
+                      onClick={() => setCurrentStep((prev) => prev + 1)}
+                      className="ml-auto border-0 bg-white text-slate-900 hover:bg-slate-200 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                    >
+                      <span className="text-white dark:text-slate-600">Next Question</span>{' '}
+                      <ArrowRight className="ml-1 size-4" />
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      onClick={finishAssessment}
+                      disabled={Object.keys(answers).length < totalQuestions}
+                      className="ml-auto border-0 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-900/20 hover:from-green-400 hover:to-emerald-500"
+                    >
+                      <span className="text-white dark:text-slate-600">See Results</span>{' '}
+                      <CheckCircle className="ml-1 size-4" />
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>

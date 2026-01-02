@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev:spotlight": "npx @spotlightjs/spotlight",
-    "dev:next": "next dev --turbo -H localhost",
+    "dev:next": "next dev --turbopack",
     "dev": "npm-run-all --parallel dev:*",
     "build:next": "next build --webpack",
     "build-local": "npm run build:next",

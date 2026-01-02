@@ -1,27 +1,26 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight, Calendar, PlayCircle, Search } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import Container from "@/components/layout/Container";
-import { CardSlider, Grid, Typography } from "@/components/ui";
-import Button from "@/components/ui/Button";
-import Stack from "@/components/ui/Stack";
-import { eventsData } from "@/data/resourcesContent";
+import { motion } from 'framer-motion';
+import { ArrowRight, Calendar, PlayCircle, Search } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import Container from '@/components/layout/Container';
+import { CardSlider, Grid, Typography } from '@/components/ui';
+import Button from '@/components/ui/Button';
+import Stack from '@/components/ui/Stack';
+import { eventsData } from '@/data/resourcesContent';
 
 export default function EventsPage() {
-  const [filter, setFilter] = useState<string>("All");
-  const categories = ["All", "Live Demo", "Webinar", "Masterclass"];
+  const [filter, setFilter] = useState<string>('All');
+  const categories = ['All', 'Live Demo', 'Webinar', 'Masterclass'];
 
   const filteredEvents =
-    filter === "All"
+    filter === 'All'
       ? eventsData.upcoming
       : eventsData.upcoming.filter(
           (evt) =>
-            evt.type.includes(filter) ||
-            (filter === "Webinar" && evt.type === "Special Webinar")
+            evt.type.includes(filter) || (filter === 'Webinar' && evt.type === 'Special Webinar'),
         );
 
   return (
@@ -56,9 +55,8 @@ export default function EventsPage() {
             transition={{ delay: 0.2 }}
             className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-300"
           >
-            Tingkatkan kompetensi tim Anda dengan wawasan langsung dari praktisi. Ikuti sesi
-            edukasi gratis tentang digitalisasi, strategi pajak, dan manajemen operasional
-            modern.
+            Tingkatkan kompetensi tim Anda dengan wawasan langsung dari praktisi. Ikuti sesi edukasi
+            gratis tentang digitalisasi, strategi pajak, dan manajemen operasional modern.
           </motion.p>
 
           <motion.div
@@ -82,8 +80,8 @@ export default function EventsPage() {
                   onClick={() => setFilter(cat)}
                   className={`rounded-xl px-4 py-2 text-sm font-medium whitespace-nowrap transition-all ${
                     filter === cat
-                      ? "bg-primary-600 shadow-primary-900/20 dark:bg-primary-600 text-white shadow-lg"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
+                      ? 'bg-primary-600 shadow-primary-900/20 dark:bg-primary-600 text-white shadow-lg'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10'
                   }`}
                 >
                   {cat}
@@ -98,11 +96,7 @@ export default function EventsPage() {
         {/* Upcoming Events Grid */}
         <Stack direction="vertical" gap={8}>
           <div className="flex items-center justify-between gap-4">
-            <Typography
-              variant="h2"
-              as="h2"
-              className="font-bold text-slate-900 dark:text-white"
-            >
+            <Typography variant="h2" as="h2" className="font-bold text-slate-900 dark:text-white">
               <Calendar className="text-primary-600 dark:text-primary-400 mr-2 inline h-6 w-6" />
               Upcoming Live Sessions
             </Typography>
@@ -161,8 +155,9 @@ export default function EventsPage() {
                             size="sm"
                             className="group-hover:bg-primary-600 transition-colors"
                           >
-                            Daftar{" "}
-                            <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            <span className="text-slate-800 dark:text-white">Daftar </span>
+
+                            <ArrowRight className="ml-1 h-4 w-4 text-slate-800 transition-transform group-hover:translate-x-1 dark:text-white" />
                           </Button>
                         </Link>
                       </div>
@@ -221,12 +216,9 @@ export default function EventsPage() {
 
                     <div className="mt-auto border-t border-slate-100 pt-6 dark:border-slate-800">
                       <Link href={`/events/${evt.slug}`}>
-                        <Button
-                          size="sm"
-                          className="group-hover:bg-primary-600 transition-colors"
-                        >
-                          Daftar{" "}
-                          <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        <Button size="sm" className="group-hover:bg-primary-600 transition-colors">
+                          <span className="text-slate-800 dark:text-white">Daftar </span>
+                          <ArrowRight className="ml-1 h-4 w-4 text-slate-800 transition-transform group-hover:translate-x-1 dark:text-white" />
                         </Button>
                       </Link>
                     </div>
@@ -240,11 +232,7 @@ export default function EventsPage() {
         {/* Past Recordings */}
         {eventsData.recordings && eventsData.recordings.length > 0 && (
           <Stack direction="vertical" gap={8}>
-            <Typography
-              variant="h2"
-              as="h2"
-              className="font-bold text-slate-900 dark:text-white"
-            >
+            <Typography variant="h2" as="h2" className="font-bold text-slate-900 dark:text-white">
               <PlayCircle className="text-primary-600 dark:text-primary-400 mr-2 inline h-6 w-6" />
               Past Recordings
             </Typography>

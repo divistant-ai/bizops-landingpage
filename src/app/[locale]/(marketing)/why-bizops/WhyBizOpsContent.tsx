@@ -70,42 +70,42 @@ export default function WhyBizOpsContent() {
   return (
     <div className="flex flex-col bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-[#0B1120] pt-32 pb-20 text-white lg:pt-48 lg:pb-32">
+      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pt-48 lg:pb-32 dark:bg-[#0B1120]">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        <div className="bg-primary-600/20 animate-pulse-slow pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full blur-[120px]"></div>
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-600/10 blur-[100px]"></div>
+        <div className="animate-pulse-slow pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20"></div>
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-600/10"></div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-primary-300 mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-4 py-1.5 text-xs font-bold tracking-wider uppercase backdrop-blur-md"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Layers className="h-3 w-3" />
-            {' '}
-            The Unified Layer
+            <Layers className="h-3 w-3" /> The Unified Layer
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
+            className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white"
           >
-            Modernisasi Operasional
-            {' '}
-            <br />
-            <span className="from-primary-400 bg-gradient-to-r to-indigo-400 bg-clip-text text-transparent">Tanpa Merombak Segalanya.</span>
+            Modernisasi Operasional <br />
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
+              Tanpa Merombak Segalanya.
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-300"
+            className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 dark:text-slate-300"
           >
-            BizOps dirancang sebagai 'Unified Layer' yang menghubungkan sistem legacy Anda (SAP, Mesin Absensi, Excel) atau bisa berfungsi sebagai sistem ERP tunggal yang lengkap. Pilihan di tangan Anda.
+            BizOps dirancang sebagai 'Unified Layer' yang menghubungkan sistem legacy Anda (SAP,
+            Mesin Absensi, Excel) atau bisa berfungsi sebagai sistem ERP tunggal yang lengkap.
+            Pilihan di tangan Anda.
           </motion.p>
         </div>
       </section>
@@ -114,9 +114,12 @@ export default function WhyBizOpsContent() {
       <section className="border-b border-slate-100 bg-white py-24 dark:border-slate-800 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">The "Sweet Spot"</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              The "Sweet Spot"
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
-              Mengapa bisnis Indonesia sering gagal implementasi ERP? Karena dipaksa memilih antara fleksibilitas atau kemudahan. Kami memberikan keduanya.
+              Mengapa bisnis Indonesia sering gagal implementasi ERP? Karena dipaksa memilih antara
+              fleksibilitas atau kemudahan. Kami memberikan keduanya.
             </p>
           </div>
 
@@ -128,10 +131,18 @@ export default function WhyBizOpsContent() {
               <div className="absolute top-1/2 right-8 left-8 h-px -translate-y-1/2 transform border-t border-dashed border-slate-400 bg-slate-300 dark:border-slate-500 dark:bg-slate-600"></div>
 
               {/* Labels */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">High Flexibility</div>
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">Low Flexibility</div>
-              <div className="absolute top-1/2 left-0 origin-center -translate-y-1/2 -rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">Hard to Use</div>
-              <div className="absolute top-1/2 right-0 origin-center -translate-y-1/2 rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">Easy to Use</div>
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
+                High Flexibility
+              </div>
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
+                Low Flexibility
+              </div>
+              <div className="absolute top-1/2 left-0 origin-center -translate-y-1/2 -rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
+                Hard to Use
+              </div>
+              <div className="absolute top-1/2 right-0 origin-center -translate-y-1/2 rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
+                Easy to Use
+              </div>
 
               {/* Competitors */}
               <div className="group absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 transform cursor-help text-center opacity-70">
@@ -160,7 +171,9 @@ export default function WhyBizOpsContent() {
                     B
                   </div>
                 </div>
-                <span className="text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-900/30 border-primary-100 dark:border-primary-800 rounded-full border px-3 py-1 text-sm font-bold">BizOps</span>
+                <span className="text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-900/30 border-primary-100 dark:border-primary-800 rounded-full border px-3 py-1 text-sm font-bold">
+                  BizOps
+                </span>
               </div>
             </div>
 
@@ -171,8 +184,13 @@ export default function WhyBizOpsContent() {
                   <X className="h-5 w-5 text-red-600 dark:text-red-400" />
                 </div>
                 <div>
-                  <h4 className="mb-2 font-bold text-slate-900 dark:text-white">Legacy ERP (SAP, Oracle)</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Powerful tapi kompleks. Butuh konsultan mahal, implementasi 1-2 tahun, dan training intensif.</p>
+                  <h4 className="mb-2 font-bold text-slate-900 dark:text-white">
+                    Legacy ERP (SAP, Oracle)
+                  </h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Powerful tapi kompleks. Butuh konsultan mahal, implementasi 1-2 tahun, dan
+                    training intensif.
+                  </p>
                 </div>
               </div>
 
@@ -181,8 +199,13 @@ export default function WhyBizOpsContent() {
                   <X className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
-                  <h4 className="mb-2 font-bold text-slate-900 dark:text-white">SaaS Lokal (Accounting Apps)</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Mudah dipakai tapi terbatas. Tidak bisa customize, tidak cocok untuk bisnis kompleks.</p>
+                  <h4 className="mb-2 font-bold text-slate-900 dark:text-white">
+                    SaaS Lokal (Accounting Apps)
+                  </h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Mudah dipakai tapi terbatas. Tidak bisa customize, tidak cocok untuk bisnis
+                    kompleks.
+                  </p>
                 </div>
               </div>
 
@@ -191,8 +214,12 @@ export default function WhyBizOpsContent() {
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-primary-900 dark:text-primary-100 mb-2 font-bold">BizOps (The Sweet Spot)</h4>
-                  <p className="text-primary-800 dark:text-primary-200 text-sm">Fleksibel seperti SAP, mudah seperti SaaS. Best of both worlds.</p>
+                  <h4 className="text-primary-900 dark:text-primary-100 mb-2 font-bold">
+                    BizOps (The Sweet Spot)
+                  </h4>
+                  <p className="text-primary-800 dark:text-primary-200 text-sm">
+                    Fleksibel seperti SAP, mudah seperti SaaS. Best of both worlds.
+                  </p>
                 </div>
               </div>
             </div>
@@ -204,7 +231,9 @@ export default function WhyBizOpsContent() {
       <Section className="bg-slate-50 dark:bg-slate-950">
         <Container size="7xl">
           <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">Keunggulan Kompetitif</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              Keunggulan Kompetitif
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
               Fitur-fitur yang membedakan BizOps dari kompetitor.
             </p>
@@ -218,11 +247,17 @@ export default function WhyBizOpsContent() {
                 return (
                   <div key={idx} className="w-[300px]">
                     <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                      <div className={`h-14 w-14 rounded-xl ${item.color} mb-4 flex items-center justify-center`}>
+                      <div
+                        className={`h-14 w-14 rounded-xl ${item.color} mb-4 flex items-center justify-center`}
+                      >
                         <Icon className="h-7 w-7" />
                       </div>
-                      <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{item.desc}</p>
+                      <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
                 );
@@ -244,11 +279,17 @@ export default function WhyBizOpsContent() {
                   className="group"
                 >
                   <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className={`h-14 w-14 rounded-xl ${item.color} mb-4 flex items-center justify-center transition-transform group-hover:scale-110`}>
+                    <div
+                      className={`h-14 w-14 rounded-xl ${item.color} mb-4 flex items-center justify-center transition-transform group-hover:scale-110`}
+                    >
                       <Icon className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{item.desc}</p>
+                    <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      {item.desc}
+                    </p>
                   </div>
                 </motion.div>
               );
@@ -261,7 +302,9 @@ export default function WhyBizOpsContent() {
       <Section className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <Container size="6xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">Feature Comparison</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              Feature Comparison
+            </h2>
             <p className="text-slate-600 dark:text-slate-400">
               Bandingkan fitur BizOps dengan kompetitor secara objektif.
             </p>
@@ -271,42 +314,47 @@ export default function WhyBizOpsContent() {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b-2 border-slate-200 dark:border-slate-700">
-                  <th className="p-4 text-left font-bold text-slate-900 dark:text-white">Feature</th>
-                  <th className="text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 p-4 text-center font-bold">BizOps</th>
-                  <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">Legacy ERP</th>
-                  <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">SaaS Lokal</th>
+                  <th className="p-4 text-left font-bold text-slate-900 dark:text-white">
+                    Feature
+                  </th>
+                  <th className="text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 p-4 text-center font-bold">
+                    BizOps
+                  </th>
+                  <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">
+                    Legacy ERP
+                  </th>
+                  <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">
+                    SaaS Lokal
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonData.map((row, idx) => (
-                  <tr key={idx} className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50">
+                  <tr
+                    key={idx}
+                    className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50"
+                  >
                     <td className="p-4 text-slate-700 dark:text-slate-300">{row.feature}</td>
                     <td className="bg-primary-50/50 dark:bg-primary-900/10 p-4 text-center">
-                      {row.bizops
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.bizops ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.legacy
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.legacy ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.saas
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.saas ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -317,24 +365,29 @@ export default function WhyBizOpsContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-slate-900 text-white dark:bg-slate-950">
+      <Section className="bg-slate-100 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             Siap untuk Transformasi?
           </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-300">
+          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-700 dark:text-slate-300">
             Lihat sendiri bagaimana BizOps bisa mengubah operasional bisnis Anda.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/demo">
-              <Button size="lg" className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto">
-                Jadwalkan Demo
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button
+                size="lg"
+                className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
+              >
+                Jadwalkan Demo <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/compare">
-              <Button size="lg" variant="outline" className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
+              >
                 Bandingkan Kompetitor
               </Button>
             </Link>
