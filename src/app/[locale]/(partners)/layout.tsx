@@ -11,10 +11,10 @@ export default async function PartnersLayout(props: {
   setRequestLocale(locale);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+    <>
       <Navbar />
       <main className="flex-grow">{props.children}</main>
       <Footer />
-    </div>
+    </>
   );
 }

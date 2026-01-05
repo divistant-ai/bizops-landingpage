@@ -1,34 +1,34 @@
-# Build Stage 1
+# Stage 1: build
+FROM node:20-alpine AS build
 
-FROM node:22-alpine AS build
 WORKDIR /app
 
-RUN corepack enable
-
-# Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
-COPY package.json pnpm-lock.yaml .npmrc ./
+# Copy package.json dan lockfile
+COPY package*.json ./
 
 # Install dependencies
-RUN pnpm i
+RUN npm install
 
-# Copy the entire project
-COPY . ./
+# Copy source code
+COPY . .
 
-# Build the project
-RUN pnpm run build
+# Optional: build project (misal Next.js)
+RUN npm run build
 
-# Build Stage 2
+# Stage 2: production image
+FROM node:20-alpine
 
-FROM node:22-alpine
 WORKDIR /app
 
-# Only .output folder is needed from the build stage
-COPY --from=build /app/.output/ ./
+# Copy node_modules dan hasil build dari stage 1
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app . 
 
-# Change the port and host
-ENV PORT=80
-ENV HOST=0.0.0.0
+# Set environment
+ENV NODE_ENV=production
 
-EXPOSE 80
+# Expose port
+EXPOSE 3000
 
-CMD ["node", "/app/server/index.mjs"]
+# Start application
+CMD ["npm", "start"]

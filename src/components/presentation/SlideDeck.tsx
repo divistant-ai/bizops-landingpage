@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, Maximize2, Minimize2 } from "lucide-react";
-import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui";
-import { cn } from "@/libs/utils/cn";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
+import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Button } from '@/components/ui';
+import { cn } from '@/libs/utils/cn';
 
 export type SlideData = {
   id: string;
@@ -26,11 +26,11 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1 < slides.length ? prev + 1 : prev));
+    setCurrentIndex((prev) => (prev + 1 < slides.length ? prev + 1 : prev));
   }, [slides.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 >= 0 ? prev - 1 : prev));
+    setCurrentIndex((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
   }, []);
 
   const toggleFullscreen = () => {
@@ -48,8 +48,8 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
   // Auto-hide controls in fullscreen
@@ -66,7 +66,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
 
     if (isFullscreen) {
       handleMouseMove(); // Reset timer on enter fullscreen
-      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove);
     } else {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowControls(true);
@@ -76,7 +76,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
     }
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);
       }
@@ -86,15 +86,15 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
   // Keyboard Navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === "Space") {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
         nextSlide();
-      } else if (e.key === "ArrowLeft") {
+      } else if (e.key === 'ArrowLeft') {
         prevSlide();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
   const progress = ((currentIndex + 1) / slides.length) * 100;
@@ -102,7 +102,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
   return (
     <div
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-slate-950 text-white selection:bg-blue-500/30"
+      className="relative h-screen w-full overflow-hidden bg-slate-50 text-slate-900 selection:bg-blue-500/30 dark:bg-slate-950 dark:text-white"
     >
       {/* Slide Content */}
       <div className="relative h-full w-full">
@@ -112,9 +112,9 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             className={cn(
-              "absolute inset-0 flex h-full w-full flex-col items-center justify-center p-8 md:p-16",
+              'absolute inset-0 flex h-full w-full flex-col items-center justify-center p-8 md:p-16',
               slides[currentIndex]?.className,
             )}
           >
@@ -130,29 +130,23 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
         transition={{ duration: 0.3 }}
         className="absolute right-0 bottom-0 left-0 z-50 p-6 md:p-8"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-slate-900/80 px-6 py-4 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-slate-300 bg-slate-100 px-6 py-4 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/80">
           {/* Left: Branding & Home */}
           <div className="flex items-center gap-4">
             <Link
               href="/"
               className="group flex items-center gap-2 transition-opacity hover:opacity-80"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white shadow-lg">
-                <div className="h-4 w-4 rotate-45 transform rounded-sm bg-slate-950"></div>
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 shadow-lg dark:bg-white">
+                <div className="h-4 w-4 rotate-45 transform rounded-sm bg-white dark:bg-slate-950"></div>
               </div>
-              <span className="hidden text-lg font-bold tracking-tight text-white sm:block">
+              <span className="hidden text-lg font-bold tracking-tight text-slate-900 sm:block dark:text-white">
                 BizOps
               </span>
             </Link>
-            <div className="mx-2 hidden h-6 w-px bg-white/10 sm:block"></div>
-            <span className="hidden text-sm text-slate-400 sm:block">
-              Slide
-              {" "}
-              {currentIndex + 1}
-              {" "}
-              /
-              {" "}
-              {slides.length}
+            <div className="mx-2 hidden h-6 w-px bg-slate-300 sm:block dark:bg-white/10"></div>
+            <span className="hidden text-sm text-slate-600 sm:block dark:text-slate-400">
+              Slide {currentIndex + 1} / {slides.length}
             </span>
           </div>
 
@@ -166,7 +160,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
               className="h-10 w-10 rounded-full p-0"
               aria-label="Previous Slide"
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft className="h-5 w-5 text-slate-600 dark:text-white" />
             </Button>
             <Button
               variant="primary"
@@ -175,7 +169,9 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
               disabled={currentIndex === slides.length - 1}
               className="h-12 rounded-full px-8 shadow-lg shadow-blue-600/20"
             >
-              {currentIndex === slides.length - 1 ? "Selesai" : "Lanjut"}
+              <span className="text-slate-600 dark:text-white">
+                {currentIndex === slides.length - 1 ? 'Selesai' : 'Lanjut'}
+              </span>
             </Button>
           </div>
 
@@ -183,22 +179,16 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
           <div className="flex items-center justify-end gap-4">
             <button
               onClick={toggleFullscreen}
-              className="text-slate-400 transition-colors hover:text-white"
+              className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
               aria-label="Toggle Fullscreen"
             >
-              {isFullscreen
-                ? (
-                    <Minimize2 className="h-5 w-5" />
-                  )
-                : (
-                    <Maximize2 className="h-5 w-5" />
-                  )}
+              {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="absolute bottom-0 left-0 h-1 w-full bg-slate-800">
+        <div className="absolute bottom-0 left-0 h-1 w-full bg-slate-300 dark:bg-slate-800">
           <motion.div
             className="h-full bg-blue-500"
             initial={{ width: 0 }}

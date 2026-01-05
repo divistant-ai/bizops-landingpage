@@ -1,61 +1,42 @@
-import type { Metadata } from "next";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import { notFound } from "next/navigation";
-import React from "react";
-import { PostHogProvider } from "@/components/analytics/PostHogProvider";
-import { Providers } from "@/components/providers";
-import { PWAInit } from "@/components/PWAInit";
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
-import ScrollToTop from "@/components/ScrollToTop";
-import StructuredData from "@/components/StructuredData";
-import { WebVitalsReporter } from "@/components/WebVitalsReporter";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { routing } from "@/libs/I18nRouting";
-import { getOrganizationSchema, getWebSiteSchema } from "@/libs/utils/structured-data";
-import "@/styles/global.css";
+import type { Metadata } from 'next';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import React from 'react';
+import { PostHogProvider } from '@/components/analytics/PostHogProvider';
+import { Providers } from '@/components/providers';
+import { PWAInit } from '@/components/PWAInit';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+import ScrollToTop from '@/components/ScrollToTop';
+import StructuredData from '@/components/StructuredData';
+import { WebVitalsReporter } from '@/components/WebVitalsReporter';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
+import { routing } from '@/libs/I18nRouting';
+import { getOrganizationSchema, getWebSiteSchema } from '@/libs/utils/structured-data';
+import '@/styles/global.css';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://bizops.id"),
-  icons: [
-    {
-      rel: "apple-touch-icon",
-      url: "/apple-touch-icon.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "32x32",
-      url: "/favicon-32x32.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "16x16",
-      url: "/favicon-16x16.png",
-    },
-    {
-      rel: "icon",
-      url: "/favicon.ico",
-    },
-  ],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bizops.id'),
+  icons: {
+    icon: { url: '/favicon.svg', type: 'image/svg+xml' },
+  },
 };
 
 export function generateStaticParams() {
-  return routing.locales.map(locale => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout(props: {

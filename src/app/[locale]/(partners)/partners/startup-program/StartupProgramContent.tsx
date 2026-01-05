@@ -94,7 +94,7 @@ export default function StartupProgramContent() {
   return (
     <div className="flex flex-col bg-slate-50 font-sans transition-colors selection:bg-purple-500/30 dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-[#0F172A] pt-32 pb-32 text-center text-white lg:pt-48 lg:pb-40">
+      <section className="relative overflow-hidden bg-white pt-32 pb-32 text-center lg:pt-48 lg:pb-40 dark:bg-[#0F172A] dark:text-white">
         {/* Modern Grid Background */}
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
@@ -107,40 +107,32 @@ export default function StartupProgramContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-700/50 bg-purple-900/30 px-3 py-1 text-xs font-bold tracking-wider text-purple-300 uppercase shadow-[0_0_15px_rgba(168,85,247,0.3)] backdrop-blur-md"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-300 bg-purple-100 px-3 py-1 text-xs font-bold tracking-wider text-purple-700 uppercase shadow-lg backdrop-blur-md dark:border-purple-700/50 dark:bg-purple-900/30 dark:text-purple-300 dark:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
           >
-            <Rocket className="h-3 w-3" />
-            {' '}
-            BizOps for Startups
+            <Rocket className="h-3 w-3" /> BizOps for Startups
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mb-8 text-5xl leading-tight font-extrabold tracking-tight md:text-7xl lg:text-8xl"
+            className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white"
           >
-            Build Fast.
-            {' '}
-            <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">Scale Safe.</span>
+            Build Fast. <br />
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
+              Scale Safe.
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-300 md:text-2xl"
+            className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 md:text-2xl dark:text-slate-300"
           >
-            Infrastruktur operasional
-            {' '}
-            <em>audit-ready</em>
-            {' '}
-            untuk startup ambisius. Hemat
-            {' '}
-            <em>burn rate</em>
-            {' '}
-            dengan kredit hingga $5,000 dan akses ke teknologi Enterprise sejak Day 1.
+            Infrastruktur operasional <em>audit-ready</em> untuk startup ambisius. Hemat{' '}
+            <em>burn rate</em> dengan kredit hingga $5,000 dan akses ke teknologi Enterprise sejak
+            Day 1.
           </motion.p>
 
           <motion.div
@@ -150,16 +142,19 @@ export default function StartupProgramContent() {
             className="flex flex-col justify-center gap-4 sm:flex-row"
           >
             <Link href="/partners/apply">
-              <Button size="lg" className="h-14 w-full transform border-none bg-white px-10 text-lg font-bold text-slate-900 shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-100 hover:shadow-2xl hover:shadow-purple-500/20 sm:w-auto">
-                Apply for Credits
-                {' '}
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button
+                size="lg"
+                className="h-14 w-full transform border-none bg-slate-900 px-10 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-purple-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+              >
+                Apply for Credits <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="h-14 w-full border-slate-700 px-10 font-medium text-white hover:bg-white/10 sm:w-auto">
-              <Play className="mr-2 h-4 w-4 fill-current" />
-              {' '}
-              Watch Founder Stories
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 w-full border-slate-300 px-10 font-medium text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
+            >
+              <Play className="mr-2 h-4 w-4 fill-current" /> Watch Founder Stories
             </Button>
           </motion.div>
 
@@ -167,7 +162,7 @@ export default function StartupProgramContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-8 text-sm font-medium text-slate-500"
+            className="mt-8 text-sm font-medium text-slate-500 dark:text-slate-500"
           >
             Trusted by 500+ High-Growth Startups in Indonesia
           </motion.p>
@@ -175,15 +170,17 @@ export default function StartupProgramContent() {
       </section>
 
       {/* LOGO WALL (Social Proof) */}
-      <section className="border-b border-slate-800 bg-[#0F172A] pb-16">
+      <section className="border-b border-slate-200 bg-slate-100 pb-16 dark:border-slate-800 dark:bg-[#0F172A]">
         <div className="mx-auto max-w-7xl overflow-hidden px-4">
           <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale transition-opacity duration-500 hover:opacity-70">
             {/* Placeholder Logos */}
-            <div className="text-xl font-bold text-white">ACME Corp</div>
-            <div className="text-xl font-bold text-white">Nebula AI</div>
-            <div className="text-xl font-bold text-white">Quantum Leap</div>
-            <div className="text-xl font-bold text-white">HyperGrowth</div>
-            <div className="hidden text-xl font-bold text-white md:block">Stark Industries</div>
+            <div className="text-xl font-bold text-slate-900 dark:text-white">ACME Corp</div>
+            <div className="text-xl font-bold text-slate-900 dark:text-white">Nebula AI</div>
+            <div className="text-xl font-bold text-slate-900 dark:text-white">Quantum Leap</div>
+            <div className="text-xl font-bold text-slate-900 dark:text-white">HyperGrowth</div>
+            <div className="hidden text-xl font-bold text-slate-900 md:block dark:text-white">
+              Stark Industries
+            </div>
           </div>
         </div>
       </section>
@@ -192,8 +189,13 @@ export default function StartupProgramContent() {
       <section className="relative z-20 bg-slate-50 py-24 dark:bg-slate-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">More Than Just Free Credits</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">Kami berinvestasi pada kesuksesan jangka panjang Anda dengan ekosistem pendukung yang lengkap.</p>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              More Than Just Free Credits
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+              Kami berinvestasi pada kesuksesan jangka panjang Anda dengan ekosistem pendukung yang
+              lengkap.
+            </p>
           </div>
 
           {/* Mobile: CardSlider */}
@@ -202,11 +204,18 @@ export default function StartupProgramContent() {
               {perks.map((perk, idx) => {
                 const Icon = perk.icon;
                 return (
-                  <div key={idx} className="group flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}>
+                  <div
+                    key={idx}
+                    className="group flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+                  >
+                    <div
+                      className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}
+                    >
                       <Icon className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">{perk.title}</h3>
+                    <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
+                      {perk.title}
+                    </h3>
                     <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-400">
                       {perk.desc}
                     </p>
@@ -229,10 +238,14 @@ export default function StartupProgramContent() {
                   transition={{ delay: idx * 0.1 }}
                   className="group flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
                 >
-                  <div className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}>
+                  <div
+                    className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}
+                  >
                     <Icon className="h-7 w-7" />
                   </div>
-                  <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">{perk.title}</h3>
+                  <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
+                    {perk.title}
+                  </h3>
                   <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-400">
                     {perk.desc}
                   </p>
@@ -247,7 +260,9 @@ export default function StartupProgramContent() {
       <Section className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <Container size="4xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">Siapa yang Eligible?</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              Siapa yang Eligible?
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
               Kami mencari startup yang serius untuk scale dan membutuhkan infrastruktur yang solid.
             </p>
@@ -279,7 +294,9 @@ export default function StartupProgramContent() {
       <Section className="bg-slate-50 dark:bg-slate-950">
         <Container size="6xl">
           <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">How to Apply</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              How to Apply
+            </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
               Proses aplikasi dirancang cepat dan tidak ribet. Kami respect waktu founder.
             </p>
@@ -287,9 +304,24 @@ export default function StartupProgramContent() {
 
           <div className="grid gap-6 md:grid-cols-4">
             {[
-              { step: '1', title: 'Submit Application', desc: 'Isi form singkat (5 menit) tentang startup Anda', icon: FileText },
-              { step: '2', title: 'Quick Call', desc: '15 menit video call dengan tim kami', icon: Users },
-              { step: '3', title: 'Approval', desc: 'Keputusan dalam 2-3 hari kerja', icon: CheckCircle },
+              {
+                step: '1',
+                title: 'Submit Application',
+                desc: 'Isi form singkat (5 menit) tentang startup Anda',
+                icon: FileText,
+              },
+              {
+                step: '2',
+                title: 'Quick Call',
+                desc: '15 menit video call dengan tim kami',
+                icon: Users,
+              },
+              {
+                step: '3',
+                title: 'Approval',
+                desc: 'Keputusan dalam 2-3 hari kerja',
+                icon: CheckCircle,
+              },
               { step: '4', title: 'Onboarding', desc: 'Setup akun dan mulai build!', icon: Rocket },
             ].map((item, idx) => {
               const Icon = item.icon;
@@ -309,7 +341,9 @@ export default function StartupProgramContent() {
                     <div className="mt-2 mb-4">
                       <Icon className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                     </div>
-                    <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                    <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                      {item.title}
+                    </h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">{item.desc}</p>
                   </div>
                   {idx < 3 && (
@@ -325,9 +359,7 @@ export default function StartupProgramContent() {
           <div className="mt-12 text-center">
             <Link href="/partners/apply">
               <Button size="lg" className="bg-purple-600 text-white hover:bg-purple-700">
-                Start Application
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Start Application <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -338,7 +370,9 @@ export default function StartupProgramContent() {
       <Section className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <Container size="4xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">Frequently Asked Questions</h2>
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              Frequently Asked Questions
+            </h2>
           </div>
 
           <div className="space-y-4">
@@ -352,13 +386,11 @@ export default function StartupProgramContent() {
                   className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   <span className="pr-4 font-bold text-slate-900 dark:text-white">{faq.q}</span>
-                  {openFaq === idx
-                    ? (
-                        <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
-                      )
-                    : (
-                        <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
-                      )}
+                  {openFaq === idx ? (
+                    <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+                  ) : (
+                    <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
+                  )}
                 </button>
                 <AnimatePresence>
                   {openFaq === idx && (
@@ -382,19 +414,20 @@ export default function StartupProgramContent() {
       </Section>
 
       {/* FINAL CTA */}
-      <Section className="bg-gradient-to-br from-purple-900 to-indigo-900 text-white">
+      <Section className="bg-white dark:bg-gradient-to-br dark:from-purple-900 dark:to-indigo-900">
         <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             Ready to Build the Future?
           </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-purple-200">
+          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-600 dark:text-purple-200">
             Join 500+ startups yang sudah percaya pada BizOps untuk menghandle operasional mereka.
           </p>
           <Link href="/partners/apply">
-            <Button size="lg" className="bg-white font-bold text-purple-900 hover:bg-slate-100">
-              Apply Now - It's Free
-              {' '}
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button
+              size="lg"
+              className="bg-slate-900 font-bold text-white hover:bg-slate-800 dark:bg-white dark:text-purple-900 dark:hover:bg-slate-100"
+            >
+              Apply Now - It's Free <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </Container>

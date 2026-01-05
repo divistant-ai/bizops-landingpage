@@ -10,31 +10,31 @@ import {
   RefreshCw,
   Server,
   Shield,
-} from "lucide-react";
-import Link from "next/link";
-import { Section } from "@/components/layout";
-import Container from "@/components/layout/Container";
-import { CardSlider, Grid, Typography } from "@/components/ui";
-import Button from "@/components/ui/Button";
-import Stack from "@/components/ui/Stack";
-import { generateMetadata as genMeta } from "@/libs/utils/metadata";
-import { TrustHeroAnimated } from "./TrustHeroAnimated";
+} from 'lucide-react';
+import Link from 'next/link';
+import { Section } from '@/components/layout';
+import Container from '@/components/layout/Container';
+import { CardSlider, Grid, Typography } from '@/components/ui';
+import Button from '@/components/ui/Button';
+import Stack from '@/components/ui/Stack';
+import { generateMetadata as genMeta } from '@/libs/utils/metadata';
+import { TrustHeroAnimated } from './TrustHeroAnimated';
 
 export const metadata = genMeta({
-  title: "Trust Center | Security, Compliance & Privacy",
+  title: 'Trust Center | Security, Compliance & Privacy',
   description:
-    "Pusat transparansi keamanan BizOps. ISO 27001, Enkripsi AES-256, dan Kepatuhan GDPR/UU PDP.",
-  url: "/trust",
+    'Pusat transparansi keamanan BizOps. ISO 27001, Enkripsi AES-256, dan Kepatuhan GDPR/UU PDP.',
+  url: '/trust',
 });
 
 export default function TrustPage() {
   return (
     <div className="bg-slate-50 font-sans transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <Section className="relative overflow-hidden bg-[#0B1120] pt-32 pb-24 text-white lg:pt-48 lg:pb-32">
+      <Section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-[#0B1120]">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] animate-pulse rounded-full bg-emerald-900/20 blur-[120px]"></div>
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-blue-900/20 blur-[100px]"></div>
+        <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] animate-pulse rounded-full bg-emerald-500/10 blur-[120px] dark:bg-emerald-900/20"></div>
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-900/20"></div>
 
         <Container size="5xl" className="relative z-10 text-center">
           <TrustHeroAnimated />
@@ -58,14 +58,10 @@ export default function TrustPage() {
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1">
-              <Clock className="h-3 w-3" />
-              {" "}
-              Uptime (30 Days): 99.99%
+              <Clock className="h-3 w-3" /> Uptime (30 Days): 99.99%
             </span>
             <span className="hidden items-center gap-1 sm:flex">
-              <RefreshCw className="h-3 w-3" />
-              {" "}
-              Last Updated: Just now
+              <RefreshCw className="h-3 w-3" /> Last Updated: Just now
             </span>
             <Link href="/status" className="text-emerald-600 hover:underline">
               View History →
@@ -82,8 +78,8 @@ export default function TrustPage() {
               Standar Kepatuhan Global
             </Typography>
             <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-              Kami diaudit secara berkala oleh pihak ketiga independen untuk memastikan
-              standar keamanan tertinggi.
+              Kami diaudit secara berkala oleh pihak ketiga independen untuk memastikan standar
+              keamanan tertinggi.
             </Typography>
           </div>
 
@@ -96,10 +92,7 @@ export default function TrustPage() {
                 <Typography variant="h3" as="h3" className="mb-2">
                   ISO 27001
                 </Typography>
-                <Typography
-                  variant="body"
-                  className="mb-4 text-slate-500 dark:text-slate-400"
-                >
+                <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                   Information Security Management
                 </Typography>
                 <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-bold tracking-wide text-emerald-700 uppercase dark:bg-emerald-900/20 dark:text-emerald-400">
@@ -114,10 +107,7 @@ export default function TrustPage() {
                 <Typography variant="h3" as="h3" className="mb-2">
                   GDPR & UU PDP
                 </Typography>
-                <Typography
-                  variant="body"
-                  className="mb-4 text-slate-500 dark:text-slate-400"
-                >
+                <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                   Data Privacy Compliance
                 </Typography>
                 <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-700 uppercase dark:bg-blue-900/20 dark:text-blue-400">
@@ -132,10 +122,7 @@ export default function TrustPage() {
                 <Typography variant="h3" as="h3" className="mb-2">
                   PSE Kominfo
                 </Typography>
-                <Typography
-                  variant="body"
-                  className="mb-4 text-slate-500 dark:text-slate-400"
-                >
+                <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                   Terdaftar Resmi
                 </Typography>
                 <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-[10px] font-bold tracking-wide text-red-700 uppercase dark:bg-red-900/20 dark:text-red-400">
@@ -153,10 +140,7 @@ export default function TrustPage() {
               <Typography variant="h3" as="h3" className="mb-2">
                 ISO 27001
               </Typography>
-              <Typography
-                variant="body"
-                className="mb-4 text-slate-500 dark:text-slate-400"
-              >
+              <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                 Information Security Management
               </Typography>
               <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-bold tracking-wide text-emerald-700 uppercase dark:bg-emerald-900/20 dark:text-emerald-400">
@@ -171,10 +155,7 @@ export default function TrustPage() {
               <Typography variant="h3" as="h3" className="mb-2">
                 GDPR & UU PDP
               </Typography>
-              <Typography
-                variant="body"
-                className="mb-4 text-slate-500 dark:text-slate-400"
-              >
+              <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                 Data Privacy Compliance
               </Typography>
               <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-700 uppercase dark:bg-blue-900/20 dark:text-blue-400">
@@ -189,10 +170,7 @@ export default function TrustPage() {
               <Typography variant="h3" as="h3" className="mb-2">
                 PSE Kominfo
               </Typography>
-              <Typography
-                variant="body"
-                className="mb-4 text-slate-500 dark:text-slate-400"
-              >
+              <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                 Terdaftar Resmi
               </Typography>
               <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-[10px] font-bold tracking-wide text-red-700 uppercase dark:bg-red-900/20 dark:text-red-400">
@@ -207,10 +185,7 @@ export default function TrustPage() {
               <Typography variant="h3" as="h3" className="mb-2">
                 SOC 2 Type II
               </Typography>
-              <Typography
-                variant="body"
-                className="mb-4 text-slate-500 dark:text-slate-400"
-              >
+              <Typography variant="body" className="mb-4 text-slate-500 dark:text-slate-400">
                 Security Controls
               </Typography>
               <span className="mt-auto inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[10px] font-bold tracking-wide text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
@@ -224,9 +199,7 @@ export default function TrustPage() {
         <section className="grid grid-cols-1 items-center gap-16 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold tracking-wider text-slate-600 uppercase dark:bg-slate-800 dark:text-slate-400">
-              <Layers className="h-3 w-3" />
-              {" "}
-              Defense in Depth
+              <Layers className="h-3 w-3" /> Defense in Depth
             </div>
             <Typography variant="h2" as="h2" className="mb-6">
               Arsitektur Keamanan Berlapis
@@ -235,9 +208,8 @@ export default function TrustPage() {
               variant="body"
               className="mb-8 leading-relaxed text-slate-600 dark:text-slate-400"
             >
-              Kami tidak hanya mengandalkan satu kunci pintu. Data Anda dilindungi oleh
-              berbagai lapisan keamanan mulai dari fisik, jaringan, aplikasi, hingga level
-              data itu sendiri.
+              Kami tidak hanya mengandalkan satu kunci pintu. Data Anda dilindungi oleh berbagai
+              lapisan keamanan mulai dari fisik, jaringan, aplikasi, hingga level data itu sendiri.
             </Typography>
 
             <div className="lg:hidden">
@@ -250,10 +222,7 @@ export default function TrustPage() {
                     <Typography variant="h3" as="h3" className="mb-2">
                       Encryption at Rest & Transit
                     </Typography>
-                    <Typography
-                      variant="small"
-                      className="text-slate-600 dark:text-slate-400"
-                    >
+                    <Typography variant="small" className="text-slate-600 dark:text-slate-400">
                       Semua data database dienkripsi menggunakan AES-256. Komunikasi data
                       menggunakan TLS 1.3 terbaru.
                     </Typography>
@@ -267,12 +236,9 @@ export default function TrustPage() {
                     <Typography variant="h3" as="h3" className="mb-2">
                       Infrastructure Isolation
                     </Typography>
-                    <Typography
-                      variant="small"
-                      className="text-slate-600 dark:text-slate-400"
-                    >
-                      Setiap tenant Enterprise berjalan di container terisolasi (Virtual
-                      Private Cloud). Data Anda tidak bercampur dengan klien lain.
+                    <Typography variant="small" className="text-slate-600 dark:text-slate-400">
+                      Setiap tenant Enterprise berjalan di container terisolasi (Virtual Private
+                      Cloud). Data Anda tidak bercampur dengan klien lain.
                     </Typography>
                   </div>
                 </div>
@@ -284,12 +250,9 @@ export default function TrustPage() {
                     <Typography variant="h3" as="h3" className="mb-2">
                       24/7 Threat Monitoring
                     </Typography>
-                    <Typography
-                      variant="small"
-                      className="text-slate-600 dark:text-slate-400"
-                    >
-                      Tim Security Operations Center (SOC) kami memantau anomali traffic dan
-                      upaya intrusi secara real-time.
+                    <Typography variant="small" className="text-slate-600 dark:text-slate-400">
+                      Tim Security Operations Center (SOC) kami memantau anomali traffic dan upaya
+                      intrusi secara real-time.
                     </Typography>
                   </div>
                 </div>
@@ -305,12 +268,9 @@ export default function TrustPage() {
                   <Typography variant="h3" as="h3" className="mb-2">
                     Encryption at Rest & Transit
                   </Typography>
-                  <Typography
-                    variant="small"
-                    className="text-slate-600 dark:text-slate-400"
-                  >
-                    Semua data database dienkripsi menggunakan AES-256. Komunikasi data
-                    menggunakan TLS 1.3 terbaru.
+                  <Typography variant="small" className="text-slate-600 dark:text-slate-400">
+                    Semua data database dienkripsi menggunakan AES-256. Komunikasi data menggunakan
+                    TLS 1.3 terbaru.
                   </Typography>
                 </div>
               </div>
@@ -322,12 +282,9 @@ export default function TrustPage() {
                   <Typography variant="h3" as="h3" className="mb-2">
                     Infrastructure Isolation
                   </Typography>
-                  <Typography
-                    variant="small"
-                    className="text-slate-600 dark:text-slate-400"
-                  >
-                    Setiap tenant Enterprise berjalan di container terisolasi (Virtual
-                    Private Cloud). Data Anda tidak bercampur dengan klien lain.
+                  <Typography variant="small" className="text-slate-600 dark:text-slate-400">
+                    Setiap tenant Enterprise berjalan di container terisolasi (Virtual Private
+                    Cloud). Data Anda tidak bercampur dengan klien lain.
                   </Typography>
                 </div>
               </div>
@@ -339,12 +296,9 @@ export default function TrustPage() {
                   <Typography variant="h3" as="h3" className="mb-2">
                     24/7 Threat Monitoring
                   </Typography>
-                  <Typography
-                    variant="small"
-                    className="text-slate-600 dark:text-slate-400"
-                  >
-                    Tim Security Operations Center (SOC) kami memantau anomali traffic dan
-                    upaya intrusi secara real-time.
+                  <Typography variant="small" className="text-slate-600 dark:text-slate-400">
+                    Tim Security Operations Center (SOC) kami memantau anomali traffic dan upaya
+                    intrusi secara real-time.
                   </Typography>
                 </div>
               </div>
@@ -355,40 +309,28 @@ export default function TrustPage() {
             <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-900 p-6 shadow-2xl sm:p-10">
               <div className="absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-emerald-500/20 blur-[80px]"></div>
 
-              <Stack
-                direction="vertical"
-                gap={4}
-                className="relative z-10 h-full justify-center"
-              >
+              <Stack direction="vertical" gap={4} className="relative z-10 h-full justify-center">
                 <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur">
                   <div className="flex items-center gap-3 text-xs text-emerald-400">
-                    <Globe className="h-4 w-4" />
-                    {" "}
-                    Cloudflare WAF
+                    <Globe className="h-4 w-4" /> Cloudflare WAF
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></div>
                 </div>
                 <div className="ml-4 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-8">
                   <div className="flex items-center gap-3 text-xs text-blue-400">
-                    <Server className="h-4 w-4" />
-                    {" "}
-                    Load Balancer
+                    <Server className="h-4 w-4" /> Load Balancer
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-blue-500"></div>
                 </div>
                 <div className="ml-8 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-16">
                   <div className="flex items-center gap-3 text-xs text-purple-400">
-                    <Lock className="h-4 w-4" />
-                    {" "}
-                    App Server (Pod)
+                    <Lock className="h-4 w-4" /> App Server (Pod)
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-purple-500"></div>
                 </div>
                 <div className="ml-12 flex items-center justify-between gap-4 rounded-xl border border-emerald-500/30 bg-emerald-900/50 p-4 shadow-[0_0_30px_rgba(16,185,129,0.2)] backdrop-blur sm:ml-24">
                   <div className="flex items-center gap-3 text-xs font-bold text-white">
-                    <Database className="h-4 w-4" />
-                    {" "}
-                    Encrypted DB
+                    <Database className="h-4 w-4" /> Encrypted DB
                   </div>
                   <div className="flex gap-1">
                     <Lock className="h-3 w-3 text-emerald-400" />
@@ -406,8 +348,8 @@ export default function TrustPage() {
               Data Sub-processors
             </Typography>
             <Typography variant="body" className="mb-8 text-slate-600 dark:text-slate-400">
-              Daftar penyedia layanan pihak ketiga yang kami gunakan untuk memproses data.
-              Kami meminimalkan jumlah pihak ketiga untuk mengurangi risiko.
+              Daftar penyedia layanan pihak ketiga yang kami gunakan untuk memproses data. Kami
+              meminimalkan jumlah pihak ketiga untuk mengurangi risiko.
             </Typography>
 
             <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
@@ -415,15 +357,9 @@ export default function TrustPage() {
                 <table className="w-full min-w-[600px] text-left text-sm">
                   <thead className="border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
                     <tr>
-                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">
-                        Provider
-                      </th>
-                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">
-                        Purpose
-                      </th>
-                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">
-                        Location
-                      </th>
+                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">Provider</th>
+                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">Purpose</th>
+                      <th className="p-4 font-bold text-slate-700 dark:text-slate-300">Location</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -450,20 +386,14 @@ export default function TrustPage() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-4 font-medium text-slate-900 dark:text-white">
-                        Cloudflare
-                      </td>
+                      <td className="p-4 font-medium text-slate-900 dark:text-white">Cloudflare</td>
                       <td className="p-4 text-slate-600 dark:text-slate-400">
                         WAF, DDoS Protection, CDN
                       </td>
-                      <td className="p-4 text-slate-600 dark:text-slate-400">
-                        Global (Anycast)
-                      </td>
+                      <td className="p-4 text-slate-600 dark:text-slate-400">Global (Anycast)</td>
                     </tr>
                     <tr>
-                      <td className="p-4 font-medium text-slate-900 dark:text-white">
-                        Sentry
-                      </td>
+                      <td className="p-4 font-medium text-slate-900 dark:text-white">Sentry</td>
                       <td className="p-4 text-slate-600 dark:text-slate-400">
                         Error Tracking (No PII Data)
                       </td>
@@ -485,10 +415,8 @@ export default function TrustPage() {
             Akses laporan audit keamanan lengkap kami (Penetration Test Result & Compliance
             Certifications) melalui portal khusus klien Enterprise.
           </Typography>
-          <Button size="lg" className="px-8 font-bold">
-            Request Access to Trust Portal
-            {" "}
-            <ChevronRight className="ml-2 h-4 w-4" />
+          <Button size="lg" className="px-8 font-bold text-slate-950 dark:text-white">
+            Request Access to Trust Portal <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </section>
       </Container>

@@ -66,22 +66,17 @@ export default function TimelineGenerator() {
         {/* Header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-3 py-1 text-xs font-bold tracking-wider text-blue-600 uppercase dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
-            <Calendar className="size-4" />
-            {' '}
-            Project Planner
+            <Calendar className="size-4" /> Project Planner
           </div>
           <h1 className="mb-4 text-3xl leading-tight font-bold text-slate-900 md:text-5xl dark:text-white">
-            Estimasi Waktu Implementasi
-            {' '}
-            <br />
-            {' '}
+            Estimasi Waktu Implementasi <br />{' '}
             <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
               Secara Realistis
             </span>
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400">
-            Setiap perusahaan berbeda. Masukkan parameter proyek Anda untuk mendapatkan Timeline & Resource Plan yang
-            akurat.
+            Setiap perusahaan berbeda. Masukkan parameter proyek Anda untuk mendapatkan Timeline &
+            Resource Plan yang akurat.
           </p>
         </div>
 
@@ -99,9 +94,7 @@ export default function TimelineGenerator() {
                 <div className="space-y-8">
                   <div>
                     <label className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Users className="text-primary-500 size-4" />
-                      {' '}
-                      Skala Perusahaan (Karyawan)
+                      <Users className="text-primary-500 size-4" /> Skala Perusahaan (Karyawan)
                     </label>
                     <input
                       type="range"
@@ -109,15 +102,15 @@ export default function TimelineGenerator() {
                       max="1000"
                       step="10"
                       value={input.employeeCount}
-                      onChange={e => setInput({ ...input, employeeCount: Number.parseInt(e.target.value) })}
+                      onChange={(e) =>
+                        setInput({ ...input, employeeCount: Number.parseInt(e.target.value) })
+                      }
                       className="accent-primary-600 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-700"
                     />
                     <div className="mt-2 flex justify-between text-xs font-medium text-slate-500">
                       <span>Small (10)</span>
                       <span className="text-primary-600 text-sm font-bold">
-                        {input.employeeCount}
-                        {' '}
-                        Users
+                        {input.employeeCount} Users
                       </span>
                       <span>Enterprise (1000+)</span>
                     </div>
@@ -125,9 +118,7 @@ export default function TimelineGenerator() {
 
                   <div>
                     <label className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Database className="size-4 text-amber-500" />
-                      {' '}
-                      Kesiapan Data Master
+                      <Database className="size-4 text-amber-500" /> Kesiapan Data Master
                     </label>
                     <div className="grid grid-cols-2 gap-3">
                       {[
@@ -135,7 +126,7 @@ export default function TimelineGenerator() {
                         { id: 'partial', label: 'Parsial', desc: 'Butuh cleansing' },
                         { id: 'messy', label: 'Berantakan', desc: 'Butuh overhaul' },
                         { id: 'hardcopy', label: 'Hardcopy', desc: 'Input manual' },
-                      ].map(opt => (
+                      ].map((opt) => (
                         <button
                           key={opt.id}
                           onClick={() => setInput({ ...input, dataReadiness: opt.id as any })}
@@ -157,9 +148,7 @@ export default function TimelineGenerator() {
                 <div className="space-y-8">
                   <div>
                     <label className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <CheckSquare className="size-4 text-green-500" />
-                      {' '}
-                      Ketersediaan Tim Internal
+                      <CheckSquare className="size-4 text-green-500" /> Ketersediaan Tim Internal
                     </label>
                     <div className="space-y-3">
                       {[
@@ -178,7 +167,7 @@ export default function TimelineGenerator() {
                           label: 'Sangat Sibuk',
                           desc: 'Tidak ada waktu khusus, sambil kerja operasional.',
                         },
-                      ].map(opt => (
+                      ].map((opt) => (
                         <button
                           key={opt.id}
                           onClick={() => setInput({ ...input, teamAvailability: opt.id as any })}
@@ -200,12 +189,10 @@ export default function TimelineGenerator() {
 
                   <div>
                     <label className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <FileText className="size-4 text-purple-500" />
-                      {' '}
-                      Kebutuhan Kustomisasi
+                      <FileText className="size-4 text-purple-500" /> Kebutuhan Kustomisasi
                     </label>
                     <div className="flex gap-2 rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
-                      {['none', 'minor', 'major'].map(level => (
+                      {['none', 'minor', 'major'].map((level) => (
                         <button
                           key={level}
                           onClick={() => setInput({ ...input, customizationLevel: level as any })}
@@ -224,27 +211,39 @@ export default function TimelineGenerator() {
               </div>
 
               <div className="mt-10 flex justify-end border-t border-slate-100 pt-8 dark:border-slate-800">
-                <Button onClick={handleGenerate} size="lg" className="shadow-primary-500/20 gap-2 shadow-lg">
-                  Generate Timeline Project
-                  {' '}
-                  <ArrowRight className="size-4" />
+                <Button
+                  onClick={handleGenerate}
+                  size="lg"
+                  className="shadow-primary-500/20 gap-2 shadow-lg"
+                >
+                  <span className="text-slate-600 dark:text-white">Generate Timeline Project</span>{' '}
+                  <ArrowRight className="size-4 text-slate-600 dark:text-white" />
                 </Button>
               </div>
             </motion.div>
           ) : (
             /* --- RESULT VIEW --- */
-            <motion.div key="result" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
+            <motion.div
+              key="result"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="space-y-8"
+            >
               {/* Summary Cards */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                  <div className="mb-2 text-xs font-bold text-slate-400 uppercase">Total Durasi</div>
+                  <div className="mb-2 text-xs font-bold text-slate-500 uppercase dark:text-slate-400">
+                    Total Durasi
+                  </div>
                   <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
                     {formatWeeks(result.totalDays)}
                   </div>
                   <p className="mt-1 text-xs text-slate-500">Estimasi Go-Live realistis.</p>
                 </div>
                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                  <div className="mb-2 text-xs font-bold text-slate-400 uppercase">Tingkat Kompleksitas</div>
+                  <div className="mb-2 text-xs font-bold text-slate-500 uppercase dark:text-slate-400">
+                    Tingkat Kompleksitas
+                  </div>
                   <div className="text-primary-600 dark:text-primary-400 text-3xl font-extrabold capitalize">
                     {result.complexity}
                   </div>
@@ -281,25 +280,17 @@ export default function TimelineGenerator() {
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-xl dark:border-slate-800 dark:bg-slate-900">
                 <div className="mb-8 flex items-center justify-between">
                   <h3 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
-                    <BarChart3 className="text-primary-500 size-5" />
-                    {' '}
-                    Project Schedule
+                    <BarChart3 className="text-primary-500 size-5" /> Project Schedule
                   </h3>
                   <div className="flex gap-4 text-sm text-slate-500">
                     <div className="flex items-center gap-2">
-                      <div className="size-3 rounded-full bg-blue-500" />
-                      {' '}
-                      Planning
+                      <div className="size-3 rounded-full bg-blue-500" /> Planning
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="size-3 rounded-full bg-amber-500" />
-                      {' '}
-                      Data
+                      <div className="size-3 rounded-full bg-amber-500" /> Data
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="size-3 rounded-full bg-green-500" />
-                      {' '}
-                      Launch
+                      <div className="size-3 rounded-full bg-green-500" /> Launch
                     </div>
                   </div>
                 </div>
@@ -308,15 +299,16 @@ export default function TimelineGenerator() {
                   <div className="min-w-[800px]">
                     {/* Weeks Header */}
                     <div className="mb-4 flex border-b border-slate-100 pb-2 dark:border-slate-800">
-                      <div className="w-1/4 text-xs font-bold text-slate-400 uppercase">Phase & Detail</div>
+                      <div className="w-1/4 text-xs font-bold text-slate-400 uppercase">
+                        Phase & Detail
+                      </div>
                       <div className="relative flex w-3/4">
                         {Array.from({ length: result.totalWeeks + 2 }).map((_, i) => (
                           <div
                             key={i}
                             className="flex-1 border-l border-dashed border-slate-100 text-center text-[10px] text-slate-400 dark:border-slate-800"
                           >
-                            W
-                            {i + 1}
+                            W{i + 1}
                           </div>
                         ))}
                       </div>
@@ -324,7 +316,7 @@ export default function TimelineGenerator() {
 
                     {/* Phases Bars */}
                     <div className="space-y-6">
-                      {result.phases.map(phase => (
+                      {result.phases.map((phase) => (
                         <div key={phase.id} className="group">
                           <div
                             className="-mx-2 flex cursor-pointer items-center rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
@@ -332,25 +324,25 @@ export default function TimelineGenerator() {
                           >
                             <div className="w-1/4 pr-4">
                               <div className="flex items-center justify-between">
-                                <div className="text-sm font-bold text-slate-800 dark:text-white">{phase.title}</div>
-                                {expandedPhase === phase.id
-                                  ? (
-                                      <ChevronUp className="size-4 text-slate-400" />
-                                    )
-                                  : (
-                                      <ChevronDown className="size-4 text-slate-400" />
-                                    )}
+                                <div className="text-sm font-bold text-slate-800 dark:text-white">
+                                  {phase.title}
+                                </div>
+                                {expandedPhase === phase.id ? (
+                                  <ChevronUp className="size-4 text-slate-400" />
+                                ) : (
+                                  <ChevronDown className="size-4 text-slate-400" />
+                                )}
                               </div>
                               <div className="text-[10px] text-slate-500">
-                                {phase.duration}
-                                {' '}
-                                Hari Kerja
+                                {phase.duration} Hari Kerja
                               </div>
                             </div>
                             <div className="relative h-8 w-3/4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
                               <motion.div
                                 initial={{ width: 0 }}
-                                animate={{ width: `${(phase.duration / (result.totalDays + 10)) * 100}%` }}
+                                animate={{
+                                  width: `${(phase.duration / (result.totalDays + 10)) * 100}%`,
+                                }}
                                 transition={{ duration: 1, delay: 0.2 }}
                                 className={`absolute top-1 bottom-1 flex items-center rounded-md px-2 opacity-90 shadow-sm transition-opacity hover:opacity-100 ${phase.color}`}
                                 style={{
@@ -359,8 +351,7 @@ export default function TimelineGenerator() {
                               >
                                 {phase.duration > 3 && (
                                   <span className="truncate text-[10px] font-bold text-white">
-                                    {phase.duration}
-                                    d
+                                    {phase.duration}d
                                   </span>
                                 )}
                               </motion.div>
@@ -380,9 +371,7 @@ export default function TimelineGenerator() {
                                   {/* Preparation */}
                                   <div>
                                     <h4 className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
-                                      <ClipboardList className="size-3" />
-                                      {' '}
-                                      Preparation
+                                      <ClipboardList className="size-3" /> Preparation
                                     </h4>
                                     <ul className="space-y-1">
                                       {phase.preparation.map((item, i) => (
@@ -390,8 +379,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300"
                                         >
-                                          <span className="mt-1 size-1 rounded-full bg-slate-400" />
-                                          {' '}
+                                          <span className="mt-1 size-1 rounded-full bg-slate-400" />{' '}
                                           {item}
                                         </li>
                                       ))}
@@ -401,9 +389,7 @@ export default function TimelineGenerator() {
                                   {/* Roles */}
                                   <div>
                                     <h4 className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
-                                      <Users className="size-3" />
-                                      {' '}
-                                      Key Roles
+                                      <Users className="size-3" /> Key Roles
                                     </h4>
                                     <ul className="space-y-1">
                                       {phase.roles.map((item, i) => (
@@ -411,8 +397,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300"
                                         >
-                                          <span className="mt-1 size-1 rounded-full bg-blue-400" />
-                                          {' '}
+                                          <span className="mt-1 size-1 rounded-full bg-blue-400" />{' '}
                                           {item}
                                         </li>
                                       ))}
@@ -422,9 +407,7 @@ export default function TimelineGenerator() {
                                   {/* Deliverables */}
                                   <div>
                                     <h4 className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
-                                      <Box className="size-3" />
-                                      {' '}
-                                      Deliverables
+                                      <Box className="size-3" /> Deliverables
                                     </h4>
                                     <ul className="space-y-1">
                                       {phase.deliverables.map((item, i) => (
@@ -432,8 +415,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300"
                                         >
-                                          <CheckSquare className="mt-0.5 size-3 flex-shrink-0 text-emerald-500" />
-                                          {' '}
+                                          <CheckSquare className="mt-0.5 size-3 flex-shrink-0 text-emerald-500" />{' '}
                                           {item}
                                         </li>
                                       ))}
@@ -443,9 +425,7 @@ export default function TimelineGenerator() {
                                   {/* Risks */}
                                   <div>
                                     <h4 className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
-                                      <ShieldAlert className="size-3 text-amber-500" />
-                                      {' '}
-                                      Risk Watch
+                                      <ShieldAlert className="size-3 text-amber-500" /> Risk Watch
                                     </h4>
                                     <ul className="space-y-1">
                                       {phase.risks.map((item, i) => (
@@ -453,8 +433,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-amber-700 dark:text-amber-400"
                                         >
-                                          <AlertTriangle className="mt-0.5 size-3 flex-shrink-0" />
-                                          {' '}
+                                          <AlertTriangle className="mt-0.5 size-3 flex-shrink-0" />{' '}
                                           {item}
                                         </li>
                                       ))}
@@ -474,14 +453,15 @@ export default function TimelineGenerator() {
               {/* Action Buttons */}
               <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row">
                 <Button variant="outline" onClick={() => setStep('input')} className="gap-2">
-                  <RefreshCw className="size-4" />
-                  {' '}
-                  Ubah Parameter
+                  <RefreshCw className="size-4" />{' '}
+                  <span className="text-white dark:text-slate-600">Ubah Parameter</span>
                 </Button>
-                <Button onClick={() => window.print()} className="shadow-primary-500/20 gap-2 shadow-lg">
-                  <Download className="size-4" />
-                  {' '}
-                  Download Proposal PDF
+                <Button
+                  onClick={() => window.print()}
+                  className="shadow-primary-500/20 gap-2 shadow-lg"
+                >
+                  <Download className="size-4" />{' '}
+                  <span className="text-white dark:text-slate-600">Download Proposal PDF</span>
                 </Button>
               </div>
 
