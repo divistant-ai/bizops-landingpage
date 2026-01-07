@@ -45,8 +45,6 @@ export const Navbar: React.FC = () => {
     setIsOpen(false);
   };
 
-  console.log('dI SCKROLL', isScrolled);
-
   return (
     <>
       {/* Skip Navigation Link for Accessibility */}
