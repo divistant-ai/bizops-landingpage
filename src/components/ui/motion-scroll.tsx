@@ -1,5 +1,5 @@
 /* eslint-disable regexp/no-super-linear-backtracking */
-"use client";
+'use client';
 
 import {
   motion,
@@ -8,9 +8,9 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "framer-motion";
-import React, { useEffect, useState } from "react";
-import OptimizedImage from "./OptimizedImage";
+} from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import OptimizedImage from './OptimizedImage';
 
 // 1. Sticky Header Reveal
 export const StickyHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({
@@ -21,7 +21,7 @@ export const StickyHeader: React.FC<{ children: React.ReactNode; className?: str
   const [visible, setVisible] = useState(true);
   const [lastY, setLastY] = useState(0);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     const diff = latest - lastY;
     if (Math.abs(diff) > 20) {
       // Threshold to prevent jitter
@@ -34,10 +34,10 @@ export const StickyHeader: React.FC<{ children: React.ReactNode; className?: str
     <motion.header
       variants={{
         visible: { y: 0, opacity: 1 },
-        hidden: { y: "-100%", opacity: 0 },
+        hidden: { y: '-100%', opacity: 0 },
       }}
-      animate={visible ? "visible" : "hidden"}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      animate={visible ? 'visible' : 'hidden'}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       className={`fixed top-0 left-0 z-50 w-full ${className}`}
     >
       {children}
@@ -51,25 +51,25 @@ export const CounterUp: React.FC<{
   label: string;
   prefix?: string;
   suffix?: string;
-}> = ({ to, label, prefix = "", suffix = "" }) => {
+}> = ({ to, label, prefix = '', suffix = '' }) => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   const toStr = String(to);
   const match = toStr.match(/^([^0-9.-]*)([0-9.-]+)(.*)$/);
-  const isNumeric = match && !toStr.includes("/");
+  const isNumeric = match && !toStr.includes('/');
 
   const count = useSpring(0, { duration: 2000 });
   const [displayValue, setDisplayValue] = useState(0);
 
-  let autoPrefix = "";
-  let autoSuffix = "";
+  let autoPrefix = '';
+  let autoSuffix = '';
   let numericValue = 0;
 
   if (isNumeric && match) {
-    autoPrefix = match[1] || "";
-    numericValue = Number.parseFloat(match[2] || "0");
-    autoSuffix = match[3] || "";
+    autoPrefix = match[1] || '';
+    numericValue = Number.parseFloat(match[2] || '0');
+    autoSuffix = match[3] || '';
   }
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export const CounterUp: React.FC<{
     if (!isNumeric) {
       return;
     }
-    const unsubscribe = count.on("change", (latest) => {
+    const unsubscribe = count.on('change', (latest) => {
       setDisplayValue(Math.round(latest));
     });
     return unsubscribe;
@@ -122,11 +122,11 @@ export const ParallaxImage: React.FC<{ src: string; alt: string; className?: str
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
 
   // Background bergerak lebih lambat (y: -10% to 10%)
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
 
   return (
     <div ref={ref} className={`relative overflow-hidden rounded-2xl ${className}`}>
@@ -141,20 +141,20 @@ export const ParallaxImage: React.FC<{ src: string; alt: string; className?: str
 export const InfiniteScrollLoop: React.FC<{
   children: React.ReactNode;
   speed?: number;
-  direction?: "left" | "right";
+  direction?: 'left' | 'right';
   className?: string;
-}> = ({ children, speed = 20, direction = "left", className }) => {
+}> = ({ children, speed = 20, direction = 'left', className }) => {
   return (
     <div
       className={`flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}
     >
       <motion.div
-        initial={{ x: direction === "left" ? 0 : "-50%" }}
-        animate={{ x: direction === "left" ? "-50%" : 0 }}
+        initial={{ x: direction === 'left' ? 0 : '-50%' }}
+        animate={{ x: direction === 'left' ? '-50%' : 0 }}
         transition={{
           duration: speed,
           repeat: Infinity,
-          ease: "linear",
+          ease: 'linear',
         }}
         className="flex flex-none items-center gap-12 py-4 pr-12"
       >

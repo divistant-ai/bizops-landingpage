@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, MousePointer, X } from "lucide-react";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { usePathname } from "@/libs/I18nNavigation";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown, MousePointer, X } from 'lucide-react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { usePathname } from '@/libs/I18nNavigation';
 import {
   companyContent,
   platformContent,
   resourcesContent,
   servicesItems,
   solutionsContent,
-} from "../../data/navData";
-import Button from "../ui/Button";
+} from '../../data/navData';
+import Button from '../ui/Button';
 
 type MobileMenuProps = {
   isOpen: boolean;
@@ -40,12 +40,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
@@ -68,16 +68,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
       >
         {title}
         <ChevronDown
-          className={`h-4 w-4 transition-all duration-200 ${isOpen ? "text-primary-600 dark:text-primary-400 rotate-180" : "text-slate-400"}`}
+          className={`h-4 w-4 transition-all duration-200 ${isOpen ? 'text-primary-600 dark:text-primary-400 rotate-180' : 'text-slate-400'}`}
         />
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="overflow-hidden bg-white dark:bg-slate-950"
           >
             {children}
@@ -102,10 +102,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
           {/* Menu Drawer */}
           <motion.div
-            initial={{ x: "100%" }}
+            initial={{ x: '100%' }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed inset-y-0 right-0 z-50 w-full max-w-md overflow-y-auto bg-white shadow-2xl lg:hidden dark:bg-slate-950"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/95">
@@ -355,7 +355,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       Customer Tools
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent["customer-tools"]?.items.slice(0, 5).map(item => (
+                      {resourcesContent['customer-tools']?.items.slice(0, 5).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -389,7 +389,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       Strategic Tools
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent["strategic-tools"]?.items.slice(0, 4).map(item => (
+                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}

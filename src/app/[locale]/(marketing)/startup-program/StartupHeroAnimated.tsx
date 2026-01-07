@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight, Play, Rocket } from "lucide-react";
-import Link from "next/link";
-import Button from "@/components/ui/Button";
+import { motion } from 'framer-motion';
+import { ArrowRight, Play, Rocket } from 'lucide-react';
+import Link from 'next/link';
+import Button from '@/components/ui/Button';
 
 export function StartupHeroAnimated() {
   return (
@@ -15,7 +15,7 @@ export function StartupHeroAnimated() {
         className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-700/50 bg-purple-900/30 px-3 py-1 text-xs font-bold tracking-wider text-purple-300 uppercase shadow-[0_0_15px_rgba(168,85,247,0.3)] backdrop-blur-md"
       >
         <Rocket className="h-3 w-3" />
-        {" "}
+        {' '}
         BizOps for Startups
       </motion.div>
 
@@ -26,7 +26,7 @@ export function StartupHeroAnimated() {
         className="mb-8 text-5xl leading-tight font-extrabold tracking-tight md:text-7xl lg:text-8xl"
       >
         Build Fast.
-        {" "}
+        {' '}
         <br />
         <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
           Scale Safe.
@@ -40,13 +40,13 @@ export function StartupHeroAnimated() {
         className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-300 md:text-2xl"
       >
         Infrastruktur operasional
-        {" "}
+        {' '}
         <em>audit-ready</em>
-        {" "}
+        {' '}
         untuk startup ambisius. Hemat
-        {" "}
+        {' '}
         <em>burn rate</em>
-        {" "}
+        {' '}
         dengan kredit hingga $5,000 dan akses ke teknologi Enterprise
         sejak Day 1.
       </motion.p>
@@ -63,7 +63,7 @@ export function StartupHeroAnimated() {
             className="w-full transform border-none bg-white px-10 text-lg font-bold text-slate-900 shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-100 hover:shadow-2xl hover:shadow-purple-500/20 sm:w-auto"
           >
             Apply for Credits
-            {" "}
+            {' '}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </Link>
@@ -73,7 +73,7 @@ export function StartupHeroAnimated() {
           className="w-full border-slate-700 px-10 font-medium text-white hover:bg-white/10 sm:w-auto"
         >
           <Play className="mr-2 h-4 w-4 fill-current" />
-          {" "}
+          {' '}
           Watch Founder Stories
         </Button>
       </motion.div>

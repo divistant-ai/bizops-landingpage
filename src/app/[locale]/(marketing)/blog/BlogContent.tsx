@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Calendar, Clock, Search, X } from "lucide-react";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import Pagination from "@/components/Pagination";
-import { OptimizedImage } from "@/components/ui";
-import Button from "@/components/ui/Button";
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { Calendar, Clock, Search, X } from 'lucide-react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import Pagination from '@/components/Pagination';
+import { OptimizedImage } from '@/components/ui';
+import Button from '@/components/ui/Button';
 
 // SpotlightCard Component
 const SpotlightCard = ({
   children,
-  className = "",
-  spotlightColor = "rgba(59, 130, 246, 0.1)",
+  className = '',
+  spotlightColor = 'rgba(59, 130, 246, 0.1)',
 }: {
   children: React.ReactNode;
   className?: string;
@@ -54,73 +54,73 @@ const ITEMS_PER_PAGE = 6;
 // Sample blog data - should come from props or API
 const blogPosts = [
   {
-    title: "10 Tanda Perusahaan Anda Butuh ERP",
+    title: '10 Tanda Perusahaan Anda Butuh ERP',
     summary:
-      "Pelajari indikator kunci yang menunjukkan bisnis Anda siap untuk transformasi digital dengan sistem ERP terintegrasi.",
-    category: "Business Strategy",
-    date: "15 Nov 2024",
-    author: "Tim BizOps",
-    slug: "10-tanda-butuh-erp",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      'Pelajari indikator kunci yang menunjukkan bisnis Anda siap untuk transformasi digital dengan sistem ERP terintegrasi.',
+    category: 'Business Strategy',
+    date: '15 Nov 2024',
+    author: 'Tim BizOps',
+    slug: '10-tanda-butuh-erp',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
   },
   {
-    title: "Panduan Implementasi ERP untuk UMKM",
+    title: 'Panduan Implementasi ERP untuk UMKM',
     summary:
-      "Langkah-langkah praktis memulai digitalisasi untuk bisnis skala kecil dan menengah.",
-    category: "Implementation",
-    date: "10 Nov 2024",
-    author: "Andi Wijaya",
-    slug: "panduan-erp-umkm",
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+      'Langkah-langkah praktis memulai digitalisasi untuk bisnis skala kecil dan menengah.',
+    category: 'Implementation',
+    date: '10 Nov 2024',
+    author: 'Andi Wijaya',
+    slug: 'panduan-erp-umkm',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
   },
   {
-    title: "Cara Menghitung ROI Investasi ERP",
+    title: 'Cara Menghitung ROI Investasi ERP',
     summary:
-      "Metode perhitungan return on investment yang akurat untuk proyek transformasi digital.",
-    category: "Finance",
-    date: "5 Nov 2024",
-    author: "Sarah Chen",
-    slug: "hitung-roi-erp",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      'Metode perhitungan return on investment yang akurat untuk proyek transformasi digital.',
+    category: 'Finance',
+    date: '5 Nov 2024',
+    author: 'Sarah Chen',
+    slug: 'hitung-roi-erp',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
   },
   {
-    title: "Otomasi Proses Bisnis dengan Workflow Engine",
+    title: 'Otomasi Proses Bisnis dengan Workflow Engine',
     summary:
-      "Tingkatkan efisiensi operasional dengan mengotomatisasi approval dan notifikasi.",
-    category: "Technology",
-    date: "1 Nov 2024",
-    author: "Budi Hartono",
-    slug: "otomasi-workflow",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+      'Tingkatkan efisiensi operasional dengan mengotomatisasi approval dan notifikasi.',
+    category: 'Technology',
+    date: '1 Nov 2024',
+    author: 'Budi Hartono',
+    slug: 'otomasi-workflow',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
   },
   {
-    title: "Manajemen Inventory untuk Retail Modern",
+    title: 'Manajemen Inventory untuk Retail Modern',
     summary:
-      "Strategi mengelola stok multi-gudang dengan akurasi tinggi dan real-time tracking.",
-    category: "Operations",
-    date: "28 Okt 2024",
-    author: "Linda Tan",
-    slug: "manajemen-inventory",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+      'Strategi mengelola stok multi-gudang dengan akurasi tinggi dan real-time tracking.',
+    category: 'Operations',
+    date: '28 Okt 2024',
+    author: 'Linda Tan',
+    slug: 'manajemen-inventory',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
   },
   {
-    title: "Kepatuhan Pajak Digital: Update Regulasi 2024",
+    title: 'Kepatuhan Pajak Digital: Update Regulasi 2024',
     summary:
-      "Perubahan terbaru dalam perpajakan digital dan dampaknya terhadap bisnis Anda.",
-    category: "Compliance",
-    date: "25 Okt 2024",
-    author: "Dewi Kusuma",
-    slug: "pajak-digital-2024",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
+      'Perubahan terbaru dalam perpajakan digital dan dampaknya terhadap bisnis Anda.',
+    category: 'Compliance',
+    date: '25 Okt 2024',
+    author: 'Dewi Kusuma',
+    slug: 'pajak-digital-2024',
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80',
   },
   {
-    title: "Dashboard Analytics untuk Pengambilan Keputusan",
-    summary: "Visualisasi data yang efektif untuk insight bisnis yang actionable.",
-    category: "Analytics",
-    date: "20 Okt 2024",
-    author: "Rudi Santoso",
-    slug: "dashboard-analytics",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    title: 'Dashboard Analytics untuk Pengambilan Keputusan',
+    summary: 'Visualisasi data yang efektif untuk insight bisnis yang actionable.',
+    category: 'Analytics',
+    date: '20 Okt 2024',
+    author: 'Rudi Santoso',
+    slug: 'dashboard-analytics',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
   },
 ];
 
@@ -128,8 +128,8 @@ const featuredPost = blogPosts[0]!;
 
 export default function BlogContent() {
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -145,18 +145,18 @@ export default function BlogContent() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     document
-      .getElementById("blog-grid")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      .getElementById('blog-grid')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Extract unique categories and counts
   const categories = [
-    "All",
+    'All',
     ...Array.from(new Set(blogPosts.map(p => p.category))).sort(),
   ];
 
   const getCategoryCount = (cat: string) => {
-    if (cat === "All") {
+    if (cat === 'All') {
       return blogPosts.length;
     }
     return blogPosts.filter(p => p.category === cat).length;
@@ -167,13 +167,13 @@ export default function BlogContent() {
     const matchSearch
       = post.title.toLowerCase().includes(searchQuery.toLowerCase())
         || post.summary.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchCategory = selectedCategory === "All" || post.category === selectedCategory;
+    const matchCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchSearch && matchCategory;
   });
 
   // If filtering, show all matches. If not filtering (All), exclude featured from grid to avoid duplicate
   const gridPosts
-    = selectedCategory === "All" && !searchQuery && featuredPost
+    = selectedCategory === 'All' && !searchQuery && featuredPost
       ? filteredPosts.filter(p => p.slug !== featuredPost.slug)
       : filteredPosts;
 
@@ -196,7 +196,7 @@ export default function BlogContent() {
           >
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white">
               BizOps
-              {" "}
+              {' '}
               <span className="text-primary-600 dark:text-primary-400">Insights</span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
@@ -223,7 +223,7 @@ export default function BlogContent() {
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => setSearchQuery('')}
                   className="absolute top-1/2 right-4 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
                 >
                   <X className="h-5 w-5" />
@@ -245,12 +245,12 @@ export default function BlogContent() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`rounded-full px-4 py-2 text-sm font-bold transition-all ${
                   selectedCategory === cat
-                    ? "bg-primary-600 dark:bg-primary-500 text-slate-900 shadow-lg dark:text-white"
-                    : "hover:border-primary-400 border border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                    ? 'bg-primary-600 dark:bg-primary-500 text-slate-900 shadow-lg dark:text-white'
+                    : 'hover:border-primary-400 border border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300'
                 }`}
               >
                 {cat}
-                {" "}
+                {' '}
                 <span className="text-xs opacity-70">
                   (
                   {getCategoryCount(cat)}
@@ -263,7 +263,7 @@ export default function BlogContent() {
       </section>
 
       {/* Featured Post (only show if no filters) */}
-      {selectedCategory === "All" && !searchQuery && featuredPost && (
+      {selectedCategory === 'All' && !searchQuery && featuredPost && (
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="group relative min-h-[500px] overflow-hidden rounded-3xl shadow-2xl">
             <OptimizedImage
@@ -321,8 +321,8 @@ export default function BlogContent() {
             </p>
             <Button
               onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
+                setSearchQuery('');
+                setSelectedCategory('All');
               }}
               className="mt-6"
             >

@@ -41,9 +41,9 @@ export function DemoContent() {
     } else if (!emailRegex.test(email)) {
       newErrors.workEmail = 'Format email tidak valid (contoh: nama@perusahaan.com).';
     } else if (
-      email.includes('gmail.com') ||
-      email.includes('yahoo.com') ||
-      email.includes('hotmail.com')
+      email.includes('gmail.com')
+      || email.includes('yahoo.com')
+      || email.includes('hotmail.com')
     ) {
       newErrors.workEmail = 'Gunakan email bisnis/perusahaan (bukan email pribadi).';
     }
@@ -93,7 +93,7 @@ export function DemoContent() {
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     await traceAction('business.lead.submit', async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1500));
       window.open(whatsappUrl, '_blank');
       setFormState('success');
     });
@@ -150,14 +150,18 @@ export function DemoContent() {
                   align="center"
                   className="bg-primary-100 dark:bg-primary-500/10 border-primary-300 dark:border-primary-500/20 text-primary-700 dark:text-primary-400 mb-6 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase"
                 >
-                  <Video className="h-3 w-3" /> Live Walkthrough
+                  <Video className="h-3 w-3" />
+                  {' '}
+                  Live Walkthrough
                 </Stack>
                 <Typography
                   variant="h1"
                   as="h1"
                   className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
                 >
-                  Lihat BizOps <br />
+                  Lihat BizOps
+                  {' '}
+                  <br />
                   <span className="bg-gradient-to-r from-cyan-500 to-cyan-600 bg-clip-text text-transparent dark:to-cyan-400">
                     In Action.
                   </span>
@@ -172,7 +176,7 @@ export function DemoContent() {
                     {
                       icon: Calendar,
                       title: 'Discovery Session (15m)',
-                      desc: "Kami akan membedah 'bottle-neck' operasional Anda saat ini.",
+                      desc: 'Kami akan membedah \'bottle-neck\' operasional Anda saat ini.',
                     },
                     {
                       icon: Video,
@@ -348,7 +352,9 @@ export function DemoContent() {
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
                     <span className="mb-4 block flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" /> Kebutuhan Utama
+                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />
+                      {' '}
+                      Kebutuhan Utama
                     </span>
                     <Grid cols={1} gap={4}>
                       <Checkbox
@@ -387,24 +393,28 @@ export function DemoContent() {
                   <div className="pt-2">
                     <Checkbox
                       name="consent"
-                      label={
+                      label={(
                         <span className="text-sm text-slate-600 dark:text-slate-400">
-                          Saya menyetujui{' '}
+                          Saya menyetujui
+                          {' '}
                           <Link
                             href="/legal/privacy"
                             className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
                             target="_blank"
                           >
                             Kebijakan Privasi
-                          </Link>{' '}
+                          </Link>
+                          {' '}
                           dan mengizinkan BizOps menghubungi saya.
                         </span>
-                      }
+                      )}
                       required
                     />
                     {errors.consent && (
                       <Typography variant="body">
-                        <Shield className="h-3 w-3" /> {errors.consent}
+                        <Shield className="h-3 w-3" />
+                        {' '}
+                        {errors.consent}
                       </Typography>
                     )}
                   </div>

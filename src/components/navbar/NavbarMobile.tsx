@@ -1,10 +1,10 @@
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search, X } from 'lucide-react';
 // React not needed 'react';
-import Link from "next/link";
-import React from "react";
-import { ThemeToggle } from "../ThemeToggle";
-import MobileMenu from "./MobileMenu";
-import { getIconButtonClasses, navbarStyles } from "./navbarStyles";
+import Link from 'next/link';
+import React from 'react';
+import { ThemeToggle } from '../ThemeToggle';
+import MobileMenu from './MobileMenu';
+import { getIconButtonClasses, navbarStyles } from './navbarStyles';
 
 type NavbarMobileProps = {
   isOpen: boolean;
@@ -30,14 +30,16 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
         <button
           onClick={onToggle}
           className={getIconButtonClasses(true)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
         >
-          {isOpen ? (
-            <X className={navbarStyles.iconSize.large} />
-          ) : (
-            <Menu className={navbarStyles.iconSize.large} />
-          )}
+          {isOpen
+            ? (
+                <X className={navbarStyles.iconSize.large} />
+              )
+            : (
+                <Menu className={navbarStyles.iconSize.large} />
+              )}
         </button>
       </div>
 

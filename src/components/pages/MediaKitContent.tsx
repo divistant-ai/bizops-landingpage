@@ -14,6 +14,7 @@ import {
   Type,
   X,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import { CardSlider, Grid, Typography } from '@/components/ui';
@@ -124,20 +125,19 @@ export default function MediaKitContent() {
               className="flex flex-col rounded-3xl border border-slate-200 bg-white p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
               <div className="bg-opacity-50 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
-                <div className="flex scale-150 transform items-center gap-3">
-                  <div className="bg-primary-600 shadow-primary-500/30 flex h-10 w-10 items-center justify-center rounded-xl shadow-lg">
-                    <div className="h-5 w-5 rotate-45 transform rounded-md bg-white"></div>
-                  </div>
-                  <Typography variant="body" className="text-3xl text-slate-900 dark:text-white">
-                    BizOps
-                  </Typography>
-                </div>
+                <Image
+                  src="/assets/images/Logo BizOps - Light.svg"
+                  alt="BizOps Logo Dark"
+                  width={256}
+                  height={54}
+                  className="h-auto w-64"
+                />
               </div>
-              <div className="w-full border-t border-slate-100 pt-6 dark:border-slate-800">
+              <div className="w-full border-t border-slate-100 pt-6 dark:border-slate-700">
                 <div className="mb-4 flex items-end justify-between">
                   <div>
-                    <Typography variant="h3" as="h3">
-                      Primary Logo
+                    <Typography variant="h3" as="h3" className="text-slate-900 dark:text-white">
+                      Primary Logo (Dark)
                     </Typography>
                     <Typography variant="small" className="text-slate-500 dark:text-slate-400">
                       Gunakan pada background terang/putih.
@@ -160,22 +160,21 @@ export default function MediaKitContent() {
               whileHover={{ y: -5 }}
               className="relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
-              <div className="absolute inset-0 bg-slate-800/50 mix-blend-overlay dark:bg-slate-800/50"></div>
+              <div className="absolute inset-0 bg-slate-800/50 mix-blend-overlay"></div>
               <div className="relative z-10 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center">
-                <div className="flex scale-150 transform items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-lg">
-                    <div className="h-5 w-5 rotate-45 transform rounded-md bg-slate-900"></div>
-                  </div>
-                  <Typography variant="body" className="text-3xl text-white">
-                    BizOps
-                  </Typography>
-                </div>
+                <Image
+                  src="/assets/images/Logo BizOps - Dark.svg"
+                  alt="BizOps Logo Light"
+                  width={256}
+                  height={54}
+                  className="h-auto w-64"
+                />
               </div>
               <div className="relative z-10 w-full border-t border-slate-700/50 pt-6">
                 <div className="mb-4 flex items-end justify-between">
                   <div>
                     <Typography variant="h3" as="h3" className="text-white">
-                      Monochrome (Inverse)
+                      Primary Logo (White)
                     </Typography>
                     <Typography variant="small" className="text-slate-400">
                       Gunakan pada background gelap/foto.

@@ -211,13 +211,13 @@ export default function WhyBizOpsContent() {
 
               <div className="from-primary-50 dark:from-primary-900/20 border-primary-200 dark:border-primary-800 flex items-start gap-4 rounded-2xl border bg-gradient-to-br to-indigo-50 p-6 shadow-lg dark:to-indigo-900/20">
                 <div className="bg-primary-500 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg">
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 text-green-800 dark:text-green-200" />
                 </div>
                 <div>
-                  <h4 className="text-primary-900 dark:text-primary-100 mb-2 font-bold">
+                  <h4 className="mb-2 font-bold text-slate-600 dark:text-slate-400">
                     BizOps (The Sweet Spot)
                   </h4>
-                  <p className="text-primary-800 dark:text-primary-200 text-sm">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
                     Fleksibel seperti SAP, mudah seperti SaaS. Best of both worlds.
                   </p>
                 </div>

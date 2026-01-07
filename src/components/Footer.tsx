@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-"use client";
+'use client';
 
 import {
   ArrowUpRight,
@@ -19,16 +19,16 @@ import {
   Sun,
   Twitter,
   Youtube,
-} from "lucide-react";
-import { useLocale } from "next-intl";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState, useTransition } from "react";
-import { subscribeToNewsletter } from "@/app/actions/newsletter";
-import { usePathname } from "@/libs/I18nNavigation";
-import { routing } from "@/libs/I18nRouting";
+} from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useState, useTransition } from 'react';
+import { subscribeToNewsletter } from '@/app/actions/newsletter';
+import { usePathname } from '@/libs/I18nNavigation';
+import { routing } from '@/libs/I18nRouting';
 
 // SVG Assets for App Stores
 const AppleIcon = () => (
@@ -68,13 +68,13 @@ const FooterLink: React.FC<FooterLinkProps> = ({
     <li>
       <Link
         href={href}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-        className={`group flex items-center gap-2 py-1 text-[14px] transition-colors ${isActive ? "font-medium text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"}`}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        className={`group flex items-center gap-2 py-1 text-[14px] transition-colors ${isActive ? 'font-medium text-slate-900 dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
       >
         {Icon && (
           <Icon
-            className={`h-3.5 w-3.5 ${isActive ? "text-primary-600 dark:text-primary-400" : "group-hover:text-primary-600 dark:group-hover:text-primary-400 text-slate-500 dark:text-slate-500"} transition-colors`}
+            className={`h-3.5 w-3.5 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'group-hover:text-primary-600 dark:group-hover:text-primary-400 text-slate-500 dark:text-slate-500'} transition-colors`}
           />
         )}
         <span className="inline-block truncate transition-transform duration-200 group-hover:translate-x-1">
@@ -100,7 +100,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon: Icon, label }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="hover:border-primary-500 hover:bg-primary-500 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:text-white dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-950"
+    className="hover:border-primary-500 hover:bg-primary-500 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:text-slate-800 dark:hover:text-white dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-950"
   >
     <Icon className="h-5 w-5" />
   </a>
@@ -124,12 +124,12 @@ const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({ title, children }) =>
           {title}
         </h3>
         <ChevronRight
-          className={`h-4 w-4 text-slate-500 transition-transform duration-300 md:hidden ${isOpen ? "text-primary-600 dark:text-primary-400 rotate-90" : ""}`}
+          className={`h-4 w-4 text-slate-500 transition-transform duration-300 md:hidden ${isOpen ? 'text-primary-600 dark:text-primary-400 rotate-90' : ''}`}
         />
       </div>
 
       <div
-        className={`space-y-3 overflow-hidden transition-all duration-300 ${isOpen ? "mt-4 max-h-96 opacity-100" : "max-h-0 opacity-0 md:mt-0 md:max-h-full md:opacity-100"}`}
+        className={`space-y-3 overflow-hidden transition-all duration-300 ${isOpen ? 'mt-4 max-h-96 opacity-100' : 'max-h-0 opacity-0 md:mt-0 md:max-h-full md:opacity-100'}`}
       >
         {children}
       </div>
@@ -138,7 +138,7 @@ const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({ title, children }) =>
 };
 
 export const Footer: React.FC = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -158,24 +158,24 @@ export const Footer: React.FC = () => {
     setError(null);
 
     if (!email) {
-      setError("Email tidak boleh kosong");
+      setError('Email tidak boleh kosong');
       return;
     }
 
     startTransition(async () => {
       const formData = new FormData();
-      formData.append("email", email);
+      formData.append('email', email);
 
       const result = await subscribeToNewsletter(formData);
 
       if (result.success) {
         setSubscribed(true);
-        setEmail("");
+        setEmail('');
         setTimeout(() => {
           setSubscribed(false);
         }, 3000);
       } else {
-        setError(result.error || "Terjadi kesalahan");
+        setError(result.error || 'Terjadi kesalahan');
       }
     });
   };
@@ -196,21 +196,23 @@ export const Footer: React.FC = () => {
               className="group flex items-center focus:outline-none"
               aria-label="BizOps Home"
             >
-              {mounted ? (
-                <Image
-                  src={
-                    resolvedTheme === "dark"
-                      ? "/assets/images/Logo BizOps - Dark.svg"
-                      : "/assets/images/Logo BizOps - Light.svg"
-                  }
-                  alt="BizOps Logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
-                />
-              ) : (
-                <div className="h-10 w-[120px]" />
-              )}
+              {mounted
+                ? (
+                    <Image
+                      src={
+                        resolvedTheme === 'dark'
+                          ? '/assets/images/Logo BizOps - Dark.svg'
+                          : '/assets/images/Logo BizOps - Light.svg'
+                      }
+                      alt="BizOps Logo"
+                      width={120}
+                      height={40}
+                      className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
+                    />
+                  )
+                : (
+                    <div className="h-10 w-[120px]" />
+                  )}
             </Link>
 
             <p className="w-full text-sm leading-relaxed text-slate-600 md:max-w-sm dark:text-slate-400">
@@ -325,42 +327,44 @@ export const Footer: React.FC = () => {
             <div className="relative space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-white/10 dark:bg-white/5 dark:backdrop-blur-sm">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Stay Updated</h3>
 
-              {subscribed ? (
-                <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
-                  <CheckCircle className="h-5 w-5 shrink-0" />
-                  <span className="text-sm font-medium">Subscribed successfully!</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="relative">
-                  <div className="relative flex items-center">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        setError(null);
-                      }}
-                      placeholder="Email kerja..."
-                      className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
-                      required
-                      disabled={isPending}
-                    />
-                    <button
-                      type="submit"
-                      aria-label="Subscribe"
-                      disabled={isPending}
-                      className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                  {error && (
-                    <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
-                      {error}
-                    </p>
+              {subscribed
+                ? (
+                    <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+                      <CheckCircle className="h-5 w-5 shrink-0" />
+                      <span className="text-sm font-medium">Subscribed successfully!</span>
+                    </div>
+                  )
+                : (
+                    <form onSubmit={handleSubscribe} className="relative">
+                      <div className="relative flex items-center">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            setError(null);
+                          }}
+                          placeholder="Email kerja..."
+                          className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
+                          required
+                          disabled={isPending}
+                        />
+                        <button
+                          type="submit"
+                          aria-label="Subscribe"
+                          disabled={isPending}
+                          className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </button>
+                      </div>
+                      {error && (
+                        <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
+                          {error}
+                        </p>
+                      )}
+                    </form>
                   )}
-                </form>
-              )}
             </div>
 
             {/* Mobile Apps - Compact */}
@@ -411,12 +415,16 @@ export const Footer: React.FC = () => {
           {/* Copyright & Language Switcher */}
           <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} PT Divistant Teknologi Indonesia. All rights reserved.
+              ©
+              {' '}
+              {new Date().getFullYear()}
+              {' '}
+              PT Divistant Teknologi Indonesia. All rights reserved.
             </p>
 
             {/* Language & Theme Switcher Pill - Mobile */}
             <div className="flex items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:hidden dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map((loc) => (
+              {routing.locales.map(loc => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -425,8 +433,8 @@ export const Footer: React.FC = () => {
                   }}
                   className={`rounded-full px-2 py-1 text-[10px] font-bold transition-all ${
                     locale === loc
-                      ? "bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+                      ? 'bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
                   }`}
                   aria-label={`Switch to ${loc.toUpperCase()}`}
                 >
@@ -435,25 +443,29 @@ export const Footer: React.FC = () => {
               ))}
               <div className="h-2.5 w-px bg-slate-300 dark:bg-slate-800" />
               <button
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted ? (
-                  resolvedTheme === "dark" ? (
-                    <Sun className="h-3 w-3" />
-                  ) : (
-                    <Moon className="h-3 w-3" />
-                  )
-                ) : (
-                  <div className="h-3 w-3" />
-                )}
+                {mounted
+                  ? (
+                      resolvedTheme === 'dark'
+                        ? (
+                            <Sun className="h-3 w-3" />
+                          )
+                        : (
+                            <Moon className="h-3 w-3" />
+                          )
+                    )
+                  : (
+                      <div className="h-3 w-3" />
+                    )}
               </button>
             </div>
 
             {/* Language & Theme Switcher Pill - Desktop */}
             <div className="hidden items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:flex dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map((loc) => (
+              {routing.locales.map(loc => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -462,8 +474,8 @@ export const Footer: React.FC = () => {
                   }}
                   className={`rounded-full px-2 py-1 text-[10px] font-bold transition-all ${
                     locale === loc
-                      ? "bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+                      ? 'bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
                   }`}
                   aria-label={`Switch to ${loc.toUpperCase()}`}
                 >
@@ -472,19 +484,23 @@ export const Footer: React.FC = () => {
               ))}
               <div className="h-2.5 w-px bg-slate-300 dark:bg-slate-800" />
               <button
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted ? (
-                  resolvedTheme === "dark" ? (
-                    <Sun className="h-3 w-3" />
-                  ) : (
-                    <Moon className="h-3 w-3" />
-                  )
-                ) : (
-                  <div className="h-3 w-3" />
-                )}
+                {mounted
+                  ? (
+                      resolvedTheme === 'dark'
+                        ? (
+                            <Sun className="h-3 w-3" />
+                          )
+                        : (
+                            <Moon className="h-3 w-3" />
+                          )
+                    )
+                  : (
+                      <div className="h-3 w-3" />
+                    )}
               </button>
             </div>
           </div>
@@ -507,13 +523,17 @@ export const Footer: React.FC = () => {
               href="/legal/dpa"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Lock className="h-3 w-3" /> DPA
+              <Lock className="h-3 w-3" />
+              {' '}
+              DPA
             </Link>
             <Link
               href="/security/report"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Bug className="h-3 w-3" /> Report Bug
+              <Bug className="h-3 w-3" />
+              {' '}
+              Report Bug
             </Link>
             <Link
               href="/sitemap"

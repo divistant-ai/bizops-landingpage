@@ -1,22 +1,22 @@
-import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import "@/styles/global.css";
+import type { Metadata } from 'next';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import '@/styles/global.css';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "BizOps",
-  description: "BizOps - Business Operations Platform",
+  title: 'BizOps',
+  description: 'BizOps - Business Operations Platform',
 };
 
 export default function ErrorLayout({ children }: { children: React.ReactNode }) {

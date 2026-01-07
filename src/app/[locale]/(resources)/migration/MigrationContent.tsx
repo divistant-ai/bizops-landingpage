@@ -448,7 +448,7 @@ export default function MigrationContent() {
                         </div>
 
                         <div className="mt-6 flex gap-3">
-                          <Button className="flex-1">
+                          <Button className="flex-1 text-slate-900 dark:text-white">
                             <Download className="mr-2 h-4 w-4" />
                             Download Template
                           </Button>

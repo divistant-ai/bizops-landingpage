@@ -7,8 +7,18 @@ import ActionButtons from '@/components/tools/shared/ActionButtons';
 import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { safeCalculate, safePercentage, validateFields, validateNumber } from '@/utils/errorHandling';
-import { downloadAsText, formatResultAsText, generateShareText, shareResult } from '@/utils/exportTools';
+import {
+  safeCalculate,
+  safePercentage,
+  validateFields,
+  validateNumber,
+} from '@/utils/errorHandling';
+import {
+  downloadAsText,
+  formatResultAsText,
+  generateShareText,
+  shareResult,
+} from '@/utils/exportTools';
 
 type TurnoverResult = {
   directCosts: {
@@ -55,49 +65,52 @@ export default function TurnoverCostCalculator() {
     }
 
     setTimeout(() => {
-      const calculatedResult = safeCalculate<TurnoverResult>(() => {
-        const total = Number.parseFloat(totalEmployees) || 0;
-        const left = Number.parseFloat(employeesLeft) || 0;
-        const salary = Number.parseFloat(avgSalary) || 0;
-        const tenure = Number.parseFloat(avgTenure) || 0;
+      const calculatedResult = safeCalculate<TurnoverResult>(
+        () => {
+          const total = Number.parseFloat(totalEmployees) || 0;
+          const left = Number.parseFloat(employeesLeft) || 0;
+          const salary = Number.parseFloat(avgSalary) || 0;
+          const tenure = Number.parseFloat(avgTenure) || 0;
 
-        const turnoverRate = safePercentage(left, total);
+          const turnoverRate = safePercentage(left, total);
 
-        // Direct Costs
-        const recruitment = salary * 0.5; // 50% of annual salary
-        const training = salary * 0.25; // 25% of annual salary
-        const separation = salary * 0.15; // 15% of annual salary (severance, admin)
-        const totalDirectCosts = recruitment + training + separation;
+          // Direct Costs
+          const recruitment = salary * 0.5; // 50% of annual salary
+          const training = salary * 0.25; // 25% of annual salary
+          const separation = salary * 0.15; // 15% of annual salary (severance, admin)
+          const totalDirectCosts = recruitment + training + separation;
 
-        // Indirect Costs
-        const productivityLoss = salary * 0.5 * Math.min(tenure, 2); // Productivity loss during ramp-up
-        const knowledgeLoss = salary * 0.3 * Math.min(tenure, 3); // Knowledge & expertise loss
-        const moraleLoss = salary * 0.2; // Team morale & engagement impact
-        const totalIndirectCosts = productivityLoss + knowledgeLoss + moraleLoss;
+          // Indirect Costs
+          const productivityLoss = salary * 0.5 * Math.min(tenure, 2); // Productivity loss during ramp-up
+          const knowledgeLoss = salary * 0.3 * Math.min(tenure, 3); // Knowledge & expertise loss
+          const moraleLoss = salary * 0.2; // Team morale & engagement impact
+          const totalIndirectCosts = productivityLoss + knowledgeLoss + moraleLoss;
 
-        const totalCostPerEmployee = totalDirectCosts + totalIndirectCosts;
-        const annualTurnoverCost = totalCostPerEmployee * left;
+          const totalCostPerEmployee = totalDirectCosts + totalIndirectCosts;
+          const annualTurnoverCost = totalCostPerEmployee * left;
 
-        return {
-          directCosts: {
-            recruitment,
-            training,
-            separation,
-            total: totalDirectCosts,
-          },
-          indirectCosts: {
-            productivityLoss,
-            knowledgeLoss,
-            moraleLoss,
-            total: totalIndirectCosts,
-          },
-          totalCostPerEmployee,
-          annualTurnoverCost,
-          turnoverRate,
-        };
-      }, (error) => {
-        setErrors([error]);
-      });
+          return {
+            directCosts: {
+              recruitment,
+              training,
+              separation,
+              total: totalDirectCosts,
+            },
+            indirectCosts: {
+              productivityLoss,
+              knowledgeLoss,
+              moraleLoss,
+              total: totalIndirectCosts,
+            },
+            totalCostPerEmployee,
+            annualTurnoverCost,
+            turnoverRate,
+          };
+        },
+        (error) => {
+          setErrors([error]);
+        },
+      );
 
       if (calculatedResult) {
         setResult(calculatedResult);
@@ -180,7 +193,8 @@ export default function TurnoverCostCalculator() {
             Kalkulator Biaya Turnover Karyawan
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Hitung total biaya yang hilang akibat turnover karyawan. Identifikasi ROI dari retention strategy!
+            Hitung total biaya yang hilang akibat turnover karyawan. Identifikasi ROI dari retention
+            strategy!
           </p>
         </div>
 
@@ -189,11 +203,16 @@ export default function TurnoverCostCalculator() {
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="space-y-6">
             <Card className="p-6">
-              <h2 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">Input Data Perusahaan</h2>
+              <h2 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
+                Input Data Perusahaan
+              </h2>
 
               <div className="space-y-6">
                 <div>
-                  <label htmlFor="total-employees" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label
+                    htmlFor="total-employees"
+                    className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                  >
                     Total Karyawan
                   </label>
                   <input
@@ -210,7 +229,10 @@ export default function TurnoverCostCalculator() {
                 </div>
 
                 <div>
-                  <label htmlFor="employees-left" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label
+                    htmlFor="employees-left"
+                    className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                  >
                     Karyawan Keluar (per Tahun)
                   </label>
                   <input
@@ -225,17 +247,25 @@ export default function TurnoverCostCalculator() {
                     placeholder="15"
                     aria-describedby="employees-left-help"
                   />
-                  <p id="employees-left-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                  <p
+                    id="employees-left-help"
+                    className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                  >
                     Jumlah karyawan yang resign/keluar dalam 1 tahun
                   </p>
                 </div>
 
                 <div>
-                  <label htmlFor="avg-salary" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label
+                    htmlFor="avg-salary"
+                    className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                  >
                     Rata-rata Gaji per Bulan
                   </label>
                   <div className="relative">
-                    <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                    <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                      Rp
+                    </span>
                     <input
                       id="avg-salary"
                       type="text"
@@ -249,13 +279,19 @@ export default function TurnoverCostCalculator() {
                       aria-describedby="avg-salary-help"
                     />
                   </div>
-                  <p id="avg-salary-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                  <p
+                    id="avg-salary-help"
+                    className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                  >
                     {avgSalary && formatCurrency(Number.parseFloat(avgSalary) || 0)}
                   </p>
                 </div>
 
                 <div>
-                  <label htmlFor="avg-tenure" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <label
+                    htmlFor="avg-tenure"
+                    className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                  >
                     Rata-rata Masa Kerja (tahun)
                   </label>
                   <input
@@ -270,7 +306,10 @@ export default function TurnoverCostCalculator() {
                     placeholder="2"
                     aria-describedby="avg-tenure-help"
                   />
-                  <p id="avg-tenure-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                  <p
+                    id="avg-tenure-help"
+                    className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                  >
                     Rata-rata lama karyawan bekerja sebelum keluar
                   </p>
                 </div>
@@ -282,38 +321,32 @@ export default function TurnoverCostCalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung biaya turnover"
                 >
-                  {isCalculating
-                    ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Menghitung...
-                        </>
-                      )
-                    : (
-                        <>
-                          <DollarSign className="mr-2 h-5 w-5" />
-                          Hitung Biaya Turnover
-                        </>
-                      )}
+                  {isCalculating ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Menghitung...
+                    </>
+                  ) : (
+                    <>
+                      <DollarSign className="mr-2 h-5 w-5" />
+                      Hitung Biaya Turnover
+                    </>
+                  )}
                 </Button>
               </div>
             </Card>
 
-            <Card className="border-l-4 border-rose-500 bg-rose-50 p-4">
+            <Card className="border-l-4 border-rose-500 bg-rose-50 p-4 dark:border-rose-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-rose-600" />
+                <Info className="h-5 w-5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
-                  <p className="mb-1 font-semibold">Komponen Biaya Turnover:</p>
+                  <p className="mb-1 font-semibold dark:text-white">Komponen Biaya Turnover:</p>
                   <ul className="space-y-0.5">
                     <li>
-                      <strong>Direct:</strong>
-                      {' '}
-                      Rekrutmen, Training, Separation
+                      <strong>Direct:</strong> Rekrutmen, Training, Separation
                     </li>
                     <li>
-                      <strong>Indirect:</strong>
-                      {' '}
-                      Productivity Loss, Knowledge Loss, Morale Impact
+                      <strong>Indirect:</strong> Productivity Loss, Knowledge Loss, Morale Impact
                     </li>
                   </ul>
                 </div>
@@ -322,164 +355,196 @@ export default function TurnoverCostCalculator() {
           </div>
 
           <div className="space-y-6">
-            {result
-              ? (
-                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan biaya turnover">
-                    <Card className={`bg-gradient-to-br ${getTurnoverRateBg(result.turnoverRate)} p-6 text-white`}>
-                      <h3 className="mb-4 text-lg font-semibold">Turnover Rate & Total Cost</h3>
-                      <div className="mb-4 text-center">
-                        <p className="text-sm opacity-90">Turnover Rate</p>
-                        <p className="text-5xl font-bold">
-                          {result.turnoverRate.toFixed(1)}
-                          %
-                        </p>
-                        <p className="mt-4 text-sm opacity-90">Total Biaya Tahunan</p>
-                        <p className="text-3xl font-bold">{formatCurrency(result.annualTurnoverCost)}</p>
-                      </div>
-                      <div className="border-t border-white/20 pt-4 text-center">
-                        <p className="text-sm opacity-90">Biaya per Karyawan</p>
-                        <p className="text-2xl font-bold">{formatCurrency(result.totalCostPerEmployee)}</p>
-                      </div>
-                    </Card>
-
-                    <Card className="p-6">
-                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                        <DollarSign className="h-5 w-5 text-rose-600" />
-                        Breakdown Biaya
-                      </h3>
-
-                      <div className="space-y-4">
-                        <div>
-                          <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Direct Costs</span>
-                            <span className="text-lg font-bold text-rose-600">
-                              {formatCurrency(result.directCosts.total)}
-                            </span>
-                          </div>
-                          <div className="space-y-2 rounded-lg bg-rose-50 p-3 text-sm">
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Recruitment</span>
-                              <span className="font-medium">{formatCurrency(result.directCosts.recruitment)}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Training & Onboarding</span>
-                              <span className="font-medium">{formatCurrency(result.directCosts.training)}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Separation Costs</span>
-                              <span className="font-medium">{formatCurrency(result.directCosts.separation)}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Indirect Costs</span>
-                            <span className="text-lg font-bold text-orange-600">
-                              {formatCurrency(result.indirectCosts.total)}
-                            </span>
-                          </div>
-                          <div className="space-y-2 rounded-lg bg-orange-50 p-3 text-sm">
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Productivity Loss</span>
-                              <span className="font-medium">{formatCurrency(result.indirectCosts.productivityLoss)}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Knowledge Loss</span>
-                              <span className="font-medium">{formatCurrency(result.indirectCosts.knowledgeLoss)}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-slate-600 dark:text-slate-400">Morale Impact</span>
-                              <span className="font-medium">{formatCurrency(result.indirectCosts.moraleLoss)}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <ActionButtons
-                        onDownload={handleDownload}
-                        onShare={handleShare}
-                        disabled={!result}
-                        className="mt-6"
-                      />
-                    </Card>
-
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
-                      <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">ROI Retention Strategy</h4>
-                      <p className="mb-3 text-sm text-slate-700 dark:text-slate-300">
-                        Jika turnover rate dikurangi 50%, potensi savings:
-                      </p>
-                      <div className="text-center">
-                        <p className="text-3xl font-bold text-green-600">
-                          {formatCurrency(result.annualTurnoverCost * 0.5)}
-                        </p>
-                        <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">per tahun</p>
-                      </div>
-                    </Card>
-
-                    <Card className={`border-l-4 ${
-                      result.turnoverRate < 10
-                        ? 'border-green-500 bg-green-50'
-                        : result.turnoverRate < 15
-                          ? 'border-yellow-500 bg-yellow-50'
-                          : 'border-red-500 bg-red-50'
-                    } p-4`}
-                    >
-                      <div className="flex gap-2">
-                        <AlertTriangle className={`h-5 w-5 flex-shrink-0 ${
-                          result.turnoverRate < 10
-                            ? 'text-green-600'
-                            : result.turnoverRate < 15
-                              ? 'text-yellow-600'
-                              : 'text-red-600'
-                        }`}
-                        />
-                        <div className="text-sm text-slate-700 dark:text-slate-300">
-                          <p className="font-semibold">
-                            {result.turnoverRate < 10
-                              ? 'Turnover Rate Baik'
-                              : result.turnoverRate < 15
-                                ? 'Turnover Rate Sedang'
-                                : 'Turnover Rate Tinggi'}
-                          </p>
-                          <p className="text-xs">
-                            {result.turnoverRate < 10
-                              ? 'Pertahankan strategi retention yang ada.'
-                              : result.turnoverRate < 15
-                                ? 'Perlu improvement pada employee engagement.'
-                                : 'Urgent: Perlu strategi retention yang komprehensif.'}
-                          </p>
-                        </div>
-                      </div>
-                    </Card>
+            {result ? (
+              <div
+                role="region"
+                aria-live="polite"
+                aria-label="Hasil perhitungan biaya turnover "
+                className="space-y-6"
+              >
+                <Card
+                  className={`bg-gradient-to-br ${getTurnoverRateBg(result.turnoverRate)} p-6 text-white`}
+                >
+                  <h3 className="mb-4 text-lg font-semibold">Turnover Rate & Total Cost</h3>
+                  <div className="mb-4 text-center">
+                    <p className="text-sm opacity-90">Turnover Rate</p>
+                    <p className="text-5xl font-bold">{result.turnoverRate.toFixed(1)}%</p>
+                    <p className="mt-4 text-sm opacity-90">Total Biaya Tahunan</p>
+                    <p className="text-3xl font-bold">
+                      {formatCurrency(result.annualTurnoverCost)}
+                    </p>
                   </div>
-                )
-              : (
-                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                  <div className="border-t border-white/20 pt-4 text-center">
+                    <p className="text-sm opacity-90">Biaya per Karyawan</p>
+                    <p className="text-2xl font-bold">
+                      {formatCurrency(result.totalCostPerEmployee)}
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
+                    <DollarSign className="h-5 w-5 text-rose-600 dark:text-rose-400" />
+                    Breakdown Biaya
+                  </h3>
+
+                  <div className="space-y-4">
                     <div>
-                      <Users className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                      <p className="text-gray-500 dark:text-slate-500">
-                        Masukkan data perusahaan dan klik tombol hitung
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                          Direct Costs
+                        </span>
+                        <span className="text-lg font-bold text-rose-600 dark:text-rose-400">
+                          {formatCurrency(result.directCosts.total)}
+                        </span>
+                      </div>
+                      <div className="space-y-2 rounded-lg bg-rose-50 p-3 text-sm dark:bg-rose-950/20">
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">Recruitment</span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.directCosts.recruitment)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">
+                            Training & Onboarding
+                          </span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.directCosts.training)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">
+                            Separation Costs
+                          </span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.directCosts.separation)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                          Indirect Costs
+                        </span>
+                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                          {formatCurrency(result.indirectCosts.total)}
+                        </span>
+                      </div>
+                      <div className="space-y-2 rounded-lg bg-orange-50 p-3 text-sm dark:bg-orange-950/20">
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">
+                            Productivity Loss
+                          </span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.indirectCosts.productivityLoss)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">Knowledge Loss</span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.indirectCosts.knowledgeLoss)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 dark:text-slate-400">Morale Impact</span>
+                          <span className="font-medium dark:text-white">
+                            {formatCurrency(result.indirectCosts.moraleLoss)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ActionButtons
+                    onDownload={handleDownload}
+                    onShare={handleShare}
+                    disabled={!result}
+                    className="mt-6"
+                  />
+                </Card>
+
+                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                  <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
+                    ROI Retention Strategy
+                  </h4>
+                  <p className="mb-3 text-sm text-slate-700 dark:text-slate-300">
+                    Jika turnover rate dikurangi 50%, potensi savings:
+                  </p>
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-green-600 dark:text-green-400">
+                      {formatCurrency(result.annualTurnoverCost * 0.5)}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">per tahun</p>
+                  </div>
+                </Card>
+
+                <Card
+                  className={`border-l-4 ${
+                    result.turnoverRate < 10
+                      ? 'border-green-500 bg-green-50 dark:border-green-600 dark:bg-green-950/20'
+                      : result.turnoverRate < 15
+                        ? 'border-yellow-500 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-950/20'
+                        : 'border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-950/20'
+                  } p-4`}
+                >
+                  <div className="flex gap-2">
+                    <AlertTriangle
+                      className={`h-5 w-5 flex-shrink-0 ${
+                        result.turnoverRate < 10
+                          ? 'text-green-600 dark:text-green-400'
+                          : result.turnoverRate < 15
+                            ? 'text-yellow-600 dark:text-yellow-400'
+                            : 'text-red-600 dark:text-red-400'
+                      }`}
+                    />
+                    <div className="text-sm text-slate-700 dark:text-slate-300">
+                      <p className="font-semibold dark:text-white">
+                        {result.turnoverRate < 10
+                          ? 'Turnover Rate Baik'
+                          : result.turnoverRate < 15
+                            ? 'Turnover Rate Sedang'
+                            : 'Turnover Rate Tinggi'}
+                      </p>
+                      <p className="text-xs">
+                        {result.turnoverRate < 10
+                          ? 'Pertahankan strategi retention yang ada.'
+                          : result.turnoverRate < 15
+                            ? 'Perlu improvement pada employee engagement.'
+                            : 'Urgent: Perlu strategi retention yang komprehensif.'}
                       </p>
                     </div>
-                  </Card>
-                )}
+                  </div>
+                </Card>
+              </div>
+            ) : (
+              <Card className="flex h-full items-center justify-center p-12 text-center">
+                <div>
+                  <Users className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                  <p className="text-gray-500 dark:text-slate-500">
+                    Masukkan data perusahaan dan klik tombol hitung
+                  </p>
+                </div>
+              </Card>
+            )}
           </div>
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-rose-200 bg-gradient-to-r from-rose-50 to-orange-50 p-6">
+          <Card className="mt-8 border-2 border-rose-200 bg-gradient-to-r from-rose-50 to-orange-50 p-6 dark:border-rose-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
-              <div className="rounded-full bg-rose-100 p-3">
-                <TrendingUp className="h-6 w-6 text-rose-600" />
+              <div className="rounded-full bg-rose-100 p-3 dark:bg-rose-950">
+                <TrendingUp className="h-6 w-6 text-rose-600 dark:text-rose-400" />
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
                   Reduce Turnover dengan Data-Driven Insights
                 </h3>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
-                  BizOps membantu identify early warning signs, predict turnover risk,
-                  dan provide actionable insights untuk improve employee retention.
+                  BizOps membantu identify early warning signs, predict turnover risk, dan provide
+                  actionable insights untuk improve employee retention.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-rose-600 hover:bg-rose-700">
@@ -494,11 +559,11 @@ export default function TurnoverCostCalculator() {
           </Card>
         )}
 
-        <Card className="mt-8 border-l-4 border-rose-500 bg-rose-50 p-6">
+        <Card className="mt-8 border-l-4 border-rose-500 bg-rose-50 p-6 dark:border-rose-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertTriangle className="h-5 w-5 flex-shrink-0 text-rose-600" />
+            <AlertTriangle className="h-5 w-5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold">Strategi Menurunkan Turnover:</p>
+              <p className="mb-2 font-semibold dark:text-white">Strategi Menurunkan Turnover:</p>
               <ul className="list-inside list-disc space-y-1">
                 <li>Competitive compensation & benefits</li>
                 <li>Clear career path & development opportunities</li>

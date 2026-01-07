@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } from "lucide-react";
-import React, { useState } from "react";
-import { Input, Select, TextArea } from "./Form";
-import Button from "./ui/Button";
-import OptimizedImage from "./ui/OptimizedImage"; // Imported OptimizedImage
+import { AnimatePresence, motion } from 'framer-motion';
+import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Input, Select, TextArea } from './Form';
+import Button from './ui/Button';
+import OptimizedImage from './ui/OptimizedImage'; // Imported OptimizedImage
 
 type DemoModalProps = {
   isOpen: boolean;
@@ -24,16 +24,16 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     setIsLoading(true);
 
     const form = e.target as HTMLFormElement;
-    const name = (form.elements.namedItem("modalName") as HTMLInputElement).value;
-    const email = (form.elements.namedItem("modalEmail") as HTMLInputElement).value;
-    const phoneInput = (form.elements.namedItem("modalPhone") as HTMLInputElement).value;
-    const company = (form.elements.namedItem("modalCompany") as HTMLInputElement).value;
-    const employees = (form.elements.namedItem("modalEmployees") as HTMLSelectElement).value;
-    const jobTitle = (form.elements.namedItem("modalJobTitle") as HTMLInputElement).value;
-    const interest = (form.elements.namedItem("modalInterest") as HTMLSelectElement).value;
-    const message = (form.elements.namedItem("modalMessage") as HTMLTextAreaElement).value;
+    const name = (form.elements.namedItem('modalName') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('modalEmail') as HTMLInputElement).value;
+    const phoneInput = (form.elements.namedItem('modalPhone') as HTMLInputElement).value;
+    const company = (form.elements.namedItem('modalCompany') as HTMLInputElement).value;
+    const employees = (form.elements.namedItem('modalEmployees') as HTMLSelectElement).value;
+    const jobTitle = (form.elements.namedItem('modalJobTitle') as HTMLInputElement).value;
+    const interest = (form.elements.namedItem('modalInterest') as HTMLSelectElement).value;
+    const message = (form.elements.namedItem('modalMessage') as HTMLTextAreaElement).value;
 
-    const salesPhone = "622139702834"; // Sales Number
+    const salesPhone = '622139702834'; // Sales Number
 
     // Construct a professional WhatsApp message
     const text
@@ -48,14 +48,14 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         + `*Profil Bisnis:*\n`
         + `Ukuran: ${employees} karyawan\n`
         + `Minat: ${interest}\n\n`
-        + `*Catatan:*\n${message || "-"}\n\n`
+        + `*Catatan:*\n${message || '-'}\n\n`
         + `Mohon info ketersediaan jadwal. Terima kasih.`;
 
     const url = `https://wa.me/${salesPhone}?text=${encodeURIComponent(text)}`;
 
     // Simulate API call/Tracking then redirect
     setTimeout(() => {
-      window.open(url, "_blank");
+      window.open(url, '_blank');
       setIsLoading(false);
       onClose();
     }, 1000);
@@ -77,7 +77,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            transition={{ type: "spring", duration: 0.5 }}
+            transition={{ type: 'spring', duration: 0.5 }}
             className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl md:max-h-[800px] md:flex-row dark:border-slate-700 dark:bg-slate-900"
           >
             {/* Close Button */}
@@ -94,7 +94,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 <div className="mb-8">
                   <span className="bg-primary/10 text-primary mb-4 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold tracking-wider uppercase">
                     <Video className="h-3 w-3" />
-                    {" "}
+                    {' '}
                     Live Session
                   </span>
                   <h2 className="mb-2 text-2xl leading-tight font-bold text-slate-900 dark:text-slate-100">
@@ -240,12 +240,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     required
                     icon={<Users className="h-5 w-5" />}
                     options={[
-                      { value: "1-10", label: "1 - 10 Employees" },
-                      { value: "11-50", label: "11 - 50 Employees" },
-                      { value: "51-200", label: "51 - 200 Employees" },
-                      { value: "201-500", label: "201 - 500 Employees" },
-                      { value: "501-1000", label: "501 - 1000 Employees" },
-                      { value: "1000+", label: "1000+ Employees" },
+                      { value: '1-10', label: '1 - 10 Employees' },
+                      { value: '11-50', label: '11 - 50 Employees' },
+                      { value: '51-200', label: '51 - 200 Employees' },
+                      { value: '201-500', label: '201 - 500 Employees' },
+                      { value: '501-1000', label: '501 - 1000 Employees' },
+                      { value: '1000+', label: '1000+ Employees' },
                     ]}
                   />
                 </div>
@@ -256,12 +256,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                   label="I am interested in..."
                   required
                   options={[
-                    { value: "General Overview", label: "General Platform Overview" },
-                    { value: "HR & Payroll", label: "HR & Payroll Module" },
-                    { value: "Finance & Accounting", label: "Finance & Accounting" },
-                    { value: "Supply Chain", label: "Supply Chain & Operations" },
-                    { value: "CRM & Sales", label: "CRM & Sales Pipeline" },
-                    { value: "Custom Solution", label: "Custom Solution Discussion" },
+                    { value: 'General Overview', label: 'General Platform Overview' },
+                    { value: 'HR & Payroll', label: 'HR & Payroll Module' },
+                    { value: 'Finance & Accounting', label: 'Finance & Accounting' },
+                    { value: 'Supply Chain', label: 'Supply Chain & Operations' },
+                    { value: 'CRM & Sales', label: 'CRM & Sales Pipeline' },
+                    { value: 'Custom Solution', label: 'Custom Solution Discussion' },
                   ]}
                 />
 
@@ -284,12 +284,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                   >
                     {isLoading
                       ? (
-                          "Redirecting..."
+                          'Redirecting...'
                         )
                       : (
                           <span className="flex items-center gap-2 text-slate-700 dark:text-white">
                             <Send className="h-5 w-5" />
-                            {" "}
+                            {' '}
                             Request Demo via WhatsApp
                           </span>
                         )}

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Calculator,
@@ -12,16 +12,16 @@ import {
   Server,
   Shield,
   Zap,
-} from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import FAQAccordion from "@/components/FAQAccordion";
-import { Container, Section } from "@/components/layout";
-import PricingFeatureTable from "@/components/PricingFeatureTable";
-import { Button, CardSlider } from "@/components/ui";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { StaggeredText } from "@/components/ui/motion-text";
-import { faqs as pricingFaqs } from "@/data/pricingData";
+} from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import FAQAccordion from '@/components/FAQAccordion';
+import { Container, Section } from '@/components/layout';
+import PricingFeatureTable from '@/components/PricingFeatureTable';
+import { Button, CardSlider } from '@/components/ui';
+import { FadeIn } from '@/components/ui/FadeIn';
+import { StaggeredText } from '@/components/ui/motion-text';
+import { faqs as pricingFaqs } from '@/data/pricingData';
 
 const FADE_UP_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
@@ -86,17 +86,17 @@ const PricingContent = () => {
             <div className="mb-12 flex justify-center">
               <div className="relative inline-flex rounded-full border border-slate-200 bg-slate-100 p-1.5 dark:border-slate-700 dark:bg-slate-800">
                 <div
-                  className={`absolute top-1.5 bottom-1.5 rounded-full border border-slate-200 bg-white shadow-sm transition-all duration-300 ease-out dark:border-slate-600 dark:bg-slate-700 ${annual ? "left-[40%] w-[calc(60%-6px)]" : "left-50% w-[calc(50%-50px)]"}`}
+                  className={`absolute top-1.5 bottom-1.5 rounded-full border border-slate-200 bg-white shadow-sm transition-all duration-300 ease-out dark:border-slate-600 dark:bg-slate-700 ${annual ? 'left-[40%] w-[calc(60%-6px)]' : 'left-50% w-[calc(50%-50px)]'}`}
                 />
                 <button
                   onClick={() => setAnnual(false)}
-                  className={`relative z-10 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${!annual ? "text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"}`}
+                  className={`relative z-10 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${!annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
                 >
                   Bulanan
                 </button>
                 <button
                   onClick={() => setAnnual(true)}
-                  className={`relative z-10 flex items-center gap-2 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${annual ? "text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"}`}
+                  className={`relative z-10 flex items-center gap-2 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
                 >
                   Tahunan
                   <span className="rounded-full border border-green-200 bg-green-100 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-green-700 uppercase dark:border-green-800 dark:bg-green-950 dark:text-green-400">
@@ -135,7 +135,7 @@ const PricingContent = () => {
                       IDR
                     </span>
                     <span className="text-5xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white">
-                      {annual ? "2.5" : "3"}
+                      {annual ? '2.5' : '3'}
                     </span>
                     <span className="text-xl font-bold text-slate-900 dark:text-white">
                       Jt
@@ -151,8 +151,8 @@ const PricingContent = () => {
                   </div>
                   <p className="mt-2 text-sm text-slate-400 dark:text-slate-500">
                     {annual
-                      ? "Ditagih Rp 30 Jt per tahun"
-                      : "Ditagih bulanan, bisa cancel kapan saja"}
+                      ? 'Ditagih Rp 30 Jt per tahun'
+                      : 'Ditagih bulanan, bisa cancel kapan saja'}
                   </p>
                 </div>
 
@@ -174,11 +174,11 @@ const PricingContent = () => {
                     Fitur Utama:
                   </p>
                   {[
-                    "50 Recommended Users",
-                    "Core ERP (HR, Finance, Sales)",
-                    "Mobile App (Basic)",
-                    "Shared Cloud Hosting",
-                    "Email Support (48h SLA)",
+                    '50 Recommended Users',
+                    'Core ERP (HR, Finance, Sales)',
+                    'Mobile App (Basic)',
+                    'Shared Cloud Hosting',
+                    'Email Support (48h SLA)',
                   ].map((f, i) => (
                     <div
                       key={i}
@@ -217,7 +217,7 @@ const PricingContent = () => {
                       IDR
                     </span>
                     <span className="text-5xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white">
-                      {annual ? "7.5" : "9"}
+                      {annual ? '7.5' : '9'}
                     </span>
                     <span className="text-xl font-bold text-slate-900 dark:text-white">
                       Jt
@@ -251,12 +251,12 @@ const PricingContent = () => {
                     Semua di Business, plus:
                   </p>
                   {[
-                    "200 Recommended Users",
-                    "Manufacturing, Asset & Project",
-                    "Advanced Mobile App (GPS)",
-                    "Dedicated VPS Performance",
-                    "Priority Chat Support (12h SLA)",
-                    "Assisted Implementation",
+                    '200 Recommended Users',
+                    'Manufacturing, Asset & Project',
+                    'Advanced Mobile App (GPS)',
+                    'Dedicated VPS Performance',
+                    'Priority Chat Support (12h SLA)',
+                    'Assisted Implementation',
                   ].map((f, i) => (
                     <div
                       key={i}
@@ -322,12 +322,12 @@ const PricingContent = () => {
                     Enterprise Exclusive:
                   </p>
                   {[
-                    "Unlimited Users Capacity",
-                    "Private / On-Premise Server",
-                    "Custom Module Development",
-                    "Full Database Access",
-                    "Whitelabel Mobile App",
-                    "Dedicated Account Manager",
+                    'Unlimited Users Capacity',
+                    'Private / On-Premise Server',
+                    'Custom Module Development',
+                    'Full Database Access',
+                    'Whitelabel Mobile App',
+                    'Dedicated Account Manager',
                   ].map((f, i) => (
                     <div
                       key={i}
@@ -379,7 +379,7 @@ const PricingContent = () => {
                       className="w-full bg-white px-8 text-lg font-bold text-slate-900 shadow-xl shadow-blue-900/50 transition-all duration-300 hover:scale-105 hover:bg-slate-50 hover:shadow-blue-900/70 md:w-auto"
                     >
                       Buka Pricing Calculator
-                      {" "}
+                      {' '}
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
@@ -411,27 +411,27 @@ const PricingContent = () => {
               {[
                 {
                   icon: Shield,
-                  title: "Secure Payment",
-                  desc: "Midtrans & Xendit Gateway",
-                  color: "text-green-500 dark:text-green-400",
+                  title: 'Secure Payment',
+                  desc: 'Midtrans & Xendit Gateway',
+                  color: 'text-green-500 dark:text-green-400',
                 },
                 {
                   icon: Lock,
-                  title: "Data Encryption",
-                  desc: "AES-256 & TLS 1.3 Standards",
-                  color: "text-blue-500 dark:text-blue-400",
+                  title: 'Data Encryption',
+                  desc: 'AES-256 & TLS 1.3 Standards',
+                  color: 'text-blue-500 dark:text-blue-400',
                 },
                 {
                   icon: Server,
-                  title: "99.9% Uptime SLA",
-                  desc: "Redundant Cloud Infrastructure",
-                  color: "text-purple-500 dark:text-purple-400",
+                  title: '99.9% Uptime SLA',
+                  desc: 'Redundant Cloud Infrastructure',
+                  color: 'text-purple-500 dark:text-purple-400',
                 },
                 {
                   icon: RefreshCw,
-                  title: "14-Day Guarantee",
-                  desc: "Money Back Policy",
-                  color: "text-amber-500 dark:text-amber-400",
+                  title: '14-Day Guarantee',
+                  desc: 'Money Back Policy',
+                  color: 'text-amber-500 dark:text-amber-400',
                 },
               ].map((item, i) => (
                 <div

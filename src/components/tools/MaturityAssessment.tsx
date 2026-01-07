@@ -424,14 +424,16 @@ export default function MaturityAssessment() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-2xl"
+            className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-900"
           >
             <div className="mb-8 text-center">
-              <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-white/5 bg-gradient-to-br from-slate-800 to-slate-900 shadow-inner">
-                <Users className="text-primary-400 size-8" />
+              <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-slate-200 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-inner dark:border-white/5 dark:from-slate-800 dark:to-slate-900">
+                <Users className="dark:text-primary-400 size-8 text-blue-600" />
               </div>
-              <h2 className="mb-2 text-2xl font-bold text-white">Profil Penilai</h2>
-              <p className="text-sm text-slate-400">
+              <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                Profil Penilai
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
                 Laporan detail dan benchmark industri akan dikirimkan ke kontak yang Anda daftarkan.
               </p>
             </div>
@@ -439,13 +441,13 @@ export default function MaturityAssessment() {
             <form onSubmit={handleLeadSubmit} className="space-y-6">
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                     Nama Lengkap
                   </label>
                   <input
                     type="text"
                     required
-                    className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
+                    className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.name}
                     onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                     placeholder="Nama Anda"
@@ -453,13 +455,13 @@ export default function MaturityAssessment() {
                   />
                 </div>
                 <div>
-                  <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                     Perusahaan
                   </label>
                   <input
                     type="text"
                     required
-                    className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
+                    className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.company}
                     onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
                     placeholder="Nama PT"
@@ -469,16 +471,16 @@ export default function MaturityAssessment() {
 
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                     <Mail className="size-3" /> Email Bisnis
                   </label>
                   <input
                     type="email"
                     required
-                    className={`[&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset] ${
+                    className={`[&:-webkit-autofill]:dark:[&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:text-white dark:placeholder-slate-600 [&:-webkit-autofill]:dark:[&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset] ${
                       emailError
-                        ? 'border-red-500 bg-slate-950 focus:ring-red-500'
-                        : 'focus:border-primary-500 focus:ring-primary-500 border-white/10 bg-slate-950'
+                        ? 'border-red-500 bg-red-50 focus:ring-red-500 dark:border-red-500 dark:bg-slate-950'
+                        : 'focus:border-primary-500 focus:ring-primary-500 border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950'
                     }`}
                     value={leadForm.email}
                     onChange={(e) => {
@@ -490,18 +492,18 @@ export default function MaturityAssessment() {
                     placeholder="name@company.com"
                   />
                   {emailError && (
-                    <p className="mt-1 ml-1 flex items-center text-xs text-red-400">
+                    <p className="mt-1 ml-1 flex items-center text-xs text-red-400 dark:text-red-400">
                       <AlertCircle className="mr-1 size-3" /> {emailError}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                     <Phone className="size-3" /> WhatsApp (Opsional)
                   </label>
                   <input
                     type="tel"
-                    className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
+                    className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.phone}
                     onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
                     placeholder="0812..."
@@ -510,12 +512,12 @@ export default function MaturityAssessment() {
               </div>
 
               <div>
-                <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                   Posisi / Jabatan
                 </label>
                 <input
                   type="text"
-                  className="focus:border-primary-500 focus:ring-primary-500 [&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3.5 text-white placeholder-slate-600 transition-all focus:ring-1 focus:outline-none [&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset]"
+                  className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                   value={leadForm.role}
                   onChange={(e) => setLeadForm({ ...leadForm, role: e.target.value })}
                   placeholder="Manager IT / Ops"
@@ -529,13 +531,13 @@ export default function MaturityAssessment() {
                   size="lg"
                   className="bg-primary-600 shadow-primary-900/20 hover:bg-primary-500 shadow-lg"
                 >
-                  <span className="text-white dark:text-slate-600">Lanjut ke Pertanyaan</span>{' '}
+                  <span className="text-slate-800 dark:text-white">Lanjut ke Pertanyaan</span>{' '}
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
                 <button
                   type="button"
                   onClick={() => setViewState('intro')}
-                  className="mt-4 w-full text-center text-sm text-slate-500 transition-colors hover:text-white"
+                  className="mt-4 w-full text-center text-sm text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 >
                   Kembali ke Intro
                 </button>
@@ -941,12 +943,12 @@ export default function MaturityAssessment() {
     <div className="min-h-screen bg-white px-4 pt-24 pb-12 text-slate-900 sm:px-6 lg:px-8 dark:bg-slate-950 dark:text-white">
       <div className="mx-auto max-w-7xl">
         {/* Mobile Nav Toggle / Progress */}
-        <div className="sticky top-20 z-30 -mx-4 mb-8 border-b border-white/10 bg-slate-950/90 p-4 backdrop-blur-md lg:hidden">
-          <div className="mb-3 flex items-center justify-between text-xs font-bold tracking-widest text-slate-400 uppercase">
+        <div className="sticky top-20 z-30 -mx-4 mb-8 border-b border-slate-200 bg-white/90 p-4 backdrop-blur-md lg:hidden dark:border-white/10 dark:bg-slate-950/90">
+          <div className="mb-3 flex items-center justify-between text-xs font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
             <span>Progress</span>
             <span>{Math.round(progress)}%</span>
           </div>
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
             <div
               className="from-primary-500 h-full rounded-full bg-gradient-to-r to-indigo-500 transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -957,21 +959,21 @@ export default function MaturityAssessment() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           {/* LEFT: NAVIGATION SIDEBAR */}
           <div className="hidden lg:col-span-4 lg:block xl:col-span-3">
-            <div className="sticky top-24 rounded-3xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-md">
-              <h3 className="mb-6 flex items-center text-lg font-bold text-white">
-                <LayoutDashboard className="text-primary-500 mr-3 size-5" />
+            <div className="sticky top-24 rounded-3xl border border-slate-200 bg-white/80 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50">
+              <h3 className="mb-6 flex items-center text-lg font-bold text-slate-900 dark:text-white">
+                <LayoutDashboard className="dark:text-primary-500 mr-3 size-5 text-blue-600" />
                 Navigation
               </h3>
 
               <div className="relative space-y-8">
                 {/* Vertical Line */}
-                <div className="absolute top-4 bottom-4 left-[11px] z-0 w-px bg-white/10" />
+                <div className="absolute top-4 bottom-4 left-[9px] z-0 w-px bg-slate-200 dark:bg-white/10" />
 
                 {Object.entries(questionsByCategory).map(([cat, questions]) => (
                   <div key={cat} className="relative z-10">
-                    <div className="mb-3 flex items-center gap-3 text-sm font-bold text-slate-300">
-                      <div className="z-10 rounded-full border border-white/10 bg-slate-950 p-1">
-                        <div className="text-primary-400 size-4">
+                    <div className="mb-3 flex items-center gap-3 text-sm font-bold text-slate-700 dark:text-slate-300">
+                      <div className="dark:text-primary-400 text-blue-60 flex size-4 items-center justify-center">
+                        <div className="z-10 rounded-full border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-slate-950">
                           {categoryIcons[cat as CategoryKey]}
                         </div>
                       </div>
@@ -988,10 +990,10 @@ export default function MaturityAssessment() {
                             onClick={() => setCurrentStep(q.index)}
                             className={`relative h-8 overflow-hidden rounded-lg text-xs font-bold transition-all ${
                               isCurrent
-                                ? 'bg-primary-600 shadow-primary-900/50 ring-primary-400 z-20 scale-110 text-white shadow-lg ring-2 ring-offset-2 ring-offset-slate-900'
+                                ? 'bg-primary-600 shadow-primary-900/50 ring-primary-400 dark:bg-primary-600 z-20 scale-110 text-slate-800 shadow-lg ring-1 ring-offset-1 ring-offset-slate-900 dark:text-white'
                                 : isAnswered
-                                  ? 'border-primary-500/30 bg-primary-900/20 text-primary-400 border'
-                                  : 'bg-slate-800/50 text-slate-600 hover:bg-slate-800'
+                                  ? 'border-primary-500/30 text-primary-600 dark:border-primary-500/30 dark:bg-primary-900/20 border bg-slate-300 dark:text-slate-700'
+                                  : 'bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-600 dark:hover:bg-slate-800'
                             } `}
                             title={`Question ${q.index + 1}`}
                           >
@@ -1004,12 +1006,12 @@ export default function MaturityAssessment() {
                 ))}
               </div>
 
-              <div className="mt-8 border-t border-white/10 pt-6">
-                <div className="mb-2 flex justify-between text-xs font-bold tracking-widest text-slate-500 uppercase">
+              <div className="mt-8 border-t border-slate-200 pt-6 dark:border-white/10">
+                <div className="mb-2 flex justify-between text-xs font-bold tracking-widest text-slate-600 uppercase dark:text-slate-500">
                   <span>Completion</span>
                   <span>{Math.round(progress)}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full border border-white/5 bg-slate-950 p-0.5">
+                <div className="h-2 w-full rounded-full border border-slate-200 bg-slate-100 p-0.5 dark:border-white/5 dark:bg-slate-950">
                   <div
                     className="from-primary-500 h-full rounded-full bg-gradient-to-r to-green-400 transition-all duration-500"
                     style={{ width: `${progress}%` }}
@@ -1028,23 +1030,23 @@ export default function MaturityAssessment() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="relative flex min-h-[500px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 p-6 shadow-2xl backdrop-blur-md md:p-10"
+                className="relative flex min-h-[500px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-2xl backdrop-blur-md md:p-10 dark:border-white/10 dark:bg-slate-900/50"
               >
                 {/* Background glow for card */}
-                <div className="bg-primary-500/10 pointer-events-none absolute -top-24 -right-24 size-64 rounded-full blur-[80px]" />
+                <div className="dark:bg-primary-500/10 pointer-events-none absolute -top-24 -right-24 size-64 rounded-full bg-blue-500/5 blur-[80px]" />
 
                 <div className="relative z-10 mb-8">
                   <div className="mb-6 flex items-center justify-between">
-                    <span className="text-primary-400 inline-flex items-center gap-2 rounded-full border border-white/5 bg-slate-800 px-3 py-1.5 text-xs font-bold tracking-wider uppercase">
+                    <span className="dark:text-primary-400 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-blue-50 px-3 py-1.5 text-xs font-bold tracking-wider text-blue-600 uppercase dark:border-white/5 dark:bg-slate-800">
                       {categoryIcons[currentCategory]}
                       {categoryLabels[currentCategory]}
                     </span>
-                    <span className="text-sm text-slate-500">
+                    <span className="text-sm text-slate-600 dark:text-slate-500">
                       {currentStep + 1} /{totalQuestions}
                     </span>
                   </div>
 
-                  <h2 className="text-2xl leading-tight font-bold text-white md:text-4xl">
+                  <h2 className="text-2xl leading-tight font-bold text-slate-900 md:text-4xl dark:text-white">
                     {currentQuestion?.question}
                   </h2>
                 </div>
@@ -1058,21 +1060,23 @@ export default function MaturityAssessment() {
                         onClick={() => handleAnswer(option.score)}
                         className={`group relative flex w-full items-start overflow-hidden rounded-2xl border p-5 text-left transition-all duration-300 ${
                           isSelected
-                            ? 'border-primary-500 bg-primary-600/10 ring-primary-500 shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] ring-1'
-                            : 'border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/10'
+                            ? 'border-primary-500 bg-primary-600/10 ring-primary-500 dark:bg-primary-950/20 dark:border-primary-500 shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] ring-1'
+                            : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-slate-100 dark:border-white/5 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10'
                         }`}
                       >
                         <div
                           className={`mt-0.5 mr-5 flex size-6 flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                             isSelected
-                              ? 'border-primary-500'
-                              : 'group-hover:border-primary-400 border-slate-600'
+                              ? 'border-primary-500 dark:border-primary-500'
+                              : 'group-hover:border-primary-400 dark:group-hover:border-primary-400 border-slate-300 dark:border-slate-600'
                           }`}
                         >
-                          {isSelected && <div className="bg-primary-500 size-3 rounded-full" />}
+                          {isSelected && (
+                            <div className="bg-primary-500 dark:bg-primary-500 size-3 rounded-full" />
+                          )}
                         </div>
                         <span
-                          className={`text-lg transition-colors ${isSelected ? 'font-medium text-white' : 'text-slate-300 group-hover:text-white'}`}
+                          className={`text-lg transition-colors ${isSelected ? 'font-medium text-slate-900 dark:text-white' : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
                         >
                           {option.label}
                         </span>
@@ -1084,25 +1088,23 @@ export default function MaturityAssessment() {
                   })}
                 </div>
 
-                <div className="relative z-10 mt-10 flex items-center justify-between border-t border-white/10 pt-8">
+                <div className="relative z-10 mt-10 flex items-center justify-between border-t border-slate-200 pt-8 dark:border-white/10">
                   <Button
                     variant="ghost"
                     onClick={() => currentStep > 0 && setCurrentStep((prev) => prev - 1)}
                     disabled={currentStep === 0}
-                    className="text-slate-400 hover:bg-white/5 hover:text-white"
+                    className="text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
                   >
-                    <ArrowLeft className="mr-1 size-4" />{' '}
-                    <span className="text-white dark:text-slate-600">Previous</span>
+                    <ArrowLeft className="mr-1 size-4" /> Previous
                   </Button>
 
                   {currentStep < totalQuestions - 1 ? (
                     <Button
                       variant="primary"
                       onClick={() => setCurrentStep((prev) => prev + 1)}
-                      className="ml-auto border-0 bg-white text-slate-900 hover:bg-slate-200 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                      className="ml-auto"
                     >
-                      <span className="text-white dark:text-slate-600">Next Question</span>{' '}
-                      <ArrowRight className="ml-1 size-4" />
+                      Next Question <ArrowRight className="ml-1 size-4" />
                     </Button>
                   ) : (
                     <Button
@@ -1111,8 +1113,7 @@ export default function MaturityAssessment() {
                       disabled={Object.keys(answers).length < totalQuestions}
                       className="ml-auto border-0 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-900/20 hover:from-green-400 hover:to-emerald-500"
                     >
-                      <span className="text-white dark:text-slate-600">See Results</span>{' '}
-                      <CheckCircle className="ml-1 size-4" />
+                      See Results <CheckCircle className="ml-1 size-4" />
                     </Button>
                   )}
                 </div>

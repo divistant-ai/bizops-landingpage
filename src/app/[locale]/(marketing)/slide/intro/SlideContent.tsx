@@ -132,7 +132,9 @@ export default function SlideContent() {
             </MotionItem>
             <MotionItem className="max-w-5xl text-center">
               <h1 className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white">
-                <span className="text-slate-800 dark:text-white">Modernisasi Tanpa</span> <br />
+                <span className="text-slate-800 dark:text-white">Modernisasi Tanpa</span>
+                {' '}
+                <br />
                 <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
                   Merombak Segalanya.
                 </span>
@@ -250,7 +252,8 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           Data Silo & Duplikasi
                         </span>
@@ -258,7 +261,8 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           Biaya Langganan Bertumpuk
                         </span>
@@ -284,7 +288,8 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           Implementasi 1-2 Tahun
                         </span>
@@ -292,7 +297,8 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Sulit Dikustomisasi</span>
                       </li>
                     </ul>
@@ -328,7 +334,8 @@ export default function SlideContent() {
                 <p className="mx-auto mb-16 max-w-4xl text-2xl leading-relaxed font-light text-blue-900 dark:text-blue-100">
                   <span className="text-slate-800 dark:text-white">
                     Bayangkan ERP seperti mainan
-                  </span>{' '}
+                  </span>
+                  {' '}
                   <strong className="text-slate-900 dark:text-white">LEGO</strong>
                   <span className="text-slate-800 dark:text-white">
                     . Kami menyediakan blok standar industri, Anda menyusunnya sesuai workflow unik
@@ -404,21 +411,25 @@ export default function SlideContent() {
                     </h3>
                     <ul className="space-y-4 text-lg text-blue-900 dark:text-blue-100">
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           Enterprise Grade Security
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Fully Customizable</span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Mobile Native</span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Fast Implementation</span>
                       </li>
                     </ul>
@@ -801,11 +812,13 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">5 Users</span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Core Modules</span>
                       </li>
                     </ul>
@@ -829,17 +842,20 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-4 text-lg text-slate-900 dark:text-white">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="font-bold">
                           <span className="text-slate-800 dark:text-white">50 Users</span>
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">All Modules</span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Priority Support</span>
                       </li>
                     </ul>
@@ -859,11 +875,13 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Unlimited Users</span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Dedicated Server</span>
                       </li>
                     </ul>
@@ -886,7 +904,9 @@ export default function SlideContent() {
             <div className="max-w-5xl px-4 text-center">
               <MotionItem>
                 <h2 className="mb-12 text-6xl leading-tight font-black tracking-tighter text-slate-900 md:text-8xl dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Let's Build</span> <br />
+                  <span className="text-slate-800 dark:text-white">Let's Build</span>
+                  {' '}
+                  <br />
                   <span className="text-slate-800 dark:text-white">The Future.</span>
                 </h2>
               </MotionItem>

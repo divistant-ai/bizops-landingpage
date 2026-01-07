@@ -58,34 +58,6 @@ const STEPS_ORDER: StepType[] = [
   'result',
 ];
 
-// --- ISOLATED COMPONENTS ---
-
-const ProgressBar = ({
-  step,
-  displayStep,
-  totalSteps,
-}: {
-  step: StepType;
-  displayStep: number;
-  totalSteps: number;
-}) => {
-  if (step === 'intro' || step === 'analyzing' || step === 'result') {
-    return null;
-  }
-  const progress = (displayStep / totalSteps) * 100;
-
-  return (
-    <div className="fixed top-20 left-0 z-50 h-1 w-full bg-slate-200 dark:bg-slate-900">
-      <motion.div
-        className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-        initial={{ width: 0 }}
-        animate={{ width: `${progress}%` }}
-        transition={{ duration: 0.5 }}
-      />
-    </div>
-  );
-};
-
 const StepLayout = ({
   title,
   desc,
@@ -99,14 +71,13 @@ const StepLayout = ({
   handleFinish,
 }: any) => (
   <div className="min-h-screen bg-slate-50 px-4 pt-24 pb-12 text-slate-900 dark:bg-slate-950 dark:text-white">
-    <ProgressBar step="context" displayStep={displayStep} totalSteps={totalSteps} />
     <div className="mx-auto max-w-4xl">
       <div className="mb-8">
         <div className="mb-2 text-xs font-bold tracking-widest text-blue-500 uppercase">
           Step {displayStep} of {totalSteps}
         </div>
         <h2 className="mb-2 text-3xl font-bold">{title}</h2>
-        <p className="text-slate-400">{desc}</p>
+        <p className="text-slate-600 dark:text-slate-400">{desc}</p>
       </div>
 
       <motion.div
@@ -118,13 +89,12 @@ const StepLayout = ({
         {children}
       </motion.div>
 
-      <div className="flex justify-between border-t border-white/10 pt-6">
+      <div className="flex justify-between border-t border-slate-200 pt-6 dark:border-white/10">
         <button
           onClick={() => setStep(prevStep)}
-          className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white"
         >
-          <ArrowLeft className="size-4" />{' '}
-          <span className="text-slate-800 dark:text-white">Kembali</span>
+          <ArrowLeft className="size-4" /> Kembali
         </button>
         <Button
           onClick={typeof nextStep === 'string' ? () => setStep(nextStep) : nextStep}
@@ -137,10 +107,13 @@ const StepLayout = ({
                 : ''
           }
         >
-          <span className="text-white dark:text-slate-600">
-            {nextStep === handleFinish ? 'Lihat Hasil Analisis' : 'Lanjut'}
+          <span className="white flex items-center text-slate-800 dark:text-slate-600">
+            {nextStep !== handleFinish && 'Lanjut'}
+            {nextStep !== handleFinish && (
+              <ChevronRight className="ml-2 size-4 text-slate-800 dark:text-slate-600" />
+            )}
           </span>
-          {nextStep !== handleFinish && <ChevronRight className="ml-2 size-4" />}
+          {nextStep === handleFinish && <span className="text-white">Lihat hasil analisis</span>}
           {nextStep === handleFinish && <Search className="ml-2 size-4" />}
         </Button>
       </div>
@@ -319,13 +292,15 @@ export default function NeedsAnalysis() {
               {/* Floating Cards */}
               <div className="relative z-10 grid gap-5">
                 {/* Card 1: Holistic */}
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1">
+                <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-slate-900/60">
                   <div className="rounded-xl bg-blue-500/20 p-3 text-blue-400">
                     <Layers className="size-6" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-bold text-white">Holistic Diagnosis</h3>
-                    <p className="text-sm leading-relaxed text-slate-400">
+                    <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
+                      Holistic Diagnosis
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       Kami tidak hanya melihat software, tapi juga kesiapan tim (People) dan alur
                       kerja (Process).
                     </p>
@@ -338,8 +313,10 @@ export default function NeedsAnalysis() {
                     <Calendar className="size-6" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-bold text-white">Actionable Roadmap</h3>
-                    <p className="text-sm leading-relaxed text-slate-400">
+                    <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
+                      Actionable Roadmap
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       Dapatkan timeline implementasi langkah demi langkah, dari Quick Win hingga
                       Optimization.
                     </p>
@@ -347,13 +324,15 @@ export default function NeedsAnalysis() {
                 </div>
 
                 {/* Card 3: Difference */}
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1">
+                <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 dark:border-white/10 dark:bg-slate-900/60">
                   <div className="rounded-xl bg-amber-500/20 p-3 text-amber-400">
                     <Lightbulb className="size-6" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-bold text-white">Practical Solution</h3>
-                    <p className="text-sm leading-relaxed text-slate-400">
+                    <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
+                      Practical Solution
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       Berbeda dengan Maturity Assessment yang hanya memberi skor, kami memberi resep
                       solusi.
                     </p>
@@ -384,27 +363,29 @@ export default function NeedsAnalysis() {
         totalSteps={totalSteps}
         handleFinish={handleFinish}
       >
-        <div className="space-y-5 rounded-2xl border border-slate-200 bg-slate-100 p-8 backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50">
+        <div className="space-y-5 rounded-2xl border border-slate-200 bg-white p-8 backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">Nama Lengkap</label>
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                Nama Lengkap
+              </label>
               <input
                 type="text"
                 value={contextData.name}
                 onChange={(e) => setContextData({ ...contextData, name: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
                 placeholder="John Doe"
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Nama Perusahaan <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={contextData.company}
                 onChange={(e) => setContextData({ ...contextData, company: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
                 placeholder="PT. Contoh Indonesia"
               />
             </div>
@@ -412,26 +393,26 @@ export default function NeedsAnalysis() {
 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
                 value={contextData.email}
                 onChange={(e) => setContextData({ ...contextData, email: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
                 placeholder="john@company.com"
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 No. Telepon (WA)
               </label>
               <input
                 type="tel"
                 value={contextData.phone}
                 onChange={(e) => setContextData({ ...contextData, phone: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
                 placeholder="+62 812 3456 7890"
               />
             </div>
@@ -439,25 +420,25 @@ export default function NeedsAnalysis() {
 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Posisi/Jabatan
               </label>
               <input
                 type="text"
                 value={contextData.role}
                 onChange={(e) => setContextData({ ...contextData, role: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
                 placeholder="IT Manager"
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-300">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Jumlah Karyawan
               </label>
               <select
                 value={contextData.teamSize}
                 onChange={(e) => setContextData({ ...contextData, teamSize: e.target.value })}
-                className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
               >
                 <option value="">Pilih...</option>
                 <option value="1-10">1-10</option>
@@ -470,11 +451,13 @@ export default function NeedsAnalysis() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-300">Industri</label>
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+              Industri
+            </label>
             <select
               value={contextData.industry}
               onChange={(e) => setContextData({ ...contextData, industry: e.target.value })}
-              className="w-full rounded-xl border border-white/10 bg-slate-800 px-4 py-3 text-white transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 dark:bg-slate-800 dark:text-white"
             >
               <option value="">Pilih Industri...</option>
               {industries.map((ind) => (
@@ -504,7 +487,7 @@ export default function NeedsAnalysis() {
       >
         <div className="space-y-6">
           <div>
-            <label className="mb-3 block text-sm font-bold text-white">
+            <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-white">
               Sistem yang Sedang Digunakan
             </label>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -514,8 +497,8 @@ export default function NeedsAnalysis() {
                   onClick={() => setContextData({ ...contextData, techStack: opt.id })}
                   className={`flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all ${
                     contextData.techStack === opt.id
-                      ? 'border-blue-500 bg-blue-500/10 text-white ring-1 ring-blue-500'
-                      : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10'
+                      ? 'border-blue-500 bg-blue-500/10 text-white ring-1 ring-blue-500 dark:text-white'
+                      : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                   }`}
                 >
                   <span className="text-xs font-medium">{opt.label}</span>
@@ -543,7 +526,9 @@ export default function NeedsAnalysis() {
         handleFinish={handleFinish}
       >
         <div className="space-y-4">
-          <div className="mb-2 text-sm text-slate-400">Pilih minimal 1, maksimal 5 masalah.</div>
+          <div className="mb-2 text-sm text-slate-600 dark:text-slate-400">
+            Pilih minimal 1, maksimal 5 masalah.
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
             {[
               ...holisticIssues.people,
@@ -567,8 +552,8 @@ export default function NeedsAnalysis() {
                 }
                 className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                   selectedHolisticIssues.includes(issue.id)
-                    ? 'border-amber-500 bg-amber-500/10 text-white ring-1 ring-amber-500'
-                    : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                    ? 'border-amber-500 bg-amber-500/10 text-white ring-1 ring-amber-500 dark:text-white'
+                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                 }`}
               >
                 {issue.icon && <issue.icon className="mt-1 size-5 flex-shrink-0" />}
@@ -600,7 +585,7 @@ export default function NeedsAnalysis() {
         handleFinish={handleFinish}
       >
         <div className="space-y-4">
-          <div className="mb-2 text-sm text-slate-400">
+          <div className="mb-2 text-sm text-slate-600 dark:text-slate-400">
             Pilih minimal 1, maksimal 5 pain points.
           </div>
           <div className="grid gap-3 md:grid-cols-2">
@@ -613,8 +598,8 @@ export default function NeedsAnalysis() {
                 disabled={!selectedPainPoints.includes(pain.id) && selectedPainPoints.length >= 5}
                 className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                   selectedPainPoints.includes(pain.id)
-                    ? 'border-red-500 bg-red-500/10 text-white ring-1 ring-red-500'
-                    : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                    ? 'border-red-500 bg-red-500/10 text-white ring-1 ring-red-500 dark:text-white'
+                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                 }`}
               >
                 <pain.icon className="mt-1 size-5 flex-shrink-0" />
@@ -644,7 +629,9 @@ export default function NeedsAnalysis() {
         handleFinish={handleFinish}
       >
         <div className="space-y-4">
-          <div className="mb-2 text-sm text-slate-400">Pilih minimal 1, maksimal 5 goals.</div>
+          <div className="mb-2 text-sm text-slate-600 dark:text-slate-400">
+            Pilih minimal 1, maksimal 5 goals.
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
             {goals.map((goal) => (
               <button
@@ -653,8 +640,8 @@ export default function NeedsAnalysis() {
                 disabled={!selectedGoals.includes(goal.id) && selectedGoals.length >= 5}
                 className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                   selectedGoals.includes(goal.id)
-                    ? 'border-emerald-500 bg-emerald-500/10 text-white ring-1 ring-emerald-500'
-                    : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
+                    ? 'border-emerald-500 bg-emerald-500/10 text-white ring-1 ring-emerald-500 dark:text-white'
+                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                 }`}
               >
                 <goal.icon className="mt-1 size-5 flex-shrink-0" />
@@ -685,7 +672,9 @@ export default function NeedsAnalysis() {
       >
         <div className="space-y-8">
           <div>
-            <label className="mb-3 block text-sm font-bold text-white">Timeline Implementasi</label>
+            <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-white">
+              Timeline Implementasi
+            </label>
             <div className="grid gap-3 md:grid-cols-3">
               {timelines.map((t) => (
                 <button
@@ -693,8 +682,8 @@ export default function NeedsAnalysis() {
                   onClick={() => setSelectedTimeline(t.id)}
                   className={`flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all ${
                     selectedTimeline === t.id
-                      ? 'border-blue-500 bg-blue-500/10 text-white ring-1 ring-blue-500'
-                      : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10'
+                      ? 'border-blue-500 bg-blue-500/10 text-white ring-1 ring-blue-500 dark:text-white'
+                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                   }`}
                 >
                   <Clock className="size-6" />
@@ -706,7 +695,7 @@ export default function NeedsAnalysis() {
           </div>
 
           <div>
-            <label className="mb-3 block text-sm font-bold text-white">
+            <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-white">
               Budget Range (Tahunan)
             </label>
             <div className="grid gap-3 md:grid-cols-3">
@@ -716,8 +705,8 @@ export default function NeedsAnalysis() {
                   onClick={() => setSelectedBudget(b.id)}
                   className={`flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all ${
                     selectedBudget === b.id
-                      ? 'border-emerald-500 bg-emerald-500/10 text-white ring-1 ring-emerald-500'
-                      : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10'
+                      ? 'border-emerald-500 bg-emerald-500/10 text-white ring-1 ring-emerald-500 dark:text-white'
+                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20 dark:hover:bg-white/10'
                   }`}
                 >
                   <Wallet className="size-6" />
@@ -742,7 +731,7 @@ export default function NeedsAnalysis() {
             className="mx-auto mb-6 size-16 rounded-full border-4 border-blue-500 border-t-transparent"
           />
           <h2 className="mb-2 text-2xl font-bold">Menganalisis Data Anda...</h2>
-          <p className="text-slate-400">Mohon tunggu sebentar.</p>
+          <p className="text-slate-600 dark:text-slate-400">Mohon tunggu sebentar.</p>
         </div>
       </div>
     );
@@ -767,7 +756,7 @@ export default function NeedsAnalysis() {
               <CheckCircle className="size-10" />
             </motion.div>
             <h1 className="mb-4 text-4xl font-bold">Analisis Selesai!</h1>
-            <p className="text-lg text-slate-400">
+            <p className="text-lg text-slate-600 dark:text-slate-400">
               Berikut rekomendasi solusi yang dipersonalisasi untuk {contextData.company}.
             </p>
           </div>
@@ -775,32 +764,40 @@ export default function NeedsAnalysis() {
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Left: Summary */}
             <div className="space-y-6 lg:col-span-4">
-              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6">
-                <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-blue-100">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-slate-900/50">
+                <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-blue-600 dark:text-blue-100">
                   <Briefcase className="size-5 text-blue-500" /> Ringkasan Profil
                 </h2>
                 <div className="space-y-3 text-sm">
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-slate-500">Perusahaan</span>
-                    <span className="font-medium">{contextData.company}</span>
+                  <div className="flex justify-between border-b border-slate-200 pb-2 dark:border-white/5">
+                    <span className="text-slate-500 dark:text-slate-500">Perusahaan</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {contextData.company}
+                    </span>
                   </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-slate-500">Industri</span>
-                    <span className="font-medium">
+                  <div className="flex justify-between border-b border-slate-200 pb-2 dark:border-white/5">
+                    <span className="text-slate-500 dark:text-slate-500">Industri</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
                       {industries.find((i) => i.id === contextData.industry)?.label || 'N/A'}
                     </span>
                   </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-slate-500">Tim Size</span>
-                    <span className="font-medium">{contextData.teamSize || 'N/A'}</span>
+                  <div className="flex justify-between border-b border-slate-200 pb-2 dark:border-white/5">
+                    <span className="text-slate-500 dark:text-slate-500">Tim Size</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {contextData.teamSize || 'N/A'}
+                    </span>
                   </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-slate-500">Budget</span>
-                    <span className="font-medium">{budgetLabel}</span>
+                  <div className="flex justify-between border-b border-slate-200 pb-2 dark:border-white/5">
+                    <span className="text-slate-500 dark:text-slate-500">Budget</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {budgetLabel}
+                    </span>
                   </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-slate-500">Timeline</span>
-                    <span className="font-medium">{timelineLabel}</span>
+                  <div className="flex justify-between border-b border-slate-200 pb-2 dark:border-white/5">
+                    <span className="text-slate-500 dark:text-slate-500">Timeline</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {timelineLabel}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -809,20 +806,22 @@ export default function NeedsAnalysis() {
             {/* Right: Recommendations */}
             <div className="space-y-8 lg:col-span-8">
               {/* 1. VISUAL ROADMAP */}
-              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6">
-                <h2 className="mb-6 flex items-center gap-2 text-lg font-bold text-blue-100">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-slate-900/50">
+                <h2 className="mb-6 flex items-center gap-2 text-lg font-bold text-blue-600 dark:text-blue-100">
                   <Calendar className="size-5 text-blue-500" /> Rencana Implementasi (Roadmap)
                 </h2>
                 <div className="relative px-2 pt-6 pb-2">
-                  <div className="absolute top-8 left-0 h-1 w-full rounded-full bg-slate-800" />
+                  <div className="absolute top-8 left-0 h-1 w-full rounded-full bg-slate-200 dark:bg-slate-800" />
                   <div className="relative z-10 grid grid-cols-3 gap-4">
                     {/* Phase 1 */}
                     <div className="text-center">
-                      <div className="mx-auto mb-3 size-4 rounded-full border-4 border-slate-900 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
+                      <div className="mx-auto mb-3 size-4 rounded-full border-4 border-white bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)] dark:border-slate-900" />
                       <div className="mb-1 text-xs font-bold text-blue-400 uppercase">Bulan 1</div>
-                      <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
-                        <div className="mb-1 font-medium text-white">Quick Win</div>
-                        <div className="text-xs text-slate-400">
+                      <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm dark:border-white/5 dark:bg-slate-800">
+                        <div className="mb-1 font-medium text-slate-900 dark:text-white">
+                          Quick Win
+                        </div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">
                           Setup {recommended[0]?.title} & Data Migration
                         </div>
                       </div>
@@ -833,9 +832,11 @@ export default function NeedsAnalysis() {
                       <div className="mb-1 text-xs font-bold text-slate-500 uppercase">
                         Bulan 2-3
                       </div>
-                      <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
-                        <div className="mb-1 font-medium text-white">Expansion</div>
-                        <div className="text-xs text-slate-400">
+                      <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm dark:border-white/5 dark:bg-slate-800">
+                        <div className="mb-1 font-medium text-slate-900 dark:text-white">
+                          Expansion
+                        </div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">
                           Integrasi {recommended[1]?.title} & User Training
                         </div>
                       </div>
@@ -846,9 +847,13 @@ export default function NeedsAnalysis() {
                       <div className="mb-1 text-xs font-bold text-slate-500 uppercase">
                         Bulan 4+
                       </div>
-                      <div className="rounded-lg border border-white/5 bg-slate-800 p-3 text-sm">
-                        <div className="mb-1 font-medium text-white">Optimization</div>
-                        <div className="text-xs text-slate-400">Full Automation & Dashboarding</div>
+                      <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm dark:border-white/5 dark:bg-slate-800">
+                        <div className="mb-1 font-medium text-slate-900 dark:text-white">
+                          Optimization
+                        </div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">
+                          Full Automation & Dashboarding
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -858,7 +863,7 @@ export default function NeedsAnalysis() {
               <div className="grid gap-6 md:grid-cols-2">
                 {/* 2. TECHNOLOGY SOLUTIONS */}
                 <div>
-                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-400 uppercase">
+                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
                     <Server className="size-4" /> Solusi Teknologi
                   </h3>
                   <div className="space-y-3">
@@ -871,8 +876,12 @@ export default function NeedsAnalysis() {
                           <Layers className="size-4" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-white">{mod.title}</h4>
-                          <p className="mt-1 line-clamp-2 text-xs text-slate-400">{mod.desc}</p>
+                          <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                            {mod.title}
+                          </h4>
+                          <p className="mt-1 line-clamp-2 text-xs text-slate-600 dark:text-slate-400">
+                            {mod.desc}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -881,7 +890,7 @@ export default function NeedsAnalysis() {
 
                 {/* 3. SERVICE SOLUTIONS */}
                 <div>
-                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-400 uppercase">
+                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
                     <Users className="size-4" /> Pendampingan (Services)
                   </h3>
                   <div className="space-y-3">
@@ -889,19 +898,23 @@ export default function NeedsAnalysis() {
                       recommendedServices.map((svc) => (
                         <div
                           key={svc.id}
-                          className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-900/20 to-slate-900 p-4"
+                          className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-100/50 to-slate-50 p-4 dark:from-emerald-900/20 dark:to-slate-900"
                         >
                           <div className="mt-1 rounded-lg bg-emerald-500/10 p-1.5 text-emerald-400">
                             <svc.icon className="size-4" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-white">{svc.title}</h4>
-                            <p className="mt-1 line-clamp-2 text-xs text-slate-400">{svc.desc}</p>
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                              {svc.title}
+                            </h4>
+                            <p className="mt-1 line-clamp-2 text-xs text-slate-600 dark:text-slate-400">
+                              {svc.desc}
+                            </p>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <div className="rounded-xl border border-dashed border-white/5 p-4 text-center text-sm text-slate-500">
+                      <div className="rounded-xl border border-dashed border-slate-300 p-4 text-center text-sm text-slate-500 dark:border-white/5 dark:text-slate-500">
                         Tidak ada rekomendasi service khusus diperlukan.
                       </div>
                     )}
@@ -912,7 +925,7 @@ export default function NeedsAnalysis() {
           </div>
 
           {/* NEXT STEPS / CROSS-SELL SECTION */}
-          <div className="mt-16 border-t border-white/10 pt-10 print:hidden">
+          <div className="mt-16 border-t border-slate-200 pt-10 dark:border-white/10 print:hidden">
             <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
               <Lightbulb className="size-5 text-amber-400" /> Langkah Selanjutnya
             </h3>
@@ -926,10 +939,10 @@ export default function NeedsAnalysis() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400 transition-colors group-hover:bg-blue-500 group-hover:text-white">
                   <Calculator className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-blue-400 dark:text-white">
                   Hitung Potensi ROI
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Hitung potensi penghematan operasional dan keuntungan investasi (ROI) dari solusi
                   ini.
                 </p>
@@ -946,10 +959,10 @@ export default function NeedsAnalysis() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
                   <PieChart className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-emerald-400 dark:text-white">
                   Maturity Assessment
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Belum yakin dengan skor kematangan Anda? Lakukan audit komprehensif (0-5 Level).
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-emerald-500">
@@ -965,10 +978,10 @@ export default function NeedsAnalysis() {
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 transition-colors group-hover:bg-amber-500 group-hover:text-white">
                   <Briefcase className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-amber-400 dark:text-white">
                   Konsultasi Ahli
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Diskusi mendalam tentang temuan ini dengan konsultan BizOps senior kami.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-amber-500">
@@ -981,7 +994,7 @@ export default function NeedsAnalysis() {
           <div className="mt-12 text-center print:hidden">
             <button
               onClick={handleReset}
-              className="mx-auto flex items-center justify-center gap-2 text-sm text-slate-500 transition-colors hover:text-white"
+              className="mx-auto flex items-center justify-center gap-2 text-sm text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-500 dark:hover:text-white"
             >
               <RefreshCw className="size-3" /> Ulangi Diagnosa
             </button>

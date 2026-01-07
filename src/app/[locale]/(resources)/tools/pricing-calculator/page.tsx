@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Award, Calculator, Lock, ShieldCheck } from "lucide-react";
-import { useState } from "react";
-import Container from "@/components/layout/Container";
-import PricingCalculator from "@/components/PricingCalculator";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, Award, Calculator, Lock, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import Container from '@/components/layout/Container';
+import PricingCalculator from '@/components/PricingCalculator';
 
 export default function PricingCalculatorPage() {
   const [isStarted, setIsStarted] = useState(false);
@@ -18,7 +18,7 @@ export default function PricingCalculatorPage() {
                 key="intro"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0, y: -20, transition: { duration: 0.4, ease: "easeInOut" } }}
+                exit={{ opacity: 0, y: -20, transition: { duration: 0.4, ease: 'easeInOut' } }}
                 className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6"
               >
                 <div className="pointer-events-none absolute inset-0">
@@ -38,7 +38,7 @@ export default function PricingCalculatorPage() {
                     className="text-primary-600 dark:text-primary-300 mb-8 inline-flex cursor-default items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-bold tracking-widest uppercase shadow-lg backdrop-blur-md transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
                   >
                     <Calculator className="h-3 w-3" />
-                    {" "}
+                    {' '}
                     Enterprise Cost Estimator
                   </motion.div>
 
@@ -49,7 +49,7 @@ export default function PricingCalculatorPage() {
                     className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-900 md:text-7xl dark:text-white"
                   >
                     Transparansi Biaya
-                    {" "}
+                    {' '}
                     <br />
                     <span className="bg-gradient-to-b from-slate-700 via-slate-600 to-slate-500 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-slate-500">
                       Transformasi Digital
@@ -103,9 +103,9 @@ export default function PricingCalculatorPage() {
           : (
               <motion.div
                 key="calculator"
-                initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
                 className="flex h-screen flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]"
               >
                 <div className="z-20 flex h-16 flex-shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-white/5 dark:bg-[#0B0F19]/80">

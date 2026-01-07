@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ThemeProvider } from "next-themes";
-import React from "react";
+import { ThemeProvider } from 'next-themes';
+import React from 'react';
 
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 type ProvidersProps = {
   children: React.ReactNode;

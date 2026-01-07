@@ -453,15 +453,15 @@ export default function TimelineGenerator() {
               {/* Action Buttons */}
               <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row">
                 <Button variant="outline" onClick={() => setStep('input')} className="gap-2">
-                  <RefreshCw className="size-4" />{' '}
-                  <span className="text-white dark:text-slate-600">Ubah Parameter</span>
+                  <RefreshCw className="size-4 text-slate-600 dark:text-white" />{' '}
+                  <span className="text-slate-600 dark:text-white">Ubah Parameter</span>
                 </Button>
                 <Button
                   onClick={() => window.print()}
                   className="shadow-primary-500/20 gap-2 shadow-lg"
                 >
-                  <Download className="size-4" />{' '}
-                  <span className="text-white dark:text-slate-600">Download Proposal PDF</span>
+                  <Download className="size-4 text-slate-600 dark:text-white" />{' '}
+                  <span className="text-slate-600 dark:text-white">Download Proposal PDF</span>
                 </Button>
               </div>
 

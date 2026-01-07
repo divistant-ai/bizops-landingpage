@@ -15,11 +15,11 @@ export default function EventsPage() {
   const [filter, setFilter] = useState<string>('All');
   const categories = ['All', 'Live Demo', 'Webinar', 'Masterclass'];
 
-  const filteredEvents =
-    filter === 'All'
+  const filteredEvents
+    = filter === 'All'
       ? eventsData.upcoming
       : eventsData.upcoming.filter(
-          (evt) =>
+          evt =>
             evt.type.includes(filter) || (filter === 'Webinar' && evt.type === 'Special Webinar'),
         );
 
@@ -74,7 +74,7 @@ export default function EventsPage() {
               />
             </div>
             <div className="flex w-full gap-2 overflow-x-auto px-2 pb-2 sm:w-auto sm:px-0 sm:pb-0">
-              {categories.map((cat) => (
+              {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
@@ -124,14 +124,18 @@ export default function EventsPage() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs font-bold tracking-wider text-white uppercase backdrop-blur">
-                        <Icon className="h-3 w-3" /> {evt.type}
+                        <Icon className="h-3 w-3" />
+                        {' '}
+                        {evt.type}
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
                     </div>
 
                     <div className="flex flex-1 flex-col gap-4 p-6">
                       <div className="text-primary-600 dark:text-primary-400 flex items-center gap-2 text-sm font-bold">
-                        <Calendar className="h-4 w-4" /> {evt.formattedDate}
+                        <Calendar className="h-4 w-4" />
+                        {' '}
+                        {evt.formattedDate}
                       </div>
 
                       <Typography
@@ -189,14 +193,18 @@ export default function EventsPage() {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs font-bold tracking-wider text-white uppercase backdrop-blur">
-                      <Icon className="h-3 w-3" /> {evt.type}
+                      <Icon className="h-3 w-3" />
+                      {' '}
+                      {evt.type}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
                   </div>
 
                   <div className="flex flex-1 flex-col gap-4 p-6">
                     <div className="text-primary-600 dark:text-primary-400 flex items-center gap-2 text-sm font-bold">
-                      <Calendar className="h-4 w-4" /> {evt.formattedDate}
+                      <Calendar className="h-4 w-4" />
+                      {' '}
+                      {evt.formattedDate}
                     </div>
 
                     <Typography
@@ -253,7 +261,11 @@ export default function EventsPage() {
                   <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
                     <span>{rec.duration}</span>
                     <span>•</span>
-                    <span>{rec.views} views</span>
+                    <span>
+                      {rec.views}
+                      {' '}
+                      views
+                    </span>
                   </div>
                 </div>
               ))}

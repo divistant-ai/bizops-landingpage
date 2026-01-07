@@ -8,21 +8,21 @@ import {
   TrendingUp,
   Users,
   Zap,
-} from "lucide-react";
-import Link from "next/link";
-import Container from "@/components/layout/Container";
-import { Grid, Typography } from "@/components/ui";
-import Accordion from "@/components/ui/Accordion";
-import Button from "@/components/ui/Button";
-import Stack from "@/components/ui/Stack";
-import { generateMetadata as genMeta } from "@/libs/utils/metadata";
-import { StartupHeroAnimated } from "./StartupHeroAnimated";
+} from 'lucide-react';
+import Link from 'next/link';
+import Container from '@/components/layout/Container';
+import { Grid, Typography } from '@/components/ui';
+import Accordion from '@/components/ui/Accordion';
+import Button from '@/components/ui/Button';
+import Stack from '@/components/ui/Stack';
+import { generateMetadata as genMeta } from '@/libs/utils/metadata';
+import { StartupHeroAnimated } from './StartupHeroAnimated';
 
 export const metadata = genMeta({
-  title: "Program BizOps for Startups | Diskon & Kredit Gratis",
+  title: 'Program BizOps for Startups | Diskon & Kredit Gratis',
   description:
-    "Program akselerasi eksklusif untuk startup. Dapatkan akses teknologi ERP kelas dunia dengan harga khusus agar Anda bisa fokus pada pertumbuhan.",
-  url: "/startup-program",
+    'Program akselerasi eksklusif untuk startup. Dapatkan akses teknologi ERP kelas dunia dengan harga khusus agar Anda bisa fokus pada pertumbuhan.',
+  url: '/startup-program',
 });
 
 export default function StartupProgramPage() {
@@ -210,7 +210,7 @@ export default function StartupProgramPage() {
                       </div>
                       <div className="flex items-center gap-1 text-xs font-bold text-green-500 dark:text-green-400">
                         <TrendingUp className="h-3 w-3" />
-                        {" "}
+                        {' '}
                         Healthy
                       </div>
                     </div>
@@ -489,20 +489,20 @@ export default function StartupProgramPage() {
           <Stack direction="vertical" gap={4} className="mt-8">
             {[
               {
-                q: "Apakah ada biaya tersembunyi?",
-                a: "Tidak ada. Diskon diberikan dimuka pada tagihan bulanan/tahunan. Setelah periode program berakhir (12 atau 24 bulan), tagihan akan kembali ke harga normal. Kami akan mengirimkan notifikasi 30 hari sebelumnya.",
+                q: 'Apakah ada biaya tersembunyi?',
+                a: 'Tidak ada. Diskon diberikan dimuka pada tagihan bulanan/tahunan. Setelah periode program berakhir (12 atau 24 bulan), tagihan akan kembali ke harga normal. Kami akan mengirimkan notifikasi 30 hari sebelumnya.',
               },
               {
-                q: "Bagaimana jika kami belum punya badan hukum?",
-                a: "Anda bisa mendaftar dengan nama tim sementara atau 'Stealth Mode'. Namun, untuk aktivasi lisensi komersial dan faktur pajak, kami memerlukan dokumen legalitas (NIB/SK Kemenkumham) dalam waktu 3 bulan setelah onboarding.",
+                q: 'Bagaimana jika kami belum punya badan hukum?',
+                a: 'Anda bisa mendaftar dengan nama tim sementara atau \'Stealth Mode\'. Namun, untuk aktivasi lisensi komersial dan faktur pajak, kami memerlukan dokumen legalitas (NIB/SK Kemenkumham) dalam waktu 3 bulan setelah onboarding.',
               },
               {
-                q: "Bisakah kami pindah ke Self-Hosted nanti?",
-                a: "Tentu saja. Salah satu keunggulan BizOps adalah Data Sovereignty. Jika startup Anda berkembang dan membutuhkan infrastruktur on-premise atau private cloud sendiri, kami menyediakan jalur migrasi data yang mulus.",
+                q: 'Bisakah kami pindah ke Self-Hosted nanti?',
+                a: 'Tentu saja. Salah satu keunggulan BizOps adalah Data Sovereignty. Jika startup Anda berkembang dan membutuhkan infrastruktur on-premise atau private cloud sendiri, kami menyediakan jalur migrasi data yang mulus.',
               },
               {
-                q: "Apakah ini termasuk support?",
-                a: "Ya. Paket startup mendapatkan akses Standard Support (Email & Chat) dengan SLA 24 jam. Untuk Scale-Up Track, Anda mendapatkan Prioritas Support dengan SLA 4 jam.",
+                q: 'Apakah ini termasuk support?',
+                a: 'Ya. Paket startup mendapatkan akses Standard Support (Email & Chat) dengan SLA 24 jam. Untuk Scale-Up Track, Anda mendapatkan Prioritas Support dengan SLA 4 jam.',
               },
             ].map((item, idx) => (
               <Accordion key={idx} question={item.q} answer={item.a} />

@@ -111,7 +111,7 @@ export default function ProductTourContent() {
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentScenario = scenarios.find((s) => s.id === activeId) || scenarios[0];
+  const currentScenario = scenarios.find(s => s.id === activeId) || scenarios[0];
 
   const switchScenario = (id: ScenarioType) => {
     if (id === activeId) {
@@ -126,7 +126,7 @@ export default function ProductTourContent() {
   const nextStep = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setStep((prev) => Math.min(prev + 1, 3));
+      setStep(prev => Math.min(prev + 1, 3));
       setIsLoading(false);
     }, 800);
   };
@@ -153,7 +153,9 @@ export default function ProductTourContent() {
             {/* Header Title */}
             <div>
               <div className="text-primary-300 mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold tracking-wider uppercase ring-1 ring-white/5 backdrop-blur-xl">
-                <MousePointer className="h-3 w-3 animate-bounce" /> Interactive Demo
+                <MousePointer className="h-3 w-3 animate-bounce" />
+                {' '}
+                Interactive Demo
               </div>
               <Typography
                 variant="h1"
@@ -175,7 +177,7 @@ export default function ProductTourContent() {
             {/* Mobile Scenario Selector */}
             <div className="scrollbar-hide -mx-4 w-full overflow-x-auto px-4 pb-4 lg:hidden">
               <div className="flex min-w-max gap-3">
-                {scenarios.map((sc) => (
+                {scenarios.map(sc => (
                   <button
                     key={sc.id}
                     onClick={() => switchScenario(sc.id)}
@@ -213,7 +215,7 @@ export default function ProductTourContent() {
               >
                 <span>Select Scenario</span>
               </Typography>
-              {scenarios.map((sc) => (
+              {scenarios.map(sc => (
                 <button
                   key={sc.id}
                   onClick={() => switchScenario(sc.id)}
@@ -300,29 +302,31 @@ export default function ProductTourContent() {
 
             {/* Device Frame */}
             <div className="flex w-full transform justify-center transition-all duration-500">
-              {currentScenario!.device === 'mobile' ? (
-                <div className="origin-top scale-[0.85] transform sm:scale-95 md:origin-center md:scale-100 lg:scale-90 xl:scale-100">
-                  <MobileFrame>
-                    <ScenarioContent
-                      id={activeId}
-                      step={step}
-                      onNext={nextStep}
-                      onReset={resetScenario}
-                    />
-                  </MobileFrame>
-                </div>
-              ) : (
-                <div className="-mt-4 w-full origin-top scale-[0.55] transform sm:scale-[0.75] md:-mt-0 md:origin-center md:scale-90 lg:scale-90 xl:scale-100">
-                  <DesktopFrame role={currentScenario!.role}>
-                    <ScenarioContent
-                      id={activeId}
-                      step={step}
-                      onNext={nextStep}
-                      onReset={resetScenario}
-                    />
-                  </DesktopFrame>
-                </div>
-              )}
+              {currentScenario!.device === 'mobile'
+                ? (
+                    <div className="origin-top scale-[0.85] transform sm:scale-95 md:origin-center md:scale-100 lg:scale-90 xl:scale-100">
+                      <MobileFrame>
+                        <ScenarioContent
+                          id={activeId}
+                          step={step}
+                          onNext={nextStep}
+                          onReset={resetScenario}
+                        />
+                      </MobileFrame>
+                    </div>
+                  )
+                : (
+                    <div className="-mt-4 w-full origin-top scale-[0.55] transform sm:scale-[0.75] md:-mt-0 md:origin-center md:scale-90 lg:scale-90 xl:scale-100">
+                      <DesktopFrame role={currentScenario!.role}>
+                        <ScenarioContent
+                          id={activeId}
+                          step={step}
+                          onNext={nextStep}
+                          onReset={resetScenario}
+                        />
+                      </DesktopFrame>
+                    </div>
+                  )}
             </div>
           </div>
         </Grid>
@@ -485,16 +489,22 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
         </div>
         <Stack direction="vertical" gap={1}>
           <div className="bg-primary-600/10 text-primary-600 border-primary-500/10 dark:text-primary-400 flex items-center gap-3 rounded-lg border px-3 py-2 text-xs font-medium md:py-2.5 md:text-sm">
-            <BarChart3 className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Dashboard</span>
+            <BarChart3 className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            {' '}
+            <span>Dashboard</span>
           </div>
           <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <Bell className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Inbox</span>
+            <Bell className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            {' '}
+            <span>Inbox</span>
             <span className="ml-auto rounded-md bg-red-500 px-1.5 py-0.5 text-[10px] font-bold text-white shadow-md shadow-red-500/20">
               3
             </span>
           </div>
           <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Reports</span>
+            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            {' '}
+            <span>Reports</span>
           </div>
         </Stack>
         <div className="mt-auto flex items-center gap-3 border-t border-slate-300/50 pt-4 dark:border-slate-800/50">
@@ -506,7 +516,8 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
               <span>{role}</span>
             </div>
             <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
-              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600 dark:bg-emerald-400"></div>{' '}
+              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600 dark:bg-emerald-400"></div>
+              {' '}
               <span>Online</span>
             </div>
           </div>
@@ -515,7 +526,10 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
       <div className="relative flex flex-1 flex-col overflow-hidden bg-slate-100 dark:bg-slate-900">
         <div className="z-10 flex h-12 items-center justify-between border-b border-slate-200 bg-slate-100/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-slate-100/60 md:h-16 md:px-6 dark:border-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
           <div className="flex items-center gap-2 text-xs font-medium text-slate-600 md:text-sm dark:text-slate-400">
-            <span className="text-slate-500">Workspace</span> <ChevronRight className="h-3 w-3" />{' '}
+            <span className="text-slate-500">Workspace</span>
+            {' '}
+            <ChevronRight className="h-3 w-3" />
+            {' '}
             <span className="text-slate-900 dark:text-white">Desk</span>
           </div>
         </div>
@@ -562,7 +576,8 @@ const ScenarioContent: React.FC<{
             onClick={onReset}
             className="group flex items-center justify-center gap-2 py-2 text-sm text-slate-500 transition-colors hover:text-slate-900 dark:hover:text-white"
           >
-            <RefreshCw className="h-3 w-3 transition-transform duration-500 group-hover:rotate-180" />{' '}
+            <RefreshCw className="h-3 w-3 transition-transform duration-500 group-hover:rotate-180" />
+            {' '}
             <span>Ulangi Simulasi</span>
           </button>
         </Stack>
@@ -603,7 +618,7 @@ const ScenarioContent: React.FC<{
             <div className="mb-2 px-1 text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-500">
               <span>Recent Drafts</span>
             </div>
-            {[1, 2].map((i) => (
+            {[1, 2].map(i => (
               <div
                 key={i}
                 className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50/50 p-4 transition-colors hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:bg-slate-800"
@@ -614,7 +629,9 @@ const ScenarioContent: React.FC<{
                   </div>
                   <div className="mt-1 text-xs text-slate-500">
                     QT-2023-00
-                    {i} • IDR 25.000.000
+                    {i}
+                    {' '}
+                    • IDR 25.000.000
                   </div>
                 </div>
                 <Badge
@@ -728,13 +745,17 @@ const ScenarioContent: React.FC<{
                 onClick={onNext}
                 className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] p-4 font-bold text-white shadow-lg shadow-green-900/20 transition-transform hover:bg-[#20bd5a] active:scale-95"
               >
-                <Send className="h-5 w-5" /> <span>Kirim via WhatsApp</span>
+                <Send className="h-5 w-5" />
+                {' '}
+                <span>Kirim via WhatsApp</span>
               </button>
               <button
                 onClick={onNext}
                 className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-100 p-4 font-bold text-slate-700 transition-colors hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
               >
-                <Users className="h-5 w-5" /> <span>Kirim Email</span>
+                <Users className="h-5 w-5" />
+                {' '}
+                <span>Kirim Email</span>
               </button>
             </Stack>
           </Stack>
@@ -763,7 +784,9 @@ const ScenarioContent: React.FC<{
         <Typography variant="small" className="text-slate-600 dark:text-slate-400">
           <span>
             Step
-            {step + 1} of 3
+            {step + 1}
+            {' '}
+            of 3
           </span>
         </Typography>
       </div>
