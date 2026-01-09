@@ -89,6 +89,8 @@ export default function ComparisonsContent() {
           </Typography>
           <Typography variant="body" className="leading-relaxed text-slate-600 dark:text-slate-400">
             Bandingkan arsitektur sistem Anda saat ini dengan
+            {' '}
+
             <span className="font-semibold text-slate-900 dark:text-white">BizOps Evolution</span>
             .
             Lihat perbedaannya secara radikal.
@@ -418,8 +420,7 @@ export default function ComparisonsContent() {
                         <Typography variant="h3" as="h3" className="font-bold">
                           <AlertTriangle className="mr-2 inline h-6 w-6 text-amber-500" />
                           {' '}
-                          Why
-                          Upgrade Now?
+                          <span className="text-white">Why Upgrade Now?</span>
                         </Typography>
                         <Typography variant="body" className="leading-relaxed text-slate-400">
                           Sistem lama Anda memiliki keterbatasan yang menahan laju pertumbuhan.

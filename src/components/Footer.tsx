@@ -100,7 +100,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon: Icon, label }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="hover:border-primary-500 hover:bg-primary-500 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:text-slate-800 dark:hover:text-white dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-950"
+    className="hover:border-primary-500 hover:bg-primary-500 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-950 dark:hover:text-white"
   >
     <Icon className="h-5 w-5" />
   </a>

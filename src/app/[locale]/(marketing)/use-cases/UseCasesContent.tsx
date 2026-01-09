@@ -75,17 +75,17 @@ export default function UseCasesContent() {
   const cases = Object.values(useCasesData);
 
   // Extract unique industries and categories
-  const industries = ['All', ...Array.from(new Set(cases.map((c) => c.industry))).sort()];
-  const categories = ['All', ...Array.from(new Set(cases.map((c) => c.category))).sort()];
+  const industries = ['All', ...Array.from(new Set(cases.map(c => c.industry))).sort()];
+  const categories = ['All', ...Array.from(new Set(cases.map(c => c.category))).sort()];
 
   // Filtering Logic
   const filteredCases = cases.filter((c) => {
     const matchIndustry = selectedIndustry === 'All' || c.industry === selectedIndustry;
     const matchCategory = selectedCategory === 'All' || c.category === selectedCategory;
-    const matchSearch =
-      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchSearch
+      = c.title.toLowerCase().includes(searchQuery.toLowerCase())
+        || c.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
+        || c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
     return matchIndustry && matchCategory && matchSearch;
   });
 
@@ -110,23 +110,23 @@ export default function UseCasesContent() {
   const getIndustryCount = (industry: string) => {
     let filtered = cases;
     if (selectedCategory !== 'All') {
-      filtered = filtered.filter((c) => c.category === selectedCategory);
+      filtered = filtered.filter(c => c.category === selectedCategory);
     }
     if (industry === 'All') {
       return filtered.length;
     }
-    return filtered.filter((c) => c.industry === industry).length;
+    return filtered.filter(c => c.industry === industry).length;
   };
 
   const getCategoryCount = (category: string) => {
     let filtered = cases;
     if (selectedIndustry !== 'All') {
-      filtered = filtered.filter((c) => c.industry === selectedIndustry);
+      filtered = filtered.filter(c => c.industry === selectedIndustry);
     }
     if (category === 'All') {
       return filtered.length;
     }
-    return filtered.filter((c) => c.category === category).length;
+    return filtered.filter(c => c.category === category).length;
   };
 
   return (
@@ -187,7 +187,7 @@ export default function UseCasesContent() {
                 type="text"
                 placeholder="Cari studi kasus..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-200 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
               {searchQuery && (
@@ -216,7 +216,7 @@ export default function UseCasesContent() {
                   Industry
                 </h3>
                 <div className="space-y-2">
-                  {industries.map((industry) => (
+                  {industries.map(industry => (
                     <button
                       key={industry}
                       onClick={() => setSelectedIndustry(industry)}
@@ -228,7 +228,9 @@ export default function UseCasesContent() {
                     >
                       <span>{industry}</span>
                       <span className="float-right text-xs opacity-70">
-                        ({getIndustryCount(industry)})
+                        (
+                        {getIndustryCount(industry)}
+                        )
                       </span>
                     </button>
                   ))}
@@ -241,7 +243,7 @@ export default function UseCasesContent() {
                   Category
                 </h3>
                 <div className="space-y-2">
-                  {categories.map((category) => (
+                  {categories.map(category => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
@@ -253,7 +255,9 @@ export default function UseCasesContent() {
                     >
                       <span>{category}</span>
                       <span className="float-right text-xs opacity-70">
-                        ({getCategoryCount(category)})
+                        (
+                        {getCategoryCount(category)}
+                        )
                       </span>
                     </button>
                   ))}
@@ -281,10 +285,12 @@ export default function UseCasesContent() {
           <div className="lg:col-span-9">
             <div className="mb-8 flex items-center justify-between">
               <p className="text-slate-600 dark:text-slate-400">
-                Menampilkan{' '}
+                Menampilkan
+                {' '}
                 <span className="font-bold text-slate-900 dark:text-white">
                   {filteredCases.length}
-                </span>{' '}
+                </span>
+                {' '}
                 studi kasus
               </p>
             </div>
@@ -368,7 +374,9 @@ export default function UseCasesContent() {
                               )}
 
                               <div className="text-primary-600 dark:text-primary-400 mt-6 flex items-center text-sm font-bold transition-all group-hover:gap-2">
-                                Baca Studi Kasus <ArrowRight className="ml-1 h-4 w-4" />
+                                Baca Studi Kasus
+                                {' '}
+                                <ArrowRight className="ml-1 h-4 w-4" />
                               </div>
                             </article>
                           </SpotlightCard>

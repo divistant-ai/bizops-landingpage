@@ -125,8 +125,8 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
   // Normalize CTA
   const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || 'Jadwalkan Demo';
-  const ctaHeadText =
-    typeof data.cta === 'string' ? 'Siap Memulai?' : data.cta?.head || 'Siap untuk Transformasi?';
+  const ctaHeadText
+    = typeof data.cta === 'string' ? 'Siap Memulai?' : data.cta?.head || 'Siap untuk Transformasi?';
 
   return (
     <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
@@ -172,7 +172,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                     size="lg"
                     className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
                   >
-                    {ctaBtnText} <ArrowRight className="ml-2 h-4 w-4" />
+                    {ctaBtnText}
+                    {' '}
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
 
@@ -445,7 +447,8 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       </div>
                       <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
                         {f.title || f.desc}
-                      </h3>{' '}
+                      </h3>
+                      {' '}
                       {/* Handle generic lists */}
                       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
                         {f.desc || f.description}
@@ -581,7 +584,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   {data.caseStudy || 'Lihat bagaimana klien kami bertransformasi.'}
                 </p>
                 <Button variant="white" className="rounded-full">
-                  Baca Use Case Lengkap <ChevronRight className="ml-2 h-4 w-4" />
+                  Baca Use Case Lengkap
+                  {' '}
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
 
@@ -589,19 +594,23 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 <div className="relative rounded-3xl border border-white/10 bg-slate-50 p-8 backdrop-blur-md md:p-10 dark:bg-white/10">
                   <Quote className="text-primary-400 mb-6 h-10 w-10 opacity-50" />
                   <p className="mb-8 text-lg leading-relaxed font-medium text-slate-950 italic md:text-xl dark:text-white">
-                    "{data.testimonial.quote}"
+                    "
+                    {data.testimonial.quote}
+                    "
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-slate-800 dark:text-white">
-                      {data.testimonial.avatar?.includes('http') ? (
-                        <img
-                          src={data.testimonial.avatar}
-                          alt={data.testimonial.author}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        data.testimonial.author.charAt(0)
-                      )}
+                      {data.testimonial.avatar?.includes('http')
+                        ? (
+                            <img
+                              src={data.testimonial.avatar}
+                              alt={data.testimonial.author}
+                              className="h-full w-full object-cover"
+                            />
+                          )
+                        : (
+                            data.testimonial.author.charAt(0)
+                          )}
                     </div>
                     <div>
                       <div className="font-bold text-slate-800 dark:text-white">
@@ -626,7 +635,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 Common Questions
               </h2>
             </div>
-            <FAQAccordion faqs={data.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
+            <FAQAccordion faqs={data.faqs.map(f => ({ q: f.question, a: f.answer }))} />
           </Container>
         </Section>
       )}

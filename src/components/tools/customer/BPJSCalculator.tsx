@@ -222,7 +222,7 @@ export default function BPJSCalculator() {
                 <select
                   id="jkk-rate"
                   value={jkkRate}
-                  onChange={(e) => setJkkRate(Number.parseFloat(e.target.value))}
+                  onChange={e => setJkkRate(Number.parseFloat(e.target.value))}
                   className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-label="Pilih tingkat risiko pekerjaan"
                 >
@@ -244,17 +244,19 @@ export default function BPJSCalculator() {
                 disabled={isCalculating}
                 aria-label="Hitung iuran BPJS"
               >
-                {isCalculating ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Menghitung...
-                  </>
-                ) : (
-                  <>
-                    <Shield className="mr-2 h-5 w-5" />
-                    Hitung Iuran BPJS
-                  </>
-                )}
+                {isCalculating
+                  ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Menghitung...
+                      </>
+                    )
+                  : (
+                      <>
+                        <Shield className="mr-2 h-5 w-5" />
+                        Hitung Iuran BPJS
+                      </>
+                    )}
               </Button>
             </div>
 
@@ -273,153 +275,156 @@ export default function BPJSCalculator() {
           </Card>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan BPJS"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-teal-600 to-blue-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">Total Iuran BPJS</h3>
-                  <div className="mb-4 text-center">
-                    <p className="text-sm text-teal-100">Total Iuran per Bulan</p>
-                    <p className="text-3xl font-bold">{formatCurrency(result.grandTotal)}</p>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan BPJS"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-teal-600 to-blue-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">Total Iuran BPJS</h3>
+                      <div className="mb-4 text-center">
+                        <p className="text-sm text-teal-100">Total Iuran per Bulan</p>
+                        <p className="text-3xl font-bold">{formatCurrency(result.grandTotal)}</p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 border-t border-white/20 pt-4">
+                        <div>
+                          <p className="text-xs text-teal-100">Potongan Karyawan</p>
+                          <p className="text-xl font-bold">{formatCurrency(result.totalEmployee)}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-teal-100">Beban Perusahaan</p>
+                          <p className="text-xl font-bold">{formatCurrency(result.totalEmployer)}</p>
+                        </div>
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
+                        <Shield className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+                        BPJS Kesehatan
+                      </h3>
+                      <div className="space-y-3">
+                        <div className="flex justify-between rounded-lg bg-teal-50 px-4 py-3 dark:bg-teal-950/20">
+                          <span className="text-sm text-slate-700 dark:text-slate-300">
+                            Karyawan (1%)
+                          </span>
+                          <span className="font-semibold text-teal-600 dark:text-teal-400">
+                            {formatCurrency(result.kesehatan.employeeContribution)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                          <span className="text-sm text-slate-700 dark:text-slate-300">
+                            Perusahaan (4%)
+                          </span>
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
+                            {formatCurrency(result.kesehatan.employerContribution)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                          <span className="font-medium text-slate-900 dark:text-white">
+                            Total BPJS Kesehatan
+                          </span>
+                          <span className="font-bold text-slate-900 dark:text-white">
+                            {formatCurrency(result.kesehatan.total)}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
+                        <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        BPJS Ketenagakerjaan
+                      </h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
+                          <p className="mb-2 font-medium text-slate-900 dark:text-white">
+                            Jaminan Hari Tua (JHT)
+                          </p>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-600 dark:text-slate-400">Karyawan (2%)</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jht.employee)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-600 dark:text-slate-400">
+                              Perusahaan (3.7%)
+                            </span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jht.employer)}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
+                          <p className="mb-2 font-medium text-slate-900 dark:text-white">
+                            Jaminan Pensiun (JP)
+                          </p>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-600 dark:text-slate-400">Karyawan (1%)</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jp.employee)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-600 dark:text-slate-400">Perusahaan (2%)</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jp.employer)}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                          <span className="text-slate-700 dark:text-slate-300">
+                            JKK (
+                            {jkkRate}
+                            %)
+                          </span>
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
+                            {formatCurrency(result.ketenagakerjaan.jkk)}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                          <span className="text-slate-700 dark:text-slate-300">JKM (0.3%)</span>
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
+                            {formatCurrency(result.ketenagakerjaan.jkm)}
+                          </span>
+                        </div>
+
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                          <span className="font-medium text-slate-900 dark:text-white">
+                            Total BPJS Ketenagakerjaan
+                          </span>
+                          <span className="font-bold text-slate-900 dark:text-white">
+                            {formatCurrency(result.ketenagakerjaan.total)}
+                          </span>
+                        </div>
+                      </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 border-t border-white/20 pt-4">
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
                     <div>
-                      <p className="text-xs text-teal-100">Potongan Karyawan</p>
-                      <p className="text-xl font-bold">{formatCurrency(result.totalEmployee)}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-teal-100">Beban Perusahaan</p>
-                      <p className="text-xl font-bold">{formatCurrency(result.totalEmployer)}</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                    <Shield className="h-5 w-5 text-teal-600 dark:text-teal-400" />
-                    BPJS Kesehatan
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between rounded-lg bg-teal-50 px-4 py-3 dark:bg-teal-950/20">
-                      <span className="text-sm text-slate-700 dark:text-slate-300">
-                        Karyawan (1%)
-                      </span>
-                      <span className="font-semibold text-teal-600 dark:text-teal-400">
-                        {formatCurrency(result.kesehatan.employeeContribution)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
-                      <span className="text-sm text-slate-700 dark:text-slate-300">
-                        Perusahaan (4%)
-                      </span>
-                      <span className="font-semibold text-blue-600 dark:text-blue-400">
-                        {formatCurrency(result.kesehatan.employerContribution)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between border-t pt-2 dark:border-slate-700">
-                      <span className="font-medium text-slate-900 dark:text-white">
-                        Total BPJS Kesehatan
-                      </span>
-                      <span className="font-bold text-slate-900 dark:text-white">
-                        {formatCurrency(result.kesehatan.total)}
-                      </span>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                    <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    BPJS Ketenagakerjaan
-                  </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
-                      <p className="mb-2 font-medium text-slate-900 dark:text-white">
-                        Jaminan Hari Tua (JHT)
+                      <Shield className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">
+                        Masukkan gaji dan klik tombol hitung
                       </p>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600 dark:text-slate-400">Karyawan (2%)</span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.ketenagakerjaan.jht.employee)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600 dark:text-slate-400">
-                          Perusahaan (3.7%)
-                        </span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.ketenagakerjaan.jht.employer)}
-                        </span>
-                      </div>
                     </div>
-
-                    <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
-                      <p className="mb-2 font-medium text-slate-900 dark:text-white">
-                        Jaminan Pensiun (JP)
-                      </p>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600 dark:text-slate-400">Karyawan (1%)</span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.ketenagakerjaan.jp.employee)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600 dark:text-slate-400">Perusahaan (2%)</span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.ketenagakerjaan.jp.employer)}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
-                      <span className="text-slate-700 dark:text-slate-300">
-                        JKK ({jkkRate}
-                        %)
-                      </span>
-                      <span className="font-semibold text-blue-600 dark:text-blue-400">
-                        {formatCurrency(result.ketenagakerjaan.jkk)}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
-                      <span className="text-slate-700 dark:text-slate-300">JKM (0.3%)</span>
-                      <span className="font-semibold text-blue-600 dark:text-blue-400">
-                        {formatCurrency(result.ketenagakerjaan.jkm)}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between border-t pt-2 dark:border-slate-700">
-                      <span className="font-medium text-slate-900 dark:text-white">
-                        Total BPJS Ketenagakerjaan
-                      </span>
-                      <span className="font-bold text-slate-900 dark:text-white">
-                        {formatCurrency(result.ketenagakerjaan.total)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Shield className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">
-                    Masukkan gaji dan klik tombol hitung
-                  </p>
-                </div>
-              </Card>
-            )}
+                  </Card>
+                )}
           </div>
         </div>
 

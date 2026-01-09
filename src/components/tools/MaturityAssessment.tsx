@@ -552,26 +552,95 @@ export default function MaturityAssessment() {
   // 3. ANALYZING / LOADING
   if (viewState === 'analyzing') {
     return (
-      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white text-center dark:bg-slate-950">
-        <div className="absolute inset-0 bg-slate-950">
-          <div className="bg-primary-900/20 absolute top-1/2 left-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full blur-[100px]" />
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 text-center dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="bg-primary-500/20 dark:bg-primary-500/10 absolute top-1/4 -left-20 size-72 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: 1,
+            }}
+            className="absolute -right-20 bottom-1/4 size-96 rounded-full bg-blue-500/20 blur-3xl dark:bg-blue-500/10"
+          />
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 px-4">
+          {/* Spinning Icon */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            className="relative mb-8"
+            className="relative mx-auto mb-8 flex size-32 items-center justify-center"
           >
-            <div className="border-t-primary-500 size-24 rounded-full border-4 border-slate-800" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Cpu className="text-primary-500 size-8" />
+            <div className="absolute inset-0 rounded-full border-4 border-slate-200 dark:border-slate-800" />
+            <div className="border-t-primary-600 dark:border-t-primary-500 absolute inset-0 rounded-full border-4 border-r-transparent border-b-transparent border-l-transparent" />
+            <div className="bg-primary-100 dark:bg-primary-900/30 flex size-20 items-center justify-center rounded-full">
+              <Cpu className="text-primary-600 dark:text-primary-400 size-10" />
             </div>
           </motion.div>
-          <h2 className="mb-3 text-3xl font-bold text-white">Memproses Hasil Assessment...</h2>
-          <p className="text-slate-400">
-            Sistem sedang mengkalkulasi skor dan menyusun rekomendasi strategis Anda.
-          </p>
+
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
+              Memproses Hasil Assessment
+            </h2>
+            <p className="mx-auto mb-8 max-w-md text-lg text-slate-600 dark:text-slate-400">
+              Sistem sedang mengkalkulasi skor dan menyusun rekomendasi strategis untuk bisnis Anda
+            </p>
+
+            {/* Progress Steps */}
+            <div className="mx-auto max-w-lg space-y-3">
+              {[
+                { label: 'Menganalisis jawaban', delay: 0 },
+                { label: 'Menghitung skor maturity', delay: 0.5 },
+                { label: 'Menyusun rekomendasi', delay: 1 },
+              ].map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: step.delay }}
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/80 px-4 py-3 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/80"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: step.delay,
+                    }}
+                    className="bg-primary-100 dark:bg-primary-900/30 flex size-8 items-center justify-center rounded-full"
+                  >
+                    <CheckCircle className="text-primary-600 dark:text-primary-400 size-5" />
+                  </motion.div>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    {step.label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     );
@@ -586,11 +655,11 @@ export default function MaturityAssessment() {
       <div className="min-h-screen bg-white px-4 pt-24 pb-12 text-slate-900 sm:px-6 lg:px-8 dark:bg-slate-950 dark:text-white print:bg-white print:pt-0 print:pb-0 print:text-black">
         <div className="mx-auto max-w-6xl">
           {/* REPORT HEADER */}
-          <div className="relative mb-8 rounded-2xl border border-white/10 bg-slate-900/50 p-6 print:rounded-none print:border-b-2 print:border-gray-200 print:bg-transparent print:pb-8 print:shadow-none">
+          <div className="relative mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg dark:border-white/10 dark:bg-slate-900/50 print:rounded-none print:border-b-2 print:border-gray-200 print:bg-transparent print:pb-8 print:shadow-none">
             <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <div className="mb-3 flex items-center gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-green-800 bg-green-900/30 px-3 py-1 text-xs font-bold tracking-wider text-green-400 uppercase print:hidden">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-green-600 bg-green-100 px-3 py-1 text-xs font-bold tracking-wider text-green-700 uppercase dark:border-green-800 dark:bg-green-900/30 dark:text-green-400 print:hidden">
                     <CheckCircle className="size-3" /> Assessment Completed
                   </div>
                   <button
@@ -603,18 +672,18 @@ export default function MaturityAssessment() {
                   </button>
                 </div>
 
-                <h1 className="text-3xl font-bold text-white print:text-black">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white print:text-black">
                   Laporan Digital Maturity
                 </h1>
-                <p className="mt-1 text-sm text-slate-400 print:text-gray-500">
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400 print:text-gray-500">
                   ID Dokumen: {`RPT-${new Date().getFullYear()}${Math.floor(Math.random() * 1000)}`}
                 </p>
               </div>
 
               {/* User Details Grid */}
-              <div className="grid grid-cols-2 gap-x-8 gap-y-2 rounded-xl border border-white/5 bg-slate-950/50 p-4 text-sm text-slate-300 print:border-gray-200 print:bg-gray-50 print:text-gray-800">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 dark:border-white/5 dark:bg-slate-950/50 dark:text-slate-300 print:border-gray-200 print:bg-gray-50 print:text-gray-800">
                 <div className="flex items-center gap-2">
-                  <Building2 className="text-primary-400 size-4 print:text-slate-600" />
+                  <Building2 className="text-primary-600 dark:text-primary-400 size-4 print:text-slate-600" />
                   <span className="font-semibold">{leadForm.company}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -636,8 +705,8 @@ export default function MaturityAssessment() {
           <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-12 print:mb-6 print:gap-8">
             {/* LEFT: Executive Summary & Score */}
             <div className="space-y-6 lg:col-span-4">
-              <div className="h-fit rounded-3xl border border-white/10 bg-slate-900/50 p-1 shadow-2xl backdrop-blur-sm print:border-gray-300 print:bg-white print:text-black">
-                <div className="relative flex flex-col items-center overflow-hidden rounded-[22px] bg-slate-900/80 p-8 text-center print:bg-white print:p-0 print:pt-4 print:shadow-none">
+              <div className="h-fit rounded-3xl border border-slate-200 bg-white p-1 shadow-2xl backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50 print:border-gray-300 print:bg-white print:text-black">
+                <div className="relative flex flex-col items-center overflow-hidden rounded-[22px] bg-slate-50 p-8 text-center dark:bg-slate-900/80 print:bg-white print:p-0 print:pt-4 print:shadow-none">
                   <div className="relative mb-6 flex size-40 items-center justify-center">
                     <svg className="size-full -rotate-90 transform">
                       <circle
@@ -647,7 +716,7 @@ export default function MaturityAssessment() {
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="10"
-                        className="text-slate-800 print:text-gray-200"
+                        className="text-slate-200 dark:text-slate-800 print:text-gray-200"
                       />
                       <circle
                         cx="80"
@@ -674,7 +743,7 @@ export default function MaturityAssessment() {
                     </div>
                   </div>
 
-                  <h2 className="mb-2 text-xl font-bold text-white print:text-black">
+                  <h2 className="mb-2 text-xl font-bold text-slate-900 dark:text-white print:text-black">
                     {results.maturityLevel.title}
                   </h2>
                   <div
@@ -686,11 +755,11 @@ export default function MaturityAssessment() {
               </div>
 
               {/* Executive Summary Text */}
-              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6 print:border-gray-300 print:bg-white">
-                <h3 className="mb-3 text-sm font-bold tracking-widest text-slate-400 uppercase print:text-black">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-white/10 dark:bg-slate-900/50 print:border-gray-300 print:bg-white">
+                <h3 className="mb-3 text-sm font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400 print:text-black">
                   Executive Summary
                 </h3>
-                <p className="mb-4 text-sm leading-relaxed text-slate-300 print:text-slate-700">
+                <p className="mb-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 print:text-slate-700">
                   Perusahaan Anda berada pada tahap <strong>{results.maturityLevel.title}</strong>.{' '}
                   {results.maturityLevel.description}
                   <br />
@@ -710,9 +779,9 @@ export default function MaturityAssessment() {
             {/* RIGHT: Detailed Analysis */}
             <div className="space-y-8 lg:col-span-8">
               {/* Chart */}
-              <div className="rounded-3xl border border-white/10 bg-slate-900/50 p-8 backdrop-blur-sm print:break-inside-avoid print:border-gray-300 print:bg-white print:text-black">
-                <h3 className="mb-8 flex items-center text-xl font-bold text-white print:text-black">
-                  <BarChart className="text-primary-500 mr-3 size-6 print:text-black" />
+              <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50 print:break-inside-avoid print:border-gray-300 print:bg-white print:text-black">
+                <h3 className="mb-8 flex items-center text-xl font-bold text-slate-900 dark:text-white print:text-black">
+                  <BarChart className="text-primary-600 dark:text-primary-500 mr-3 size-6 print:text-black" />
                   Analisis per Dimensi
                 </h3>
 
@@ -725,17 +794,17 @@ export default function MaturityAssessment() {
                     return (
                       <div key={cat} className="print:break-inside-avoid">
                         <div className="mb-2 flex items-center justify-between">
-                          <span className="flex items-center gap-3 font-medium text-slate-300 print:text-black">
-                            <span className="rounded-lg bg-slate-800 p-1.5 text-slate-400 print:hidden">
+                          <span className="flex items-center gap-3 font-medium text-slate-700 dark:text-slate-300 print:text-black">
+                            <span className="rounded-lg bg-slate-100 p-1.5 text-slate-600 dark:bg-slate-800 dark:text-slate-400 print:hidden">
                               {categoryIcons[catKey]}
                             </span>
                             {categoryLabels[catKey]}
                           </span>
-                          <span className="rounded-lg border border-white/5 bg-slate-800 px-3 py-1 font-bold text-white print:border-gray-300 print:bg-white print:text-black">
+                          <span className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1 font-bold text-slate-900 dark:border-white/5 dark:bg-slate-800 dark:text-white print:border-gray-300 print:bg-white print:text-black">
                             {score.toFixed(1)}
                           </span>
                         </div>
-                        <div className="h-4 w-full rounded-full border border-white/5 bg-slate-800 p-1 print:bg-gray-200">
+                        <div className="h-4 w-full rounded-full border border-slate-200 bg-slate-100 p-1 dark:border-white/5 dark:bg-slate-800 print:bg-gray-200">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${percentage}%` }}
@@ -756,9 +825,9 @@ export default function MaturityAssessment() {
               </div>
 
               {/* Recommendations Grid */}
-              <div className="rounded-3xl border border-white/10 bg-slate-900/50 p-8 backdrop-blur-sm print:border-gray-300 print:bg-white print:text-black">
-                <h3 className="mb-8 flex items-center text-xl font-bold text-white print:text-black">
-                  <Crosshair className="text-secondary-500 mr-3 size-6 print:text-black" />
+              <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-slate-900/50 print:border-gray-300 print:bg-white print:text-black">
+                <h3 className="mb-8 flex items-center text-xl font-bold text-slate-900 dark:text-white print:text-black">
+                  <Crosshair className="text-secondary-600 dark:text-secondary-500 mr-3 size-6 print:text-black" />
                   Rekomendasi Strategis
                 </h3>
 
@@ -777,10 +846,10 @@ export default function MaturityAssessment() {
                     return (
                       <div
                         key={cat}
-                        className="group hover:border-primary-500/30 rounded-2xl border border-white/5 bg-slate-800/50 p-6 transition-all hover:bg-slate-800 print:break-inside-avoid print:border-gray-200 print:bg-gray-50"
+                        className="group hover:border-primary-300 dark:hover:border-primary-500/30 rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all hover:bg-slate-100 hover:shadow-md dark:border-white/5 dark:bg-slate-800/50 dark:hover:bg-slate-800 print:break-inside-avoid print:border-gray-200 print:bg-gray-50"
                       >
                         <div className="mb-4 flex items-start justify-between">
-                          <h4 className="group-hover:text-primary-400 text-sm font-semibold tracking-wider text-slate-400 uppercase transition-colors print:text-black">
+                          <h4 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-sm font-semibold tracking-wider text-slate-600 uppercase transition-colors dark:text-slate-400 print:text-black">
                             {categoryLabels[catKey]}
                           </h4>
                           <span
@@ -793,17 +862,17 @@ export default function MaturityAssessment() {
                             {score < 3 ? 'Priority' : 'On Track'}
                           </span>
                         </div>
-                        <p className="mb-3 text-lg font-bold text-white print:text-black">
+                        <p className="mb-3 text-lg font-bold text-slate-900 dark:text-white print:text-black">
                           {rec.title}
                         </p>
-                        <p className="mb-5 text-sm leading-relaxed text-slate-400 print:text-slate-700">
+                        <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-400 print:text-slate-700">
                           {rec.advice}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {rec.modules.map((m: string) => (
                             <span
                               key={m}
-                              className="rounded-lg border border-white/10 bg-slate-950 px-3 py-1.5 text-[10px] font-medium text-slate-300 group-hover:border-white/20 print:border-gray-400 print:bg-white print:text-black"
+                              className="group-hover:border-primary-300 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-[10px] font-medium text-slate-700 dark:border-white/10 dark:bg-slate-950 dark:text-slate-300 dark:group-hover:border-white/20 print:border-gray-400 print:bg-white print:text-black"
                             >
                               {m}
                             </span>
@@ -818,28 +887,29 @@ export default function MaturityAssessment() {
           </div>
 
           {/* NEXT STEPS / CROSS-SELL SECTION */}
-          <div className="mt-16 break-before-page border-t border-white/10 pt-10 pb-24 print:hidden">
-            <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
-              <Lightbulb className="size-5 text-amber-400" /> Rekomendasi Tindak Lanjut
+          <div className="mt-16 break-before-page border-t border-slate-200 pt-10 pb-24 dark:border-white/10 print:hidden">
+            <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+              <Lightbulb className="size-5 text-amber-500 dark:text-amber-400" /> Rekomendasi Tindak
+              Lanjut
             </h3>
 
             <div className="grid gap-5 md:grid-cols-3">
               {/* Solution Finder */}
               <Link
                 href="/tools/needs-analysis"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-blue-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-md transition-all hover:border-blue-400 hover:bg-blue-50 hover:shadow-lg dark:border-white/5 dark:bg-slate-900/40 dark:hover:border-blue-500/30 dark:hover:bg-slate-800"
               >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 transition-colors group-hover:bg-blue-500 group-hover:text-white dark:bg-blue-500/10 dark:text-blue-400">
                   <Search className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-blue-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
                   Solution Finder
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Diagnosis spesifik untuk menemukan modul software yang tepat mengatasi gap skor
                   Anda.
                 </p>
-                <div className="mt-4 flex items-center text-xs font-bold text-blue-500">
+                <div className="mt-4 flex items-center text-xs font-bold text-blue-600 dark:text-blue-500">
                   Cari Solusi <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
@@ -847,19 +917,19 @@ export default function MaturityAssessment() {
               {/* ROI Calculator */}
               <Link
                 href="/pricing/calculator"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-emerald-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-md transition-all hover:border-emerald-400 hover:bg-emerald-50 hover:shadow-lg dark:border-white/5 dark:bg-slate-900/40 dark:hover:border-emerald-500/30 dark:hover:bg-slate-800"
               >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
+                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white dark:bg-emerald-500/10 dark:text-emerald-400">
                   <Calculator className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-emerald-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-emerald-600 dark:text-white dark:group-hover:text-emerald-400">
                   Estimasi Investasi
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Hitung biaya implementasi digital transformation untuk menaikkan level maturity
                   Anda.
                 </p>
-                <div className="mt-4 flex items-center text-xs font-bold text-emerald-500">
+                <div className="mt-4 flex items-center text-xs font-bold text-emerald-600 dark:text-emerald-500">
                   Hitung Biaya <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
@@ -867,18 +937,18 @@ export default function MaturityAssessment() {
               {/* Expert Consultation */}
               <Link
                 href="/contact"
-                className="group cursor-pointer rounded-xl border border-white/5 bg-slate-900/40 p-5 transition-all hover:border-amber-500/30 hover:bg-slate-800"
+                className="group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-md transition-all hover:border-amber-400 hover:bg-amber-50 hover:shadow-lg dark:border-white/5 dark:bg-slate-900/40 dark:hover:border-amber-500/30 dark:hover:bg-slate-800"
               >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 transition-colors group-hover:bg-amber-500 group-hover:text-white">
+                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-amber-100 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-500/10 dark:text-amber-400">
                   <Briefcase className="size-5" />
                 </div>
-                <h4 className="mb-2 font-bold text-white group-hover:text-amber-400">
+                <h4 className="mb-2 font-bold text-slate-900 group-hover:text-amber-600 dark:text-white dark:group-hover:text-amber-400">
                   Konsultasi Ahli
                 </h4>
-                <p className="text-sm leading-relaxed text-slate-400">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   Diskusi mendalam tentang temuan skor ini dengan konsultan senior kami.
                 </p>
-                <div className="mt-4 flex items-center text-xs font-bold text-amber-500">
+                <div className="mt-4 flex items-center text-xs font-bold text-amber-600 dark:text-amber-500">
                   Hubungi Kami <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
@@ -886,27 +956,25 @@ export default function MaturityAssessment() {
           </div>
 
           {/* FLOATING ACTION BAR */}
-          <div className="fixed right-0 bottom-0 left-0 z-40 border-t border-white/10 bg-slate-950/80 p-4 backdrop-blur-lg print:hidden">
+          <div className="fixed right-0 bottom-0 left-0 z-40 border-t border-slate-200 bg-white/80 p-4 backdrop-blur-lg dark:border-white/10 dark:bg-slate-950/80 print:hidden">
             <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
-              <div className="hidden text-sm text-slate-400 sm:block">
+              <div className="hidden text-sm text-slate-600 sm:block dark:text-slate-400">
                 Langkah selanjutnya: Simpan laporan ini atau konsultasikan dengan ahli kami.
               </div>
               <div className="flex w-full gap-3 sm:w-auto">
                 <Button
                   onClick={handlePrint}
                   variant="outline-white"
-                  className="h-10 flex-1 items-center gap-2 sm:flex-none"
+                  className="h-10 flex-1 items-center gap-2 border-slate-300 text-slate-700 hover:bg-slate-100 sm:flex-none dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
                 >
-                  <Download className="size-4" />{' '}
-                  <span className="text-white dark:text-slate-600">Save PDF</span>
+                  <Download className="size-4" /> <span>Save PDF</span>
                 </Button>
                 <Link href="/contact" className="flex-1 sm:flex-none">
                   <Button
                     variant="primary"
-                    className="from-primary-600 shadow-primary-900/20 h-10 w-full items-center gap-2 border-0 bg-gradient-to-r to-indigo-600 shadow-lg"
+                    className="from-primary-600 shadow-primary-500/20 h-10 w-full items-center gap-2 border-0 bg-gradient-to-r to-indigo-600 text-white shadow-lg"
                   >
-                    <span className="text-white dark:text-slate-600">Consultation</span>{' '}
-                    <ArrowRight className="size-4" />
+                    <span>Consultation</span> <ArrowRight className="size-4" />
                   </Button>
                 </Link>
               </div>
@@ -918,16 +986,20 @@ export default function MaturityAssessment() {
           {/* Methodology Modal for Results Page */}
           {showMethodology && (
             <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/90 p-4 backdrop-blur-sm print:hidden">
-              <div className="relative w-full max-w-2xl rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-2xl">
+              <div className="relative w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-slate-900">
                 <button
                   onClick={() => setShowMethodology(false)}
-                  className="absolute top-4 right-4 text-slate-400 hover:text-white"
+                  className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 >
                   Tutup
                 </button>
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-white">Referensi Metodologi</h3>
-                  <p className="text-sm text-slate-400">Dasar penilaian skor maturity Anda.</p>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                    Referensi Metodologi
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Dasar penilaian skor maturity Anda.
+                  </p>
                 </div>
                 <MethodologyReference />
               </div>
@@ -1058,31 +1130,34 @@ export default function MaturityAssessment() {
                       <button
                         key={index}
                         onClick={() => handleAnswer(option.score)}
-                        className={`group relative flex w-full items-start overflow-hidden rounded-2xl border p-5 text-left transition-all duration-300 ${
+                        className={`group relative flex w-full items-start overflow-hidden rounded-2xl border-2 p-5 text-left transition-all duration-300 ${
                           isSelected
-                            ? 'border-primary-500 bg-primary-600/10 ring-primary-500 dark:bg-primary-950/20 dark:border-primary-500 shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] ring-1'
-                            : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-slate-100 dark:border-white/5 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10'
+                            ? 'border-primary-600 bg-primary-100 shadow-primary-500/20 ring-primary-600/30 dark:border-primary-500 dark:bg-primary-900/30 dark:shadow-primary-500/30 dark:ring-primary-500/40 scale-[1.02] shadow-lg ring-2'
+                            : 'hover:border-primary-300 dark:hover:border-primary-600 border-slate-200 bg-white hover:bg-slate-50 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/50 dark:hover:bg-slate-700/50'
                         }`}
                       >
                         <div
-                          className={`mt-0.5 mr-5 flex size-6 flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                          className={`mt-0.5 mr-5 flex size-7 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all ${
                             isSelected
-                              ? 'border-primary-500 dark:border-primary-500'
-                              : 'group-hover:border-primary-400 dark:group-hover:border-primary-400 border-slate-300 dark:border-slate-600'
+                              ? 'border-primary-600 bg-primary-600 shadow-primary-500/30 dark:border-primary-500 dark:bg-primary-500 shadow-md'
+                              : 'group-hover:border-primary-400 group-hover:bg-primary-50 dark:group-hover:border-primary-500 dark:group-hover:bg-primary-900/50 border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-700'
                           }`}
                         >
                           {isSelected && (
-                            <div className="bg-primary-500 dark:bg-primary-500 size-3 rounded-full" />
+                            <CheckCircle
+                              className="size-4 text-slate-800 dark:text-white"
+                              strokeWidth={3}
+                            />
                           )}
                         </div>
                         <span
-                          className={`text-lg transition-colors ${isSelected ? 'font-medium text-slate-900 dark:text-white' : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
+                          className={`text-lg transition-colors ${isSelected ? 'font-bold text-slate-900 dark:text-white' : 'font-medium text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
                         >
                           {option.label}
                         </span>
 
                         {/* Hover Gradient Effect */}
-                        <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
+                        <div className="via-primary-500/10 pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                       </button>
                     );
                   })}
@@ -1102,7 +1177,7 @@ export default function MaturityAssessment() {
                     <Button
                       variant="primary"
                       onClick={() => setCurrentStep((prev) => prev + 1)}
-                      className="ml-auto"
+                      className="ml-auto text-slate-800 dark:text-white"
                     >
                       Next Question <ArrowRight className="ml-1 size-4" />
                     </Button>

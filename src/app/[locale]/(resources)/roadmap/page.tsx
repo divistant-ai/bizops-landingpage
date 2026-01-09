@@ -6,7 +6,6 @@ import {
   Clock,
   Filter,
   Lightbulb,
-  Loader2,
   Map,
   MessageSquare,
   Rocket,
@@ -45,15 +44,15 @@ export default function RoadmapPage() {
 
   const allTags = [
     'All',
-    ...Array.from(new Set(roadmapData.flatMap((col) => col.items.map((item) => item.tag)))),
+    ...Array.from(new Set(roadmapData.flatMap(col => col.items.map(item => item.tag)))),
   ];
 
   const handleVote = (id: string) => {
     if (userVoted[id]) {
       return;
     }
-    setVotes((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
-    setUserVoted((prev) => ({ ...prev, [id]: true }));
+    setVotes(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
+    setUserVoted(prev => ({ ...prev, [id]: true }));
   };
 
   const handleFeatureSubmit = (e: React.FormEvent) => {
@@ -113,7 +112,9 @@ export default function RoadmapPage() {
             >
               <div className="max-w-2xl">
                 <div className="text-primary-600 dark:text-primary-400 mb-3 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase">
-                  <Map className="h-4 w-4" /> Public Roadmap
+                  <Map className="h-4 w-4" />
+                  {' '}
+                  Public Roadmap
                 </div>
                 <Typography variant="h1" as="h1" className="mb-4 font-extrabold">
                   Apa yang Sedang Kami Bangun?
@@ -147,7 +148,7 @@ export default function RoadmapPage() {
               <div
                 className={`flex flex-wrap gap-2 ${mobileFilterOpen ? 'block' : 'hidden md:flex'}`}
               >
-                {allTags.map((tag) => (
+                {allTags.map(tag => (
                   <button
                     key={tag}
                     onClick={() => {
@@ -169,10 +170,10 @@ export default function RoadmapPage() {
 
           <Container size="7xl" className="space-y-12">
             {roadmapData.map((column, colIdx) => {
-              const filteredItems =
-                activeFilter === 'All'
+              const filteredItems
+                = activeFilter === 'All'
                   ? column.items
-                  : column.items.filter((item) => item.tag === activeFilter);
+                  : column.items.filter(item => item.tag === activeFilter);
 
               if (filteredItems.length === 0) {
                 return null;
@@ -285,137 +286,128 @@ export default function RoadmapPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl sm:p-8 dark:bg-slate-900"
-              onClick={(e) => e.stopPropagation()}
+              onClick={e => e.stopPropagation()}
             >
-              {formSuccess ? (
-                <div className="py-8 text-center">
-                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                    <CheckCircle2 className="h-8 w-8" />
-                  </div>
-                  <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                    Request Submitted!
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Terima kasih atas masukannya. Tim produk kami akan review ide Anda.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <div className="mb-6 flex items-center justify-between">
-                    <div>
+              {formSuccess
+                ? (
+                    <div className="py-8 text-center">
+                      <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                        <CheckCircle2 className="h-8 w-8" />
+                      </div>
                       <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                        Request New Feature
+                        Request Submitted!
                       </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        Punya ide fitur yang akan membuat BizOps lebih powerful? Kami ingin
-                        mendengarnya!
+                      <p className="text-slate-600 dark:text-slate-400">
+                        Terima kasih atas masukannya. Tim produk kami akan review ide Anda.
                       </p>
                     </div>
-                    <button
-                      onClick={() => setShowRequestForm(false)}
-                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                    >
-                      <X className="h-6 w-6" />
-                    </button>
-                  </div>
+                  )
+                : (
+                    <>
+                      <div className="mb-6 flex items-center justify-between">
+                        <div>
+                          <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                            Request New Feature
+                          </h3>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                            Punya ide fitur yang akan membuat BizOps lebih powerful? Kami ingin
+                            mendengarnya!
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setShowRequestForm(false)}
+                          className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                        >
+                          <X className="h-6 w-6" />
+                        </button>
+                      </div>
 
-                  <form onSubmit={handleFeatureSubmit} className="space-y-6">
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Feature Title *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="e.g. Multi-Currency Support"
-                      />
-                    </div>
+                      <form onSubmit={handleFeatureSubmit} className="space-y-6">
+                        <div>
+                          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Feature Title *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+                            placeholder="e.g. Multi-Currency Support"
+                          />
+                        </div>
 
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Category *
-                      </label>
-                      <select
-                        required
-                        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                      >
-                        <option value="">Select category...</option>
-                        {allTags
-                          .filter((t) => t !== 'All')
-                          .map((tag) => (
-                            <option key={tag} value={tag}>
-                              {tag}
-                            </option>
-                          ))}
-                      </select>
-                    </div>
+                        <div>
+                          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Category *
+                          </label>
+                          <select
+                            required
+                            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                          >
+                            <option value="">Select category...</option>
+                            {allTags
+                              .filter(t => t !== 'All')
+                              .map(tag => (
+                                <option key={tag} value={tag}>
+                                  {tag}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
 
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Description *
-                      </label>
-                      <textarea
-                        required
-                        rows={5}
-                        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="Jelaskan fitur yang Anda inginkan dan bagaimana fitur ini akan membantu bisnis Anda..."
-                      />
-                    </div>
+                        <div>
+                          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Description *
+                          </label>
+                          <textarea
+                            required
+                            rows={5}
+                            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+                            placeholder="Jelaskan fitur yang Anda inginkan dan bagaimana fitur ini akan membantu bisnis Anda..."
+                          />
+                        </div>
 
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Use Case (Optional)
-                      </label>
-                      <textarea
-                        rows={3}
-                        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="Contoh skenario penggunaan fitur ini di bisnis Anda..."
-                      />
-                    </div>
+                        <div>
+                          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Use Case (Optional)
+                          </label>
+                          <textarea
+                            rows={3}
+                            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+                            placeholder="Contoh skenario penggunaan fitur ini di bisnis Anda..."
+                          />
+                        </div>
 
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                        Your Email *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="your@email.com"
-                      />
-                    </div>
+                        <div>
+                          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Your Email *
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+                            placeholder="your@email.com"
+                          />
+                        </div>
 
-                    <div className="flex gap-3">
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="bg-primary-600 hover:bg-primary-700 flex-1 text-white"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Submitting...
-                          </>
-                        ) : (
-                          <span className="flex items-center text-slate-900 dark:text-white">
+                        <div className="flex gap-3">
+                          <Button
+                            type="button"
+                            className="flex-1 bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+                          >
                             <Send className="mr-2 h-4 w-4" />
                             Submit Request
-                          </span>
-                        )}
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => setShowRequestForm(false)}
-                        disabled={isSubmitting}
-                      >
-                        Cancel
-                      </Button>
-                    </div>
-                  </form>
-                </>
-              )}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setShowRequestForm(false)}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </form>
+                    </>
+                  )}
             </motion.div>
           </motion.div>
         )}

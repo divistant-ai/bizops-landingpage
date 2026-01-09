@@ -197,7 +197,8 @@ export default function BreakEvenCalculator() {
                     id="fixed-costs-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    Contoh: sewa, gaji tetap, utilitas.{' '}
+                    Contoh: sewa, gaji tetap, utilitas.
+                    {' '}
                     {fixedCosts && formatCurrency(Number.parseFloat(fixedCosts) || 0)}
                   </p>
                 </div>
@@ -230,7 +231,8 @@ export default function BreakEvenCalculator() {
                     id="variable-cost-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    Contoh: bahan baku, packaging.{' '}
+                    Contoh: bahan baku, packaging.
+                    {' '}
                     {variableCost && formatCurrency(Number.parseFloat(variableCost) || 0)}
                   </p>
                 </div>
@@ -301,17 +303,19 @@ export default function BreakEvenCalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung break even point"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Menghitung...
-                    </>
-                  ) : (
-                    <>
-                      <Target className="mr-2 h-5 w-5" />
-                      Hitung BEP
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Menghitung...
+                        </>
+                      )
+                    : (
+                        <>
+                          <Target className="mr-2 h-5 w-5" />
+                          Hitung BEP
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -331,145 +335,154 @@ export default function BreakEvenCalculator() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan break even point"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">Break Even Point</h3>
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <p className="text-sm text-orange-100">Minimal Penjualan (Unit)</p>
-                      <p className="text-4xl font-bold">
-                        {Math.ceil(result.breakEvenUnits).toLocaleString('id-ID')}
-                      </p>
-                      <p className="mt-1 text-sm text-orange-100">unit</p>
-                    </div>
-                    <div className="border-t border-white/20 pt-4 text-center">
-                      <p className="text-sm text-orange-100">Minimal Revenue</p>
-                      <p className="text-2xl font-bold">
-                        {formatCurrency(result.breakEvenRevenue)}
-                      </p>
-                    </div>
-                    {result.monthsToBreakEven > 0 && (
-                      <div className="border-t border-white/20 pt-4 text-center">
-                        <p className="text-sm text-orange-100">Waktu Mencapai BEP</p>
-                        <p className="text-2xl font-bold">
-                          {result.monthsToBreakEven.toFixed(1)} bulan
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                    <BarChart3 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-                    Analisis Contribution Margin
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          Contribution Margin
-                        </span>
-                        <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                          {formatCurrency(result.contributionMargin)}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
-                        Profit per unit sebelum biaya tetap
-                      </p>
-                    </div>
-
-                    <div className="rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          CM Ratio
-                        </span>
-                        <span className="text-2xl font-bold text-red-600 dark:text-red-400">
-                          {result.contributionMarginRatio.toFixed(2)}%
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
-                        Persentase contribution margin dari harga jual
-                      </p>
-                    </div>
-
-                    <div className="space-y-2 border-t pt-4 text-sm dark:border-slate-700">
-                      <div className="flex justify-between">
-                        <span className="text-slate-600 dark:text-slate-400">Harga Jual</span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.sellingPricePerUnit)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-600 dark:text-slate-400">Biaya Variabel</span>
-                        <span className="font-medium text-red-600 dark:text-red-400">
-                          -{formatCurrency(result.variableCostPerUnit)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-t pt-2 dark:border-slate-700">
-                        <span className="font-medium text-slate-900 dark:text-white">
-                          Contribution Margin
-                        </span>
-                        <span className="font-bold text-green-600 dark:text-green-400">
-                          {formatCurrency(result.contributionMargin)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
-
-                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                  <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
-                    Proyeksi Profit
-                  </h4>
-                  <div className="space-y-2 text-sm">
-                    {[1.2, 1.5, 2].map((multiplier) => {
-                      const units = Math.ceil(result.breakEvenUnits * multiplier);
-                      const revenue = units * result.sellingPricePerUnit;
-                      const totalCost = result.fixedCosts + units * result.variableCostPerUnit;
-                      const profit = revenue - totalCost;
-
-                      return (
-                        <div
-                          key={multiplier}
-                          className="flex items-center justify-between rounded-lg bg-white p-3 dark:bg-slate-800"
-                        >
-                          <span className="text-slate-700 dark:text-slate-300">
-                            {units.toLocaleString('id-ID')} unit
-                          </span>
-                          <span className="font-bold text-green-600 dark:text-green-400">
-                            +{formatCurrency(profit)}
-                          </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan break even point"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">Break Even Point</h3>
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <p className="text-sm text-orange-100">Minimal Penjualan (Unit)</p>
+                          <p className="text-4xl font-bold">
+                            {Math.ceil(result.breakEvenUnits).toLocaleString('id-ID')}
+                          </p>
+                          <p className="mt-1 text-sm text-orange-100">unit</p>
                         </div>
-                      );
-                    })}
+                        <div className="border-t border-white/20 pt-4 text-center">
+                          <p className="text-sm text-orange-100">Minimal Revenue</p>
+                          <p className="text-2xl font-bold">
+                            {formatCurrency(result.breakEvenRevenue)}
+                          </p>
+                        </div>
+                        {result.monthsToBreakEven > 0 && (
+                          <div className="border-t border-white/20 pt-4 text-center">
+                            <p className="text-sm text-orange-100">Waktu Mencapai BEP</p>
+                            <p className="text-2xl font-bold">
+                              {result.monthsToBreakEven.toFixed(1)}
+                              {' '}
+                              bulan
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
+                        <BarChart3 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                        Analisis Contribution Margin
+                      </h3>
+
+                      <div className="space-y-4">
+                        <div className="rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                              Contribution Margin
+                            </span>
+                            <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                              {formatCurrency(result.contributionMargin)}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 dark:text-slate-400">
+                            Profit per unit sebelum biaya tetap
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                              CM Ratio
+                            </span>
+                            <span className="text-2xl font-bold text-red-600 dark:text-red-400">
+                              {result.contributionMarginRatio.toFixed(2)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 dark:text-slate-400">
+                            Persentase contribution margin dari harga jual
+                          </p>
+                        </div>
+
+                        <div className="space-y-2 border-t pt-4 text-sm dark:border-slate-700">
+                          <div className="flex justify-between">
+                            <span className="text-slate-600 dark:text-slate-400">Harga Jual</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.sellingPricePerUnit)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-600 dark:text-slate-400">Biaya Variabel</span>
+                            <span className="font-medium text-red-600 dark:text-red-400">
+                              -
+                              {formatCurrency(result.variableCostPerUnit)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                            <span className="font-medium text-slate-900 dark:text-white">
+                              Contribution Margin
+                            </span>
+                            <span className="font-bold text-green-600 dark:text-green-400">
+                              {formatCurrency(result.contributionMargin)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                      <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
+                        Proyeksi Profit
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        {[1.2, 1.5, 2].map((multiplier) => {
+                          const units = Math.ceil(result.breakEvenUnits * multiplier);
+                          const revenue = units * result.sellingPricePerUnit;
+                          const totalCost = result.fixedCosts + units * result.variableCostPerUnit;
+                          const profit = revenue - totalCost;
+
+                          return (
+                            <div
+                              key={multiplier}
+                              className="flex items-center justify-between rounded-lg bg-white p-3 dark:bg-slate-800"
+                            >
+                              <span className="text-slate-700 dark:text-slate-300">
+                                {units.toLocaleString('id-ID')}
+                                {' '}
+                                unit
+                              </span>
+                              <span className="font-bold text-green-600 dark:text-green-400">
+                                +
+                                {formatCurrency(profit)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </Card>
                   </div>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Target className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">
-                    Masukkan data bisnis dan klik tombol hitung
-                  </p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Target className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">
+                        Masukkan data bisnis dan klik tombol hitung
+                      </p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

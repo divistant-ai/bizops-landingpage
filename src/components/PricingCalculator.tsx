@@ -123,7 +123,7 @@ const SelectableCard = ({
     className={`group relative flex h-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border p-4 text-center transition-all duration-200 active:scale-95 ${selected ? 'border-2 border-slate-900 bg-slate-100 shadow-[0_0_0_3px_rgba(15,23,42,0.1)] dark:border-white dark:bg-slate-800 dark:shadow-[0_0_0_3px_rgba(255,255,255,0.1)]' : 'border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 hover:shadow-md dark:border-slate-600 dark:bg-slate-800/50 dark:hover:border-slate-500 dark:hover:bg-slate-800'}`}
   >
     {selected && (
-      <div className="text-primary-600 dark:text-primary-400 absolute top-2 right-2">
+      <div className="absolute top-2 right-2 text-slate-800 dark:text-white">
         <CheckCircle2 className="h-4 w-4" />
       </div>
     )}
@@ -182,18 +182,18 @@ const AddonItem: React.FC<AddonItemProps> = ({
   return (
     <div
       onClick={() => !isConfigurable && onToggle(addon.id, isSelected)}
-      className={`group flex items-center justify-between rounded-xl border p-4 transition-all ${isSelected ? 'border-primary-500/40 bg-primary-50 dark:bg-primary-900/10 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/10 dark:hover:bg-white/10'} ${!isConfigurable ? 'cursor-pointer' : ''}`}
+      className={`group flex items-center justify-between rounded-xl border p-4 transition-all ${isSelected ? 'border-primary-500 bg-primary-100 dark:border-primary-500/40 dark:bg-primary-900/10 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/10 dark:hover:bg-white/10'} ${!isConfigurable ? 'cursor-pointer' : ''}`}
     >
       <div className="flex flex-grow items-center gap-4">
         <div
-          className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border transition-colors ${isSelected ? 'border-primary-500 bg-primary-500 text-white' : 'border-slate-400 bg-transparent dark:border-slate-600'}`}
+          className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border transition-colors ${isSelected ? 'border-primary-600 bg-primary-600 text-slate-800 dark:text-white' : 'border-slate-400 bg-transparent dark:border-slate-600'}`}
         >
           {isSelected && <Check className="h-3.5 w-3.5" />}
         </div>
         <div>
           <div className="flex items-center gap-2">
             <h4
-              className={`text-sm font-bold ${isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-slate-900 dark:text-white'}`}
+              className={`text-sm font-bold ${isSelected ? 'text-slate-800 dark:text-white' : 'text-slate-900 dark:text-white'}`}
             >
               {addon.name}
             </h4>
@@ -208,33 +208,33 @@ const AddonItem: React.FC<AddonItemProps> = ({
       <div className="flex flex-shrink-0 items-center gap-6">
         <div className="text-right">
           <span
-            className={`block text-sm font-bold ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}
+            className={`block text-sm font-bold ${isSelected ? 'text-slate-800 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}
           >
             {formatIDR(addon.price)}
           </span>
-          <span className="text-[9px] text-slate-500">{addon.unit}</span>
+          <span className="text-[9px] text-slate-500 dark:text-slate-400">{addon.unit}</span>
         </div>
 
         {isConfigurable ? (
           <div
-            className="flex items-center rounded-lg border border-slate-300 bg-slate-100 p-0.5 dark:border-white/10 dark:bg-black/40"
+            className={`flex items-center rounded-lg border p-0.5 ${isSelected ? 'border-primary-300 bg-primary-50 dark:border-white/10 dark:bg-black/40' : 'border-slate-300 bg-slate-100 dark:border-white/10 dark:bg-black/40'}`}
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => onQuantityChange(addon.id, -1)}
-              className="rounded-md p-1.5 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
+              className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
               disabled={quantity === 0}
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
             <span
-              className={`w-8 text-center text-xs font-bold ${quantity > 0 ? 'text-slate-900 dark:text-white' : 'text-slate-500'}`}
+              className={`w-8 text-center text-xs font-bold ${quantity > 0 ? 'text-slate-800 dark:text-white' : 'text-slate-500'}`}
             >
               {quantity}
             </span>
             <button
               onClick={() => onQuantityChange(addon.id, 1)}
-              className="rounded-md p-1.5 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
+              className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
             >
               <Plus className="h-3.5 w-3.5" />
             </button>
@@ -1913,30 +1913,34 @@ const PricingCalculator: React.FC = () => {
     ];
 
     return (
-      <div className="flex h-full flex-col overflow-hidden bg-[#0B0F19]">
-        <div className="scrollbar-thin scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
+      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
+        <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
           <div className="mx-auto grid h-full max-w-6xl gap-8 lg:grid-cols-12">
             <div className="space-y-8 pb-12 lg:col-span-8">
-              <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-gradient-to-r from-slate-900 to-slate-800 p-6 shadow-lg">
+              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-gradient-to-r from-white to-slate-50 p-6 shadow-lg dark:border-white/10 dark:from-slate-900 dark:to-slate-800">
                 <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-blue-500/10 p-3 text-blue-400">
+                  <div className="rounded-xl bg-blue-500/10 p-3 text-blue-500 dark:text-blue-400">
                     <CreditCard className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">Siklus Pembayaran</h3>
-                    <p className="text-xs text-slate-400">Hemat 20% dengan pembayaran tahunan.</p>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Siklus Pembayaran
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                      Hemat 20% dengan pembayaran tahunan.
+                    </p>
                   </div>
                 </div>
-                <div className="flex rounded-xl border border-white/5 bg-black/40 p-1">
+                <div className="flex rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-white/5 dark:bg-black/40">
                   <button
                     onClick={() => setBillingCycle('monthly')}
-                    className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'monthly' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-white'}`}
+                    className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'monthly' ? 'bg-white text-slate-900 shadow dark:bg-slate-700 dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
                   >
                     Bulanan
                   </button>
                   <button
                     onClick={() => setBillingCycle('yearly')}
-                    className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'yearly' ? 'bg-primary-600 text-white shadow' : 'text-slate-500 hover:text-white'}`}
+                    className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'yearly' ? 'bg-primary-600 text-slate-800 shadow dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
                   >
                     Tahunan (-20%)
                   </button>
@@ -1945,9 +1949,9 @@ const PricingCalculator: React.FC = () => {
 
               {sections.map((section, idx) => (
                 <div key={idx} className="space-y-4">
-                  <div className="flex items-center gap-2 border-b border-white/5 pb-2">
+                  <div className="flex items-center gap-2 border-b border-slate-200 pb-2 dark:border-white/5">
                     <section.icon className={`h-4 w-4 ${section.color}`} />
-                    <h3 className="text-sm font-bold tracking-wider text-white uppercase">
+                    <h3 className="text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
                       {section.title}
                     </h3>
                   </div>
@@ -1977,13 +1981,13 @@ const PricingCalculator: React.FC = () => {
             </div>
 
             {/* Sticky Summary */}
-            <div className="flex h-full flex-col lg:col-span-4">
-              <div className="sticky top-6 flex flex-grow flex-col overflow-hidden rounded-3xl border border-slate-800 bg-[#0F1623] shadow-2xl">
-                <div className="border-b border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 p-6">
-                  <h3 className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+            <div className="flex flex-col lg:col-span-4">
+              <div className="sticky top-6 my-6 flex max-h-[calc(100vh-3rem)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-[#0F1623]">
+                <div className="flex-shrink-0 border-b border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 p-6 dark:border-slate-800 dark:from-slate-800 dark:to-slate-900">
+                  <h3 className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
                     <Wallet className="h-3 w-3" /> Estimated Investment
                   </h3>
-                  <div className="text-3xl font-black tracking-tight text-white">
+                  <div className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                     {calculations.totalFirstPayment > 0
                       ? formatIDR(calculations.totalFirstPayment)
                       : 'Custom'}
@@ -1992,10 +1996,10 @@ const PricingCalculator: React.FC = () => {
                     Total pembayaran awal (termasuk pajak)
                   </p>
                 </div>
-                <div className="flex-grow space-y-4 overflow-y-auto p-6">
-                  <div className="flex justify-between border-b border-white/5 pb-3 text-xs text-slate-400">
+                <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-1 space-y-4 overflow-y-auto p-6">
+                  <div className="flex justify-between border-b border-slate-200 pb-3 text-xs text-slate-600 dark:border-white/5 dark:text-slate-400">
                     <span>Paket ({billingCycle === 'yearly' ? 'Tahunan' : 'Bulanan'})</span>
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-slate-900 dark:text-white">
                       {calculations.basePrice > 0
                         ? formatIDR(
                             billingCycle === 'yearly'
@@ -2020,30 +2024,32 @@ const PricingCalculator: React.FC = () => {
                           <span>
                             {item.name} {qty > 1 && `(${qty}x)`}
                           </span>{' '}
-                          <span className="text-slate-300">{formatIDR(price)}</span>
+                          <span className="text-slate-700 dark:text-slate-300">
+                            {formatIDR(price)}
+                          </span>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="flex justify-between border-t border-white/10 pt-3 text-sm font-bold text-white">
+                  <div className="flex justify-between border-t border-slate-200 pt-3 text-sm font-bold text-slate-900 dark:border-white/10 dark:text-white">
                     <span>Subtotal</span>{' '}
                     <span>
                       {calculations.subtotal > 0 ? formatIDR(calculations.subtotal) : 'Custom'}
                     </span>
                   </div>
                 </div>
-                <div className="mt-auto border-t border-white/5 bg-black/20 p-6">
+                <div className="flex-shrink-0 border-t border-slate-200 bg-slate-50 p-6 dark:border-white/5 dark:bg-black/20">
                   <Button
                     fullWidth
                     variant="primary"
                     onClick={() => changeStep('jump', 'checkout')}
-                    className="h-12 rounded-xl bg-white text-sm font-bold text-slate-900 shadow-lg hover:bg-slate-200"
+                    className="bg-primary-600 hover:bg-primary-700 h-12 rounded-xl text-sm font-bold text-slate-800 shadow-lg dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
                   >
                     Checkout
                   </Button>
                   <button
                     onClick={() => changeStep('jump', 'recommendation')}
-                    className="mt-3 w-full text-center text-[10px] text-slate-500 transition-colors hover:text-white"
+                    className="mt-3 w-full text-center text-[10px] text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-500 dark:hover:text-white"
                   >
                     Ubah Paket
                   </button>

@@ -283,7 +283,9 @@ export default function MigrationContent() {
                   </div>
 
                   <Button variant="outline" size="sm" className="w-full">
-                    <Download className="mr-2 h-4 w-4" /> {item.asset}
+                    <Download className="mr-2 h-4 w-4" />
+                    {' '}
+                    {item.asset}
                   </Button>
                 </motion.div>
               );
@@ -370,7 +372,9 @@ export default function MigrationContent() {
                   </p>
                   <div className="text-primary-600 dark:text-primary-400 flex items-center text-xs font-medium">
                     <Table className="mr-1 h-3 w-3" />
-                    {structure.columns.length} columns
+                    {structure.columns.length}
+                    {' '}
+                    columns
                   </div>
                 </motion.div>
               );
@@ -392,10 +396,10 @@ export default function MigrationContent() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.95, opacity: 0 }}
                   className="max-h-[80vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-8 dark:bg-slate-900"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={e => e.stopPropagation()}
                 >
                   {(() => {
-                    const structure = sampleStructures.find((s) => s.id === selectedStructure);
+                    const structure = sampleStructures.find(s => s.id === selectedStructure);
                     if (!structure) {
                       return null;
                     }

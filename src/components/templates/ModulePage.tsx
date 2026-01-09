@@ -84,7 +84,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         type: item.type,
       };
     })
-    .filter((m) => m.title); // Filter out invalid ones
+    .filter(m => m.title); // Filter out invalid ones
 
   return (
     <div className="flex flex-col bg-white dark:bg-slate-950">
@@ -336,7 +336,8 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                     </div>
                     <div>
                       <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                        →{conn.target}
+                        →
+                        {conn.target}
                       </h3>
                       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
                         {conn.desc}
@@ -404,15 +405,18 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 Modul Terkait
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Jelajahi modul lain yang saling terintegrasi dengan {data.title}.
+                Jelajahi modul lain yang saling terintegrasi dengan
+                {' '}
+                {data.title}
+                .
               </p>
             </div>
 
             <Grid cols={3} mdCols={3} gap={6}>
               {relatedModules.map((module) => {
                 const ModuleIcon = module.icon || HelpCircle;
-                const linkPath =
-                  module.type === 'capability'
+                const linkPath
+                  = module.type === 'capability'
                     ? `/platform/capabilities/${module.id}`
                     : `/platform/modules/${module.id}`;
 

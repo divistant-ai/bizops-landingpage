@@ -410,7 +410,7 @@ export default function PartnersContent() {
           </div>
 
           {/* Desktop: Grid */}
-          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-4">
+          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit, i) => {
               const Icon = benefit.icon;
               return (
@@ -435,7 +435,7 @@ export default function PartnersContent() {
 
       {/* PERSONAS */}
       <Section className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-        <Container size="5xl">
+        <Container size="7xl">
           <h2 className="mb-12 text-center text-3xl font-bold text-slate-900 dark:text-white">
             Siapa yang Cocok?
           </h2>
@@ -447,15 +447,15 @@ export default function PartnersContent() {
                     <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mb-6 flex h-14 w-14 items-center justify-center rounded-2xl">
                       <Users className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-4 text-xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
                       {persona.title}
                     </h3>
-                    <div className="space-y-3">
+                    <div className="flex flex-col gap-4">
                       <div>
                         <p className="mb-2 text-sm font-semibold text-slate-900 dark:text-white">
                           Pain Point:
                         </p>
-                        <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                           {persona.pain}
                         </p>
                       </div>
@@ -477,7 +477,7 @@ export default function PartnersContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-white dark:bg-gradient-to-br dark:from-indigo-900 dark:to-blue-900">
+      <Section className="bg-white dark:bg-slate-900">
         <Container size="4xl" className="text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             Ready to Partner with Us?

@@ -56,8 +56,9 @@ export const CounterUp: React.FC<{
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   const toStr = String(to);
-  const match = toStr.match(/^([^0-9.-]*)([0-9.-]+)(.*)$/);
-  const isNumeric = match && !toStr.includes('/');
+  // Match numbers (including decimals) but exclude strings with no numbers
+  const match = toStr.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
+  const hasNumber = match !== null;
 
   const count = useSpring(0, { duration: 2000 });
   const [displayValue, setDisplayValue] = useState(0);
@@ -66,46 +67,40 @@ export const CounterUp: React.FC<{
   let autoSuffix = '';
   let numericValue = 0;
 
-  if (isNumeric && match) {
+  if (hasNumber && match) {
     autoPrefix = match[1] || '';
     numericValue = Number.parseFloat(match[2] || '0');
     autoSuffix = match[3] || '';
   }
 
   useEffect(() => {
-    if (isInView && isNumeric) {
-      if (!Number.isNaN(numericValue)) {
-        count.set(numericValue);
-      }
+    if (isInView && hasNumber && !Number.isNaN(numericValue)) {
+      count.set(numericValue);
     }
-  }, [isInView, isNumeric, numericValue, count]);
+  }, [isInView, hasNumber, numericValue, count]);
 
   useEffect(() => {
-    if (!isNumeric) {
+    if (!hasNumber) {
       return;
     }
     const unsubscribe = count.on('change', (latest) => {
       setDisplayValue(Math.round(latest));
     });
     return unsubscribe;
-  }, [count, isNumeric]);
+  }, [count, hasNumber]);
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
       <motion.span className="mb-2 block bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl">
-        {isNumeric
-          ? (
-              <>
-                {prefix || autoPrefix}
-
-                {displayValue.toLocaleString()}
-
-                {suffix || autoSuffix}
-              </>
-            )
-          : (
-              to
-            )}
+        {hasNumber ? (
+          <>
+            {prefix || autoPrefix}
+            {displayValue.toLocaleString()}
+            {suffix || autoSuffix}
+          </>
+        ) : (
+          to
+        )}
       </motion.span>
       <span className="text-sm font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
         {label}

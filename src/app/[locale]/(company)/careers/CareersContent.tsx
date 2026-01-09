@@ -118,40 +118,40 @@ export default function CareersContent() {
       </div>
 
       {/* PHOTO GRID (CULTURE SNAPSHOT) */}
-      <div className="overflow-hidden bg-slate-100 pb-24 dark:bg-[#0F172A]">
+      <div className="overflow-hidden !bg-white pb-24 dark:bg-[#0F172A]">
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid h-64 grid-cols-2 gap-4 opacity-80 transition-opacity duration-500 hover:opacity-100 md:h-80 md:grid-cols-4">
             <div className="group relative overflow-hidden rounded-3xl bg-slate-300 dark:bg-slate-800">
               <OptimizedImage
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-                alt="Team collaboration"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80"
+                alt="Team collaboration and brainstorming"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 width={400}
                 height={320}
               />
             </div>
-            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 md:mt-12 dark:bg-slate-800">
+            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 dark:bg-slate-800">
               <OptimizedImage
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
-                alt="Office vibe"
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
+                alt="Modern office workspace"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 width={400}
                 height={320}
               />
             </div>
-            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 md:-mt-8 dark:bg-slate-800">
+            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 dark:bg-slate-800">
               <OptimizedImage
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-                alt="Meeting"
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
+                alt="Team meeting and discussion"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 width={400}
                 height={320}
               />
             </div>
-            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 md:mt-4 dark:bg-slate-800">
+            <div className="group relative overflow-hidden rounded-3xl bg-slate-300 dark:bg-slate-800">
               <OptimizedImage
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"
-                alt="Code review"
+                src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80"
+                alt="Developer working on code"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 width={400}
                 height={320}
@@ -359,7 +359,7 @@ export default function CareersContent() {
                         <Link href={`mailto:careers@bizops.id?subject=Apply: ${job.title}`}>
                           <Button
                             variant="outline"
-                            className="group-hover:bg-primary-600 group-hover:border-primary-600 rounded-full transition-all group-hover:text-white"
+                            className="rounded-full border-slate-300 text-slate-900 transition-all hover:border-slate-900 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:text-white dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-900"
                           >
                             Apply Now
                             <ArrowRight className="ml-2 h-4 w-4" />

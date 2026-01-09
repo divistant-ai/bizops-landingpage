@@ -44,7 +44,9 @@ export default function ManagedServicesContent() {
                 as="h1"
                 className="mb-6 leading-tight font-extrabold text-slate-900 dark:text-white"
               >
-                Your Virtual <br />
+                Your Virtual
+                {' '}
+                <br />
                 Head Office.
               </Typography>
 
@@ -215,7 +217,9 @@ export default function ManagedServicesContent() {
                 as="h2"
                 className="mb-6 font-bold text-slate-900 dark:text-white"
               >
-                Powered by <br />
+                Powered by
+                {' '}
+                <br />
                 <span className="text-primary-600">Vetted Expert Network</span>
               </Typography>
               <Typography variant="body" className="mb-10 text-slate-600 dark:text-slate-400">

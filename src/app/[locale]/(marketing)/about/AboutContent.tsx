@@ -342,16 +342,16 @@ export default function AboutContent() {
 
           {/* Desktop: Grid */}
           <FadeInStagger>
-            <div className="hidden gap-6 md:grid md:grid-cols-3 lg:grid-cols-5">
+            <div className="hidden gap-6 md:grid md:grid-cols-3">
               {teamMembers.map((member, idx) => (
                 <FadeIn key={idx}>
                   <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative h-64 w-full overflow-hidden">
                       <OptimizedImage
                         src={member.image}
                         alt={member.name}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        width={280}
+                        width={360}
                         height={256}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>

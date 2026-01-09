@@ -135,11 +135,11 @@ export default function OEECalculator() {
         'Good Units': goodUnits,
       },
       {
-        Availability: `${result.availability.toFixed(2)}%`,
-        Performance: `${result.performance.toFixed(2)}%`,
-        Quality: `${result.quality.toFixed(2)}%`,
+        'Availability': `${result.availability.toFixed(2)}%`,
+        'Performance': `${result.performance.toFixed(2)}%`,
+        'Quality': `${result.quality.toFixed(2)}%`,
         'OEE Score': `${result.oee.toFixed(2)}%`,
-        Classification: result.classification,
+        'Classification': result.classification,
       },
     );
 
@@ -324,17 +324,19 @@ export default function OEECalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung OEE"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Menghitung...
-                    </>
-                  ) : (
-                    <>
-                      <Gauge className="mr-2 h-5 w-5" />
-                      Hitung OEE
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Menghitung...
+                        </>
+                      )
+                    : (
+                        <>
+                          <Gauge className="mr-2 h-5 w-5" />
+                          Hitung OEE
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -347,16 +349,28 @@ export default function OEECalculator() {
                   <p>OEE = Availability × Performance × Quality</p>
                   <ul className="mt-2 space-y-0.5">
                     <li>
-                      •<strong>World Class:</strong> ≥ 85%
+                      •
+                      <strong>World Class:</strong>
+                      {' '}
+                      ≥ 85%
                     </li>
                     <li>
-                      •<strong>Good:</strong> 60-84%
+                      •
+                      <strong>Good:</strong>
+                      {' '}
+                      60-84%
                     </li>
                     <li>
-                      •<strong>Fair:</strong> 40-59%
+                      •
+                      <strong>Fair:</strong>
+                      {' '}
+                      40-59%
                     </li>
                     <li>
-                      •<strong>Poor:</strong> &lt; 40%
+                      •
+                      <strong>Poor:</strong>
+                      {' '}
+                      &lt; 40%
                     </li>
                   </ul>
                 </div>
@@ -365,129 +379,154 @@ export default function OEECalculator() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan OEE"
-                className="space-y-6"
-              >
-                <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
-                  <h3 className="mb-4 text-lg font-semibold">OEE Score</h3>
-                  <div className="mb-4 text-center">
-                    <p className="text-6xl font-bold">{result.oee.toFixed(1)}%</p>
-                    <p className="mt-2 text-xl font-semibold">{result.classification}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
-                    <div>
-                      <p className="opacity-80">Availability</p>
-                      <p className="text-lg font-bold">{result.availability.toFixed(1)}%</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">Performance</p>
-                      <p className="text-lg font-bold">{result.performance.toFixed(1)}%</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">Quality</p>
-                      <p className="text-lg font-bold">{result.quality.toFixed(1)}%</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                    <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                    Analisis Losses
-                  </h3>
-
-                  <div className="space-y-3">
-                    <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          Downtime Loss
-                        </span>
-                        <span className="text-lg font-bold text-red-600 dark:text-red-400">
-                          {result.lossesBreakdown.unplannedDowntime.toFixed(1)}%
-                        </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan OEE"
+                    className="space-y-6"
+                  >
+                    <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
+                      <h3 className="mb-4 text-lg font-semibold">OEE Score</h3>
+                      <div className="mb-4 text-center">
+                        <p className="text-6xl font-bold">
+                          {result.oee.toFixed(1)}
+                          %
+                        </p>
+                        <p className="mt-2 text-xl font-semibold">{result.classification}</p>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        Mesin berhenti: {downtime} menit
+                      <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
+                        <div>
+                          <p className="opacity-80">Availability</p>
+                          <p className="text-lg font-bold">
+                            {result.availability.toFixed(1)}
+                            %
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">Performance</p>
+                          <p className="text-lg font-bold">
+                            {result.performance.toFixed(1)}
+                            %
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">Quality</p>
+                          <p className="text-lg font-bold">
+                            {result.quality.toFixed(1)}
+                            %
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                        <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                        Analisis Losses
+                      </h3>
+
+                      <div className="space-y-3">
+                        <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Downtime Loss
+                            </span>
+                            <span className="text-lg font-bold text-red-600 dark:text-red-400">
+                              {result.lossesBreakdown.unplannedDowntime.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            Mesin berhenti:
+                            {' '}
+                            {downtime}
+                            {' '}
+                            menit
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Speed Loss
+                            </span>
+                            <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                              {result.lossesBreakdown.speedLoss.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            Produksi lebih lambat dari ideal
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Quality Loss
+                            </span>
+                            <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                              {result.lossesBreakdown.qualityLoss.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            Defect:
+                            {' '}
+                            {Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits)}
+                            {' '}
+                            unit
+                          </p>
+                        </div>
+                      </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
+                        Rekomendasi Improvement
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
+                        {result.availability < 90 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-red-600 dark:text-red-400">•</span>
+                            <span>Kurangi downtime dengan preventive maintenance</span>
+                          </li>
+                        )}
+                        {result.performance < 95 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-600 dark:text-yellow-400">•</span>
+                            <span>Optimalkan kecepatan produksi dan kurangi small stops</span>
+                          </li>
+                        )}
+                        {result.quality < 99 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-orange-600 dark:text-orange-400">•</span>
+                            <span>Tingkatkan quality control dan kurangi defect rate</span>
+                          </li>
+                        )}
+                      </ul>
+                    </Card>
+                  </div>
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">
+                        Masukkan data produksi dan klik tombol hitung
                       </p>
                     </div>
-
-                    <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          Speed Loss
-                        </span>
-                        <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
-                          {result.lossesBreakdown.speedLoss.toFixed(1)}%
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        Produksi lebih lambat dari ideal
-                      </p>
-                    </div>
-
-                    <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          Quality Loss
-                        </span>
-                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
-                          {result.lossesBreakdown.qualityLoss.toFixed(1)}%
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        Defect: {Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits)} unit
-                      </p>
-                    </div>
-                  </div>
-
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
-
-                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                  <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                    Rekomendasi Improvement
-                  </h4>
-                  <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
-                    {result.availability < 90 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-600 dark:text-red-400">•</span>
-                        <span>Kurangi downtime dengan preventive maintenance</span>
-                      </li>
-                    )}
-                    {result.performance < 95 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-yellow-600 dark:text-yellow-400">•</span>
-                        <span>Optimalkan kecepatan produksi dan kurangi small stops</span>
-                      </li>
-                    )}
-                    {result.quality < 99 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-orange-600 dark:text-orange-400">•</span>
-                        <span>Tingkatkan quality control dan kurangi defect rate</span>
-                      </li>
-                    )}
-                  </ul>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">
-                    Masukkan data produksi dan klik tombol hitung
-                  </p>
-                </div>
-              </Card>
-            )}
+                  </Card>
+                )}
           </div>
         </div>
 

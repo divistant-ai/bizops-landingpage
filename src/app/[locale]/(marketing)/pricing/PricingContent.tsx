@@ -96,7 +96,7 @@ const PricingContent = () => {
                 </button>
                 <button
                   onClick={() => setAnnual(true)}
-                  className={`relative z-10 flex items-center gap-2 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
+                  className={`relative z-10 flex items-center gap-2 rounded-full py-2.5 pr-3 pl-6 text-sm font-bold transition-colors duration-300 ${annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
                 >
                   Tahunan
                   <span className="rounded-full border border-green-200 bg-green-100 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-green-700 uppercase dark:border-green-800 dark:bg-green-950 dark:text-green-400">

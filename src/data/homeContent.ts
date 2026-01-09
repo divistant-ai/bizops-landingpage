@@ -4,6 +4,7 @@ import {
   Code,
   Database,
   DollarSign,
+  HardHat,
   Layers,
   Link as LinkIcon,
   MessageSquare,
@@ -113,7 +114,8 @@ export const homeSolutions = [
     color: 'text-pink-500',
     bg: 'bg-pink-500/10',
     border: 'border-pink-500/20',
-    impact: 'Otomatisasi payroll dan administrasi karyawan, fokuskan HR pada pengembangan talenta dan budaya kerja.',
+    impact:
+      'Otomatisasi payroll dan administrasi karyawan, fokuskan HR pada pengembangan talenta dan budaya kerja.',
     modules: [
       'GPS & Face Recognition Attendance',
       'Payroll Otomatis (BPJS & PPh 21)',
@@ -129,7 +131,8 @@ export const homeSolutions = [
     color: 'text-emerald-500',
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/20',
-    impact: 'Real-time visibility terhadap cashflow. Tutup buku lebih cepat, kontrol budget lebih ketat.',
+    impact:
+      'Real-time visibility terhadap cashflow. Tutup buku lebih cepat, kontrol budget lebih ketat.',
     modules: [
       'Multi-Currency Accounting',
       'Automated Bank Reconciliation',
@@ -145,7 +148,8 @@ export const homeSolutions = [
     color: 'text-blue-500',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
-    impact: 'Optimalkan inventory level, tekan HPP, dan pastikan pengiriman tepat waktu ke pelanggan.',
+    impact:
+      'Optimalkan inventory level, tekan HPP, dan pastikan pengiriman tepat waktu ke pelanggan.',
     modules: [
       'Multi-Warehouse Management',
       'Procurement & Vendor Portal',
@@ -161,7 +165,8 @@ export const homeSolutions = [
     color: 'text-amber-500',
     bg: 'bg-amber-500/10',
     border: 'border-amber-500/20',
-    impact: 'Percepat siklus penjualan dari lead hingga cash. Berdayakan tim sales dengan data di genggaman.',
+    impact:
+      'Percepat siklus penjualan dari lead hingga cash. Berdayakan tim sales dengan data di genggaman.',
     modules: [
       'Omnichannel CRM',
       'Sales Order & Invoicing',
@@ -177,7 +182,8 @@ export const homeSolutions = [
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
-    impact: 'Kelola profitabilitas proyek secara real-time. Pantau budget vs aktual, timesheet tim, dan penagihan termin.',
+    impact:
+      'Kelola profitabilitas proyek secara real-time. Pantau budget vs aktual, timesheet tim, dan penagihan termin.',
     modules: [
       'Project Budgeting (RAB)',
       'Timesheet & Utilitas Tim',
@@ -231,15 +237,39 @@ export const homeIntegrations = [
 ];
 
 export const homeIndustriesData = {
-  manufacturing: { title: 'Manufaktur', description: 'BOM, MRP, dan Shop Floor Control untuk pabrik.', icon: Puzzle },
-  retail: { title: 'Retail & Distribusi', description: 'POS, Multi-Gudang, dan Manajemen Stok terpusat.', icon: Truck },
-  services: { title: 'Jasa & Agensi', description: 'Project Costing, Timesheet, dan Penagihan.', icon: Briefcase },
-  construction: { title: 'Konstruksi', description: 'RAB, Progress Fisik vs Biaya, dan Manajemen Subkon.', icon: HardHatIcon }, // Placeholder icon name
+  manufacturing: {
+    title: 'Manufaktur',
+    description: 'BOM, MRP, dan Shop Floor Control untuk pabrik.',
+    icon: Puzzle,
+  },
+  retail: {
+    title: 'Retail & Distribusi',
+    description: 'POS, Multi-Gudang, dan Manajemen Stok terpusat.',
+    icon: Truck,
+  },
+  services: {
+    title: 'Jasa & Agensi',
+    description: 'Project Costing, Timesheet, dan Penagihan.',
+    icon: Briefcase,
+  },
+  construction: {
+    title: 'Konstruksi',
+    description: 'RAB, Progress Fisik vs Biaya, dan Manajemen Subkon.',
+    icon: HardHat,
+  }, // Placeholder icon name
 };
 
 export const homeRolesData = {
-  ceo: { title: 'CEO / Owner', subtitle: 'Bird-eye view performa bisnis & cashflow.', icon: BarChart },
-  finance: { title: 'Finance Manager', subtitle: 'Kontrol budget & laporan keuangan akurat.', icon: DollarSign },
+  ceo: {
+    title: 'CEO / Owner',
+    subtitle: 'Bird-eye view performa bisnis & cashflow.',
+    icon: BarChart,
+  },
+  finance: {
+    title: 'Finance Manager',
+    subtitle: 'Kontrol budget & laporan keuangan akurat.',
+    icon: DollarSign,
+  },
   hr: { title: 'HR Manager', subtitle: 'Kelola talenta, payroll & kepatuhan.', icon: Users },
   ops: { title: 'Ops Manager', subtitle: 'Efisiensi rantai pasok & produksi.', icon: Truck },
   it: { title: 'IT Manager', subtitle: 'Keamanan data & integrasi sistem.', icon: Code },

@@ -146,11 +146,11 @@ export function DemoContent() {
               >
                 <Stack
                   direction="horizontal"
-                  gap={2}
+                  gap={1}
                   align="center"
-                  className="bg-primary-100 dark:bg-primary-500/10 border-primary-300 dark:border-primary-500/20 text-primary-700 dark:text-primary-400 mb-6 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase"
+                  className="bg-primary-100 dark:bg-primary-500/10 text-primary-700 dark:text-primary-400 mb-6 py-1 text-sm font-bold tracking-wider uppercase"
                 >
-                  <Video className="h-3 w-3" />
+                  <Video className="h-5 w-5" />
                   {' '}
                   Live Walkthrough
                 </Stack>
@@ -166,7 +166,7 @@ export function DemoContent() {
                     In Action.
                   </span>
                 </Typography>
-                <Typography variant="body" className="text-slate-600 dark:text-slate-400">
+                <Typography variant="body" className="pb-6 text-slate-600 dark:text-slate-400">
                   Ini bukan sekadar demo fitur. Diskusikan arsitektur sistem yang tepat untuk
                   masalah operasional spesifik perusahaan Anda dengan Solution Architect kami.
                 </Typography>
@@ -277,7 +277,7 @@ export function DemoContent() {
                       label="Nama Lengkap"
                       placeholder="John Doe"
                       error={errors.fullName}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                     <Input
@@ -289,7 +289,7 @@ export function DemoContent() {
                       placeholder="john@company.com"
                       helperText="Gunakan email korporat untuk prioritas."
                       error={errors.workEmail}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                   </Grid>
@@ -300,7 +300,7 @@ export function DemoContent() {
                     required
                     label="Nama Perusahaan"
                     error={errors.companyName}
-                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
                   />
 
@@ -314,14 +314,14 @@ export function DemoContent() {
                       placeholder="+62..."
                       helperText="Kami akan mengirimkan konfirmasi jadwal via WA."
                       error={errors.whatsapp}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                     <Select
                       id="employeeCount"
                       name="employeeCount"
                       label="Jumlah Karyawan"
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                       labelClassName="text-slate-700 dark:text-slate-300"
                       options={[
                         { value: '<50', label: '< 50 Karyawan' },
@@ -337,7 +337,7 @@ export function DemoContent() {
                     name="industry"
                     label="Industri Utama"
                     helperText="Membantu kami menyiapkan demo case study yang relevan."
-                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
                     options={[
                       { value: 'Construction', label: 'Konstruksi / Kontraktor' },
