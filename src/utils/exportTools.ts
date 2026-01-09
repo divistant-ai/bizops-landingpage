@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /**
  * Export and sharing utilities for calculator tools
  */
@@ -70,11 +71,7 @@ export function formatResultAsText(
 /**
  * Share via Web Share API (mobile-friendly)
  */
-export async function shareResult(
-  title: string,
-  text: string,
-  url?: string,
-): Promise<boolean> {
+export async function shareResult(title: string, text: string, url?: string): Promise<boolean> {
   // Check if Web Share API is supported
   if (navigator.share) {
     try {
@@ -154,9 +151,6 @@ export function shareOnLinkedIn(url?: string): void {
 /**
  * Generate shareable summary text
  */
-export function generateShareText(
-  toolName: string,
-  mainResult: string,
-): string {
+export function generateShareText(toolName: string, mainResult: string): string {
   return `Saya baru saja menggunakan ${toolName} di BizOps!\n\nHasil: ${mainResult}\n\nCoba juga: ${window.location.href}`;
 }

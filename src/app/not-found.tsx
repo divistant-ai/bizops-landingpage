@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { ArrowRight, FileText, HelpCircle, Home, LogIn } from "lucide-react";
-import Link from "next/link";
-import Button from "@/components/ui/Button";
+import type { Metadata } from 'next';
+import { ArrowRight, FileText, HelpCircle, Home } from 'lucide-react';
+import Link from 'next/link';
+import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | BizOps",
-  description: "Halaman yang Anda cari tidak ditemukan.",
+  title: '404 - Page Not Found | BizOps',
+  description: 'Halaman yang Anda cari tidak ditemukan.',
 };
 
 export default function NotFound() {
@@ -29,14 +29,16 @@ export default function NotFound() {
           </div>
 
           <h1 className="mb-6 text-3xl leading-tight font-extrabold text-slate-900 md:text-5xl dark:text-white">
-            Halaman Ini Sedang <br />
+            Halaman Ini Sedang
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
               &quot;Cuti Di Luar Tanggungan&quot;
             </span>
           </h1>
           <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl dark:text-slate-400">
-            Seperti karyawan yang butuh istirahat sejenak, halaman yang Anda cari sepertinya
-            sedang tidak ada di tempat, telah dipindahkan, atau tautannya sudah kadaluarsa.
+            Seperti karyawan yang butuh istirahat sejenak, halaman yang Anda cari sepertinya sedang
+            tidak ada di tempat, telah dipindahkan, atau tautannya sudah kadaluarsa.
           </p>
 
           <div className="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
@@ -59,7 +61,7 @@ export default function NotFound() {
             </Link>
           </div>
 
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 text-left md:grid-cols-4">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 text-left md:grid-cols-3">
             <Link
               href="/platform"
               className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-blue-200 hover:bg-blue-50 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-blue-900/20"
@@ -69,7 +71,8 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Produk</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Lihat solusi{" "}
+                Lihat solusi
+                {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
@@ -82,7 +85,8 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Blog</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Baca wawasan{" "}
+                Baca wawasan
+                {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
@@ -95,11 +99,12 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Support</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Hubungi kami{" "}
+                Hubungi kami
+                {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             </Link>
-            <Link
+            {/* <Link
               href="/login"
               className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-orange-200 hover:bg-orange-50 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-orange-800 dark:hover:bg-orange-900/20"
             >
@@ -108,10 +113,11 @@ export default function NotFound() {
               </div>
               <div className="mb-1 font-bold text-slate-900 dark:text-white">Login</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Masuk akun{" "}
+                Masuk akun
+                {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

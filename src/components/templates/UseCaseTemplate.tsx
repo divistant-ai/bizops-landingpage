@@ -29,7 +29,11 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
             {icon}
           </div>
           <h2 className="text-primary-600 dark:text-primary-400 mb-4 text-lg font-bold tracking-wider uppercase">
-            <span className="text-slate-800 dark:text-white">{data.industry} Case Study</span>
+            <span className="text-slate-800 dark:text-white">
+              {data.industry}
+              {' '}
+              Case Study
+            </span>
           </h2>
           <h1 className="mb-6 text-4xl leading-tight font-extrabold text-slate-900 md:text-6xl dark:text-white">
             <span className="text-slate-800 dark:text-white">{data.title}</span>
@@ -55,7 +59,11 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
                     <span className="text-slate-800 dark:text-white">The Challenge</span>
                   </h3>
                   <p className="flex-grow text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                    <span className="text-slate-800 dark:text-white">"{data.challenge}"</span>
+                    <span className="text-slate-800 dark:text-white">
+                      "
+                      {data.challenge}
+                      "
+                    </span>
                   </p>
                 </div>
               </FadeIn>
@@ -114,7 +122,8 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
       <Section className="bg-slate-50 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <h3 className="mb-8 flex items-center justify-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
-            <Layers className="h-5 w-5 text-neutral-500" />{' '}
+            <Layers className="h-5 w-5 text-neutral-500" />
+            {' '}
             <span className="text-slate-800 dark:text-white">Technology Stack Used</span>
           </h3>
           <div className="flex flex-wrap justify-center gap-4">

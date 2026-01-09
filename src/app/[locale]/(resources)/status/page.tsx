@@ -9,8 +9,8 @@ export const metadata = genMeta({
 });
 
 export default function StatusPage() {
-  const { currentStatus, lastUpdated, apiResponseTime, systems, thirdParty, incidents } =
-    statusData;
+  const { currentStatus, lastUpdated, apiResponseTime, systems, thirdParty, incidents }
+    = statusData;
 
   const getStatusIcon = (status: string) => {
     if (status === 'Operational') {
@@ -29,7 +29,9 @@ export default function StatusPage() {
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
             <div>
               <h1 className="mb-2 flex items-center gap-3 text-3xl font-bold text-slate-900 dark:text-white">
-                <Activity className="h-8 w-8 text-green-500 dark:text-green-400" /> System Status
+                <Activity className="h-8 w-8 text-green-500 dark:text-green-400" />
+                {' '}
+                System Status
               </h1>
               <p className="text-sm text-slate-600 dark:text-slate-400">
                 Last check:
@@ -74,10 +76,14 @@ export default function StatusPage() {
                     </div>
                     <div className="text-right">
                       <div className="mb-1 flex items-center justify-end gap-2 text-sm font-bold">
-                        {getStatusIcon(sys.status)} {sys.status}
+                        {getStatusIcon(sys.status)}
+                        {' '}
+                        {sys.status}
                       </div>
                       <div className="text-xs text-neutral-400 dark:text-slate-500">
-                        {sys.uptime} uptime
+                        {sys.uptime}
+                        {' '}
+                        uptime
                       </div>
                     </div>
                   </div>
@@ -103,7 +109,9 @@ export default function StatusPage() {
                       <div className="text-sm text-neutral-500 dark:text-slate-400">{sys.desc}</div>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-bold">
-                      {getStatusIcon(sys.status)} {sys.status}
+                      {getStatusIcon(sys.status)}
+                      {' '}
+                      {sys.status}
                     </div>
                   </div>
                 ))}
@@ -116,42 +124,45 @@ export default function StatusPage() {
             <h2 className="mb-6 text-lg font-bold text-neutral-900 dark:text-white">
               Past Incidents (Last 30 Days)
             </h2>
-            {incidents.length > 0 ? (
-              <div className="space-y-8">
-                {incidents.map((incident, i) => (
-                  <div
-                    key={i}
-                    className="relative border-l-4 border-neutral-200 pl-6 dark:border-slate-700"
-                  >
-                    <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-neutral-300 dark:border-slate-900 dark:bg-slate-700" />
-                    <div className="mb-2 flex flex-wrap items-center gap-3">
-                      <span className="font-bold text-neutral-900 dark:text-white">
-                        {incident.title}
-                      </span>
-                      <span
-                        className={`rounded px-2 py-0.5 text-xs font-bold ${incident.status === 'Resolved' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}
+            {incidents.length > 0
+              ? (
+                  <div className="space-y-8">
+                    {incidents.map((incident, i) => (
+                      <div
+                        key={i}
+                        className="relative border-l-4 border-neutral-200 pl-6 dark:border-slate-700"
                       >
-                        {incident.status}
-                      </span>
-                      <span className="text-sm text-neutral-500 dark:text-slate-400">
-                        •{incident.date}
-                      </span>
-                    </div>
-                    <p className="mb-2 text-sm text-neutral-600 dark:text-slate-400">
-                      {incident.desc}
-                    </p>
-                    <div className="text-xs text-neutral-400 dark:text-slate-500">
-                      Duration:
-                      {incident.duration}
-                    </div>
+                        <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-neutral-300 dark:border-slate-900 dark:bg-slate-700" />
+                        <div className="mb-2 flex flex-wrap items-center gap-3">
+                          <span className="font-bold text-neutral-900 dark:text-white">
+                            {incident.title}
+                          </span>
+                          <span
+                            className={`rounded px-2 py-0.5 text-xs font-bold ${incident.status === 'Resolved' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}
+                          >
+                            {incident.status}
+                          </span>
+                          <span className="text-sm text-neutral-500 dark:text-slate-400">
+                            •
+                            {incident.date}
+                          </span>
+                        </div>
+                        <p className="mb-2 text-sm text-neutral-600 dark:text-slate-400">
+                          {incident.desc}
+                        </p>
+                        <div className="text-xs text-neutral-400 dark:text-slate-500">
+                          Duration:
+                          {incident.duration}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <p className="py-8 text-center text-neutral-500 dark:text-slate-400">
-                No incidents reported in the last 30 days.
-              </p>
-            )}
+                )
+              : (
+                  <p className="py-8 text-center text-neutral-500 dark:text-slate-400">
+                    No incidents reported in the last 30 days.
+                  </p>
+                )}
           </div>
         </Container>
       </Section>

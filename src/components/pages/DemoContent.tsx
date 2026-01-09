@@ -41,9 +41,9 @@ export function DemoContent() {
     } else if (!emailRegex.test(email)) {
       newErrors.workEmail = 'Format email tidak valid (contoh: nama@perusahaan.com).';
     } else if (
-      email.includes('gmail.com') ||
-      email.includes('yahoo.com') ||
-      email.includes('hotmail.com')
+      email.includes('gmail.com')
+      || email.includes('yahoo.com')
+      || email.includes('hotmail.com')
     ) {
       newErrors.workEmail = 'Gunakan email bisnis/perusahaan (bukan email pribadi).';
     }
@@ -93,7 +93,7 @@ export function DemoContent() {
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     await traceAction('business.lead.submit', async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1500));
       window.open(whatsappUrl, '_blank');
       setFormState('success');
     });
@@ -146,23 +146,27 @@ export function DemoContent() {
               >
                 <Stack
                   direction="horizontal"
-                  gap={2}
+                  gap={1}
                   align="center"
-                  className="bg-primary-100 dark:bg-primary-500/10 border-primary-300 dark:border-primary-500/20 text-primary-700 dark:text-primary-400 mb-6 rounded-full border px-3 py-1 text-xs font-bold tracking-wider uppercase"
+                  className="bg-primary-100 dark:bg-primary-500/10 text-primary-700 dark:text-primary-400 mb-6 py-1 text-sm font-bold tracking-wider uppercase"
                 >
-                  <Video className="h-3 w-3" /> Live Walkthrough
+                  <Video className="h-5 w-5" />
+                  {' '}
+                  Live Walkthrough
                 </Stack>
                 <Typography
                   variant="h1"
                   as="h1"
                   className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
                 >
-                  Lihat BizOps <br />
+                  Lihat BizOps
+                  {' '}
+                  <br />
                   <span className="bg-gradient-to-r from-cyan-500 to-cyan-600 bg-clip-text text-transparent dark:to-cyan-400">
                     In Action.
                   </span>
                 </Typography>
-                <Typography variant="body" className="text-slate-600 dark:text-slate-400">
+                <Typography variant="body" className="pb-6 text-slate-600 dark:text-slate-400">
                   Ini bukan sekadar demo fitur. Diskusikan arsitektur sistem yang tepat untuk
                   masalah operasional spesifik perusahaan Anda dengan Solution Architect kami.
                 </Typography>
@@ -172,7 +176,7 @@ export function DemoContent() {
                     {
                       icon: Calendar,
                       title: 'Discovery Session (15m)',
-                      desc: "Kami akan membedah 'bottle-neck' operasional Anda saat ini.",
+                      desc: 'Kami akan membedah \'bottle-neck\' operasional Anda saat ini.',
                     },
                     {
                       icon: Video,
@@ -273,7 +277,7 @@ export function DemoContent() {
                       label="Nama Lengkap"
                       placeholder="John Doe"
                       error={errors.fullName}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                     <Input
@@ -285,7 +289,7 @@ export function DemoContent() {
                       placeholder="john@company.com"
                       helperText="Gunakan email korporat untuk prioritas."
                       error={errors.workEmail}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                   </Grid>
@@ -296,7 +300,7 @@ export function DemoContent() {
                     required
                     label="Nama Perusahaan"
                     error={errors.companyName}
-                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
                   />
 
@@ -310,14 +314,14 @@ export function DemoContent() {
                       placeholder="+62..."
                       helperText="Kami akan mengirimkan konfirmasi jadwal via WA."
                       error={errors.whatsapp}
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-white/10 dark:!bg-black/40 dark:!text-white dark:placeholder:!text-slate-600"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
                     />
                     <Select
                       id="employeeCount"
                       name="employeeCount"
                       label="Jumlah Karyawan"
-                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                      className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                       labelClassName="text-slate-700 dark:text-slate-300"
                       options={[
                         { value: '<50', label: '< 50 Karyawan' },
@@ -333,7 +337,7 @@ export function DemoContent() {
                     name="industry"
                     label="Industri Utama"
                     helperText="Membantu kami menyiapkan demo case study yang relevan."
-                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-white/10 dark:!bg-black/40 dark:!text-white"
+                    className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
                     options={[
                       { value: 'Construction', label: 'Konstruksi / Kontraktor' },
@@ -348,7 +352,9 @@ export function DemoContent() {
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
                     <span className="mb-4 block flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" /> Kebutuhan Utama
+                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />
+                      {' '}
+                      Kebutuhan Utama
                     </span>
                     <Grid cols={1} gap={4}>
                       <Checkbox
@@ -387,24 +393,28 @@ export function DemoContent() {
                   <div className="pt-2">
                     <Checkbox
                       name="consent"
-                      label={
+                      label={(
                         <span className="text-sm text-slate-600 dark:text-slate-400">
-                          Saya menyetujui{' '}
+                          Saya menyetujui
+                          {' '}
                           <Link
                             href="/legal/privacy"
                             className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
                             target="_blank"
                           >
                             Kebijakan Privasi
-                          </Link>{' '}
+                          </Link>
+                          {' '}
                           dan mengizinkan BizOps menghubungi saya.
                         </span>
-                      }
+                      )}
                       required
                     />
                     {errors.consent && (
                       <Typography variant="body">
-                        <Shield className="h-3 w-3" /> {errors.consent}
+                        <Shield className="h-3 w-3" />
+                        {' '}
+                        {errors.consent}
                       </Typography>
                     )}
                   </div>

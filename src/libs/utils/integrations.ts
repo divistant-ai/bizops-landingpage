@@ -1,3 +1,4 @@
+/* eslint-disable ts/consistent-type-definitions */
 /**
  * Third-Party Integrations Manager
  * Centralized initialization for all marketing, analytics, and monitoring tools
@@ -100,19 +101,24 @@ export const getIntegrationConfig = (): IntegrationConfig => {
     reddit: env('NEXT_PUBLIC_REDDIT_PIXEL_ID'),
     intercom: env('NEXT_PUBLIC_INTERCOM_APP_ID'),
     crisp: env('NEXT_PUBLIC_CRISP_WEBSITE_ID'),
-    tawk: env('NEXT_PUBLIC_TAWK_PROPERTY_ID') && env('NEXT_PUBLIC_TAWK_WIDGET_ID')
-      ? { propertyId: env('NEXT_PUBLIC_TAWK_PROPERTY_ID')!, widgetId: env('NEXT_PUBLIC_TAWK_WIDGET_ID')! }
-      : undefined,
+    tawk:
+      env('NEXT_PUBLIC_TAWK_PROPERTY_ID') && env('NEXT_PUBLIC_TAWK_WIDGET_ID')
+        ? {
+            propertyId: env('NEXT_PUBLIC_TAWK_PROPERTY_ID')!,
+            widgetId: env('NEXT_PUBLIC_TAWK_WIDGET_ID')!,
+          }
+        : undefined,
     drift: env('NEXT_PUBLIC_DRIFT_APP_ID'),
     zendesk: env('NEXT_PUBLIC_ZENDESK_KEY'),
     logrocket: env('NEXT_PUBLIC_LOGROCKET_APP_ID'),
-    datadog: env('NEXT_PUBLIC_DATADOG_APPLICATION_ID') && env('NEXT_PUBLIC_DATADOG_CLIENT_TOKEN')
-      ? {
-          applicationId: env('NEXT_PUBLIC_DATADOG_APPLICATION_ID')!,
-          clientToken: env('NEXT_PUBLIC_DATADOG_CLIENT_TOKEN')!,
-          site: env('NEXT_PUBLIC_DATADOG_SITE') || 'datadoghq.com',
-        }
-      : undefined,
+    datadog:
+      env('NEXT_PUBLIC_DATADOG_APPLICATION_ID') && env('NEXT_PUBLIC_DATADOG_CLIENT_TOKEN')
+        ? {
+            applicationId: env('NEXT_PUBLIC_DATADOG_APPLICATION_ID')!,
+            clientToken: env('NEXT_PUBLIC_DATADOG_CLIENT_TOKEN')!,
+            site: env('NEXT_PUBLIC_DATADOG_SITE') || 'datadoghq.com',
+          }
+        : undefined,
     googleSiteVerification: env('NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'),
     bingSiteVerification: env('NEXT_PUBLIC_BING_SITE_VERIFICATION'),
   };
@@ -414,7 +420,11 @@ export const initLogRocket = async (_appId: string): Promise<void> => {
 /**
  * Initialize Datadog RUM
  */
-export const initDatadog = (config: { applicationId: string; clientToken: string; site: string }): void => {
+export const initDatadog = (config: {
+  applicationId: string;
+  clientToken: string;
+  site: string;
+}): void => {
   try {
     (function (h: any, o: any, u: any, n: any, d: any) {
       h = h[d] = h[d] || {
@@ -430,7 +440,13 @@ export const initDatadog = (config: { applicationId: string; clientToken: string
       if (n && n.parentNode) {
         n.parentNode.insertBefore(d, n);
       }
-    })(window, document, 'script', 'https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js', 'DD_RUM');
+    })(
+      window,
+      document,
+      'script',
+      'https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js',
+      'DD_RUM',
+    );
 
     window.DD_RUM!.onReady(() => {
       window.DD_RUM!.init({
@@ -521,7 +537,11 @@ export const initAllIntegrations = (): void => {
 /**
  * Track conversion event across all platforms
  */
-export const trackConversionEvent = (eventName: string, value?: number, currency: string = 'IDR'): void => {
+export const trackConversionEvent = (
+  eventName: string,
+  value?: number,
+  currency: string = 'IDR',
+): void => {
   // Google Analytics
   if (window.gtag) {
     window.gtag('event', 'conversion', {

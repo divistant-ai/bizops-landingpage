@@ -5,8 +5,18 @@ import { AlertCircle, Calculator, Download, Loader2, Share2, TrendingUp } from '
 import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { formatErrorMessage, safeCalculate, validateFields, validateNumber } from '@/utils/errorHandling';
-import { downloadAsText, formatResultAsText, generateShareText, shareResult } from '@/utils/exportTools';
+import {
+  formatErrorMessage,
+  safeCalculate,
+  validateFields,
+  validateNumber,
+} from '@/utils/errorHandling';
+import {
+  downloadAsText,
+  formatResultAsText,
+  generateShareText,
+  shareResult,
+} from '@/utils/exportTools';
 
 type TaxResult = {
   grossSalary: number;
@@ -38,7 +48,7 @@ const TAX_BRACKETS = [
   { limit: 60000000, rate: 0.05 },
   { limit: 250000000, rate: 0.15 },
   { limit: 500000000, rate: 0.25 },
-  { limit: 5000000000, rate: 0.30 },
+  { limit: 5000000000, rate: 0.3 },
   { limit: Infinity, rate: 0.35 },
 ];
 
@@ -67,61 +77,64 @@ export default function PajakPPh21Calculator() {
     }
 
     // Safe calculation with error handling
-    const calculatedResult = safeCalculate<TaxResult>(() => {
-      const monthly = Number.parseFloat(grossSalary) || 0;
-      const annual = monthly * 12;
+    const calculatedResult = safeCalculate<TaxResult>(
+      () => {
+        const monthly = Number.parseFloat(grossSalary) || 0;
+        const annual = monthly * 12;
 
-      const ptkpKey = `${maritalStatus.charAt(0)}${dependents}` as keyof typeof PTKP_RATES;
-      const ptkp = PTKP_RATES[ptkpKey] || PTKP_RATES.TK0;
+        const ptkpKey = `${maritalStatus.charAt(0)}${dependents}` as keyof typeof PTKP_RATES;
+        const ptkp = PTKP_RATES[ptkpKey] || PTKP_RATES.TK0;
 
-      const taxableIncome = Math.max(0, annual - ptkp);
+        const taxableIncome = Math.max(0, annual - ptkp);
 
-      let remainingIncome = taxableIncome;
-      let totalTax = 0;
-      const breakdown: TaxResult['breakdown'] = [];
+        let remainingIncome = taxableIncome;
+        let totalTax = 0;
+        const breakdown: TaxResult['breakdown'] = [];
 
-      for (let i = 0; i < TAX_BRACKETS.length; i++) {
-        const bracket = TAX_BRACKETS[i];
-        if (!bracket) {
-          continue;
+        for (let i = 0; i < TAX_BRACKETS.length; i++) {
+          const bracket = TAX_BRACKETS[i];
+          if (!bracket) {
+            continue;
+          }
+          const prevLimit = i === 0 ? 0 : TAX_BRACKETS[i - 1]?.limit || 0;
+          const bracketSize = bracket.limit - prevLimit;
+          const taxableInBracket = Math.min(remainingIncome, bracketSize);
+
+          if (taxableInBracket > 0) {
+            const taxAmount = taxableInBracket * bracket.rate;
+            totalTax += taxAmount;
+            breakdown.push({
+              bracket: i + 1,
+              rate: bracket.rate,
+              amount: taxAmount,
+            });
+            remainingIncome -= taxableInBracket;
+          }
+
+          if (remainingIncome <= 0) {
+            break;
+          }
         }
-        const prevLimit = i === 0 ? 0 : (TAX_BRACKETS[i - 1]?.limit || 0);
-        const bracketSize = bracket.limit - prevLimit;
-        const taxableInBracket = Math.min(remainingIncome, bracketSize);
 
-        if (taxableInBracket > 0) {
-          const taxAmount = taxableInBracket * bracket.rate;
-          totalTax += taxAmount;
-          breakdown.push({
-            bracket: i + 1,
-            rate: bracket.rate,
-            amount: taxAmount,
-          });
-          remainingIncome -= taxableInBracket;
-        }
+        const monthlyTax = totalTax / 12;
+        const netSalary = monthly - monthlyTax;
+        const effectiveRate = annual > 0 ? (totalTax / annual) * 100 : 0;
 
-        if (remainingIncome <= 0) {
-          break;
-        }
-      }
-
-      const monthlyTax = totalTax / 12;
-      const netSalary = monthly - monthlyTax;
-      const effectiveRate = annual > 0 ? (totalTax / annual) * 100 : 0;
-
-      return {
-        grossSalary: monthly,
-        ptkp,
-        taxableIncome,
-        annualTax: totalTax,
-        monthlyTax,
-        netSalary,
-        effectiveRate,
-        breakdown,
-      };
-    }, (error) => {
-      setErrors([error]);
-    });
+        return {
+          grossSalary: monthly,
+          ptkp,
+          taxableIncome,
+          annualTax: totalTax,
+          monthlyTax,
+          netSalary,
+          effectiveRate,
+          breakdown,
+        };
+      },
+      (error) => {
+        setErrors([error]);
+      },
+    );
 
     if (calculatedResult) {
       setResult(calculatedResult);
@@ -166,10 +179,7 @@ export default function PajakPPh21Calculator() {
       `Gaji Bersih: ${formatCurrency(result.netSalary)} (Pajak: ${formatCurrency(result.monthlyTax)})`,
     );
 
-    const success = await shareResult(
-      'Hasil Kalkulator Pajak PPh 21',
-      shareText,
-    );
+    const success = await shareResult('Hasil Kalkulator Pajak PPh 21', shareText);
 
     if (success) {
       // Success handled by shareResult
@@ -197,7 +207,8 @@ export default function PajakPPh21Calculator() {
             Kalkulator Pajak PPh 21
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Hitung pajak penghasilan karyawan sesuai aturan terbaru. Gratis, akurat, dan mudah digunakan.
+            Hitung pajak penghasilan karyawan sesuai aturan terbaru. Gratis, akurat, dan mudah
+            digunakan.
           </p>
         </div>
 
@@ -223,16 +234,23 @@ export default function PajakPPh21Calculator() {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Input Section */}
           <Card className="p-6">
-            <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Input Data Karyawan</h2>
+            <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+              Input Data Karyawan
+            </h2>
 
             <div className="space-y-6">
               {/* Gross Salary */}
               <div>
-                <label htmlFor="gross-salary" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="gross-salary"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Gaji Bruto per Bulan
                 </label>
                 <div className="relative">
-                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                    Rp
+                  </span>
                   <input
                     id="gross-salary"
                     type="text"
@@ -246,14 +264,20 @@ export default function PajakPPh21Calculator() {
                     aria-describedby="gross-salary-help"
                   />
                 </div>
-                <p id="gross-salary-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                <p
+                  id="gross-salary-help"
+                  className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                >
                   {grossSalary && formatCurrency(Number.parseFloat(grossSalary) || 0)}
                 </p>
               </div>
 
               {/* Marital Status */}
               <div>
-                <label htmlFor="marital-status" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="marital-status"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Status Pernikahan
                 </label>
                 <select
@@ -270,7 +294,10 @@ export default function PajakPPh21Calculator() {
 
               {/* Dependents */}
               <div>
-                <label htmlFor="dependents" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="dependents"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Jumlah Tanggungan
                 </label>
                 <select
@@ -289,7 +316,7 @@ export default function PajakPPh21Calculator() {
 
               <Button
                 onClick={calculateTax}
-                className="w-full"
+                className="w-full bg-blue-600 hover:bg-blue-700"
                 size="lg"
                 disabled={isCalculating}
                 aria-label="Hitung pajak PPh 21"
@@ -303,8 +330,8 @@ export default function PajakPPh21Calculator() {
                     )
                   : (
                       <>
-                        <Calculator className="mr-2 h-5 w-5" />
-                        Hitung Pajak PPh 21
+                        <Calculator className="w-5text-white mr-2 h-5" />
+                        <span className="text-white">Hitung Pajak PPh 21</span>
                       </>
                     )}
               </Button>
@@ -315,7 +342,12 @@ export default function PajakPPh21Calculator() {
           <div className="space-y-6">
             {result
               ? (
-                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan pajak">
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan pajak"
+                    className="space-y-6"
+                  >
                     <Card className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">Hasil Perhitungan</h3>
                       <div className="space-y-3">
@@ -337,7 +369,9 @@ export default function PajakPPh21Calculator() {
                     </Card>
 
                     <Card className="p-6">
-                      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Detail Perhitungan</h3>
+                      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                        Detail Perhitungan
+                      </h3>
                       <div className="space-y-3 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600 dark:text-slate-400">
@@ -349,16 +383,18 @@ export default function PajakPPh21Calculator() {
                           <span className="font-medium">{formatCurrency(result.ptkp)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600 dark:text-slate-400">Penghasilan Kena Pajak (PKP)</span>
+                          <span className="text-gray-600 dark:text-slate-400">
+                            Penghasilan Kena Pajak (PKP)
+                          </span>
                           <span className="font-medium">{formatCurrency(result.taxableIncome)}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600 dark:text-slate-400">Pajak Tahunan</span>
                           <span className="font-medium">{formatCurrency(result.annualTax)}</span>
                         </div>
-                        <div className="flex justify-between border-t pt-2">
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
                           <span className="text-gray-600 dark:text-slate-400">Effective Tax Rate</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold text-blue-600 dark:text-blue-400">
                             {result.effectiveRate.toFixed(2)}
                             %
                           </span>
@@ -374,7 +410,7 @@ export default function PajakPPh21Calculator() {
                             {result.breakdown.map(item => (
                               <div
                                 key={item.bracket}
-                                className="flex items-center justify-between rounded bg-gray-50 px-3 py-2 text-xs"
+                                className="flex items-center justify-between rounded bg-gray-50 px-3 py-2 text-xs dark:bg-slate-800"
                               >
                                 <span className="text-gray-600 dark:text-slate-400">
                                   Bracket
@@ -385,7 +421,9 @@ export default function PajakPPh21Calculator() {
                                   {(item.rate * 100).toFixed(0)}
                                   %)
                                 </span>
-                                <span className="font-medium">{formatCurrency(item.amount)}</span>
+                                <span className="font-medium dark:text-white">
+                                  {formatCurrency(item.amount)}
+                                </span>
                               </div>
                             ))}
                           </div>
@@ -432,18 +470,18 @@ export default function PajakPPh21Calculator() {
 
         {/* Upsell Section */}
         {showUpsell && (
-          <Card className="mt-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 p-6">
+          <Card className="mt-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 p-6 dark:border-blue-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
-              <div className="rounded-full bg-blue-100 p-3">
-                <TrendingUp className="h-6 w-6 text-blue-600" />
+              <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-950">
+                <TrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
                   Otomasi Perhitungan Pajak untuk Seluruh Karyawan
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-slate-400">
-                  Hitung manual setiap bulan? BizOps bisa otomatis menghitung PPh 21 untuk ratusan karyawan,
-                  generate slip gaji, dan laporan pajak dalam hitungan detik.
+                  Hitung manual setiap bulan? BizOps bisa otomatis menghitung PPh 21 untuk ratusan
+                  karyawan, generate slip gaji, dan laporan pajak dalam hitungan detik.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
@@ -459,15 +497,17 @@ export default function PajakPPh21Calculator() {
         )}
 
         {/* Info Section */}
-        <Card className="mt-8 border-l-4 border-blue-500 bg-blue-50 p-6">
+        <Card className="mt-8 border-l-4 border-blue-500 bg-blue-50 p-6 dark:border-blue-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-blue-600" />
+            <AlertCircle className="h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold">Catatan Penting:</p>
+              <p className="mb-2 font-semibold dark:text-white">Catatan Penting:</p>
               <ul className="list-inside list-disc space-y-1">
                 <li>Perhitungan menggunakan tarif PPh 21 terbaru sesuai UU HPP</li>
                 <li>PTKP disesuaikan dengan status pernikahan dan jumlah tanggungan</li>
-                <li>Hasil perhitungan bersifat estimasi dan dapat berbeda dengan perhitungan resmi</li>
+                <li>
+                  Hasil perhitungan bersifat estimasi dan dapat berbeda dengan perhitungan resmi
+                </li>
                 <li>Untuk perhitungan akurat, konsultasikan dengan konsultan pajak</li>
               </ul>
             </div>

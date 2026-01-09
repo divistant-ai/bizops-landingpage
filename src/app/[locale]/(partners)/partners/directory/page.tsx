@@ -13,12 +13,12 @@ export default function PartnerDirectoryPage() {
   const [selectedLocation, setSelectedLocation] = useState<string>('all');
 
   const filteredPartners = partnerDirectoryData.filter((partner) => {
-    const matchesSearch =
-      partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      partner.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch
+      = partner.name.toLowerCase().includes(searchTerm.toLowerCase())
+        || partner.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || partner.type === selectedType;
-    const matchesLocation =
-      selectedLocation === 'all' || partner.location.includes(selectedLocation);
+    const matchesLocation
+      = selectedLocation === 'all' || partner.location.includes(selectedLocation);
 
     return matchesSearch && matchesType && matchesLocation;
   });
@@ -44,13 +44,13 @@ export default function PartnerDirectoryPage() {
                 placeholder="Cari partner berdasarkan nama atau keahlian..."
                 className="focus:ring-primary-500 focus:border-primary-500 w-full rounded-xl border border-neutral-300 bg-white py-3 pr-4 pl-12 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
               />
             </div>
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
+              onChange={e => setSelectedType(e.target.value)}
             >
               <option value="all">Semua Tipe Partner</option>
               <option value="implementation">Implementation Partner</option>
@@ -61,7 +61,7 @@ export default function PartnerDirectoryPage() {
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedLocation}
-              onChange={(e) => setSelectedLocation(e.target.value)}
+              onChange={e => setSelectedLocation(e.target.value)}
             >
               <option value="all">Semua Lokasi</option>
               <option value="Indonesia">Indonesia</option>
@@ -76,7 +76,7 @@ export default function PartnerDirectoryPage() {
         <Container>
           <FadeInStagger>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPartners.map((partner) => (
+              {filteredPartners.map(partner => (
                 <FadeIn key={partner.id}>
                   <div className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                     <div className="mb-6 flex items-start justify-between">
@@ -97,7 +97,9 @@ export default function PartnerDirectoryPage() {
                             {partner.name}
                           </h3>
                           <div className="flex items-center gap-1 text-xs text-neutral-500 dark:text-slate-400">
-                            <MapPin className="h-3 w-3" /> {partner.location}
+                            <MapPin className="h-3 w-3" />
+                            {' '}
+                            {partner.location}
                           </div>
                         </div>
                       </div>
@@ -138,7 +140,8 @@ export default function PartnerDirectoryPage() {
                         ))}
                         {partner.industries.length > 2 && (
                           <span className="px-1 py-1 text-[10px] text-neutral-400 dark:text-slate-500">
-                            +{partner.industries.length - 2}
+                            +
+                            {partner.industries.length - 2}
                           </span>
                         )}
                       </div>

@@ -42,7 +42,7 @@ export default function ROICalculator() {
   const [leadData, setLeadData] = useState({ name: '', company: '', email: '', phone: '' });
 
   // --- CALCULATIONS ---
-  const selectedPlan = PRICING_TIERS.find((p) => p.id === selectedPlanId) || PRICING_TIERS[1]!;
+  const selectedPlan = PRICING_TIERS.find(p => p.id === selectedPlanId) || PRICING_TIERS[1]!;
   const subscriptionCost = selectedPlan.cost;
 
   // 1. Efficiency / Productivity Gain
@@ -59,8 +59,8 @@ export default function ROICalculator() {
   // 4. IT Cost Reduction (Hard Savings)
   const techSavings = existingTechCost;
 
-  const totalMonthlySavings =
-    efficiencySavings + overtimeSavings + monthlyLossSavings + techSavings;
+  const totalMonthlySavings
+    = efficiencySavings + overtimeSavings + monthlyLossSavings + techSavings;
   const netMonthlyBenefit = totalMonthlySavings - subscriptionCost;
   const roiPercentage = subscriptionCost > 0 ? (netMonthlyBenefit / subscriptionCost) * 100 : 0;
   const paybackMonths = totalMonthlySavings > 0 ? subscriptionCost / totalMonthlySavings : 0;
@@ -115,11 +115,14 @@ export default function ROICalculator() {
         {/* Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-600 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
-            <Calculator className="size-4" />{' '}
+            <Calculator className="size-4" />
+            {' '}
             <span className="text-slate-800 dark:text-white">ROI Calculator</span>
           </div>
           <h1 className="mb-6 text-4xl leading-tight font-bold text-slate-900 md:text-5xl lg:text-6xl dark:text-white">
-            Hitung Nilai Investasi <br />
+            Hitung Nilai Investasi
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
               Transformasi Digital
             </span>
@@ -154,7 +157,9 @@ export default function ROICalculator() {
                     Jumlah Staf Admin
                   </label>
                   <span className="rounded bg-blue-500/10 px-2 py-0.5 text-sm font-bold text-blue-600 dark:bg-blue-400/10 dark:text-blue-400">
-                    {adminCount} Orang
+                    {adminCount}
+                    {' '}
+                    Orang
                   </span>
                 </div>
                 <input
@@ -162,7 +167,7 @@ export default function ROICalculator() {
                   min="1"
                   max="50"
                   value={adminCount}
-                  onChange={(e) => setAdminCount(Number.parseInt(e.target.value))}
+                  onChange={e => setAdminCount(Number.parseInt(e.target.value))}
                   className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-blue-500 hover:accent-blue-400 dark:bg-slate-800"
                 />
               </div>
@@ -178,7 +183,7 @@ export default function ROICalculator() {
                     <input
                       type="number"
                       value={salary}
-                      onChange={(e) => setSalary(Number.parseInt(e.target.value))}
+                      onChange={e => setSalary(Number.parseInt(e.target.value))}
                       className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-2 pl-8 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-white/10 dark:bg-slate-950 dark:text-white"
                     />
                   </div>
@@ -194,11 +199,12 @@ export default function ROICalculator() {
                       max="90"
                       step="5"
                       value={efficiencyRate}
-                      onChange={(e) => setEfficiencyRate(Number.parseInt(e.target.value))}
+                      onChange={e => setEfficiencyRate(Number.parseInt(e.target.value))}
                       className="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-slate-200 accent-emerald-500 dark:bg-slate-800"
                     />
                     <span className="w-10 text-sm font-bold text-emerald-400">
-                      {efficiencyRate}%
+                      {efficiencyRate}
+                      %
                     </span>
                   </div>
                   <p className="mt-2 text-xs text-slate-500">
@@ -215,7 +221,9 @@ export default function ROICalculator() {
                     Lembur (Jam/Orang/Bulan)
                   </label>
                   <span className="rounded bg-amber-500/10 px-2 py-0.5 text-sm font-bold text-amber-600 dark:bg-amber-400/10 dark:text-amber-400">
-                    {overtime} Jam
+                    {overtime}
+                    {' '}
+                    Jam
                   </span>
                 </div>
                 <input
@@ -223,7 +231,7 @@ export default function ROICalculator() {
                   min="0"
                   max="100"
                   value={overtime}
-                  onChange={(e) => setOvertime(Number.parseInt(e.target.value))}
+                  onChange={e => setOvertime(Number.parseInt(e.target.value))}
                   className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-amber-500 hover:accent-amber-400 dark:bg-slate-800"
                 />
               </div>
@@ -239,7 +247,7 @@ export default function ROICalculator() {
                     <input
                       type="number"
                       value={losses}
-                      onChange={(e) => setLosses(Number.parseInt(e.target.value))}
+                      onChange={e => setLosses(Number.parseInt(e.target.value))}
                       className="w-full rounded-xl border border-slate-300 bg-white py-3 pr-4 pl-10 text-slate-900 outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 dark:border-white/10 dark:bg-slate-950 dark:text-white"
                     />
                   </div>
@@ -254,7 +262,7 @@ export default function ROICalculator() {
                     <input
                       type="number"
                       value={existingTechCost}
-                      onChange={(e) => setExistingTechCost(Number.parseInt(e.target.value))}
+                      onChange={e => setExistingTechCost(Number.parseInt(e.target.value))}
                       className="w-full rounded-xl border border-slate-300 bg-white py-3 pr-4 pl-10 text-slate-900 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 dark:border-white/10 dark:bg-slate-950 dark:text-white"
                     />
                   </div>
@@ -272,7 +280,7 @@ export default function ROICalculator() {
                   Pilih Paket BizOps
                 </label>
                 <div className="grid grid-cols-3 gap-2">
-                  {PRICING_TIERS.map((plan) => (
+                  {PRICING_TIERS.map(plan => (
                     <button
                       key={plan.id}
                       onClick={() => setSelectedPlanId(plan.id)}
@@ -287,7 +295,9 @@ export default function ROICalculator() {
                   ))}
                 </div>
                 <p className="mt-2 text-right text-xs text-slate-500">
-                  Biaya: {formatCurrency(subscriptionCost)}
+                  Biaya:
+                  {' '}
+                  {formatCurrency(subscriptionCost)}
                   /bulan
                 </p>
               </div>
@@ -316,7 +326,14 @@ export default function ROICalculator() {
                   <span className="text-xs font-normal text-slate-500">/bln</span>
                 </div>
                 <p className="mt-2 text-xs text-slate-500">
-                  Efisiensi {efficiencyRate}% dari {adminCount} staf.
+                  Efisiensi
+                  {' '}
+                  {efficiencyRate}
+                  % dari
+                  {' '}
+                  {adminCount}
+                  {' '}
+                  staf.
                 </p>
               </div>
 
@@ -402,7 +419,8 @@ export default function ROICalculator() {
                           ROI Year 1
                         </div>
                         <div className="text-lg font-bold text-emerald-700 dark:text-emerald-400">
-                          {roiPercentage.toFixed(0)}%
+                          {roiPercentage.toFixed(0)}
+                          %
                         </div>
                       </div>
                     </div>
@@ -428,7 +446,8 @@ export default function ROICalculator() {
                     size="lg"
                     className="w-full border-none bg-white font-bold text-slate-950 shadow-xl shadow-white/10 hover:bg-slate-200"
                   >
-                    <Download className="mr-2 size-4" />{' '}
+                    <Download className="mr-2 size-4" />
+                    {' '}
                     <span className="text-slate-800 dark:text-slate-600">Unduh Proposal</span>
                   </Button>
                   <Link href="/contact" className="w-full">
@@ -458,7 +477,11 @@ export default function ROICalculator() {
                 </h4>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-500">
                   Perhitungan ini adalah estimasi konservatif (asumsi efisiensi 30%). Banyak klien
-                  kami melaporkan <strong>Intangible Benefits</strong> yang lebih besar seperti
+                  kami melaporkan
+                  {' '}
+                  <strong>Intangible Benefits</strong>
+                  {' '}
+                  yang lebih besar seperti
                   kepuasan karyawan, akurasi data real-time, dan kecepatan pengambilan keputusan
                   strategis.
                 </p>
@@ -507,7 +530,7 @@ export default function ROICalculator() {
                         required
                         type="text"
                         value={leadData.name}
-                        onChange={(e) => setLeadData({ ...leadData, name: e.target.value })}
+                        onChange={e => setLeadData({ ...leadData, name: e.target.value })}
                         className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-4 pl-10 text-slate-900 focus:border-emerald-500 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white"
                         placeholder="Nama Anda"
                       />
@@ -523,7 +546,7 @@ export default function ROICalculator() {
                         required
                         type="text"
                         value={leadData.company}
-                        onChange={(e) => setLeadData({ ...leadData, company: e.target.value })}
+                        onChange={e => setLeadData({ ...leadData, company: e.target.value })}
                         className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-4 pl-10 text-slate-900 focus:border-emerald-500 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white"
                         placeholder="Nama PT"
                       />
@@ -539,7 +562,7 @@ export default function ROICalculator() {
                         required
                         type="email"
                         value={leadData.email}
-                        onChange={(e) => setLeadData({ ...leadData, email: e.target.value })}
+                        onChange={e => setLeadData({ ...leadData, email: e.target.value })}
                         className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-4 pl-10 text-slate-900 focus:border-emerald-500 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white"
                         placeholder="email@kantor.com"
                       />
@@ -554,7 +577,7 @@ export default function ROICalculator() {
                       <input
                         type="tel"
                         value={leadData.phone}
-                        onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })}
+                        onChange={e => setLeadData({ ...leadData, phone: e.target.value })}
                         className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pr-4 pl-10 text-slate-900 focus:border-emerald-500 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white"
                         placeholder="0812..."
                       />

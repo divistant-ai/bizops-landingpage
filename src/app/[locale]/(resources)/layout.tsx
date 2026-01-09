@@ -20,7 +20,7 @@ export default async function ResourcesLayout(props: {
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
-      <main className="flex-grow">{props.children}</main>
+      <main className="grow">{props.children}</main>
       <Footer />
     </div>
   );

@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { ChevronDown, Search } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { servicesItems } from "../../data/navData";
-import { ThemeToggle } from "../ThemeToggle";
-import MegaMenu from "./MegaMenu";
+import { ChevronDown, Search } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { servicesItems } from '../../data/navData';
+import { ThemeToggle } from '../ThemeToggle';
+import MegaMenu from './MegaMenu';
 import {
   getIconButtonClasses,
   getMenuItemClasses,
   getTextButtonClasses,
   navbarStyles,
-} from "./navbarStyles";
+} from './navbarStyles';
 
 type NavbarDesktopProps = {
   onDemoClick: () => void;
 };
 
-type MenuType = "platform" | "solutions" | "services" | "resources" | "company" | null;
+type MenuType = 'platform' | 'solutions' | 'services' | 'resources' | 'company' | null;
 
 const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   const pathname = usePathname();
@@ -33,23 +33,23 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   // Handle escape key to close menu
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setActiveMenu(null);
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, []);
 
@@ -71,52 +71,52 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="relative flex h-full shrink-0 items-center">
           <button
             type="button"
-            onClick={() => handleMenuClick("platform")}
-            className={getMenuItemClasses(pathname?.startsWith("/platform") || false)}
-            aria-expanded={isMenuOpen("platform")}
+            onClick={() => handleMenuClick('platform')}
+            className={getMenuItemClasses()}
+            aria-expanded={isMenuOpen('platform')}
           >
             Platform
             <ChevronDown
-              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("platform") ? "rotate-180" : ""}`}
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('platform') ? 'rotate-180' : ''}`}
             />
           </button>
-          <MegaMenu type="platform" isOpen={isMenuOpen("platform")} onClose={handleCloseMenu} />
+          <MegaMenu type="platform" isOpen={isMenuOpen('platform')} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 2: SOLUTIONS */}
         <div className="relative flex h-full shrink-0 items-center">
           <button
             type="button"
-            onClick={() => handleMenuClick("solutions")}
-            className={getMenuItemClasses(pathname?.startsWith("/solutions") || false)}
-            aria-expanded={isMenuOpen("solutions")}
+            onClick={() => handleMenuClick('solutions')}
+            className={getMenuItemClasses()}
+            aria-expanded={isMenuOpen('solutions')}
           >
             Solutions
             <ChevronDown
-              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("solutions") ? "rotate-180" : ""}`}
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('solutions') ? 'rotate-180' : ''}`}
             />
           </button>
-          <MegaMenu type="solutions" isOpen={isMenuOpen("solutions")} onClose={handleCloseMenu} />
+          <MegaMenu type="solutions" isOpen={isMenuOpen('solutions')} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 3: SERVICES */}
         <div className="relative flex h-full shrink-0 items-center">
           <button
             type="button"
-            onClick={() => handleMenuClick("services")}
-            className={getMenuItemClasses(pathname?.startsWith("/services") || false)}
-            aria-expanded={isMenuOpen("services")}
+            onClick={() => handleMenuClick('services')}
+            className={getMenuItemClasses()}
+            aria-expanded={isMenuOpen('services')}
           >
             Services
             <ChevronDown
-              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("services") ? "rotate-180" : ""}`}
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('services') ? 'rotate-180' : ''}`}
             />
           </button>
           <div
             className={`absolute top-full left-0 z-50 mt-2 w-72 origin-top-left transform rounded-xl border border-slate-200/80 bg-white/95 p-2 shadow-xl backdrop-blur-xl transition-all duration-200 dark:border-slate-700/50 dark:bg-slate-900/95 ${
-              isMenuOpen("services")
-                ? "visible translate-y-0 opacity-100"
-                : "invisible translate-y-1 opacity-0"
+              isMenuOpen('services')
+                ? 'visible translate-y-0 opacity-100'
+                : 'invisible translate-y-1 opacity-0'
             }`}
           >
             {servicesItems.map(item => (
@@ -135,8 +135,8 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
 
         <Link
           href="/pricing"
-          className={`${getMenuItemClasses(pathname?.startsWith("/pricing") || false)} shrink-0`}
-          aria-current={pathname?.startsWith("/pricing") ? "page" : undefined}
+          className={`${getMenuItemClasses()} shrink-0`}
+          aria-current={pathname?.startsWith('/pricing') ? 'page' : undefined}
         >
           Pricing
         </Link>
@@ -145,38 +145,32 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         <div className="relative flex h-full shrink-0 items-center">
           <button
             type="button"
-            onClick={() => handleMenuClick("resources")}
-            className={getMenuItemClasses(pathname?.startsWith("/resources") || false)}
-            aria-expanded={isMenuOpen("resources")}
+            onClick={() => handleMenuClick('resources')}
+            className={getMenuItemClasses()}
+            aria-expanded={isMenuOpen('resources')}
           >
             Resources
             <ChevronDown
-              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("resources") ? "rotate-180" : ""}`}
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('resources') ? 'rotate-180' : ''}`}
             />
           </button>
-          <MegaMenu type="resources" isOpen={isMenuOpen("resources")} onClose={handleCloseMenu} />
+          <MegaMenu type="resources" isOpen={isMenuOpen('resources')} onClose={handleCloseMenu} />
         </div>
 
         {/* MENU 5: COMPANY */}
         <div className="relative flex h-full shrink-0 items-center">
           <button
             type="button"
-            onClick={() => handleMenuClick("company")}
-            className={getMenuItemClasses(
-              pathname?.startsWith("/about")
-              || pathname?.startsWith("/company")
-              || pathname?.startsWith("/careers")
-              || pathname?.startsWith("/partners")
-              || false,
-            )}
-            aria-expanded={isMenuOpen("company")}
+            onClick={() => handleMenuClick('company')}
+            className={getMenuItemClasses()}
+            aria-expanded={isMenuOpen('company')}
           >
             Company
             <ChevronDown
-              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen("company") ? "rotate-180" : ""}`}
+              className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('company') ? 'rotate-180' : ''}`}
             />
           </button>
-          <MegaMenu type="company" isOpen={isMenuOpen("company")} onClose={handleCloseMenu} />
+          <MegaMenu type="company" isOpen={isMenuOpen('company')} onClose={handleCloseMenu} />
         </div>
       </nav>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 /**
  * Custom hook for tracking scroll position
@@ -16,16 +16,20 @@ export function useScrollPosition() {
     y: 0,
   });
 
+  const updateScrollPosition = useEffectEvent(() => {
+    setScrollPosition({
+      x: window.scrollX,
+      y: window.scrollY,
+    });
+  });
+
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
     }
 
     const handleScroll = () => {
-      setScrollPosition({
-        x: window.scrollX,
-        y: window.scrollY,
-      });
+      updateScrollPosition();
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -54,13 +58,17 @@ export function useScrollPosition() {
 export function useIsScrolled(threshold: number = 20): boolean {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const updateIsScrolled = useEffectEvent(() => {
+    setIsScrolled(window.scrollY > threshold);
+  });
+
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
     }
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > threshold);
+      updateIsScrolled();
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

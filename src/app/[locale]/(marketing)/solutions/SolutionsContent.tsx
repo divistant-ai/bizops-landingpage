@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import Link from "next/link";
-import { Container, Section } from "@/components/layout";
-import { Badge, CardSlider, SpotlightCard, Stack } from "@/components/ui";
-import { BouncyLink } from "@/components/ui/BouncyLink";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { StaggeredText } from "@/components/ui/motion-text";
-import { industriesData, rolesData } from "@/data/solutionsContent";
+import { motion } from 'framer-motion';
+import { ArrowRight, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { Container, Section } from '@/components/layout';
+import { Badge, CardSlider, SpotlightCard, Stack } from '@/components/ui';
+import { BouncyLink } from '@/components/ui/BouncyLink';
+import { FadeIn } from '@/components/ui/FadeIn';
+import { StaggeredText } from '@/components/ui/motion-text';
+import { industriesData, rolesData } from '@/data/solutionsContent';
 
 export default function SolutionsContent() {
   const industries = Object.entries(industriesData).map(([key, val]) => ({
@@ -20,14 +20,14 @@ export default function SolutionsContent() {
   // Color mapping for industries - Design System: Light backgrounds with dark text
   const getColor = (id: string) => {
     const map: Record<string, string> = {
-      construction: "bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-400",
-      retail: "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400",
-      outsourcing: "bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400",
-      consulting: "bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-400",
-      manufacturing: "bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-400",
-      enterprise: "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
+      construction: 'bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-400',
+      retail: 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400',
+      outsourcing: 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400',
+      consulting: 'bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-400',
+      manufacturing: 'bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-400',
+      enterprise: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300',
     };
-    return map[id] || "bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300";
+    return map[id] || 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300';
   };
 
   return (
@@ -126,7 +126,7 @@ export default function SolutionsContent() {
                           </p>
                           <div className="text-primary-600 dark:text-primary-400 mt-auto flex items-center text-sm font-semibold transition-transform group-hover:translate-x-2">
                             Pelajari Selengkapnya
-                            {" "}
+                            {' '}
                             <ChevronRight className="ml-1 h-4 w-4" />
                           </div>
                         </div>
@@ -174,7 +174,7 @@ export default function SolutionsContent() {
                     </p>
                     <div className="text-primary-600 flex items-center justify-center text-sm font-medium">
                       <span className="dark:text-white">Lihat Dashboard</span>
-                      {" "}
+                      {' '}
                       <ArrowRight className="ml-1 h-3 w-3" />
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export default function SolutionsContent() {
           </Badge>
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             Bawa Efisiensi Ini ke
-            {" "}
+            {' '}
             <span className="text-primary-600 dark:text-primary-400">Bisnis Anda.</span>
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-xl text-slate-600 dark:text-slate-300">

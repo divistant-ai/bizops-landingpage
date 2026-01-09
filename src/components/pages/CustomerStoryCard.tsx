@@ -92,7 +92,9 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
               variant="h5"
               className="mb-4 leading-tight font-bold text-slate-900 dark:text-white"
             >
-              "{story.title}"
+              "
+              {story.title}
+              "
             </Typography>
 
             <div className="flex gap-4">

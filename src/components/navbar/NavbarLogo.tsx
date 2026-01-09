@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
 const NavbarLogo: React.FC = () => {
   const { resolvedTheme } = useTheme();
@@ -17,9 +17,9 @@ const NavbarLogo: React.FC = () => {
   }, []);
 
   const logoSrc
-    = mounted && resolvedTheme === "dark"
-      ? "/assets/images/Logo BizOps - Dark.svg"
-      : "/assets/images/Logo BizOps - Light.svg";
+    = mounted && resolvedTheme === 'dark'
+      ? '/assets/images/Logo BizOps - Dark.svg'
+      : '/assets/images/Logo BizOps - Light.svg';
 
   return (
     <div className="flex flex-shrink-0 items-center">

@@ -58,10 +58,14 @@ export default function TrustPage() {
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1">
-              <Clock className="h-3 w-3" /> Uptime (30 Days): 99.99%
+              <Clock className="h-3 w-3" />
+              {' '}
+              Uptime (30 Days): 99.99%
             </span>
             <span className="hidden items-center gap-1 sm:flex">
-              <RefreshCw className="h-3 w-3" /> Last Updated: Just now
+              <RefreshCw className="h-3 w-3" />
+              {' '}
+              Last Updated: Just now
             </span>
             <Link href="/status" className="text-emerald-600 hover:underline">
               View History →
@@ -199,7 +203,9 @@ export default function TrustPage() {
         <section className="grid grid-cols-1 items-center gap-16 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold tracking-wider text-slate-600 uppercase dark:bg-slate-800 dark:text-slate-400">
-              <Layers className="h-3 w-3" /> Defense in Depth
+              <Layers className="h-3 w-3" />
+              {' '}
+              Defense in Depth
             </div>
             <Typography variant="h2" as="h2" className="mb-6">
               Arsitektur Keamanan Berlapis
@@ -312,25 +318,33 @@ export default function TrustPage() {
               <Stack direction="vertical" gap={4} className="relative z-10 h-full justify-center">
                 <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur">
                   <div className="flex items-center gap-3 text-xs text-emerald-400">
-                    <Globe className="h-4 w-4" /> Cloudflare WAF
+                    <Globe className="h-4 w-4" />
+                    {' '}
+                    Cloudflare WAF
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></div>
                 </div>
                 <div className="ml-4 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-8">
                   <div className="flex items-center gap-3 text-xs text-blue-400">
-                    <Server className="h-4 w-4" /> Load Balancer
+                    <Server className="h-4 w-4" />
+                    {' '}
+                    Load Balancer
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-blue-500"></div>
                 </div>
                 <div className="ml-8 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-16">
                   <div className="flex items-center gap-3 text-xs text-purple-400">
-                    <Lock className="h-4 w-4" /> App Server (Pod)
+                    <Lock className="h-4 w-4" />
+                    {' '}
+                    App Server (Pod)
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-purple-500"></div>
                 </div>
                 <div className="ml-12 flex items-center justify-between gap-4 rounded-xl border border-emerald-500/30 bg-emerald-900/50 p-4 shadow-[0_0_30px_rgba(16,185,129,0.2)] backdrop-blur sm:ml-24">
                   <div className="flex items-center gap-3 text-xs font-bold text-white">
-                    <Database className="h-4 w-4" /> Encrypted DB
+                    <Database className="h-4 w-4" />
+                    {' '}
+                    Encrypted DB
                   </div>
                   <div className="flex gap-1">
                     <Lock className="h-3 w-3 text-emerald-400" />
@@ -416,7 +430,9 @@ export default function TrustPage() {
             Certifications) melalui portal khusus klien Enterprise.
           </Typography>
           <Button size="lg" className="px-8 font-bold text-slate-950 dark:text-white">
-            Request Access to Trust Portal <ChevronRight className="ml-2 h-4 w-4" />
+            Request Access to Trust Portal
+            {' '}
+            <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </section>
       </Container>
