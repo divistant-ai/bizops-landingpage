@@ -279,6 +279,3 @@ export const homeRolesData = {
 function RocketIcon() {
   return null;
 }
-function HardHatIcon() {
-  return null;
-}
