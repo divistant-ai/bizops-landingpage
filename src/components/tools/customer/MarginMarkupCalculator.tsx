@@ -8,7 +8,12 @@ import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { safeCalculate, safeDivide, validateFields, validateNumber } from '@/utils/errorHandling';
-import { downloadAsText, formatResultAsText, generateShareText, shareResult } from '@/utils/exportTools';
+import {
+  downloadAsText,
+  formatResultAsText,
+  generateShareText,
+  shareResult,
+} from '@/utils/exportTools';
 
 type CalculationMode = 'margin' | 'markup' | 'selling-price';
 
@@ -43,7 +48,12 @@ export default function MarginMarkupCalculator() {
     } else {
       validationErrors = validateFields([
         () => validateNumber(cost, { min: 0, fieldName: 'Harga Pokok' }),
-        () => validateNumber(percentage, { min: 0, max: 1000, fieldName: mode === 'margin' ? 'Margin' : 'Markup' }),
+        () =>
+          validateNumber(percentage, {
+            min: 0,
+            max: 1000,
+            fieldName: mode === 'margin' ? 'Margin' : 'Markup',
+          }),
       ]);
     }
 
@@ -55,55 +65,62 @@ export default function MarginMarkupCalculator() {
     }
 
     setTimeout(() => {
-      const calculatedResult = safeCalculate<Result>(() => {
-        const costValue = Number.parseFloat(cost) || 0;
-        const percentageValue = Number.parseFloat(percentage) || 0;
-        const sellingPriceValue = Number.parseFloat(sellingPrice) || 0;
+      const calculatedResult = safeCalculate<Result>(
+        () => {
+          const costValue = Number.parseFloat(cost) || 0;
+          const percentageValue = Number.parseFloat(percentage) || 0;
+          const sellingPriceValue = Number.parseFloat(sellingPrice) || 0;
 
-        let calculatedResult: Result;
+          let calculatedResult: Result;
 
-        if (mode === 'margin') {
-          const calculatedSellingPrice = safeDivide(costValue, (1 - percentageValue / 100), costValue);
-          const profit = calculatedSellingPrice - costValue;
-          const markup = safeDivide(profit * 100, costValue, 0);
+          if (mode === 'margin') {
+            const calculatedSellingPrice = safeDivide(
+              costValue,
+              1 - percentageValue / 100,
+              costValue,
+            );
+            const profit = calculatedSellingPrice - costValue;
+            const markup = safeDivide(profit * 100, costValue, 0);
 
-          calculatedResult = {
-            cost: costValue,
-            sellingPrice: calculatedSellingPrice,
-            profit,
-            margin: percentageValue,
-            markup,
-          };
-        } else if (mode === 'markup') {
-          const profit = costValue * (percentageValue / 100);
-          const calculatedSellingPrice = costValue + profit;
-          const margin = safeDivide(profit * 100, calculatedSellingPrice, 0);
+            calculatedResult = {
+              cost: costValue,
+              sellingPrice: calculatedSellingPrice,
+              profit,
+              margin: percentageValue,
+              markup,
+            };
+          } else if (mode === 'markup') {
+            const profit = costValue * (percentageValue / 100);
+            const calculatedSellingPrice = costValue + profit;
+            const margin = safeDivide(profit * 100, calculatedSellingPrice, 0);
 
-          calculatedResult = {
-            cost: costValue,
-            sellingPrice: calculatedSellingPrice,
-            profit,
-            margin,
-            markup: percentageValue,
-          };
-        } else {
-          const profit = sellingPriceValue - costValue;
-          const margin = safeDivide(profit * 100, sellingPriceValue, 0);
-          const markup = safeDivide(profit * 100, costValue, 0);
+            calculatedResult = {
+              cost: costValue,
+              sellingPrice: calculatedSellingPrice,
+              profit,
+              margin,
+              markup: percentageValue,
+            };
+          } else {
+            const profit = sellingPriceValue - costValue;
+            const margin = safeDivide(profit * 100, sellingPriceValue, 0);
+            const markup = safeDivide(profit * 100, costValue, 0);
 
-          calculatedResult = {
-            cost: costValue,
-            sellingPrice: sellingPriceValue,
-            profit,
-            margin,
-            markup,
-          };
-        }
+            calculatedResult = {
+              cost: costValue,
+              sellingPrice: sellingPriceValue,
+              profit,
+              margin,
+              markup,
+            };
+          }
 
-        return calculatedResult;
-      }, (error) => {
-        setErrors([error]);
-      });
+          return calculatedResult;
+        },
+        (error) => {
+          setErrors([error]);
+        },
+      );
 
       if (calculatedResult) {
         setResult(calculatedResult);
@@ -121,7 +138,8 @@ export default function MarginMarkupCalculator() {
     const content = formatResultAsText(
       'Kalkulator Margin & Markup',
       {
-        'Mode Perhitungan': mode === 'margin' ? 'Dari Margin' : mode === 'markup' ? 'Dari Markup' : 'Dari Harga Jual',
+        'Mode Perhitungan':
+          mode === 'margin' ? 'Dari Margin' : mode === 'markup' ? 'Dari Markup' : 'Dari Harga Jual',
         'Harga Pokok': formatCurrency(result.cost),
         ...(mode !== 'selling-price' ? { Persentase: `${percentage}%` } : {}),
         ...(mode === 'selling-price' ? { 'Harga Jual': formatCurrency(result.sellingPrice) } : {}),
@@ -179,7 +197,9 @@ export default function MarginMarkupCalculator() {
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="space-y-6">
             <Card className="p-6">
-              <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Mode Perhitungan</h2>
+              <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+                Mode Perhitungan
+              </h2>
 
               <div className="mb-6 grid grid-cols-3 gap-2">
                 <button
@@ -219,11 +239,16 @@ export default function MarginMarkupCalculator() {
 
               <div className="space-y-6">
                 <div>
-                  <label htmlFor="cost" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                  <label
+                    htmlFor="cost"
+                    className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                  >
                     Harga Pokok / Cost
                   </label>
                   <div className="relative">
-                    <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                    <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                      Rp
+                    </span>
                     <input
                       id="cost"
                       type="text"
@@ -245,7 +270,10 @@ export default function MarginMarkupCalculator() {
                 {mode !== 'selling-price'
                   ? (
                       <div>
-                        <label htmlFor="percentage" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                        <label
+                          htmlFor="percentage"
+                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                        >
                           {mode === 'margin' ? 'Target Margin (%)' : 'Target Markup (%)'}
                         </label>
                         <div className="relative">
@@ -260,17 +288,24 @@ export default function MarginMarkupCalculator() {
                             className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                             placeholder="30"
                           />
-                          <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">%</span>
+                          <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">
+                            %
+                          </span>
                         </div>
                       </div>
                     )
                   : (
                       <div>
-                        <label htmlFor="selling-price" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                        <label
+                          htmlFor="selling-price"
+                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                        >
                           Harga Jual
                         </label>
                         <div className="relative">
-                          <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                          <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                            Rp
+                          </span>
                           <input
                             id="selling-price"
                             type="text"
@@ -284,7 +319,10 @@ export default function MarginMarkupCalculator() {
                             aria-describedby="selling-price-help"
                           />
                         </div>
-                        <p id="selling-price-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                        <p
+                          id="selling-price-help"
+                          className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                        >
                           {sellingPrice && formatCurrency(Number.parseFloat(sellingPrice) || 0)}
                         </p>
                       </div>
@@ -314,11 +352,11 @@ export default function MarginMarkupCalculator() {
               </div>
             </Card>
 
-            <Card className="border-l-4 border-purple-500 bg-purple-50 p-4">
+            <Card className="border-l-4 border-purple-500 bg-purple-50 p-4 dark:border-purple-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-purple-600" />
+                <Info className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
                 <div className="text-xs text-gray-700 dark:text-slate-300">
-                  <p className="mb-2 font-semibold">Perbedaan Margin vs Markup:</p>
+                  <p className="mb-2 font-semibold dark:text-white">Perbedaan Margin vs Markup:</p>
                   <ul className="space-y-1">
                     <li>
                       <strong>Margin:</strong>
@@ -339,7 +377,12 @@ export default function MarginMarkupCalculator() {
           <div className="space-y-6">
             {result
               ? (
-                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan margin markup">
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan margin markup"
+                    className="space-y-6"
+                  >
                     <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">Hasil Perhitungan</h3>
                       <div className="mb-4 text-center">
@@ -353,22 +396,26 @@ export default function MarginMarkupCalculator() {
                         </div>
                         <div className="flex justify-between">
                           <span className="text-purple-100">Profit</span>
-                          <span className="font-bold text-yellow-300">{formatCurrency(result.profit)}</span>
+                          <span className="font-bold text-yellow-300">
+                            {formatCurrency(result.profit)}
+                          </span>
                         </div>
                       </div>
                     </Card>
 
                     <Card className="p-6">
                       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                        <TrendingUp className="h-5 w-5 text-purple-600" />
+                        <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                         Analisis Profit
                       </h3>
 
                       <div className="space-y-4">
-                        <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4">
+                        <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
                           <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Margin</span>
-                            <span className="text-2xl font-bold text-purple-600">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Margin
+                            </span>
+                            <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                               {result.margin.toFixed(2)}
                               %
                             </span>
@@ -382,10 +429,12 @@ export default function MarginMarkupCalculator() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4">
+                        <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
                           <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Markup</span>
-                            <span className="text-2xl font-bold text-pink-600">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Markup
+                            </span>
+                            <span className="text-2xl font-bold text-pink-600 dark:text-pink-400">
                               {result.markup.toFixed(2)}
                               %
                             </span>
@@ -398,10 +447,12 @@ export default function MarginMarkupCalculator() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+                        <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-800">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Profit per Unit</span>
-                            <span className="text-xl font-bold text-green-600">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              Profit per Unit
+                            </span>
+                            <span className="text-xl font-bold text-green-600 dark:text-green-400">
                               {formatCurrency(result.profit)}
                             </span>
                           </div>
@@ -416,23 +467,29 @@ export default function MarginMarkupCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
                       <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-                        <DollarSign className="h-5 w-5 text-blue-600" />
+                        <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                         Proyeksi Penjualan
                       </h4>
                       <div className="grid grid-cols-3 gap-3 text-center text-sm">
                         <div>
                           <p className="text-gray-600 dark:text-slate-400">10 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">{formatCurrency(result.profit * 10)}</p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 10)}
+                          </p>
                         </div>
                         <div>
                           <p className="text-gray-600 dark:text-slate-400">100 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">{formatCurrency(result.profit * 100)}</p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 100)}
+                          </p>
                         </div>
                         <div>
                           <p className="text-gray-600 dark:text-slate-400">1000 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">{formatCurrency(result.profit * 1000)}</p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 1000)}
+                          </p>
                         </div>
                       </div>
                     </Card>
@@ -452,18 +509,18 @@ export default function MarginMarkupCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-6">
+          <Card className="mt-8 border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:border-purple-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
-              <div className="rounded-full bg-purple-100 p-3">
-                <TrendingUp className="h-6 w-6 text-purple-600" />
+              <div className="rounded-full bg-purple-100 p-3 dark:bg-purple-950">
+                <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-400" />
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
                   Otomasi Pricing & Profit Analysis
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-slate-400">
-                  Hitung margin untuk ratusan produk secara manual? BizOps otomatis menghitung harga jual optimal,
-                  analisis profit, dan rekomendasi pricing strategy.
+                  Hitung margin untuk ratusan produk secara manual? BizOps otomatis menghitung harga
+                  jual optimal, analisis profit, dan rekomendasi pricing strategy.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
@@ -478,11 +535,11 @@ export default function MarginMarkupCalculator() {
           </Card>
         )}
 
-        <Card className="mt-8 border-l-4 border-purple-500 bg-purple-50 p-6">
+        <Card className="mt-8 border-l-4 border-purple-500 bg-purple-50 p-6 dark:border-purple-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-purple-600" />
+            <AlertCircle className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold">Tips Pricing:</p>
+              <p className="mb-2 font-semibold dark:text-white">Tips Pricing:</p>
               <ul className="list-inside list-disc space-y-1">
                 <li>Margin 20-30% cocok untuk produk retail dengan kompetisi tinggi</li>
                 <li>Margin 40-60% untuk produk premium atau niche market</li>

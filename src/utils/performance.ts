@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Performance optimization utilities
  * Helps achieve perfect 100/100 score

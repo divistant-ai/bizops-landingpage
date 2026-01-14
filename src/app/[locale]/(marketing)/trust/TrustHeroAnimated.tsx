@@ -14,7 +14,9 @@ export function TrustHeroAnimated() {
         transition={{ duration: 0.6 }}
         className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-800 bg-emerald-900/30 px-4 py-1.5 text-xs font-bold tracking-wider text-emerald-800 uppercase backdrop-blur-md dark:text-emerald-400"
       >
-        <Shield className="h-3 w-3" /> BizOps Trust Center
+        <Shield className="h-3 w-3" />
+        {' '}
+        BizOps Trust Center
       </motion.div>
 
       <motion.h1
@@ -23,7 +25,9 @@ export function TrustHeroAnimated() {
         transition={{ delay: 0.1, duration: 0.8 }}
         className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
       >
-        Keamanan Data Anda Adalah <br />
+        Keamanan Data Anda Adalah
+        {' '}
+        <br />
         <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
           Prioritas Absolut Kami.
         </span>
@@ -49,7 +53,9 @@ export function TrustHeroAnimated() {
           size="lg"
           className="w-full border-none bg-emerald-600 font-bold text-white shadow-lg shadow-emerald-900/20 hover:bg-emerald-500 sm:w-auto"
         >
-          Download Security Whitepaper <Download className="ml-2 h-4 w-4" />
+          Download Security Whitepaper
+          {' '}
+          <Download className="ml-2 h-4 w-4" />
         </Button>
         <Link href="/security/report">
           <Button
@@ -57,7 +63,9 @@ export function TrustHeroAnimated() {
             variant="outline"
             className="hover w-full border-slate-700 bg-white/10 text-slate-950 sm:w-auto dark:text-white"
           >
-            Laporkan Celah Keamanan <AlertTriangle className="ml-2 h-4 w-4" />
+            Laporkan Celah Keamanan
+            {' '}
+            <AlertTriangle className="ml-2 h-4 w-4" />
           </Button>
         </Link>
       </motion.div>

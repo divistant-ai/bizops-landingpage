@@ -14,6 +14,7 @@ import {
   Type,
   X,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import { CardSlider, Grid, Typography } from '@/components/ui';
@@ -24,7 +25,7 @@ const boilerplate = {
   short:
     'BizOps adalah Business Operating System end-to-end yang membantu perusahaan Indonesia mendigitalisasi operasional dari hulu ke hilir. Menggabungkan kekuatan teknologi Enterprise berbasis Open Source dengan kepatuhan regulasi lokal, BizOps menawarkan solusi yang fleksibel, aman, dan berdaulat data di bawah naungan PT Divistant Teknologi Indonesia.',
   standard:
-    "BizOps, dikembangkan oleh PT Divistant Teknologi Indonesia, adalah platform 'Business Operating System' yang dirancang untuk menjembatani kesenjangan antara software akuntansi lokal yang sederhana dan ERP global yang kompleks. Dengan filosofi 'Mobile-First' dan 'Data Sovereignty', BizOps menyediakan solusi terintegrasi untuk HR, Keuangan, Operasional Proyek, dan Rantai Pasok dalam satu ekosistem. BizOps memberdayakan perusahaan Indonesia untuk memiliki kendali penuh atas data mereka melalui opsi Self-Hosted, sambil tetap menikmati kemudahan penggunaan aplikasi mobile modern.",
+    'BizOps, dikembangkan oleh PT Divistant Teknologi Indonesia, adalah platform \'Business Operating System\' yang dirancang untuk menjembatani kesenjangan antara software akuntansi lokal yang sederhana dan ERP global yang kompleks. Dengan filosofi \'Mobile-First\' dan \'Data Sovereignty\', BizOps menyediakan solusi terintegrasi untuk HR, Keuangan, Operasional Proyek, dan Rantai Pasok dalam satu ekosistem. BizOps memberdayakan perusahaan Indonesia untuk memiliki kendali penuh atas data mereka melalui opsi Self-Hosted, sambil tetap menikmati kemudahan penggunaan aplikasi mobile modern.',
 };
 
 export default function MediaKitContent() {
@@ -52,7 +53,9 @@ export default function MediaKitContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase backdrop-blur-md dark:bg-slate-800/50 dark:text-indigo-300"
           >
-            <Download className="h-3 w-3" /> Official Press Resources
+            <Download className="h-3 w-3" />
+            {' '}
+            Official Press Resources
           </motion.div>
 
           <motion.h1
@@ -61,7 +64,9 @@ export default function MediaKitContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Ceritakan Kisah Kami <br />
+            Ceritakan Kisah Kami
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-300">
               Dengan Benar.
             </span>
@@ -87,14 +92,18 @@ export default function MediaKitContent() {
               size="lg"
               className="border-none bg-slate-900 font-bold text-white shadow-xl hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
             >
-              Download All Assets (ZIP) <Download className="ml-2 h-4 w-4" />
+              Download All Assets (ZIP)
+              {' '}
+              <Download className="ml-2 h-4 w-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-slate-300 text-slate-900 hover:bg-slate-200 dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
             >
-              Lihat Brand Guidelines <ExternalLink className="ml-2 h-4 w-4" />
+              Lihat Brand Guidelines
+              {' '}
+              <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         </Container>
@@ -124,20 +133,19 @@ export default function MediaKitContent() {
               className="flex flex-col rounded-3xl border border-slate-200 bg-white p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
               <div className="bg-opacity-50 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
-                <div className="flex scale-150 transform items-center gap-3">
-                  <div className="bg-primary-600 shadow-primary-500/30 flex h-10 w-10 items-center justify-center rounded-xl shadow-lg">
-                    <div className="h-5 w-5 rotate-45 transform rounded-md bg-white"></div>
-                  </div>
-                  <Typography variant="body" className="text-3xl text-slate-900 dark:text-white">
-                    BizOps
-                  </Typography>
-                </div>
+                <Image
+                  src="/assets/images/Logo BizOps - Light.svg"
+                  alt="BizOps Logo Dark"
+                  width={256}
+                  height={54}
+                  className="h-auto w-64"
+                />
               </div>
-              <div className="w-full border-t border-slate-100 pt-6 dark:border-slate-800">
+              <div className="w-full border-t border-slate-100 pt-6 dark:border-slate-700">
                 <div className="mb-4 flex items-end justify-between">
                   <div>
-                    <Typography variant="h3" as="h3">
-                      Primary Logo
+                    <Typography variant="h3" as="h3" className="text-slate-900 dark:text-white">
+                      Primary Logo (Dark)
                     </Typography>
                     <Typography variant="small" className="text-slate-500 dark:text-slate-400">
                       Gunakan pada background terang/putih.
@@ -160,22 +168,21 @@ export default function MediaKitContent() {
               whileHover={{ y: -5 }}
               className="relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
-              <div className="absolute inset-0 bg-slate-800/50 mix-blend-overlay dark:bg-slate-800/50"></div>
+              <div className="absolute inset-0 bg-slate-800/50 mix-blend-overlay"></div>
               <div className="relative z-10 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center">
-                <div className="flex scale-150 transform items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-lg">
-                    <div className="h-5 w-5 rotate-45 transform rounded-md bg-slate-900"></div>
-                  </div>
-                  <Typography variant="body" className="text-3xl text-white">
-                    BizOps
-                  </Typography>
-                </div>
+                <Image
+                  src="/assets/images/Logo BizOps - Dark.svg"
+                  alt="BizOps Logo Light"
+                  width={256}
+                  height={54}
+                  className="h-auto w-64"
+                />
               </div>
               <div className="relative z-10 w-full border-t border-slate-700/50 pt-6">
                 <div className="mb-4 flex items-end justify-between">
                   <div>
                     <Typography variant="h3" as="h3" className="text-white">
-                      Monochrome (Inverse)
+                      Primary Logo (White)
                     </Typography>
                     <Typography variant="small" className="text-slate-400">
                       Gunakan pada background gelap/foto.
@@ -272,11 +279,13 @@ export default function MediaKitContent() {
                     onClick={() => copyToClipboard('#2563EB', 'c1')}
                     className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
-                    {copied === 'c1' ? (
-                      <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                    ) : (
-                      <Copy className="h-3 w-3" />
-                    )}
+                    {copied === 'c1'
+                      ? (
+                          <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                        )
+                      : (
+                          <Copy className="h-3 w-3" />
+                        )}
                     {copied !== 'c1' && '#2563EB'}
                   </button>
                 </div>
@@ -300,11 +309,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#2563EB', 'c1')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c1' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c1'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c1' && '#2563EB'}
                 </button>
               </div>
@@ -327,11 +338,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#0F172A', 'c2')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c2' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c2'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c2' && '#0F172A'}
                 </button>
               </div>
@@ -352,11 +365,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#10B981', 'c3')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c3' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c3'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c3' && '#10B981'}
                 </button>
               </div>
@@ -379,11 +394,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#F59E0B', 'c4')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c4' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c4'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c4' && '#F59E0B'}
                 </button>
               </div>
@@ -412,7 +429,9 @@ export default function MediaKitContent() {
               className="leading-relaxed text-slate-600 dark:text-slate-400"
             >
               BizOps menggunakan typeface
-              <strong>Plus Jakarta Sans</strong> untuk seluruh materi komunikasi digital. Font ini
+              <strong>Plus Jakarta Sans</strong>
+              {' '}
+              untuk seluruh materi komunikasi digital. Font ini
               dipilih karena karakteristiknya yang modern, netral, dan memiliki keterbacaan tinggi
               pada layar mobile maupun desktop.
             </Typography>
@@ -508,19 +527,27 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard(boilerplate.short, 'short')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'short' ? (
-                    <>
-                      <Check className="h-4 w-4" /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4" /> Copy Text
-                    </>
-                  )}
+                  {copied === 'short'
+                    ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          {' '}
+                          Copied
+                        </>
+                      )
+                    : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          {' '}
+                          Copy Text
+                        </>
+                      )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "{boilerplate.short}"
+                "
+                {boilerplate.short}
+                "
               </div>
             </div>
 
@@ -540,19 +567,27 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard(boilerplate.standard, 'standard')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'standard' ? (
-                    <>
-                      <Check className="h-4 w-4" /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4" /> Copy Text
-                    </>
-                  )}
+                  {copied === 'standard'
+                    ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          {' '}
+                          Copied
+                        </>
+                      )
+                    : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          {' '}
+                          Copy Text
+                        </>
+                      )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "{boilerplate.standard}"
+                "
+                {boilerplate.standard}
+                "
               </div>
             </div>
           </Grid>
@@ -584,7 +619,9 @@ export default function MediaKitContent() {
                   href="mailto:pr@divistant.com"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-bold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                 >
-                  <Mail className="h-4 w-4" /> Hubungi PR Team
+                  <Mail className="h-4 w-4" />
+                  {' '}
+                  Hubungi PR Team
                 </a>
                 <a
                   href="https://wa.me/6281234567890"
@@ -617,10 +654,14 @@ export default function MediaKitContent() {
                 className="text-sm text-slate-600 dark:text-slate-300"
               >
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" /> pr@divistant.com
+                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  {' '}
+                  pr@divistant.com
                 </div>
                 <div className="flex items-center gap-3">
-                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" /> Jakarta,
+                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  {' '}
+                  Jakarta,
                   Indonesia
                 </div>
               </Stack>

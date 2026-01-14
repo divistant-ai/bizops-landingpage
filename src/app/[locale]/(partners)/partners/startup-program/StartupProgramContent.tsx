@@ -109,7 +109,9 @@ export default function StartupProgramContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-300 bg-purple-100 px-3 py-1 text-xs font-bold tracking-wider text-purple-700 uppercase shadow-lg backdrop-blur-md dark:border-purple-700/50 dark:bg-purple-900/30 dark:text-purple-300 dark:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
           >
-            <Rocket className="h-3 w-3" /> BizOps for Startups
+            <Rocket className="h-3 w-3" />
+            {' '}
+            BizOps for Startups
           </motion.div>
 
           <motion.h1
@@ -118,7 +120,9 @@ export default function StartupProgramContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white"
           >
-            Build Fast. <br />
+            Build Fast.
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
               Scale Safe.
             </span>
@@ -130,8 +134,15 @@ export default function StartupProgramContent() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 md:text-2xl dark:text-slate-300"
           >
-            Infrastruktur operasional <em>audit-ready</em> untuk startup ambisius. Hemat{' '}
-            <em>burn rate</em> dengan kredit hingga $5,000 dan akses ke teknologi Enterprise sejak
+            Infrastruktur operasional
+            {' '}
+            <em>audit-ready</em>
+            {' '}
+            untuk startup ambisius. Hemat
+            {' '}
+            <em>burn rate</em>
+            {' '}
+            dengan kredit hingga $5,000 dan akses ke teknologi Enterprise sejak
             Day 1.
           </motion.p>
 
@@ -146,7 +157,9 @@ export default function StartupProgramContent() {
                 size="lg"
                 className="h-14 w-full transform border-none bg-slate-900 px-10 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-purple-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
               >
-                Apply for Credits <ArrowRight className="ml-2 h-5 w-5" />
+                Apply for Credits
+                {' '}
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button
@@ -154,7 +167,9 @@ export default function StartupProgramContent() {
               variant="outline"
               className="h-14 w-full border-slate-300 px-10 font-medium text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
             >
-              <Play className="mr-2 h-4 w-4 fill-current" /> Watch Founder Stories
+              <Play className="mr-2 h-4 w-4 fill-current" />
+              {' '}
+              Watch Founder Stories
             </Button>
           </motion.div>
 
@@ -359,7 +374,9 @@ export default function StartupProgramContent() {
           <div className="mt-12 text-center">
             <Link href="/partners/apply">
               <Button size="lg" className="bg-purple-600 text-white hover:bg-purple-700">
-                Start Application <ArrowRight className="ml-2 h-4 w-4" />
+                Start Application
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -386,11 +403,13 @@ export default function StartupProgramContent() {
                   className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   <span className="pr-4 font-bold text-slate-900 dark:text-white">{faq.q}</span>
-                  {openFaq === idx ? (
-                    <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
-                  ) : (
-                    <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
-                  )}
+                  {openFaq === idx
+                    ? (
+                        <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+                      )
+                    : (
+                        <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
+                      )}
                 </button>
                 <AnimatePresence>
                   {openFaq === idx && (
@@ -427,7 +446,9 @@ export default function StartupProgramContent() {
               size="lg"
               className="bg-slate-900 font-bold text-white hover:bg-slate-800 dark:bg-white dark:text-purple-900 dark:hover:bg-slate-100"
             >
-              Apply Now - It's Free <ArrowRight className="ml-2 h-4 w-4" />
+              Apply Now - It's Free
+              {' '}
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </Container>

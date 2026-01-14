@@ -82,7 +82,9 @@ export default function WhyBizOpsContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Layers className="h-3 w-3" /> The Unified Layer
+            <Layers className="h-3 w-3" />
+            {' '}
+            The Unified Layer
           </motion.div>
 
           <motion.h1
@@ -91,7 +93,9 @@ export default function WhyBizOpsContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white"
           >
-            Modernisasi Operasional <br />
+            Modernisasi Operasional
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
               Tanpa Merombak Segalanya.
             </span>
@@ -211,13 +215,13 @@ export default function WhyBizOpsContent() {
 
               <div className="from-primary-50 dark:from-primary-900/20 border-primary-200 dark:border-primary-800 flex items-start gap-4 rounded-2xl border bg-gradient-to-br to-indigo-50 p-6 shadow-lg dark:to-indigo-900/20">
                 <div className="bg-primary-500 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg">
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 text-green-800 dark:text-green-200" />
                 </div>
                 <div>
-                  <h4 className="text-primary-900 dark:text-primary-100 mb-2 font-bold">
+                  <h4 className="mb-2 font-bold text-slate-600 dark:text-slate-400">
                     BizOps (The Sweet Spot)
                   </h4>
-                  <p className="text-primary-800 dark:text-primary-200 text-sm">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
                     Fleksibel seperti SAP, mudah seperti SaaS. Best of both worlds.
                   </p>
                 </div>
@@ -336,25 +340,31 @@ export default function WhyBizOpsContent() {
                   >
                     <td className="p-4 text-slate-700 dark:text-slate-300">{row.feature}</td>
                     <td className="bg-primary-50/50 dark:bg-primary-900/10 p-4 text-center">
-                      {row.bizops ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.bizops
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.legacy ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.legacy
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.saas ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.saas
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                   </tr>
                 ))}
@@ -379,7 +389,9 @@ export default function WhyBizOpsContent() {
                 size="lg"
                 className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                Jadwalkan Demo <ArrowRight className="ml-2 h-4 w-4" />
+                Jadwalkan Demo
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/compare">

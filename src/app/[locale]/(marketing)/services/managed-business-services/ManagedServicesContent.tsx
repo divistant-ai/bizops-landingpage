@@ -59,9 +59,11 @@ export default function ManagedServicesContent() {
               </Typography>
 
               <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-                <Button size="lg" className="shadow-primary-500/20 rounded-2xl px-8 shadow-lg">
-                  <span className="text-slate-800 dark:text-white">Konsultasi Gratis</span>
-                </Button>
+                <Link href="/demo">
+                  <Button size="lg" className="shadow-primary-500/20 rounded-2xl px-8 shadow-lg">
+                    <span className="text-slate-800 dark:text-white">Konsultasi Gratis</span>
+                  </Button>
+                </Link>
                 <Link href="/partners">
                   <Button variant="outline" size="lg" className="rounded-2xl px-8">
                     <span className="text-slate-800 dark:text-white">Lihat Partner Kami</span>
@@ -307,10 +309,7 @@ export default function ManagedServicesContent() {
                 size="lg"
                 className="shadow-primary-500/20 w-full rounded-2xl px-10 text-lg shadow-xl sm:w-auto"
               >
-                <span className="text-slate-800 dark:text-white">
-
-                  Hubungi Kami
-                </span>
+                <span className="text-slate-800 dark:text-white">Hubungi Kami</span>
               </Button>
             </Link>
             <Link href="/pricing">
@@ -319,10 +318,7 @@ export default function ManagedServicesContent() {
                 size="lg"
                 className="w-full rounded-2xl bg-white px-10 text-lg sm:w-auto dark:bg-slate-900"
               >
-                <span className="text-slate-800 dark:text-white">
-
-                  Lihat Estimasi Biaya
-                </span>
+                <span className="text-slate-800 dark:text-white">Lihat Estimasi Biaya</span>
               </Button>
             </Link>
           </Stack>

@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { MessageCircle, X } from "lucide-react";
-import { useState } from "react";
+import { MessageCircle, X } from 'lucide-react';
+import { useState } from 'react';
 
 export default function WhatsAppFloat() {
   const [isHovered, setIsHovered] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  const whatsappNumber = "622139702834";
-  const defaultMessage = "Halo BizOps, saya ingin bertanya tentang platform ERP";
+  const whatsappNumber = '622139702834';
+  const defaultMessage = 'Halo BizOps, saya ingin bertanya tentang platform ERP';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`;
 
   if (isMinimized) {

@@ -23,9 +23,9 @@ export default function SearchPage() {
   const [filter, setFilter] = useState('all');
 
   const filteredResults = searchMockData.filter((item) => {
-    const matchesQuery =
-      item.title.toLowerCase().includes(query.toLowerCase()) ||
-      item.snippet.toLowerCase().includes(query.toLowerCase());
+    const matchesQuery
+      = item.title.toLowerCase().includes(query.toLowerCase())
+        || item.snippet.toLowerCase().includes(query.toLowerCase());
     const matchesFilter = filter === 'all' || item.category === filter;
     return matchesQuery && matchesFilter;
   });
@@ -65,7 +65,7 @@ export default function SearchPage() {
             <input
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={e => setQuery(e.target.value)}
               placeholder="Cari 'HRIS', 'Integrasi API', atau 'Harga'..."
               className="focus:ring-primary-500/20 focus:border-primary-500 w-full rounded-2xl border border-slate-200 bg-white py-4 pr-4 pl-14 text-lg text-slate-900 shadow-xl shadow-slate-200/20 transition-all outline-none focus:ring-4 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:shadow-none"
               autoFocus
@@ -81,7 +81,7 @@ export default function SearchPage() {
           role="radiogroup"
           aria-label="Content type filter"
         >
-          {['all', 'product', 'solution', 'tool', 'docs', 'blog', 'company'].map((f) => (
+          {['all', 'product', 'solution', 'tool', 'docs', 'blog', 'company'].map(f => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -99,56 +99,60 @@ export default function SearchPage() {
 
         {/* Results */}
         <div className="space-y-4" role="region" aria-live="polite">
-          {!query ? (
-            <EmptyState
-              type="empty"
-              icon={Search}
-              title="Mulai Pencarian"
-              description="Ketikan kata kunci di atas untuk mencari di seluruh konten BizOps."
-            />
-          ) : filteredResults.length === 0 ? (
-            <EmptyState
-              type="no-results"
-              icon={Search}
-              title={`Tidak ditemukan hasil untuk "${query}"`}
-              description="Coba gunakan kata kunci yang lebih umum atau periksa ejaan Anda."
-              actionLabel="Lihat Semua Fitur"
-              onAction={() => (window.location.href = '/platform')}
-            />
-          ) : (
-            filteredResults.map((res, idx) => (
-              <Link
-                key={idx}
-                href={res.path}
-                className="hover:border-primary-500 dark:hover:border-primary-500 group block cursor-pointer rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
-              >
-                <Stack
-                  direction="horizontal"
-                  gap={2}
-                  align="center"
-                  className="mb-2 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400"
-                >
-                  {getIcon(res.category)}
-                  <span>{res.category}</span>
-                  <span className="text-slate-300 dark:text-slate-700">•</span>
-                  <span>{res.tag}</span>
-                </Stack>
-                <Typography
-                  variant="h3"
-                  as="h3"
-                  className="group-hover:text-primary-600 dark:group-hover:text-primary-400 font-bold text-slate-900 dark:text-white"
-                >
-                  {res.title}
-                </Typography>
-                <Typography
-                  variant="small"
-                  className="leading-relaxed text-slate-600 dark:text-slate-400"
-                >
-                  {res.snippet}
-                </Typography>
-              </Link>
-            ))
-          )}
+          {!query
+            ? (
+                <EmptyState
+                  type="empty"
+                  icon={Search}
+                  title="Mulai Pencarian"
+                  description="Ketikan kata kunci di atas untuk mencari di seluruh konten BizOps."
+                />
+              )
+            : filteredResults.length === 0
+              ? (
+                  <EmptyState
+                    type="no-results"
+                    icon={Search}
+                    title={`Tidak ditemukan hasil untuk "${query}"`}
+                    description="Coba gunakan kata kunci yang lebih umum atau periksa ejaan Anda."
+                    actionLabel="Lihat Semua Fitur"
+                    onAction={() => (window.location.href = '/platform')}
+                  />
+                )
+              : (
+                  filteredResults.map((res, idx) => (
+                    <Link
+                      key={idx}
+                      href={res.path}
+                      className="hover:border-primary-500 dark:hover:border-primary-500 group block cursor-pointer rounded-xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+                    >
+                      <Stack
+                        direction="horizontal"
+                        gap={2}
+                        align="center"
+                        className="mb-2 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400"
+                      >
+                        {getIcon(res.category)}
+                        <span>{res.category}</span>
+                        <span className="text-slate-300 dark:text-slate-700">•</span>
+                        <span>{res.tag}</span>
+                      </Stack>
+                      <Typography
+                        variant="h3"
+                        as="h3"
+                        className="group-hover:text-primary-600 dark:group-hover:text-primary-400 font-bold text-slate-900 dark:text-white"
+                      >
+                        {res.title}
+                      </Typography>
+                      <Typography
+                        variant="small"
+                        className="leading-relaxed text-slate-600 dark:text-slate-400"
+                      >
+                        {res.snippet}
+                      </Typography>
+                    </Link>
+                  ))
+                )}
         </div>
       </Container>
     </div>

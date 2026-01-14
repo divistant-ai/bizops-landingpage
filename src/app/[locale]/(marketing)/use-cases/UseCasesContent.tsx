@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { ArrowRight, Briefcase, Filter, Search, X } from "lucide-react";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import Pagination from "@/components/Pagination";
-import Button from "@/components/ui/Button";
-import { StaggeredText } from "@/components/ui/motion-text";
-import { useCasesData } from "@/data/useCasesContent";
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { ArrowRight, Briefcase, Filter, Search, X } from 'lucide-react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import Pagination from '@/components/Pagination';
+import Button from '@/components/ui/Button';
+import { StaggeredText } from '@/components/ui/motion-text';
+import { useCasesData } from '@/data/useCasesContent';
 
 const FADE_UP_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
@@ -27,8 +27,8 @@ const STAGGER_CONTAINER = {
 // SpotlightCard Component
 const SpotlightCard = ({
   children,
-  className = "",
-  spotlightColor = "rgba(14, 165, 233, 0.15)",
+  className = '',
+  spotlightColor = 'rgba(14, 165, 233, 0.15)',
 }: {
   children: React.ReactNode;
   className?: string;
@@ -68,24 +68,24 @@ const SpotlightCard = ({
 const ITEMS_PER_PAGE = 6;
 
 export default function UseCasesContent() {
-  const [selectedIndustry, setSelectedIndustry] = useState<string>("All");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedIndustry, setSelectedIndustry] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const cases = Object.values(useCasesData);
 
   // Extract unique industries and categories
-  const industries = ["All", ...Array.from(new Set(cases.map((c) => c.industry))).sort()];
-  const categories = ["All", ...Array.from(new Set(cases.map((c) => c.category))).sort()];
+  const industries = ['All', ...Array.from(new Set(cases.map(c => c.industry))).sort()];
+  const categories = ['All', ...Array.from(new Set(cases.map(c => c.category))).sort()];
 
   // Filtering Logic
   const filteredCases = cases.filter((c) => {
-    const matchIndustry = selectedIndustry === "All" || c.industry === selectedIndustry;
-    const matchCategory = selectedCategory === "All" || c.category === selectedCategory;
-    const matchSearch =
-      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchIndustry = selectedIndustry === 'All' || c.industry === selectedIndustry;
+    const matchCategory = selectedCategory === 'All' || c.category === selectedCategory;
+    const matchSearch
+      = c.title.toLowerCase().includes(searchQuery.toLowerCase())
+        || c.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
+        || c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
     return matchIndustry && matchCategory && matchSearch;
   });
 
@@ -93,7 +93,7 @@ export default function UseCasesContent() {
   const totalPages = Math.ceil(filteredCases.length / ITEMS_PER_PAGE);
   const paginatedCases = filteredCases.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   // Reset page when filters change
@@ -103,32 +103,30 @@ export default function UseCasesContent() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    document
-      .getElementById("case-grid")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById('case-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Calculate counts for filters
   const getIndustryCount = (industry: string) => {
     let filtered = cases;
-    if (selectedCategory !== "All") {
-      filtered = filtered.filter((c) => c.category === selectedCategory);
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter(c => c.category === selectedCategory);
     }
-    if (industry === "All") {
+    if (industry === 'All') {
       return filtered.length;
     }
-    return filtered.filter((c) => c.industry === industry).length;
+    return filtered.filter(c => c.industry === industry).length;
   };
 
   const getCategoryCount = (category: string) => {
     let filtered = cases;
-    if (selectedIndustry !== "All") {
-      filtered = filtered.filter((c) => c.industry === selectedIndustry);
+    if (selectedIndustry !== 'All') {
+      filtered = filtered.filter(c => c.industry === selectedIndustry);
     }
-    if (category === "All") {
+    if (category === 'All') {
       return filtered.length;
     }
-    return filtered.filter((c) => c.category === category).length;
+    return filtered.filter(c => c.category === category).length;
   };
 
   return (
@@ -171,9 +169,8 @@ export default function UseCasesContent() {
               variants={FADE_UP_VARIANTS}
               className="mx-auto mb-12 max-w-3xl text-lg text-slate-600 dark:text-slate-400"
             >
-              Kumpulan studi kasus implementasi BizOps yang berhasil memecahkan masalah
-              operasional kompleks di lapangan. Dari startup hingga enterprise, dari
-              manufaktur hingga retail.
+              Kumpulan studi kasus implementasi BizOps yang berhasil memecahkan masalah operasional
+              kompleks di lapangan. Dari startup hingga enterprise, dari manufaktur hingga retail.
             </motion.p>
           </motion.div>
 
@@ -190,12 +187,12 @@ export default function UseCasesContent() {
                 type="text"
                 placeholder="Cari studi kasus..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-200 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => setSearchQuery('')}
                   className="absolute top-1/2 right-4 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-300"
                 >
                   <X className="h-5 w-5" />
@@ -219,19 +216,21 @@ export default function UseCasesContent() {
                   Industry
                 </h3>
                 <div className="space-y-2">
-                  {industries.map((industry) => (
+                  {industries.map(industry => (
                     <button
                       key={industry}
                       onClick={() => setSelectedIndustry(industry)}
                       className={`w-full rounded-lg px-3 py-2 text-left text-sm transition-all ${
                         selectedIndustry === industry
-                          ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold"
-                          : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800"
+                          ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold'
+                          : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800'
                       }`}
                     >
                       <span>{industry}</span>
                       <span className="float-right text-xs opacity-70">
-                        ({getIndustryCount(industry)})
+                        (
+                        {getIndustryCount(industry)}
+                        )
                       </span>
                     </button>
                   ))}
@@ -244,19 +243,21 @@ export default function UseCasesContent() {
                   Category
                 </h3>
                 <div className="space-y-2">
-                  {categories.map((category) => (
+                  {categories.map(category => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
                       className={`w-full rounded-lg px-3 py-2 text-left text-sm transition-all ${
                         selectedCategory === category
-                          ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold"
-                          : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800"
+                          ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-bold'
+                          : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800'
                       }`}
                     >
                       <span>{category}</span>
                       <span className="float-right text-xs opacity-70">
-                        ({getCategoryCount(category)})
+                        (
+                        {getCategoryCount(category)}
+                        )
                       </span>
                     </button>
                   ))}
@@ -264,14 +265,12 @@ export default function UseCasesContent() {
               </div>
 
               {/* Reset Button */}
-              {(selectedIndustry !== "All" ||
-                selectedCategory !== "All" ||
-                searchQuery) && (
+              {(selectedIndustry !== 'All' || selectedCategory !== 'All' || searchQuery) && (
                 <Button
                   onClick={() => {
-                    setSelectedIndustry("All");
-                    setSelectedCategory("All");
-                    setSearchQuery("");
+                    setSelectedIndustry('All');
+                    setSelectedCategory('All');
+                    setSearchQuery('');
                   }}
                   variant="outline"
                   className="w-full"
@@ -286,10 +285,12 @@ export default function UseCasesContent() {
           <div className="lg:col-span-9">
             <div className="mb-8 flex items-center justify-between">
               <p className="text-slate-600 dark:text-slate-400">
-                Menampilkan{" "}
+                Menampilkan
+                {' '}
                 <span className="font-bold text-slate-900 dark:text-white">
                   {filteredCases.length}
-                </span>{" "}
+                </span>
+                {' '}
                 studi kasus
               </p>
             </div>
@@ -301,12 +302,12 @@ export default function UseCasesContent() {
                 </p>
                 <Button
                   onClick={() => {
-                    setSearchQuery("");
-                    setSelectedIndustry("All");
-                    setSelectedCategory("All");
+                    setSearchQuery('');
+                    setSelectedIndustry('All');
+                    setSelectedCategory('All');
                   }}
                 >
-                  Reset Filter
+                  <span className="text-slate-800 dark:text-white">Reset Filter</span>
                 </Button>
               </div>
             ) : (
@@ -373,7 +374,9 @@ export default function UseCasesContent() {
                               )}
 
                               <div className="text-primary-600 dark:text-primary-400 mt-6 flex items-center text-sm font-bold transition-all group-hover:gap-2">
-                                Baca Studi Kasus <ArrowRight className="ml-1 h-4 w-4" />
+                                Baca Studi Kasus
+                                {' '}
+                                <ArrowRight className="ml-1 h-4 w-4" />
                               </div>
                             </article>
                           </SpotlightCard>
@@ -406,8 +409,8 @@ export default function UseCasesContent() {
             Ingin Hasil Serupa untuk Bisnis Anda?
           </h2>
           <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-            Diskusikan tantangan operasional Anda dengan tim konsultan kami. Gratis dan
-            tanpa komitmen.
+            Diskusikan tantangan operasional Anda dengan tim konsultan kami. Gratis dan tanpa
+            komitmen.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact">

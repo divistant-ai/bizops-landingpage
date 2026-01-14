@@ -175,7 +175,9 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  Jadwalkan Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+                  Jadwalkan Onboarding
+                  {' '}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -573,25 +575,33 @@ export default function OnboardingSlideContent() {
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Admin Training:</strong> System admin, configuration, report builder
+                      <strong>Admin Training:</strong>
+                      {' '}
+                      System admin, configuration, report builder
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>End-User Training:</strong> Role-specific workflows, daily operations
+                      <strong>End-User Training:</strong>
+                      {' '}
+                      Role-specific workflows, daily operations
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Train-the-Trainer:</strong> Internal champions for ongoing support
+                      <strong>Train-the-Trainer:</strong>
+                      {' '}
+                      Internal champions for ongoing support
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Documentation:</strong> User manuals, video tutorials, FAQ knowledge
+                      <strong>Documentation:</strong>
+                      {' '}
+                      User manuals, video tutorials, FAQ knowledge
                       base
                     </span>
                   </li>
@@ -609,26 +619,34 @@ export default function OnboardingSlideContent() {
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Test Scenarios:</strong> End-to-end process testing with real data
+                      <strong>Test Scenarios:</strong>
+                      {' '}
+                      End-to-end process testing with real data
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Bug Tracking:</strong> Log issues, prioritize fixes, retest
+                      <strong>Bug Tracking:</strong>
+                      {' '}
+                      Log issues, prioritize fixes, retest
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Performance Testing:</strong> Load testing, stress testing,
+                      <strong>Performance Testing:</strong>
+                      {' '}
+                      Load testing, stress testing,
                       optimization
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Sign-off:</strong> Formal UAT acceptance from business owners
+                      <strong>Sign-off:</strong>
+                      {' '}
+                      Formal UAT acceptance from business owners
                     </span>
                   </li>
                 </ul>
@@ -842,7 +860,9 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="mb-6 text-center text-5xl leading-tight font-bold text-slate-900 dark:text-white"
             >
-              Ready to Start Your <br />
+              Ready to Start Your
+              {' '}
+              <br />
               BizOps Journey?
             </motion.h1>
             <motion.p
@@ -864,7 +884,9 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  Jadwalkan Kickoff Meeting <ArrowRight className="ml-2 h-5 w-5" />
+                  Jadwalkan Kickoff Meeting
+                  {' '}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/contact">

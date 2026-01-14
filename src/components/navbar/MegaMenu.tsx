@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { ChevronRight, Download, MousePointer, Phone } from "lucide-react";
-import Link from "next/link";
-import React, { useState } from "react";
+import { ChevronRight, Download, MousePointer, Phone } from 'lucide-react';
+import Link from 'next/link';
+import React, { useState } from 'react';
 import {
   companyContent,
   companyTabs,
@@ -12,10 +12,10 @@ import {
   resourcesTabs,
   solutionsContent,
   solutionsTabs,
-} from "../../data/navData";
+} from '../../data/navData';
 
 type MegaMenuProps = {
-  type: "platform" | "solutions" | "resources" | "company";
+  type: 'platform' | 'solutions' | 'resources' | 'company';
   isOpen?: boolean;
   onClose?: () => void;
 };
@@ -23,13 +23,13 @@ type MegaMenuProps = {
 const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) => {
   const getTabs = () => {
     switch (type) {
-      case "platform":
+      case 'platform':
         return platformTabs;
-      case "solutions":
+      case 'solutions':
         return solutionsTabs;
-      case "resources":
+      case 'resources':
         return resourcesTabs;
-      case "company":
+      case 'company':
         return companyTabs;
       default:
         return [];
@@ -38,13 +38,13 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
 
   const getContent = () => {
     switch (type) {
-      case "platform":
+      case 'platform':
         return platformContent;
-      case "solutions":
+      case 'solutions':
         return solutionsContent;
-      case "resources":
+      case 'resources':
         return resourcesContent;
-      case "company":
+      case 'company':
         return companyContent;
       default:
         return {};
@@ -53,16 +53,16 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
 
   const getDefaultTab = () => {
     switch (type) {
-      case "platform":
-        return "modules";
-      case "solutions":
-        return "industry";
-      case "resources":
-        return "insights";
-      case "company":
-        return "story";
+      case 'platform':
+        return 'modules';
+      case 'solutions':
+        return 'industry';
+      case 'resources':
+        return 'insights';
+      case 'company':
+        return 'story';
       default:
-        return "";
+        return '';
     }
   };
 
@@ -72,7 +72,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
 
   const activeContent = content[activeTab];
 
-  const visibilityClasses = isOpen ? "visible opacity-100" : "invisible opacity-0";
+  const visibilityClasses = isOpen ? 'visible opacity-100' : 'invisible opacity-0';
 
   const handleBackdropClick = () => {
     onClose?.();
@@ -88,7 +88,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
       <div
         className={`fixed inset-0 top-[70px] z-90 transition-all duration-200 lg:top-[80px] ${visibilityClasses}`}
         onClick={handleBackdropClick}
-        onKeyDown={e => e.key === "Escape" && onClose?.()}
+        onKeyDown={e => e.key === 'Escape' && onClose?.()}
         role="button"
         tabIndex={-1}
         aria-label="Close menu"
@@ -106,10 +106,10 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
             {/* Sidebar (Tabs) */}
             <div className="w-64 shrink-0 border-r border-slate-200 bg-slate-50 py-6 dark:border-slate-800 dark:bg-slate-900">
               <div className="mb-3 px-4 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                {type === "platform" && "Platform Overview"}
-                {type === "solutions" && "Find Solutions"}
-                {type === "resources" && "Resource Hub"}
-                {type === "company" && "Who We Are"}
+                {type === 'platform' && 'Platform Overview'}
+                {type === 'solutions' && 'Find Solutions'}
+                {type === 'resources' && 'Resource Hub'}
+                {type === 'company' && 'Who We Are'}
               </div>
               {tabs.map(tab => (
                 <button
@@ -118,18 +118,18 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                   onMouseEnter={() => setActiveTab(tab.id)}
                   className={`flex w-full items-center justify-between border-l-4 px-5 py-3.5 text-left text-sm font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset ${
                     activeTab === tab.id
-                      ? "border-primary-600 text-primary-600 dark:border-primary-400 dark:text-primary-400 bg-white shadow-sm dark:bg-slate-950"
-                      : "border-transparent text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                      ? 'border-primary-600 text-primary-600 dark:border-primary-400 dark:text-primary-400 bg-white shadow-sm dark:bg-slate-950'
+                      : 'border-transparent text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white'
                   }`}
                   aria-selected={activeTab === tab.id}
                   role="tab"
                 >
                   <div className="flex items-center gap-3">
                     <tab.icon
-                      className={`h-5 w-5 ${activeTab === tab.id ? "text-primary-600 dark:text-white" : "text-slate-400 dark:text-slate-500"}`}
+                      className={`h-5 w-5 ${activeTab === tab.id ? 'text-primary-600 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}
                     />
                     <p
-                      className={`text-sm font-semibold ${activeTab === tab.id ? "text-primary-600 dark:text-white" : "text-slate-600 dark:text-slate-400"}`}
+                      className={`text-sm font-semibold ${activeTab === tab.id ? 'text-primary-600 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
                     >
                       {tab.label}
                     </p>
@@ -141,7 +141,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
               ))}
 
               {/* Additional Links */}
-              {type === "platform" && (
+              {type === 'platform' && (
                 <div className="mt-6 px-4">
                   <Link
                     href="/product-tour"
@@ -162,7 +162,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                 </div>
               )}
 
-              {type === "company" && (
+              {type === 'company' && (
                 <div className="mt-6 px-4">
                   <Link
                     href="/contact"
@@ -195,8 +195,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                     {activeContent.items.map((item, idx) => {
                       const bgColor
                         = item.bg
-                          || "bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm";
-                      const iconColor = item.color || "text-slate-600 dark:text-slate-400";
+                          || 'bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm';
+                      const iconColor = item.color || 'text-slate-600 dark:text-slate-400';
 
                       return (
                         <Link
@@ -226,23 +226,23 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                   <div className="mt-6 flex justify-end border-t border-slate-200 pt-5 dark:border-slate-800">
                     <Link
                       href={
-                        type === "platform"
-                          ? "/platform"
-                          : type === "solutions"
-                            ? "/solutions"
-                            : type === "resources"
-                              ? "/resources"
-                              : type === "company"
-                                ? "/about"
-                                : "#"
+                        type === 'platform'
+                          ? '/platform'
+                          : type === 'solutions'
+                            ? '/solutions'
+                            : type === 'resources'
+                              ? '/resources'
+                              : type === 'company'
+                                ? '/about'
+                                : '#'
                       }
                       onClick={onClose}
                       className="text-primary-600 hover:text-primary-700 flex items-center gap-1 text-sm font-semibold dark:text-slate-50"
                     >
                       View all
-                      {" "}
+                      {' '}
                       {type}
-                      {" "}
+                      {' '}
                       features
                       <ChevronRight className="h-4 w-4" />
                     </Link>

@@ -74,7 +74,9 @@ export default function PartnersContent() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8 inline-flex items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400"
               >
-                <Users className="mr-2 h-3 w-3" /> Partner Ecosystem
+                <Users className="mr-2 h-3 w-3" />
+                {' '}
+                Partner Ecosystem
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -82,7 +84,8 @@ export default function PartnersContent() {
                 transition={{ delay: 0.1 }}
                 className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white"
               >
-                Scale Your Consulting Business{' '}
+                Scale Your Consulting Business
+                {' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500">
                   With BizOps.
                 </span>
@@ -107,7 +110,9 @@ export default function PartnersContent() {
                     size="lg"
                     className="h-14 w-full rounded-full border-none bg-slate-900 px-10 text-lg font-bold text-white shadow-xl transition-all hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                   >
-                    Daftar Jadi Partner <ArrowRight className="ml-2 h-5 w-5" />
+                    Daftar Jadi Partner
+                    {' '}
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/partners/directory">
@@ -225,7 +230,7 @@ export default function PartnersContent() {
                     max="10000000"
                     step="500000"
                     value={sellingPrice}
-                    onChange={(e) => setSellingPrice(Number(e.target.value))}
+                    onChange={e => setSellingPrice(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -243,7 +248,7 @@ export default function PartnersContent() {
                     max="8000000"
                     step="500000"
                     value={partnerCost}
-                    onChange={(e) => setPartnerCost(Number(e.target.value))}
+                    onChange={e => setPartnerCost(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -261,7 +266,7 @@ export default function PartnersContent() {
                     max="50000000"
                     step="5000000"
                     value={setupFee}
-                    onChange={(e) => setSetupFee(Number(e.target.value))}
+                    onChange={e => setSetupFee(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -279,11 +284,13 @@ export default function PartnersContent() {
                     max="50"
                     step="1"
                     value={activeClients}
-                    onChange={(e) => setActiveClients(Number(e.target.value))}
+                    onChange={e => setActiveClients(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
-                    {activeClients} clients
+                    {activeClients}
+                    {' '}
+                    clients
                   </div>
                 </div>
 
@@ -297,11 +304,12 @@ export default function PartnersContent() {
                     max="5"
                     step="1"
                     value={growthRate}
-                    onChange={(e) => setGrowthRate(Number(e.target.value))}
+                    onChange={e => setGrowthRate(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
-                    +{growthRate}
+                    +
+                    {growthRate}
                     /month
                   </div>
                 </div>
@@ -322,7 +330,9 @@ export default function PartnersContent() {
                   </div>
                   <div className="mt-2 text-xs text-slate-600 dark:text-slate-400">
                     From
-                    {activeClients} active clients
+                    {activeClients}
+                    {' '}
+                    active clients
                   </div>
                 </div>
 
@@ -351,7 +361,9 @@ export default function PartnersContent() {
                 </div>
 
                 <div className="rounded-xl border border-slate-300 bg-slate-200 p-4 text-xs text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
-                  <strong className="text-slate-900 dark:text-white">Note:</strong> Kalkulasi ini
+                  <strong className="text-slate-900 dark:text-white">Note:</strong>
+                  {' '}
+                  Kalkulasi ini
                   adalah estimasi. Revenue aktual tergantung pada harga jual, retensi klien, dan
                   effort sales Anda.
                 </div>
@@ -398,7 +410,7 @@ export default function PartnersContent() {
           </div>
 
           {/* Desktop: Grid */}
-          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-4">
+          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit, i) => {
               const Icon = benefit.icon;
               return (
@@ -423,7 +435,7 @@ export default function PartnersContent() {
 
       {/* PERSONAS */}
       <Section className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-        <Container size="5xl">
+        <Container size="7xl">
           <h2 className="mb-12 text-center text-3xl font-bold text-slate-900 dark:text-white">
             Siapa yang Cocok?
           </h2>
@@ -435,15 +447,15 @@ export default function PartnersContent() {
                     <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mb-6 flex h-14 w-14 items-center justify-center rounded-2xl">
                       <Users className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-4 text-xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
                       {persona.title}
                     </h3>
-                    <div className="space-y-3">
+                    <div className="flex flex-col gap-4">
                       <div>
                         <p className="mb-2 text-sm font-semibold text-slate-900 dark:text-white">
                           Pain Point:
                         </p>
-                        <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                           {persona.pain}
                         </p>
                       </div>
@@ -465,7 +477,7 @@ export default function PartnersContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-white dark:bg-gradient-to-br dark:from-indigo-900 dark:to-blue-900">
+      <Section className="bg-white dark:bg-slate-900">
         <Container size="4xl" className="text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             Ready to Partner with Us?
@@ -480,7 +492,9 @@ export default function PartnersContent() {
                 size="lg"
                 className="w-full bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-indigo-900 dark:hover:bg-slate-100"
               >
-                Apply as Partner <ArrowRight className="ml-2 h-4 w-4" />
+                Apply as Partner
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/contact">

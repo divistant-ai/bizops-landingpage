@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   BookOpen,
@@ -10,80 +10,80 @@ import {
   FileText,
   Map,
   Wrench,
-} from "lucide-react";
-import Link from "next/link";
-import { Container, Section } from "@/components/layout";
-import { Button, OptimizedImage } from "@/components/ui";
+} from 'lucide-react';
+import Link from 'next/link';
+import { Container, Section } from '@/components/layout';
+import { Button, OptimizedImage } from '@/components/ui';
 
 // Temporary data - should come from props or data file
 const resourceCategories = [
   {
-    title: "Blog & Insights",
-    desc: "Panduan teknis, tren industri, dan update regulasi terbaru.",
+    title: 'Blog & Insights',
+    desc: 'Panduan teknis, tren industri, dan update regulasi terbaru.',
     icon: BookOpen,
-    link: "/blog",
-    color: "bg-blue-50 text-blue-700",
+    link: '/blog',
+    color: 'bg-blue-50 text-blue-700',
   },
   {
-    title: "Events & Webinars",
-    desc: "Ikuti sesi live demo dan masterclass dari para ahli.",
+    title: 'Events & Webinars',
+    desc: 'Ikuti sesi live demo dan masterclass dari para ahli.',
     icon: Calendar,
-    link: "/events",
-    color: "bg-purple-50 text-purple-700",
+    link: '/events',
+    color: 'bg-purple-50 text-purple-700',
   },
   {
-    title: "Interactive Tools",
-    desc: "Kalkulator ROI, Assessment, dan alat perencanaan gratis.",
+    title: 'Interactive Tools',
+    desc: 'Kalkulator ROI, Assessment, dan alat perencanaan gratis.',
     icon: Wrench,
-    link: "/tools",
-    color: "bg-amber-50 text-amber-700",
+    link: '/tools',
+    color: 'bg-amber-50 text-amber-700',
   },
   {
-    title: "Documentation",
-    desc: "Manual teknis, API reference, dan panduan integrasi.",
+    title: 'Documentation',
+    desc: 'Manual teknis, API reference, dan panduan integrasi.',
     icon: Code,
-    link: "/docs",
-    color: "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
+    link: '/docs',
+    color: 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300',
   },
   {
-    title: "Product Roadmap",
-    desc: "Fitur mendatang dan rencana pengembangan platform.",
+    title: 'Product Roadmap',
+    desc: 'Fitur mendatang dan rencana pengembangan platform.',
     icon: Map,
-    link: "/roadmap",
-    color: "bg-green-50 text-green-700",
+    link: '/roadmap',
+    color: 'bg-green-50 text-green-700',
   },
 ];
 
 const latestBlogs = [
   {
-    title: "10 Tanda Perusahaan Anda Butuh ERP",
+    title: '10 Tanda Perusahaan Anda Butuh ERP',
     summary:
-      "Pelajari indikator kunci yang menunjukkan bisnis Anda siap untuk transformasi digital dengan sistem ERP terintegrasi.",
-    category: "Business Strategy",
-    date: "15 Nov 2024",
-    author: "Tim BizOps",
-    slug: "10-tanda-butuh-erp",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      'Pelajari indikator kunci yang menunjukkan bisnis Anda siap untuk transformasi digital dengan sistem ERP terintegrasi.',
+    category: 'Business Strategy',
+    date: '15 Nov 2024',
+    author: 'Tim BizOps',
+    slug: '10-tanda-butuh-erp',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
   },
   {
-    title: "Panduan Implementasi ERP untuk UMKM",
+    title: 'Panduan Implementasi ERP untuk UMKM',
     summary:
-      "Langkah-langkah praktis memulai digitalisasi untuk bisnis skala kecil dan menengah.",
-    category: "Implementation",
-    date: "10 Nov 2024",
-    author: "Andi Wijaya",
-    slug: "panduan-erp-umkm",
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+      'Langkah-langkah praktis memulai digitalisasi untuk bisnis skala kecil dan menengah.',
+    category: 'Implementation',
+    date: '10 Nov 2024',
+    author: 'Andi Wijaya',
+    slug: 'panduan-erp-umkm',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
   },
   {
-    title: "Cara Menghitung ROI Investasi ERP",
+    title: 'Cara Menghitung ROI Investasi ERP',
     summary:
-      "Metode perhitungan return on investment yang akurat untuk proyek transformasi digital.",
-    category: "Finance",
-    date: "5 Nov 2024",
-    author: "Sarah Chen",
-    slug: "hitung-roi-erp",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      'Metode perhitungan return on investment yang akurat untuk proyek transformasi digital.',
+    category: 'Finance',
+    date: '5 Nov 2024',
+    author: 'Sarah Chen',
+    slug: 'hitung-roi-erp',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
   },
 ];
 
@@ -98,7 +98,9 @@ export default function ResourcesContent() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white"
           >
-            Resource <span className="text-primary-600 dark:text-primary-400">Center</span>
+            Resource
+            {' '}
+            <span className="text-primary-600 dark:text-primary-400">Center</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +161,9 @@ export default function ResourcesContent() {
             href="/blog"
             className="text-primary-600 dark:text-primary-400 hidden items-center font-bold hover:underline sm:flex"
           >
-            View All Articles <ArrowRight className="ml-2 h-4 w-4" />
+            View All Articles
+            {' '}
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
 
@@ -211,7 +215,9 @@ export default function ResourcesContent() {
                   {post.summary}
                 </p>
                 <div className="mt-auto text-xs text-slate-500 dark:text-slate-500">
-                  {post.date} • 5 min read
+                  {post.date}
+                  {' '}
+                  • 5 min read
                 </div>
               </div>
             ))}
@@ -314,7 +320,9 @@ export default function ResourcesContent() {
                     variant="outline"
                     className="gap-2 rounded-full border-slate-300 hover:bg-slate-50 dark:border-slate-600 dark:text-white dark:hover:bg-slate-800"
                   >
-                    <Download className="h-4 w-4" /> Download Template
+                    <Download className="h-4 w-4" />
+                    {' '}
+                    Download Template
                   </Button>
                 </Link>
               </div>

@@ -8,7 +8,12 @@ import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { safeCalculate, validateFields, validateNumber } from '@/utils/errorHandling';
-import { downloadAsText, formatResultAsText, generateShareText, shareResult } from '@/utils/exportTools';
+import {
+  downloadAsText,
+  formatResultAsText,
+  generateShareText,
+  shareResult,
+} from '@/utils/exportTools';
 
 type BPJSResult = {
   salary: number;
@@ -51,53 +56,56 @@ export default function BPJSCalculator() {
     }
 
     setTimeout(() => {
-      const calculatedResult = safeCalculate<BPJSResult>(() => {
-        const baseSalary = Number.parseFloat(salary) || 0;
+      const calculatedResult = safeCalculate<BPJSResult>(
+        () => {
+          const baseSalary = Number.parseFloat(salary) || 0;
 
-        const kesehatanBase = Math.min(baseSalary, 12000000);
-        const kesehatanEmployee = kesehatanBase * 0.01;
-        const kesehatanEmployer = kesehatanBase * 0.04;
-        const kesehatanTotal = kesehatanEmployee + kesehatanEmployer;
+          const kesehatanBase = Math.min(baseSalary, 12000000);
+          const kesehatanEmployee = kesehatanBase * 0.01;
+          const kesehatanEmployer = kesehatanBase * 0.04;
+          const kesehatanTotal = kesehatanEmployee + kesehatanEmployer;
 
-        const jhtBase = Math.min(baseSalary, 9559600);
-        const jhtEmployee = jhtBase * 0.02;
-        const jhtEmployer = jhtBase * 0.037;
-        const jhtTotal = jhtEmployee + jhtEmployer;
+          const jhtBase = Math.min(baseSalary, 9559600);
+          const jhtEmployee = jhtBase * 0.02;
+          const jhtEmployer = jhtBase * 0.037;
+          const jhtTotal = jhtEmployee + jhtEmployer;
 
-        const jpBase = Math.min(baseSalary, 9559600);
-        const jpEmployee = jpBase * 0.01;
-        const jpEmployer = jpBase * 0.02;
-        const jpTotal = jpEmployee + jpEmployer;
+          const jpBase = Math.min(baseSalary, 9559600);
+          const jpEmployee = jpBase * 0.01;
+          const jpEmployer = jpBase * 0.02;
+          const jpTotal = jpEmployee + jpEmployer;
 
-        const jkk = baseSalary * (jkkRate / 100);
-        const jkm = baseSalary * 0.003;
+          const jkk = baseSalary * (jkkRate / 100);
+          const jkm = baseSalary * 0.003;
 
-        const ketenagakerjaanTotal = jhtTotal + jpTotal + jkk + jkm;
-        const totalEmployee = kesehatanEmployee + jhtEmployee + jpEmployee;
-        const totalEmployer = kesehatanEmployer + jhtEmployer + jpEmployer + jkk + jkm;
-        const grandTotal = totalEmployee + totalEmployer;
+          const ketenagakerjaanTotal = jhtTotal + jpTotal + jkk + jkm;
+          const totalEmployee = kesehatanEmployee + jhtEmployee + jpEmployee;
+          const totalEmployer = kesehatanEmployer + jhtEmployer + jpEmployer + jkk + jkm;
+          const grandTotal = totalEmployee + totalEmployer;
 
-        return {
-          salary: baseSalary,
-          kesehatan: {
-            employeeContribution: kesehatanEmployee,
-            employerContribution: kesehatanEmployer,
-            total: kesehatanTotal,
-          },
-          ketenagakerjaan: {
-            jht: { employee: jhtEmployee, employer: jhtEmployer, total: jhtTotal },
-            jp: { employee: jpEmployee, employer: jpEmployer, total: jpTotal },
-            jkk,
-            jkm,
-            total: ketenagakerjaanTotal,
-          },
-          totalEmployee,
-          totalEmployer,
-          grandTotal,
-        };
-      }, (error) => {
-        setErrors([error]);
-      });
+          return {
+            salary: baseSalary,
+            kesehatan: {
+              employeeContribution: kesehatanEmployee,
+              employerContribution: kesehatanEmployer,
+              total: kesehatanTotal,
+            },
+            ketenagakerjaan: {
+              jht: { employee: jhtEmployee, employer: jhtEmployer, total: jhtTotal },
+              jp: { employee: jpEmployee, employer: jpEmployer, total: jpTotal },
+              jkk,
+              jkm,
+              total: ketenagakerjaanTotal,
+            },
+            totalEmployee,
+            totalEmployer,
+            grandTotal,
+          };
+        },
+        (error) => {
+          setErrors([error]);
+        },
+      );
 
       if (calculatedResult) {
         setResult(calculatedResult);
@@ -163,7 +171,8 @@ export default function BPJSCalculator() {
             Kalkulator BPJS Kesehatan & Ketenagakerjaan
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Hitung iuran BPJS Kesehatan dan Ketenagakerjaan (JHT, JP, JKK, JKM) untuk karyawan dan perusahaan.
+            Hitung iuran BPJS Kesehatan dan Ketenagakerjaan (JHT, JP, JKK, JKM) untuk karyawan dan
+            perusahaan.
           </p>
         </div>
 
@@ -175,11 +184,16 @@ export default function BPJSCalculator() {
 
             <div className="space-y-6">
               <div>
-                <label htmlFor="salary" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label
+                  htmlFor="salary"
+                  className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                >
                   Gaji Pokok per Bulan
                 </label>
                 <div className="relative">
-                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                    Rp
+                  </span>
                   <input
                     id="salary"
                     type="text"
@@ -199,7 +213,10 @@ export default function BPJSCalculator() {
               </div>
 
               <div>
-                <label htmlFor="jkk-rate" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label
+                  htmlFor="jkk-rate"
+                  className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
+                >
                   Tingkat Risiko Pekerjaan (untuk JKK)
                 </label>
                 <select
@@ -243,11 +260,11 @@ export default function BPJSCalculator() {
               </Button>
             </div>
 
-            <Card className="mt-6 border-l-4 border-teal-500 bg-teal-50 p-4">
+            <Card className="mt-6 border-l-4 border-teal-500 bg-teal-50 p-4 dark:border-teal-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-teal-600" />
+                <Info className="h-5 w-5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
-                  <p className="mb-1 font-semibold">Batas Upah BPJS:</p>
+                  <p className="mb-1 font-semibold dark:text-white">Batas Upah BPJS:</p>
                   <ul className="list-inside list-disc space-y-0.5">
                     <li>BPJS Kesehatan: Max Rp 12.000.000</li>
                     <li>JHT & JP: Max Rp 9.559.600</li>
@@ -260,7 +277,12 @@ export default function BPJSCalculator() {
           <div className="space-y-6">
             {result
               ? (
-                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan BPJS">
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan BPJS"
+                    className="space-y-6"
+                  >
                     <Card className="bg-gradient-to-br from-teal-600 to-blue-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">Total Iuran BPJS</h3>
                       <div className="mb-4 text-center">
@@ -281,24 +303,30 @@ export default function BPJSCalculator() {
 
                     <Card className="p-6">
                       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                        <Shield className="h-5 w-5 text-teal-600" />
+                        <Shield className="h-5 w-5 text-teal-600 dark:text-teal-400" />
                         BPJS Kesehatan
                       </h3>
                       <div className="space-y-3">
-                        <div className="flex justify-between rounded-lg bg-teal-50 px-4 py-3">
-                          <span className="text-sm text-slate-700 dark:text-slate-300">Karyawan (1%)</span>
-                          <span className="font-semibold text-teal-600">
+                        <div className="flex justify-between rounded-lg bg-teal-50 px-4 py-3 dark:bg-teal-950/20">
+                          <span className="text-sm text-slate-700 dark:text-slate-300">
+                            Karyawan (1%)
+                          </span>
+                          <span className="font-semibold text-teal-600 dark:text-teal-400">
                             {formatCurrency(result.kesehatan.employeeContribution)}
                           </span>
                         </div>
-                        <div className="flex justify-between rounded-lg bg-blue-50 px-4 py-3">
-                          <span className="text-sm text-slate-700 dark:text-slate-300">Perusahaan (4%)</span>
-                          <span className="font-semibold text-blue-600">
+                        <div className="flex justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                          <span className="text-sm text-slate-700 dark:text-slate-300">
+                            Perusahaan (4%)
+                          </span>
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
                             {formatCurrency(result.kesehatan.employerContribution)}
                           </span>
                         </div>
-                        <div className="flex justify-between border-t pt-2">
-                          <span className="font-medium text-slate-900 dark:text-white">Total BPJS Kesehatan</span>
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                          <span className="font-medium text-slate-900 dark:text-white">
+                            Total BPJS Kesehatan
+                          </span>
                           <span className="font-bold text-slate-900 dark:text-white">
                             {formatCurrency(result.kesehatan.total)}
                           </span>
@@ -308,54 +336,70 @@ export default function BPJSCalculator() {
 
                     <Card className="p-6">
                       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                        <Shield className="h-5 w-5 text-blue-600" />
+                        <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                         BPJS Ketenagakerjaan
                       </h3>
                       <div className="space-y-3 text-sm">
-                        <div className="rounded-lg border border-gray-200 p-3">
-                          <p className="mb-2 font-medium text-slate-900 dark:text-white">Jaminan Hari Tua (JHT)</p>
+                        <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
+                          <p className="mb-2 font-medium text-slate-900 dark:text-white">
+                            Jaminan Hari Tua (JHT)
+                          </p>
                           <div className="flex justify-between text-xs">
                             <span className="text-slate-600 dark:text-slate-400">Karyawan (2%)</span>
-                            <span className="font-medium">{formatCurrency(result.ketenagakerjaan.jht.employee)}</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jht.employee)}
+                            </span>
                           </div>
                           <div className="flex justify-between text-xs">
-                            <span className="text-slate-600 dark:text-slate-400">Perusahaan (3.7%)</span>
-                            <span className="font-medium">{formatCurrency(result.ketenagakerjaan.jht.employer)}</span>
+                            <span className="text-slate-600 dark:text-slate-400">
+                              Perusahaan (3.7%)
+                            </span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jht.employer)}
+                            </span>
                           </div>
                         </div>
 
-                        <div className="rounded-lg border border-gray-200 p-3">
-                          <p className="mb-2 font-medium text-slate-900 dark:text-white">Jaminan Pensiun (JP)</p>
+                        <div className="rounded-lg border border-gray-200 p-3 dark:border-slate-700 dark:bg-slate-800">
+                          <p className="mb-2 font-medium text-slate-900 dark:text-white">
+                            Jaminan Pensiun (JP)
+                          </p>
                           <div className="flex justify-between text-xs">
                             <span className="text-slate-600 dark:text-slate-400">Karyawan (1%)</span>
-                            <span className="font-medium">{formatCurrency(result.ketenagakerjaan.jp.employee)}</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jp.employee)}
+                            </span>
                           </div>
                           <div className="flex justify-between text-xs">
                             <span className="text-slate-600 dark:text-slate-400">Perusahaan (2%)</span>
-                            <span className="font-medium">{formatCurrency(result.ketenagakerjaan.jp.employer)}</span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.ketenagakerjaan.jp.employer)}
+                            </span>
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3">
+                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
                           <span className="text-slate-700 dark:text-slate-300">
                             JKK (
                             {jkkRate}
                             %)
                           </span>
-                          <span className="font-semibold text-blue-600">
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
                             {formatCurrency(result.ketenagakerjaan.jkk)}
                           </span>
                         </div>
 
-                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3">
+                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
                           <span className="text-slate-700 dark:text-slate-300">JKM (0.3%)</span>
-                          <span className="font-semibold text-blue-600">
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
                             {formatCurrency(result.ketenagakerjaan.jkm)}
                           </span>
                         </div>
 
-                        <div className="flex justify-between border-t pt-2">
-                          <span className="font-medium text-slate-900 dark:text-white">Total BPJS Ketenagakerjaan</span>
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                          <span className="font-medium text-slate-900 dark:text-white">
+                            Total BPJS Ketenagakerjaan
+                          </span>
                           <span className="font-bold text-slate-900 dark:text-white">
                             {formatCurrency(result.ketenagakerjaan.total)}
                           </span>
@@ -385,18 +429,18 @@ export default function BPJSCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-teal-200 bg-gradient-to-r from-teal-50 to-blue-50 p-6">
+          <Card className="mt-8 border-2 border-teal-200 bg-gradient-to-r from-teal-50 to-blue-50 p-6 dark:border-teal-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
-              <div className="rounded-full bg-teal-100 p-3">
-                <TrendingUp className="h-6 w-6 text-teal-600" />
+              <div className="rounded-full bg-teal-100 p-3 dark:bg-teal-950">
+                <TrendingUp className="h-6 w-6 text-teal-600 dark:text-teal-400" />
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
                   Otomasi Perhitungan & Pelaporan BPJS
                 </h3>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
-                  Hitung manual BPJS untuk ratusan karyawan setiap bulan? BizOps otomatis menghitung,
-                  memotong, dan generate laporan BPJS dalam hitungan detik.
+                  Hitung manual BPJS untuk ratusan karyawan setiap bulan? BizOps otomatis
+                  menghitung, memotong, dan generate laporan BPJS dalam hitungan detik.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
@@ -411,11 +455,11 @@ export default function BPJSCalculator() {
           </Card>
         )}
 
-        <Card className="mt-8 border-l-4 border-teal-500 bg-teal-50 p-6">
+        <Card className="mt-8 border-l-4 border-teal-500 bg-teal-50 p-6 dark:border-teal-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-teal-600" />
+            <AlertCircle className="h-5 w-5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold">Catatan Penting:</p>
+              <p className="mb-2 font-semibold dark:text-white">Catatan Penting:</p>
               <ul className="list-inside list-disc space-y-1">
                 <li>Perhitungan berdasarkan peraturan BPJS terbaru</li>
                 <li>BPJS Kesehatan: Karyawan 1%, Perusahaan 4%</li>

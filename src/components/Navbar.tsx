@@ -64,7 +64,7 @@ export const Navbar: React.FC = () => {
         }}
         animate={isVisible ? 'visible' : 'hidden'}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-20 transition-all duration-300 ${
           isScrolled
             ? 'border-b border-slate-200/50 bg-white/95 shadow-sm backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-950/95'
             : 'border-b border-transparent bg-white dark:bg-slate-950'

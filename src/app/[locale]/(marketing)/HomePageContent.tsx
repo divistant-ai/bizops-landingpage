@@ -36,7 +36,7 @@ import {
 export default function HomePageContent() {
   const t = useTranslations('Homepage');
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
-  const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
+  const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
 
   if (!activeSolution) {
     return null; // Early return if no solution found
@@ -110,7 +110,8 @@ export default function HomePageContent() {
                 href="/pricing/calculator"
                 className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50 dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
               >
-                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />{' '}
+                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />
+                {' '}
                 <p className="text-slate-900 dark:text-white">{t('cta_pricing')}</p>
               </BouncyLink>
             </div>
@@ -138,7 +139,8 @@ export default function HomePageContent() {
                 align="center"
                 className="absolute top-4 left-4 z-30 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-[10px] text-slate-700 shadow-lg backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300"
               >
-                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />{' '}
+                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />
+                {' '}
                 <span className="font-mono">secure://bizops.id/dashboard</span>
               </Stack>
             </div>
@@ -157,7 +159,7 @@ export default function HomePageContent() {
                 'Aero Travel Indonesia',
                 'TechCorp',
                 'BuildCo',
-              ].map((brand) => (
+              ].map(brand => (
                 <span
                   key={brand}
                   className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl dark:text-slate-200"
@@ -182,13 +184,16 @@ export default function HomePageContent() {
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
-        ></div>
+        >
+        </div>
 
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-            Mengapa Bisnis Anda{' '}
+            Mengapa Bisnis Anda
+            {' '}
             <span className="relative inline-block text-red-500 dark:text-red-400">
-              Stuck?{' '}
+              Stuck?
+              {' '}
               <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30 dark:bg-red-900 dark:opacity-40"></span>
             </span>
           </h2>
@@ -252,7 +257,9 @@ export default function HomePageContent() {
               BizOps Platform
             </Badge>
             <h2 className="text-3xl leading-tight font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-              Satu Solusi, <br />
+              Satu Solusi,
+              {' '}
+              <br />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                 Tak Terbatas Kemungkinan.
               </span>
@@ -264,7 +271,8 @@ export default function HomePageContent() {
           </div>
           <Button asChild size="md" variant="white" className="group">
             <Link href="/platform">
-              Lihat Semua Modul{' '}
+              Lihat Semua Modul
+              {' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -328,7 +336,8 @@ export default function HomePageContent() {
             >
               <div
                 className={`absolute top-0 right-0 h-96 w-96 ${activeSolution.bg} pointer-events-none rounded-full opacity-20 blur-[120px]`}
-              ></div>
+              >
+              </div>
 
               <div className="relative z-10">
                 <div className="mb-10">
@@ -346,7 +355,9 @@ export default function HomePageContent() {
                     </h3>
                   </Stack>
                   <p className="border-l-4 border-slate-300 pl-4 text-xl leading-relaxed text-slate-600 italic dark:border-slate-700 dark:text-slate-300">
-                    "{activeSolution.impact}"
+                    "
+                    {activeSolution.impact}
+                    "
                   </p>
                 </div>
 
@@ -476,8 +487,10 @@ export default function HomePageContent() {
             </span>
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            BizOps bukan hanya soal "lebih murah". Ini soal{' '}
-            <span className="font-semibold text-slate-900 dark:text-white">efisiensi total</span>.
+            BizOps bukan hanya soal "lebih murah". Ini soal
+            {' '}
+            <span className="font-semibold text-slate-900 dark:text-white">efisiensi total</span>
+            .
             Bandingkan kompleksitas, waktu implementasi, dan hidden cost.
           </p>
         </div>
@@ -517,7 +530,8 @@ export default function HomePageContent() {
                   Fragmented Stack
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Menggabungkan 3-5 aplikasi SaaS berbeda. Akibatnya:{' '}
+                  Menggabungkan 3-5 aplikasi SaaS berbeda. Akibatnya:
+                  {' '}
                   <span className="font-semibold text-red-600 dark:text-red-400">
                     Data Silo & Vendor Fatigue.
                   </span>
@@ -602,7 +616,8 @@ export default function HomePageContent() {
                   Legacy / Global ERP
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Model lisensi per user yang kaku. Akibatnya:{' '}
+                  Model lisensi per user yang kaku. Akibatnya:
+                  {' '}
                   <span className="font-semibold text-amber-600 dark:text-amber-400">
                     Growth Penalty & Mahal.
                   </span>
@@ -694,7 +709,9 @@ export default function HomePageContent() {
                       align="center"
                       className="w-fit rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase shadow-lg shadow-blue-500/20"
                     >
-                      <CheckCircle2 className="h-3.5 w-3.5" /> The BizOps Way
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                      {' '}
+                      The BizOps Way
                     </Stack>
                     <div className="text-left md:text-right">
                       <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">
@@ -822,14 +839,17 @@ export default function HomePageContent() {
         >
           <div className="max-w-2xl">
             <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              Go-Live dalam{' '}
+              Go-Live dalam
+              {' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                 30 Hari.
               </span>
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.{' '}
-              <strong className="font-medium text-slate-900 dark:text-white">Tanpa drama</strong>,
+              Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.
+              {' '}
+              <strong className="font-medium text-slate-900 dark:text-white">Tanpa drama</strong>
+              ,
               tanpa biaya konsultan yang membengkak.
             </p>
           </div>
@@ -924,7 +944,9 @@ export default function HomePageContent() {
                       align="center"
                       className="-translate-x-2 text-sm font-bold text-blue-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-blue-400"
                     >
-                      Explore <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                      Explore
+                      {' '}
+                      <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
                     </Stack>
                   </div>
                 </SpotlightCard>
@@ -1148,7 +1170,9 @@ export default function HomePageContent() {
             href="/platform/technologies/integration"
             className="inline-flex items-center gap-2 font-bold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            Lihat 50+ Integrasi Lainnya <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
+            Lihat 50+ Integrasi Lainnya
+            {' '}
+            <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </Section>

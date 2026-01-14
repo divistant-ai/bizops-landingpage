@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight, Check, ChevronRight, HelpCircle, Smartphone } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { Container, Section } from "@/components/layout";
-import { Badge, Card, Grid } from "@/components/ui";
-import { BouncyLink } from "@/components/ui/BouncyLink";
-import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
-import { CounterUp } from "@/components/ui/motion-scroll";
-import { capabilitiesData, modulesData } from "@/data/platformContent";
+import { motion } from 'framer-motion';
+import { ArrowRight, Check, ChevronRight, HelpCircle, Smartphone } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Container, Section } from '@/components/layout';
+import { Badge, Card, Grid } from '@/components/ui';
+import { BouncyLink } from '@/components/ui/BouncyLink';
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
+import { CounterUp } from '@/components/ui/motion-scroll';
+import { capabilitiesData, modulesData } from '@/data/platformContent';
 
 type ModulePageProps = {
   moduleId: string;
   relatedModuleIds?: Array<{
     id: string;
-    type: "module" | "capability";
+    type: 'module' | 'capability';
   }>;
 };
 
@@ -35,8 +35,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <div
           className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
             isOpen
-              ? "rotate-180 bg-blue-600 text-white dark:bg-blue-500"
-              : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+              ? 'rotate-180 bg-blue-600 text-white dark:bg-blue-500'
+              : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
           }`}
         >
           <ChevronRight className="h-4 w-4" />
@@ -44,7 +44,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       </button>
       <div
         className={`overflow-hidden transition-all duration-200 ease-in-out ${
-          isOpen ? "max-h-96" : "max-h-0"
+          isOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
         <p className="px-4 pb-4 text-xs leading-relaxed text-slate-600 md:text-sm dark:text-slate-400">
@@ -65,20 +65,20 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
 
   const Icon = data.icon || HelpCircle;
   const testimonial = data.testimonial || {
-    quote: "Sistem ini mengubah cara kami bekerja. Sangat intuitif dan powerful.",
-    author: "Budi Santoso",
-    role: "CEO at Teknologi Maju",
-    avatar: "https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff",
+    quote: 'Sistem ini mengubah cara kami bekerja. Sangat intuitif dan powerful.',
+    author: 'Budi Santoso',
+    role: 'CEO at Teknologi Maju',
+    avatar: 'https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff',
   };
 
   // Rehydrate related modules
   const relatedModules = relatedModuleIds
     .map((item) => {
-      const source = item.type === "module" ? modulesData : capabilitiesData;
+      const source = item.type === 'module' ? modulesData : capabilitiesData;
       const modData = source[item.id];
       return {
         id: item.id,
-        title: modData?.title || "",
+        title: modData?.title || '',
         subtitle: modData?.subtitle,
         icon: modData?.icon || HelpCircle,
         type: item.type,
@@ -155,7 +155,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 href="/demo"
                 className="flex h-11 items-center justify-center rounded-xl bg-blue-600 px-6 font-semibold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
               >
-                {data.cta?.buttonLabel || "Lihat Demo"}
+                {data.cta?.buttonLabel || 'Lihat Demo'}
               </BouncyLink>
               <BouncyLink
                 href="/contact"
@@ -245,13 +245,13 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 Masalah yang Kami Selesaikan
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Kami memahami tantangan yang Anda hadapi karena kami mendengarkan ratusan
-                bisnis seperti Anda.
+                Kami memahami tantangan yang Anda hadapi karena kami mendengarkan ratusan bisnis
+                seperti Anda.
               </p>
             </div>
 
             <FadeInStagger>
-              <Grid cols={1} mdCols={3} gap={6}>
+              <Grid cols={3} mdCols={3} gap={6}>
                 {data.problems.map(
                   (
                     problem: {
@@ -328,26 +328,24 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
             </div>
 
             <div className="space-y-6">
-              {data.connections.map(
-                (conn: { target: string; desc: string }, idx: number) => (
-                  <FadeIn key={idx} delay={0.1 * idx}>
-                    <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                      <div className="bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400 flex-shrink-0 rounded-xl p-3">
-                        <ArrowRight className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                          →
-                          {conn.target}
-                        </h3>
-                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                          {conn.desc}
-                        </p>
-                      </div>
+              {data.connections.map((conn: { target: string; desc: string }, idx: number) => (
+                <FadeIn key={idx} delay={0.1 * idx}>
+                  <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
+                    <div className="bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400 flex-shrink-0 rounded-xl p-3">
+                      <ArrowRight className="h-6 w-6" />
                     </div>
-                  </FadeIn>
-                ),
-              )}
+                    <div>
+                      <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                        →
+                        {conn.target}
+                      </h3>
+                      <p className="leading-relaxed text-slate-600 dark:text-slate-400">
+                        {conn.desc}
+                      </p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
             </div>
           </Container>
         </Section>
@@ -368,12 +366,8 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 className="h-16 w-16 rounded-full"
               />
               <div>
-                <div className="font-bold text-slate-900 dark:text-white">
-                  {testimonial.author}
-                </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">
-                  {testimonial.role}
-                </div>
+                <div className="font-bold text-slate-900 dark:text-white">{testimonial.author}</div>
+                <div className="text-sm text-slate-600 dark:text-slate-400">{testimonial.role}</div>
               </div>
             </div>
           </div>
@@ -412,17 +406,17 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
                 Jelajahi modul lain yang saling terintegrasi dengan
-                {" "}
+                {' '}
                 {data.title}
                 .
               </p>
             </div>
 
-            <Grid cols={1} mdCols={3} gap={6}>
+            <Grid cols={3} mdCols={3} gap={6}>
               {relatedModules.map((module) => {
                 const ModuleIcon = module.icon || HelpCircle;
                 const linkPath
-                  = module.type === "capability"
+                  = module.type === 'capability'
                     ? `/platform/capabilities/${module.id}`
                     : `/platform/modules/${module.id}`;
 
@@ -453,18 +447,15 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
       <Section className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <h2 className="mb-8 text-4xl leading-tight font-bold text-slate-900 md:text-5xl dark:text-white">
-            {data.cta?.text || "Siap untuk Transformasi Digital?"}
+            {data.cta?.text || 'Siap untuk Transformasi Digital?'}
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl text-slate-600 dark:text-slate-400">
-            Jadwalkan demo 30 menit untuk melihat bagaimana modul ini bekerja secara
-            real-time. Tanpa komitmen.
+            Jadwalkan demo 30 menit untuk melihat bagaimana modul ini bekerja secara real-time.
+            Tanpa komitmen.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <BouncyLink
-              href="/demo"
-              className="shadow-primary-500/20 h-16 px-10 text-xl shadow-xl"
-            >
-              {data.cta?.buttonLabel || "Lihat Demo"}
+            <BouncyLink href="/demo" className="shadow-primary-500/20 h-16 px-10 text-xl shadow-xl">
+              {data.cta?.buttonLabel || 'Lihat Demo'}
             </BouncyLink>
             <BouncyLink
               href="/pricing/calculator"

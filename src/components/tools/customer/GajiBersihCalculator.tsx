@@ -8,7 +8,12 @@ import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { safeCalculate, validateFields, validateNumber } from '@/utils/errorHandling';
-import { downloadAsText, formatResultAsText, generateShareText, shareResult } from '@/utils/exportTools';
+import {
+  downloadAsText,
+  formatResultAsText,
+  generateShareText,
+  shareResult,
+} from '@/utils/exportTools';
 
 type SalaryResult = {
   grossSalary: number;
@@ -38,7 +43,8 @@ export default function GajiBersihCalculator() {
 
     const validationErrors = validateFields([
       () => validateNumber(grossSalary, { min: 0, max: 1000000000, fieldName: 'Gaji Bruto' }),
-      () => validateNumber(otherDeductions, { min: 0, required: false, fieldName: 'Potongan Lainnya' }),
+      () =>
+        validateNumber(otherDeductions, { min: 0, required: false, fieldName: 'Potongan Lainnya' }),
     ]);
 
     if (validationErrors.length > 0) {
@@ -48,39 +54,42 @@ export default function GajiBersihCalculator() {
     }
 
     setTimeout(() => {
-      const calculatedResult = safeCalculate<SalaryResult>(() => {
-        const gross = Number.parseFloat(grossSalary) || 0;
-        const other = Number.parseFloat(otherDeductions) || 0;
+      const calculatedResult = safeCalculate<SalaryResult>(
+        () => {
+          const gross = Number.parseFloat(grossSalary) || 0;
+          const other = Number.parseFloat(otherDeductions) || 0;
 
-        const pph21 = gross > 5000000 ? gross * 0.05 : 0;
+          const pph21 = gross > 5000000 ? gross * 0.05 : 0;
 
-        let bpjsKesehatan = 0;
-        let bpjsKetenagakerjaan = 0;
+          let bpjsKesehatan = 0;
+          let bpjsKetenagakerjaan = 0;
 
-        if (includeBPJS) {
-          bpjsKesehatan = gross * 0.01;
-          bpjsKetenagakerjaan = gross * 0.02;
-        }
+          if (includeBPJS) {
+            bpjsKesehatan = gross * 0.01;
+            bpjsKetenagakerjaan = gross * 0.02;
+          }
 
-        const totalDeductions = pph21 + bpjsKesehatan + bpjsKetenagakerjaan + other;
-        const netSalary = gross - totalDeductions;
-        const takeHomePercentage = gross > 0 ? (netSalary / gross) * 100 : 0;
+          const totalDeductions = pph21 + bpjsKesehatan + bpjsKetenagakerjaan + other;
+          const netSalary = gross - totalDeductions;
+          const takeHomePercentage = gross > 0 ? (netSalary / gross) * 100 : 0;
 
-        return {
-          grossSalary: gross,
-          deductions: {
-            pph21,
-            bpjsKesehatan,
-            bpjsKetenagakerjaan,
-            other,
-            total: totalDeductions,
-          },
-          netSalary,
-          takeHomePercentage,
-        };
-      }, (error) => {
-        setErrors([error]);
-      });
+          return {
+            grossSalary: gross,
+            deductions: {
+              pph21,
+              bpjsKesehatan,
+              bpjsKetenagakerjaan,
+              other,
+              total: totalDeductions,
+            },
+            netSalary,
+            takeHomePercentage,
+          };
+        },
+        (error) => {
+          setErrors([error]);
+        },
+      );
 
       if (calculatedResult) {
         setResult(calculatedResult);
@@ -149,7 +158,8 @@ export default function GajiBersihCalculator() {
             Kalkulator Gaji Bersih (Take Home Pay)
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Hitung berapa gaji bersih yang Anda terima setelah dipotong pajak dan BPJS. Gratis dan akurat!
+            Hitung berapa gaji bersih yang Anda terima setelah dipotong pajak dan BPJS. Gratis dan
+            akurat!
           </p>
         </div>
 
@@ -157,15 +167,22 @@ export default function GajiBersihCalculator() {
 
         <div className="grid gap-8 lg:grid-cols-2">
           <Card className="p-6">
-            <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Input Data Gaji</h2>
+            <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+              Input Data Gaji
+            </h2>
 
             <div className="space-y-6">
               <div>
-                <label htmlFor="gross-salary" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="gross-salary"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Gaji Bruto per Bulan
                 </label>
                 <div className="relative">
-                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                    Rp
+                  </span>
                   <input
                     id="gross-salary"
                     type="text"
@@ -179,13 +196,19 @@ export default function GajiBersihCalculator() {
                     aria-describedby="gross-salary-help"
                   />
                 </div>
-                <p id="gross-salary-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
+                <p
+                  id="gross-salary-help"
+                  className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                >
                   {grossSalary && formatCurrency(Number.parseFloat(grossSalary) || 0)}
                 </p>
               </div>
 
               <div>
-                <label htmlFor="marital-status" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="marital-status"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Status PTKP (untuk PPh 21)
                 </label>
                 <select
@@ -212,17 +235,25 @@ export default function GajiBersihCalculator() {
                   className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-2 focus:ring-green-500 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-describedby="bpjs-help"
                 />
-                <label htmlFor="bpjs" className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="bpjs"
+                  className="text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Termasuk potongan BPJS Kesehatan & Ketenagakerjaan
                 </label>
               </div>
 
               <div>
-                <label htmlFor="other-deductions" className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
+                <label
+                  htmlFor="other-deductions"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                >
                   Potongan Lainnya (opsional)
                 </label>
                 <div className="relative">
-                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">Rp</span>
+                  <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                    Rp
+                  </span>
                   <input
                     id="other-deductions"
                     type="text"
@@ -268,7 +299,7 @@ export default function GajiBersihCalculator() {
           <div className="space-y-6">
             {result
               ? (
-                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan gaji bersih">
+                  <div role="region" aria-live="polite" aria-label="Hasil perhitungan gaji bersih" className="space-y-6">
                     <Card className="bg-gradient-to-br from-green-600 to-blue-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">Gaji Bersih Anda</h3>
                       <div className="mb-6 text-center">
@@ -297,34 +328,44 @@ export default function GajiBersihCalculator() {
                     <Card className="p-6">
                       <div className="mb-4 flex items-center gap-2">
                         <PieChart className="h-5 w-5 text-gray-700 dark:text-slate-300" />
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Detail Potongan</h3>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          Detail Potongan
+                        </h3>
                       </div>
                       <div className="space-y-3">
-                        <div className="flex items-center justify-between rounded-lg bg-red-50 px-4 py-3">
-                          <span className="text-sm text-gray-700 dark:text-slate-300">Pajak PPh 21</span>
-                          <span className="font-semibold text-red-600">
+                        <div className="flex items-center justify-between rounded-lg bg-red-50 px-4 py-3 dark:bg-red-950/20">
+                          <span className="text-sm text-gray-700 dark:text-slate-300">
+                            Pajak PPh 21
+                          </span>
+                          <span className="font-semibold text-red-600 dark:text-red-400">
                             {formatCurrency(result.deductions.pph21)}
                           </span>
                         </div>
                         {includeBPJS && (
                           <>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3">
-                              <span className="text-sm text-gray-700 dark:text-slate-300">BPJS Kesehatan (1%)</span>
-                              <span className="font-semibold text-blue-600">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                              <span className="text-sm text-gray-700 dark:text-slate-300">
+                                BPJS Kesehatan (1%)
+                              </span>
+                              <span className="font-semibold text-blue-600 dark:text-blue-400">
                                 {formatCurrency(result.deductions.bpjsKesehatan)}
                               </span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3">
-                              <span className="text-sm text-gray-700 dark:text-slate-300">BPJS Ketenagakerjaan (2%)</span>
-                              <span className="font-semibold text-blue-600">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                              <span className="text-sm text-gray-700 dark:text-slate-300">
+                                BPJS Ketenagakerjaan (2%)
+                              </span>
+                              <span className="font-semibold text-blue-600 dark:text-blue-400">
                                 {formatCurrency(result.deductions.bpjsKetenagakerjaan)}
                               </span>
                             </div>
                           </>
                         )}
                         {result.deductions.other > 0 && (
-                          <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
-                            <span className="text-sm text-gray-700 dark:text-slate-300">Potongan Lainnya</span>
+                          <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3 dark:bg-slate-800">
+                            <span className="text-sm text-gray-700 dark:text-slate-300">
+                              Potongan Lainnya
+                            </span>
                             <span className="font-semibold text-gray-600 dark:text-slate-400">
                               {formatCurrency(result.deductions.other)}
                             </span>
@@ -340,8 +381,10 @@ export default function GajiBersihCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-purple-50 to-pink-50 p-6">
-                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">Proyeksi Tahunan</h4>
+                    <Card className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:from-purple-950/20 dark:to-pink-950/20">
+                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
+                        Proyeksi Tahunan
+                      </h4>
                       <div className="grid grid-cols-2 gap-4 text-center">
                         <div>
                           <p className="text-sm text-gray-600 dark:text-slate-400">Gaji Bruto/Tahun</p>
@@ -351,7 +394,7 @@ export default function GajiBersihCalculator() {
                         </div>
                         <div>
                           <p className="text-sm text-gray-600 dark:text-slate-400">Gaji Bersih/Tahun</p>
-                          <p className="text-lg font-bold text-green-600">
+                          <p className="text-lg font-bold text-green-600 dark:text-green-400">
                             {formatCurrency(result.netSalary * 12)}
                           </p>
                         </div>
@@ -373,10 +416,10 @@ export default function GajiBersihCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-blue-50 p-6">
+          <Card className="mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-blue-50 p-6 dark:border-green-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
-              <div className="rounded-full bg-green-100 p-3">
-                <TrendingUp className="h-6 w-6 text-green-600" />
+              <div className="rounded-full bg-green-100 p-3 dark:bg-green-950">
+                <TrendingUp className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
@@ -399,16 +442,19 @@ export default function GajiBersihCalculator() {
           </Card>
         )}
 
-        <Card className="mt-8 border-l-4 border-green-500 bg-green-50 p-6">
+        <Card className="mt-8 border-l-4 border-green-500 bg-green-50 p-6 dark:border-green-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+            <AlertCircle className="h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold">Catatan:</p>
+              <p className="mb-2 font-semibold dark:text-white">Catatan:</p>
               <ul className="list-inside list-disc space-y-1">
                 <li>Perhitungan PPh 21 menggunakan metode simplified untuk estimasi cepat</li>
                 <li>BPJS Kesehatan: 1% dari gaji (employee contribution)</li>
                 <li>BPJS Ketenagakerjaan: 2% (JHT + JP, employee contribution)</li>
-                <li>Hasil bersifat estimasi. Untuk perhitungan akurat, gunakan sistem payroll profesional</li>
+                <li>
+                  Hasil bersifat estimasi. Untuk perhitungan akurat, gunakan sistem payroll
+                  profesional
+                </li>
               </ul>
             </div>
           </div>

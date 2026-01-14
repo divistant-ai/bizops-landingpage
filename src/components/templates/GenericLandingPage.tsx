@@ -6,14 +6,14 @@ import {
   Share2,
   Smartphone,
   Table as TableIcon,
-} from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import FAQAccordion from "@/components/FAQAccordion";
-import { Container, Section } from "@/components/layout";
-import { Button } from "@/components/ui";
-import { FadeIn } from "@/components/ui/FadeIn";
+} from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import FAQAccordion from '@/components/FAQAccordion';
+import { Container, Section } from '@/components/layout';
+import { Button } from '@/components/ui';
+import { FadeIn } from '@/components/ui/FadeIn';
 
 // Flexible types to accommodate different data structures (Industries vs Roles vs Services)
 type Metric = {
@@ -124,12 +124,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
   const featuresList = data.solutions || data.features || [];
 
   // Normalize CTA
-  const ctaBtnText
-    = typeof data.cta === "string" ? data.cta : data.cta?.btn || "Jadwalkan Demo";
+  const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || 'Jadwalkan Demo';
   const ctaHeadText
-    = typeof data.cta === "string"
-      ? "Siap Memulai?"
-      : data.cta?.head || "Siap untuk Transformasi?";
+    = typeof data.cta === 'string' ? 'Siap Memulai?' : data.cta?.head || 'Siap untuk Transformasi?';
 
   return (
     <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
@@ -170,14 +167,17 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
             <FadeIn delay={0.3}>
               <div className="flex justify-center gap-4">
-                <Button
-                  size="lg"
-                  className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
-                >
-                  {ctaBtnText}
-                  {" "}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href="/demo">
+                  <Button
+                    size="lg"
+                    className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
+                  >
+                    {ctaBtnText}
+                    {' '}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+
                 <Link href="/contact">
                   <Button
                     size="lg"
@@ -327,10 +327,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             </div>
             <div className="grid gap-8 md:grid-cols-3">
               {data.benefits.map((b, i) => (
-                <div
-                  key={i}
-                  className="bg-primary-50/50 border-primary-100 rounded-3xl border p-8"
-                >
+                <div key={i} className="bg-primary-50/50 border-primary-100 rounded-3xl border p-8">
                   <h3 className="text-primary-900 mb-3 text-xl font-bold">{b.title}</h3>
                   <p className="text-primary-800/80 leading-relaxed">{b.desc}</p>
                 </div>
@@ -346,9 +343,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <Container size="4xl">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">
-                Apa yang Anda Dapatkan?
-              </h2>
+              <h2 className="mb-4 text-3xl font-bold text-white">Apa yang Anda Dapatkan?</h2>
               <p className="text-neutral-400">Deliverables nyata, bukan sekadar konsep.</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md">
@@ -453,7 +448,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
                         {f.title || f.desc}
                       </h3>
-                      {" "}
+                      {' '}
                       {/* Handle generic lists */}
                       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
                         {f.desc || f.description}
@@ -523,7 +518,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
       )}
 
       {/* --- EXTRA SECTION (TABLES) --- */}
-      {data.extraSection && data.extraSection.type === "table" && (
+      {data.extraSection && data.extraSection.type === 'table' && (
         <Section className="bg-white dark:bg-slate-900">
           <Container size="5xl">
             <div className="mb-10 text-center">
@@ -583,14 +578,14 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   </div>
                 )}
                 <h2 className="mb-6 text-3xl leading-tight font-bold md:text-4xl">
-                  {data.caseStudyTitle || "Real Results"}
+                  {data.caseStudyTitle || 'Real Results'}
                 </h2>
                 <p className="mb-8 text-xl leading-relaxed text-slate-900 dark:text-slate-400">
-                  {data.caseStudy || "Lihat bagaimana klien kami bertransformasi."}
+                  {data.caseStudy || 'Lihat bagaimana klien kami bertransformasi.'}
                 </p>
                 <Button variant="white" className="rounded-full">
                   Baca Use Case Lengkap
-                  {" "}
+                  {' '}
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -605,7 +600,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-slate-800 dark:text-white">
-                      {data.testimonial.avatar?.includes("http")
+                      {data.testimonial.avatar?.includes('http')
                         ? (
                             <img
                               src={data.testimonial.avatar}
@@ -621,9 +616,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       <div className="font-bold text-slate-800 dark:text-white">
                         {data.testimonial.author}
                       </div>
-                      <div className="text-primary-300 text-sm">
-                        {data.testimonial.role}
-                      </div>
+                      <div className="text-primary-300 text-sm">{data.testimonial.role}</div>
                     </div>
                   </div>
                 </div>
@@ -654,23 +647,28 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             {ctaHeadText}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Jangan biarkan operasional manual menghambat pertumbuhan bisnis Anda. Mulai
-            digitalisasi sekarang.
+            Jangan biarkan operasional manual menghambat pertumbuhan bisnis Anda. Mulai digitalisasi
+            sekarang.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button
-              size="lg"
-              className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-700 h-14 rounded-xl px-10 text-lg text-slate-950 shadow-xl dark:text-white"
-            >
-              {ctaBtnText}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
-            >
-              Jadwalkan Konsultasi Gratis
-            </Button>
+            <Link href="/demo">
+              <Button
+                size="lg"
+                className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-700 h-14 rounded-xl px-10 text-lg text-slate-950 shadow-xl dark:text-white"
+              >
+                {ctaBtnText}
+              </Button>
+            </Link>
+
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
+              >
+                Jadwalkan Konsultasi Gratis
+              </Button>
+            </Link>
           </div>
         </Container>
       </Section>
