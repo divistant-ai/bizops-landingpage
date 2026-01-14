@@ -3,9 +3,7 @@
 export const navbarStyles = {
   // Menu Item Styles
   menuItem: {
-    base: 'flex h-10 items-center gap-1.5 rounded-lg px-3.5 text-sm font-semibold transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:hover:bg-slate-800/70 dark:hover:text-white',
-    inactive: 'text-slate-700 dark:text-slate-300',
-    active: 'bg-slate-100 text-primary-600 dark:bg-slate-800 dark:!text-white',
+    base: 'flex h-10 items-center gap-1.5 rounded-lg px-3.5 text-sm font-semibold transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 text-slate-700 dark:text-slate-300 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:hover:bg-slate-800/70 dark:hover:text-white',
   },
 
   // Icon Button Styles - Improved for accessibility (44x44 touch target)
@@ -47,8 +45,8 @@ export const navbarStyles = {
 } as const;
 
 // Helper function to combine classes
-export const getMenuItemClasses = (isActive: boolean): string => {
-  return `${navbarStyles.menuItem.base} ${isActive ? navbarStyles.menuItem.active : navbarStyles.menuItem.inactive}`;
+export const getMenuItemClasses = (): string => {
+  return navbarStyles.menuItem.base;
 };
 
 export const getIconButtonClasses = (isMobile = false): string => {

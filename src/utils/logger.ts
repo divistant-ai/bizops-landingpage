@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Production-safe logger utility
  * Removes all console.log in production builds

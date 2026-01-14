@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
-import Link from "next/link";
-import { Section } from "@/components/layout";
-import Container from "@/components/layout/Container";
-import { CustomerStoryCard } from "@/components/pages/CustomerStoryCard";
-import { CardSlider, Typography } from "@/components/ui";
-import Button from "@/components/ui/Button";
-import Stack from "@/components/ui/Stack";
-import { customerStories } from "@/data/companyContent";
+import { motion } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Section } from '@/components/layout';
+import Container from '@/components/layout/Container';
+import { CustomerStoryCard } from '@/components/pages/CustomerStoryCard';
+import { CardSlider, Typography } from '@/components/ui';
+import Button from '@/components/ui/Button';
+import Stack from '@/components/ui/Stack';
+import { customerStories } from '@/data/companyContent';
 
 export default function CustomersContent() {
-  const logos = customerStories.map((s) => s.client);
+  const logos = customerStories.map(s => s.client);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30 dark:bg-slate-950">

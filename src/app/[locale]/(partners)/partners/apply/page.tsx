@@ -4,36 +4,44 @@ import { Button } from '@/components/ui';
 
 export default function PartnerApplyPage() {
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <Section className="pt-32 pb-20">
         <Container size="4xl">
-          <div className="rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm md:p-12">
-            <h1 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">Bergabung dengan Ekosistem BizOps</h1>
-            <p className="mx-auto mb-10 max-w-2xl text-xl text-neutral-600">
-              Isi formulir singkat ini untuk memulai proses aplikasi kemitraan. Tim Channel Manager kami akan menghubungi Anda dalam 2x24 jam.
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm md:p-12 dark:border-slate-800 dark:bg-slate-900">
+            <h1 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              Bergabung dengan Ekosistem BizOps
+            </h1>
+            <p className="mx-auto mb-10 max-w-2xl text-xl text-slate-600 dark:text-slate-400">
+              Isi formulir singkat ini untuk memulai proses aplikasi kemitraan. Tim Channel Manager
+              kami akan menghubungi Anda dalam 2x24 jam.
             </p>
 
             {/* Placeholder for actual form integration (e.g. Typeform or Hubspot) */}
-            <div className="mb-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-10">
-              <p className="mb-6 text-neutral-500 italic">[Formulir Aplikasi Partner akan dimuat di sini]</p>
-              <Button size="lg" className="bg-primary-600 hover:bg-primary-700 rounded-full text-white">
-                Buka Formulir Aplikasi (External)
+            <div className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-10 dark:border-slate-800 dark:bg-slate-950">
+              <p className="mb-6 text-slate-500 italic dark:text-slate-400">
+                [Formulir Aplikasi Partner akan dimuat di sini]
+              </p>
+              <Button
+                size="lg"
+                className="rounded-full bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100"
+              >
+                <span className="text-white dark:!text-slate-900">Buka Formulir Aplikasi (External)</span>
               </Button>
             </div>
 
             <div className="mx-auto max-w-lg text-left">
-              <h3 className="mb-4 font-bold text-neutral-900">Syarat Minimum:</h3>
+              <h3 className="mb-4 font-bold text-slate-900 dark:text-white">Syarat Minimum:</h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-3 text-neutral-600">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
+                <li className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+                  <CheckCircle2 className="text-primary-600 dark:text-primary-500 mt-0.5 h-5 w-5 shrink-0" />
                   <span>Badan usaha resmi (PT/CV/Firma).</span>
                 </li>
-                <li className="flex items-start gap-3 text-neutral-600">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
+                <li className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+                  <CheckCircle2 className="text-primary-600 dark:text-primary-500 mt-0.5 h-5 w-5 shrink-0" />
                   <span>Memiliki pengalaman di industri terkait (IT/Konsultan/Akuntansi).</span>
                 </li>
-                <li className="flex items-start gap-3 text-neutral-600">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
+                <li className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+                  <CheckCircle2 className="text-primary-600 dark:text-primary-500 mt-0.5 h-5 w-5 shrink-0" />
                   <span>Berkomitmen untuk sertifikasi tim teknis/sales (min. 1 orang).</span>
                 </li>
               </ul>

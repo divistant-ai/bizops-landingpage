@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
 const Loading: React.FC = memo(() => {
   return (
@@ -23,6 +23,6 @@ const Loading: React.FC = memo(() => {
   );
 });
 
-Loading.displayName = "Loading";
+Loading.displayName = 'Loading';
 
 export default Loading;

@@ -191,7 +191,8 @@ export default function ContactContent() {
                       rows={4}
                       className="focus:ring-primary-500 dark:focus:ring-primary-400 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                       placeholder="Ceritakan kebutuhan bisnis Anda..."
-                    ></textarea>
+                    >
+                    </textarea>
                   </div>
 
                   <Button
@@ -201,10 +202,12 @@ export default function ContactContent() {
                     Kirim Pesan
                   </Button>
                   <p className="text-center text-xs text-slate-500">
-                    Dengan mengirimkan form ini, Anda menyetujui{' '}
+                    Dengan mengirimkan form ini, Anda menyetujui
+                    {' '}
                     <Link href="/legal/privacy" className="text-primary-600 hover:underline">
                       Kebijakan Privasi
-                    </Link>{' '}
+                    </Link>
+                    {' '}
                     kami.
                   </p>
                 </form>
