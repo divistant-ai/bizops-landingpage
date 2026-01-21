@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ArrowRight, FileText, HelpCircle, Home } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import '@/styles/global.css';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found | BizOps',
