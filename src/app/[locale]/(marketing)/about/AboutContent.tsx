@@ -17,6 +17,7 @@ import {
   Users,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Button, CardSlider, OptimizedImage } from '@/components/ui';
@@ -66,20 +67,21 @@ const teamMembers = [
   },
 ];
 
-const stats = [
-  { value: '500+', label: 'Perusahaan Pengguna', icon: Building2 },
-  { value: '50K+', label: 'User Aktif Bulanan', icon: Users },
-  { value: '99.9%', label: 'Uptime SLA', icon: Zap },
-  { value: '24/7', label: 'Support Response', icon: Heart },
-];
-
 export default function AboutContent() {
+  const t = useTranslations('About');
   const { hero, timeline, values, entity } = aboutContent;
+
+  const stats = [
+    { value: '500+', label: t('stats_companies'), icon: Building2 },
+    { value: '50K+', label: t('stats_users'), icon: Users },
+    { value: '99.9%', label: t('stats_uptime'), icon: Zap },
+    { value: '24/7', label: t('stats_support'), icon: Heart },
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Hero Section (Cinematic) */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pt-48 lg:pb-40 dark:bg-[#0B1120]">
+      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pb-40 dark:bg-[#0B1120]">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         {/* Animated Glow Orbs */}
         <div className="animate-pulse-slow pointer-events-none absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-[120px] dark:bg-indigo-600/20"></div>
@@ -92,9 +94,7 @@ export default function AboutContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-indigo-100 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase shadow-xl backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-indigo-300"
           >
-            <Rocket className="h-3 w-3" />
-            {' '}
-            Engineering Sovereignty
+            <Rocket className="h-3 w-3" /> {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -103,11 +103,9 @@ export default function AboutContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-7xl dark:text-white"
           >
-            Bermitra dengan Praktisi yang
-            {' '}
-            <br />
+            {t('hero_title_1')} <br />
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-cyan-300">
-              Mengerti Masalah Lapangan.
+              {t('hero_title_2')}
             </span>
           </motion.h1>
 
@@ -130,9 +128,7 @@ export default function AboutContent() {
                 size="lg"
                 className="h-14 w-full transform rounded-full border-none bg-slate-900 px-8 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-indigo-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
               >
-                Lihat Profil Lengkap Divistant
-                {' '}
-                <ExternalLink className="ml-2 h-4 w-4" />
+                {t('cta_profile')} <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             </a>
           </motion.div>
@@ -173,16 +169,15 @@ export default function AboutContent() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center md:mb-24">
             <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              Our Origin Story
+              {t('timeline_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg font-light text-slate-600 dark:text-slate-400">
-              Perjalanan kami bukan tentang membuat software, tapi tentang memecahkan kebuntuan
-              operasional.
+              {t('timeline_subtitle')}
             </p>
           </div>
 
           <div className="relative ml-4 space-y-16 border-l-2 border-slate-300 md:ml-8 md:space-y-20 md:pl-8 dark:border-slate-700">
-            {timeline.map((item, idx) => (
+            {[1, 2, 3].map((idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: -30 }}
@@ -194,29 +189,28 @@ export default function AboutContent() {
                 {/* Marker */}
                 <div
                   className={`absolute top-0 -left-[25px] z-10 h-6 w-6 rounded-full border-4 border-white transition-colors duration-500 md:-left-[41px] dark:border-slate-950 ${idx === 1 ? 'bg-indigo-500 shadow-[0_0_0_4px_rgba(99,102,241,0.2)]' : 'bg-slate-400 group-hover:bg-indigo-400'}`}
-                >
-                </div>
+                ></div>
 
                 <div className="md:grid md:grid-cols-5 md:gap-16">
                   <div className="mb-4 pt-1 md:col-span-1 md:mb-0">
                     <span
-                      className={`text-sm font-bold tracking-widest uppercase transition-colors ${idx === 1 ? 'text-indigo-600' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-300'}`}
+                      className={`text-sm font-bold tracking-widest uppercase transition-colors ${idx === 2 ? 'text-indigo-600' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-300'}`}
                     >
-                      {item.year}
+                      {t(`timeline_${idx}_year`)}
                     </span>
                   </div>
                   <div
-                    className={`rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl md:col-span-4 md:p-10 ${idx === 1 ? 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-white shadow-lg dark:border-indigo-900/30 dark:from-indigo-950/30 dark:to-slate-900' : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700'}`}
+                    className={`rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl md:col-span-4 md:p-10 ${idx === 2 ? 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-white shadow-lg dark:border-indigo-900/30 dark:from-indigo-950/30 dark:to-slate-900' : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700'}`}
                   >
                     <h3
-                      className={`mb-4 text-2xl font-bold ${idx === 1 ? 'text-indigo-900 dark:text-indigo-300' : 'text-slate-900 dark:text-white'}`}
+                      className={`mb-4 text-2xl font-bold ${idx === 2 ? 'text-indigo-900 dark:text-indigo-300' : 'text-slate-900 dark:text-white'}`}
                     >
-                      {item.title}
+                      {t(`timeline_${idx}_title`)}
                     </h3>
                     <p
-                      className={`text-base leading-relaxed font-light md:text-lg ${idx === 1 ? 'text-indigo-800/80 dark:text-indigo-200/80' : 'text-slate-600 dark:text-slate-400'}`}
+                      className={`text-base leading-relaxed font-light md:text-lg ${idx === 2 ? 'text-indigo-800/80 dark:text-indigo-200/80' : 'text-slate-600 dark:text-slate-400'}`}
                     >
-                      {item.desc}
+                      {t(`timeline_${idx}_desc`)}
                     </p>
                   </div>
                 </div>
@@ -236,25 +230,24 @@ export default function AboutContent() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              Manifesto & Nilai Inti
+              {t('values_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg font-light text-slate-600 dark:text-slate-300">
-              Prinsip yang memandu setiap baris kode yang kami tulis dan setiap keputusan bisnis
-              yang kami ambil.
+              {t('values_subtitle')}
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {values.map((val, idx) => {
+            {[1, 2, 3].map((idx) => {
               const icons = [Zap, ShieldCheck, Users];
-              const Icon = icons[idx] || Users;
+              const Icon = icons[idx - 1] || Users;
               return (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
+                  transition={{ delay: (idx - 1) * 0.1 }}
                   className="group relative rounded-3xl border border-slate-200 bg-white p-8 backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-slate-50 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
                 >
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-indigo-500/10"></div>
@@ -263,17 +256,15 @@ export default function AboutContent() {
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                      {val.title}
+                      {t(`value_${idx}_title`)}
                     </h3>
                     <p className="mb-6 leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      "
-                      {val.manifesto}
-                      "
+                      "{t(`value_${idx}_manifesto`)}"
                     </p>
                     <div className="border-t border-slate-200 pt-6 dark:border-white/10">
                       <p className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-500" />
-                        {val.proof}
+                        {t(`value_${idx}_proof`)}
                       </p>
                     </div>
                   </div>
@@ -289,10 +280,10 @@ export default function AboutContent() {
         <Container size="7xl">
           <div className="mb-16 text-center">
             <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              Meet The Team
+              {t('team_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg font-light text-slate-600 dark:text-slate-400">
-              Praktisi berpengalaman yang membangun BizOps dari nol.
+              {t('team_subtitle')}
             </p>
           </div>
 
@@ -320,9 +311,7 @@ export default function AboutContent() {
                         {member.role}
                       </p>
                       <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "
-                        {member.quote}
-                        "
+                        "{member.quote}"
                       </p>
                       <a
                         href={member.linkedin}
@@ -331,7 +320,7 @@ export default function AboutContent() {
                         className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors dark:text-slate-300"
                       >
                         <Linkedin className="h-4 w-4" />
-                        Connect
+                        {t('team_connect')}
                       </a>
                     </div>
                   </div>
@@ -364,9 +353,7 @@ export default function AboutContent() {
                         {member.role}
                       </p>
                       <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "
-                        {member.quote}
-                        "
+                        "{member.quote}"
                       </p>
                       <a
                         href={member.linkedin}
@@ -375,7 +362,7 @@ export default function AboutContent() {
                         className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors dark:text-slate-300"
                       >
                         <Linkedin className="h-4 w-4" />
-                        Connect
+                        {t('team_connect')}
                       </a>
                     </div>
                   </div>
@@ -402,14 +389,16 @@ export default function AboutContent() {
                 <div className="flex items-start gap-4">
                   <MapPin className="text-primary-600 dark:text-primary-400 mt-1 h-5 w-5 shrink-0" />
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Headquarters</h4>
+                    <h4 className="font-bold text-slate-900 dark:text-white">
+                      {t('entity_headquarters')}
+                    </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">{entity.hq}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Code className="text-primary-600 dark:text-primary-400 mt-1 h-5 w-5 shrink-0" />
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">R&D Center</h4>
+                    <h4 className="font-bold text-slate-900 dark:text-white">{t('entity_rnd')}</h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">{entity.rnd}</p>
                   </div>
                 </div>
@@ -418,14 +407,18 @@ export default function AboutContent() {
                 <div className="flex items-start gap-4">
                   <FileText className="text-primary-600 dark:text-primary-400 mt-1 h-5 w-5 shrink-0" />
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Legalitas</h4>
+                    <h4 className="font-bold text-slate-900 dark:text-white">
+                      {t('entity_legal')}
+                    </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">{entity.legal}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <ShieldCheck className="text-primary-600 dark:text-primary-400 mt-1 h-5 w-5 shrink-0" />
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Compliance</h4>
+                    <h4 className="font-bold text-slate-900 dark:text-white">
+                      {t('entity_compliance')}
+                    </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
                       {entity.compliance}
                     </p>
@@ -441,16 +434,13 @@ export default function AboutContent() {
       <Section className="bg-slate-100 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-sm dark:border-white/20 dark:bg-white/10 dark:text-blue-300">
-            <Sparkles className="h-3 w-3" />
-            {' '}
-            Join Us
+            <Sparkles className="h-3 w-3" /> {t('cta_badge')}
           </div>
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            Tertarik Bergabung?
+            {t('cta_title')}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-700 dark:text-slate-300">
-            Kami selalu mencari talenta terbaik untuk membangun masa depan enterprise software di
-            Indonesia.
+            {t('cta_subtitle')}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/careers">
@@ -458,9 +448,7 @@ export default function AboutContent() {
                 size="lg"
                 className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                Lihat Posisi Terbuka
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {t('cta_careers')} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/partners">
@@ -469,7 +457,7 @@ export default function AboutContent() {
                 variant="outline"
                 className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
               >
-                Jadi Partner
+                {t('cta_partners')}
               </Button>
             </Link>
           </div>

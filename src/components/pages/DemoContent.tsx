@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, CheckCircle, FileCheck, Lock, Shield, Video, Zap } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -13,6 +14,7 @@ import Stack from '@/components/ui/Stack';
 import { traceAction } from '@/libs/utils/telemetry';
 
 export function DemoContent() {
+  const t = useTranslations('Demo');
   const router = useRouter();
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -26,46 +28,46 @@ export function DemoContent() {
     const consent = formData.get('consent') as string;
 
     if (!fullName) {
-      newErrors.fullName = 'Nama lengkap wajib diisi.';
+      newErrors.fullName = t('error_name_required');
     } else if (fullName.length < 3) {
-      newErrors.fullName = 'Nama lengkap minimal 3 karakter.';
+      newErrors.fullName = t('error_name_min');
     } else if (fullName.length > 100) {
-      newErrors.fullName = 'Nama lengkap maksimal 100 karakter.';
+      newErrors.fullName = t('error_name_max');
     } else if (!/^[a-z\s.]+$/i.test(fullName)) {
-      newErrors.fullName = 'Nama hanya boleh berisi huruf dan spasi.';
+      newErrors.fullName = t('error_name_format');
     }
 
     const emailRegex = /^[\w.-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i;
     if (!email) {
-      newErrors.workEmail = 'Email bisnis wajib diisi.';
+      newErrors.workEmail = t('error_email_required');
     } else if (!emailRegex.test(email)) {
-      newErrors.workEmail = 'Format email tidak valid (contoh: nama@perusahaan.com).';
+      newErrors.workEmail = t('error_email_format');
     } else if (
-      email.includes('gmail.com')
-      || email.includes('yahoo.com')
-      || email.includes('hotmail.com')
+      email.includes('gmail.com') ||
+      email.includes('yahoo.com') ||
+      email.includes('hotmail.com')
     ) {
-      newErrors.workEmail = 'Gunakan email bisnis/perusahaan (bukan email pribadi).';
+      newErrors.workEmail = t('error_email_personal');
     }
 
     if (!company) {
-      newErrors.companyName = 'Nama perusahaan wajib diisi.';
+      newErrors.companyName = t('error_company_required');
     } else if (company.length < 3) {
-      newErrors.companyName = 'Nama perusahaan minimal 3 karakter.';
+      newErrors.companyName = t('error_company_min');
     } else if (company.length > 100) {
-      newErrors.companyName = 'Nama perusahaan maksimal 100 karakter.';
+      newErrors.companyName = t('error_company_max');
     }
 
     const phoneRegex = /^(\+62|62|0)\d{9,15}$/;
     const cleanPhone = whatsapp?.replace(/[\s-]/g, '');
     if (!whatsapp) {
-      newErrors.whatsapp = 'Nomor WhatsApp wajib diisi.';
+      newErrors.whatsapp = t('error_whatsapp_required');
     } else if (!phoneRegex.test(cleanPhone)) {
-      newErrors.whatsapp = 'Nomor WhatsApp tidak valid (contoh: 08123456789 atau +6281234567890).';
+      newErrors.whatsapp = t('error_whatsapp_format');
     }
 
     if (!consent) {
-      newErrors.consent = 'Anda harus menyetujui Kebijakan Privasi untuk melanjutkan.';
+      newErrors.consent = t('error_consent_required');
     }
 
     setErrors(newErrors);
@@ -93,7 +95,7 @@ export function DemoContent() {
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     await traceAction('business.lead.submit', async () => {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       window.open(whatsappUrl, '_blank');
       setFormState('success');
     });
@@ -116,14 +118,13 @@ export function DemoContent() {
           <CheckCircle className="h-10 w-10 text-emerald-500" aria-hidden="true" />
         </motion.div>
         <Typography variant="h2" as="h2" className="text-slate-900 dark:text-white">
-          Mengalihkan ke WhatsApp...
+          {t('success_title')}
         </Typography>
         <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-          Jika WhatsApp tidak terbuka otomatis, silakan klik tombol di bawah ini. Tim kami akan
-          segera merespons chat Anda.
+          {t('success_description')}
         </Typography>
         <Button size="md" variant="primary" onClick={() => router.push('/')}>
-          Kembali ke Beranda
+          {t('success_button')}
         </Button>
       </Stack>
     );
@@ -150,43 +151,38 @@ export function DemoContent() {
                   align="center"
                   className="bg-primary-100 dark:bg-primary-500/10 text-primary-700 dark:text-primary-400 mb-6 py-1 text-sm font-bold tracking-wider uppercase"
                 >
-                  <Video className="h-5 w-5" />
-                  {' '}
-                  Live Walkthrough
+                  <Video className="h-5 w-5" /> {t('badge_text')}
                 </Stack>
                 <Typography
                   variant="h1"
                   as="h1"
                   className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
                 >
-                  Lihat BizOps
-                  {' '}
-                  <br />
+                  {t('hero_title_part1')} <br />
                   <span className="bg-gradient-to-r from-cyan-500 to-cyan-600 bg-clip-text text-transparent dark:to-cyan-400">
-                    In Action.
+                    {t('hero_title_part2')}
                   </span>
                 </Typography>
                 <Typography variant="body" className="pb-6 text-slate-600 dark:text-slate-400">
-                  Ini bukan sekadar demo fitur. Diskusikan arsitektur sistem yang tepat untuk
-                  masalah operasional spesifik perusahaan Anda dengan Solution Architect kami.
+                  {t('hero_description')}
                 </Typography>
 
                 <Stack direction="vertical" gap={8} className="mb-12">
                   {[
                     {
                       icon: Calendar,
-                      title: 'Discovery Session (15m)',
-                      desc: 'Kami akan membedah \'bottle-neck\' operasional Anda saat ini.',
+                      title: t('step1_title'),
+                      desc: t('step1_description'),
                     },
                     {
                       icon: Video,
-                      title: 'Tailored Walkthrough (30m)',
-                      desc: 'Demo produk spesifik industri Anda. No generic features.',
+                      title: t('step2_title'),
+                      desc: t('step2_description'),
                     },
                     {
                       icon: FileCheck,
-                      title: 'Architecture & Quote',
-                      desc: 'Rekomendasi topologi infrastruktur & estimasi investasi.',
+                      title: t('step3_title'),
+                      desc: t('step3_description'),
                     },
                   ].map((item, idx) => (
                     <div key={idx} className="flex gap-5">
@@ -226,25 +222,19 @@ export function DemoContent() {
                   <Stack direction="vertical" gap={2}>
                     <Shield className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                     <span className="text-xs font-bold text-slate-600 uppercase dark:text-slate-400">
-                      ISO 27001
-                      <br />
-                      Ready
+                      {t('badge_iso')}
                     </span>
                   </Stack>
                   <Stack direction="vertical" gap={2}>
                     <Lock className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                     <span className="text-xs font-bold text-slate-600 uppercase dark:text-slate-400">
-                      TLS 1.3
-                      <br />
-                      Encrypted
+                      {t('badge_tls')}
                     </span>
                   </Stack>
                   <Stack direction="vertical" gap={2}>
                     <FileCheck className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                     <span className="text-xs font-bold text-slate-600 uppercase dark:text-slate-400">
-                      NDA
-                      <br />
-                      Available
+                      {t('badge_nda')}
                     </span>
                   </Stack>
                 </Grid>
@@ -261,10 +251,10 @@ export function DemoContent() {
               >
                 <div className="mb-8">
                   <Typography variant="h3" as="h3" className="text-slate-900 dark:text-white">
-                    Jadwalkan Sesi
+                    {t('form_title')}
                   </Typography>
                   <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                    Isi detail di bawah untuk terhubung langsung dengan expert kami.
+                    {t('form_subtitle')}
                   </Typography>
                 </div>
 
@@ -274,8 +264,8 @@ export function DemoContent() {
                       id="fullName"
                       name="fullName"
                       required
-                      label="Nama Lengkap"
-                      placeholder="John Doe"
+                      label={t('label_fullname')}
+                      placeholder={t('placeholder_fullname')}
                       error={errors.fullName}
                       className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
@@ -285,9 +275,9 @@ export function DemoContent() {
                       name="workEmail"
                       required
                       type="email"
-                      label="Email Kantor"
-                      placeholder="john@company.com"
-                      helperText="Gunakan email korporat untuk prioritas."
+                      label={t('label_work_email')}
+                      placeholder={t('placeholder_work_email')}
+                      helperText={t('helper_work_email')}
                       error={errors.workEmail}
                       className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
@@ -298,7 +288,7 @@ export function DemoContent() {
                     id="companyName"
                     name="companyName"
                     required
-                    label="Nama Perusahaan"
+                    label={t('label_company')}
                     error={errors.companyName}
                     className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
@@ -310,9 +300,9 @@ export function DemoContent() {
                       name="whatsapp"
                       required
                       type="tel"
-                      label="WhatsApp"
-                      placeholder="+62..."
-                      helperText="Kami akan mengirimkan konfirmasi jadwal via WA."
+                      label={t('label_whatsapp')}
+                      placeholder={t('placeholder_whatsapp')}
+                      helperText={t('helper_whatsapp')}
                       error={errors.whatsapp}
                       className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white dark:placeholder:!text-slate-500"
                       labelClassName="text-slate-700 dark:text-slate-300"
@@ -320,14 +310,14 @@ export function DemoContent() {
                     <Select
                       id="employeeCount"
                       name="employeeCount"
-                      label="Jumlah Karyawan"
+                      label={t('label_employee_count')}
                       className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                       labelClassName="text-slate-700 dark:text-slate-300"
                       options={[
-                        { value: '<50', label: '< 50 Karyawan' },
-                        { value: '50-200', label: '50 - 200 Karyawan' },
-                        { value: '200-1000', label: '200 - 1000 Karyawan' },
-                        { value: '>1000', label: '> 1000 Karyawan' },
+                        { value: '<50', label: t('employee_lt50') },
+                        { value: '50-200', label: t('employee_50_200') },
+                        { value: '200-1000', label: t('employee_200_1000') },
+                        { value: '>1000', label: t('employee_gt1000') },
                       ]}
                     />
                   </Grid>
@@ -335,55 +325,54 @@ export function DemoContent() {
                   <Select
                     id="industry"
                     name="industry"
-                    label="Industri Utama"
-                    helperText="Membantu kami menyiapkan demo case study yang relevan."
+                    label={t('label_industry')}
+                    helperText={t('helper_industry')}
                     className="focus:!border-primary-500 !border-slate-200 !bg-white !text-slate-900 dark:!border-slate-700 dark:!bg-slate-800 dark:!text-white"
                     labelClassName="text-slate-700 dark:text-slate-300"
                     options={[
-                      { value: 'Construction', label: 'Konstruksi / Kontraktor' },
-                      { value: 'Professional Services', label: 'Jasa Profesional / Outsourcing' },
-                      { value: 'Retail', label: 'Retail / Distribusi' },
-                      { value: 'Manufacturing', label: 'Manufaktur' },
-                      { value: 'Healthcare', label: 'Healthcare / Rumah Sakit' },
-                      { value: 'Education', label: 'Education / Sekolah' },
-                      { value: 'Others', label: 'Lainnya' },
+                      { value: 'Construction', label: t('industry_construction') },
+                      { value: 'Professional Services', label: t('industry_services') },
+                      { value: 'Retail', label: t('industry_retail') },
+                      { value: 'Manufacturing', label: t('industry_manufacturing') },
+                      { value: 'Healthcare', label: t('industry_healthcare') },
+                      { value: 'Education', label: t('industry_education') },
+                      { value: 'Others', label: t('industry_others') },
                     ]}
                   />
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
                     <span className="mb-4 block flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />
-                      {' '}
-                      Kebutuhan Utama
+                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />{' '}
+                      {t('needs_title')}
                     </span>
                     <Grid cols={1} gap={4}>
                       <Checkbox
-                        label="Integrasi HR & Payroll"
+                        label={t('feature_hr')}
                         name="feature_hr"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
                       <Checkbox
-                        label="Kontrol Proyek & Biaya"
+                        label={t('feature_project')}
                         name="feature_project"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
                       <Checkbox
-                        label="Manajemen Inventori"
+                        label={t('feature_inv')}
                         name="feature_inv"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
                       <Checkbox
-                        label="Sales & CRM"
+                        label={t('feature_crm')}
                         name="feature_crm"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
                       <Checkbox
-                        label="Finance & Accounting"
+                        label={t('feature_finance')}
                         name="feature_finance"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
                       <Checkbox
-                        label="Minat Partner / OEM"
+                        label={t('feature_partner')}
                         name="feature_partner"
                         labelClassName="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
                       />
@@ -393,28 +382,24 @@ export function DemoContent() {
                   <div className="pt-2">
                     <Checkbox
                       name="consent"
-                      label={(
+                      label={
                         <span className="text-sm text-slate-600 dark:text-slate-400">
-                          Saya menyetujui
-                          {' '}
+                          {t('consent_text')}{' '}
                           <Link
                             href="/legal/privacy"
                             className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
                             target="_blank"
                           >
-                            Kebijakan Privasi
-                          </Link>
-                          {' '}
-                          dan mengizinkan BizOps menghubungi saya.
+                            {t('consent_link')}
+                          </Link>{' '}
+                          {t('consent_text_end')}
                         </span>
-                      )}
+                      }
                       required
                     />
                     {errors.consent && (
                       <Typography variant="body">
-                        <Shield className="h-3 w-3" />
-                        {' '}
-                        {errors.consent}
+                        <Shield className="h-3 w-3" /> {errors.consent}
                       </Typography>
                     )}
                   </div>
@@ -428,7 +413,7 @@ export function DemoContent() {
                     isLoading={formState === 'submitting'}
                   >
                     <span className="text-slate-600 dark:text-white">
-                      {formState === 'submitting' ? 'Memproses...' : 'Reservasi Sesi via WhatsApp'}
+                      {formState === 'submitting' ? t('submit_loading') : t('submit_button')}
                     </span>
                   </Button>
                 </form>

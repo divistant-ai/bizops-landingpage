@@ -14,6 +14,7 @@ import {
   Type,
   X,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
@@ -21,14 +22,8 @@ import { CardSlider, Grid, Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
 import Stack from '@/components/ui/Stack';
 
-const boilerplate = {
-  short:
-    'BizOps adalah Business Operating System end-to-end yang membantu perusahaan Indonesia mendigitalisasi operasional dari hulu ke hilir. Menggabungkan kekuatan teknologi Enterprise berbasis Open Source dengan kepatuhan regulasi lokal, BizOps menawarkan solusi yang fleksibel, aman, dan berdaulat data di bawah naungan PT Divistant Teknologi Indonesia.',
-  standard:
-    'BizOps, dikembangkan oleh PT Divistant Teknologi Indonesia, adalah platform \'Business Operating System\' yang dirancang untuk menjembatani kesenjangan antara software akuntansi lokal yang sederhana dan ERP global yang kompleks. Dengan filosofi \'Mobile-First\' dan \'Data Sovereignty\', BizOps menyediakan solusi terintegrasi untuk HR, Keuangan, Operasional Proyek, dan Rantai Pasok dalam satu ekosistem. BizOps memberdayakan perusahaan Indonesia untuk memiliki kendali penuh atas data mereka melalui opsi Self-Hosted, sambil tetap menikmati kemudahan penggunaan aplikasi mobile modern.',
-};
-
 export default function MediaKitContent() {
+  const t = useTranslations('MediaKit');
   const [copied, setCopied] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
@@ -42,7 +37,7 @@ export default function MediaKitContent() {
   return (
     <div className="bg-slate-50 font-sans transition-colors duration-300 dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-[#0B1120] dark:text-white">
+      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pb-32 dark:bg-[#0B1120] dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-indigo-600/20 blur-[120px]"></div>
 
@@ -53,9 +48,7 @@ export default function MediaKitContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase backdrop-blur-md dark:bg-slate-800/50 dark:text-indigo-300"
           >
-            <Download className="h-3 w-3" />
-            {' '}
-            Official Press Resources
+            <Download className="h-3 w-3" /> {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -64,11 +57,9 @@ export default function MediaKitContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
           >
-            Ceritakan Kisah Kami
-            {' '}
-            <br />
+            {t('hero_title_1')} <br />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-300">
-              Dengan Benar.
+              {t('hero_title_2')}
             </span>
           </motion.h1>
 
@@ -78,8 +69,7 @@ export default function MediaKitContent() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 dark:text-slate-300"
           >
-            Aset resmi, panduan merek, dan informasi perusahaan yang terkurasi untuk memudahkan
-            rekan media, partner strategis, dan event organizer.
+            {t('hero_subtitle')}
           </motion.p>
 
           <motion.div
@@ -92,18 +82,14 @@ export default function MediaKitContent() {
               size="lg"
               className="border-none bg-slate-900 font-bold text-white shadow-xl hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
             >
-              Download All Assets (ZIP)
-              {' '}
-              <Download className="ml-2 h-4 w-4" />
+              {t('hero_download_all')} <Download className="ml-2 h-4 w-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-slate-300 text-slate-900 hover:bg-slate-200 dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
             >
-              Lihat Brand Guidelines
-              {' '}
-              <ExternalLink className="ml-2 h-4 w-4" />
+              {t('hero_brand_guidelines')} <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         </Container>
@@ -118,10 +104,10 @@ export default function MediaKitContent() {
             </div>
             <div>
               <Typography variant="h2" as="h2">
-                Brand Assets (Logo)
+                {t('logo_title')}
               </Typography>
               <Typography variant="body" className="text-slate-500 dark:text-slate-400">
-                Gunakan logo sesuai konteks background.
+                {t('logo_subtitle')}
               </Typography>
             </div>
           </div>
@@ -145,10 +131,10 @@ export default function MediaKitContent() {
                 <div className="mb-4 flex items-end justify-between">
                   <div>
                     <Typography variant="h3" as="h3" className="text-slate-900 dark:text-white">
-                      Primary Logo (Dark)
+                      {t('logo_primary_dark')}
                     </Typography>
                     <Typography variant="small" className="text-slate-500 dark:text-slate-400">
-                      Gunakan pada background terang/putih.
+                      {t('logo_primary_dark_desc')}
                     </Typography>
                   </div>
                   <div className="flex gap-2">
@@ -182,10 +168,10 @@ export default function MediaKitContent() {
                 <div className="mb-4 flex items-end justify-between">
                   <div>
                     <Typography variant="h3" as="h3" className="text-white">
-                      Primary Logo (White)
+                      {t('logo_primary_white')}
                     </Typography>
                     <Typography variant="small" className="text-slate-400">
-                      Gunakan pada background gelap/foto.
+                      {t('logo_primary_white_desc')}
                     </Typography>
                   </div>
                   <div className="flex gap-2">
@@ -216,7 +202,7 @@ export default function MediaKitContent() {
                 <Check className="h-4 w-4" />
               </div>
               <Typography variant="body" className="dark:text-green-400">
-                Gunakan Space yang Cukup
+                {t('dos_donts_1')}
               </Typography>
             </div>
             <div className="flex flex-col items-center rounded-2xl border border-red-100 bg-red-50 p-6 text-center dark:border-red-900/30 dark:bg-red-900/10">
@@ -224,7 +210,7 @@ export default function MediaKitContent() {
                 <X className="h-4 w-4" />
               </div>
               <Typography variant="body" className="dark:text-red-400">
-                Jangan Mengubah Proporsi
+                {t('dos_donts_2')}
               </Typography>
             </div>
             <div className="flex flex-col items-center rounded-2xl border border-red-100 bg-red-50 p-6 text-center dark:border-red-900/30 dark:bg-red-900/10">
@@ -232,7 +218,7 @@ export default function MediaKitContent() {
                 <X className="h-4 w-4" />
               </div>
               <Typography variant="body" className="dark:text-red-400">
-                Jangan Mengganti Warna
+                {t('dos_donts_3')}
               </Typography>
             </div>
             <div className="flex flex-col items-center rounded-2xl border border-red-100 bg-red-50 p-6 text-center dark:border-red-900/30 dark:bg-red-900/10">
@@ -240,7 +226,7 @@ export default function MediaKitContent() {
                 <X className="h-4 w-4" />
               </div>
               <Typography variant="body" className="dark:text-red-400">
-                Jangan Menambah Efek
+                {t('dos_donts_4')}
               </Typography>
             </div>
           </Grid>
@@ -254,10 +240,10 @@ export default function MediaKitContent() {
             </div>
             <div>
               <Typography variant="h2" as="h2">
-                Color System
+                {t('colors_title')}
               </Typography>
               <Typography variant="body" className="text-slate-500 dark:text-slate-400">
-                Klik HEX code untuk menyalin.
+                {t('colors_subtitle')}
               </Typography>
             </div>
           </div>
@@ -279,13 +265,11 @@ export default function MediaKitContent() {
                     onClick={() => copyToClipboard('#2563EB', 'c1')}
                     className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
-                    {copied === 'c1'
-                      ? (
-                          <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                        )
-                      : (
-                          <Copy className="h-3 w-3" />
-                        )}
+                    {copied === 'c1' ? (
+                      <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                    ) : (
+                      <Copy className="h-3 w-3" />
+                    )}
                     {copied !== 'c1' && '#2563EB'}
                   </button>
                 </div>
@@ -302,20 +286,22 @@ export default function MediaKitContent() {
               </div>
               <div className="flex items-center justify-between px-2">
                 <div>
-                  <div className="font-bold text-slate-900 dark:text-white">Electric Blue</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Brand Primary</div>
+                  <div className="font-bold text-slate-900 dark:text-white">
+                    {t('color_primary')}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                    {t('color_primary_desc')}
+                  </div>
                 </div>
                 <button
                   onClick={() => copyToClipboard('#2563EB', 'c1')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c1'
-                    ? (
-                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                      )
-                    : (
-                        <Copy className="h-3 w-3" />
-                      )}
+                  {copied === 'c1' ? (
+                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
                   {copied !== 'c1' && '#2563EB'}
                 </button>
               </div>
@@ -329,22 +315,22 @@ export default function MediaKitContent() {
               </div>
               <div className="flex items-center justify-between px-2">
                 <div>
-                  <div className="font-bold text-slate-900 dark:text-white">Deep Space</div>
+                  <div className="font-bold text-slate-900 dark:text-white">
+                    {t('color_neutral')}
+                  </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400">
-                    Backgrounds / Text
+                    {t('color_neutral_desc')}
                   </div>
                 </div>
                 <button
                   onClick={() => copyToClipboard('#0F172A', 'c2')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c2'
-                    ? (
-                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                      )
-                    : (
-                        <Copy className="h-3 w-3" />
-                      )}
+                  {copied === 'c2' ? (
+                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
                   {copied !== 'c2' && '#0F172A'}
                 </button>
               </div>
@@ -358,20 +344,22 @@ export default function MediaKitContent() {
               </div>
               <div className="flex items-center justify-between px-2">
                 <div>
-                  <div className="font-bold text-slate-900 dark:text-white">Signal Green</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Positive Actions</div>
+                  <div className="font-bold text-slate-900 dark:text-white">
+                    {t('color_success')}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                    {t('color_success_desc')}
+                  </div>
                 </div>
                 <button
                   onClick={() => copyToClipboard('#10B981', 'c3')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c3'
-                    ? (
-                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                      )
-                    : (
-                        <Copy className="h-3 w-3" />
-                      )}
+                  {copied === 'c3' ? (
+                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
                   {copied !== 'c3' && '#10B981'}
                 </button>
               </div>
@@ -385,22 +373,22 @@ export default function MediaKitContent() {
               </div>
               <div className="flex items-center justify-between px-2">
                 <div>
-                  <div className="font-bold text-slate-900 dark:text-white">Safety Orange</div>
+                  <div className="font-bold text-slate-900 dark:text-white">
+                    {t('color_warning')}
+                  </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400">
-                    Alerts / Attention
+                    {t('color_warning_desc')}
                   </div>
                 </div>
                 <button
                   onClick={() => copyToClipboard('#F59E0B', 'c4')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c4'
-                    ? (
-                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                      )
-                    : (
-                        <Copy className="h-3 w-3" />
-                      )}
+                  {copied === 'c4' ? (
+                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
                   {copied !== 'c4' && '#F59E0B'}
                 </button>
               </div>
@@ -417,24 +405,18 @@ export default function MediaKitContent() {
               </div>
               <div>
                 <Typography variant="h2" as="h2">
-                  Typography
+                  {t('typography_title')}
                 </Typography>
                 <Typography variant="body" className="text-slate-500 dark:text-slate-400">
-                  Plus Jakarta Sans (Google Fonts) untuk keterbacaan UI.
+                  {t('typography_subtitle')}
                 </Typography>
               </div>
             </div>
             <Typography
               variant="body"
               className="leading-relaxed text-slate-600 dark:text-slate-400"
-            >
-              BizOps menggunakan typeface
-              <strong>Plus Jakarta Sans</strong>
-              {' '}
-              untuk seluruh materi komunikasi digital. Font ini
-              dipilih karena karakteristiknya yang modern, netral, dan memiliki keterbacaan tinggi
-              pada layar mobile maupun desktop.
-            </Typography>
+              dangerouslySetInnerHTML={{ __html: t('typography_desc') }}
+            />
           </div>
 
           <div>
@@ -449,20 +431,28 @@ export default function MediaKitContent() {
               </div>
               <Grid cols={3} gap={4}>
                 <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-800">
-                  <div className="mb-1 text-2xl font-bold text-slate-900 dark:text-white">Bold</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Headings</div>
+                  <div className="mb-1 text-2xl font-bold text-slate-900 dark:text-white">
+                    {t('font_bold')}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                    {t('font_bold_use')}
+                  </div>
                 </div>
                 <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-800">
                   <div className="mb-1 text-2xl font-medium text-slate-900 dark:text-white">
-                    Medium
+                    {t('font_medium')}
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Buttons / UI</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                    {t('font_medium_use')}
+                  </div>
                 </div>
                 <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-800">
                   <div className="mb-1 text-2xl font-normal text-slate-900 dark:text-white">
-                    Regular
+                    {t('font_regular')}
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Body Text</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                    {t('font_regular_use')}
+                  </div>
                 </div>
               </Grid>
             </Stack>
@@ -502,10 +492,10 @@ export default function MediaKitContent() {
             </div>
             <div>
               <Typography variant="h2" as="h2">
-                Company Boilerplate
+                {t('boilerplate_title')}
               </Typography>
               <Typography variant="body" className="text-slate-500 dark:text-slate-400">
-                Deskripsi perusahaan standar untuk press release.
+                {t('boilerplate_subtitle')}
               </Typography>
             </div>
           </div>
@@ -518,36 +508,28 @@ export default function MediaKitContent() {
                   as="h3"
                   className="font-bold text-slate-900 dark:text-white"
                 >
-                  Short Bio
+                  {t('boilerplate_short_title')}
                   <Typography variant="small" className="text-slate-500 dark:text-slate-400">
-                    ~50 Words
+                    {t('boilerplate_short_words')}
                   </Typography>
                 </Typography>
                 <button
-                  onClick={() => copyToClipboard(boilerplate.short, 'short')}
+                  onClick={() => copyToClipboard(t('boilerplate_short_text'), 'short')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'short'
-                    ? (
-                        <>
-                          <Check className="h-4 w-4" />
-                          {' '}
-                          Copied
-                        </>
-                      )
-                    : (
-                        <>
-                          <Copy className="h-4 w-4" />
-                          {' '}
-                          Copy Text
-                        </>
-                      )}
+                  {copied === 'short' ? (
+                    <>
+                      <Check className="h-4 w-4" /> {t('copied')}
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4" /> {t('copy_text')}
+                    </>
+                  )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "
-                {boilerplate.short}
-                "
+                "{t('boilerplate_short_text')}"
               </div>
             </div>
 
@@ -558,36 +540,28 @@ export default function MediaKitContent() {
                   as="h3"
                   className="font-bold text-slate-900 dark:text-white"
                 >
-                  Standard Bio
+                  {t('boilerplate_standard_title')}
                   <Typography variant="small" className="text-slate-500 dark:text-slate-400">
-                    ~100 Words
+                    {t('boilerplate_standard_words')}
                   </Typography>
                 </Typography>
                 <button
-                  onClick={() => copyToClipboard(boilerplate.standard, 'standard')}
+                  onClick={() => copyToClipboard(t('boilerplate_standard_text'), 'standard')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'standard'
-                    ? (
-                        <>
-                          <Check className="h-4 w-4" />
-                          {' '}
-                          Copied
-                        </>
-                      )
-                    : (
-                        <>
-                          <Copy className="h-4 w-4" />
-                          {' '}
-                          Copy Text
-                        </>
-                      )}
+                  {copied === 'standard' ? (
+                    <>
+                      <Check className="h-4 w-4" /> {t('copied')}
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4" /> {t('copy_text')}
+                    </>
+                  )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "
-                {boilerplate.standard}
-                "
+                "{t('boilerplate_standard_text')}"
               </div>
             </div>
           </Grid>
@@ -605,23 +579,20 @@ export default function MediaKitContent() {
           >
             <div className="max-w-xl">
               <Typography variant="h2" as="h2" className="text-slate-900 dark:text-white">
-                Media Inquiries
+                {t('press_title')}
               </Typography>
               <Typography
                 variant="body"
                 className="leading-relaxed text-slate-600 dark:text-slate-300"
               >
-                Untuk permintaan wawancara, kutipan ahli, atau undangan sebagai pembicara, silakan
-                hubungi tim komunikasi kami. Kami merespon dalam waktu 24 jam kerja.
+                {t('press_subtitle')}
               </Typography>
               <Stack direction="vertical" gap={4} className="mt-6">
                 <a
                   href="mailto:pr@divistant.com"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-bold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                 >
-                  <Mail className="h-4 w-4" />
-                  {' '}
-                  Hubungi PR Team
+                  <Mail className="h-4 w-4" /> {t('press_contact_button')}
                 </a>
                 <a
                   href="https://wa.me/6281234567890"
@@ -629,7 +600,7 @@ export default function MediaKitContent() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-transparent px-6 py-3 font-bold text-slate-900 transition-colors hover:bg-slate-200 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
                 >
-                  WhatsApp
+                  {t('press_whatsapp')}
                 </a>
               </Stack>
             </div>
@@ -641,10 +612,10 @@ export default function MediaKitContent() {
                 </div>
                 <div>
                   <div className="text-lg font-bold text-slate-900 dark:text-white">
-                    Sarah Jenkins
+                    {t('press_contact_name')}
                   </div>
                   <div className="text-sm text-indigo-600 dark:text-indigo-300">
-                    Head of Communications
+                    {t('press_contact_role')}
                   </div>
                 </div>
               </div>
@@ -654,15 +625,11 @@ export default function MediaKitContent() {
                 className="text-sm text-slate-600 dark:text-slate-300"
               >
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" />
-                  {' '}
-                  pr@divistant.com
+                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" /> pr@divistant.com
                 </div>
                 <div className="flex items-center gap-3">
-                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />
-                  {' '}
-                  Jakarta,
-                  Indonesia
+                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />{' '}
+                  {t('press_contact_location')}
                 </div>
               </Stack>
             </div>

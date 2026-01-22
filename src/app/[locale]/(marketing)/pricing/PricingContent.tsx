@@ -13,6 +13,7 @@ import {
   Shield,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -21,7 +22,6 @@ import PricingFeatureTable from '@/components/PricingFeatureTable';
 import { Button, CardSlider } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { StaggeredText } from '@/components/ui/motion-text';
-import { faqs as pricingFaqs } from '@/data/pricingData';
 
 const FADE_UP_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
@@ -29,7 +29,17 @@ const FADE_UP_VARIANTS = {
 };
 
 const PricingContent = () => {
+  const t = useTranslations('Pricing');
   const [annual, setAnnual] = useState(true);
+
+  // Translated FAQ data
+  const translatedFaqs = [
+    { q: t('faq_1_q'), a: t('faq_1_a') },
+    { q: t('faq_2_q'), a: t('faq_2_a') },
+    { q: t('faq_3_q'), a: t('faq_3_a') },
+    { q: t('faq_4_q'), a: t('faq_4_a') },
+    { q: t('faq_5_q'), a: t('faq_5_a') },
+  ];
 
   return (
     <div className="bg-white transition-colors duration-500 dark:bg-slate-950">
@@ -52,14 +62,14 @@ const PricingContent = () => {
                 <span className="relative inline-flex h-2 w-2 gap-4 rounded-full bg-green-500"></span>
               </span>
               <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                Special Offer: Save 20% on Annual Plans
+                {t('hero_badge')}
               </span>
             </div>
           </FadeIn>
 
           <h1 className="mb-6 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white">
             <StaggeredText
-              text="Investasi Cerdas untuk"
+              text={t('hero_title_1')}
               className="mb-2 flex w-full justify-center"
               delay={0.2}
             />
@@ -70,14 +80,13 @@ const PricingContent = () => {
               transition={{ delay: 0.3 }}
               className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
             >
-              Pertumbuhan Bisnis.
+              {t('hero_title_2')}
             </motion.span>
           </h1>
 
           <FadeIn delay={0.3}>
             <p className="mx-auto mb-12 max-w-3xl text-xl text-slate-600 dark:text-slate-400">
-              Transparansi penuh. Tanpa biaya tersembunyi. Pilih paket yang sesuai dengan
-              fase bisnis Anda hari ini.
+              {t('hero_description')}
             </p>
           </FadeIn>
 
@@ -86,21 +95,21 @@ const PricingContent = () => {
             <div className="mb-12 flex justify-center">
               <div className="relative inline-flex rounded-full border border-slate-200 bg-slate-100 p-1.5 dark:border-slate-700 dark:bg-slate-800">
                 <div
-                  className={`absolute top-1.5 bottom-1.5 rounded-full border border-slate-200 bg-white shadow-sm transition-all duration-300 ease-out dark:border-slate-600 dark:bg-slate-700 ${annual ? 'left-[40%] w-[calc(60%-6px)]' : 'left-50% w-[calc(50%-50px)]'}`}
+                  className={`absolute top-1.5 bottom-1.5 left-[14px] rounded-full border border-slate-200 bg-white shadow-sm transition-all duration-300 ease-out dark:border-slate-600 dark:bg-slate-700 ${annual ? 'left-[40%] w-[calc(60%-6px)]' : 'left-50% w-[calc(50%-50px)]'}`}
                 />
                 <button
                   onClick={() => setAnnual(false)}
                   className={`relative z-10 rounded-full px-8 py-2.5 text-sm font-bold transition-colors duration-300 ${!annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
                 >
-                  Bulanan
+                  {t('toggle_monthly')}
                 </button>
                 <button
                   onClick={() => setAnnual(true)}
                   className={`relative z-10 flex items-center gap-2 rounded-full py-2.5 pr-3 pl-6 text-sm font-bold transition-colors duration-300 ${annual ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'}`}
                 >
-                  Tahunan
+                  {t('toggle_yearly')}
                   <span className="rounded-full border border-green-200 bg-green-100 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-green-700 uppercase dark:border-green-800 dark:bg-green-950 dark:text-green-400">
-                    SAVE 20%
+                    {t('toggle_save')}
                   </span>
                 </button>
               </div>
@@ -122,37 +131,39 @@ const PricingContent = () => {
               <div className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900 dark:hover:border-slate-600">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    Business
+                    {t('plan_business_name')}
                   </h3>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                    Pondasi digital yang kuat untuk startup & bisnis berkembang.
+                    {t('plan_business_desc')}
                   </p>
                 </div>
 
                 <div className="mb-8">
                   <div className="flex items-baseline gap-1">
                     <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                      IDR
+                      {t('price_idr')}
                     </span>
                     <span className="text-5xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white">
                       {annual ? '2.5' : '3'}
                     </span>
                     <span className="text-xl font-bold text-slate-900 dark:text-white">
-                      Jt
+                      {t('price_million')}
                     </span>
                   </div>
                   <div className="mt-3 flex items-center justify-between text-sm">
-                    <span className="text-slate-500 dark:text-slate-400">/ bulan</span>
+                    <span className="text-slate-500 dark:text-slate-400">
+                      {t('price_per_month')}
+                    </span>
                     {annual && (
                       <span className="rounded bg-green-50 px-2 py-0.5 font-medium text-green-600 dark:bg-green-950 dark:text-green-400">
-                        Hemat 6 Jt/thn
+                        {t('price_save_yearly', { amount: '6 Jt' })}
                       </span>
                     )}
                   </div>
                   <p className="mt-2 text-sm text-slate-400 dark:text-slate-500">
                     {annual
-                      ? 'Ditagih Rp 30 Jt per tahun'
-                      : 'Ditagih bulanan, bisa cancel kapan saja'}
+                      ? t('price_billed_yearly', { amount: '30 Jt' })
+                      : t('price_billed_monthly')}
                   </p>
                 </div>
 
@@ -164,26 +175,23 @@ const PricingContent = () => {
                       variant="outline"
                       className="h-12 w-full border-slate-300 font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
                     >
-                      Mulai Trial Gratis
+                      {t('plan_business_cta')}
                     </Button>
                   </Link>
                 </div>
 
                 <div className="flex-grow space-y-4 border-t border-slate-100 pt-8 dark:border-slate-800">
                   <p className="text-sm font-medium tracking-wider text-slate-400 dark:text-slate-500">
-                    Fitur Utama:
+                    {t('features_heading')}
                   </p>
                   {[
-                    '50 Recommended Users',
-                    'Core ERP (HR, Finance, Sales)',
-                    'Mobile App (Basic)',
-                    'Shared Cloud Hosting',
-                    'Email Support (48h SLA)',
+                    t('plan_business_feature_1'),
+                    t('plan_business_feature_2'),
+                    t('plan_business_feature_3'),
+                    t('plan_business_feature_4'),
+                    t('plan_business_feature_5'),
                   ].map((f, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-3 text-sm text-slate-700 dark:text-slate-300"
-                    >
+                    <div key={i} className="flex gap-3 text-sm text-slate-700 dark:text-slate-300">
                       <div className="mt-0.5 min-w-[18px]">
                         <Check className="h-4.5 w-4.5 text-slate-400 transition-colors group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400" />
                       </div>
@@ -198,36 +206,38 @@ const PricingContent = () => {
                 <div className="absolute -top-5 right-0 left-0 flex justify-center">
                   <div className="flex items-center gap-1 rounded-full bg-blue-600 px-4 py-1.5 text-xs font-bold tracking-wide text-white uppercase shadow-lg dark:bg-blue-500">
                     <Zap className="h-3.5 w-3.5 fill-current" />
-                    Most Popular
+                    {t('plan_growth_badge')}
                   </div>
                 </div>
 
                 <div className="mt-2 mb-6">
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    Growth
+                    {t('plan_growth_name')}
                   </h3>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                    Solusi All-in-One untuk scaling tanpa batasan fitur.
+                    {t('plan_growth_desc')}
                   </p>
                 </div>
 
                 <div className="mb-8 rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-800">
                   <div className="flex items-baseline gap-1">
                     <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                      IDR
+                      {t('price_idr')}
                     </span>
                     <span className="text-5xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white">
                       {annual ? '7.5' : '9'}
                     </span>
                     <span className="text-xl font-bold text-slate-900 dark:text-white">
-                      Jt
+                      {t('price_million')}
                     </span>
                   </div>
                   <div className="mt-3 flex items-center justify-between text-sm">
-                    <span className="text-slate-500 dark:text-slate-400">/ bulan</span>
+                    <span className="text-slate-500 dark:text-slate-400">
+                      {t('price_per_month')}
+                    </span>
                     {annual && (
                       <span className="rounded border border-blue-200 bg-blue-100 px-2 py-0.5 font-medium text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-400">
-                        Hemat 18 Jt/thn
+                        {t('price_save_yearly', { amount: '18 Jt' })}
                       </span>
                     )}
                   </div>
@@ -241,22 +251,22 @@ const PricingContent = () => {
                       size="lg"
                       className="w-full bg-blue-600 text-lg text-white shadow-lg shadow-blue-500/25 hover:bg-blue-700 hover:shadow-blue-500/40 dark:bg-blue-500 dark:hover:bg-blue-600"
                     >
-                      Pilih Paket Growth
+                      {t('plan_growth_cta')}
                     </Button>
                   </Link>
                 </div>
 
                 <div className="flex-grow space-y-4 border-t border-slate-100 pt-8 dark:border-slate-800">
                   <p className="text-sm font-medium tracking-wider text-blue-600 dark:text-blue-400">
-                    Semua di Business, plus:
+                    {t('plan_growth_prefix')}
                   </p>
                   {[
-                    '200 Recommended Users',
-                    'Manufacturing, Asset & Project',
-                    'Advanced Mobile App (GPS)',
-                    'Dedicated VPS Performance',
-                    'Priority Chat Support (12h SLA)',
-                    'Assisted Implementation',
+                    t('plan_growth_feature_1'),
+                    t('plan_growth_feature_2'),
+                    t('plan_growth_feature_3'),
+                    t('plan_growth_feature_4'),
+                    t('plan_growth_feature_5'),
+                    t('plan_growth_feature_6'),
                   ].map((f, i) => (
                     <div
                       key={i}
@@ -280,27 +290,27 @@ const PricingContent = () => {
 
                 <div className="relative z-10 mb-6">
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    Enterprise
+                    {t('plan_enterprise_name')}
                     <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 align-middle text-[10px] font-bold tracking-wider text-amber-700 uppercase dark:bg-amber-950 dark:text-amber-400">
-                      Custom
+                      {t('plan_enterprise_badge')}
                     </span>
                   </h3>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                    Infrastruktur dedicated & kontrol penuh untuk korporasi.
+                    {t('plan_enterprise_desc')}
                   </p>
                 </div>
 
                 <div className="relative z-10 mb-8">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white">
-                      Custom
+                      {t('plan_enterprise_price')}
                     </span>
                   </div>
                   <div className="mt-3 text-sm text-slate-500 dark:text-slate-400">
-                    Sesuai Kebutuhan
+                    {t('plan_enterprise_price_desc')}
                   </div>
                   <p className="mt-2 text-sm text-slate-400 dark:text-slate-500">
-                    Negosiasi kontrak tahunan & SLA
+                    {t('plan_enterprise_price_note')}
                   </p>
                 </div>
 
@@ -312,27 +322,24 @@ const PricingContent = () => {
                       variant="outline"
                       className="h-12 w-full border-slate-300 font-bold text-slate-700 transition-all hover:border-amber-500 hover:bg-amber-50 hover:text-amber-700 dark:border-slate-600 dark:text-slate-200 dark:hover:border-amber-600 dark:hover:bg-amber-950 dark:hover:text-amber-400"
                     >
-                      Hubungi Sales Team
+                      {t('plan_enterprise_cta')}
                     </Button>
                   </Link>
                 </div>
 
                 <div className="relative z-10 flex-grow space-y-4 border-t border-slate-100 pt-8 dark:border-slate-800">
                   <p className="text-sm font-medium tracking-wider text-slate-500 dark:text-slate-400">
-                    Enterprise Exclusive:
+                    {t('plan_enterprise_prefix')}
                   </p>
                   {[
-                    'Unlimited Users Capacity',
-                    'Private / On-Premise Server',
-                    'Custom Module Development',
-                    'Full Database Access',
-                    'Whitelabel Mobile App',
-                    'Dedicated Account Manager',
+                    t('plan_enterprise_feature_1'),
+                    t('plan_enterprise_feature_2'),
+                    t('plan_enterprise_feature_3'),
+                    t('plan_enterprise_feature_4'),
+                    t('plan_enterprise_feature_5'),
+                    t('plan_enterprise_feature_6'),
                   ].map((f, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-3 text-sm text-slate-700 dark:text-slate-300"
-                    >
+                    <div key={i} className="flex gap-3 text-sm text-slate-700 dark:text-slate-300">
                       <div className="mt-0.5 min-w-[18px]">
                         <Check className="h-4.5 w-4.5 text-amber-500 dark:text-amber-400" />
                       </div>
@@ -355,32 +362,25 @@ const PricingContent = () => {
                 <div className="flex-1 space-y-6 text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold text-white backdrop-blur-md">
                     <Calculator className="h-3.5 w-3.5" />
-                    SIMULASI BIAYA CUSTOM
+                    {t('calculator_badge')}
                   </div>
                   <h3 className="text-3xl leading-tight font-extrabold text-white md:text-4xl">
-                    Butuh Spesifikasi Khusus?
+                    {t('calculator_title')}
                     <br />
                     <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                      Hitung Sendiri di Sini.
+                      {t('calculator_subtitle')}
                     </span>
                   </h3>
                   <p className="text-lg leading-relaxed text-slate-300">
-                    Gunakan kalkulator interaktif kami untuk menyesuaikan jumlah user,
-                    lokasi server, dan modul spesifik yang Anda butuhkan. Dapatkan estimasi
-                    penawaran instan.
+                    {t('calculator_description')}
                   </p>
-                  <Link
-                    href="/pricing/calculator"
-                    className="inline-block w-full md:w-auto"
-                  >
+                  <Link href="/pricing/calculator" className="inline-block w-full md:w-auto">
                     <Button
                       variant="white"
                       size="lg"
                       className="w-full bg-white px-8 text-lg font-bold text-slate-900 shadow-xl shadow-blue-900/50 transition-all duration-300 hover:scale-105 hover:bg-slate-50 hover:shadow-blue-900/70 md:w-auto"
                     >
-                      Buka Pricing Calculator
-                      {' '}
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      {t('calculator_cta')} <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
                 </div>
@@ -404,33 +404,33 @@ const PricingContent = () => {
           <div className="mb-32">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                Standar Keamanan Enterprise
+                {t('security_heading')}
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   icon: Shield,
-                  title: 'Secure Payment',
-                  desc: 'Midtrans & Xendit Gateway',
+                  title: t('security_1_title'),
+                  desc: t('security_1_desc'),
                   color: 'text-green-500 dark:text-green-400',
                 },
                 {
                   icon: Lock,
-                  title: 'Data Encryption',
-                  desc: 'AES-256 & TLS 1.3 Standards',
+                  title: t('security_2_title'),
+                  desc: t('security_2_desc'),
                   color: 'text-blue-500 dark:text-blue-400',
                 },
                 {
                   icon: Server,
-                  title: '99.9% Uptime SLA',
-                  desc: 'Redundant Cloud Infrastructure',
+                  title: t('security_3_title'),
+                  desc: t('security_3_desc'),
                   color: 'text-purple-500 dark:text-purple-400',
                 },
                 {
                   icon: RefreshCw,
-                  title: '14-Day Guarantee',
-                  desc: 'Money Back Policy',
+                  title: t('security_4_title'),
+                  desc: t('security_4_desc'),
                   color: 'text-amber-500 dark:text-amber-400',
                 },
               ].map((item, i) => (
@@ -443,9 +443,7 @@ const PricingContent = () => {
                   >
                     <item.icon className="h-8 w-8" />
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                    {item.title}
-                  </h4>
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h4>
                   <p className="text-sm text-slate-600 dark:text-slate-400">{item.desc}</p>
                 </div>
               ))}
@@ -463,20 +461,19 @@ const PricingContent = () => {
               <div className="sticky top-24 space-y-6">
                 <div>
                   <h2 className="mb-2 text-3xl font-bold text-slate-900 dark:text-white">
-                    Frequently Asked Questions
+                    {t('faq_heading')}
                   </h2>
                   <p className="text-lg text-slate-600 dark:text-slate-400">
-                    Jawaban untuk pertanyaan umum seputar lisensi, pembayaran, dan teknis
-                    implementasi.
+                    {t('faq_description')}
                   </p>
                 </div>
 
                 <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-900">
                   <h4 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
-                    Masih ada pertanyaan?
+                    {t('faq_contact_heading')}
                   </h4>
                   <p className="mb-6 text-sm text-slate-500 dark:text-slate-400">
-                    Tim konsultan kami siap membantu Anda.
+                    {t('faq_contact_description')}
                   </p>
                   <div className="space-y-3">
                     <a
@@ -502,7 +499,7 @@ const PricingContent = () => {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <FAQAccordion faqs={pricingFaqs} />
+              <FAQAccordion faqs={translatedFaqs} />
             </div>
           </div>
         </Container>

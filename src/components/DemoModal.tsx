@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { Input, Select, TextArea } from './Form';
 import Button from './ui/Button';
@@ -13,6 +14,7 @@ type DemoModalProps = {
 };
 
 const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
+  const t = useTranslations('DemoModal');
   const [isLoading, setIsLoading] = useState(false);
 
   if (!isOpen) {
@@ -36,20 +38,20 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     const salesPhone = '622139702834'; // Sales Number
 
     // Construct a professional WhatsApp message
-    const text
-      = `*New Demo Request*\n\n`
-        + `Halo Tim BizOps, saya ingin menjadwalkan demo produk.\n\n`
-        + `*Detail Kontak:*\n`
-        + `Nama: ${name}\n`
-        + `Jabatan: ${jobTitle}\n`
-        + `Perusahaan: ${company}\n`
-        + `Email: ${email}\n`
-        + `No HP: ${phoneInput}\n\n`
-        + `*Profil Bisnis:*\n`
-        + `Ukuran: ${employees} karyawan\n`
-        + `Minat: ${interest}\n\n`
-        + `*Catatan:*\n${message || '-'}\n\n`
-        + `Mohon info ketersediaan jadwal. Terima kasih.`;
+    const text =
+      `*New Demo Request*\n\n` +
+      `${t('whatsapp_greeting')}\n\n` +
+      `*${t('whatsapp_contact_details')}*\n` +
+      `${t('whatsapp_name')}: ${name}\n` +
+      `${t('whatsapp_job_title')}: ${jobTitle}\n` +
+      `${t('whatsapp_company')}: ${company}\n` +
+      `${t('whatsapp_email')}: ${email}\n` +
+      `${t('whatsapp_phone')}: ${phoneInput}\n\n` +
+      `*${t('whatsapp_business_profile')}*\n` +
+      `${t('whatsapp_size')}: ${employees} ${t('whatsapp_employees')}\n` +
+      `${t('whatsapp_interest')}: ${interest}\n\n` +
+      `*${t('whatsapp_notes')}*\n${message || '-'}\n\n` +
+      `${t('whatsapp_closing')}`;
 
     const url = `https://wa.me/${salesPhone}?text=${encodeURIComponent(text)}`;
 
@@ -93,17 +95,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <div className="mb-8">
                   <span className="bg-primary/10 text-primary mb-4 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold tracking-wider uppercase">
-                    <Video className="h-3 w-3" />
-                    {' '}
-                    Live Session
+                    <Video className="h-3 w-3" /> {t('badge')}
                   </span>
                   <h2 className="mb-2 text-2xl leading-tight font-bold text-slate-900 dark:text-slate-100">
-                    Experience the Future of ERP
+                    {t('title')}
                   </h2>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Lihat bagaimana BizOps dapat mengotomatisasi proses bisnis Anda dalam sesi demo
-                    privat.
-                  </p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{t('subtitle')}</p>
                 </div>
 
                 <div className="space-y-6">
@@ -113,11 +110,10 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     </div>
                     <div>
                       <h4 className="mb-1 text-sm font-bold text-slate-900 dark:text-slate-100">
-                        Tailored Walkthrough
+                        {t('feature_1_title')}
                       </h4>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                        Demo disesuaikan dengan alur kerja spesifik industri Anda, bukan sekadar
-                        overview umum.
+                        {t('feature_1_desc')}
                       </p>
                     </div>
                   </div>
@@ -127,10 +123,10 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     </div>
                     <div>
                       <h4 className="mb-1 text-sm font-bold text-slate-900 dark:text-slate-100">
-                        Expert Consultation
+                        {t('feature_2_title')}
                       </h4>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                        Diskusi teknis langsung dengan Solution Architect senior kami.
+                        {t('feature_2_desc')}
                       </p>
                     </div>
                   </div>
@@ -140,10 +136,10 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     </div>
                     <div>
                       <h4 className="mb-1 text-sm font-bold text-slate-900 dark:text-slate-100">
-                        No Commitment
+                        {t('feature_3_title')}
                       </h4>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                        Eksplorasi fitur tanpa tekanan. Kami fokus pada solusi, bukan hard-selling.
+                        {t('feature_3_desc')}
                       </p>
                     </div>
                   </div>
@@ -152,7 +148,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
               <div className="mt-8 border-t border-slate-200 pt-6 dark:border-slate-700">
                 <div className="mb-3 flex -space-x-3">
-                  {[1, 2, 3, 4].map(i => (
+                  {[1, 2, 3, 4].map((i) => (
                     <div
                       key={i}
                       className="h-8 w-8 rounded-full border-2 border-white bg-slate-100 dark:border-slate-900 dark:bg-slate-700"
@@ -170,9 +166,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     +2k
                   </div>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Bergabung dengan 2,000+ perusahaan yang telah modernisasi bisnis mereka.
-                </p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">{t('social_proof')}</p>
               </div>
             </div>
 
@@ -180,11 +174,9 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             <div className="overflow-y-auto bg-white p-6 md:w-8/12 md:p-8 dark:bg-slate-900">
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                  Book Your Demo Slot
+                  {t('form_title')}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Isi detail di bawah untuk terhubung langsung via WhatsApp.
-                </p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">{t('form_subtitle')}</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -193,15 +185,15 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     id="modalName"
                     name="modalName"
                     required
-                    label="Full Name"
-                    placeholder="John Doe"
+                    label={t('label_full_name')}
+                    placeholder={t('placeholder_full_name')}
                   />
                   <Input
                     id="modalJobTitle"
                     name="modalJobTitle"
                     required
-                    label="Job Title"
-                    placeholder="Ex: CEO, HR Manager"
+                    label={t('label_job_title')}
+                    placeholder={t('placeholder_job_title')}
                   />
                 </div>
 
@@ -211,16 +203,16 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     name="modalEmail"
                     type="email"
                     required
-                    label="Work Email"
-                    placeholder="name@company.com"
+                    label={t('label_work_email')}
+                    placeholder={t('placeholder_work_email')}
                   />
                   <Input
                     id="modalPhone"
                     name="modalPhone"
                     type="tel"
                     required
-                    label="Phone / WhatsApp"
-                    placeholder="+62 812..."
+                    label={t('label_phone')}
+                    placeholder={t('placeholder_phone')}
                   />
                 </div>
 
@@ -229,23 +221,23 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     id="modalCompany"
                     name="modalCompany"
                     required
-                    label="Company Name"
-                    placeholder="Acme Corp"
+                    label={t('label_company_name')}
+                    placeholder={t('placeholder_company_name')}
                     icon={<Building2 className="h-5 w-5" />}
                   />
                   <Select
                     id="modalEmployees"
                     name="modalEmployees"
-                    label="Company Size"
+                    label={t('label_company_size')}
                     required
                     icon={<Users className="h-5 w-5" />}
                     options={[
-                      { value: '1-10', label: '1 - 10 Employees' },
-                      { value: '11-50', label: '11 - 50 Employees' },
-                      { value: '51-200', label: '51 - 200 Employees' },
-                      { value: '201-500', label: '201 - 500 Employees' },
-                      { value: '501-1000', label: '501 - 1000 Employees' },
-                      { value: '1000+', label: '1000+ Employees' },
+                      { value: '1-10', label: t('size_1_10') },
+                      { value: '11-50', label: t('size_11_50') },
+                      { value: '51-200', label: t('size_51_200') },
+                      { value: '201-500', label: t('size_201_500') },
+                      { value: '501-1000', label: t('size_501_1000') },
+                      { value: '1000+', label: t('size_1000_plus') },
                     ]}
                   />
                 </div>
@@ -253,23 +245,23 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                 <Select
                   id="modalInterest"
                   name="modalInterest"
-                  label="I am interested in..."
+                  label={t('label_interest')}
                   required
                   options={[
-                    { value: 'General Overview', label: 'General Platform Overview' },
-                    { value: 'HR & Payroll', label: 'HR & Payroll Module' },
-                    { value: 'Finance & Accounting', label: 'Finance & Accounting' },
-                    { value: 'Supply Chain', label: 'Supply Chain & Operations' },
-                    { value: 'CRM & Sales', label: 'CRM & Sales Pipeline' },
-                    { value: 'Custom Solution', label: 'Custom Solution Discussion' },
+                    { value: 'General Overview', label: t('interest_general') },
+                    { value: 'HR & Payroll', label: t('interest_hr') },
+                    { value: 'Finance & Accounting', label: t('interest_finance') },
+                    { value: 'Supply Chain', label: t('interest_supply') },
+                    { value: 'CRM & Sales', label: t('interest_crm') },
+                    { value: 'Custom Solution', label: t('interest_custom') },
                   ]}
                 />
 
                 <TextArea
                   id="modalMessage"
                   name="modalMessage"
-                  label="Additional Requirements (Optional)"
-                  placeholder="Ceritakan sedikit tentang tantangan bisnis Anda saat ini..."
+                  label={t('label_message')}
+                  placeholder={t('placeholder_message')}
                   rows={2}
                   className="resize-none"
                 />
@@ -282,20 +274,16 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     disabled={isLoading}
                     className="h-12 border border-slate-300 dark:border-slate-600"
                   >
-                    {isLoading
-                      ? (
-                          'Redirecting...'
-                        )
-                      : (
-                          <span className="flex items-center gap-2 text-slate-700 dark:text-white">
-                            <Send className="h-5 w-5" />
-                            {' '}
-                            Request Demo via WhatsApp
-                          </span>
-                        )}
+                    {isLoading ? (
+                      t('button_loading')
+                    ) : (
+                      <span className="flex items-center gap-2 text-slate-700 dark:text-white">
+                        <Send className="h-5 w-5" /> {t('button_submit')}
+                      </span>
+                    )}
                   </Button>
                   <p className="mt-3 text-center text-[10px] text-slate-600 dark:text-slate-400">
-                    Data Anda aman dan diproses sesuai Kebijakan Privasi BizOps.
+                    {t('privacy_notice')}
                   </p>
                 </div>
               </form>

@@ -2,19 +2,22 @@ export type PartnerProfile = {
   id: string;
   name: string;
   slug: string;
-  logo: string; // URL placeholder
+  logo: string;
   type: 'implementation' | 'referral' | 'technology' | 'managed-service';
-  tier: 'platinum' | 'gold' | 'silver' | 'registered' | 'official' | 'applying'; // Added official/applying
+  tier: 'platinum' | 'gold' | 'silver' | 'registered' | 'official' | 'applying';
   industries: string[];
   location: string;
-  description: string;
+  description: {
+    en: string;
+    id: string;
+  };
   website: string;
   certified: boolean;
-  partnershipStatus?: string; // e.g. "Official Technology Partner", "Integration Partner"
+  partnershipStatus?: string;
 };
 
 export const partnerDirectoryData: PartnerProfile[] = [
-  // --- MANAGED SERVICE PARTNERS (NEW) ---
+  // --- MANAGED SERVICE PARTNERS ---
   {
     id: 'msp-1',
     name: 'Optima Bisnis Solusi',
@@ -24,8 +27,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'platinum',
     industries: ['Finance', 'Accounting'],
     location: 'Jakarta, Indonesia',
-    description:
-      'Mitra layanan akuntansi dan pajak end-to-end. Kami menjalankan operasional keuangan Anda menggunakan BizOps, sehingga Anda terima beres laporan jadi.',
+    description: {
+      en: 'End-to-end accounting and tax services partner. We run your financial operations using BizOps, so you receive ready reports.',
+      id: 'Mitra layanan akuntansi dan pajak end-to-end. Kami menjalankan operasional keuangan Anda menggunakan BizOps, sehingga Anda terima beres laporan jadi.',
+    },
     website: 'https://example.com',
     certified: true,
     partnershipStatus: 'Virtual CFO Partner',
@@ -39,8 +44,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'gold',
     industries: ['HR', 'Outsourcing'],
     location: 'Surabaya, Indonesia',
-    description:
-      'Jasa pengelolaan payroll dan administrasi HRD profesional. Kami menangani perhitungan gaji, pajak, dan BPJS karyawan Anda via BizOps.',
+    description: {
+      en: 'Professional payroll and HR administration management services. We handle salary calculations, taxes, and employee BPJS via BizOps.',
+      id: 'Jasa pengelolaan payroll dan administrasi HRD profesional. Kami menangani perhitungan gaji, pajak, dan BPJS karyawan Anda via BizOps.',
+    },
     website: 'https://example.com',
     certified: true,
     partnershipStatus: 'Managed HR Partner',
@@ -54,14 +61,16 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'silver',
     industries: ['Logistics', 'Supply Chain'],
     location: 'Semarang, Indonesia',
-    description:
-      'Layanan manajemen gudang dan distribusi. Tim kami yang mengoperasikan sistem inventory BizOps untuk memastikan akurasi stok fisik Anda.',
+    description: {
+      en: 'Warehouse and distribution management services. Our team operates the BizOps inventory system to ensure your physical stock accuracy.',
+      id: 'Layanan manajemen gudang dan distribusi. Tim kami yang mengoperasikan sistem inventory BizOps untuk memastikan akurasi stok fisik Anda.',
+    },
     website: 'https://example.com',
     certified: true,
     partnershipStatus: '3PL Partner',
   },
 
-  // --- TECHNOLOGY PARTNERS (PRINCIPALS) ---
+  // --- TECHNOLOGY PARTNERS ---
   {
     id: 'tech-1',
     name: 'Frappe Technologies',
@@ -71,8 +80,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'official',
     industries: ['Technology', 'Open Source'],
     location: 'Mumbai, India',
-    description:
-      'Principal pengembang Frappe Framework, basis teknologi open-source yang menjadi fondasi BizOps Engine.',
+    description: {
+      en: 'Principal developer of Frappe Framework, the open-source technology foundation that powers BizOps Engine.',
+      id: 'Principal pengembang Frappe Framework, basis teknologi open-source yang menjadi fondasi BizOps Engine.',
+    },
     website: 'https://frappe.io',
     certified: true,
     partnershipStatus: 'Official Tech Partner',
@@ -86,8 +97,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'official',
     industries: ['Low-Code', 'BPM'],
     location: 'Columbia, MD, USA',
-    description:
-      'Platform Low-Code/No-Code untuk akselerasi pengembangan workflow bisnis yang kompleks di dalam ekosistem BizOps.',
+    description: {
+      en: 'Low-Code/No-Code platform for accelerating complex business workflow development within the BizOps ecosystem.',
+      id: 'Platform Low-Code/No-Code untuk akselerasi pengembangan workflow bisnis yang kompleks di dalam ekosistem BizOps.',
+    },
     website: 'https://joget.com',
     certified: true,
     partnershipStatus: 'Official Tech Partner',
@@ -101,8 +114,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'applying',
     industries: ['ERP', 'SaaS'],
     location: 'Belgium',
-    description:
-      'Suite aplikasi bisnis open source. BizOps sedang dalam proses integrasi strategis untuk interoperabilitas modul.',
+    description: {
+      en: 'Open source business application suite. BizOps is in the process of strategic integration for module interoperability.',
+      id: 'Suite aplikasi bisnis open source. BizOps sedang dalam proses integrasi strategis untuk interoperabilitas modul.',
+    },
     website: 'https://odoo.com',
     certified: false,
     partnershipStatus: 'Partnership Processing',
@@ -116,8 +131,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'official',
     industries: ['Cloud Infrastructure'],
     location: 'USA',
-    description:
-      'Infrastruktur cloud pilihan untuk deployment BizOps Enterprise yang aman, scalable, dan reliable.',
+    description: {
+      en: 'Preferred cloud infrastructure for secure, scalable, and reliable BizOps Enterprise deployment.',
+      id: 'Infrastruktur cloud pilihan untuk deployment BizOps Enterprise yang aman, scalable, dan reliable.',
+    },
     website: 'https://cloud.google.com',
     certified: true,
     partnershipStatus: 'Infrastructure Partner',
@@ -131,8 +148,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'official',
     industries: ['Fintech', 'Payment'],
     location: 'Jakarta, Indonesia',
-    description:
-      'Payment gateway terkemuka di Indonesia yang terintegrasi native dengan modul Sales & Accounting BizOps.',
+    description: {
+      en: 'Leading payment gateway in Indonesia natively integrated with BizOps Sales & Accounting modules.',
+      id: 'Payment gateway terkemuka di Indonesia yang terintegrasi native dengan modul Sales & Accounting BizOps.',
+    },
     website: 'https://midtrans.com',
     certified: true,
     partnershipStatus: 'Integration Partner',
@@ -148,8 +167,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'platinum',
     industries: ['Manufacturing', 'Wholesale'],
     location: 'Jakarta, Indonesia',
-    description:
-      'Spesialis implementasi ERP untuk manufaktur dan distribusi skala menengah hingga besar. Berpengalaman lebih dari 10 tahun.',
+    description: {
+      en: 'ERP implementation specialist for medium to large-scale manufacturing and distribution. Over 10 years of experience.',
+      id: 'Spesialis implementasi ERP untuk manufaktur dan distribusi skala menengah hingga besar. Berpengalaman lebih dari 10 tahun.',
+    },
     website: 'https://example.com',
     certified: true,
   },
@@ -162,8 +183,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'gold',
     industries: ['Retail', 'F&B'],
     location: 'Surabaya, Indonesia',
-    description:
-      'Membantu transformasi digital bisnis ritel dan F&B dengan solusi POS dan Inventory terintegrasi.',
+    description: {
+      en: 'Helping retail and F&B businesses with digital transformation through integrated POS and Inventory solutions.',
+      id: 'Membantu transformasi digital bisnis ritel dan F&B dengan solusi POS dan Inventory terintegrasi.',
+    },
     website: 'https://example.com',
     certified: true,
   },
@@ -176,8 +199,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'silver',
     industries: ['Finance', 'Professional Services'],
     location: 'Bandung, Indonesia',
-    description:
-      'Konsultan keuangan dan pajak yang merekomendasikan solusi pembukuan terbaik untuk klien.',
+    description: {
+      en: 'Financial and tax consultants recommending the best bookkeeping solutions for clients.',
+      id: 'Konsultan keuangan dan pajak yang merekomendasikan solusi pembukuan terbaik untuk klien.',
+    },
     website: 'https://example.com',
     certified: false,
   },
@@ -190,8 +215,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'gold',
     industries: ['Hospitality', 'Tourism'],
     location: 'Denpasar, Indonesia',
-    description:
-      'Digital agency yang membantu hotel dan travel agent mengelola operasional mereka.',
+    description: {
+      en: 'Digital agency helping hotels and travel agents manage their operations.',
+      id: 'Digital agency yang membantu hotel dan travel agent mengelola operasional mereka.',
+    },
     website: 'https://example.com',
     certified: true,
   },
@@ -204,7 +231,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'silver',
     industries: ['Agriculture', 'Supply Chain'],
     location: 'Medan, Indonesia',
-    description: 'Solusi ERP khusus untuk perkebunan dan manajemen rantai pasok agribisnis.',
+    description: {
+      en: 'Specialized ERP solutions for plantations and agribusiness supply chain management.',
+      id: 'Solusi ERP khusus untuk perkebunan dan manajemen rantai pasok agribisnis.',
+    },
     website: 'https://example.com',
     certified: true,
   },
@@ -217,7 +247,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'registered',
     industries: ['Creative', 'Media'],
     location: 'Yogyakarta, Indonesia',
-    description: 'Membantu agensi kreatif mengelola proyek dan keuangan dengan lebih rapi.',
+    description: {
+      en: 'Helping creative agencies manage projects and finances more efficiently.',
+      id: 'Membantu agensi kreatif mengelola proyek dan keuangan dengan lebih rapi.',
+    },
     website: 'https://example.com',
     certified: false,
   },
@@ -230,7 +263,10 @@ export const partnerDirectoryData: PartnerProfile[] = [
     tier: 'gold',
     industries: ['Logistics', 'Transportation'],
     location: 'Semarang, Indonesia',
-    description: 'Implementator sistem manajemen armada dan gudang terintegrasi.',
+    description: {
+      en: 'Integrated fleet and warehouse management system implementer.',
+      id: 'Implementator sistem manajemen armada dan gudang terintegrasi.',
+    },
     website: 'https://example.com',
     certified: true,
   },

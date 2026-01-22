@@ -6,57 +6,11 @@ export type LegalDoc = {
 };
 
 export const legalContent: Record<string, LegalDoc> = {
-  'privacy': {
-    title: 'Kebijakan Privasi',
-    subtitle: 'Bagaimana kami mengumpulkan, menggunakan, dan melindungi data Anda.',
-    updated: '2024-01-01',
-    content: `
-      <h2>1. Pendahuluan</h2>
-      <p>BizOps ("kami") menghargai privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda menggunakan situs web kami, perangkat lunak Enterprise Resource Planning (ERP), dan layanan terkait ("Layanan").</p>
-      <p>Dengan menggunakan Layanan kami, Anda menyetujui pengumpulan dan penggunaan informasi sesuai dengan kebijakan ini. Kebijakan ini disusun berdasarkan Undang-Undang Perlindungan Data Pribadi (UU PDP) Indonesia dan prinsip-prinsip General Data Protection Regulation (GDPR).</p>
-
-      <h2>2. Data yang Kami Kumpulkan</h2>
-      <p>Kami mengumpulkan beberapa jenis informasi untuk berbagai tujuan guna menyediakan dan meningkatkan Layanan kami kepada Anda:</p>
-      <ul>
-        <li><strong>Data Identitas:</strong> Nama lengkap, alamat email, nomor telepon, dan jabatan.</li>
-        <li><strong>Data Bisnis:</strong> Nama perusahaan, NPWP, struktur organisasi, dan data operasional yang Anda input ke dalam sistem ERP.</li>
-        <li><strong>Data Teknis:</strong> Alamat IP, jenis browser, versi sistem operasi, dan log aktivitas sistem.</li>
-        <li><strong>Data Transaksi:</strong> Riwayat pembayaran, faktur, dan detail lisensi langganan.</li>
-      </ul>
-
-      <h2>3. Penggunaan Data</h2>
-      <p>Kami menggunakan data yang dikumpulkan untuk:</p>
-      <ul>
-        <li>Menyediakan, mengoperasikan, dan memelihara Layanan ERP kami.</li>
-        <li>Memproses transaksi dan mengelola akun pelanggan Anda.</li>
-        <li>Mengirimkan notifikasi teknis, pembaruan keamanan, dan dukungan administratif.</li>
-        <li>Mendeteksi dan mencegah penipuan atau penyalahgunaan layanan.</li>
-        <li>Analisis statistik untuk pengembangan produk (data dianonimkan).</li>
-      </ul>
-
-      <h2>4. Keamanan Data</h2>
-      <p>Keamanan data Anda adalah prioritas utama kami. Kami menerapkan langkah-langkah keamanan teknis dan organisasional yang ketat, termasuk:</p>
-      <ul>
-        <li>Enkripsi data saat transit (SSL/TLS) dan saat istirahat (AES-256).</li>
-        <li>Kontrol akses berbasis peran (RBAC) yang ketat.</li>
-        <li>Audit keamanan berkala dan sertifikasi ISO 27001 (dalam proses).</li>
-      </ul>
-      <p>Namun, perlu diingat bahwa tidak ada metode transmisi melalui Internet atau metode penyimpanan elektronik yang 100% aman.</p>
-
-      <h2>5. Berbagi Data dengan Pihak Ketiga</h2>
-      <p>Kami tidak menjual data Anda kepada pihak ketiga. Kami hanya membagikan data kepada:</p>
-      <ul>
-        <li><strong>Sub-prosesor:</strong> Penyedia layanan cloud (misal: AWS, Google Cloud) yang membantu infrastruktur kami.</li>
-        <li><strong>Mitra Integrasi:</strong> Pihak ketiga yang Anda pilih untuk diintegrasikan (misal: Payment Gateway, E-commerce), hanya atas instruksi Anda.</li>
-        <li><strong>Kewajiban Hukum:</strong> Jika diwajibkan oleh hukum atau panggilan pengadilan yang sah.</li>
-      </ul>
-
-      <h2>6. Hak Anda</h2>
-      <p>Anda memiliki hak untuk mengakses, memperbarui, atau menghapus informasi pribadi Anda. Silakan kunjungi halaman <a href="/legal/data-rights">Privacy Center</a> kami untuk mengajukan permintaan terkait hak subjek data (DSAR).</p>
-
-      <h2>7. Hubungi Kami</h2>
-      <p>Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi Data Protection Officer (DPO) kami di: <a href="mailto:privacy@bizops.id">privacy@bizops.id</a>.</p>
-    `,
+  privacy: {
+    title: 'i18n:privacy.title',
+    subtitle: 'i18n:privacy.subtitle',
+    updated: 'i18n:privacy.updated',
+    content: 'i18n', // Special marker to render from i18n
   },
   'data-rights': {
     title: 'Privacy Center (DSAR)',
@@ -64,7 +18,7 @@ export const legalContent: Record<string, LegalDoc> = {
     updated: '2024-01-01',
     content: 'Content rendered via Component',
   },
-  'dpa': {
+  dpa: {
     title: 'Data Processing Agreement',
     subtitle: 'Perjanjian pemrosesan data untuk pelanggan Enterprise.',
     updated: '2024-01-01',
@@ -118,7 +72,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>BizOps tidak membagikan data operasional mentah Anda kepada penyedia model AI pihak ketiga (seperti OpenAI atau Anthropic) untuk tujuan pelatihan model dasar mereka (Zero Data Retention policy pada API).</p>
     `,
   },
-  'terms': {
+  terms: {
     title: 'Terms of Service',
     subtitle: 'Syarat dan ketentuan penggunaan platform BizOps.',
     updated: '2023-12-01',
@@ -148,7 +102,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Kami berhak menangguhkan atau menghentikan akses Anda jika terjadi pelanggaran terhadap ketentuan ini. Anda dapat membatalkan langganan kapan saja melalui dashboard admin, efektif pada akhir periode penagihan berjalan.</p>
     `,
   },
-  'sla': {
+  sla: {
     title: 'Service Level Agreement (SLA)',
     subtitle: 'Jaminan ketersediaan layanan dan dukungan teknis.',
     updated: '2024-01-01',
@@ -177,7 +131,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Kami melakukan pemeliharaan rutin pada akhir pekan di luar jam kerja bisnis standar (WIB). Pemberitahuan akan dikirimkan minimal 48 jam sebelum pemeliharaan yang berpotensi menyebabkan downtime.</p>
     `,
   },
-  'cookies': {
+  cookies: {
     title: 'Cookie Preferences',
     subtitle: 'Atur bagaimana kami menggunakan cookie pada browser Anda.',
     updated: '2024-01-01',
@@ -195,7 +149,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Anda dapat mengubah preferensi cookie Anda kapan saja menggunakan panel kendali di bawah ini.</p>
     `,
   },
-  'accessibility': {
+  accessibility: {
     title: 'Accessibility Statement',
     subtitle: 'Komitmen kami untuk membuat BizOps dapat diakses oleh semua orang.',
     updated: '2024-03-01',

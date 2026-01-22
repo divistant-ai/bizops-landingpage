@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, ChevronRight, HelpCircle, Smartphone } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
@@ -10,6 +11,10 @@ import { BouncyLink } from '@/components/ui/BouncyLink';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
 import { CounterUp } from '@/components/ui/motion-scroll';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
+import {
+  platformCapabilitiesTranslations,
+  platformModulesTranslations,
+} from '@/data/platformContentTranslations';
 
 type ModulePageProps = {
   moduleId: string;
@@ -56,12 +61,37 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePageProps) {
+  const t = useTranslations('ModulePage');
+  const locale = useLocale() as 'en' | 'id';
+
   // Rehydrate data on client side to avoid serialization issues
-  const data = modulesData[moduleId] || capabilitiesData[moduleId];
+  let data = modulesData[moduleId] || capabilitiesData[moduleId];
 
   if (!data) {
     return null;
   } // Or handle not found
+
+  // Determine if this is a module or capability
+  const isModule = moduleId in modulesData;
+  const isCapability = moduleId in capabilitiesData;
+
+  // Override dengan translation jika ada
+  let translation;
+  if (isModule) {
+    translation =
+      platformModulesTranslations[locale]?.[
+        moduleId as keyof typeof platformModulesTranslations.en
+      ];
+  } else if (isCapability) {
+    translation =
+      platformCapabilitiesTranslations[locale]?.[
+        moduleId as keyof typeof platformCapabilitiesTranslations.en
+      ];
+  }
+
+  if (translation) {
+    data = { ...data, ...translation };
+  }
 
   const Icon = data.icon || HelpCircle;
   const testimonial = data.testimonial || {
@@ -75,7 +105,30 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
   const relatedModules = relatedModuleIds
     .map((item) => {
       const source = item.type === 'module' ? modulesData : capabilitiesData;
-      const modData = source[item.id];
+      let modData = source[item.id];
+
+      if (!modData) {
+        return null;
+      }
+
+      // Apply translation override based on locale and type
+      let modTranslation;
+      if (item.type === 'module') {
+        modTranslation =
+          platformModulesTranslations[locale]?.[
+            item.id as keyof typeof platformModulesTranslations.en
+          ];
+      } else {
+        modTranslation =
+          platformCapabilitiesTranslations[locale]?.[
+            item.id as keyof typeof platformCapabilitiesTranslations.en
+          ];
+      }
+
+      if (modTranslation) {
+        modData = { ...modData, ...modTranslation };
+      }
+
       return {
         id: item.id,
         title: modData?.title || '',
@@ -84,7 +137,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         type: item.type,
       };
     })
-    .filter(m => m.title); // Filter out invalid ones
+    .filter((m) => m?.title); // Filter out invalid ones
 
   return (
     <div className="flex flex-col bg-white dark:bg-slate-950">
@@ -102,7 +155,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
               href="/platform"
               className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
             >
-              Platform
+              {t('breadcrumb_platform')}
             </Link>
             <ChevronRight className="h-3 w-3" />
             <span className="text-blue-600 dark:text-blue-400">{data.title}</span>
@@ -155,13 +208,13 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 href="/demo"
                 className="flex h-11 items-center justify-center rounded-xl bg-blue-600 px-6 font-semibold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
               >
-                {data.cta?.buttonLabel || 'Lihat Demo'}
+                {data.cta?.buttonLabel || t('cta_demo')}
               </BouncyLink>
               <BouncyLink
                 href="/contact"
                 className="flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 font-medium hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800"
               >
-                <span className="text-slate-900 dark:text-white">Hubungi Sales</span>
+                <span className="text-slate-900 dark:text-white">{t('cta_contact_sales')}</span>
               </BouncyLink>
             </motion.div>
           </div>
@@ -195,11 +248,9 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         <Container size="6xl">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-              Fitur Unggulan
+              {t('features_title')}
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
-              Dirancang untuk produktivitas dan kemudahan penggunaan.
-            </p>
+            <p className="text-lg text-slate-600 dark:text-slate-400">{t('features_subtitle')}</p>
           </div>
 
           <FadeInStagger>
@@ -242,12 +293,9 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
           <Container size="7xl">
             <div className="mx-auto mb-12 max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                Masalah yang Kami Selesaikan
+                {t('problems_title')}
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                Kami memahami tantangan yang Anda hadapi karena kami mendengarkan ratusan bisnis
-                seperti Anda.
-              </p>
+              <p className="text-lg text-slate-600 dark:text-slate-400">{t('problems_subtitle')}</p>
             </div>
 
             <FadeInStagger>
@@ -292,7 +340,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
             <Grid cols={1} lgCols={2} gap={16} className="items-center">
               <div>
                 <Badge className="mb-6 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
-                  Mobile First
+                  {t('mobile_first')}
                 </Badge>
                 <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
                   {data.mobileAdvantage.title}
@@ -320,10 +368,10 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
           <Container size="7xl">
             <div className="mx-auto mb-12 max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                Integrasi Antar Modul
+                {t('integrations_title')}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Data mengalir otomatis antar modul. Sekali input, update di mana-mana.
+                {t('integrations_subtitle')}
               </p>
             </div>
 
@@ -336,8 +384,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                     </div>
                     <div>
                       <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                        →
-                        {conn.target}
+                        →{conn.target}
                       </h3>
                       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
                         {conn.desc}
@@ -380,11 +427,9 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
           <Container size="4xl">
             <div className="mx-auto mb-12 max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                Pertanyaan yang Sering Diajukan
+                {t('faqs_title')}
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                Jawaban untuk pertanyaan umum tentang modul ini.
-              </p>
+              <p className="text-lg text-slate-600 dark:text-slate-400">{t('faqs_subtitle')}</p>
             </div>
 
             <div className="rounded-3xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-950">
@@ -402,21 +447,18 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
           <Container size="7xl">
             <div className="mx-auto mb-12 max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                Modul Terkait
+                {t('related_title')}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Jelajahi modul lain yang saling terintegrasi dengan
-                {' '}
-                {data.title}
-                .
+                {t('related_subtitle')} {data.title}.
               </p>
             </div>
 
             <Grid cols={3} mdCols={3} gap={6}>
               {relatedModules.map((module) => {
                 const ModuleIcon = module.icon || HelpCircle;
-                const linkPath
-                  = module.type === 'capability'
+                const linkPath =
+                  module.type === 'capability'
                     ? `/platform/capabilities/${module.id}`
                     : `/platform/modules/${module.id}`;
 
@@ -447,21 +489,20 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
       <Section className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <h2 className="mb-8 text-4xl leading-tight font-bold text-slate-900 md:text-5xl dark:text-white">
-            {data.cta?.text || 'Siap untuk Transformasi Digital?'}
+            {data.cta?.text || t('final_cta_title')}
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl text-slate-600 dark:text-slate-400">
-            Jadwalkan demo 30 menit untuk melihat bagaimana modul ini bekerja secara real-time.
-            Tanpa komitmen.
+            {t('final_cta_subtitle')}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <BouncyLink href="/demo" className="shadow-primary-500/20 h-16 px-10 text-xl shadow-xl">
-              {data.cta?.buttonLabel || 'Lihat Demo'}
+              {data.cta?.buttonLabel || t('cta_demo')}
             </BouncyLink>
             <BouncyLink
               href="/pricing/calculator"
               className="h-16 border-2 border-slate-300 bg-white px-10 text-xl text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
             >
-              <span className="text-slate-600 dark:text-white">Hitung Harga</span>
+              <span className="text-slate-600 dark:text-white">{t('cta_calculate')}</span>
             </BouncyLink>
           </div>
         </Container>

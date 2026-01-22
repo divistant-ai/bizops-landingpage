@@ -1,18 +1,29 @@
+import type { Metadata } from 'next';
+import type { RoleData } from '@/types';
 import { notFound } from 'next/navigation';
+
 import GenericLandingPage from '@/components/templates/GenericLandingPage';
 import { rolesData } from '@/data/solutionsContent';
+import { rolesTranslations } from '@/data/solutionsContentTranslations';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
 import { transformContent } from '@/libs/utils/transformContent';
 
 export function generateStaticParams() {
-  return Object.keys(rolesData).map(slug => ({
+  return Object.keys(rolesData).map((slug) => ({
     slug,
   }));
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
-  const { slug } = await props.params;
-  const data = rolesData[slug];
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string; locale: string }>;
+}): Promise<Metadata> {
+  const { slug, locale } = await props.params;
+  const currentLocale = (locale || 'id') as 'en' | 'id';
+
+  // Merge base data with translations
+  const baseData = rolesData[slug];
+  const translationData = rolesTranslations[currentLocale]?.[slug];
+  const data = { ...baseData, ...translationData } as RoleData;
 
   if (!data) {
     return {};
@@ -24,13 +35,21 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   });
 }
 
-export default async function RolePage(props: { params: Promise<{ slug: string }> }) {
-  const { slug } = await props.params;
-  const rawData = rolesData[slug];
+export default async function RolePage(props: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
+  const { slug, locale } = await props.params;
+  const currentLocale = (locale || 'id') as 'en' | 'id';
 
-  if (!rawData) {
+  const baseData = rolesData[slug];
+
+  if (!baseData) {
     notFound();
   }
+
+  // Merge base data with translations
+  const translationData = rolesTranslations[currentLocale]?.[slug];
+  const rawData = { ...baseData, ...translationData } as RoleData;
 
   // Transform data on server
   const data = transformContent(rawData);
