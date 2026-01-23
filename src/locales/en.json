@@ -1409,6 +1409,7 @@
     "culture_value_1_desc": "We actively contribute to the Open Source ecosystem (Frappe/ERPNext). Your code isn't just used by clients, but also by the global community.",
     "culture_value_2_title": "Autonomy & Speed",
     "culture_value_2_desc": "Minimal bureaucracy. We enforce strict CI/CD and automated deployment. Ship features, get feedback, iterate fast.",
+    "culture_value_3_title": "Continuous Learning",
     "culture_value_3_desc": "Special budget for books, courses, and certifications. Weekly sharing sessions ('Tech Talk') to discuss the latest technologies.",
     "perks_title": "Perks & Benefits",
     "perks_subtitle": "We take care of you, so you can take care of your best work.",
