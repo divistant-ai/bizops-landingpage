@@ -20,7 +20,7 @@ import {
   Twitter,
   Youtube,
 } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -138,6 +138,7 @@ const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({ title, children }) =>
 };
 
 export const Footer: React.FC = () => {
+  const t = useTranslations('Footer');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -158,7 +159,7 @@ export const Footer: React.FC = () => {
     setError(null);
 
     if (!email) {
-      setError('Email tidak boleh kosong');
+      setError(t('email_required'));
       return;
     }
 
@@ -175,7 +176,7 @@ export const Footer: React.FC = () => {
           setSubscribed(false);
         }, 3000);
       } else {
-        setError(result.error || 'Terjadi kesalahan');
+        setError(result.error || t('error_occurred'));
       }
     });
   };
@@ -196,28 +197,25 @@ export const Footer: React.FC = () => {
               className="group flex items-center focus:outline-none"
               aria-label="BizOps Home"
             >
-              {mounted
-                ? (
-                    <Image
-                      src={
-                        resolvedTheme === 'dark'
-                          ? '/assets/images/Logo BizOps - Dark.svg'
-                          : '/assets/images/Logo BizOps - Light.svg'
-                      }
-                      alt="BizOps Logo"
-                      width={120}
-                      height={40}
-                      className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
-                    />
-                  )
-                : (
-                    <div className="h-10 w-[120px]" />
-                  )}
+              {mounted ? (
+                <Image
+                  src={
+                    resolvedTheme === 'dark'
+                      ? '/assets/images/Logo BizOps - Dark.svg'
+                      : '/assets/images/Logo BizOps - Light.svg'
+                  }
+                  alt="BizOps Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
+                />
+              ) : (
+                <div className="h-10 w-[120px]" />
+              )}
             </Link>
 
             <p className="w-full text-sm leading-relaxed text-slate-600 md:max-w-sm dark:text-slate-400">
-              Sistem operasi bisnis adaptif yang menyatukan HR, Finance, dan Operasional dalam satu
-              platform aman terintegrasi.
+              {t('description')}
             </p>
 
             <div className="space-y-5 pt-2">
@@ -227,16 +225,16 @@ export const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="mb-1.5 text-xs font-bold tracking-wider text-slate-500 uppercase">
-                    Kantor Pusat
+                    {t('headquarters')}
                   </p>
                   <span className="block text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                    PT BizOps Indonesia
+                    {t('company_name')}
                     <br />
-                    Eco-S Sahid Sudirman Residence
+                    {t('address_line1')}
                     <br />
-                    Jl. Jenderal Sudirman No.86
+                    {t('address_line2')}
                     <br />
-                    Jakarta Selatan 10250, Indonesia
+                    {t('address_line3')}
                   </span>
                 </div>
               </div>
@@ -282,40 +280,42 @@ export const Footer: React.FC = () => {
 
           {/* LINKS COLUMNS (Middle) */}
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-7 lg:col-span-5 lg:gap-4">
-            <FooterLinkGroup title="Platform">
+            <FooterLinkGroup title={t('platform')}>
               <ul className="space-y-2.5">
-                <FooterLink href="/platform">Overview</FooterLink>
-                <FooterLink href="/platform/modules/hr">HR System</FooterLink>
-                <FooterLink href="/platform/modules/finance">Finance</FooterLink>
-                <FooterLink href="/platform/modules/operations">Operations</FooterLink>
-                <FooterLink href="/platform/technologies/integration">Integrations</FooterLink>
-                <FooterLink href="/pricing">Pricing</FooterLink>
-                <FooterLink href="/roadmap">Roadmap</FooterLink>
+                <FooterLink href="/platform">{t('overview')}</FooterLink>
+                <FooterLink href="/platform/modules/hr">{t('hr_system')}</FooterLink>
+                <FooterLink href="/platform/modules/finance">{t('finance')}</FooterLink>
+                <FooterLink href="/platform/modules/operations">{t('operations')}</FooterLink>
+                <FooterLink href="/platform/technologies/integration">
+                  {t('integrations')}
+                </FooterLink>
+                <FooterLink href="/pricing">{t('pricing')}</FooterLink>
+                <FooterLink href="/roadmap">{t('roadmap')}</FooterLink>
               </ul>
             </FooterLinkGroup>
 
-            <FooterLinkGroup title="Company">
+            <FooterLinkGroup title={t('company')}>
               <ul className="space-y-2.5">
-                <FooterLink href="/about">About Us</FooterLink>
-                <FooterLink href="/customers">Customers</FooterLink>
-                <FooterLink href="/partners">Partners</FooterLink>
-                <FooterLink href="/careers">Careers</FooterLink>
-                <FooterLink href="/media-kit">Media Kit</FooterLink>
-                <FooterLink href="/contact">Contact</FooterLink>
+                <FooterLink href="/about">{t('about_us')}</FooterLink>
+                <FooterLink href="/customers">{t('customers')}</FooterLink>
+                <FooterLink href="/partners">{t('partners')}</FooterLink>
+                <FooterLink href="/careers">{t('careers')}</FooterLink>
+                <FooterLink href="/media-kit">{t('media_kit')}</FooterLink>
+                <FooterLink href="/contact">{t('contact')}</FooterLink>
                 <FooterLink href="/trust" icon={ShieldCheck}>
-                  Trust Center
+                  {t('trust_center')}
                 </FooterLink>
               </ul>
             </FooterLinkGroup>
 
-            <FooterLinkGroup title="Resources">
+            <FooterLinkGroup title={t('resources')}>
               <ul className="space-y-2.5">
-                <FooterLink href="/blog">Blog</FooterLink>
-                <FooterLink href="/docs">Docs</FooterLink>
-                <FooterLink href="/tools/roi-calculator">ROI Calc</FooterLink>
-                <FooterLink href="/tools/assessment">Assessment</FooterLink>
+                <FooterLink href="/blog">{t('blog')}</FooterLink>
+                <FooterLink href="/docs">{t('docs')}</FooterLink>
+                <FooterLink href="/tools/roi-calculator">{t('roi_calc')}</FooterLink>
+                <FooterLink href="/tools/assessment">{t('assessment')}</FooterLink>
                 <FooterLink href="/status" icon={Signal}>
-                  Status
+                  {t('status')}
                 </FooterLink>
               </ul>
             </FooterLinkGroup>
@@ -325,52 +325,52 @@ export const Footer: React.FC = () => {
           <div className="space-y-8 md:col-span-5 lg:col-span-3">
             {/* Newsletter */}
             <div className="relative space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-white/10 dark:bg-white/5 dark:backdrop-blur-sm">
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Stay Updated</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                {t('stay_updated')}
+              </h3>
 
-              {subscribed
-                ? (
-                    <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
-                      <CheckCircle className="h-5 w-5 shrink-0" />
-                      <span className="text-sm font-medium">Subscribed successfully!</span>
-                    </div>
-                  )
-                : (
-                    <form onSubmit={handleSubscribe} className="relative">
-                      <div className="relative flex items-center">
-                        <input
-                          type="email"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value);
-                            setError(null);
-                          }}
-                          placeholder="Email kerja..."
-                          className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
-                          required
-                          disabled={isPending}
-                        />
-                        <button
-                          type="submit"
-                          aria-label="Subscribe"
-                          disabled={isPending}
-                          className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </button>
-                      </div>
-                      {error && (
-                        <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
-                          {error}
-                        </p>
-                      )}
-                    </form>
+              {subscribed ? (
+                <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+                  <CheckCircle className="h-5 w-5 shrink-0" />
+                  <span className="text-sm font-medium">{t('subscribed_success')}</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="relative">
+                  <div className="relative flex items-center">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setError(null);
+                      }}
+                      placeholder={t('email_placeholder')}
+                      className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
+                      required
+                      disabled={isPending}
+                    />
+                    <button
+                      type="submit"
+                      aria-label="Subscribe"
+                      disabled={isPending}
+                      className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                  {error && (
+                    <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
+                      {error}
+                    </p>
                   )}
+                </form>
+              )}
             </div>
 
             {/* Mobile Apps - Compact */}
             <div className="space-y-4">
               <h3 className="text-[11px] font-bold tracking-widest text-slate-500 uppercase">
-                Mobile App
+                {t('mobile_app')}
               </h3>
               <div className="flex flex-col gap-2.5">
                 <Link
@@ -383,10 +383,10 @@ export const Footer: React.FC = () => {
                   </div>
                   <div className="text-left">
                     <div className="text-[9px] font-bold text-slate-500 uppercase">
-                      Download on the
+                      {t('download_on')}
                     </div>
                     <div className="text-xs leading-tight font-bold text-slate-900 dark:text-white">
-                      App Store
+                      {t('app_store')}
                     </div>
                   </div>
                 </Link>
@@ -399,9 +399,11 @@ export const Footer: React.FC = () => {
                     <PlayStoreIcon />
                   </div>
                   <div className="text-left">
-                    <div className="text-[9px] font-bold text-slate-500 uppercase">Get it on</div>
+                    <div className="text-[9px] font-bold text-slate-500 uppercase">
+                      {t('get_it_on')}
+                    </div>
                     <div className="text-xs leading-tight font-bold text-slate-900 dark:text-white">
-                      Google Play
+                      {t('google_play')}
                     </div>
                   </div>
                 </Link>
@@ -415,16 +417,12 @@ export const Footer: React.FC = () => {
           {/* Copyright & Language Switcher */}
           <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
             <p className="text-xs text-slate-500">
-              ©
-              {' '}
-              {new Date().getFullYear()}
-              {' '}
-              PT Divistant Teknologi Indonesia. All rights reserved.
+              © {new Date().getFullYear()} {t('copyright')}
             </p>
 
             {/* Language & Theme Switcher Pill - Mobile */}
             <div className="flex items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:hidden dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map(loc => (
+              {routing.locales.map((loc) => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -447,25 +445,21 @@ export const Footer: React.FC = () => {
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted
-                  ? (
-                      resolvedTheme === 'dark'
-                        ? (
-                            <Sun className="h-3 w-3" />
-                          )
-                        : (
-                            <Moon className="h-3 w-3" />
-                          )
-                    )
-                  : (
-                      <div className="h-3 w-3" />
-                    )}
+                {mounted ? (
+                  resolvedTheme === 'dark' ? (
+                    <Sun className="h-3 w-3" />
+                  ) : (
+                    <Moon className="h-3 w-3" />
+                  )
+                ) : (
+                  <div className="h-3 w-3" />
+                )}
               </button>
             </div>
 
             {/* Language & Theme Switcher Pill - Desktop */}
             <div className="hidden items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:flex dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map(loc => (
+              {routing.locales.map((loc) => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -488,19 +482,15 @@ export const Footer: React.FC = () => {
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted
-                  ? (
-                      resolvedTheme === 'dark'
-                        ? (
-                            <Sun className="h-3 w-3" />
-                          )
-                        : (
-                            <Moon className="h-3 w-3" />
-                          )
-                    )
-                  : (
-                      <div className="h-3 w-3" />
-                    )}
+                {mounted ? (
+                  resolvedTheme === 'dark' ? (
+                    <Sun className="h-3 w-3" />
+                  ) : (
+                    <Moon className="h-3 w-3" />
+                  )
+                ) : (
+                  <div className="h-3 w-3" />
+                )}
               </button>
             </div>
           </div>
@@ -511,35 +501,31 @@ export const Footer: React.FC = () => {
               href="/legal/privacy"
               className="transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              Privacy
+              {t('privacy')}
             </Link>
             <Link
               href="/legal/terms"
               className="transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              Terms
+              {t('terms')}
             </Link>
             <Link
               href="/legal/dpa"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Lock className="h-3 w-3" />
-              {' '}
-              DPA
+              <Lock className="h-3 w-3" /> {t('dpa')}
             </Link>
             <Link
               href="/security/report"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Bug className="h-3 w-3" />
-              {' '}
-              Report Bug
+              <Bug className="h-3 w-3" /> {t('report_bug')}
             </Link>
             <Link
               href="/sitemap"
               className="transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              Sitemap
+              {t('sitemap')}
             </Link>
           </div>
         </div>

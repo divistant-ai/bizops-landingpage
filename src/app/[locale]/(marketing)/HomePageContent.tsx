@@ -24,19 +24,28 @@ import {
 } from '@/components/ui/LazyComponents';
 import { StaggeredText } from '@/components/ui/motion-text';
 import {
-  homeIndustriesData,
+  getHomeIndustriesData,
+  getHomeProblems,
+  getHomeProcess,
+  getHomeRolesData,
+  getHomeSolutions,
+  getHomeUVP,
   homeIntegrations,
-  homeProblems,
-  homeProcess,
-  homeRolesData,
-  homeSolutions,
-  homeUVP,
 } from '@/data/homeContent';
 
 export default function HomePageContent() {
   const t = useTranslations('Homepage');
+
+  // Get translated data
+  const homeProblems = getHomeProblems((key) => t(key.replace('Homepage.', '') as any));
+  const homeUVP = getHomeUVP((key) => t(key.replace('Homepage.', '') as any));
+  const homeSolutions = getHomeSolutions((key) => t(key.replace('Homepage.', '') as any));
+  const homeProcess = getHomeProcess((key) => t(key.replace('Homepage.', '') as any));
+  const homeIndustriesData = getHomeIndustriesData((key) => t(key.replace('Homepage.', '') as any));
+  const homeRolesData = getHomeRolesData((key) => t(key.replace('Homepage.', '') as any));
+
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
-  const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
+  const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
 
   if (!activeSolution) {
     return null; // Early return if no solution found
@@ -110,8 +119,7 @@ export default function HomePageContent() {
                 href="/pricing/calculator"
                 className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50 dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
               >
-                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />
-                {' '}
+                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />{' '}
                 <p className="text-slate-900 dark:text-white">{t('cta_pricing')}</p>
               </BouncyLink>
             </div>
@@ -139,8 +147,7 @@ export default function HomePageContent() {
                 align="center"
                 className="absolute top-4 left-4 z-30 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-[10px] text-slate-700 shadow-lg backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300"
               >
-                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />
-                {' '}
+                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />{' '}
                 <span className="font-mono">secure://bizops.id/dashboard</span>
               </Stack>
             </div>
@@ -149,7 +156,7 @@ export default function HomePageContent() {
           {/* Social Proof Logos */}
           <div className="mt-20 overflow-hidden border-t border-slate-100 pt-10 dark:border-slate-800">
             <p className="mb-6 text-sm leading-normal text-slate-500 dark:text-slate-400">
-              Dipercaya oleh Pemimpin Industri
+              {t('trusted_by')}
             </p>
             <div className="flex items-center justify-center gap-8 opacity-70 grayscale transition-all duration-500 hover:grayscale-0">
               {[
@@ -159,7 +166,7 @@ export default function HomePageContent() {
                 'Aero Travel Indonesia',
                 'TechCorp',
                 'BuildCo',
-              ].map(brand => (
+              ].map((brand) => (
                 <span
                   key={brand}
                   className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl dark:text-slate-200"
@@ -184,22 +191,18 @@ export default function HomePageContent() {
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
-        >
-        </div>
+        ></div>
 
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-            Mengapa Bisnis Anda
-            {' '}
+            {t('problems_title')}{' '}
             <span className="relative inline-block text-red-500 dark:text-red-400">
-              Stuck?
-              {' '}
+              {t('problems_stuck')}{' '}
               <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30 dark:bg-red-900 dark:opacity-40"></span>
             </span>
           </h2>
           <p className="mt-4 text-lg text-slate-600 md:text-lg dark:text-slate-300">
-            Pertumbuhan bisnis seringkali terhambat bukan karena kurangnya penjualan, tapi karena
-            kekacauan operasional internal.
+            {t('problems_desc')}
           </p>
         </div>
 
@@ -254,25 +257,19 @@ export default function HomePageContent() {
         >
           <div className="max-w-2xl">
             <Badge variant="outline-white" className="mb-4">
-              BizOps Platform
+              {t('solutions_badge')}
             </Badge>
             <h2 className="text-3xl leading-tight font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-              Satu Solusi,
-              {' '}
-              <br />
+              {t('solutions_title')} <br />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                Tak Terbatas Kemungkinan.
+                {t('solutions_highlight')}
               </span>
             </h2>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-              Modul yang saling berbicara satu sama lain. Input di satu tempat, terupdate di
-              mana-mana.
-            </p>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">{t('solutions_desc')}</p>
           </div>
           <Button asChild size="md" variant="white" className="group">
             <Link href="/platform">
-              Lihat Semua Modul
-              {' '}
+              {t('solutions_cta')}{' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -336,8 +333,7 @@ export default function HomePageContent() {
             >
               <div
                 className={`absolute top-0 right-0 h-96 w-96 ${activeSolution.bg} pointer-events-none rounded-full opacity-20 blur-[120px]`}
-              >
-              </div>
+              ></div>
 
               <div className="relative z-10">
                 <div className="mb-10">
@@ -355,16 +351,14 @@ export default function HomePageContent() {
                     </h3>
                   </Stack>
                   <p className="border-l-4 border-slate-300 pl-4 text-xl leading-relaxed text-slate-600 italic dark:border-slate-700 dark:text-slate-300">
-                    "
-                    {activeSolution.impact}
-                    "
+                    "{activeSolution.impact}"
                   </p>
                 </div>
 
                 <Grid cols={1} mdCols={2} gap={8}>
                   <div>
                     <h4 className="mb-4 text-xl font-semibold text-slate-900 dark:text-white">
-                      Fitur Utama
+                      {t('solutions_features')}
                     </h4>
                     <ul className="space-y-4">
                       {activeSolution.modules.map((mod, idx) => (
@@ -394,13 +388,13 @@ export default function HomePageContent() {
                       />
                     </div>
                     <h5 className="text-lg font-semibold text-slate-900 dark:text-white">
-                      Lihat Demo Modul Ini
+                      {t('solutions_demo_title')}
                     </h5>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Video singkat 2 menit penjelasan fitur.
+                      {t('solutions_demo_desc')}
                     </p>
                     <Button asChild size="sm" variant="outline-white" className="mt-2">
-                      <Link href="/platform">Tonton Video</Link>
+                      <Link href="/platform">{t('solutions_demo_cta')}</Link>
                     </Button>
                   </Stack>
                 </Grid>
@@ -419,12 +413,9 @@ export default function HomePageContent() {
       >
         <Container size="3xl" className="mb-16 text-center">
           <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-            Bukan Sekadar ERP Biasa
+            {t('uvp_title')}
           </h2>
-          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            Kami membangun BizOps dengan filosofi "Indonesia-First". Sesuai regulasi lokal,
-            fleksibel untuk budaya kerja lokal.
-          </p>
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">{t('uvp_desc')}</p>
         </Container>
 
         <CardSlider
@@ -483,15 +474,11 @@ export default function HomePageContent() {
         <div className="relative z-10 mb-20 text-center">
           <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent dark:from-white dark:to-slate-300">
-              Bandingkan Nilai Investasi Anda
+              {t('pricing_title')}
             </span>
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            BizOps bukan hanya soal "lebih murah". Ini soal
-            {' '}
-            <span className="font-semibold text-slate-900 dark:text-white">efisiensi total</span>
-            .
-            Bandingkan kompleksitas, waktu implementasi, dan hidden cost.
+            {t('pricing_desc')}
           </p>
         </div>
 
@@ -512,7 +499,7 @@ export default function HomePageContent() {
               <div className="flex h-full flex-col p-8">
                 <Stack direction="horizontal" justify="between" className="mb-6">
                   <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                    Problem #1
+                    {t('pricing_problem1_badge')}
                   </span>
                   <div className="rounded-xl bg-red-50 p-2 text-red-500 dark:bg-red-950 dark:text-red-400">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -527,14 +514,10 @@ export default function HomePageContent() {
                 </Stack>
 
                 <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  Fragmented Stack
+                  {t('pricing_problem1_title')}
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Menggabungkan 3-5 aplikasi SaaS berbeda. Akibatnya:
-                  {' '}
-                  <span className="font-semibold text-red-600 dark:text-red-400">
-                    Data Silo & Vendor Fatigue.
-                  </span>
+                  {t('pricing_problem1_desc')}
                 </p>
 
                 <div className="mt-auto">
@@ -544,9 +527,9 @@ export default function HomePageContent() {
                     className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
                   >
                     {[
-                      { label: 'CRM License', price: 'Rp 150rb' },
-                      { label: 'Accounting App', price: 'Rp 250rb' },
-                      { label: 'HRIS App', price: 'Rp 20rb' },
+                      { label: t('pricing_problem1_crm'), price: 'Rp 150rb' },
+                      { label: t('pricing_problem1_accounting'), price: 'Rp 250rb' },
+                      { label: t('pricing_problem1_hris'), price: 'Rp 20rb' },
                     ].map((item, i) => (
                       <Stack
                         key={i}
@@ -557,7 +540,7 @@ export default function HomePageContent() {
                         <span>{item.label}</span>
                         <span className="font-bold text-slate-800 dark:text-slate-200">
                           {item.price}
-                          <span className="font-normal opacity-70">/user</span>
+                          <span className="font-normal opacity-70">{t('pricing_per_user')}</span>
                         </span>
                       </Stack>
                     ))}
@@ -566,12 +549,12 @@ export default function HomePageContent() {
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                     <Stack direction="horizontal" align="end" justify="between" className="mb-2">
                       <span className="text-sm text-slate-600 dark:text-slate-400">
-                        Total Cost (50 Users)
+                        {t('pricing_total_cost')}
                       </span>
                       <span className="text-lg font-bold text-slate-900 dark:text-white">
                         ~Rp 21 Jt
                         <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                          /bln
+                          {t('pricing_per_month')}
                         </span>
                       </span>
                     </Stack>
@@ -583,8 +566,10 @@ export default function HomePageContent() {
                       justify="between"
                       className="text-[10px] text-slate-500 dark:text-slate-400"
                     >
-                      <span>Integration Time:</span>
-                      <span className="font-bold text-red-600 dark:text-red-400">3-6 Bulan</span>
+                      <span>{t('pricing_integration_time')}</span>
+                      <span className="font-bold text-red-600 dark:text-red-400">
+                        {t('pricing_integration_months')}
+                      </span>
                     </Stack>
                   </div>
                 </div>
@@ -599,7 +584,7 @@ export default function HomePageContent() {
               <div className="flex h-full flex-col p-8">
                 <Stack direction="horizontal" justify="between" className="mb-6">
                   <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                    Problem #2
+                    {t('pricing_problem2_badge')}
                   </span>
                   <div className="rounded-xl bg-amber-50 p-2 text-amber-500 dark:bg-amber-950 dark:text-amber-400">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -613,13 +598,12 @@ export default function HomePageContent() {
                   </div>
                 </Stack>
                 <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  Legacy / Global ERP
+                  {t('pricing_problem2_title')}
                 </h3>
                 <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  Model lisensi per user yang kaku. Akibatnya:
-                  {' '}
+                  {t('pricing_problem2_desc')}{' '}
                   <span className="font-semibold text-amber-600 dark:text-amber-400">
-                    Growth Penalty & Mahal.
+                    {t('pricing_problem2_penalty')}
                   </span>
                 </p>
 
@@ -630,9 +614,17 @@ export default function HomePageContent() {
                     className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
                   >
                     {[
-                      { label: 'Standard License', price: '~Rp 210rb' },
-                      { label: 'Implementation', price: '$$$ (Extra)' },
-                      { label: 'Maintenance', price: '~20% / year' },
+                      { label: t('pricing_problem2_license'), price: '~Rp 210rb', perUser: true },
+                      {
+                        label: t('pricing_problem2_implementation'),
+                        price: t('pricing_problem2_implementation_cost'),
+                        perUser: false,
+                      },
+                      {
+                        label: t('pricing_problem2_maintenance'),
+                        price: t('pricing_problem2_maintenance_cost'),
+                        perUser: false,
+                      },
                     ].map((item, i) => (
                       <Stack
                         key={i}
@@ -643,8 +635,8 @@ export default function HomePageContent() {
                         <span>{item.label}</span>
                         <span className="font-bold text-slate-800 dark:text-slate-200">
                           {item.price}
-                          {item.label.includes('License') && (
-                            <span className="font-normal opacity-70">/user</span>
+                          {item.perUser && (
+                            <span className="font-normal opacity-70">{t('pricing_per_user')}</span>
                           )}
                         </span>
                       </Stack>
@@ -654,12 +646,12 @@ export default function HomePageContent() {
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                     <Stack direction="horizontal" align="end" justify="between" className="mb-2">
                       <span className="text-sm text-slate-600 dark:text-slate-400">
-                        Total Cost (50 Users)
+                        {t('pricing_total_cost')}
                       </span>
                       <span className="text-lg font-bold text-slate-900 dark:text-white">
                         ~Rp 10.5 Jt
                         <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                          /bln
+                          {t('pricing_per_month')}
                         </span>
                       </span>
                     </Stack>
@@ -671,9 +663,9 @@ export default function HomePageContent() {
                       justify="between"
                       className="text-[10px] text-slate-500 dark:text-slate-400"
                     >
-                      <span>Implementation Time:</span>
+                      <span>{t('pricing_implementation_time')}</span>
                       <span className="font-bold text-amber-600 dark:text-amber-400">
-                        6-12 Bulan
+                        {t('pricing_implementation_months')}
                       </span>
                     </Stack>
                   </div>
@@ -709,27 +701,24 @@ export default function HomePageContent() {
                       align="center"
                       className="w-fit rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase shadow-lg shadow-blue-500/20"
                     >
-                      <CheckCircle2 className="h-3.5 w-3.5" />
-                      {' '}
-                      The BizOps Way
+                      <CheckCircle2 className="h-3.5 w-3.5" /> {t('pricing_solution_badge')}
                     </Stack>
                     <div className="text-left md:text-right">
                       <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">
-                        Best Value Choice
+                        {t('pricing_solution_best_value')}
                       </span>
                     </div>
                   </Stack>
 
                   <h3 className="mb-4 text-3xl leading-tight font-black tracking-tight text-slate-900 md:text-4xl dark:text-white">
-                    Satu Platform.
+                    {t('pricing_solution_title')}
                     <br />
                     <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                      Tanpa Batas User.
+                      {t('pricing_solution_subtitle')}
                     </span>
                   </h3>
                   <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-                    Platform terintegrasi dengan harga flat yang adil. Infrastruktur managed
-                    service, siap mendukung pertumbuhan bisnis Anda tanpa penalti biaya.
+                    {t('pricing_solution_desc')}
                   </p>
 
                   <div className="relative mb-8 flex-grow rounded-3xl border border-slate-200 bg-slate-50/50 p-6 backdrop-blur-md transition-colors duration-500 group-hover:bg-slate-100 md:p-8 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
@@ -737,13 +726,13 @@ export default function HomePageContent() {
                     <Grid cols={1} mdCols={2} gap={8} className="h-full items-center">
                       <div>
                         <span className="text-sm font-medium tracking-wider text-slate-500 dark:text-slate-400">
-                          Flat Monthly Cost
+                          {t('pricing_solution_flat_cost')}
                         </span>
                         <p className="my-2 text-4xl leading-tight font-black tracking-tighter text-slate-900 md:text-5xl dark:text-white">
                           Rp 3 Jt
                         </p>
                         <p className="text-sm text-slate-600 dark:text-slate-500">
-                          Paket Business (50 User)
+                          {t('pricing_solution_package')}
                         </p>
                       </div>
                       <Stack
@@ -754,14 +743,16 @@ export default function HomePageContent() {
                         className="border-slate-200 text-right md:border-l md:pl-6 dark:border-white/10"
                       >
                         <div className="mb-1 ml-auto w-fit rounded-lg border border-green-500/30 bg-green-500/20 px-3 py-1.5 text-sm font-bold text-green-600 dark:text-green-400">
-                          HEMAT 85%
+                          {t('pricing_solution_save')}
                         </div>
                         <span className="text-xs text-slate-500 dark:text-slate-400">
-                          vs Fragmented Stack
+                          {t('pricing_solution_vs')}
                         </span>
                         <span className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                          Go-Live:
-                          <span className="font-bold text-slate-900 dark:text-white">14 Hari</span>
+                          {t('pricing_solution_golive')}
+                          <span className="font-bold text-slate-900 dark:text-white">
+                            {t('pricing_solution_golive_days')}
+                          </span>
                         </span>
                       </Stack>
                     </Grid>
@@ -779,10 +770,10 @@ export default function HomePageContent() {
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                          Local Compliance
+                          {t('pricing_solution_compliance_title')}
                         </h4>
                         <p className="text-xs text-slate-600 dark:text-slate-400">
-                          Pajak, BPJS, Kasbon Ready.
+                          {t('pricing_solution_compliance_desc')}
                         </p>
                       </div>
                     </Stack>
@@ -797,10 +788,10 @@ export default function HomePageContent() {
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                          Managed Infrastructure
+                          {t('pricing_solution_infra_title')}
                         </h4>
                         <p className="text-xs text-slate-600 dark:text-slate-400">
-                          Server & Security Included.
+                          {t('pricing_solution_infra_desc')}
                         </p>
                       </div>
                     </Stack>
@@ -814,7 +805,7 @@ export default function HomePageContent() {
                     variant="primary"
                     className="h-14 w-full transform border-none bg-gradient-to-r from-blue-600 to-indigo-600 text-base font-bold shadow-xl shadow-blue-600/20 transition-all hover:scale-[1.01] hover:from-blue-500 hover:to-indigo-500 hover:shadow-blue-600/40"
                   >
-                    <Link href="/pricing/calculator">Hitung Penghematan Anda</Link>
+                    <Link href="/pricing/calculator">{t('pricing_solution_cta')}</Link>
                   </Button>
                 </div>
               </Stack>
@@ -839,18 +830,17 @@ export default function HomePageContent() {
         >
           <div className="max-w-2xl">
             <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              Go-Live dalam
-              {' '}
+              {t('process_title')}{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                30 Hari.
+                {t('process_days')}
               </span>
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Metodologi implementasi "Sprint" kami memangkas waktu setup hingga 70%.
-              {' '}
-              <strong className="font-medium text-slate-900 dark:text-white">Tanpa drama</strong>
-              ,
-              tanpa biaya konsultan yang membengkak.
+              {t('process_desc_1')}{' '}
+              <strong className="font-medium text-slate-900 dark:text-white">
+                {t('process_desc_2')}
+              </strong>
+              {t('process_desc_3')}
             </p>
           </div>
           <Button
@@ -859,7 +849,7 @@ export default function HomePageContent() {
             variant="outline-white"
             className="border-slate-300 px-6 font-medium text-slate-700 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
           >
-            <Link href="/services">Pelajari Metodologi Kami</Link>
+            <Link href="/services">{t('process_cta')}</Link>
           </Button>
         </Stack>
 
@@ -902,11 +892,9 @@ export default function HomePageContent() {
       >
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Solusi Spesifik Industri
+            {t('industries_title')}
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
-            Kami tidak percaya pada solusi "Satu Ukuran untuk Semua".
-          </p>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('industries_desc')}</p>
         </div>
 
         <CardSlider
@@ -944,8 +932,7 @@ export default function HomePageContent() {
                       align="center"
                       className="-translate-x-2 text-sm font-bold text-blue-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-blue-400"
                     >
-                      Explore
-                      {' '}
+                      {t('industries_explore')}{' '}
                       <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
                     </Stack>
                   </div>
@@ -956,12 +943,8 @@ export default function HomePageContent() {
         </CardSlider>
 
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-            Didesain untuk Peran Anda
-          </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
-            Dashboard yang relevan untuk setiap pemangku kepentingan.
-          </p>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('roles_title')}</h2>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('roles_desc')}</p>
         </div>
 
         <CardSlider
@@ -1010,31 +993,30 @@ export default function HomePageContent() {
         <Grid cols={1} mdCols={2} gap={12} className="relative z-10 mb-16 items-center">
           <div>
             <Badge variant="outline-white" className="mb-4">
-              Reliability & Security
+              {t('security_badge')}
             </Badge>
             <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              Tenang, Data Anda Aman.
+              {t('security_title')}
             </h2>
             <p className="mt-4 mb-8 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Fokuslah mengembangkan bisnis, biarkan kami menjaga infrastruktur Anda. BizOps
-              menjamin keamanan data setara standar perbankan.
+              {t('security_desc')}
             </p>
 
             <Stack direction="vertical" gap={6}>
               {[
                 {
-                  title: 'Enkripsi End-to-End',
-                  desc: 'Data sensitif (gaji, profit) terenkripsi saat dikirim dan disimpan (AES-256).',
+                  title: t('security_encryption_title'),
+                  desc: t('security_encryption_desc'),
                   icon: Lock,
                 },
                 {
-                  title: '99.9% Uptime SLA',
-                  desc: 'Server kami selalu aktif. Redundansi otomatis mencegah downtime saat jam sibuk.',
+                  title: t('security_uptime_title'),
+                  desc: t('security_uptime_desc'),
                   icon: CheckCircle2,
                 },
                 {
-                  title: 'Backup Otomatis Harian',
-                  desc: 'Data di-backup setiap hari ke lokasi terpisah. Restore data kapan saja dalam hitungan menit.',
+                  title: t('security_backup_title'),
+                  desc: t('security_backup_desc'),
                   icon: PlayCircle,
                 },
               ].map((item, idx) => {
@@ -1079,7 +1061,7 @@ export default function HomePageContent() {
               >
                 <div>
                   <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-                    System Status
+                    {t('security_system_status')}
                   </div>
                   <Stack direction="horizontal" gap={2} align="center">
                     <span className="relative flex h-3 w-3">
@@ -1087,13 +1069,13 @@ export default function HomePageContent() {
                       <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
                     </span>
                     <span className="font-bold text-slate-900 dark:text-white">
-                      All Systems Operational
+                      {t('security_all_operational')}
                     </span>
                   </Stack>
                 </div>
                 <div className="text-right">
                   <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-                    Uptime (30 Hari)
+                    {t('security_uptime_label')}
                   </div>
                   <div className="font-bold text-slate-900 dark:text-white">99.98%</div>
                 </div>
@@ -1120,7 +1102,7 @@ export default function HomePageContent() {
                   className="mt-4 rounded-lg bg-slate-100 p-3 text-xs text-slate-600 dark:bg-slate-800/50 dark:text-slate-400"
                 >
                   <CheckCircle2 className="h-4 w-4 text-green-500" aria-hidden="true" />
-                  <span>Backup terakhir berhasil: Hari ini, 03:00 WIB</span>
+                  <span>{t('security_backup_last')}</span>
                 </Stack>
               </Stack>
             </div>
@@ -1137,11 +1119,9 @@ export default function HomePageContent() {
       >
         <Container size="4xl" className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Terhubung dengan Ekosistem
+            {t('integrations_title')}
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
-            Open API kami memudahkan integrasi dengan bank, pajak, dan marketplace.
-          </p>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('integrations_desc')}</p>
         </Container>
 
         <div className="max-w-full overflow-hidden">
@@ -1170,8 +1150,7 @@ export default function HomePageContent() {
             href="/platform/technologies/integration"
             className="inline-flex items-center gap-2 font-bold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            Lihat 50+ Integrasi Lainnya
-            {' '}
+            {t('integrations_view_more')}{' '}
             <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
@@ -1189,12 +1168,9 @@ export default function HomePageContent() {
 
         <Container size="4xl" className="relative z-10 text-center">
           <h2 className="mb-6 text-4xl leading-tight font-extrabold text-slate-900 md:text-5xl dark:text-white">
-            Siap Mengubah Cara Anda Bekerja?
+            {t('cta_title')}
           </h2>
-          <p className="mb-10 text-xl text-slate-600 dark:text-slate-300">
-            Bergabunglah dengan 500+ perusahaan yang telah beralih ke BizOps. Tanpa komitmen jangka
-            panjang, batalkan kapan saja.
-          </p>
+          <p className="mb-10 text-xl text-slate-600 dark:text-slate-300">{t('cta_desc')}</p>
           <Stack direction="vertical" gap={4} className="justify-center sm:flex-row">
             <Button
               asChild
@@ -1202,7 +1178,7 @@ export default function HomePageContent() {
               variant="primary"
               className="h-16 w-full bg-gradient-to-r from-blue-600 to-indigo-600 px-10 text-xl font-bold text-white shadow-2xl shadow-blue-600/20 hover:from-blue-500 hover:to-indigo-500 sm:w-auto"
             >
-              <Link href="/contact">Hubungi Sales</Link>
+              <Link href="/contact">{t('cta_contact')}</Link>
             </Button>
             <Button
               asChild
@@ -1210,12 +1186,10 @@ export default function HomePageContent() {
               size="lg"
               className="h-16 w-full border-2 border-slate-300 px-10 text-xl text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
             >
-              <Link href="/pricing/calculator">Lihat Harga</Link>
+              <Link href="/pricing/calculator">{t('cta_view_pricing')}</Link>
             </Button>
           </Stack>
-          <p className="mt-6 block text-sm text-slate-500 dark:text-slate-400">
-            14-day free trial available. No credit card required.
-          </p>
+          <p className="mt-6 block text-sm text-slate-500 dark:text-slate-400">{t('cta_trial')}</p>
         </Container>
       </Section>
     </>

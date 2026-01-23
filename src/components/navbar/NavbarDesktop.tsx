@@ -1,10 +1,12 @@
 'use client';
 
 import { ChevronDown, Search } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { servicesItems } from '../../data/navData';
+import { LanguageSwitch } from '../LanguageSwitch';
 import { ThemeToggle } from '../ThemeToggle';
 import MegaMenu from './MegaMenu';
 import {
@@ -22,8 +24,22 @@ type MenuType = 'platform' | 'solutions' | 'services' | 'resources' | 'company' 
 
 const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   const pathname = usePathname();
+  const t = useTranslations('Navbar');
   const [activeMenu, setActiveMenu] = useState<MenuType>(null);
   const navRef = useRef<HTMLDivElement>(null);
+
+  // Get translated service label
+  const getServiceLabel = (item: (typeof servicesItems)[0]) => {
+    const labelMap: Record<string, string> = {
+      '/services/consulting': t('services_consulting'),
+      '/services/managed-business-services': t('services_managed'),
+      '/services/implementation': t('services_implementation'),
+      '/services/custom-dev': t('services_custom_dev'),
+      '/services/training': t('services_training'),
+      '/services/support': t('services_support'),
+    };
+    return labelMap[item.to] || item.label;
+  };
 
   // Handle click outside to close menu
   useEffect(() => {
@@ -54,7 +70,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   }, []);
 
   const handleMenuClick = useCallback((menu: MenuType) => {
-    setActiveMenu(prev => (prev === menu ? null : menu));
+    setActiveMenu((prev) => (prev === menu ? null : menu));
   }, []);
 
   const handleCloseMenu = useCallback(() => {
@@ -75,7 +91,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             className={getMenuItemClasses()}
             aria-expanded={isMenuOpen('platform')}
           >
-            Platform
+            {t('platform')}
             <ChevronDown
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('platform') ? 'rotate-180' : ''}`}
             />
@@ -91,7 +107,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             className={getMenuItemClasses()}
             aria-expanded={isMenuOpen('solutions')}
           >
-            Solutions
+            {t('solutions')}
             <ChevronDown
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('solutions') ? 'rotate-180' : ''}`}
             />
@@ -107,7 +123,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             className={getMenuItemClasses()}
             aria-expanded={isMenuOpen('services')}
           >
-            Services
+            {t('services')}
             <ChevronDown
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('services') ? 'rotate-180' : ''}`}
             />
@@ -119,7 +135,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
                 : 'invisible translate-y-1 opacity-0'
             }`}
           >
-            {servicesItems.map(item => (
+            {servicesItems.map((item) => (
               <Link
                 key={item.to}
                 href={item.to}
@@ -127,7 +143,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
                 onClick={handleCloseMenu}
               >
                 <item.icon className="h-4 w-4 shrink-0 opacity-70" />
-                {item.label}
+                {getServiceLabel(item)}
               </Link>
             ))}
           </div>
@@ -138,7 +154,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
           className={`${getMenuItemClasses()} shrink-0`}
           aria-current={pathname?.startsWith('/pricing') ? 'page' : undefined}
         >
-          Pricing
+          {t('pricing')}
         </Link>
 
         {/* MENU 4: RESOURCES */}
@@ -149,7 +165,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             className={getMenuItemClasses()}
             aria-expanded={isMenuOpen('resources')}
           >
-            Resources
+            {t('resources')}
             <ChevronDown
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('resources') ? 'rotate-180' : ''}`}
             />
@@ -158,14 +174,14 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
         </div>
 
         {/* MENU 5: COMPANY */}
-        <div className="relative flex h-full shrink-0 items-center">
+        <div className="relative flex h-full shrink-0 items-center pr-3">
           <button
             type="button"
             onClick={() => handleMenuClick('company')}
             className={getMenuItemClasses()}
             aria-expanded={isMenuOpen('company')}
           >
-            Company
+            {t('company')}
             <ChevronDown
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('company') ? 'rotate-180' : ''}`}
             />
@@ -181,16 +197,17 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
       <div className="flex w-full items-center gap-2">
         {/* Disabled Temporary */}
         {/* <NotificationCenter /> */}
+        <LanguageSwitch />
         <ThemeToggle />
-        <Link href="/search" className={getIconButtonClasses()} aria-label="Search">
+        <Link href="/search" className={getIconButtonClasses()} aria-label={t('search')}>
           <Search className={navbarStyles.iconSize.medium} />
         </Link>
         {/* Disabled Temporary */}
         {/* <Link href="/login" className={getTextButtonClasses()}>
-          Login
+          {t('login')}
         </Link> */}
         <button type="button" className={`${getTextButtonClasses()} ml-5`} onClick={onDemoClick}>
-          Book a Demo
+          {t('book_demo')}
         </button>
       </div>
     </div>

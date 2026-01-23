@@ -1,6 +1,7 @@
 'use client';
 
 import { CheckCircle2, Globe, MapPin, Search } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
 import { Badge, OptimizedImage } from '@/components/ui';
@@ -8,17 +9,20 @@ import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
 import { partnerDirectoryData } from '@/data/partnerDirectoryContent';
 
 export default function PartnerDirectoryPage() {
+  const locale = useLocale() as 'en' | 'id';
+  const t = useTranslations('PartnerDirectory');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedLocation, setSelectedLocation] = useState<string>('all');
 
   const filteredPartners = partnerDirectoryData.filter((partner) => {
-    const matchesSearch
-      = partner.name.toLowerCase().includes(searchTerm.toLowerCase())
-        || partner.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const description = partner.description[locale] || partner.description.en;
+    const matchesSearch =
+      partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || partner.type === selectedType;
-    const matchesLocation
-      = selectedLocation === 'all' || partner.location.includes(selectedLocation);
+    const matchesLocation =
+      selectedLocation === 'all' || partner.location.includes(selectedLocation);
 
     return matchesSearch && matchesType && matchesLocation;
   });
@@ -27,12 +31,9 @@ export default function PartnerDirectoryPage() {
     <div className="min-h-screen bg-neutral-50 dark:bg-slate-950">
       <Section className="border-b border-neutral-200 bg-white pt-32 pb-12 dark:border-slate-800 dark:bg-slate-900">
         <Container>
-          <h1 className="mb-6 text-4xl font-bold text-neutral-900 dark:text-white">
-            Partner Directory
-          </h1>
+          <h1 className="mb-6 text-4xl font-bold text-neutral-900 dark:text-white">{t('title')}</h1>
           <p className="mb-10 max-w-2xl text-xl text-neutral-600 dark:text-slate-400">
-            Temukan mitra bersertifikat untuk membantu implementasi, kustomisasi, atau layanan
-            terkelola BizOps di wilayah Anda.
+            {t('subtitle')}
           </p>
 
           {/* Filters */}
@@ -41,29 +42,29 @@ export default function PartnerDirectoryPage() {
               <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-neutral-400 dark:text-slate-500" />
               <input
                 type="text"
-                placeholder="Cari partner berdasarkan nama atau keahlian..."
+                placeholder={t('search_placeholder')}
                 className="focus:ring-primary-500 focus:border-primary-500 w-full rounded-xl border border-neutral-300 bg-white py-3 pr-4 pl-12 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
                 value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedType}
-              onChange={e => setSelectedType(e.target.value)}
+              onChange={(e) => setSelectedType(e.target.value)}
             >
-              <option value="all">Semua Tipe Partner</option>
-              <option value="implementation">Implementation Partner</option>
-              <option value="technology">Technology Partner</option>
-              <option value="managed-service">Managed Service</option>
-              <option value="referral">Consulting / Referral</option>
+              <option value="all">{t('filter_all_types')}</option>
+              <option value="implementation">{t('type_implementation')}</option>
+              <option value="technology">{t('type_technology')}</option>
+              <option value="managed-service">{t('type_managed_service')}</option>
+              <option value="referral">{t('type_referral')}</option>
             </select>
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedLocation}
-              onChange={e => setSelectedLocation(e.target.value)}
+              onChange={(e) => setSelectedLocation(e.target.value)}
             >
-              <option value="all">Semua Lokasi</option>
+              <option value="all">{t('filter_all_locations')}</option>
               <option value="Indonesia">Indonesia</option>
               <option value="USA">USA</option>
               <option value="India">India</option>
@@ -76,7 +77,7 @@ export default function PartnerDirectoryPage() {
         <Container>
           <FadeInStagger>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPartners.map(partner => (
+              {filteredPartners.map((partner) => (
                 <FadeIn key={partner.id}>
                   <div className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                     <div className="mb-6 flex items-start justify-between">
@@ -97,14 +98,12 @@ export default function PartnerDirectoryPage() {
                             {partner.name}
                           </h3>
                           <div className="flex items-center gap-1 text-xs text-neutral-500 dark:text-slate-400">
-                            <MapPin className="h-3 w-3" />
-                            {' '}
-                            {partner.location}
+                            <MapPin className="h-3 w-3" /> {partner.location}
                           </div>
                         </div>
                       </div>
                       {partner.certified && (
-                        <div className="text-primary-600" title="Certified Partner">
+                        <div className="text-primary-600" title={t('certified_partner')}>
                           <CheckCircle2 className="fill-primary-50 h-5 w-5" />
                         </div>
                       )}
@@ -124,7 +123,7 @@ export default function PartnerDirectoryPage() {
                         {partner.partnershipStatus || partner.type.replace('-', ' ').toUpperCase()}
                       </Badge>
                       <p className="line-clamp-3 text-sm text-neutral-600 dark:text-slate-400">
-                        {partner.description}
+                        {partner.description[locale] || partner.description.en}
                       </p>
                     </div>
 
@@ -140,8 +139,7 @@ export default function PartnerDirectoryPage() {
                         ))}
                         {partner.industries.length > 2 && (
                           <span className="px-1 py-1 text-[10px] text-neutral-400 dark:text-slate-500">
-                            +
-                            {partner.industries.length - 2}
+                            +{partner.industries.length - 2}
                           </span>
                         )}
                       </div>
@@ -161,7 +159,7 @@ export default function PartnerDirectoryPage() {
 
             {filteredPartners.length === 0 && (
               <div className="py-20 text-center text-neutral-500 dark:text-slate-400">
-                <p className="text-lg">Tidak ada partner yang cocok dengan filter Anda.</p>
+                <p className="text-lg">{t('no_results')}</p>
                 <button
                   onClick={() => {
                     setSearchTerm('');
@@ -170,7 +168,7 @@ export default function PartnerDirectoryPage() {
                   }}
                   className="text-primary-600 mt-2 font-bold hover:underline"
                 >
-                  Reset Filter
+                  {t('reset_filter')}
                 </button>
               </div>
             )}
