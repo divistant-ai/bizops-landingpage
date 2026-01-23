@@ -69,7 +69,7 @@ const teamMembers = [
 
 export default function AboutContent() {
   const t = useTranslations('About');
-  const { hero, timeline, values, entity } = aboutContent;
+  const { entity } = aboutContent;
 
   const stats = [
     { value: '500+', label: t('stats_companies'), icon: Building2 },
@@ -84,7 +84,6 @@ export default function AboutContent() {
       <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pb-40 dark:bg-[#0B1120]">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         {/* Animated Glow Orbs */}
-        <div className="animate-pulse-slow pointer-events-none absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-[120px] dark:bg-indigo-600/20"></div>
         <div className="pointer-events-none absolute right-0 bottom-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-600/10"></div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center">
@@ -115,7 +114,7 @@ export default function AboutContent() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mx-auto mb-12 max-w-3xl text-lg leading-relaxed font-light text-slate-700 md:text-2xl dark:text-slate-300"
           >
-            {hero.subheadline}
+            {t('hero_subheadline')}
           </motion.p>
 
           <motion.div
@@ -196,7 +195,7 @@ export default function AboutContent() {
                     <span
                       className={`text-sm font-bold tracking-widest uppercase transition-colors ${idx === 2 ? 'text-indigo-600' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-300'}`}
                     >
-                      {t(`timeline_${idx}_year`)}
+                      {t(`timeline_${idx}_year` as any)}
                     </span>
                   </div>
                   <div
@@ -205,12 +204,12 @@ export default function AboutContent() {
                     <h3
                       className={`mb-4 text-2xl font-bold ${idx === 2 ? 'text-indigo-900 dark:text-indigo-300' : 'text-slate-900 dark:text-white'}`}
                     >
-                      {t(`timeline_${idx}_title`)}
+                      {t(`timeline_${idx}_title` as any)}
                     </h3>
                     <p
                       className={`text-base leading-relaxed font-light md:text-lg ${idx === 2 ? 'text-indigo-800/80 dark:text-indigo-200/80' : 'text-slate-600 dark:text-slate-400'}`}
                     >
-                      {t(`timeline_${idx}_desc`)}
+                      {t(`timeline_${idx}_desc` as any)}
                     </p>
                   </div>
                 </div>
@@ -256,15 +255,15 @@ export default function AboutContent() {
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                      {t(`value_${idx}_title`)}
+                      {t(`value_${idx}_title` as any)}
                     </h3>
                     <p className="mb-6 leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      "{t(`value_${idx}_manifesto`)}"
+                      "{t(`value_${idx}_manifesto` as any)}"
                     </p>
                     <div className="border-t border-slate-200 pt-6 dark:border-white/10">
                       <p className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-500" />
-                        {t(`value_${idx}_proof`)}
+                        {t(`value_${idx}_proof` as any)}
                       </p>
                     </div>
                   </div>
@@ -392,14 +391,18 @@ export default function AboutContent() {
                     <h4 className="font-bold text-slate-900 dark:text-white">
                       {t('entity_headquarters')}
                     </h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{entity.hq}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('entity_headquarter_description')}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Code className="text-primary-600 dark:text-primary-400 mt-1 h-5 w-5 shrink-0" />
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">{t('entity_rnd')}</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{entity.rnd}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('entity_rnd_description')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -410,7 +413,9 @@ export default function AboutContent() {
                     <h4 className="font-bold text-slate-900 dark:text-white">
                       {t('entity_legal')}
                     </h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{entity.legal}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {t('entity_legal_description')}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -420,7 +425,7 @@ export default function AboutContent() {
                       {t('entity_compliance')}
                     </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      {entity.compliance}
+                      {t('entity_compliance_description')}
                     </p>
                   </div>
                 </div>

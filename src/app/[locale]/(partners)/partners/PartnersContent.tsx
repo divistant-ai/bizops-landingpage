@@ -392,10 +392,10 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                         {Icon && <Icon className="h-6 w-6" />}
                       </div>
                       <h3 className="mb-4 text-lg font-bold text-slate-900 dark:text-white">
-                        {t(`${benefitKey}_title`)}
+                        {t(`${benefitKey}_title` as any)}
                       </h3>
                       <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                        {t(`${benefitKey}_desc`)}
+                        {t(`${benefitKey}_desc` as any)}
                       </p>
                     </div>
                   </div>
@@ -416,10 +416,10 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                       {Icon && <Icon className="h-6 w-6" />}
                     </div>
                     <h3 className="mb-4 text-lg font-bold text-slate-900 dark:text-white">
-                      {t(`${benefitKey}_title`)}
+                      {t(`${benefitKey}_title` as any)}
                     </h3>
                     <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                      {t(`${benefitKey}_desc`)}
+                      {t(`${benefitKey}_desc` as any)}
                     </p>
                   </div>
                 </FadeIn>
@@ -436,7 +436,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
             {t('personas_title')}
           </h2>
           <div className="grid gap-8 md:grid-cols-3">
-            {personas.map((persona, i) => {
+            {personas.map((_persona, i) => {
               const personaKey = `persona_${i + 1}`;
               return (
                 <FadeIn key={i} delay={i * 0.1}>
@@ -445,7 +445,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                       <Users className="h-7 w-7" />
                     </div>
                     <h3 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
-                      {t(`${personaKey}_title`)}
+                      {t(`${personaKey}_title` as any)}
                     </h3>
                     <div className="flex flex-col gap-4">
                       <div>
@@ -453,7 +453,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                           {t('personas_pain_label')}
                         </p>
                         <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                          {t(`${personaKey}_pain`)}
+                          {t(`${personaKey}_pain` as any)}
                         </p>
                       </div>
                       <div>
@@ -461,7 +461,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                           {t('personas_solution_label')}
                         </p>
                         <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                          {t(`${personaKey}_solution`)}
+                          {t(`${personaKey}_solution` as any)}
                         </p>
                       </div>
                     </div>
