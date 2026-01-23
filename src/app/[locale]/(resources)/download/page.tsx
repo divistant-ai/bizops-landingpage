@@ -311,19 +311,11 @@ export default function DownloadPage() {
             <span className="text-slate-800 dark:text-white">{t('enterprise_subtitle')}</span>
           </Typography>
           <Stack direction="vertical" gap={4} className="mt-8 justify-center">
-            <Button
-              size="md"
-              variant="outline"
-              className="border-slate-700 text-white hover:bg-slate-800"
-            >
+            <Button size="md" variant="outline" className="border-slate-700 text-white">
               <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
               <span className="text-slate-700 dark:text-white">{t('download_apk')}</span>
             </Button>
-            <Button
-              size="md"
-              variant="outline"
-              className="border-slate-700 text-white hover:bg-slate-800"
-            >
+            <Button size="md" variant="outline" className="border-slate-700 text-white">
               <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
               <span className="text-slate-700 dark:text-white">{t('mdm_config')}</span>
             </Button>
