@@ -1,4 +1,23 @@
 {
+  "Error": {
+    "title": "Terjadi Kesalahan!",
+    "description": "Kami menemui kesalahan yang tidak terduga. Silakan coba lagi atau kembali ke halaman utama.",
+    "button_retry": "Coba Lagi",
+    "button_home": "Kembali ke Beranda"
+  },
+  "NotFound": {
+    "title_1": "Halaman Ini Sedang",
+    "title_2": "\"Cuti Di Luar Tanggungan\"",
+    "description": "Seperti karyawan yang butuh istirahat sejenak, halaman yang Anda cari sepertinya sedang tidak ada di tempat, telah dipindahkan, atau tautannya sudah kadaluarsa.",
+    "button_dashboard": "Kembali ke Dashboard",
+    "button_home": "Kembali ke Beranda",
+    "link_product_title": "Produk",
+    "link_product_desc": "Lihat solusi",
+    "link_blog_title": "Blog",
+    "link_blog_desc": "Baca wawasan",
+    "link_support_title": "Support",
+    "link_support_desc": "Hubungi kami"
+  },
   "RootLayout": {
     "description": "BizOps ERP - Sistem Operasional Bisnis Terintegrasi",
     "home_link": "Beranda",
@@ -1037,6 +1056,7 @@
   },
   "About": {
     "hero_badge": "Engineering Sovereignty",
+    "hero_subheadline": "BizOps lahir bukan dari spekulasi di ruang rapat dewan direksi yang dingin, melainkan dari observasi dan frustasi nyata di lantai pabrik yang panas, gudang distribusi yang sibuk, dan kantor HR yang kewalahan. Kami hadir untuk menutup celah tersebut dengan solusi yang presisi, adaptif, dan manusiawi.",
     "hero_title_1": "Bermitra dengan Praktisi yang",
     "hero_title_2": "Mengerti Masalah Lapangan.",
     "cta_profile": "Lihat Profil Lengkap Divistant",
@@ -1070,9 +1090,13 @@
     "team_subtitle": "Praktisi berpengalaman yang membangun BizOps dari nol.",
     "team_connect": "Connect",
     "entity_headquarters": "Headquarters",
+    "entity_headquarter_description": "Jakarta Selatan (Sales & Ops) - Pusat operasional bisnis dan layanan klien.",
     "entity_rnd": "R&D Center",
+    "entity_rnd_description": "Yogyakarta/Bandung (R&D) - Pusat inovasi teknologi dan pengembangan produk.",
     "entity_legal": "Legalitas",
+    "entity_legal_description": "NIB: [Tersedia] | SK Kemenkumham: [Tersedia]",
     "entity_compliance": "Compliance",
+    "entity_compliance_description": "Terdaftar resmi sebagai Penyelenggara Sistem Elektronik (PSE) Lingkup Privat di Kominfo.",
     "cta_badge": "Join Us",
     "cta_title": "Tertarik Bergabung?",
     "cta_subtitle": "Kami selalu mencari talenta terbaik untuk membangun masa depan enterprise software di Indonesia.",

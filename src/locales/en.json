@@ -1,4 +1,23 @@
 {
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "We encountered an unexpected error. Please try again or return to the homepage.",
+    "button_retry": "Try Again",
+    "button_home": "Back to Home"
+  },
+  "NotFound": {
+    "title_1": "This Page is Currently",
+    "title_2": "\"On Leave Without Coverage\"",
+    "description": "Like an employee who needs a break, the page you're looking for seems to be out of office, has been moved, or the link has expired.",
+    "button_dashboard": "Back to Dashboard",
+    "button_home": "Back to Home",
+    "link_product_title": "Products",
+    "link_product_desc": "View solutions",
+    "link_blog_title": "Blog",
+    "link_blog_desc": "Read insights",
+    "link_support_title": "Support",
+    "link_support_desc": "Contact us"
+  },
   "RootLayout": {
     "description": "BizOps ERP - Integrated Business Operating System",
     "home_link": "Home",
@@ -1037,6 +1056,7 @@
   },
   "About": {
     "hero_badge": "Engineering Sovereignty",
+    "hero_subheadline": "BizOps was born not from speculation in a cold boardroom, but from real-life observations and frustrations on hot factory floors, busy distribution warehouses, and loud HR offices. We're here to fill that gap with precise, adaptive, and humane solutions.",
     "hero_title_1": "Partnering with Practitioners who",
     "hero_title_2": "Understand Field Problems.",
     "cta_profile": "View Complete Divistant Profile",
@@ -1070,9 +1090,13 @@
     "team_subtitle": "Experienced practitioners building BizOps from scratch.",
     "team_connect": "Connect",
     "entity_headquarters": "Headquarters",
+    "entity_headquarter_description": "South Jakarta (Sales & Operations) - Business operations and client services centre.",
     "entity_rnd": "R&D Center",
+    "entity_rnd_description": "Yogyakarta/Bandung (R&D) - Centre for technological innovation and product development.",
     "entity_legal": "Legal",
+    "entity_legal_description": "NIB: [Available] | Ministry of Law and Human Rights Decree: [Available]",
     "entity_compliance": "Compliance",
+    "entity_compliance_description": "Officially registered as a Private Sector Electronic System Operator (PSE) with the Ministry of Communication and Information Technology.",
     "cta_badge": "Join Us",
     "cta_title": "Interested in Joining?",
     "cta_subtitle": "We are always looking for the best talents to build the future of enterprise software in Indonesia.",
