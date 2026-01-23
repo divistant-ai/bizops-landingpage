@@ -486,7 +486,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                       // Get translated item
                       const itemKey = getItemKeyFromUrl(item.to);
                       const translatedItem = itemKey
-                        ? translatedContent.items[itemKey as keyof typeof translatedContent.items]
+                        ? (translatedContent.items as any)[itemKey]
                         : null;
 
                       return (
@@ -503,10 +503,10 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                           </div>
                           <div>
                             <div className="group-hover/item:text-primary-600 dark:group-hover/item:text-primary-400 text-sm font-bold text-slate-900 transition-colors duration-200 dark:text-white">
-                              {translatedItem?.label || item.label}
+                              {(translatedItem as any)?.label || item.label}
                             </div>
                             <div className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                              {translatedItem?.desc || item.desc}
+                              {(translatedItem as any)?.desc || item.desc}
                             </div>
                           </div>
                         </Link>

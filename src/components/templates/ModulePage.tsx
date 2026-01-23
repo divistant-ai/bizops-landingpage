@@ -456,6 +456,10 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
 
             <Grid cols={3} mdCols={3} gap={6}>
               {relatedModules.map((module) => {
+                if (!module) {
+                  return null;
+                }
+
                 const ModuleIcon = module.icon || HelpCircle;
                 const linkPath =
                   module.type === 'capability'

@@ -412,8 +412,7 @@ export default function MediaKitContent() {
                 </Typography>
               </div>
             </div>
-            <Typography
-              variant="body"
+            <p
               className="leading-relaxed text-slate-600 dark:text-slate-400"
               dangerouslySetInnerHTML={{ __html: t('typography_desc') }}
             />
