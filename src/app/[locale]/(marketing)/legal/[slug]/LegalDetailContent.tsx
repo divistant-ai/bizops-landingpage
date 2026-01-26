@@ -19,6 +19,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Container, Section } from '@/components/layout';
@@ -40,8 +41,10 @@ type LegalDetailContentProps = {
 };
 
 export default function LegalDetailContent({ slug, data }: LegalDetailContentProps) {
+  const t = useTranslations('Legal');
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Cookie Preferences State
   const [preferences, setPreferences] = useState({
@@ -57,8 +60,31 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
   const [requestStatus, setRequestStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   useEffect(() => {
+    // Check if desktop on mount
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  useEffect(() => {
     // Parse headings for TOC
-    if (data?.content) {
+    if (slug === 'privacy') {
+      // For privacy policy, manually create headings from i18n
+      setHeadings([
+        { id: 'intro', text: t('privacy.intro_title') },
+        { id: 'data-collected', text: t('privacy.data_collected_title') },
+        { id: 'data-usage', text: t('privacy.data_usage_title') },
+        { id: 'data-security', text: t('privacy.data_security_title') },
+        { id: 'data-sharing', text: t('privacy.data_sharing_title') },
+        { id: 'your-rights', text: t('privacy.your_rights_title') },
+        { id: 'contact', text: t('privacy.contact_title') },
+      ]);
+    } else if (data?.content) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(data.content, 'text/html');
       const h2s = Array.from(doc.querySelectorAll('h2')).map((h2, index) => {
@@ -67,7 +93,7 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
       });
       setHeadings(h2s);
     }
-  }, [data]);
+  }, [data, slug, t]);
 
   useEffect(() => {
     if (slug === 'cookies') {
@@ -119,9 +145,12 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
       <Section className="border-b border-slate-200 bg-slate-50 pt-32 pb-16 dark:border-slate-800 dark:bg-slate-900">
         <Container size="6xl">
           <div className="mb-8 flex items-center justify-between">
-            <Link href="/legal" className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center text-slate-500 transition-colors dark:text-slate-400">
+            <Link
+              href="/legal"
+              className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center text-slate-500 transition-colors dark:text-slate-400"
+            >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Kembali ke Pusat Legal
+              {t('back_to_legal')}
             </Link>
 
             {/* Mobile Nav Toggle */}
@@ -136,7 +165,7 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
           <div className="grid gap-8 lg:grid-cols-[250px_1fr]">
             {/* Sidebar Navigation */}
             <AnimatePresence>
-              {(isMobileNavOpen || (typeof window !== 'undefined' && window.innerWidth >= 1024)) && (
+              {(isMobileNavOpen || isDesktop) && (
                 <motion.aside
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -170,13 +199,15 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
 
             {/* Main Content */}
             <div>
-              <h1 className="mb-4 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">{data.title}</h1>
-              <p className="mb-6 text-xl text-slate-600 dark:text-slate-400">{data.subtitle}</p>
+              <h1 className="mb-4 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">
+                {slug === 'privacy' ? t('privacy.title') : data.title}
+              </h1>
+              <p className="mb-6 text-xl text-slate-600 dark:text-slate-400">
+                {slug === 'privacy' ? t('privacy.subtitle') : data.subtitle}
+              </p>
               <div className="mb-8 flex items-center text-sm text-slate-500 dark:text-slate-400">
                 <Clock className="mr-2 h-4 w-4" />
-                Terakhir diperbarui:
-                {' '}
-                {data.updated}
+                {t('last_updated')} {slug === 'privacy' ? t('privacy.updated') : data.updated}
               </div>
             </div>
           </div>
@@ -192,13 +223,19 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
               {/* Cookie Preferences Interactive UI */}
               {slug === 'cookies' && (
                 <div className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-800 dark:bg-slate-900">
-                  <h3 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Manage Your Preferences</h3>
+                  <h3 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
+                    {t('cookie_preferences.manage_title')}
+                  </h3>
 
                   <div className="mb-6 space-y-4">
                     <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
                       <div>
-                        <div className="font-bold text-slate-900 dark:text-white">Necessary Cookies</div>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">Required for basic site functionality</div>
+                        <div className="font-bold text-slate-900 dark:text-white">
+                          {t('cookie_preferences.necessary_title')}
+                        </div>
+                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                          {t('cookie_preferences.necessary_desc')}
+                        </div>
                       </div>
                       <input
                         type="checkbox"
@@ -210,26 +247,38 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
 
                     <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
                       <div>
-                        <div className="font-bold text-slate-900 dark:text-white">Analytics Cookies</div>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">Help us improve our services</div>
+                        <div className="font-bold text-slate-900 dark:text-white">
+                          {t('cookie_preferences.analytics_title')}
+                        </div>
+                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                          {t('cookie_preferences.analytics_desc')}
+                        </div>
                       </div>
                       <input
                         type="checkbox"
                         checked={preferences.analytics}
-                        onChange={e => setPreferences({ ...preferences, analytics: e.target.checked })}
+                        onChange={(e) =>
+                          setPreferences({ ...preferences, analytics: e.target.checked })
+                        }
                         className="h-5 w-5"
                       />
                     </div>
 
                     <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
                       <div>
-                        <div className="font-bold text-slate-900 dark:text-white">Marketing Cookies</div>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">Personalized content and ads</div>
+                        <div className="font-bold text-slate-900 dark:text-white">
+                          {t('cookie_preferences.marketing_title')}
+                        </div>
+                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                          {t('cookie_preferences.marketing_desc')}
+                        </div>
                       </div>
                       <input
                         type="checkbox"
                         checked={preferences.marketing}
-                        onChange={e => setPreferences({ ...preferences, marketing: e.target.checked })}
+                        onChange={(e) =>
+                          setPreferences({ ...preferences, marketing: e.target.checked })
+                        }
                         className="h-5 w-5"
                       />
                     </div>
@@ -237,7 +286,9 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
 
                   <Button onClick={handleSaveCookies} className="w-full sm:w-auto">
                     <Save className="mr-2 h-4 w-4" />
-                    {saved ? 'Saved!' : 'Save Preferences'}
+                    {saved
+                      ? t('cookie_preferences.saved_button')
+                      : t('cookie_preferences.save_button')}
                   </Button>
                 </div>
               )}
@@ -245,89 +296,175 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
               {/* Data Rights Interactive UI */}
               {slug === 'data-rights' && (
                 <div className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-800 dark:bg-slate-900">
-                  <h3 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Submit Data Request</h3>
+                  <h3 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
+                    {t('data_rights.submit_title')}
+                  </h3>
 
-                  {requestStatus === 'success'
-                    ? (
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          className="py-8 text-center"
+                  {requestStatus === 'success' ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="py-8 text-center"
+                    >
+                      <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                        <CheckCircle className="h-8 w-8" />
+                      </div>
+                      <h4 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                        {t('data_rights.success_title')}
+                      </h4>
+                      <p className="text-slate-600 dark:text-slate-400">
+                        {t('data_rights.success_desc')}
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <>
+                      <div className="mb-6 grid gap-4 sm:grid-cols-2">
+                        <button
+                          onClick={() => setRequestType('export')}
+                          className={`rounded-xl border-2 p-6 transition-all ${
+                            requestType === 'export'
+                              ? 'border-primary-600 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20'
+                              : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
+                          }`}
                         >
-                          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                            <CheckCircle className="h-8 w-8" />
+                          <Download className="text-primary-600 dark:text-primary-400 mb-3 h-8 w-8" />
+                          <div className="font-bold text-slate-900 dark:text-white">
+                            {t('data_rights.export_title')}
                           </div>
-                          <h4 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">Request Submitted!</h4>
-                          <p className="text-slate-600 dark:text-slate-400">We'll process your request within 30 days.</p>
-                        </motion.div>
-                      )
-                    : (
-                        <>
-                          <div className="mb-6 grid gap-4 sm:grid-cols-2">
-                            <button
-                              onClick={() => setRequestType('export')}
-                              className={`rounded-xl border-2 p-6 transition-all ${
-                                requestType === 'export'
-                                  ? 'border-primary-600 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                                  : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
-                              }`}
-                            >
-                              <Download className="text-primary-600 dark:text-primary-400 mb-3 h-8 w-8" />
-                              <div className="font-bold text-slate-900 dark:text-white">Export My Data</div>
-                              <div className="text-sm text-slate-600 dark:text-slate-400">Download all your data</div>
-                            </button>
-
-                            <button
-                              onClick={() => setRequestType('delete')}
-                              className={`rounded-xl border-2 p-6 transition-all ${
-                                requestType === 'delete'
-                                  ? 'border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-900/20'
-                                  : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
-                              }`}
-                            >
-                              <Trash2 className="mb-3 h-8 w-8 text-red-600 dark:text-red-400" />
-                              <div className="font-bold text-slate-900 dark:text-white">Delete My Data</div>
-                              <div className="text-sm text-slate-600 dark:text-slate-400">Permanently remove data</div>
-                            </button>
+                          <div className="text-sm text-slate-600 dark:text-slate-400">
+                            {t('data_rights.export_desc')}
                           </div>
+                        </button>
 
-                          {requestType && (
-                            <motion.form
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              onSubmit={handleDataRequest}
-                              className="space-y-4"
-                            >
-                              <div>
-                                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                                  Email Address
-                                </label>
-                                <input
-                                  type="email"
-                                  value={email}
-                                  onChange={e => setEmail(e.target.value)}
-                                  required
-                                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                                  placeholder="your@email.com"
-                                />
-                              </div>
-                              <Button
-                                type="submit"
-                                disabled={requestStatus === 'loading'}
-                                className="w-full sm:w-auto"
-                              >
-                                {requestStatus === 'loading' ? 'Processing...' : 'Submit Request'}
-                              </Button>
-                            </motion.form>
-                          )}
-                        </>
+                        <button
+                          onClick={() => setRequestType('delete')}
+                          className={`rounded-xl border-2 p-6 transition-all ${
+                            requestType === 'delete'
+                              ? 'border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-900/20'
+                              : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
+                          }`}
+                        >
+                          <Trash2 className="mb-3 h-8 w-8 text-red-600 dark:text-red-400" />
+                          <div className="font-bold text-slate-900 dark:text-white">
+                            {t('data_rights.delete_title')}
+                          </div>
+                          <div className="text-sm text-slate-600 dark:text-slate-400">
+                            {t('data_rights.delete_desc')}
+                          </div>
+                        </button>
+                      </div>
+
+                      {requestType && (
+                        <motion.form
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          onSubmit={handleDataRequest}
+                          className="space-y-4"
+                        >
+                          <div>
+                            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                              {t('data_rights.email_label')}
+                            </label>
+                            <input
+                              type="email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              required
+                              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                              placeholder={t('data_rights.email_placeholder')}
+                            />
+                          </div>
+                          <Button
+                            type="submit"
+                            disabled={requestStatus === 'loading'}
+                            className="w-full sm:w-auto"
+                          >
+                            {requestStatus === 'loading'
+                              ? t('data_rights.processing_button')
+                              : t('data_rights.submit_button')}
+                          </Button>
+                        </motion.form>
                       )}
+                    </>
+                  )}
                 </div>
               )}
 
               {/* Legal Content */}
               <div className="prose prose-lg prose-slate dark:prose-invert prose-headings:font-bold prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-primary-600 dark:prose-a:text-primary-400 max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                {slug === 'privacy' ? (
+                  // Render Privacy Policy from i18n
+                  <>
+                    <h2 id="intro">{t('privacy.intro_title')}</h2>
+                    <p>{t('privacy.intro_content')}</p>
+
+                    <h2 id="data-collected">{t('privacy.data_collected_title')}</h2>
+                    <p>{t('privacy.data_collected_content')}</p>
+                    <ul>
+                      <li>
+                        <strong>{t('privacy.data_identity').split(':')[0]}:</strong>{' '}
+                        {t('privacy.data_identity').split(':')[1]}
+                      </li>
+                      <li>
+                        <strong>{t('privacy.data_business').split(':')[0]}:</strong>{' '}
+                        {t('privacy.data_business').split(':')[1]}
+                      </li>
+                      <li>
+                        <strong>{t('privacy.data_technical').split(':')[0]}:</strong>{' '}
+                        {t('privacy.data_technical').split(':')[1]}
+                      </li>
+                      <li>
+                        <strong>{t('privacy.data_transaction').split(':')[0]}:</strong>{' '}
+                        {t('privacy.data_transaction').split(':')[1]}
+                      </li>
+                    </ul>
+
+                    <h2 id="data-usage">{t('privacy.data_usage_title')}</h2>
+                    <p>{t('privacy.data_usage_content')}</p>
+                    <ul>
+                      <li>{t('privacy.usage_provide')}</li>
+                      <li>{t('privacy.usage_process')}</li>
+                      <li>{t('privacy.usage_notify')}</li>
+                      <li>{t('privacy.usage_detect')}</li>
+                      <li>{t('privacy.usage_analyze')}</li>
+                    </ul>
+
+                    <h2 id="data-security">{t('privacy.data_security_title')}</h2>
+                    <p>{t('privacy.data_security_content')}</p>
+                    <ul>
+                      <li>{t('privacy.security_encryption')}</li>
+                      <li>{t('privacy.security_access')}</li>
+                      <li>{t('privacy.security_audit')}</li>
+                    </ul>
+                    <p>{t('privacy.security_note')}</p>
+
+                    <h2 id="data-sharing">{t('privacy.data_sharing_title')}</h2>
+                    <p>{t('privacy.data_sharing_content')}</p>
+                    <ul>
+                      <li>
+                        <strong>{t('privacy.sharing_subprocessors').split(':')[0]}:</strong>{' '}
+                        {t('privacy.sharing_subprocessors').split(':')[1]}
+                      </li>
+                      <li>
+                        <strong>{t('privacy.sharing_integration').split(':')[0]}:</strong>{' '}
+                        {t('privacy.sharing_integration').split(':')[1]}
+                      </li>
+                      <li>
+                        <strong>{t('privacy.sharing_legal').split(':')[0]}:</strong>{' '}
+                        {t('privacy.sharing_legal').split(':')[1]}
+                      </li>
+                    </ul>
+
+                    <h2 id="your-rights">{t('privacy.your_rights_title')}</h2>
+                    <p>{t('privacy.your_rights_content')}</p>
+
+                    <h2 id="contact">{t('privacy.contact_title')}</h2>
+                    <p>{t('privacy.contact_content')}</p>
+                  </>
+                ) : (
+                  // Render other legal docs from HTML content
+                  <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                )}
               </div>
             </div>
 
@@ -336,10 +473,10 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
               <aside className="hidden lg:block">
                 <div className="sticky top-24">
                   <h4 className="mb-4 text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-                    Table of Contents
+                    {t('table_of_contents')}
                   </h4>
                   <nav className="space-y-2">
-                    {headings.map(heading => (
+                    {headings.map((heading) => (
                       <a
                         key={heading.id}
                         href={`#${heading.id}`}

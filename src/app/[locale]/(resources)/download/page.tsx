@@ -13,6 +13,7 @@ import {
   WifiOff,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Section } from '@/components/layout';
 import Container from '@/components/layout/Container';
@@ -21,6 +22,8 @@ import Button from '@/components/ui/Button';
 import Stack from '@/components/ui/Stack';
 
 export default function DownloadPage() {
+  const t = useTranslations('Download');
+
   return (
     <div className="bg-white transition-colors dark:bg-slate-950">
       {/* --- HERO SECTION --- */}
@@ -30,27 +33,22 @@ export default function DownloadPage() {
             {/* Left Content */}
             <div className="relative z-10">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold tracking-wider text-blue-600 uppercase dark:bg-blue-900/30 dark:text-blue-400">
-                <Smartphone className="h-3 w-3" />
-                {' '}
-                BizOps Mobile v4.2
+                <Smartphone className="h-3 w-3" /> {t('badge')}
               </div>
 
               <Typography
                 variant="h1"
                 as="h1"
-                className="leading-[1.1] font-extrabold tracking-tight text-slate-900 dark:text-white"
+                className="py-3 leading-[1.1] font-extrabold tracking-tight text-slate-900 dark:text-white"
               >
-                Your entire business,
-                {' '}
-                <br />
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                  in your pocket.
+                {t('hero_title_line1')} <br />
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text py-3 text-transparent dark:from-blue-400 dark:to-indigo-400">
+                  {t('hero_title_line2')}
                 </span>
               </Typography>
 
-              <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-                Jangan biarkan meja kerja membatasi produktivitas. Approve PO, cek stok gudang, dan
-                pantau sales—kapan saja, di mana saja.
+              <Typography variant="body" className="py-3 text-slate-600 dark:text-slate-400">
+                {t('hero_subtitle')}
               </Typography>
 
               {/* Store Buttons */}
@@ -64,8 +62,10 @@ export default function DownloadPage() {
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.21-1.98 1.07-3.12-1.02.05-2.27.69-3.02 1.55-.67.78-1.26 2.03-1.11 3.17 1.14.09 2.3-.63 3.06-1.6z" />
                   </svg>
                   <div className="text-left leading-none">
-                    <div className="mb-1 text-[10px] font-medium opacity-80">Download on the</div>
-                    <div className="text-lg font-bold">App Store</div>
+                    <div className="mb-1 text-[10px] font-medium opacity-80">
+                      {t('download_on')}
+                    </div>
+                    <div className="text-lg font-bold">{t('app_store')}</div>
                   </div>
                 </Link>
                 <Link
@@ -80,8 +80,8 @@ export default function DownloadPage() {
                     />
                   </svg>
                   <div className="text-left leading-none">
-                    <div className="mb-1 text-[10px] font-medium opacity-80">GET IT ON</div>
-                    <div className="text-lg font-bold">Google Play</div>
+                    <div className="mb-1 text-[10px] font-medium opacity-80">{t('get_it_on')}</div>
+                    <div className="text-lg font-bold">{t('google_play')}</div>
                   </div>
                 </Link>
               </Stack>
@@ -90,15 +90,13 @@ export default function DownloadPage() {
               <div className="flex items-center gap-6">
                 <div className="hidden rounded-xl border border-slate-100 bg-white p-2 shadow-md sm:block">
                   <div className="flex h-20 w-20 items-center justify-center bg-slate-900 p-1 text-center text-[8px] leading-tight text-white">
-                    SCAN TO
-                    <br />
-                    DOWNLOAD
+                    {t('scan_to_download')}
                   </div>
                 </div>
                 <div className="hidden h-12 w-px bg-slate-200 sm:block dark:bg-slate-800"></div>
                 <div>
                   <div className="mb-1 flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map(i => (
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                     ))}
                     <span className="ml-2 text-sm font-bold text-slate-900 dark:text-white">
@@ -106,7 +104,7 @@ export default function DownloadPage() {
                     </span>
                   </div>
                   <Typography variant="body" className="text-slate-500 dark:text-slate-400">
-                    Based on 1,200+ reviews from verified users.
+                    {t('reviews_text')}
                   </Typography>
                 </div>
               </div>
@@ -141,10 +139,10 @@ export default function DownloadPage() {
                         <Bell className="h-5 w-5 text-slate-300" />
                       </div>
                       <Typography variant="h2" as="h2">
-                        Good Morning,
+                        {t('good_morning')}
                       </Typography>
                       <Typography variant="body" className="text-slate-400">
-                        Site Manager - Jakarta
+                        {t('site_manager')}
                       </Typography>
                     </div>
 
@@ -153,35 +151,34 @@ export default function DownloadPage() {
                       <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-lg dark:border-slate-800 dark:bg-slate-900">
                         <div className="mb-4 flex items-center justify-between">
                           <Typography variant="h3" as="h3">
-                            Today's Approval
+                            {t('todays_approval')}
                           </Typography>
                           <span className="rounded-full bg-red-100 px-2 py-1 text-xs font-bold text-red-600 dark:text-slate-300">
-                            3 Pending
+                            3 {t('pending')}
                           </span>
                         </div>
                         <div className="flex gap-3 overflow-x-auto pb-2">
-                          {[1, 2, 3].map(i => (
+                          {[1, 2, 3].map((i) => (
                             <div
                               key={i}
                               className="h-10 w-10 flex-shrink-0 rounded-full border-2 border-white bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
-                            >
-                            </div>
+                            ></div>
                           ))}
                         </div>
                       </div>
 
                       <Grid cols={2} gap={4}>
                         {[
-                          { icon: Layers, label: 'Stock', color: 'bg-blue-100 text-blue-600' },
-                          { icon: Zap, label: 'Sales', color: 'bg-amber-100 text-amber-600' },
+                          { icon: Layers, label: t('stock'), color: 'bg-blue-100 text-blue-600' },
+                          { icon: Zap, label: t('sales'), color: 'bg-amber-100 text-amber-600' },
                           {
                             icon: FileCode,
-                            label: 'Report',
+                            label: t('report'),
                             color: 'bg-purple-100 text-purple-600',
                           },
                           {
                             icon: ShieldCheck,
-                            label: 'Audit',
+                            label: t('audit'),
                             color: 'bg-green-100 text-green-600',
                           },
                         ].map((item, i) => (
@@ -221,11 +218,10 @@ export default function DownloadPage() {
         <Container className="px-4 md:px-6 lg:px-8" size="7xl">
           <Container noPadding size="3xl" className="mb-16 text-center">
             <Typography variant="h2" as="h2">
-              Built for the Field Workforce
+              {t('features_title')}
             </Typography>
             <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-              Didesain khusus untuk Salesman, Kurir, Teknisi, dan Warehouse Staff yang bekerja di
-              lapangan.
+              {t('features_subtitle')}
             </Typography>
           </Container>
 
@@ -236,11 +232,10 @@ export default function DownloadPage() {
                   <WifiOff className="h-7 w-7" />
                 </div>
                 <Typography variant="h3" as="h3">
-                  Offline-First Mode
+                  {t('offline_mode_title')}
                 </Typography>
                 <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                  Input order atau stock opname di gudang bawah tanah tanpa sinyal. Data tersimpan
-                  lokal dan auto-sync begitu kembali online.
+                  {t('offline_mode_desc')}
                 </Typography>
               </div>
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-950">
@@ -248,11 +243,10 @@ export default function DownloadPage() {
                   <Fingerprint className="h-7 w-7" />
                 </div>
                 <Typography variant="h3" as="h3">
-                  Biometric Security
+                  {t('biometric_title')}
                 </Typography>
                 <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                  Login cepat dalam 0.5 detik menggunakan FaceID atau Fingerprint. Keamanan
-                  enterprise-grade tanpa ribet password.
+                  {t('biometric_desc')}
                 </Typography>
               </div>
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-950">
@@ -260,11 +254,10 @@ export default function DownloadPage() {
                   <Bell className="h-7 w-7" />
                 </div>
                 <Typography variant="h3" as="h3">
-                  Instant Push Notif
+                  {t('push_notif_title')}
                 </Typography>
                 <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                  Jangan jadi bottleneck. Terima notifikasi Purchase Approval atau Low Stock Alert
-                  secara real-time dan action langsung.
+                  {t('push_notif_desc')}
                 </Typography>
               </div>
             </CardSlider>
@@ -276,11 +269,10 @@ export default function DownloadPage() {
                 <WifiOff className="h-7 w-7" />
               </div>
               <Typography variant="h3" as="h3">
-                Offline-First Mode
+                {t('offline_mode_title')}
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Input order atau stock opname di gudang bawah tanah tanpa sinyal. Data tersimpan
-                lokal dan auto-sync begitu kembali online.
+                {t('offline_mode_desc')}
               </Typography>
             </div>
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-950">
@@ -288,11 +280,10 @@ export default function DownloadPage() {
                 <Fingerprint className="h-7 w-7" />
               </div>
               <Typography variant="h3" as="h3">
-                Biometric Security
+                {t('biometric_title')}
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Login cepat dalam 0.5 detik menggunakan FaceID atau Fingerprint. Keamanan
-                enterprise-grade tanpa ribet password.
+                {t('biometric_desc')}
               </Typography>
             </div>
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-950">
@@ -300,11 +291,10 @@ export default function DownloadPage() {
                 <Bell className="h-7 w-7" />
               </div>
               <Typography variant="h3" as="h3">
-                Instant Push Notif
+                {t('push_notif_title')}
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Jangan jadi bottleneck. Terima notifikasi Purchase Approval atau Low Stock Alert
-                secara real-time dan action langsung.
+                {t('push_notif_desc')}
               </Typography>
             </div>
           </Grid>
@@ -315,32 +305,19 @@ export default function DownloadPage() {
       <Section className="relative overflow-hidden bg-white py-24 text-white dark:bg-slate-900">
         <Container size="7xl" className="relative z-10 text-center">
           <Typography variant="h2" as="h2">
-            <span className="text-slate-800 dark:text-white">Enterprise Deployment?</span>
+            <span className="text-slate-800 dark:text-white">{t('enterprise_title')}</span>
           </Typography>
           <Typography variant="body" className="text-slate-400">
-            <span className="text-slate-800 dark:text-white">
-              Untuk penggunaan di perangkat industri (Zebra, Honeywell) tanpa Google Mobile Services
-              (GMS), atau deployment via MDM (Mobile Device Management) internal.
-            </span>
+            <span className="text-slate-800 dark:text-white">{t('enterprise_subtitle')}</span>
           </Typography>
           <Stack direction="vertical" gap={4} className="mt-8 justify-center">
-            <Button
-              size="md"
-              variant="outline"
-              className="border-slate-700 text-white hover:bg-slate-800"
-            >
-              <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />
-              {' '}
-              <span className="text-slate-700 dark:text-white">Download APK (v4.2.1)</span>
+            <Button size="md" variant="outline" className="border-slate-700 text-white">
+              <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <span className="text-slate-700 dark:text-white">{t('download_apk')}</span>
             </Button>
-            <Button
-              size="md"
-              variant="outline"
-              className="border-slate-700 text-white hover:bg-slate-800"
-            >
-              <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />
-              {' '}
-              <span className="text-slate-700 dark:text-white">MDM Config Guide</span>
+            <Button size="md" variant="outline" className="border-slate-700 text-white">
+              <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <span className="text-slate-700 dark:text-white">{t('mdm_config')}</span>
             </Button>
           </Stack>
         </Container>

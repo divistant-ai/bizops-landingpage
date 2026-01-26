@@ -27,12 +27,40 @@ export const globalStats = [
 ];
 
 // --- HOMEPAGE: PROBLEMS ---
+export const getHomeProblems = (t: (key: string) => string) => [
+  {
+    title: t('Homepage.problems_data.data_silo_title'),
+    subtitle: t('Homepage.problems_data.data_silo_subtitle'),
+    desc: t('Homepage.problems_data.data_silo_desc'),
+    icon: LinkIcon,
+    color: 'text-red-500',
+    bg: 'bg-red-50',
+  },
+  {
+    title: t('Homepage.problems_data.compliance_title'),
+    subtitle: t('Homepage.problems_data.compliance_subtitle'),
+    desc: t('Homepage.problems_data.compliance_desc'),
+    icon: ShieldCheck,
+    color: 'text-amber-500',
+    bg: 'bg-amber-50',
+  },
+  {
+    title: t('Homepage.problems_data.adoption_title'),
+    subtitle: t('Homepage.problems_data.adoption_subtitle'),
+    desc: t('Homepage.problems_data.adoption_desc'),
+    icon: Smartphone,
+    color: 'text-slate-500',
+    bg: 'bg-slate-50',
+  },
+];
+
+// Keep original for backward compatibility if needed
 export const homeProblems = [
   {
     title: 'Data Silo & Disconnected',
     subtitle: 'Kebutaan Antar Divisi',
     desc: 'Marketing jualan, Gudang kosong. Finance menagih, Proyek belum selesai. Ketika data terpisah di spreadsheet dan software berbeda, keputusan strategis menjadi tebak-tebakan berbahaya.',
-    icon: LinkIcon, // Broken link metaphor
+    icon: LinkIcon,
     color: 'text-red-500',
     bg: 'bg-red-50',
   },
@@ -55,6 +83,27 @@ export const homeProblems = [
 ];
 
 // --- HOMEPAGE: UVP ---
+export const getHomeUVP = (t: (key: string) => string) => [
+  {
+    title: t('Homepage.uvp_data.hybrid_title'),
+    subtitle: t('Homepage.uvp_data.hybrid_subtitle'),
+    desc: t('Homepage.uvp_data.hybrid_desc'),
+    icon: Database,
+  },
+  {
+    title: t('Homepage.uvp_data.ux_title'),
+    subtitle: t('Homepage.uvp_data.ux_subtitle'),
+    desc: t('Homepage.uvp_data.ux_desc'),
+    icon: Smartphone,
+  },
+  {
+    title: t('Homepage.uvp_data.chat_title'),
+    subtitle: t('Homepage.uvp_data.chat_subtitle'),
+    desc: t('Homepage.uvp_data.chat_desc'),
+    icon: MessageSquare,
+  },
+];
+
 export const homeUVP = [
   {
     title: 'Hybrid Cloud Freedom',
@@ -65,7 +114,7 @@ export const homeUVP = [
   {
     title: 'Consumer-Grade UX',
     subtitle: 'Semudah Menggunakan Sosmed',
-    desc: 'Kami mendesain BizOps dengan prinsip \'Zero Training\'. Antarmuka intuitif memastikan staf gudang hingga direksi bisa langsung produktif sejak hari pertama.',
+    desc: "Kami mendesain BizOps dengan prinsip 'Zero Training'. Antarmuka intuitif memastikan staf gudang hingga direksi bisa langsung produktif sejak hari pertama.",
     icon: Smartphone,
   },
   {
@@ -105,6 +154,89 @@ export const homeTechValidation = [
 ];
 
 // --- HOMEPAGE SOLUTIONS TABS ---
+export const getHomeSolutions = (t: (key: string) => string) => [
+  {
+    id: 'people',
+    label: 'HR & People',
+    category: 'Human Capital',
+    icon: Users,
+    color: 'text-pink-500',
+    bg: 'bg-pink-500/10',
+    border: 'border-pink-500/20',
+    impact: t('Homepage.solutions_data.people_impact'),
+    modules: [
+      t('Homepage.solutions_data.people_module1'),
+      t('Homepage.solutions_data.people_module2'),
+      t('Homepage.solutions_data.people_module3'),
+      t('Homepage.solutions_data.people_module4'),
+    ],
+  },
+  {
+    id: 'finance',
+    label: 'Finance & Accounting',
+    category: 'Finance',
+    icon: DollarSign,
+    color: 'text-emerald-500',
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20',
+    impact: t('Homepage.solutions_data.finance_impact'),
+    modules: [
+      t('Homepage.solutions_data.finance_module1'),
+      t('Homepage.solutions_data.finance_module2'),
+      t('Homepage.solutions_data.finance_module3'),
+      t('Homepage.solutions_data.finance_module4'),
+    ],
+  },
+  {
+    id: 'ops',
+    label: 'Supply Chain & Ops',
+    category: 'Operations',
+    icon: Truck,
+    color: 'text-blue-500',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+    impact: t('Homepage.solutions_data.ops_impact'),
+    modules: [
+      t('Homepage.solutions_data.ops_module1'),
+      t('Homepage.solutions_data.ops_module2'),
+      t('Homepage.solutions_data.ops_module3'),
+      t('Homepage.solutions_data.ops_module4'),
+    ],
+  },
+  {
+    id: 'growth',
+    label: 'Sales & CRM',
+    category: 'Commercial',
+    icon: TrendingUp,
+    color: 'text-amber-500',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20',
+    impact: t('Homepage.solutions_data.growth_impact'),
+    modules: [
+      t('Homepage.solutions_data.growth_module1'),
+      t('Homepage.solutions_data.growth_module2'),
+      t('Homepage.solutions_data.growth_module3'),
+      t('Homepage.solutions_data.growth_module4'),
+    ],
+  },
+  {
+    id: 'project',
+    label: 'Project & Service',
+    category: 'Services',
+    icon: Briefcase,
+    color: 'text-purple-500',
+    bg: 'bg-purple-500/10',
+    border: 'border-purple-500/20',
+    impact: t('Homepage.solutions_data.project_impact'),
+    modules: [
+      t('Homepage.solutions_data.project_module1'),
+      t('Homepage.solutions_data.project_module2'),
+      t('Homepage.solutions_data.project_module3'),
+      t('Homepage.solutions_data.project_module4'),
+    ],
+  },
+];
+
 export const homeSolutions = [
   {
     id: 'people',
@@ -194,6 +326,33 @@ export const homeSolutions = [
 ];
 
 // --- HOMEPAGE: PROCESS ---
+export const getHomeProcess = (t: (key: string) => string) => [
+  {
+    step: '01',
+    title: t('Homepage.process_data.step1_title'),
+    desc: t('Homepage.process_data.step1_desc'),
+    icon: Briefcase,
+  },
+  {
+    step: '02',
+    title: t('Homepage.process_data.step2_title'),
+    desc: t('Homepage.process_data.step2_desc'),
+    icon: Database,
+  },
+  {
+    step: '03',
+    title: t('Homepage.process_data.step3_title'),
+    desc: t('Homepage.process_data.step3_desc'),
+    icon: MonitorPlay,
+  },
+  {
+    step: '04',
+    title: t('Homepage.process_data.step4_title'),
+    desc: t('Homepage.process_data.step4_desc'),
+    icon: RocketIcon,
+  },
+];
+
 export const homeProcess = [
   {
     step: '01',
@@ -236,6 +395,29 @@ export const homeIntegrations = [
   { name: 'Fingerprint Machine', cat: 'Hardware', icon: 'FINGER' },
 ];
 
+export const getHomeIndustriesData = (t: (key: string) => string) => ({
+  manufacturing: {
+    title: t('Homepage.industries_data.manufacturing_title'),
+    description: t('Homepage.industries_data.manufacturing_desc'),
+    icon: Puzzle,
+  },
+  retail: {
+    title: t('Homepage.industries_data.retail_title'),
+    description: t('Homepage.industries_data.retail_desc'),
+    icon: Truck,
+  },
+  services: {
+    title: t('Homepage.industries_data.services_title'),
+    description: t('Homepage.industries_data.services_desc'),
+    icon: Briefcase,
+  },
+  construction: {
+    title: t('Homepage.industries_data.construction_title'),
+    description: t('Homepage.industries_data.construction_desc'),
+    icon: HardHat,
+  },
+});
+
 export const homeIndustriesData = {
   manufacturing: {
     title: 'Manufaktur',
@@ -258,6 +440,34 @@ export const homeIndustriesData = {
     icon: HardHat,
   }, // Placeholder icon name
 };
+
+export const getHomeRolesData = (t: (key: string) => string) => ({
+  ceo: {
+    title: t('Homepage.roles_data.ceo_title'),
+    subtitle: t('Homepage.roles_data.ceo_subtitle'),
+    icon: BarChart,
+  },
+  finance: {
+    title: t('Homepage.roles_data.finance_title'),
+    subtitle: t('Homepage.roles_data.finance_subtitle'),
+    icon: DollarSign,
+  },
+  hr: {
+    title: t('Homepage.roles_data.hr_title'),
+    subtitle: t('Homepage.roles_data.hr_subtitle'),
+    icon: Users,
+  },
+  ops: {
+    title: t('Homepage.roles_data.ops_title'),
+    subtitle: t('Homepage.roles_data.ops_subtitle'),
+    icon: Truck,
+  },
+  it: {
+    title: t('Homepage.roles_data.it_title'),
+    subtitle: t('Homepage.roles_data.it_subtitle'),
+    icon: Code,
+  },
+});
 
 export const homeRolesData = {
   ceo: {

@@ -1,36 +1,53 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { BouncyLink } from '@/components/ui/BouncyLink';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
+import {
+  platformCapabilitiesTranslations,
+  platformModulesTranslations,
+} from '@/data/platformContentTranslations';
 
 export default function PlatformContent() {
-  const modules = Object.entries(modulesData).map(([key, val]) => ({ id: key, ...val }));
+  const t = useTranslations('Platform');
+  const locale = useLocale() as 'en' | 'id';
+  const modules = Object.entries(modulesData).map(([key, val]) => ({
+    id: key,
+    ...val,
+    // Override dengan translation
+    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en] ||
+      {}),
+  }));
   const capabilities = Object.entries(capabilitiesData).map(([key, val]) => ({
     id: key,
     ...val,
+    // Override dengan translation
+    ...(platformCapabilitiesTranslations[locale][
+      key as keyof typeof platformCapabilitiesTranslations.en
+    ] || {}),
   }));
 
   // Color mapping for modules
   const getModuleColor = (id: string) => {
     const colorMap: Record<string, { bg: string; text: string; hover: string }> = {
-      'hr': { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100' },
-      'finance': {
+      hr: { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100' },
+      finance: {
         bg: 'bg-emerald-50',
         text: 'text-emerald-600',
         hover: 'hover:bg-emerald-100',
       },
-      'operations': { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100' },
-      'sales': { bg: 'bg-amber-50', text: 'text-amber-600', hover: 'hover:bg-amber-100' },
+      operations: { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100' },
+      sales: { bg: 'bg-amber-50', text: 'text-amber-600', hover: 'hover:bg-amber-100' },
       'supply-chain': {
         bg: 'bg-indigo-50',
         text: 'text-indigo-600',
         hover: 'hover:bg-indigo-100',
       },
-      'governance': {
+      governance: {
         bg: 'bg-slate-100',
         text: 'text-slate-700',
         hover: 'hover:bg-slate-200',
@@ -56,22 +73,19 @@ export default function PlatformContent() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-8 flex justify-center">
               <span className="rounded-full border border-blue-100 bg-blue-50/50 px-3 py-1 text-xs font-medium text-blue-600 ring-4 ring-blue-50/20 dark:border-blue-900/30 dark:bg-blue-900/10 dark:text-blue-400 dark:ring-blue-900/10">
-                Enterprise Grade Platform
+                {t('badge')}
               </span>
             </div>
 
             <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white">
-              The Adaptive
-              {' '}
-              <br className="hidden md:block" />
+              {t('hero_title_1')} <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Business Operating System
+                {t('hero_title_2')}
               </span>
             </h1>
 
             <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 md:text-xl dark:text-slate-400">
-              Satu platform terintegrasi untuk seluruh operasional bisnis. Dari HR, Finance,
-              hingga Supply Chain—tanpa silo data.
+              {t('hero_description')}
             </p>
 
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -79,13 +93,13 @@ export default function PlatformContent() {
                 href="/demo"
                 className="flex h-12 w-full items-center justify-center rounded-xl bg-blue-600 px-8 font-semibold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-700 hover:shadow-blue-600/30 sm:w-auto"
               >
-                Lihat Demo
+                {t('cta_demo')}
               </BouncyLink>
               <BouncyLink
                 href="/pricing"
                 className="flex h-12 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-8 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 sm:w-auto dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
               >
-                <span className="text-slate-900 dark:text-white">Lihat Harga</span>
+                <span className="text-slate-900 dark:text-white">{t('cta_pricing')}</span>
               </BouncyLink>
             </div>
           </div>
@@ -97,10 +111,10 @@ export default function PlatformContent() {
         <Container size="7xl">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-              Core Modules
+              {t('modules_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Modul bisnis esensial yang saling terhubung secara native.
+              {t('modules_subtitle')}
             </p>
           </div>
 
@@ -129,7 +143,7 @@ export default function PlatformContent() {
                     </p>
 
                     <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
-                      <span>Explore Module</span>
+                      <span>{t('view_detail')}</span>
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
@@ -146,14 +160,14 @@ export default function PlatformContent() {
           <div className="mb-16 flex flex-col items-center justify-between gap-4 border-b border-slate-100 pb-8 text-center md:flex-row md:text-left dark:border-slate-800">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                Platform Capabilities
+                {t('capabilities_title')}
               </h2>
               <p className="mt-2 text-slate-600 dark:text-slate-400">
-                Teknologi pendukung untuk skalabilitas bisnis.
+                {t('capabilities_subtitle')}
               </p>
             </div>
             <Button variant="outline" asChild>
-              <Link href="/platform/technology">Lihat Semua Teknologi</Link>
+              <Link href="/platform/technology">{t('learn_more')}</Link>
             </Button>
           </div>
 
@@ -192,18 +206,15 @@ export default function PlatformContent() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
             </span>
-            <span className="text-blue-800 dark:text-blue-500">
-              Trusted by 500+ Companies
-            </span>
+            <span className="text-blue-800 dark:text-blue-500">{t('trusted_badge')}</span>
           </div>
 
           <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-            Siap Transformasi Digital?
+            {t('cta_title')}
           </h2>
 
           <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-white">
-            Bergabunglah dengan ratusan perusahaan yang telah meningkatkan efisiensi
-            operasional mereka dengan BizOps.
+            {t('cta_description')}
           </p>
 
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -211,14 +222,14 @@ export default function PlatformContent() {
               asChild
               className="h-12 rounded-xl bg-white px-8 font-semibold text-slate-900 shadow-lg hover:bg-slate-50"
             >
-              <Link href="/demo">Request Demo</Link>
+              <Link href="/demo">{t('cta_request_demo')}</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               className="h-12 rounded-xl bg-blue-600 px-8 font-medium text-white hover:bg-blue-500 hover:text-white dark:bg-blue-500 dark:text-white dark:hover:bg-blue-500"
             >
-              <Link href="/contact">Hubungi Sales</Link>
+              <Link href="/contact">{t('cta_contact_sales')}</Link>
             </Button>
           </div>
         </Container>

@@ -22,6 +22,7 @@ import {
   Users,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
@@ -43,75 +44,76 @@ type ScenarioDef = {
   color: string;
 };
 
-const scenarios: ScenarioDef[] = [
-  {
-    id: 'sales',
-    label: 'Salesman',
-    role: 'Field Sales',
-    icon: Smartphone,
-    device: 'mobile',
-    title: 'Closing Deal di Lapangan',
-    desc: 'Buat penawaran harga (Quotation) saat meeting dengan klien hanya dalam 3 ketukan.',
-    color: 'text-blue-400',
-  },
-  {
-    id: 'manager',
-    label: 'Manager',
-    role: 'General Manager',
-    icon: Briefcase,
-    device: 'desktop',
-    title: 'Approval Jarak Jauh',
-    desc: 'Review dan setujui permintaan pembelian (PO) yang masuk dari tim procurement.',
-    color: 'text-purple-400',
-  },
-  {
-    id: 'warehouse',
-    label: 'Staff Gudang',
-    role: 'Warehouse Keeper',
-    icon: Package,
-    device: 'mobile',
-    title: 'Terima Barang Masuk',
-    desc: 'Scan barcode barang yang datang dari supplier untuk update stok otomatis.',
-    color: 'text-amber-400',
-  },
-  {
-    id: 'employee',
-    label: 'Karyawan',
-    role: 'Staff',
-    icon: UserCheck,
-    device: 'mobile',
-    title: 'Absensi & Cuti',
-    desc: 'Clock-in kehadiran dengan Face ID dan ajukan cuti sakit mendadak.',
-    color: 'text-pink-400',
-  },
-  {
-    id: 'finance',
-    label: 'Finance',
-    role: 'Accountant',
-    icon: DollarSign,
-    device: 'desktop',
-    title: 'Auto-Reconciliation',
-    desc: 'Cocokkan mutasi bank dengan invoice penjualan secara otomatis tanpa input manual.',
-    color: 'text-emerald-400',
-  },
-  {
-    id: 'ceo',
-    label: 'CEO / Owner',
-    role: 'Chief Executive',
-    icon: BarChart3,
-    device: 'mobile',
-    title: 'Executive Dashboard',
-    desc: 'Pantau profitabilitas, cashflow, dan performa tim sales real-time dari genggaman.',
-    color: 'text-indigo-400',
-  },
-];
-
 export default function ProductTourContent() {
+  const t = useTranslations('ProductTour');
+
+  const scenarios: ScenarioDef[] = [
+    {
+      id: 'sales',
+      label: t('scenarios.sales.label'),
+      role: t('scenarios.sales.role'),
+      icon: Smartphone,
+      device: 'mobile',
+      title: t('scenarios.sales.title'),
+      desc: t('scenarios.sales.desc'),
+      color: 'text-blue-400',
+    },
+    {
+      id: 'manager',
+      label: t('scenarios.manager.label'),
+      role: t('scenarios.manager.role'),
+      icon: Briefcase,
+      device: 'desktop',
+      title: t('scenarios.manager.title'),
+      desc: t('scenarios.manager.desc'),
+      color: 'text-purple-400',
+    },
+    {
+      id: 'warehouse',
+      label: t('scenarios.warehouse.label'),
+      role: t('scenarios.warehouse.role'),
+      icon: Package,
+      device: 'mobile',
+      title: t('scenarios.warehouse.title'),
+      desc: t('scenarios.warehouse.desc'),
+      color: 'text-amber-400',
+    },
+    {
+      id: 'employee',
+      label: t('scenarios.employee.label'),
+      role: t('scenarios.employee.role'),
+      icon: UserCheck,
+      device: 'mobile',
+      title: t('scenarios.employee.title'),
+      desc: t('scenarios.employee.desc'),
+      color: 'text-pink-400',
+    },
+    {
+      id: 'finance',
+      label: t('scenarios.finance.label'),
+      role: t('scenarios.finance.role'),
+      icon: DollarSign,
+      device: 'desktop',
+      title: t('scenarios.finance.title'),
+      desc: t('scenarios.finance.desc'),
+      color: 'text-emerald-400',
+    },
+    {
+      id: 'ceo',
+      label: t('scenarios.ceo.label'),
+      role: t('scenarios.ceo.role'),
+      icon: BarChart3,
+      device: 'mobile',
+      title: t('scenarios.ceo.title'),
+      desc: t('scenarios.ceo.desc'),
+      color: 'text-indigo-400',
+    },
+  ];
   const [activeId, setActiveId] = useState<ScenarioType>('sales');
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentScenario = scenarios.find(s => s.id === activeId) || scenarios[0];
+  const currentScenario = scenarios.find((s) => s.id === activeId) || scenarios[0];
 
   const switchScenario = (id: ScenarioType) => {
     if (id === activeId) {
@@ -126,7 +128,7 @@ export default function ProductTourContent() {
   const nextStep = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setStep(prev => Math.min(prev + 1, 3));
+      setStep((prev) => Math.min(prev + 1, 3));
       setIsLoading(false);
     }, 800);
   };
@@ -153,31 +155,29 @@ export default function ProductTourContent() {
             {/* Header Title */}
             <div>
               <div className="text-primary-300 mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold tracking-wider uppercase ring-1 ring-white/5 backdrop-blur-xl">
-                <MousePointer className="h-3 w-3 animate-bounce" />
-                {' '}
-                Interactive Demo
+                <MousePointer className="h-3 w-3 animate-bounce" /> {t('badge')}
               </div>
               <Typography
                 variant="h1"
                 as="h1"
                 className="leading-tight font-extrabold tracking-tight"
               >
-                <span className="text-slate-600 dark:text-slate-400">Pilih Peran,</span>
+                <span className="text-slate-600 dark:text-slate-400">{t('title_line1')}</span>
                 <br />
-                <span className="text-slate-600 dark:text-slate-400">Rasakan Bedanya.</span>
+                <span className="text-slate-600 dark:text-slate-400">{t('title_line2')}</span>
               </Typography>
               <Typography
                 variant="small"
                 className="leading-relaxed text-slate-600 dark:text-slate-400"
               >
-                Simulasi hands-on bagaimana BizOps mempermudah pekerjaan setiap departemen.
+                {t('subtitle')}
               </Typography>
             </div>
 
             {/* Mobile Scenario Selector */}
             <div className="scrollbar-hide -mx-4 w-full overflow-x-auto px-4 pb-4 lg:hidden">
               <div className="flex min-w-max gap-3">
-                {scenarios.map(sc => (
+                {scenarios.map((sc) => (
                   <button
                     key={sc.id}
                     onClick={() => switchScenario(sc.id)}
@@ -213,9 +213,9 @@ export default function ProductTourContent() {
                 variant="small"
                 className="mb-1 px-2 text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-500"
               >
-                <span>Select Scenario</span>
+                <span>{t('select_scenario')}</span>
               </Typography>
-              {scenarios.map(sc => (
+              {scenarios.map((sc) => (
                 <button
                   key={sc.id}
                   onClick={() => switchScenario(sc.id)}
@@ -253,7 +253,7 @@ export default function ProductTourContent() {
                 className={`mb-2 text-xs font-bold tracking-widest uppercase ${currentScenario!.color} flex items-center gap-2`}
               >
                 <span className="h-2 w-2 animate-pulse rounded-full bg-current"></span>
-                <span>Current Mission</span>
+                <span>{t('current_mission')}</span>
               </div>
               <Typography variant="h3" as="h3" className="font-bold text-slate-900 dark:text-white">
                 <span>{currentScenario!.title}</span>
@@ -292,8 +292,7 @@ export default function ProductTourContent() {
                 <Loader2 className="text-primary-500 mb-4 h-12 w-12 animate-spin" />
                 <span className="text-primary-600 dark:text-primary-200 animate-pulse text-sm font-medium tracking-wider">
                   <span>
-                    LOADING
-                    {currentScenario!.label.toUpperCase()}
+                    {t('loading')} {currentScenario!.label.toUpperCase()}
                     ...
                   </span>
                 </span>
@@ -302,31 +301,29 @@ export default function ProductTourContent() {
 
             {/* Device Frame */}
             <div className="flex w-full transform justify-center transition-all duration-500">
-              {currentScenario!.device === 'mobile'
-                ? (
-                    <div className="origin-top scale-[0.85] transform sm:scale-95 md:origin-center md:scale-100 lg:scale-90 xl:scale-100">
-                      <MobileFrame>
-                        <ScenarioContent
-                          id={activeId}
-                          step={step}
-                          onNext={nextStep}
-                          onReset={resetScenario}
-                        />
-                      </MobileFrame>
-                    </div>
-                  )
-                : (
-                    <div className="-mt-4 w-full origin-top scale-[0.55] transform sm:scale-[0.75] md:-mt-0 md:origin-center md:scale-90 lg:scale-90 xl:scale-100">
-                      <DesktopFrame role={currentScenario!.role}>
-                        <ScenarioContent
-                          id={activeId}
-                          step={step}
-                          onNext={nextStep}
-                          onReset={resetScenario}
-                        />
-                      </DesktopFrame>
-                    </div>
-                  )}
+              {currentScenario!.device === 'mobile' ? (
+                <div className="origin-top scale-[0.85] transform sm:scale-95 md:origin-center md:scale-100 lg:scale-90 xl:scale-100">
+                  <MobileFrame>
+                    <ScenarioContent
+                      id={activeId}
+                      step={step}
+                      onNext={nextStep}
+                      onReset={resetScenario}
+                    />
+                  </MobileFrame>
+                </div>
+              ) : (
+                <div className="-mt-4 w-full origin-top scale-[0.55] transform sm:scale-[0.75] md:-mt-0 md:origin-center md:scale-90 lg:scale-90 xl:scale-100">
+                  <DesktopFrame role={currentScenario!.role}>
+                    <ScenarioContent
+                      id={activeId}
+                      step={step}
+                      onNext={nextStep}
+                      onReset={resetScenario}
+                    />
+                  </DesktopFrame>
+                </div>
+              )}
             </div>
           </div>
         </Grid>
@@ -339,11 +336,10 @@ export default function ProductTourContent() {
         <Container size="7xl" className="relative z-10">
           <div className="mb-12 text-center md:mb-16">
             <Typography variant="h2" as="h2">
-              <span>Mengapa Kami Buat Simulasi Ini?</span>
+              <span>{t('benefits_title')}</span>
             </Typography>
             <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-              Kami percaya pada transparansi. Anda berhak tahu persis apa yang Anda beli sebelum
-              mengeluarkan biaya sepeser pun.
+              {t('benefits_subtitle')}
             </Typography>
           </div>
 
@@ -356,11 +352,10 @@ export default function ProductTourContent() {
                 <Zap className="h-6 w-6 text-blue-400" />
               </div>
               <Typography variant="h3" as="h3">
-                <span>Zero-Setup Experience</span>
+                <span>{t('benefits.zero_setup.title')}</span>
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Tidak perlu menunggu tim IT melakukan instalasi server. Cukup klik dan rasakan
-                pengalamannya langsung di browser.
+                {t('benefits.zero_setup.desc')}
               </Typography>
             </div>
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-purple-500/30 dark:border-slate-800 dark:bg-slate-900">
@@ -368,11 +363,10 @@ export default function ProductTourContent() {
                 <ShieldCheck className="h-6 w-6 text-purple-400" />
               </div>
               <Typography variant="h3" as="h3">
-                <span>Realistic Workflows</span>
+                <span>{t('benefits.realistic.title')}</span>
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Skenario yang Anda jalankan adalah 100% alur kerja asli yang digunakan oleh
-                klien-klien enterprise kami setiap hari.
+                {t('benefits.realistic.desc')}
               </Typography>
             </div>
             <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-emerald-500/30 dark:border-slate-800 dark:bg-slate-900">
@@ -380,11 +374,10 @@ export default function ProductTourContent() {
                 <Globe className="h-6 w-6 text-emerald-400" />
               </div>
               <Typography variant="h3" as="h3">
-                <span>Unified Ecosystem</span>
+                <span>{t('benefits.unified.title')}</span>
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-400">
-                Lihat bagaimana data dari Sales (Mobile) langsung terhubung ke Finance (Web) dan
-                Gudang tanpa jeda.
+                {t('benefits.unified.desc')}
               </Typography>
             </div>
           </CardSlider>
@@ -401,18 +394,18 @@ export default function ProductTourContent() {
             variant="outline"
             className="border-primary-500/30 text-primary-300 bg-primary-500/10 mb-6"
           >
-            Ready for the real thing?
+            {t('cta_badge')}
           </Badge>
           <Typography
             variant="h2"
             as="h2"
             className="font-extrabold tracking-tight text-slate-900 dark:text-white"
           >
-            <span>Bawa Efisiensi Ini ke </span>
-            <span className="text-primary-600 dark:text-primary-400">Bisnis Anda.</span>
+            <span>{t('cta_title_part1')}</span>
+            <span className="text-primary-600 dark:text-primary-400">{t('cta_title_part2')}</span>
           </Typography>
           <Typography variant="body" className="text-slate-600 dark:text-slate-400">
-            Coba full version dengan data perusahaan Anda sendiri. Gratis 14 hari, tanpa komitmen.
+            {t('cta_subtitle')}
           </Typography>
           <Stack direction="vertical" gap={4} className="mt-8 justify-center">
             <Link href="/demo">
@@ -420,7 +413,7 @@ export default function ProductTourContent() {
                 size="lg"
                 className="bg-primary-600 hover:bg-primary-500 group border-none px-10 text-lg font-bold shadow-[0_0_40px_rgba(14,165,233,0.3)] sm:w-auto"
               >
-                <span className="text-slate-600 dark:text-white">Mulai Trial Gratis </span>
+                <span className="text-slate-600 dark:text-white">{t('start_trial')}</span>
                 <ArrowRight className="ml-2 h-5 w-5 text-slate-600 transition-transform group-hover:translate-x-1 dark:text-white" />
               </Button>
             </Link>
@@ -430,7 +423,7 @@ export default function ProductTourContent() {
                 size="lg"
                 className="border-slate-300 px-10 text-lg text-slate-900 hover:bg-slate-100 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
               >
-                <span className="text-slate-600 dark:text-white">Cek Estimasi Harga</span>
+                <span className="text-slate-600 dark:text-white">{t('check_pricing')}</span>
               </Button>
             </Link>
           </Stack>
@@ -489,22 +482,16 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
         </div>
         <Stack direction="vertical" gap={1}>
           <div className="bg-primary-600/10 text-primary-600 border-primary-500/10 dark:text-primary-400 flex items-center gap-3 rounded-lg border px-3 py-2 text-xs font-medium md:py-2.5 md:text-sm">
-            <BarChart3 className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Dashboard</span>
+            <BarChart3 className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Dashboard</span>
           </div>
           <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <Bell className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Inbox</span>
+            <Bell className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Inbox</span>
             <span className="ml-auto rounded-md bg-red-500 px-1.5 py-0.5 text-[10px] font-bold text-white shadow-md shadow-red-500/20">
               3
             </span>
           </div>
           <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Reports</span>
+            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" /> <span>Reports</span>
           </div>
         </Stack>
         <div className="mt-auto flex items-center gap-3 border-t border-slate-300/50 pt-4 dark:border-slate-800/50">
@@ -516,8 +503,7 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
               <span>{role}</span>
             </div>
             <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
-              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600 dark:bg-emerald-400"></div>
-              {' '}
+              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600 dark:bg-emerald-400"></div>{' '}
               <span>Online</span>
             </div>
           </div>
@@ -526,10 +512,7 @@ const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
       <div className="relative flex flex-1 flex-col overflow-hidden bg-slate-100 dark:bg-slate-900">
         <div className="z-10 flex h-12 items-center justify-between border-b border-slate-200 bg-slate-100/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-slate-100/60 md:h-16 md:px-6 dark:border-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
           <div className="flex items-center gap-2 text-xs font-medium text-slate-600 md:text-sm dark:text-slate-400">
-            <span className="text-slate-500">Workspace</span>
-            {' '}
-            <ChevronRight className="h-3 w-3" />
-            {' '}
+            <span className="text-slate-500">Workspace</span> <ChevronRight className="h-3 w-3" />{' '}
             <span className="text-slate-900 dark:text-white">Desk</span>
           </div>
         </div>
@@ -549,6 +532,8 @@ const ScenarioContent: React.FC<{
   onNext: () => void;
   onReset: () => void;
 }> = ({ id, step, onNext, onReset }) => {
+  const t = useTranslations('ProductTour');
+
   // Success screen (shared)
   if (step === 3) {
     return (
@@ -557,10 +542,10 @@ const ScenarioContent: React.FC<{
           <Check className="h-10 w-10 text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)] md:h-12 md:w-12" />
         </div>
         <Typography variant="h3" as="h3">
-          <span>Task Completed!</span>
+          <span>{t('task_completed')}</span>
         </Typography>
         <Typography variant="small" className="leading-relaxed text-slate-600 dark:text-slate-400">
-          <span>Bayangkan efisiensi ini dikalikan dengan ribuan transaksi.</span>
+          <span>{t('efficiency_message')}</span>
         </Typography>
         <Stack direction="vertical" gap={3} className="mt-6 w-full max-w-xs">
           <Link href="/demo" className="w-full">
@@ -569,16 +554,15 @@ const ScenarioContent: React.FC<{
               fullWidth
               className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-500 h-12 border-none text-base shadow-xl"
             >
-              <span className="text-white dark:text-slate-600">Mulai Trial Gratis</span>
+              <span className="text-white dark:text-slate-600">{t('start_trial')}</span>
             </Button>
           </Link>
           <button
             onClick={onReset}
             className="group flex items-center justify-center gap-2 py-2 text-sm text-slate-500 transition-colors hover:text-slate-900 dark:hover:text-white"
           >
-            <RefreshCw className="h-3 w-3 transition-transform duration-500 group-hover:rotate-180" />
-            {' '}
-            <span>Ulangi Simulasi</span>
+            <RefreshCw className="h-3 w-3 transition-transform duration-500 group-hover:rotate-180" />{' '}
+            <span>{t('repeat_simulation')}</span>
           </button>
         </Stack>
       </div>
@@ -592,7 +576,7 @@ const ScenarioContent: React.FC<{
         <div className="flex h-full flex-col bg-white dark:bg-slate-950">
           <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900">
             <div className="text-lg font-bold text-slate-900 dark:text-white">
-              <span>Quotations</span>
+              <span>{t('ui.quotations')}</span>
             </div>
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 transition-transform active:scale-90 dark:bg-slate-800">
               <Plus className="text-primary-500 h-5 w-5" />
@@ -601,7 +585,7 @@ const ScenarioContent: React.FC<{
           <Stack direction="vertical" gap={4} className="flex-1 overflow-y-auto p-4">
             <div className="relative mb-4 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white shadow-lg">
               <div className="mb-1 text-xs font-bold tracking-wider text-blue-200 uppercase">
-                <span>Sales Target (Oct)</span>
+                <span>{t('ui.sales_target')}</span>
               </div>
               <div className="flex items-end justify-between">
                 <div className="text-3xl font-bold">
@@ -616,9 +600,9 @@ const ScenarioContent: React.FC<{
               </div>
             </div>
             <div className="mb-2 px-1 text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-500">
-              <span>Recent Drafts</span>
+              <span>{t('ui.recent_drafts')}</span>
             </div>
-            {[1, 2].map(i => (
+            {[1, 2].map((i) => (
               <div
                 key={i}
                 className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50/50 p-4 transition-colors hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:bg-slate-800"
@@ -629,9 +613,7 @@ const ScenarioContent: React.FC<{
                   </div>
                   <div className="mt-1 text-xs text-slate-500">
                     QT-2023-00
-                    {i}
-                    {' '}
-                    • IDR 25.000.000
+                    {i} • IDR 25.000.000
                   </div>
                 </div>
                 <Badge
@@ -639,7 +621,7 @@ const ScenarioContent: React.FC<{
                   size="sm"
                   className="border-slate-400 text-slate-600 dark:border-slate-700 dark:text-slate-400"
                 >
-                  <span>Draft</span>
+                  <span>{t('ui.draft')}</span>
                 </Badge>
               </div>
             ))}
@@ -649,7 +631,9 @@ const ScenarioContent: React.FC<{
                 onClick={onNext}
                 className="shadow-primary-500/30 bg-primary-600 hover:bg-primary-500 h-12 w-full animate-pulse rounded-xl border-none font-bold text-white shadow-xl"
               >
-                <span className="text-slate-600 dark:text-white">+ Buat Penawaran Baru</span>
+                <span className="text-slate-600 dark:text-white">
+                  {t('ui.create_new_quotation')}
+                </span>
               </Button>
             </div>
           </Stack>
@@ -665,7 +649,7 @@ const ScenarioContent: React.FC<{
                 variant="small"
                 className="text-xs font-bold text-slate-600 uppercase dark:text-slate-500"
               >
-                <span>Customer</span>
+                <span>{t('ui.customer')}</span>
               </Typography>
               <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-medium text-slate-900 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-white">
                 <span>PT Mitra Abadi Teknik</span>
@@ -679,7 +663,7 @@ const ScenarioContent: React.FC<{
                 variant="small"
                 className="text-xs font-bold text-slate-600 uppercase dark:text-slate-500"
               >
-                <span>Items</span>
+                <span>{t('ui.items')}</span>
               </Typography>
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div className="mb-1 flex justify-between text-sm font-medium text-slate-900 dark:text-white">
@@ -694,16 +678,16 @@ const ScenarioContent: React.FC<{
             <div className="mt-auto">
               <div className="mb-4 rounded-xl border border-slate-200 bg-slate-100/50 p-5 dark:border-slate-800 dark:bg-slate-800/50">
                 <div className="mb-2 flex justify-between text-sm text-slate-600 dark:text-slate-400">
-                  <span>Subtotal</span>
+                  <span>{t('ui.subtotal')}</span>
                   <span>Rp 125.000.000</span>
                 </div>
                 <div className="mb-4 flex justify-between text-sm text-slate-600 dark:text-slate-400">
-                  <span>Tax (11%)</span>
+                  <span>{t('ui.tax')}</span>
                   <span>Rp 13.750.000</span>
                 </div>
                 <div className="my-3 h-px bg-slate-300 dark:bg-slate-700"></div>
                 <div className="flex justify-between text-lg font-bold text-slate-900 dark:text-white">
-                  <span>Total</span>
+                  <span>{t('ui.total')}</span>
                   <span className="text-emerald-600 dark:text-emerald-400">Rp 138.750.000</span>
                 </div>
               </div>
@@ -713,7 +697,7 @@ const ScenarioContent: React.FC<{
                 onClick={onNext}
                 className="bg-primary-600 hover:bg-primary-500 shadow-primary-900/50 h-12 border-none text-base font-bold shadow-lg"
               >
-                <span className="text-white dark:text-slate-600">Simpan & Kirim</span>
+                <span className="text-white dark:text-slate-600">{t('ui.save_and_send')}</span>
               </Button>
             </div>
           </Stack>
@@ -734,10 +718,10 @@ const ScenarioContent: React.FC<{
             </div>
             <div>
               <Typography variant="h3" as="h3">
-                <span>Quotation Created!</span>
+                <span>{t('ui.quotation_created')}</span>
               </Typography>
               <Typography variant="small" className="text-slate-600 dark:text-slate-500">
-                <span>QT-2023-088 siap dikirim.</span>
+                <span>{t('ui.quotation_ready')}</span>
               </Typography>
             </div>
             <Stack direction="vertical" gap={3} className="w-full">
@@ -745,17 +729,13 @@ const ScenarioContent: React.FC<{
                 onClick={onNext}
                 className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] p-4 font-bold text-white shadow-lg shadow-green-900/20 transition-transform hover:bg-[#20bd5a] active:scale-95"
               >
-                <Send className="h-5 w-5" />
-                {' '}
-                <span>Kirim via WhatsApp</span>
+                <Send className="h-5 w-5" /> <span>{t('ui.send_whatsapp')}</span>
               </button>
               <button
                 onClick={onNext}
                 className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-slate-100 p-4 font-bold text-slate-700 transition-colors hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
               >
-                <Users className="h-5 w-5" />
-                {' '}
-                <span>Kirim Email</span>
+                <Users className="h-5 w-5" /> <span>{t('ui.send_email')}</span>
               </button>
             </Stack>
           </Stack>
@@ -771,22 +751,19 @@ const ScenarioContent: React.FC<{
         <Typography variant="h3" as="h3" className="mb-2">
           <span>
             {id === 'manager'
-              ? 'Approval Dashboard'
+              ? t('ui.approval_dashboard')
               : id === 'finance'
-                ? 'Bank Reconciliation'
+                ? t('ui.bank_reconciliation')
                 : id === 'ceo'
-                  ? 'Executive Dashboard'
+                  ? t('ui.executive_dashboard')
                   : id === 'warehouse'
-                    ? 'Warehouse Scanner'
-                    : 'HR Dashboard'}
+                    ? t('ui.warehouse_scanner')
+                    : t('ui.hr_dashboard')}
           </span>
         </Typography>
         <Typography variant="small" className="text-slate-600 dark:text-slate-400">
           <span>
-            Step
-            {step + 1}
-            {' '}
-            of 3
+            {t('ui.step_of')} {step + 1} {t('ui.of')} 3
           </span>
         </Typography>
       </div>
@@ -798,7 +775,7 @@ const ScenarioContent: React.FC<{
         {id === 'employee' && <UserCheck className="h-16 w-16 text-pink-400" />}
       </div>
       <Button onClick={onNext} size="lg" className="bg-primary-600 hover:bg-primary-500">
-        <span className="text-slate-600 dark:text-white">Continue Scenario</span>
+        <span className="text-slate-600 dark:text-white">{t('ui.continue_scenario')}</span>
       </Button>
     </div>
   );

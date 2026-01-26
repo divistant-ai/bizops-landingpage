@@ -91,12 +91,8 @@ export function transformContent(data: any) {
     delete transformed.deliverables;
   }
 
-  if (typeof data.cta === 'string') {
-    transformed.cta = {
-      btn: data.cta,
-      head: 'Siap Memulai Proyek?',
-    };
-  }
+  // Keep CTA as-is (string or object)
+  // GenericLandingPage will handle translation fallbacks
 
   return transformed;
 }
