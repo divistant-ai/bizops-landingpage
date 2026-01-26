@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
 import { ArrowRight, FileText, HelpCircle, Home } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found | BizOps',
-  description: 'Halaman yang Anda cari tidak ditemukan.',
+  description: 'The page you are looking for could not be found.',
 };
 
 export default function NotFound() {
+  const t = useTranslations('NotFound');
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-50 px-4 text-center font-sans dark:bg-slate-950">
       {/* Abstract Background */}
@@ -30,16 +33,15 @@ export default function NotFound() {
           </div>
 
           <h1 className="mb-6 text-3xl leading-tight font-extrabold text-slate-900 md:text-5xl dark:text-white">
-            Halaman Ini Sedang
+            {t('title_1')}
             {' '}
             <br />
             <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
-              &quot;Cuti Di Luar Tanggungan&quot;
+              {t('title_2')}
             </span>
           </h1>
           <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl dark:text-slate-400">
-            Seperti karyawan yang butuh istirahat sejenak, halaman yang Anda cari sepertinya sedang
-            tidak ada di tempat, telah dipindahkan, atau tautannya sudah kadaluarsa.
+            {t('description')}
           </p>
 
           <div className="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
@@ -48,7 +50,7 @@ export default function NotFound() {
                 size="lg"
                 className="h-14 rounded-2xl px-8 text-lg shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20"
               >
-                <span className="text-slate-800 dark:text-white">Kembali ke Dashboard</span>
+                <span className="text-slate-800 dark:text-white">{t('button_dashboard')}</span>
               </Button>
             </Link>
             <Link href="/">
@@ -57,7 +59,7 @@ export default function NotFound() {
                 variant="outline"
                 className="h-14 rounded-2xl border-slate-300 px-8 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-900"
               >
-                <span className="text-slate-800 dark:text-white">Kembali ke Beranda</span>
+                <span className="text-slate-800 dark:text-white">{t('button_home')}</span>
               </Button>
             </Link>
           </div>
@@ -70,9 +72,9 @@ export default function NotFound() {
               <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-blue-100 text-blue-700 transition-transform group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
                 <Home className="size-5" />
               </div>
-              <div className="mb-1 font-bold text-slate-900 dark:text-white">Produk</div>
+              <div className="mb-1 font-bold text-slate-900 dark:text-white">{t('link_product_title')}</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Lihat solusi
+                {t('link_product_desc')}
                 {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
@@ -84,9 +86,9 @@ export default function NotFound() {
               <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700 transition-transform group-hover:scale-110 dark:bg-purple-900/30 dark:text-purple-400">
                 <FileText className="size-5" />
               </div>
-              <div className="mb-1 font-bold text-slate-900 dark:text-white">Blog</div>
+              <div className="mb-1 font-bold text-slate-900 dark:text-white">{t('link_blog_title')}</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Baca wawasan
+                {t('link_blog_desc')}
                 {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
@@ -98,9 +100,9 @@ export default function NotFound() {
               <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition-transform group-hover:scale-110 dark:bg-emerald-900/30 dark:text-emerald-400">
                 <HelpCircle className="size-5" />
               </div>
-              <div className="mb-1 font-bold text-slate-900 dark:text-white">Support</div>
+              <div className="mb-1 font-bold text-slate-900 dark:text-white">{t('link_support_title')}</div>
               <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                Hubungi kami
+                {t('link_support_desc')}
                 {' '}
                 <ArrowRight className="ml-1 size-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </div>

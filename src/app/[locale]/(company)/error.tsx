@@ -1,6 +1,7 @@
 'use client';
 
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { Container, Section } from '@/components/layout';
@@ -13,6 +14,8 @@ export default function CompanyError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations('Error');
+
   useEffect(() => {
     console.error('Company Error:', error);
   }, [error]);
@@ -25,20 +28,22 @@ export default function CompanyError({
             <AlertTriangle className="h-8 w-8" />
           </div>
           <Typography variant="h1" as="h1" className="mb-4">
-            Something went wrong!
+            {t('title')}
           </Typography>
           <Typography variant="body" color="muted" className="mb-8">
-            We encountered an unexpected error. Please try again or return to the homepage.
+            {t('description')}
           </Typography>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Button onClick={reset} variant="primary">
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Try Again
+              <span className="flex items-center text-black dark:text-white">
+                <RefreshCw className="mr-2 h-4 w-4" />
+                {t('button_retry')}
+              </span>
             </Button>
             <Button asChild variant="outline">
               <Link href="/">
                 <Home className="mr-2 h-4 w-4" />
-                Back to Home
+                {t('button_home')}
               </Link>
             </Button>
           </div>

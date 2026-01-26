@@ -12,65 +12,67 @@ import {
   X,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Button, CardSlider } from '@/components/ui';
 
-const comparisonData = [
-  { feature: 'Mobile Native (Offline-First)', bizops: true, legacy: false, saas: false },
-  { feature: 'Customizable Workflow', bizops: true, legacy: true, saas: false },
-  { feature: 'Fast Implementation (< 3 bulan)', bizops: true, legacy: false, saas: true },
-  { feature: 'On-Premise Option', bizops: true, legacy: true, saas: false },
-  { feature: 'Modern UX', bizops: true, legacy: false, saas: true },
-  { feature: 'API-First Architecture', bizops: true, legacy: false, saas: true },
-  { feature: 'Bahasa Indonesia Native', bizops: true, legacy: false, saas: true },
-  { feature: 'Dedicated Support 24/7', bizops: true, legacy: true, saas: false },
-];
-
-const differentiators = [
-  {
-    icon: Smartphone,
-    title: 'Mobile Native',
-    desc: 'Aplikasi mobile yang bekerja offline-first. Sales, teknisi lapangan, dan supervisor bisa bekerja tanpa internet.',
-    color: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
-  },
-  {
-    icon: Shield,
-    title: 'Data Sovereignty',
-    desc: 'Data Anda, server Anda. Pilih cloud kami atau deploy di infrastruktur sendiri. Full control.',
-    color: 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-  },
-  {
-    icon: Layers,
-    title: 'Unified Layer',
-    desc: 'Integrasikan sistem legacy (SAP, mesin absensi, Excel) atau gunakan sebagai ERP standalone. Fleksibel.',
-    color: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-  },
-  {
-    icon: Zap,
-    title: 'Fast Implementation',
-    desc: 'Go-live dalam 2-3 bulan, bukan 1-2 tahun. Metodologi proven dari 500+ implementasi.',
-    color: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
-  },
-  {
-    icon: Code,
-    title: 'API-First',
-    desc: 'Semua fitur tersedia via REST API. Integrasikan dengan sistem apapun: e-commerce, CRM, IoT devices.',
-    color: 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400',
-  },
-  {
-    icon: Leaf,
-    title: 'Built for Indonesia',
-    desc: 'Compliance PPh 21 TER, e-Faktur, BPJS, dan regulasi lokal lainnya. Update otomatis setiap ada perubahan aturan.',
-    color: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400',
-  },
-];
-
 export default function WhyBizOpsContent() {
+  const t = useTranslations('WhyBizOps');
+
+  const comparisonData = [
+    { feature: t('feature_mobile'), bizops: true, legacy: false, saas: false },
+    { feature: t('feature_workflow'), bizops: true, legacy: true, saas: false },
+    { feature: t('feature_fast'), bizops: true, legacy: false, saas: true },
+    { feature: t('feature_onpremise'), bizops: true, legacy: true, saas: false },
+    { feature: t('feature_ux'), bizops: true, legacy: false, saas: true },
+    { feature: t('feature_api'), bizops: true, legacy: false, saas: true },
+    { feature: t('feature_bahasa'), bizops: true, legacy: false, saas: true },
+    { feature: t('feature_support'), bizops: true, legacy: true, saas: false },
+  ];
+
+  const differentiators = [
+    {
+      icon: Smartphone,
+      title: t('diff_mobile_title'),
+      desc: t('diff_mobile_desc'),
+      color: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
+    },
+    {
+      icon: Shield,
+      title: t('diff_sovereignty_title'),
+      desc: t('diff_sovereignty_desc'),
+      color: 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400',
+    },
+    {
+      icon: Layers,
+      title: t('diff_unified_title'),
+      desc: t('diff_unified_desc'),
+      color: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+    },
+    {
+      icon: Zap,
+      title: t('diff_fast_title'),
+      desc: t('diff_fast_desc'),
+      color: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
+    },
+    {
+      icon: Code,
+      title: t('diff_api_title'),
+      desc: t('diff_api_desc'),
+      color: 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400',
+    },
+    {
+      icon: Leaf,
+      title: t('diff_indonesia_title'),
+      desc: t('diff_indonesia_desc'),
+      color: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400',
+    },
+  ];
   return (
     <div className="flex flex-col bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pt-48 lg:pb-32 dark:bg-[#0B1120]">
+      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pb-32 dark:bg-[#0B1120]">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="animate-pulse-slow pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20"></div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-600/10"></div>
@@ -82,9 +84,7 @@ export default function WhyBizOpsContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Layers className="h-3 w-3" />
-            {' '}
-            The Unified Layer
+            <Layers className="h-3 w-3" /> {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -93,11 +93,9 @@ export default function WhyBizOpsContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white"
           >
-            Modernisasi Operasional
-            {' '}
-            <br />
+            {t('hero_title_1')} <br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-              Tanpa Merombak Segalanya.
+              {t('hero_title_2')}
             </span>
           </motion.h1>
 
@@ -107,9 +105,7 @@ export default function WhyBizOpsContent() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 dark:text-slate-300"
           >
-            BizOps dirancang sebagai 'Unified Layer' yang menghubungkan sistem legacy Anda (SAP,
-            Mesin Absensi, Excel) atau bisa berfungsi sebagai sistem ERP tunggal yang lengkap.
-            Pilihan di tangan Anda.
+            {t('hero_subtitle')}
           </motion.p>
         </div>
       </section>
@@ -119,11 +115,10 @@ export default function WhyBizOpsContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 text-center">
             <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-              The "Sweet Spot"
+              {t('sweetspot_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
-              Mengapa bisnis Indonesia sering gagal implementasi ERP? Karena dipaksa memilih antara
-              fleksibilitas atau kemudahan. Kami memberikan keduanya.
+              {t('sweetspot_subtitle')}
             </p>
           </div>
 
@@ -136,23 +131,23 @@ export default function WhyBizOpsContent() {
 
               {/* Labels */}
               <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                High Flexibility
+                {t('chart_high_flexibility')}
               </div>
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                Low Flexibility
+                {t('chart_low_flexibility')}
               </div>
               <div className="absolute top-1/2 left-0 origin-center -translate-y-1/2 -rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                Hard to Use
+                {t('chart_hard_to_use')}
               </div>
               <div className="absolute top-1/2 right-0 origin-center -translate-y-1/2 rotate-90 bg-slate-50 px-2 text-[10px] font-bold tracking-widest text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                Easy to Use
+                {t('chart_easy_to_use')}
               </div>
 
               {/* Competitors */}
               <div className="group absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 transform cursor-help text-center opacity-70">
                 <div className="mx-auto mb-2 h-4 w-4 rounded-full bg-slate-400 transition-transform group-hover:scale-125"></div>
                 <span className="text-xs font-bold text-slate-600 dark:text-slate-400">
-                  Legacy ERP
+                  {t('chart_legacy_erp')}
                   <br />
                   (SAP/Oracle)
                 </span>
@@ -161,7 +156,7 @@ export default function WhyBizOpsContent() {
               <div className="group absolute right-[25%] bottom-[25%] -translate-x-1/2 -translate-y-1/2 transform cursor-help text-center opacity-70">
                 <div className="mx-auto mb-2 h-4 w-4 rounded-full bg-slate-400 transition-transform group-hover:scale-125"></div>
                 <span className="text-xs font-bold text-slate-600 dark:text-slate-400">
-                  SaaS Lokal
+                  {t('chart_saas_local')}
                   <br />
                   (Accounting App)
                 </span>
@@ -176,7 +171,7 @@ export default function WhyBizOpsContent() {
                   </div>
                 </div>
                 <span className="text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-900/30 border-primary-100 dark:border-primary-800 rounded-full border px-3 py-1 text-sm font-bold">
-                  BizOps
+                  {t('chart_bizops')}
                 </span>
               </div>
             </div>
@@ -189,11 +184,10 @@ export default function WhyBizOpsContent() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-bold text-slate-900 dark:text-white">
-                    Legacy ERP (SAP, Oracle)
+                    {t('explain_legacy_title')}
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Powerful tapi kompleks. Butuh konsultan mahal, implementasi 1-2 tahun, dan
-                    training intensif.
+                    {t('explain_legacy_desc')}
                   </p>
                 </div>
               </div>
@@ -204,11 +198,10 @@ export default function WhyBizOpsContent() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-bold text-slate-900 dark:text-white">
-                    SaaS Lokal (Accounting Apps)
+                    {t('explain_saas_title')}
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Mudah dipakai tapi terbatas. Tidak bisa customize, tidak cocok untuk bisnis
-                    kompleks.
+                    {t('explain_saas_desc')}
                   </p>
                 </div>
               </div>
@@ -219,10 +212,10 @@ export default function WhyBizOpsContent() {
                 </div>
                 <div>
                   <h4 className="mb-2 font-bold text-slate-600 dark:text-slate-400">
-                    BizOps (The Sweet Spot)
+                    {t('explain_bizops_title')}
                   </h4>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Fleksibel seperti SAP, mudah seperti SaaS. Best of both worlds.
+                    {t('explain_bizops_desc')}
                   </p>
                 </div>
               </div>
@@ -236,10 +229,10 @@ export default function WhyBizOpsContent() {
         <Container size="7xl">
           <div className="mb-16 text-center">
             <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-              Keunggulan Kompetitif
+              {t('differentiators_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-slate-600 dark:text-slate-400">
-              Fitur-fitur yang membedakan BizOps dari kompetitor.
+              {t('differentiators_subtitle')}
             </p>
           </div>
 
@@ -307,11 +300,9 @@ export default function WhyBizOpsContent() {
         <Container size="6xl">
           <div className="mb-12 text-center">
             <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-              Feature Comparison
+              {t('comparison_title')}
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
-              Bandingkan fitur BizOps dengan kompetitor secara objektif.
-            </p>
+            <p className="text-slate-600 dark:text-slate-400">{t('comparison_subtitle')}</p>
           </div>
 
           <div className="overflow-x-auto">
@@ -319,16 +310,16 @@ export default function WhyBizOpsContent() {
               <thead>
                 <tr className="border-b-2 border-slate-200 dark:border-slate-700">
                   <th className="p-4 text-left font-bold text-slate-900 dark:text-white">
-                    Feature
+                    {t('comparison_feature')}
                   </th>
                   <th className="text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 p-4 text-center font-bold">
-                    BizOps
+                    {t('comparison_bizops')}
                   </th>
                   <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">
-                    Legacy ERP
+                    {t('comparison_legacy')}
                   </th>
                   <th className="p-4 text-center font-bold text-slate-600 dark:text-slate-400">
-                    SaaS Lokal
+                    {t('comparison_saas')}
                   </th>
                 </tr>
               </thead>
@@ -340,31 +331,25 @@ export default function WhyBizOpsContent() {
                   >
                     <td className="p-4 text-slate-700 dark:text-slate-300">{row.feature}</td>
                     <td className="bg-primary-50/50 dark:bg-primary-900/10 p-4 text-center">
-                      {row.bizops
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.bizops ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.legacy
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.legacy ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.saas
-                        ? (
-                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                          )
-                        : (
-                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                          )}
+                      {row.saas ? (
+                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -378,10 +363,10 @@ export default function WhyBizOpsContent() {
       <Section className="bg-slate-100 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            Siap untuk Transformasi?
+            {t('cta_title')}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-700 dark:text-slate-300">
-            Lihat sendiri bagaimana BizOps bisa mengubah operasional bisnis Anda.
+            {t('cta_subtitle')}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/demo">
@@ -389,9 +374,7 @@ export default function WhyBizOpsContent() {
                 size="lg"
                 className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                Jadwalkan Demo
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {t('cta_demo')} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/compare">
@@ -400,7 +383,7 @@ export default function WhyBizOpsContent() {
                 variant="outline"
                 className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
               >
-                Bandingkan Kompetitor
+                {t('cta_compare')}
               </Button>
             </Link>
           </div>

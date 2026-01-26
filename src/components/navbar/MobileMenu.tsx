@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, MousePointer, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { usePathname } from '@/libs/I18nNavigation';
@@ -21,6 +22,7 @@ type MobileMenuProps = {
 };
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick }) => {
+  const t = useTranslations('Navbar');
   const [mobilePlatformOpen, setMobilePlatformOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -109,11 +111,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
             className="fixed inset-y-0 right-0 z-50 w-full max-w-md overflow-y-auto bg-white shadow-2xl lg:hidden dark:bg-slate-950"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-5 py-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/95">
-              <span className="text-lg font-bold text-slate-900 dark:text-white">Menu</span>
+              <span className="text-lg font-bold text-slate-900 dark:text-white">{t('menu')}</span>
               <button
                 onClick={onClose}
                 className="focus-visible:ring-primary-500 rounded-lg p-2 text-slate-500 transition-all duration-200 hover:scale-105 hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-2 focus-visible:outline-none active:scale-95 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
-                aria-label="Close menu"
+                aria-label={t('close_menu')}
               >
                 <X className="h-6 w-6" />
               </button>
@@ -122,7 +124,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
             <div className="flex flex-col space-y-3 p-5 pb-24">
               {/* Platform Accordion */}
               <AccordionItem
-                title="Platform"
+                title={t('platform')}
                 isOpen={mobilePlatformOpen}
                 onToggle={() => setMobilePlatformOpen(!mobilePlatformOpen)}
               >
@@ -130,10 +132,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Core Modules */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Core Modules
+                      {t('core_modules')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.modules?.items.map(item => (
+                      {platformContent.modules?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -157,10 +159,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Capabilities */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Capabilities
+                      {t('capabilities')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.capabilities?.items.map(item => (
+                      {platformContent.capabilities?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -184,10 +186,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Technology */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Technology
+                      {t('technology')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.technology?.items.map(item => (
+                      {platformContent.technology?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -216,7 +218,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       className="bg-primary-50 text-primary-700 hover:bg-primary-100 dark:bg-primary-900/20 dark:text-primary-400 dark:hover:bg-primary-900/30 flex w-full items-center justify-center gap-2 rounded-lg py-3 text-sm font-bold transition-colors"
                     >
                       <MousePointer className="h-4 w-4" />
-                      Interactive Tour
+                      {t('interactive_tour')}
                     </Link>
                   </div>
                 </div>
@@ -224,7 +226,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
               {/* Solutions Accordion */}
               <AccordionItem
-                title="Solutions"
+                title={t('solutions')}
                 isOpen={mobileSolutionsOpen}
                 onToggle={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
               >
@@ -232,10 +234,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* By Industry */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      By Industry
+                      {t('by_industry')}
                     </div>
                     <div className="space-y-2">
-                      {solutionsContent.industry?.items.map(item => (
+                      {solutionsContent.industry?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -259,10 +261,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* By Role */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      By Role
+                      {t('by_role')}
                     </div>
                     <div className="space-y-2">
-                      {solutionsContent.role?.items.map(item => (
+                      {solutionsContent.role?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -287,13 +289,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
               {/* Services Accordion */}
               <AccordionItem
-                title="Services"
+                title={t('services')}
                 isOpen={mobileServicesOpen}
                 onToggle={() => setMobileServicesOpen(!mobileServicesOpen)}
               >
                 <div className="p-4">
                   <div className="space-y-2">
-                    {servicesItems.map(item => (
+                    {servicesItems.map((item) => (
                       <Link
                         key={item.to}
                         href={item.to}
@@ -317,7 +319,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
               {/* Resources Accordion */}
               <AccordionItem
-                title="Resources"
+                title={t('resources')}
                 isOpen={mobileResourcesOpen}
                 onToggle={() => setMobileResourcesOpen(!mobileResourcesOpen)}
               >
@@ -325,10 +327,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Insights & News */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Insights & News
+                      {t('insights_news')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent.insights?.items.map(item => (
+                      {resourcesContent.insights?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -352,10 +354,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Customer Tools */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Customer Tools
+                      {t('customer_tools')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['customer-tools']?.items.slice(0, 5).map(item => (
+                      {resourcesContent['customer-tools']?.items.slice(0, 5).map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -378,7 +380,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         onClick={onClose}
                         className="text-primary-600 hover:bg-primary-50 dark:text-primary-400 dark:hover:bg-primary-900/20 flex items-center gap-3 rounded-lg p-2 text-sm font-medium transition-colors"
                       >
-                        View All Tools →
+                        {t('view_all_tools')}
                       </Link>
                     </div>
                   </div>
@@ -386,10 +388,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Strategic Tools */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Strategic Tools
+                      {t('strategic_tools')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map(item => (
+                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -413,10 +415,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Support */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Support
+                      {t('support')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent.support?.items.map(item => (
+                      {resourcesContent.support?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -441,7 +443,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
 
               {/* Company Accordion */}
               <AccordionItem
-                title="Company"
+                title={t('company')}
                 isOpen={mobileCompanyOpen}
                 onToggle={() => setMobileCompanyOpen(!mobileCompanyOpen)}
               >
@@ -449,10 +451,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Our Story */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Our Story
+                      {t('our_story')}
                     </div>
                     <div className="space-y-2">
-                      {companyContent.story?.items.map(item => (
+                      {companyContent.story?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -476,10 +478,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   {/* Ecosystem */}
                   <div>
                     <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
-                      Ecosystem
+                      {t('ecosystem')}
                     </div>
                     <div className="space-y-2">
-                      {companyContent.ecosystem?.items.map(item => (
+                      {companyContent.ecosystem?.items.map((item) => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -508,7 +510,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                 onClick={onClose}
                 className="focus-visible:ring-primary-500 flex w-full items-center justify-between rounded-xl border border-slate-200/80 bg-slate-50/80 px-5 py-4 text-base font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-100 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] dark:border-slate-800/50 dark:bg-slate-900/50 dark:text-white dark:hover:bg-slate-800"
               >
-                Pricing
+                {t('pricing')}
               </Link>
 
               {/* Mobile Login & CTA */}
@@ -518,7 +520,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   onClick={onClose}
                   className="focus-visible:ring-primary-500 flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-bold text-slate-700 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:bg-slate-50 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
                 >
-                  Login
+                  {t('login')}
                 </Link> */}
                 <Button
                   fullWidth
@@ -526,7 +528,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   onClick={onDemoClick}
                   className="rounded-xl shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
                 >
-                  Book a Demo
+                  {t('book_demo')}
                 </Button>
               </div>
             </div>

@@ -7,8 +7,10 @@ import {
   Smartphone,
   Table as TableIcon,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
+
 import Breadcrumbs from '@/components/Breadcrumbs';
 import FAQAccordion from '@/components/FAQAccordion';
 import { Container, Section } from '@/components/layout';
@@ -118,15 +120,17 @@ export type GenericLandingPageProps = {
 };
 
 const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data }) => {
+  const t = useTranslations('GenericLandingPage');
+
   // Normalize data
   const headline = data.heroHeadline || data.title;
   const subheadline = data.heroSub || data.description || data.subtitle;
   const featuresList = data.solutions || data.features || [];
 
   // Normalize CTA
-  const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || 'Jadwalkan Demo';
-  const ctaHeadText
-    = typeof data.cta === 'string' ? 'Siap Memulai?' : data.cta?.head || 'Siap untuk Transformasi?';
+  const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || t('schedule_demo');
+  const ctaHeadText =
+    typeof data.cta === 'string' ? t('ready_to_start') : data.cta?.head || t('ready_to_transform');
 
   return (
     <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
@@ -172,9 +176,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                     size="lg"
                     className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
                   >
-                    {ctaBtnText}
-                    {' '}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    {ctaBtnText} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
 
@@ -184,7 +186,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                     variant="outline"
                     className="rounded-full border-neutral-300 px-8 text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
                   >
-                    Hubungi Kami
+                    {t('contact_us')}
                   </Button>
                 </Link>
               </div>
@@ -227,7 +229,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   {data.dashboardInsight}
                 </h2>
                 <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-                  Dapatkan visibilitas total tanpa perlu menunggu laporan manual.
+                  {t('get_total_visibility')}
                 </p>
 
                 {/* Features List */}
@@ -280,10 +282,10 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <Container size="6xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                Metodologi Kami
+                {t('our_methodology')}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Pendekatan terstruktur untuk hasil yang terukur.
+                {t('structured_approach')}
               </p>
             </div>
             <div className="grid gap-6 md:grid-cols-4">
@@ -319,11 +321,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <Container size="6xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                Nilai Tambah
+                {t('value_added')}
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                Mengapa memilih layanan kami?
-              </p>
+              <p className="text-lg text-slate-600 dark:text-slate-400">{t('why_choose')}</p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
               {data.benefits.map((b, i) => (
@@ -343,8 +343,8 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <Container size="4xl">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">Apa yang Anda Dapatkan?</h2>
-              <p className="text-neutral-400">Deliverables nyata, bukan sekadar konsep.</p>
+              <h2 className="mb-4 text-3xl font-bold text-white">{t('what_you_get')}</h2>
+              <p className="text-neutral-400">{t('real_deliverables')}</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md">
               <div className="grid gap-4 md:grid-cols-2">
@@ -366,10 +366,10 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <Container size="6xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                Mengapa Cara Lama Tidak Cukup?
+                {t('why_old_way_fails')}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Tantangan yang sering dihadapi tanpa sistem yang tepat.
+                {t('challenges_description')}
               </p>
             </div>
 
@@ -394,7 +394,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       <>
                         <div className="mb-6">
                           <div className="mb-2 text-xs font-bold tracking-wider text-red-500 uppercase">
-                            Pain Point
+                            {t('pain_point')}
                           </div>
                           <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
                             {c.pain}
@@ -405,7 +405,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                         </div>
                         <div className="border-t border-slate-100 pt-6 dark:border-slate-800">
                           <div className="mb-2 text-xs font-bold tracking-wider text-green-600 uppercase">
-                            The BizOps Way
+                            {t('the_bizops_way')}
                           </div>
                           <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
                             {c.gain}
@@ -430,10 +430,10 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <Container size="7xl">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                Solusi BizOps
+                {t('bizops_solutions')}
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Fitur yang dirancang khusus untuk kebutuhan Anda.
+                {t('features_description')}
               </p>
             </div>
 
@@ -447,8 +447,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                       </div>
                       <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
                         {f.title || f.desc}
-                      </h3>
-                      {' '}
+                      </h3>{' '}
                       {/* Handle generic lists */}
                       <p className="leading-relaxed text-slate-600 dark:text-slate-400">
                         {f.desc || f.description}
@@ -488,10 +487,10 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
               <div>
                 <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                   <Share2 className="text-primary-600 h-6 w-6" />
-                  Ecosystem Connections
+                  {t('ecosystem_connections')}
                 </h2>
                 <p className="mt-2 text-slate-600 dark:text-slate-400">
-                  Bagaimana modul ini terhubung dengan sistem lainnya.
+                  {t('ecosystem_description')}
                 </p>
               </div>
             </div>
@@ -502,7 +501,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   className="hover:border-primary-300 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-slate-800"
                 >
                   <div className="text-primary-600 mb-2 text-xs font-bold tracking-wider uppercase">
-                    Connected to
+                    {t('connected_to')}
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
                     {c.target}
@@ -574,19 +573,17 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
               <div>
                 {data.caseStudyTitle && (
                   <div className="mb-6 inline-block rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-xs font-bold tracking-wider text-green-500 uppercase dark:text-green-300">
-                    Impact Story
+                    {t('impact_story')}
                   </div>
                 )}
                 <h2 className="mb-6 text-3xl leading-tight font-bold md:text-4xl">
-                  {data.caseStudyTitle || 'Real Results'}
+                  {data.caseStudyTitle || t('real_results')}
                 </h2>
                 <p className="mb-8 text-xl leading-relaxed text-slate-900 dark:text-slate-400">
-                  {data.caseStudy || 'Lihat bagaimana klien kami bertransformasi.'}
+                  {data.caseStudy || t('see_transformation')}
                 </p>
                 <Button variant="white" className="rounded-full">
-                  Baca Use Case Lengkap
-                  {' '}
-                  <ChevronRight className="ml-2 h-4 w-4" />
+                  {t('read_full_case')} <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
 
@@ -594,23 +591,19 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 <div className="relative rounded-3xl border border-white/10 bg-slate-50 p-8 backdrop-blur-md md:p-10 dark:bg-white/10">
                   <Quote className="text-primary-400 mb-6 h-10 w-10 opacity-50" />
                   <p className="mb-8 text-lg leading-relaxed font-medium text-slate-950 italic md:text-xl dark:text-white">
-                    "
-                    {data.testimonial.quote}
-                    "
+                    "{data.testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-slate-800 dark:text-white">
-                      {data.testimonial.avatar?.includes('http')
-                        ? (
-                            <img
-                              src={data.testimonial.avatar}
-                              alt={data.testimonial.author}
-                              className="h-full w-full object-cover"
-                            />
-                          )
-                        : (
-                            data.testimonial.author.charAt(0)
-                          )}
+                      {data.testimonial.avatar?.includes('http') ? (
+                        <img
+                          src={data.testimonial.avatar}
+                          alt={data.testimonial.author}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        data.testimonial.author.charAt(0)
+                      )}
                     </div>
                     <div>
                       <div className="font-bold text-slate-800 dark:text-white">
@@ -632,10 +625,10 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
           <Container size="4xl">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                Common Questions
+                {t('common_questions')}
               </h2>
             </div>
-            <FAQAccordion faqs={data.faqs.map(f => ({ q: f.question, a: f.answer }))} />
+            <FAQAccordion faqs={data.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
           </Container>
         </Section>
       )}
@@ -647,8 +640,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
             {ctaHeadText}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Jangan biarkan operasional manual menghambat pertumbuhan bisnis Anda. Mulai digitalisasi
-            sekarang.
+            {t('final_cta_description')}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/demo">
@@ -666,7 +658,7 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 variant="outline"
                 className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
               >
-                Jadwalkan Konsultasi Gratis
+                {t('schedule_free_consultation')}
               </Button>
             </Link>
           </div>
