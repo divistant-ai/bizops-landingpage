@@ -10,12 +10,12 @@ import {
   DollarSign,
   Info,
   LayoutGrid,
-  Lock,
   Settings,
   TrendingUp,
   Wrench,
   XCircle,
 } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
@@ -26,6 +26,7 @@ import { comparisonsData } from '@/data/comparisonData';
 import { transformContent } from '@/libs/utils/transformContent';
 
 export default function ComparisonsContent() {
+  const locale = useLocale() as 'en' | 'id';
   const [selectedId, setSelectedId] = useState<string>('manual');
 
   const selectedData = comparisonsData[selectedId]!;
@@ -73,9 +74,7 @@ export default function ComparisonsContent() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-300/50 bg-slate-200/50 px-4 py-1.5 text-xs font-bold tracking-wider text-slate-600 uppercase backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-400"
           >
-            <LayoutGrid className="h-4 w-4" />
-            {' '}
-            System Architecture Comparison
+            <LayoutGrid className="h-4 w-4" /> System Architecture Comparison
           </motion.div>
           <Typography
             variant="h1"
@@ -83,16 +82,11 @@ export default function ComparisonsContent() {
             className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
           >
             Upgrade Your
-            <br />
-            {' '}
-            Business Engine.
+            <br /> Business Engine.
           </Typography>
           <Typography variant="body" className="leading-relaxed text-slate-600 dark:text-slate-400">
-            Bandingkan arsitektur sistem Anda saat ini dengan
-            {' '}
-
-            <span className="font-semibold text-slate-900 dark:text-white">BizOps Evolution</span>
-            .
+            Bandingkan arsitektur sistem Anda saat ini dengan{' '}
+            <span className="font-semibold text-slate-900 dark:text-white">BizOps Evolution</span>.
             Lihat perbedaannya secara radikal.
           </Typography>
         </Container>
@@ -138,7 +132,7 @@ export default function ComparisonsContent() {
                               : 'text-slate-700 dark:text-slate-300'
                           }`}
                         >
-                          {item.name}
+                          {item.name[locale]}
                         </div>
                         {selectedId === item.id && (
                           <div className="mt-0.5 text-[10px] font-medium opacity-70">
@@ -195,8 +189,7 @@ export default function ComparisonsContent() {
                 <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-2xl md:p-12 dark:border-slate-800 dark:bg-slate-900">
                   <div
                     className={`pointer-events-none absolute top-0 right-0 -mt-32 -mr-32 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px] ${getScoreBg(selectedData!.bottleneckScore)}`}
-                  >
-                  </div>
+                  ></div>
 
                   <div className="relative z-10">
                     <Stack direction="vertical" gap={10} className="mb-12 items-start">
@@ -211,7 +204,7 @@ export default function ComparisonsContent() {
                                   : 'border-amber-500/20 bg-amber-500/10 text-amber-600 dark:text-amber-400'
                             }`}
                           >
-                            {selectedData!.bottleneckLabel}
+                            {selectedData!.bottleneckLabel[locale]}
                           </span>
                         </div>
                         <Typography
@@ -219,15 +212,13 @@ export default function ComparisonsContent() {
                           as="h2"
                           className="leading-tight font-extrabold text-slate-900 dark:text-white"
                         >
-                          "
-                          {selectedData!.verdict}
-                          "
+                          "{selectedData!.verdict[locale]}"
                         </Typography>
                         <Typography
                           variant="body"
                           className="leading-relaxed text-slate-600 dark:text-slate-400"
                         >
-                          {selectedData!.description}
+                          {selectedData!.description[locale]}
                         </Typography>
                       </div>
 
@@ -276,24 +267,29 @@ export default function ComparisonsContent() {
                       className="border-t border-slate-100 pt-10 dark:border-slate-800"
                     >
                       {[
-                        { icon: Clock, label: 'Time to Value', value: selectedData!.ttv },
-                        { icon: DollarSign, label: '3-Year TCO', value: selectedData!.avgTCO },
-                        { icon: Wrench, label: 'Maintenance', value: selectedData!.maintenance },
+                        { icon: Clock, label: 'Time to Value', value: selectedData!.ttv[locale] },
+                        {
+                          icon: DollarSign,
+                          label: '3-Year TCO',
+                          value: selectedData!.avgTCO[locale],
+                        },
+                        {
+                          icon: Wrench,
+                          label: 'Maintenance',
+                          value: selectedData!.maintenance[locale],
+                        },
                         {
                           icon: Settings,
                           label: 'Flexibility',
-                          value: selectedData!.customizability,
+                          value: selectedData!.customizability[locale],
                         },
-                        { icon: Lock, label: 'Security', value: selectedData!.securityLevel },
                       ].map((metric, idx) => (
                         <div
                           key={idx}
                           className="group rounded-2xl border border-transparent bg-slate-50 p-4 transition-colors hover:border-slate-200 hover:bg-white dark:bg-slate-800/50 dark:hover:border-slate-700 dark:hover:bg-slate-800"
                         >
                           <div className="group-hover:text-primary-500 mb-2 flex items-center gap-2 text-xs font-bold text-slate-400 uppercase transition-colors dark:text-slate-300">
-                            <metric.icon className="h-3.5 w-3.5" />
-                            {' '}
-                            {metric.label}
+                            <metric.icon className="h-3.5 w-3.5" /> {metric.label}
                           </div>
                           <div className="text-sm font-bold text-slate-900 dark:text-white">
                             {metric.value}
@@ -312,13 +308,11 @@ export default function ComparisonsContent() {
                       as="h3"
                       className="font-bold text-slate-900 dark:text-white"
                     >
-                      <LayoutGrid className="text-primary-500 inline h-5 w-5" />
-                      {' '}
-                      Detail Perbandingan
+                      <LayoutGrid className="text-primary-500 inline h-5 w-5" /> Detail Perbandingan
                     </Typography>
                   </div>
 
-                  {selectedData!.points.map((point, idx) => (
+                  {selectedData!.points[locale].map((point, idx) => (
                     <div
                       key={idx}
                       className="hover:border-primary-500/20 group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-xl md:p-8 dark:border-slate-800 dark:bg-slate-900"
@@ -345,13 +339,11 @@ export default function ComparisonsContent() {
                             <div
                               className={`mb-1 flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase ${isBizOps ? 'text-blue-500' : 'text-red-500 dark:text-red-400'}`}
                             >
-                              {isBizOps
-                                ? (
-                                    <Info className="h-3 w-3" />
-                                  )
-                                : (
-                                    <XCircle className="h-3 w-3" />
-                                  )}
+                              {isBizOps ? (
+                                <Info className="h-3 w-3" />
+                              ) : (
+                                <XCircle className="h-3 w-3" />
+                              )}
                               {isBizOps ? 'Standard Capability' : 'Current Limit'}
                             </div>
                             <Typography
@@ -372,8 +364,7 @@ export default function ComparisonsContent() {
                         <Grid cols={2} gap={6} className="md:col-span-7">
                           <div className="relative rounded-xl border border-emerald-100 bg-emerald-50 p-5 dark:border-emerald-900/20 dark:bg-emerald-900/10">
                             <div className="mb-1 flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
-                              <CheckCircle2 className="h-3 w-3" />
-                              {' '}
+                              <CheckCircle2 className="h-3 w-3" />{' '}
                               {isBizOps ? 'BizOps Advantage' : 'BizOps Solution'}
                             </div>
                             <Typography
@@ -397,9 +388,7 @@ export default function ComparisonsContent() {
                                   variant="small"
                                   className="leading-relaxed text-slate-600 dark:text-slate-400"
                                 >
-                                  "
-                                  {point.impact}
-                                  "
+                                  "{point.impact}"
                                 </Typography>
                               </div>
                             </div>
@@ -418,8 +407,7 @@ export default function ComparisonsContent() {
                     <Grid cols={2} gap={12} className="relative z-10 items-center">
                       <div>
                         <Typography variant="h3" as="h3" className="font-bold">
-                          <AlertTriangle className="mr-2 inline h-6 w-6 text-amber-500" />
-                          {' '}
+                          <AlertTriangle className="mr-2 inline h-6 w-6 text-amber-500" />{' '}
                           <span className="text-white">Why Upgrade Now?</span>
                         </Typography>
                         <Typography variant="body" className="leading-relaxed text-slate-400">
@@ -432,9 +420,7 @@ export default function ComparisonsContent() {
                             className="mt-4 border-none bg-white font-bold text-slate-900 shadow-lg shadow-white/10 hover:bg-slate-200"
                             size="lg"
                           >
-                            <Calculator className="mr-2 h-4 w-4" />
-                            {' '}
-                            Hitung Nominal Kerugian
+                            <Calculator className="mr-2 h-4 w-4" /> Hitung Nominal Kerugian
                           </Button>
                         </Link>
                       </div>
@@ -444,7 +430,7 @@ export default function ComparisonsContent() {
                           Identified Bottlenecks
                         </div>
                         <ul className="space-y-4">
-                          {selectedData!.limitations.map((lim, idx) => (
+                          {selectedData!.limitations[locale].map((lim, idx) => (
                             <li key={idx} className="flex items-start gap-2 text-sm text-slate-200">
                               <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-500/20">
                                 <XCircle className="h-4 w-4 text-red-400" />

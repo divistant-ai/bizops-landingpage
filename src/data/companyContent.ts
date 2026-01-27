@@ -8,17 +8,30 @@ import {
   Repeat,
 } from 'lucide-react';
 
+// --- CUSTOMER STORY TYPE ---
+export type CustomerStory = {
+  client: string;
+  industry: { en: string; id: string };
+  logo: string;
+  title: { en: string; id: string };
+  chaos: { en: string; id: string };
+  solution: { en: string; id: string };
+  desc: { en: string; id: string };
+  metrics: Array<{ value: string; label: { en: string; id: string } }>;
+};
+
 // --- ABOUT PAGE CONTENT ---
 export const aboutContent = {
   hero: {
     headline: 'Dibangun oleh Praktisi, Untuk Menjawab Masalah Nyata di Lapangan.',
-    subheadline: 'BizOps lahir bukan dari spekulasi di ruang rapat dewan direksi yang dingin, melainkan dari observasi dan frustasi nyata di lantai pabrik yang panas, gudang distribusi yang sibuk, dan kantor HR yang kewalahan. Kami hadir untuk menutup celah tersebut dengan solusi yang presisi, adaptif, dan manusiawi.',
+    subheadline:
+      'BizOps lahir bukan dari spekulasi di ruang rapat dewan direksi yang dingin, melainkan dari observasi dan frustasi nyata di lantai pabrik yang panas, gudang distribusi yang sibuk, dan kantor HR yang kewalahan. Kami hadir untuk menutup celah tersebut dengan solusi yang presisi, adaptif, dan manusiawi.',
   },
   timeline: [
     {
       year: 'The Trigger',
       title: 'Frustasi di Lapangan',
-      desc: 'PT Divistant Teknologi Indonesia bermula sebagai boutique software house. Kami melihat pola kegagalan yang sama berulang kali: Perusahaan Indonesia sering dipaksa mengubah cara kerja unik mereka demi menyesuaikan diri dengan logika software \'impor\' yang kaku. Akibatnya fatal: Sistem menjadi \'monumen digital\' yang tidak dipakai (Shelfware).',
+      desc: "PT Divistant Teknologi Indonesia bermula sebagai boutique software house. Kami melihat pola kegagalan yang sama berulang kali: Perusahaan Indonesia sering dipaksa mengubah cara kerja unik mereka demi menyesuaikan diri dengan logika software 'impor' yang kaku. Akibatnya fatal: Sistem menjadi 'monumen digital' yang tidak dipakai (Shelfware).",
     },
     {
       year: 'The Philosophy',
@@ -34,18 +47,24 @@ export const aboutContent = {
   values: [
     {
       title: 'Pragmatism Over Hype',
-      manifesto: 'Kami tidak mengejar tren teknologi kosmetik jika tidak memecahkan masalah riil. Kami bangga membangun solusi yang \'membosankan\' tapi bekerja sempurna.',
-      proof: 'Fitur Offline Mode kami menyelamatkan operasional tambang batu bara di pedalaman Kalimantan saat koneksi satelit terputus.',
+      manifesto:
+        "Kami tidak mengejar tren teknologi kosmetik jika tidak memecahkan masalah riil. Kami bangga membangun solusi yang 'membosankan' tapi bekerja sempurna.",
+      proof:
+        'Fitur Offline Mode kami menyelamatkan operasional tambang batu bara di pedalaman Kalimantan saat koneksi satelit terputus.',
     },
     {
       title: 'Radical Transparency',
-      manifesto: 'Hubungan bisnis dibangun di atas kepercayaan. Tidak ada biaya tersembunyi (Hidden Fees), tidak ada kode rahasia (Black Box), dan tidak ada Vendor Lock-in.',
-      proof: 'Klien Self-Hosted mendapatkan akses penuh ke source code dan database. Anda bebas melakukan audit keamanan independen kapan saja.',
+      manifesto:
+        'Hubungan bisnis dibangun di atas kepercayaan. Tidak ada biaya tersembunyi (Hidden Fees), tidak ada kode rahasia (Black Box), dan tidak ada Vendor Lock-in.',
+      proof:
+        'Klien Self-Hosted mendapatkan akses penuh ke source code dan database. Anda bebas melakukan audit keamanan independen kapan saja.',
     },
     {
       title: 'Customer Sovereignty',
-      manifesto: 'Data adalah aset strategis Anda, bukan komoditas dagangan kami. Kami menolak model bisnis yang memonetisasi data pengguna untuk pihak ketiga.',
-      proof: 'Fitur One-Click Export memungkinkan Anda mengunduh seluruh data dalam format standar kapan saja. Tidak ada sandera data.',
+      manifesto:
+        'Data adalah aset strategis Anda, bukan komoditas dagangan kami. Kami menolak model bisnis yang memonetisasi data pengguna untuk pihak ketiga.',
+      proof:
+        'Fitur One-Click Export memungkinkan Anda mengunduh seluruh data dalam format standar kapan saja. Tidak ada sandera data.',
     },
   ],
   entity: {
@@ -53,7 +72,8 @@ export const aboutContent = {
     legal: 'NIB: [Tersedia] | SK Kemenkumham: [Tersedia]',
     hq: 'Jakarta Selatan (Sales & Ops) - Pusat operasional bisnis dan layanan klien.',
     rnd: 'Yogyakarta/Bandung (R&D) - Pusat inovasi teknologi dan pengembangan produk.',
-    compliance: 'Terdaftar resmi sebagai Penyelenggara Sistem Elektronik (PSE) Lingkup Privat di Kominfo.',
+    compliance:
+      'Terdaftar resmi sebagai Penyelenggara Sistem Elektronik (PSE) Lingkup Privat di Kominfo.',
   },
 };
 
@@ -61,7 +81,8 @@ export const aboutContent = {
 export const careersContent = {
   hero: {
     headline: 'Jangan Sekadar Menulis Kode. Bangun Peradaban Digital.',
-    subheadline: 'Kami mencari Problem Solvers, pemikir kritis, dan inovator. Di Divistant, Anda membangun sistem saraf pusat bagi ribuan bisnis di Indonesia. Pekerjaan Anda berdampak langsung pada efisiensi ekonomi riil.',
+    subheadline:
+      'Kami mencari Problem Solvers, pemikir kritis, dan inovator. Di Divistant, Anda membangun sistem saraf pusat bagi ribuan bisnis di Indonesia. Pekerjaan Anda berdampak langsung pada efisiensi ekonomi riil.',
   },
   culture: [
     {
@@ -78,16 +99,44 @@ export const careersContent = {
     },
   ],
   benefits: [
-    { title: 'Competitive Salary', desc: 'Gaji pokok kompetitif di atas rata-rata pasar, ditinjau tahunan berdasarkan performa & skill.' },
-    { title: 'Device Ownership', desc: 'MacBook Pro M-Series / Thinkpad X1 Carbon baru. Menjadi milik Anda sepenuhnya setelah 3 tahun.' },
-    { title: 'Comprehensive Health', desc: 'Asuransi kesehatan swasta rawat jalan/inap untuk keluarga inti + BPJS lengkap.' },
-    { title: 'Project Bonus', desc: 'Profit sharing proyek yang transparan. Kesuksesan implementasi klien adalah kesuksesan Anda.' },
+    {
+      title: 'Competitive Salary',
+      desc: 'Gaji pokok kompetitif di atas rata-rata pasar, ditinjau tahunan berdasarkan performa & skill.',
+    },
+    {
+      title: 'Device Ownership',
+      desc: 'MacBook Pro M-Series / Thinkpad X1 Carbon baru. Menjadi milik Anda sepenuhnya setelah 3 tahun.',
+    },
+    {
+      title: 'Comprehensive Health',
+      desc: 'Asuransi kesehatan swasta rawat jalan/inap untuk keluarga inti + BPJS lengkap.',
+    },
+    {
+      title: 'Project Bonus',
+      desc: 'Profit sharing proyek yang transparan. Kesuksesan implementasi klien adalah kesuksesan Anda.',
+    },
   ],
   hiring: [
-    { step: '1', title: 'Application Review', desc: 'Kami membaca kode GitHub, portofolio desain, atau tulisan teknis Anda. Bukan sekadar memindai kata kunci di CV.' },
-    { step: '2', title: 'Take-Home Challenge', desc: 'Tugas praktis relevan dengan pekerjaan nyata (Refactoring/Design UI), bukan teka-teki algoritma yang tidak realistis.' },
-    { step: '3', title: 'Technical Deep Dive', desc: 'Diskusi kode dan arsitektur mendalam dengan Senior Engineer untuk menguji pemahaman konsep.' },
-    { step: '4', title: 'Culture Fit Interview', desc: 'Obrolan santai dengan Founder atau VP untuk memastikan keselarasan nilai dan visi.' },
+    {
+      step: '1',
+      title: 'Application Review',
+      desc: 'Kami membaca kode GitHub, portofolio desain, atau tulisan teknis Anda. Bukan sekadar memindai kata kunci di CV.',
+    },
+    {
+      step: '2',
+      title: 'Take-Home Challenge',
+      desc: 'Tugas praktis relevan dengan pekerjaan nyata (Refactoring/Design UI), bukan teka-teki algoritma yang tidak realistis.',
+    },
+    {
+      step: '3',
+      title: 'Technical Deep Dive',
+      desc: 'Diskusi kode dan arsitektur mendalam dengan Senior Engineer untuk menguji pemahaman konsep.',
+    },
+    {
+      step: '4',
+      title: 'Culture Fit Interview',
+      desc: 'Obrolan santai dengan Founder atau VP untuk memastikan keselarasan nilai dan visi.',
+    },
   ],
 };
 
@@ -133,19 +182,19 @@ export const partnerContent = {
     old: {
       title: 'The Old Way',
       subtitle: 'Trading Time for Money (Linear Trap)',
-      desc: 'Sebagai konsultan tradisional, pendapatan Anda dibatasi secara linear oleh jam kerja manusia. Proyek selesai, pendapatan berhenti. Anda terjebak dalam siklus \'Feast or Famine\' (kadang ramai proyek, kadang sepi). Lebih buruk lagi, layanan jasa semakin terkomoditisasi; klien mudah berpindah ke kompetitor yang lebih murah atau mulai menggantikan jasa administrasi dasar dengan AI. Tanpa diferensiasi teknologi, margin keuntungan Anda akan terus tergerus oleh perang harga.',
+      desc: "Sebagai konsultan tradisional, pendapatan Anda dibatasi secara linear oleh jam kerja manusia. Proyek selesai, pendapatan berhenti. Anda terjebak dalam siklus 'Feast or Famine' (kadang ramai proyek, kadang sepi). Lebih buruk lagi, layanan jasa semakin terkomoditisasi; klien mudah berpindah ke kompetitor yang lebih murah atau mulai menggantikan jasa administrasi dasar dengan AI. Tanpa diferensiasi teknologi, margin keuntungan Anda akan terus tergerus oleh perang harga.",
     },
     new: {
       title: 'The New Way',
       subtitle: 'Asset-Based Revenue (Exponential Growth)',
-      desc: 'Konsultan masa depan tidak hanya menjual \'Saran\', mereka menjual \'Sistem\'. Dengan memiliki produk ERP sendiri, Anda menanamkan sistem ke dalam operasional harian klien. Hubungan transaksional berubah menjadi kemitraan strategis jangka panjang yang \'lengket\'. Anda mendapatkan Passive Income bulanan dari lisensi software (SaaS), sambil tetap menjual jasa konsultasi premium Anda di atasnya. Ini adalah cara meningkatkan Customer Lifetime Value (CLV) hingga 10x lipat dan menciptakan valuasi bisnis yang jauh lebih tinggi.',
+      desc: "Konsultan masa depan tidak hanya menjual 'Saran', mereka menjual 'Sistem'. Dengan memiliki produk ERP sendiri, Anda menanamkan sistem ke dalam operasional harian klien. Hubungan transaksional berubah menjadi kemitraan strategis jangka panjang yang 'lengket'. Anda mendapatkan Passive Income bulanan dari lisensi software (SaaS), sambil tetap menjual jasa konsultasi premium Anda di atasnya. Ini adalah cara meningkatkan Customer Lifetime Value (CLV) hingga 10x lipat dan menciptakan valuasi bisnis yang jauh lebih tinggi.",
     },
   },
   process: [
     {
       title: 'Step 1: Total Brand Immersion',
       subtitle: 'Re-Skinning & White-Glove Setup',
-      desc: 'Anda menyerahkan aset identitas visual lengkap (Logo, Warna, Domain). Tim engineer kami melakukan re-skinning total hingga ke level kode. Kami membangun ulang (re-build) APK (Android) dan IPA (iOS) Mobile Apps khusus untuk akun Developer Store Anda. Tidak ada jejak merek \'BizOps\' yang terlihat oleh klien. Klien akan mengira Anda memiliki tim IT in-house yang besar.',
+      desc: "Anda menyerahkan aset identitas visual lengkap (Logo, Warna, Domain). Tim engineer kami melakukan re-skinning total hingga ke level kode. Kami membangun ulang (re-build) APK (Android) dan IPA (iOS) Mobile Apps khusus untuk akun Developer Store Anda. Tidak ada jejak merek 'BizOps' yang terlihat oleh klien. Klien akan mengira Anda memiliki tim IT in-house yang besar.",
       icon: Layers,
     },
     {
@@ -164,17 +213,17 @@ export const partnerContent = {
   benefits: [
     {
       title: 'High Recurring Revenue (ARR/MRR)',
-      desc: 'Bangun arus kas yang sehat dan dapat diprediksi. Biaya langganan software klien menjadi \'gaji buta\' bagi perusahaan Anda setiap bulan, menutup biaya operasional dasar (Opex) kantor Anda.',
+      desc: "Bangun arus kas yang sehat dan dapat diprediksi. Biaya langganan software klien menjadi 'gaji buta' bagi perusahaan Anda setiap bulan, menutup biaya operasional dasar (Opex) kantor Anda.",
       icon: Repeat,
     },
     {
       title: 'Unbeatable Client Retention',
-      desc: 'Klien jasa konsultasi yang menggunakan software operasional dari konsultannya memiliki tingkat retensi 3x-5x lebih lama. Data HR, Finance, dan Project mereka tersimpan di sistem \'milik\' Anda, menciptakan Moat yang kuat.',
+      desc: "Klien jasa konsultasi yang menggunakan software operasional dari konsultannya memiliki tingkat retensi 3x-5x lebih lama. Data HR, Finance, dan Project mereka tersimpan di sistem 'milik' Anda, menciptakan Moat yang kuat.",
       icon: Anchor,
     },
     {
       title: 'Zero R&D & Maintenance Risk',
-      desc: 'Membangun ERP sekelas BizOps butuh tim 20 developer dan biaya miliaran. Dengan program ini, Anda \'menyewa\' hasil riset kami secara instan. Fokuslah jualan dan melayani klien, biarkan kami yang coding.',
+      desc: "Membangun ERP sekelas BizOps butuh tim 20 developer dan biaya miliaran. Dengan program ini, Anda 'menyewa' hasil riset kami secara instan. Fokuslah jualan dan melayani klien, biarkan kami yang coding.",
       icon: Code,
     },
     {
@@ -187,17 +236,20 @@ export const partnerContent = {
     {
       title: 'Business & Tax Consultants (KJA/KKP)',
       pain: 'Lelah mengejar klien setiap bulan untuk minta data bukti potong/rekening koran yang masih manual.',
-      solution: 'Berikan klien BizOps Whitelabel. Klien input data operasional, Anda tinggal tarik laporan keuangan rapi dari backend kapan saja.',
+      solution:
+        'Berikan klien BizOps Whitelabel. Klien input data operasional, Anda tinggal tarik laporan keuangan rapi dari backend kapan saja.',
     },
     {
       title: 'System Integrators & IT Hardware Vendors',
       pain: 'Jago jualan hardware (CCTV/Server/Fingerprint) tapi margin tipis dan sifatnya putus beli (one-off).',
-      solution: 'Bundle jualan CCTV/Fingerprint Anda dengan software BizOps. Jual solusi keamanan fisik + digital berlangganan.',
+      solution:
+        'Bundle jualan CCTV/Fingerprint Anda dengan software BizOps. Jual solusi keamanan fisik + digital berlangganan.',
     },
     {
       title: 'HR Agencies / Outsourcing Firms',
       pain: 'Persaingan harga management fee outsourcing sangat ketat. Klien menuntut transparansi data lapangan.',
-      solution: 'Menangkan tender dengan menawarkan \'Portal Klien Digital\' (BizOps Whitelabel) secara gratis atau bundle. USP mematikan bagi kompetitor.',
+      solution:
+        "Menangkan tender dengan menawarkan 'Portal Klien Digital' (BizOps Whitelabel) secara gratis atau bundle. USP mematikan bagi kompetitor.",
     },
   ],
   onboarding: [
@@ -228,14 +280,29 @@ export const partnerContent = {
 export const whyBizOpsContent = {
   hero: {
     headline: 'Bukan Pesaing, Tapi Penyatuan (The Unified Layer).',
-    sub: 'BizOps tidak harus menggantikan sistem lama Anda jika Anda belum siap. Kami memposisikan diri sebagai \'Middleware Cerdas\' yang menyatukan SAP di Finance, Mesin Absensi di Pintu, dan Spreadsheet di Gudang.',
+    sub: "BizOps tidak harus menggantikan sistem lama Anda jika Anda belum siap. Kami memposisikan diri sebagai 'Middleware Cerdas' yang menyatukan SAP di Finance, Mesin Absensi di Pintu, dan Spreadsheet di Gudang.",
   },
   reasons: [
-    { title: 'Native Mobile Experience', desc: 'UI/UX kelas konsumen memastikan adopsi tinggi dari karyawan lapangan. Tanpa adopsi, sistem hanyalah sampah digital.' },
-    { title: 'Total Data Sovereignty', desc: 'Opsi Self-Hosted memberikan kendali penuh atas aset data. Aman dari intipan, regulasi, dan kenaikan harga sepihak.' },
-    { title: 'Seamless Integration', desc: 'Tidak egois. Bisa berdiri sendiri sebagai ERP lengkap, atau terhubung ke SAP/Odoo/Jurnal sebagai pelengkap.' },
-    { title: 'Build vs Buy Winner', desc: 'Lebih murah & cepat 10x lipat daripada membangun tim dev sendiri, namun memberikan fleksibilitas setara custom.' },
-    { title: 'Local Compliance Ready', desc: 'Sudah disesuaikan dengan regulasi bisnis Indonesia (Pajak, BPJS, Alur Kasbon) sehingga Anda bisa langsung \'Go-Live\' tanpa kustomisasi rumit.' },
+    {
+      title: 'Native Mobile Experience',
+      desc: 'UI/UX kelas konsumen memastikan adopsi tinggi dari karyawan lapangan. Tanpa adopsi, sistem hanyalah sampah digital.',
+    },
+    {
+      title: 'Total Data Sovereignty',
+      desc: 'Opsi Self-Hosted memberikan kendali penuh atas aset data. Aman dari intipan, regulasi, dan kenaikan harga sepihak.',
+    },
+    {
+      title: 'Seamless Integration',
+      desc: 'Tidak egois. Bisa berdiri sendiri sebagai ERP lengkap, atau terhubung ke SAP/Odoo/Jurnal sebagai pelengkap.',
+    },
+    {
+      title: 'Build vs Buy Winner',
+      desc: 'Lebih murah & cepat 10x lipat daripada membangun tim dev sendiri, namun memberikan fleksibilitas setara custom.',
+    },
+    {
+      title: 'Local Compliance Ready',
+      desc: "Sudah disesuaikan dengan regulasi bisnis Indonesia (Pajak, BPJS, Alur Kasbon) sehingga Anda bisa langsung 'Go-Live' tanpa kustomisasi rumit.",
+    },
   ],
 };
 
@@ -243,58 +310,118 @@ export const whyBizOpsContent = {
 export const customerStories = [
   {
     client: 'Divistant',
-    industry: 'IT Consulting',
+    industry: {
+      en: 'IT Consulting',
+      id: 'IT Consulting',
+    },
     logo: 'DV',
-    title: 'Profitabilitas Proyek Naik 30% dengan Auto-Billing.',
-    chaos: 'Kami sering kehilangan potensi pendapatan karena \'revenue leakage\'—jam kerja konsultan yang lupa tercatat dan tagihan yang terlambat dikirim ke klien.',
-    solution: 'BizOps Project Automation mencatat timesheet konsultan via mobile app dan mengonversinya menjadi Invoice secara otomatis sesuai rate card kontrak.',
-    desc: 'Cashflow kami menjadi jauh lebih sehat. Tidak ada lagi drama tagihan telat atau jam kerja yang tidak terbayar.',
+    title: {
+      en: 'Project Profitability Increased 30% with Auto-Billing.',
+      id: 'Profitabilitas Proyek Naik 30% dengan Auto-Billing.',
+    },
+    chaos: {
+      en: "We often lost potential revenue due to 'revenue leakage'—consultant work hours that were forgotten to be recorded and invoices sent late to clients.",
+      id: "Kami sering kehilangan potensi pendapatan karena 'revenue leakage'—jam kerja konsultan yang lupa tercatat dan tagihan yang terlambat dikirim ke klien.",
+    },
+    solution: {
+      en: 'BizOps Project Automation records consultant timesheets via mobile app and converts them to Invoices automatically according to contract rate cards.',
+      id: 'BizOps Project Automation mencatat timesheet konsultan via mobile app dan mengonversinya menjadi Invoice secara otomatis sesuai rate card kontrak.',
+    },
+    desc: {
+      en: 'Our cashflow became much healthier. No more drama of late invoices or unpaid work hours.',
+      id: 'Cashflow kami menjadi jauh lebih sehat. Tidak ada lagi drama tagihan telat atau jam kerja yang tidak terbayar.',
+    },
     metrics: [
-      { value: '30%', label: 'Profit Naik' },
-      { value: '0', label: 'Missed Invoice' },
-      { value: '100%', label: 'Time Tracked' },
+      { value: '30%', label: { en: 'Profit Increase', id: 'Profit Naik' } },
+      { value: '0', label: { en: 'Missed Invoices', id: 'Missed Invoice' } },
+      { value: '100%', label: { en: 'Time Tracked', id: 'Time Tracked' } },
     ],
   },
   {
     client: 'Dikstra',
-    industry: 'IT Consulting',
+    industry: {
+      en: 'IT Consulting',
+      id: 'IT Consulting',
+    },
     logo: 'DK',
-    title: 'Kecepatan Penempatan Talent Meningkat 2x Lipat.',
-    chaos: 'Database talent engineer kami tersebar di ratusan file CV. Sulit mencari engineer dengan skill spesifik (misal: Golang + React) yang sedang \'bench\' (idle) saat ada permintaan mendadak.',
-    solution: 'Implementasi Talent Resource Planning. Database skill matrix terpusat dengan fitur forecasting ketersediaan resource.',
-    desc: 'Respon kami terhadap permintaan klien menjadi sangat cepat. Kami tahu persis siapa yang available dan skill-nya apa.',
+    title: {
+      en: 'Talent Placement Speed Increased 2x.',
+      id: 'Kecepatan Penempatan Talent Meningkat 2x Lipat.',
+    },
+    chaos: {
+      en: "Our engineer talent database was scattered across hundreds of CV files. Hard to find engineers with specific skills (e.g.: Golang + React) who are 'bench' (idle) when there's a sudden request.",
+      id: "Database talent engineer kami tersebar di ratusan file CV. Sulit mencari engineer dengan skill spesifik (misal: Golang + React) yang sedang 'bench' (idle) saat ada permintaan mendadak.",
+    },
+    solution: {
+      en: 'Implementation of Talent Resource Planning. Centralized skill matrix database with resource availability forecasting features.',
+      id: 'Implementasi Talent Resource Planning. Database skill matrix terpusat dengan fitur forecasting ketersediaan resource.',
+    },
+    desc: {
+      en: 'Our response to client requests became very fast. We know exactly who is available and what their skills are.',
+      id: 'Respon kami terhadap permintaan klien menjadi sangat cepat. Kami tahu persis siapa yang available dan skill-nya apa.',
+    },
     metrics: [
-      { value: '2x', label: 'Faster Placement' },
-      { value: '95%', label: 'Skill Match' },
-      { value: '40%', label: 'Bench Cost Down' },
+      { value: '2x', label: { en: 'Faster Placement', id: 'Faster Placement' } },
+      { value: '95%', label: { en: 'Skill Match', id: 'Skill Match' } },
+      { value: '40%', label: { en: 'Bench Cost Down', id: 'Bench Cost Down' } },
     ],
   },
   {
     client: 'PT Arena Rasa Nusantara',
-    industry: 'F&B',
+    industry: {
+      en: 'F&B',
+      id: 'F&B',
+    },
     logo: 'AR',
-    title: 'Food Cost Terkendali di 15 Outlet Cabang.',
-    chaos: 'HPP (Harga Pokok Penjualan) sering meleset karena resep tidak standar dan transfer bahan baku dari Central Kitchen ke outlet sering selisih tanpa jejak.',
-    solution: 'Central Kitchen Management System. Fitur Auto-Transfer berdasarkan permintaan outlet dan perhitungan HPP otomatis dari BOM (Bill of Material).',
-    desc: 'Kami bisa memantau performa profitabilitas setiap outlet secara real-time. Kebocoran bahan baku turun drastis.',
+    title: {
+      en: 'Food Cost Controlled Across 15 Branch Outlets.',
+      id: 'Food Cost Terkendali di 15 Outlet Cabang.',
+    },
+    chaos: {
+      en: 'COGS (Cost of Goods Sold) often missed targets because recipes were not standardized and raw material transfers from Central Kitchen to outlets often had discrepancies without a trace.',
+      id: 'HPP (Harga Pokok Penjualan) sering meleset karena resep tidak standar dan transfer bahan baku dari Central Kitchen ke outlet sering selisih tanpa jejak.',
+    },
+    solution: {
+      en: 'Central Kitchen Management System. Auto-Transfer feature based on outlet requests and automatic COGS calculation from BOM (Bill of Material).',
+      id: 'Central Kitchen Management System. Fitur Auto-Transfer berdasarkan permintaan outlet dan perhitungan HPP otomatis dari BOM (Bill of Material).',
+    },
+    desc: {
+      en: 'We can monitor the profitability performance of each outlet in real-time. Raw material leakage has dropped drastically.',
+      id: 'Kami bisa memantau performa profitabilitas setiap outlet secara real-time. Kebocoran bahan baku turun drastis.',
+    },
     metrics: [
-      { value: '12%', label: 'Food Cost Turun' },
-      { value: '15', label: 'Outlet Terkoneksi' },
-      { value: 'Real-time', label: 'Stock View' },
+      { value: '12%', label: { en: 'Food Cost Down', id: 'Food Cost Turun' } },
+      { value: '15', label: { en: 'Outlets Connected', id: 'Outlet Terkoneksi' } },
+      { value: 'Real-time', label: { en: 'Stock View', id: 'Stock View' } },
     ],
   },
   {
     client: 'PT Aero Travel Indonesia',
-    industry: 'Tour & Travel',
+    industry: {
+      en: 'Tour & Travel',
+      id: 'Tour & Travel',
+    },
     logo: 'AT',
-    title: 'Rekonsiliasi Komisi Otomatis, Hemat 5 Hari Kerja.',
-    chaos: 'Setiap akhir bulan, tim finance lembur 5 hari hanya untuk mencocokkan penjualan tiket dengan tagihan vendor dan menghitung komisi agen sub-agent secara manual.',
-    solution: 'Sistem Backoffice Travel Terintegrasi. Mengambil data booking, mencocokkan dengan invoice vendor, dan menghitung komisi agen secara otomatis.',
-    desc: 'Tim finance kami sekarang bisa fokus pada analisis strategi harga, bukan sekadar input data dan cek selisih.',
+    title: {
+      en: 'Automatic Commission Reconciliation, Saves 5 Working Days.',
+      id: 'Rekonsiliasi Komisi Otomatis, Hemat 5 Hari Kerja.',
+    },
+    chaos: {
+      en: 'Every end of month, the finance team works overtime for 5 days just to match ticket sales with vendor invoices and calculate sub-agent commission manually.',
+      id: 'Setiap akhir bulan, tim finance lembur 5 hari hanya untuk mencocokkan penjualan tiket dengan tagihan vendor dan menghitung komisi agen sub-agent secara manual.',
+    },
+    solution: {
+      en: 'Integrated Travel Backoffice System. Retrieves booking data, matches it with vendor invoices, and calculates agent commission automatically.',
+      id: 'Sistem Backoffice Travel Terintegrasi. Mengambil data booking, mencocokkan dengan invoice vendor, dan menghitung komisi agen secara otomatis.',
+    },
+    desc: {
+      en: 'Our finance team can now focus on pricing strategy analysis, not just data entry and checking discrepancies.',
+      id: 'Tim finance kami sekarang bisa fokus pada analisis strategi harga, bukan sekadar input data dan cek selisih.',
+    },
     metrics: [
-      { value: '5 Hari', label: 'Waktu Hemat' },
-      { value: '0%', label: 'Human Error' },
-      { value: 'Auto', label: 'Commission Calc' },
+      { value: '5 Days', label: { en: 'Time Saved', id: 'Waktu Hemat' } },
+      { value: '0%', label: { en: 'Human Error', id: 'Human Error' } },
+      { value: 'Auto', label: { en: 'Commission Calc', id: 'Commission Calc' } },
     ],
   },
 ];

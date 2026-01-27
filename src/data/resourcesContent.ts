@@ -22,24 +22,29 @@ import {
 // --- BLOG CONTENT ---
 export const blogContent = {
   featured: {
-    title: 'Revolusi PPh 21 TER (Tarif Efektif Rata-rata) 2024: Panduan Strategis & Teknis untuk HR Manager',
-    summary: 'Aturan pajak baru seringkali membingungkan. Artikel investigatif ini membedah simulasi perhitungan TER harian vs bulanan, dampak langsung pada Cashflow karyawan, dan bagaimana algoritma BizOps mengotomatisasi kepatuhan ini 100%.',
+    title:
+      'Revolusi PPh 21 TER (Tarif Efektif Rata-rata) 2024: Panduan Strategis & Teknis untuk HR Manager',
+    summary:
+      'Aturan pajak baru seringkali membingungkan. Artikel investigatif ini membedah simulasi perhitungan TER harian vs bulanan, dampak langsung pada Cashflow karyawan, dan bagaimana algoritma BizOps mengotomatisasi kepatuhan ini 100%.',
     meta: 'Regulation & Compliance | 12 Min Read | Author: Senior Tax Consultant Partner',
     slug: 'revolusi-pph-21-ter-2024',
   },
   pillars: [
     {
       category: 'Operational Efficiency',
-      title: '5 Tanda Bisnis Anda Sudah \'Tumbuh Kelewat Batas\' untuk Excel: Kapan Harus Migrasi?',
-      snippet: 'Apakah spreadsheet stok Anda mulai lambat dibuka dan sering crash? Kenali titik kritis di mana proses manual mulai membunuh profitabilitas Anda.',
+      title: "5 Tanda Bisnis Anda Sudah 'Tumbuh Kelewat Batas' untuk Excel: Kapan Harus Migrasi?",
+      snippet:
+        'Apakah spreadsheet stok Anda mulai lambat dibuka dan sering crash? Kenali titik kritis di mana proses manual mulai membunuh profitabilitas Anda.',
       icon: Activity,
       color: 'bg-blue-50 text-blue-600',
       slug: 'tanda-bisnis-tumbuh-lewat-batas',
     },
     {
       category: 'Finance & Cost Control',
-      title: 'Menghentikan \'Maverick Buying\': Menutup Kebocoran Anggaran Terbesar yang Tidak Anda Sadari',
-      snippet: 'Pembelian liar di luar kontrak vendor resmi bisa memboroskan anggaran hingga 15%. Pelajari bagaimana fitur Budget Checking menutup celah ini.',
+      title:
+        "Menghentikan 'Maverick Buying': Menutup Kebocoran Anggaran Terbesar yang Tidak Anda Sadari",
+      snippet:
+        'Pembelian liar di luar kontrak vendor resmi bisa memboroskan anggaran hingga 15%. Pelajari bagaimana fitur Budget Checking menutup celah ini.',
       icon: DollarSign,
       color: 'bg-green-50 text-green-600',
       slug: 'maverick-buying',
@@ -47,7 +52,8 @@ export const blogContent = {
     {
       category: 'Tech & Sovereignty',
       title: 'On-Premise vs Cloud ERP: Analisis TCO & Kepatuhan untuk BUMN & Korporasi',
-      snippet: 'Analisis mendalam mengenai Total Cost of Ownership (TCO) 5 tahunan. Kapan saatnya Anda harus memegang server sendiri demi keamanan?',
+      snippet:
+        'Analisis mendalam mengenai Total Cost of Ownership (TCO) 5 tahunan. Kapan saatnya Anda harus memegang server sendiri demi keamanan?',
       icon: Server,
       color: 'bg-purple-50 text-purple-600',
       slug: 'on-premise-vs-cloud',
@@ -55,7 +61,8 @@ export const blogContent = {
     {
       category: 'Leadership & Culture',
       title: 'Mengapa Transformasi Digital Gagal? (Dan Cara Menghindarinya)',
-      snippet: 'Statistik menunjukkan 70% proyek transformasi gagal bukan karena software-nya, tapi karena resistensi manusia. Pelajari strategi Change Management.',
+      snippet:
+        'Statistik menunjukkan 70% proyek transformasi gagal bukan karena software-nya, tapi karena resistensi manusia. Pelajari strategi Change Management.',
       icon: Lightbulb,
       color: 'bg-amber-50 text-amber-600',
       slug: 'mengapa-transformasi-digital-gagal',
@@ -67,12 +74,14 @@ export const blogContent = {
 export const blogPosts = [
   {
     slug: 'revolusi-pph-21-ter-2024',
-    title: 'Revolusi PPh 21 TER (Tarif Efektif Rata-rata) 2024: Panduan Strategis & Teknis untuk HR Manager',
+    title:
+      'Revolusi PPh 21 TER (Tarif Efektif Rata-rata) 2024: Panduan Strategis & Teknis untuk HR Manager',
     date: '15 October 2024',
     author: 'Budi Santoso, Senior Tax Consultant',
     category: 'Regulation & Compliance',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80',
-    summary: 'Aturan pajak baru seringkali membingungkan. Artikel investigatif ini membedah simulasi perhitungan TER harian vs bulanan, dampak langsung pada Cashflow karyawan, dan bagaimana algoritma BizOps mengotomatisasi kepatuhan ini 100%.',
+    summary:
+      'Aturan pajak baru seringkali membingungkan. Artikel investigatif ini membedah simulasi perhitungan TER harian vs bulanan, dampak langsung pada Cashflow karyawan, dan bagaimana algoritma BizOps mengotomatisasi kepatuhan ini 100%.',
     content: `
       <p class="lead text-xl text-slate-600 mb-8 font-light">Perubahan regulasi PPh 21 melalui PP 58/2023 membawa angin segar sekaligus tantangan administratif baru bagi departemen HR di seluruh Indonesia. Apa dampak sebenarnya bagi operasional harian Anda?</p>
       
@@ -116,12 +125,14 @@ export const blogPosts = [
   },
   {
     slug: 'tanda-bisnis-tumbuh-lewat-batas',
-    title: '5 Tanda Bisnis Anda Sudah \'Tumbuh Kelewat Batas\' untuk Excel: Kapan Harus Migrasi?',
+    title: "5 Tanda Bisnis Anda Sudah 'Tumbuh Kelewat Batas' untuk Excel: Kapan Harus Migrasi?",
     date: '10 September 2024',
     author: 'Sarah Wijaya, Ops Lead',
     category: 'Operational Efficiency',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop', // Analytics/Chart
-    summary: 'Apakah spreadsheet stok Anda mulai lambat dibuka dan sering crash? Kenali titik kritis di mana proses manual mulai membunuh profitabilitas Anda.',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop', // Analytics/Chart
+    summary:
+      'Apakah spreadsheet stok Anda mulai lambat dibuka dan sering crash? Kenali titik kritis di mana proses manual mulai membunuh profitabilitas Anda.',
     content: `
       <p class="lead text-xl text-slate-600 mb-8 font-light">Excel adalah alat yang luar biasa untuk memulai bisnis. Fleksibel, murah, dan semua orang bisa menggunakannya. Namun, seiring pertumbuhan transaksi, ia bisa berubah dari sahabat menjadi musuh terbesar efisiensi Anda.</p>
       
@@ -153,12 +164,14 @@ export const blogPosts = [
   },
   {
     slug: 'maverick-buying',
-    title: 'Menghentikan \'Maverick Buying\': Menutup Kebocoran Anggaran Terbesar',
+    title: "Menghentikan 'Maverick Buying': Menutup Kebocoran Anggaran Terbesar",
     date: '22 August 2024',
     author: 'Finance Team',
     category: 'Finance & Cost Control',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2071&auto=format&fit=crop', // Finance/Cost
-    summary: 'Pembelian liar di luar kontrak vendor resmi bisa memboroskan anggaran hingga 15%. Pelajari bagaimana fitur Budget Checking menutup celah ini.',
+    image:
+      'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2071&auto=format&fit=crop', // Finance/Cost
+    summary:
+      'Pembelian liar di luar kontrak vendor resmi bisa memboroskan anggaran hingga 15%. Pelajari bagaimana fitur Budget Checking menutup celah ini.',
     content: `
       <p class="lead text-xl text-slate-600 mb-8 font-light">Dalam audit pengadaan, sering ditemukan fenomena <strong>"Maverick Buying"</strong>: pembelian barang atau jasa oleh karyawan yang dilakukan di luar prosedur standar atau kontrak vendor yang telah disepakati.</p>
       
@@ -192,8 +205,10 @@ export const blogPosts = [
     date: '05 August 2024',
     author: 'Rendra Gunawan, CTO BizOps',
     category: 'Tech & Sovereignty',
-    image: 'https://images.unsplash.com/photo-1558494949-efc0257bb3af?q=80&w=2070&auto=format&fit=crop', // Server/Cloud
-    summary: 'Analisis mendalam mengenai Total Cost of Ownership (TCO) 5 tahunan. Kapan saatnya Anda harus memegang server sendiri demi keamanan?',
+    image:
+      'https://images.unsplash.com/photo-1558494949-efc0257bb3af?q=80&w=2070&auto=format&fit=crop', // Server/Cloud
+    summary:
+      'Analisis mendalam mengenai Total Cost of Ownership (TCO) 5 tahunan. Kapan saatnya Anda harus memegang server sendiri demi keamanan?',
     content: `
       <p class="lead text-xl text-slate-600 mb-8 font-light">Perdebatan klasik di ruang rapat direksi IT: <em>"Apakah kita sewa Cloud atau beli Server sendiri?"</em> Jawaban singkatnya: Tergantung. Jawaban panjangnya: Mari kita bedah angkanya.</p>
 
@@ -251,8 +266,10 @@ export const blogPosts = [
     date: '12 July 2024',
     author: 'Andi Wijaya, CEO BizOps',
     category: 'Leadership & Culture',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop', // Leadership/Team
-    summary: 'Statistik menunjukkan 70% proyek transformasi gagal bukan karena software-nya, tapi karena resistensi manusia. Pelajari strategi Change Management.',
+    image:
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop', // Leadership/Team
+    summary:
+      'Statistik menunjukkan 70% proyek transformasi gagal bukan karena software-nya, tapi karena resistensi manusia. Pelajari strategi Change Management.',
     content: `
       <p class="lead text-xl text-slate-600 mb-8 font-light">Sebuah studi dari McKinsey menyebutkan bahwa 70% inisiatif transformasi digital gagal mencapai tujuannya. Uang miliaran rupiah terbuang untuk software canggih yang akhirnya tidak dipakai oleh karyawan.</p>
       
@@ -300,114 +317,320 @@ export const eventsData = {
     {
       id: 'demo-tour',
       slug: 'demo-tour',
-      title: 'Tur Lengkap Ekosistem BizOps dalam 60 Menit',
+      title: {
+        en: 'Complete BizOps Ecosystem Tour in 60 Minutes',
+        id: 'Tur Lengkap Ekosistem BizOps dalam 60 Menit',
+      },
       type: 'Weekly Live Demo',
-      date: 'Kamis Depan, 14:00 WIB',
-      formattedDate: 'Setiap Kamis',
+      date: {
+        en: 'Next Thursday, 2:00 PM GMT+7',
+        id: 'Kamis Depan, 14:00 WIB',
+      },
+      formattedDate: {
+        en: 'Every Thursday',
+        id: 'Setiap Kamis',
+      },
       time: '14:00 - 15:00 WIB',
-      desc: 'Lihat langsung bagaimana modul HR, Finance, dan Supply Chain terintegrasi secara seamless. Sesi tanya jawab langsung dengan Product Specialist kami.',
+      desc: {
+        en: 'See firsthand how HR, Finance, and Supply Chain modules integrate seamlessly. Live Q&A session with our Product Specialist.',
+        id: 'Lihat langsung bagaimana modul HR, Finance, dan Supply Chain terintegrasi secara seamless. Sesi tanya jawab langsung dengan Product Specialist kami.',
+      },
       location: 'Zoom Live',
-      price: 'Gratis',
-      image: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&q=80&w=2573',
+      price: {
+        en: 'Free',
+        id: 'Gratis',
+      },
+      image:
+        'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&q=80&w=2573',
       icon: Video,
-      benefits: [
-        'Demo langsung antarmuka & fitur',
-        'Q&A dengan expert',
-        'Eksklusif promo peserta',
-      ],
+      benefits: {
+        en: ['Live demo of interface & features', 'Q&A with expert', 'Exclusive participant promo'],
+        id: ['Demo langsung antarmuka & fitur', 'Q&A dengan expert', 'Eksklusif promo peserta'],
+      },
       agenda: [
-        { time: '14:00', activity: 'Pembukaan & Introduction' },
-        { time: '14:10', activity: 'Demo Modul Finance & Accounting' },
-        { time: '14:25', activity: 'Demo Modul Supply Chain & Inventory' },
-        { time: '14:40', activity: 'Demo Modul HR & Payroll' },
-        { time: '14:50', activity: 'Sesi Tanya Jawab (Q&A)' },
+        {
+          time: '14:00',
+          activity: {
+            en: 'Opening & Introduction',
+            id: 'Pembukaan & Introduction',
+          },
+        },
+        {
+          time: '14:10',
+          activity: {
+            en: 'Finance & Accounting Module Demo',
+            id: 'Demo Modul Finance & Accounting',
+          },
+        },
+        {
+          time: '14:25',
+          activity: {
+            en: 'Supply Chain & Inventory Module Demo',
+            id: 'Demo Modul Supply Chain & Inventory',
+          },
+        },
+        {
+          time: '14:40',
+          activity: {
+            en: 'HR & Payroll Module Demo',
+            id: 'Demo Modul HR & Payroll',
+          },
+        },
+        {
+          time: '14:50',
+          activity: {
+            en: 'Q&A Session',
+            id: 'Sesi Tanya Jawab (Q&A)',
+          },
+        },
       ],
       speakers: [
-        { name: 'Rina Kartika', role: 'Product Specialist', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100' },
-        { name: 'Dimas Anggara', role: 'Solutions Engineer', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100' },
+        {
+          name: 'Rina Kartika',
+          role: 'Product Specialist',
+          image:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100',
+        },
+        {
+          name: 'Dimas Anggara',
+          role: 'Solutions Engineer',
+          image:
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100',
+        },
       ],
     },
     {
       id: 'tax-webinar',
       slug: 'tax-webinar',
-      title: 'Strategi Efisiensi Pajak Perusahaan di Era Core Tax System',
+      title: {
+        en: 'Corporate Tax Efficiency Strategy in the Core Tax System Era',
+        id: 'Strategi Efisiensi Pajak Perusahaan di Era Core Tax System',
+      },
       type: 'Special Webinar',
-      date: '28 Oktober 2024',
-      formattedDate: '28 Oktober 2024',
+      date: {
+        en: 'October 28, 2024',
+        id: '28 Oktober 2024',
+      },
+      formattedDate: {
+        en: 'October 28, 2024',
+        id: '28 Oktober 2024',
+      },
       time: '10:00 - 12:00 WIB',
-      desc: 'Kupas tuntas dampak Core Tax System DJP terhadap operasional perusahaan dan bagaimana teknologi ERP membantu kepatuhan pajak otomatis.',
+      desc: {
+        en: 'Comprehensive analysis of the DGT Core Tax System impact on company operations and how ERP technology enables automatic tax compliance.',
+        id: 'Kupas tuntas dampak Core Tax System DJP terhadap operasional perusahaan dan bagaimana teknologi ERP membantu kepatuhan pajak otomatis.',
+      },
       location: 'Zoom Webinar',
-      price: 'Gratis',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=2071',
+      price: {
+        en: 'Free',
+        id: 'Gratis',
+      },
+      image:
+        'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=2071',
       icon: GraduationCap,
-      benefits: [
-        'Update regulasi pajak terbaru',
-        'Strategi tax planning legal',
-        'Sertifikat kehadiran (E-Certificate)',
-      ],
+      benefits: {
+        en: [
+          'Latest tax regulation updates',
+          'Legal tax planning strategies',
+          'E-Certificate of attendance',
+        ],
+        id: [
+          'Update regulasi pajak terbaru',
+          'Strategi tax planning legal',
+          'Sertifikat kehadiran (E-Certificate)',
+        ],
+      },
       agenda: [
-        { time: '10:00', activity: 'Keynote: Era Baru Perpajakan Digital' },
-        { time: '10:30', activity: 'Deep Dive: Core Tax System Implication' },
-        { time: '11:15', activity: 'Studi Kasus & Demo Fitur Tax BizOps' },
-        { time: '11:45', activity: 'Q&A' },
+        {
+          time: '10:00',
+          activity: {
+            en: 'Keynote: New Era of Digital Taxation',
+            id: 'Keynote: Era Baru Perpajakan Digital',
+          },
+        },
+        {
+          time: '10:30',
+          activity: {
+            en: 'Deep Dive: Core Tax System Implication',
+            id: 'Deep Dive: Core Tax System Implication',
+          },
+        },
+        {
+          time: '11:15',
+          activity: {
+            en: 'Case Study & BizOps Tax Feature Demo',
+            id: 'Studi Kasus & Demo Fitur Tax BizOps',
+          },
+        },
+        {
+          time: '11:45',
+          activity: {
+            en: 'Q&A',
+            id: 'Q&A',
+          },
+        },
       ],
       speakers: [
-        { name: 'Budi Santoso, BKP', role: 'Senior Tax Consultant', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=100' },
-        { name: 'Andi Wijaya', role: 'CEO BizOps', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100' },
+        {
+          name: 'Budi Santoso, BKP',
+          role: 'Senior Tax Consultant',
+          image:
+            'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=100',
+        },
+        {
+          name: 'Andi Wijaya',
+          role: 'CEO BizOps',
+          image:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100',
+        },
       ],
     },
     {
       id: 'supply-chain-masterclass',
       slug: 'supply-chain-masterclass',
-      title: 'Supply Chain Resilience: Menghadapi Fluktuasi Pasar 2025',
+      title: {
+        en: 'Supply Chain Resilience: Facing 2025 Market Fluctuations',
+        id: 'Supply Chain Resilience: Menghadapi Fluktuasi Pasar 2025',
+      },
       type: 'Masterclass',
-      date: '15 November 2024',
-      formattedDate: '15 November 2024',
+      date: {
+        en: 'November 15, 2024',
+        id: '15 November 2024',
+      },
+      formattedDate: {
+        en: 'November 15, 2024',
+        id: '15 November 2024',
+      },
       time: '13:30 - 15:30 WIB',
-      desc: 'Pelajari teknik forecasting modern dan manajemen inventori yang adaptif untuk meminimalkan risiko stock-out dan overstock di tahun depan.',
+      desc: {
+        en: 'Learn modern forecasting techniques and adaptive inventory management to minimize stock-out and overstock risks next year.',
+        id: 'Pelajari teknik forecasting modern dan manajemen inventori yang adaptif untuk meminimalkan risiko stock-out dan overstock di tahun depan.',
+      },
       location: 'Zoom Webinar',
-      price: 'Gratis',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2070',
+      price: {
+        en: 'Free',
+        id: 'Gratis',
+      },
+      image:
+        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2070',
       icon: Package,
-      benefits: [
-        'Framework Supply Chain modern',
-        'Template Excel Forecasting',
-        'Networking session',
-      ],
+      benefits: {
+        en: ['Modern Supply Chain framework', 'Excel Forecasting template', 'Networking session'],
+        id: ['Framework Supply Chain modern', 'Template Excel Forecasting', 'Networking session'],
+      },
       agenda: [
-        { time: '13:30', activity: 'Trend Global Supply Chain 2025' },
-        { time: '14:00', activity: 'Inventory Optimization Techniques' },
-        { time: '14:45', activity: 'Technology Enablers: AI & Automation' },
-        { time: '15:15', activity: 'Closing & Networking' },
+        {
+          time: '13:30',
+          activity: {
+            en: 'Global Supply Chain Trends 2025',
+            id: 'Trend Global Supply Chain 2025',
+          },
+        },
+        {
+          time: '14:00',
+          activity: {
+            en: 'Inventory Optimization Techniques',
+            id: 'Inventory Optimization Techniques',
+          },
+        },
+        {
+          time: '14:45',
+          activity: {
+            en: 'Technology Enablers: AI & Automation',
+            id: 'Technology Enablers: AI & Automation',
+          },
+        },
+        {
+          time: '15:15',
+          activity: {
+            en: 'Closing & Networking',
+            id: 'Closing & Networking',
+          },
+        },
       ],
       speakers: [
-        { name: 'Sarah Wijaya', role: 'COO BizOps', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100' },
-        { name: 'Guest Expert', role: 'Supply Chain Director', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100' },
+        {
+          name: 'Sarah Wijaya',
+          role: 'COO BizOps',
+          image:
+            'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100',
+        },
+        {
+          name: 'Guest Expert',
+          role: 'Supply Chain Director',
+          image:
+            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100',
+        },
       ],
     },
   ],
   recordings: [
-    { title: 'Optimasi Supply Chain untuk Menghadapi Fluktuasi Harga', duration: '45 Min', views: '1.2k', slug: 'optimasi-supply-chain' },
-    { title: 'Membangun KPI Dashboard yang Efektif untuk CEO', duration: '50 Min', views: '850', slug: 'kpi-dashboard-ceo' },
-    { title: 'Cara Membangun Budaya Kerja Remote yang Produktif', duration: '40 Min', views: '2.1k', slug: 'remote-work-culture' },
+    {
+      title: {
+        en: 'Supply Chain Optimization for Price Fluctuations',
+        id: 'Optimasi Supply Chain untuk Menghadapi Fluktuasi Harga',
+      },
+      duration: '45 Min',
+      views: '1.2k',
+      slug: 'optimasi-supply-chain',
+    },
+    {
+      title: {
+        en: 'Building Effective KPI Dashboard for CEO',
+        id: 'Membangun KPI Dashboard yang Efektif untuk CEO',
+      },
+      duration: '50 Min',
+      views: '850',
+      slug: 'kpi-dashboard-ceo',
+    },
+    {
+      title: {
+        en: 'Building Productive Remote Work Culture',
+        id: 'Cara Membangun Budaya Kerja Remote yang Produktif',
+      },
+      duration: '40 Min',
+      views: '2.1k',
+      slug: 'remote-work-culture',
+    },
   ],
 };
 
 // --- DOCS DATA ---
 export const docsData = {
-  categories: [
-    { title: 'Getting Started', desc: 'Setup akun, impor data, konfigurasi awal.', icon: Flag },
-    { title: 'Human Capital', desc: 'Panduan Payroll, PPh 21, Absensi.', icon: Users },
-    { title: 'Finance & Accounting', desc: 'Jurnal, COA, Laporan Keuangan.', icon: DollarSign },
-    { title: 'Supply Chain', desc: 'Stok Opname, Transfer Gudang.', icon: Package },
-    { title: 'API Reference', desc: 'Endpoints, Auth, Webhooks.', icon: Code },
-    { title: 'Troubleshooting', desc: 'Kode error dan solusi mandiri.', icon: Wrench },
-  ],
-  apiPreview: [
-    { method: 'GET', endpoint: '/api/resource/Employee', desc: 'Ambil daftar karyawan aktif' },
-    { method: 'POST', endpoint: '/api/resource/SalesOrder', desc: 'Buat pesanan penjualan baru' },
-    { method: 'PUT', endpoint: '/api/resource/Item/{id}', desc: 'Update stok atau harga barang' },
-  ],
+  categories: {
+    en: [
+      {
+        title: 'Getting Started',
+        desc: 'Account setup, data import, initial configuration.',
+        icon: Flag,
+      },
+      { title: 'Human Capital', desc: 'Payroll, PPh 21, Attendance guides.', icon: Users },
+      { title: 'Finance & Accounting', desc: 'Journal, COA, Financial Reports.', icon: DollarSign },
+      { title: 'Supply Chain', desc: 'Stock Opname, Warehouse Transfer.', icon: Package },
+      { title: 'API Reference', desc: 'Endpoints, Auth, Webhooks.', icon: Code },
+      { title: 'Troubleshooting', desc: 'Error codes and self-service solutions.', icon: Wrench },
+    ],
+    id: [
+      { title: 'Getting Started', desc: 'Setup akun, impor data, konfigurasi awal.', icon: Flag },
+      { title: 'Human Capital', desc: 'Panduan Payroll, PPh 21, Absensi.', icon: Users },
+      { title: 'Finance & Accounting', desc: 'Jurnal, COA, Laporan Keuangan.', icon: DollarSign },
+      { title: 'Supply Chain', desc: 'Stok Opname, Transfer Gudang.', icon: Package },
+      { title: 'API Reference', desc: 'Endpoints, Auth, Webhooks.', icon: Code },
+      { title: 'Troubleshooting', desc: 'Kode error dan solusi mandiri.', icon: Wrench },
+    ],
+  },
+  apiPreview: {
+    en: [
+      { method: 'GET', endpoint: '/api/resource/Employee', desc: 'Get list of active employees' },
+      { method: 'POST', endpoint: '/api/resource/SalesOrder', desc: 'Create a new sales order' },
+      { method: 'PUT', endpoint: '/api/resource/Item/{id}', desc: 'Update item stock or price' },
+    ],
+    id: [
+      { method: 'GET', endpoint: '/api/resource/Employee', desc: 'Ambil daftar karyawan aktif' },
+      { method: 'POST', endpoint: '/api/resource/SalesOrder', desc: 'Buat pesanan penjualan baru' },
+      { method: 'PUT', endpoint: '/api/resource/Item/{id}', desc: 'Update stok atau harga barang' },
+    ],
+  },
 };
 
 // --- GLOSSARY DATA ---
@@ -416,25 +639,29 @@ export const glossaryData = [
     char: 'A',
     term: 'Audit Trail (Jejak Audit)',
     def: 'Rekaman kronologis digital yang memberikan bukti dokumenter tak terbantahkan tentang urutan aktivitas yang telah mempengaruhi operasi, prosedur, atau peristiwa tertentu dalam sistem ERP.',
-    context: 'Fitur ini adalah syarat mutlak untuk kepatuhan keamanan data (ISO 27001) dan pencegahan fraud internal.',
+    context:
+      'Fitur ini adalah syarat mutlak untuk kepatuhan keamanan data (ISO 27001) dan pencegahan fraud internal.',
   },
   {
     char: 'K',
     term: 'Kurva-S (S-Curve)',
-    def: 'Grafik yang menunjukkan kemajuan kumulatif proyek dibandingkan dengan waktu. Bentuk huruf \'S\' merepresentasikan fase lambat di awal, cepat di tengah, dan melambat di akhir.',
-    context: 'Alat utama bagi Kontraktor untuk mendeteksi keterlambatan proyek (slippage) lebih dini.',
+    def: "Grafik yang menunjukkan kemajuan kumulatif proyek dibandingkan dengan waktu. Bentuk huruf 'S' merepresentasikan fase lambat di awal, cepat di tengah, dan melambat di akhir.",
+    context:
+      'Alat utama bagi Kontraktor untuk mendeteksi keterlambatan proyek (slippage) lebih dini.',
   },
   {
     char: 'P',
     term: 'PPh 21 TER (Tarif Efektif Rata-rata)',
     def: 'Metode baru perhitungan pemotongan pajak penghasilan pasal 21 bagi pegawai tetap yang berlaku mulai Januari 2024 (PP 58/2023), menggunakan tabel tarif praktis.',
-    context: 'Menyederhanakan administrasi bulanan namun membutuhkan ketelitian tinggi saat perhitungan ulang di masa pajak terakhir.',
+    context:
+      'Menyederhanakan administrasi bulanan namun membutuhkan ketelitian tinggi saat perhitungan ulang di masa pajak terakhir.',
   },
   {
     char: 'S',
     term: 'Safety Stock (Stok Pengaman)',
     def: 'Persediaan tambahan yang sengaja disimpan sebagai penyangga (buffer) untuk mencegah kehabisan stok akibat fluktuasi permintaan mendadak.',
-    context: 'Menjaga tingkat layanan pelanggan (Service Level) tetap tinggi tanpa menimbun stok berlebihan.',
+    context:
+      'Menjaga tingkat layanan pelanggan (Service Level) tetap tinggi tanpa menimbun stok berlebihan.',
   },
 ];
 
@@ -446,7 +673,8 @@ export const migrationData = [
     icon: FileSpreadsheet,
     desc: 'Excel / Google Sheets',
     challenge: 'Data tidak terstandar, banyak duplikasi, format tanggal tidak konsisten.',
-    solution: 'Panduan teknik Data Cleansing cepat menggunakan rumus Excel, cara menstandarisasi kolom, dan penggunaan Bulk Import Tool.',
+    solution:
+      'Panduan teknik Data Cleansing cepat menggunakan rumus Excel, cara menstandarisasi kolom, dan penggunaan Bulk Import Tool.',
     asset: 'Download Template Excel Master Data V2.xlsx',
   },
   {
@@ -455,7 +683,8 @@ export const migrationData = [
     icon: Cloud,
     desc: 'Accurate / Jurnal / Zahir',
     challenge: 'Memindahkan Saldo Awal Akuntansi (Opening Balance) agar neraca tetap balance.',
-    solution: 'Cara ekspor Daftar Akun (COA), Saldo Awal Piutang/Hutang, dan strategi menentukan tanggal Cut-off untuk meminimalkan gangguan.',
+    solution:
+      'Cara ekspor Daftar Akun (COA), Saldo Awal Piutang/Hutang, dan strategi menentukan tanggal Cut-off untuk meminimalkan gangguan.',
     asset: 'Panduan Ekspor & Cut-Off Akuntansi.pdf',
   },
   {
@@ -464,7 +693,8 @@ export const migrationData = [
     icon: Server,
     desc: 'Odoo / SAP / Custom App',
     challenge: 'Struktur database relasional yang kompleks dan volume data besar.',
-    solution: 'Pemetaan struktur data objek-ke-objek. Strategi migrasi stok gudang (Stock Opname Total) dan migrasi nilai buku aset tetap.',
+    solution:
+      'Pemetaan struktur data objek-ke-objek. Strategi migrasi stok gudang (Stock Opname Total) dan migrasi nilai buku aset tetap.',
     asset: 'Technical API Migration Guide.pdf',
   },
 ];
