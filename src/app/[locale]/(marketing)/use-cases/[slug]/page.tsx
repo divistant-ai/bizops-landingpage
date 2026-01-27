@@ -9,26 +9,28 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const data = useCasesData[slug];
   if (!data) {
     return {};
   }
 
+  const lang = (locale as 'en' | 'id') || 'en';
+
   return genMeta({
-    title: `${data.title} - ${data.industry} Case Study | BizOps`,
-    description: data.subtitle,
+    title: `${data.title[lang]} - ${data.industry} Case Study | BizOps`,
+    description: data.subtitle[lang],
   });
 }
 
 export async function generateStaticParams() {
-  return Object.keys(useCasesData).map(slug => ({
+  return Object.keys(useCasesData).map((slug) => ({
     slug,
   }));
 }
 
 export default async function UseCaseDetailPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const data = useCasesData[slug];
 
   if (!data) {
@@ -38,5 +40,5 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
   // Transform icon to React Element for serialization
   const transformedData = transformContent(data);
 
-  return <UseCaseTemplate data={transformedData} />;
+  return <UseCaseTemplate data={transformedData} locale={(locale as 'en' | 'id') || 'en'} />;
 }

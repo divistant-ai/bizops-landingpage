@@ -16,9 +16,18 @@ import {
 
 export type ToolMetadata = {
   id: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  title: {
+    en: string;
+    id: string;
+  };
+  subtitle: {
+    en: string;
+    id: string;
+  };
+  description: {
+    en: string;
+    id: string;
+  };
   icon: LucideIcon;
   href: string;
   color: string;
@@ -33,9 +42,18 @@ export const toolsRegistry: ToolMetadata[] = [
   // Customer Tools
   {
     id: 'pajak-pph21',
-    title: 'Kalkulator Pajak PPh 21',
-    subtitle: 'Tax Calculator',
-    description: 'Hitung pajak penghasilan karyawan sesuai aturan terbaru dengan akurat.',
+    title: {
+      id: 'Kalkulator Pajak PPh 21',
+      en: 'PPh 21 Tax Calculator',
+    },
+    subtitle: {
+      id: 'Kalkulator Pajak',
+      en: 'Tax Calculator',
+    },
+    description: {
+      id: 'Hitung pajak penghasilan karyawan sesuai aturan terbaru dengan akurat.',
+      en: 'Accurately calculate employee income tax based on the latest regulations.',
+    },
     icon: Calculator,
     href: '/tools/pajak-pph21',
     color: 'blue',
@@ -47,9 +65,18 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'gaji-bersih',
-    title: 'Kalkulator Gaji Bersih',
-    subtitle: 'Take Home Pay',
-    description: 'Hitung gaji bersih setelah dipotong pajak dan BPJS.',
+    title: {
+      id: 'Kalkulator Gaji Bersih',
+      en: 'Net Salary Calculator',
+    },
+    subtitle: {
+      id: 'Gaji Bersih',
+      en: 'Take Home Pay',
+    },
+    description: {
+      id: 'Hitung gaji bersih setelah dipotong pajak dan BPJS.',
+      en: 'Calculate your net salary after tax and BPJS deductions.',
+    },
     icon: Wallet,
     href: '/tools/gaji-bersih',
     color: 'emerald',
@@ -61,9 +88,18 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'bpjs',
-    title: 'Kalkulator BPJS',
-    subtitle: 'Health & Employment',
-    description: 'Hitung iuran BPJS Kesehatan dan Ketenagakerjaan (JHT, JP, JKK, JKM).',
+    title: {
+      id: 'Kalkulator BPJS',
+      en: 'BPJS Contribution Calculator',
+    },
+    subtitle: {
+      id: 'Kesehatan & Ketenagakerjaan',
+      en: 'Health & Employment',
+    },
+    description: {
+      id: 'Hitung iuran BPJS Kesehatan dan Ketenagakerjaan (JHT, JP, JKK, JKM).',
+      en: 'Calculate BPJS Health and Employment contributions (JHT, JP, JKK, JKM).',
+    },
     icon: Shield,
     href: '/tools/bpjs',
     color: 'teal',
@@ -75,9 +111,18 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'margin-markup',
-    title: 'Kalkulator Margin & Markup',
-    subtitle: 'Pricing Calculator',
-    description: 'Hitung margin profit, markup, dan harga jual optimal untuk produk Anda.',
+    title: {
+      id: 'Kalkulator Margin & Markup',
+      en: 'Margin & Markup Calculator',
+    },
+    subtitle: {
+      id: 'Kalkulator Harga',
+      en: 'Pricing Calculator',
+    },
+    description: {
+      id: 'Hitung margin profit, markup, dan harga jual optimal untuk produk Anda.',
+      en: 'Calculate profit margin, markup, and optimal selling price for your products.',
+    },
     icon: TrendingUp,
     href: '/tools/margin-markup',
     color: 'orange',
@@ -89,9 +134,18 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'invoice-checker',
-    title: 'Checker Kelengkapan Invoice',
-    subtitle: 'Invoice Validator',
-    description: 'Validasi kelengkapan dan kebenaran data invoice sebelum diproses.',
+    title: {
+      id: 'Checker Kelengkapan Invoice',
+      en: 'Invoice Completeness Checker',
+    },
+    subtitle: {
+      id: 'Validator Invoice',
+      en: 'Invoice Validator',
+    },
+    description: {
+      id: 'Validasi kelengkapan dan kebenaran data invoice sebelum diproses.',
+      en: 'Validate the completeness and accuracy of invoice data before processing.',
+    },
     icon: FileCheck,
     href: '/tools/invoice-checker',
     color: 'indigo',
@@ -103,9 +157,18 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'break-even-point',
-    title: 'Kalkulator Break Even Point',
-    subtitle: 'BEP Calculator',
-    description: 'Hitung berapa unit yang harus dijual agar bisnis mencapai titik impas.',
+    title: {
+      id: 'Kalkulator Break Even Point',
+      en: 'Break Even Point Calculator',
+    },
+    subtitle: {
+      id: 'Kalkulator BEP',
+      en: 'BEP Calculator',
+    },
+    description: {
+      id: 'Hitung berapa unit yang harus dijual agar bisnis mencapai titik impas.',
+      en: 'Calculate how many units must be sold for your business to reach break-even.',
+    },
     icon: Target,
     href: '/tools/break-even-point',
     color: 'emerald',
@@ -117,134 +180,199 @@ export const toolsRegistry: ToolMetadata[] = [
   },
   {
     id: 'efisiensi-produksi',
-    title: 'Kalkulator Efisiensi Produksi',
-    subtitle: 'OEE Calculator',
-    description: 'Hitung Overall Equipment Effectiveness untuk mengukur efisiensi mesin.',
+    title: {
+      id: 'Kalkulator Efisiensi Produksi',
+      en: 'Production Efficiency Calculator',
+    },
+    subtitle: {
+      id: 'Kalkulator OEE',
+      en: 'OEE Calculator',
+    },
+    description: {
+      id: 'Hitung Overall Equipment Effectiveness untuk mengukur efisiensi mesin.',
+      en: 'Calculate Overall Equipment Effectiveness to measure machine efficiency.',
+    },
     icon: Factory,
     href: '/tools/efisiensi-produksi',
     color: 'slate',
     category: 'customer',
     badge: null,
     features: ['Availability', 'Performance', 'Quality'],
-    keywords: ['oee', 'efisiensi', 'produksi', 'manufacturing', 'mesin', 'availability', 'performance', 'quality'],
+    keywords: ['oee', 'efisiensi', 'produksi', 'manufacturing', 'mesin'],
     relatedTools: ['break-even-point'],
   },
+
   // Consultant Tools
   {
     id: 'needs-analysis',
-    title: 'Needs Analysis',
-    subtitle: 'Solution Finder',
-    description: 'Temukan solusi ERP yang tepat dengan analisis kebutuhan komprehensif 7-step.',
+    title: {
+      id: 'Analisis Kebutuhan',
+      en: 'Needs Analysis',
+    },
+    subtitle: {
+      id: 'Pencari Solusi',
+      en: 'Solution Finder',
+    },
+    description: {
+      id: 'Temukan solusi ERP yang tepat dengan analisis kebutuhan komprehensif 7 langkah.',
+      en: 'Find the right ERP solution through a comprehensive 7-step needs analysis.',
+    },
     icon: Search,
     href: '/tools/needs-analysis',
     color: 'blue',
     category: 'consultant',
     badge: 'Essential',
     features: ['7-Step Wizard', 'Smart Recommendations', 'Visual Roadmap'],
-    keywords: ['needs', 'analysis', 'solution', 'finder', 'erp', 'kebutuhan', 'analisis'],
+    keywords: ['needs', 'analysis', 'solution', 'finder', 'erp'],
     relatedTools: ['assessment', 'roi-calculator'],
   },
   {
     id: 'roi-calculator',
-    title: 'ROI Calculator',
-    subtitle: 'Investment Analysis',
-    description: 'Hitung potensi ROI dan break-even point dari investasi ERP Anda.',
+    title: {
+      id: 'Kalkulator ROI',
+      en: 'ROI Calculator',
+    },
+    subtitle: {
+      id: 'Analisis Investasi',
+      en: 'Investment Analysis',
+    },
+    description: {
+      id: 'Hitung potensi ROI dan break-even point dari investasi ERP Anda.',
+      en: 'Calculate potential ROI and break-even point for your ERP investment.',
+    },
     icon: DollarSign,
     href: '/tools/roi-calculator',
     color: 'emerald',
     category: 'consultant',
     badge: 'Essential',
     features: ['Detailed Savings', 'Payback Period', 'Lead Form'],
-    keywords: ['roi', 'return', 'investment', 'payback', 'savings', 'hemat', 'investasi'],
+    keywords: ['roi', 'investment', 'payback'],
     relatedTools: ['needs-analysis', 'timeline-generator'],
   },
   {
     id: 'timeline-generator',
-    title: 'Timeline Generator',
-    subtitle: 'Project Planning',
-    description: 'Buat estimasi timeline implementasi dengan Gantt Chart interaktif.',
+    title: {
+      id: 'Generator Timeline',
+      en: 'Timeline Generator',
+    },
+    subtitle: {
+      id: 'Perencanaan Proyek',
+      en: 'Project Planning',
+    },
+    description: {
+      id: 'Buat estimasi timeline implementasi dengan Gantt Chart interaktif.',
+      en: 'Create an estimated implementation timeline with an interactive Gantt chart.',
+    },
     icon: Calendar,
     href: '/tools/timeline-generator',
     color: 'purple',
     category: 'consultant',
     badge: null,
     features: ['Gantt Chart', 'Expandable Phases', 'Risk Analysis'],
-    keywords: ['timeline', 'gantt', 'project', 'planning', 'implementasi', 'jadwal'],
+    keywords: ['timeline', 'gantt', 'project'],
     relatedTools: ['roi-calculator', 'needs-analysis'],
   },
   {
     id: 'assessment',
-    title: 'Maturity Assessment',
-    subtitle: 'Digital Readiness',
-    description: 'Evaluasi tingkat kematangan digital perusahaan dengan framework CMMI.',
+    title: {
+      id: 'Penilaian Kematangan',
+      en: 'Maturity Assessment',
+    },
+    subtitle: {
+      id: 'Kesiapan Digital',
+      en: 'Digital Readiness',
+    },
+    description: {
+      id: 'Evaluasi tingkat kematangan digital perusahaan dengan framework CMMI.',
+      en: 'Evaluate your company’s digital maturity level using the CMMI framework.',
+    },
     icon: PieChart,
     href: '/tools/assessment',
     color: 'amber',
     category: 'consultant',
     badge: null,
     features: ['8 Dimensions', 'Detailed Report', 'Recommendations'],
-    keywords: ['maturity', 'assessment', 'digital', 'readiness', 'cmmi', 'kematangan', 'evaluasi'],
+    keywords: ['maturity', 'assessment', 'digital'],
     relatedTools: ['needs-analysis', 'roi-calculator'],
   },
   {
     id: 'pricing-calculator',
-    title: 'Pricing Calculator',
-    subtitle: 'Cost Estimation',
-    description: 'Dapatkan estimasi harga yang akurat berdasarkan kebutuhan spesifik Anda.',
+    title: {
+      id: 'Kalkulator Harga',
+      en: 'Pricing Calculator',
+    },
+    subtitle: {
+      id: 'Estimasi Biaya',
+      en: 'Cost Estimation',
+    },
+    description: {
+      id: 'Dapatkan estimasi harga yang akurat berdasarkan kebutuhan spesifik Anda.',
+      en: 'Get accurate pricing estimates based on your specific requirements.',
+    },
     icon: Calculator,
     href: '/pricing/calculator',
     color: 'rose',
     category: 'consultant',
     badge: null,
     features: ['Custom Pricing', 'Add-ons', 'Instant Quote'],
-    keywords: ['pricing', 'cost', 'estimation', 'harga', 'biaya', 'estimasi', 'quote'],
+    keywords: ['pricing', 'cost', 'estimation'],
     relatedTools: ['roi-calculator', 'needs-analysis'],
   },
   {
     id: 'biaya-turnover',
-    title: 'Kalkulator Biaya Turnover',
-    subtitle: 'HR Cost Analysis',
-    description: 'Hitung biaya tersembunyi yang perusahaan keluarkan akibat turnover karyawan.',
+    title: {
+      id: 'Kalkulator Biaya Turnover',
+      en: 'Employee Turnover Cost Calculator',
+    },
+    subtitle: {
+      id: 'Analisis Biaya HR',
+      en: 'HR Cost Analysis',
+    },
+    description: {
+      id: 'Hitung biaya tersembunyi yang perusahaan keluarkan akibat turnover karyawan.',
+      en: 'Calculate the hidden costs incurred by companies due to employee turnover.',
+    },
     icon: Users,
     href: '/tools/biaya-turnover',
     color: 'rose',
     category: 'consultant',
     badge: 'New',
     features: ['Direct Costs', 'Indirect Costs', 'ROI Insight'],
-    keywords: ['turnover', 'hr', 'karyawan', 'resign', 'biaya', 'hidden cost', 'retention'],
+    keywords: ['turnover', 'hr', 'cost'],
     relatedTools: ['roi-calculator'],
   },
 ];
 
 // Helper functions
-export function getToolById(id: string): ToolMetadata | undefined {
-  return toolsRegistry.find(tool => tool.id === id);
-}
+// export function getToolById(id: string): ToolMetadata | undefined {
+//   return toolsRegistry.find((tool) => tool.id === id);
+// }
 
 export function getToolsByCategory(category: 'customer' | 'consultant'): ToolMetadata[] {
-  return toolsRegistry.filter(tool => tool.category === category);
+  return toolsRegistry.filter((tool) => tool.category === category);
 }
 
-export function getRelatedTools(toolId: string, limit: number = 3): ToolMetadata[] {
-  const tool = getToolById(toolId);
-  if (!tool || !tool.relatedTools) {
-    return [];
-  }
+// export function getRelatedTools(toolId: string, limit: number = 3): ToolMetadata[] {
+//   const tool = getToolById(toolId);
+//   if (!tool || !tool.relatedTools) {
+//     return [];
+//   }
 
-  return tool.relatedTools
-    .map(id => getToolById(id))
-    .filter((t): t is ToolMetadata => t !== undefined)
-    .slice(0, limit);
-}
+//   return tool.relatedTools
+//     .map((id) => getToolById(id))
+//     .filter((t): t is ToolMetadata => t !== undefined)
+//     .slice(0, limit);
+// }
 
-export function searchTools(query: string): ToolMetadata[] {
-  const lowerQuery = query.toLowerCase();
-  return toolsRegistry.filter(tool =>
-    tool.title.toLowerCase().includes(lowerQuery)
-    || tool.description.toLowerCase().includes(lowerQuery)
-    || tool.keywords.some(keyword => keyword.includes(lowerQuery)),
-  );
-}
+// export function searchTools(query: string): ToolMetadata[] {
+//   const lowerQuery = query.toLowerCase();
+//   return toolsRegistry.filter(
+//     (tool) =>
+//       tool.title.toLowerCase().includes(lowerQuery) ||
+//       tool.description.toLowerCase().includes(lowerQuery) ||
+//       tool.keywords.some((keyword) => keyword.includes(lowerQuery)),
+//   );
+// }
 
 export const customerTools = getToolsByCategory('customer');
 export const consultantTools = getToolsByCategory('consultant');

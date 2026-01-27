@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, PlayCircle, Search } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -12,14 +13,16 @@ import Stack from '@/components/ui/Stack';
 import { eventsData } from '@/data/resourcesContent';
 
 export default function EventsPage() {
+  const t = useTranslations('Events');
+  const locale = useLocale() as 'en' | 'id';
   const [filter, setFilter] = useState<string>('All');
   const categories = ['All', 'Live Demo', 'Webinar', 'Masterclass'];
 
-  const filteredEvents
-    = filter === 'All'
+  const filteredEvents =
+    filter === 'All'
       ? eventsData.upcoming
       : eventsData.upcoming.filter(
-          evt =>
+          (evt) =>
             evt.type.includes(filter) || (filter === 'Webinar' && evt.type === 'Special Webinar'),
         );
 
@@ -37,7 +40,7 @@ export default function EventsPage() {
             className="text-primary-600 dark:text-primary-400 mb-6 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold tracking-wider uppercase dark:border-slate-700 dark:bg-slate-800/50"
           >
             <span className="h-2 w-2 animate-pulse rounded-full bg-red-500"></span>
-            Live Learning Sessions
+            {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -46,7 +49,7 @@ export default function EventsPage() {
             transition={{ delay: 0.1 }}
             className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl dark:text-white"
           >
-            BizOps Academy
+            {t('hero_title')}
           </motion.h1>
 
           <motion.p
@@ -55,8 +58,7 @@ export default function EventsPage() {
             transition={{ delay: 0.2 }}
             className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-300"
           >
-            Tingkatkan kompetensi tim Anda dengan wawasan langsung dari praktisi. Ikuti sesi edukasi
-            gratis tentang digitalisasi, strategi pajak, dan manajemen operasional modern.
+            {t('hero_desc')}
           </motion.p>
 
           <motion.div
@@ -69,12 +71,12 @@ export default function EventsPage() {
               <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Cari topik webinar..."
+                placeholder={t('search_placeholder')}
                 className="w-full border-none bg-transparent py-3 pr-4 pl-12 text-slate-900 placeholder-slate-400 focus:ring-0 focus:outline-none dark:text-white"
               />
             </div>
             <div className="flex w-full gap-2 overflow-x-auto px-2 pb-2 sm:w-auto sm:px-0 sm:pb-0">
-              {categories.map(cat => (
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
@@ -98,7 +100,7 @@ export default function EventsPage() {
           <div className="flex items-center justify-between gap-4">
             <Typography variant="h2" as="h2" className="font-bold text-slate-900 dark:text-white">
               <Calendar className="text-primary-600 dark:text-primary-400 mr-2 inline h-6 w-6" />
-              Upcoming Live Sessions
+              {t('upcoming_title')}
             </Typography>
           </div>
 
@@ -118,24 +120,23 @@ export default function EventsPage() {
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={evt.image}
-                        alt={evt.title}
+                        alt={typeof evt.title === 'string' ? evt.title : evt.title[locale]}
                         width={350}
                         height={192}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs font-bold tracking-wider text-white uppercase backdrop-blur">
-                        <Icon className="h-3 w-3" />
-                        {' '}
-                        {evt.type}
+                        <Icon className="h-3 w-3" /> {evt.type}
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
                     </div>
 
                     <div className="flex flex-1 flex-col gap-4 p-6">
                       <div className="text-primary-600 dark:text-primary-400 flex items-center gap-2 text-sm font-bold">
-                        <Calendar className="h-4 w-4" />
-                        {' '}
-                        {evt.formattedDate}
+                        <Calendar className="h-4 w-4" />{' '}
+                        {typeof evt.formattedDate === 'string'
+                          ? evt.formattedDate
+                          : evt.formattedDate[locale]}
                       </div>
 
                       <Typography
@@ -143,14 +144,16 @@ export default function EventsPage() {
                         as="h3"
                         className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-xl leading-tight font-bold text-slate-900 dark:text-white"
                       >
-                        <Link href={`/events/${evt.slug}`}>{evt.title}</Link>
+                        <Link href={`/events/${evt.slug}`}>
+                          {typeof evt.title === 'string' ? evt.title : evt.title[locale]}
+                        </Link>
                       </Typography>
 
                       <Typography
                         variant="small"
                         className="leading-relaxed text-slate-600 dark:text-slate-400"
                       >
-                        {evt.desc}
+                        {typeof evt.desc === 'string' ? evt.desc : evt.desc[locale]}
                       </Typography>
 
                       <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-6 dark:border-slate-800">
@@ -159,7 +162,9 @@ export default function EventsPage() {
                             size="sm"
                             className="group-hover:bg-primary-600 transition-colors"
                           >
-                            <span className="text-slate-800 dark:text-white">Daftar </span>
+                            <span className="text-slate-800 dark:text-white">
+                              {t('register_button')}{' '}
+                            </span>
 
                             <ArrowRight className="ml-1 h-4 w-4 text-slate-800 transition-transform group-hover:translate-x-1 dark:text-white" />
                           </Button>
@@ -187,24 +192,23 @@ export default function EventsPage() {
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={evt.image}
-                      alt={evt.title}
+                      alt={typeof evt.title === 'string' ? evt.title : evt.title[locale]}
                       width={400}
                       height={192}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs font-bold tracking-wider text-white uppercase backdrop-blur">
-                      <Icon className="h-3 w-3" />
-                      {' '}
-                      {evt.type}
+                      <Icon className="h-3 w-3" /> {evt.type}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
                   </div>
 
                   <div className="flex flex-1 flex-col gap-4 p-6">
                     <div className="text-primary-600 dark:text-primary-400 flex items-center gap-2 text-sm font-bold">
-                      <Calendar className="h-4 w-4" />
-                      {' '}
-                      {evt.formattedDate}
+                      <Calendar className="h-4 w-4" />{' '}
+                      {typeof evt.formattedDate === 'string'
+                        ? evt.formattedDate
+                        : evt.formattedDate[locale]}
                     </div>
 
                     <Typography
@@ -212,20 +216,24 @@ export default function EventsPage() {
                       as="h3"
                       className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-xl leading-tight font-bold text-slate-900 dark:text-white"
                     >
-                      <Link href={`/events/${evt.slug}`}>{evt.title}</Link>
+                      <Link href={`/events/${evt.slug}`}>
+                        {typeof evt.title === 'string' ? evt.title : evt.title[locale]}
+                      </Link>
                     </Typography>
 
                     <Typography
                       variant="small"
                       className="leading-relaxed text-slate-600 dark:text-slate-400"
                     >
-                      {evt.desc}
+                      {typeof evt.desc === 'string' ? evt.desc : evt.desc[locale]}
                     </Typography>
 
                     <div className="mt-auto border-t border-slate-100 pt-6 dark:border-slate-800">
                       <Link href={`/events/${evt.slug}`}>
                         <Button size="sm" className="group-hover:bg-primary-600 transition-colors">
-                          <span className="text-slate-800 dark:text-white">Daftar </span>
+                          <span className="text-slate-800 dark:text-white">
+                            {t('register_button')}{' '}
+                          </span>
                           <ArrowRight className="ml-1 h-4 w-4 text-slate-800 transition-transform group-hover:translate-x-1 dark:text-white" />
                         </Button>
                       </Link>
@@ -242,7 +250,7 @@ export default function EventsPage() {
           <Stack direction="vertical" gap={8}>
             <Typography variant="h2" as="h2" className="font-bold text-slate-900 dark:text-white">
               <PlayCircle className="text-primary-600 dark:text-primary-400 mr-2 inline h-6 w-6" />
-              Past Recordings
+              {t('past_recordings_title')}
             </Typography>
 
             <Grid cols={3} gap={6}>
@@ -256,15 +264,13 @@ export default function EventsPage() {
                     as="h3"
                     className="mb-2 font-bold text-slate-900 dark:text-white"
                   >
-                    {rec.title}
+                    {typeof rec.title === 'string' ? rec.title : rec.title[locale]}
                   </Typography>
                   <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
                     <span>{rec.duration}</span>
                     <span>•</span>
                     <span>
-                      {rec.views}
-                      {' '}
-                      views
+                      {rec.views} {t('views')}
                     </span>
                   </div>
                 </div>
