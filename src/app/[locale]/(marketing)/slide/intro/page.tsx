@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
 import SlideContent from './SlideContent';
 
@@ -10,7 +10,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
 
   return genMeta({
-    title: locale === 'en' ? 'Introduction Slides | BizOps ERP Solutions' : 'Slide Pengantar | Solusi ERP BizOps',
+    title:
+      locale === 'en'
+        ? 'Introduction Slides | BizOps ERP Solutions'
+        : 'Slide Pengantar | Solusi ERP BizOps',
     description:
       locale === 'en'
         ? 'Discover BizOps ERP through our introductory slides, highlighting key features, benefits, and industry applications.'
