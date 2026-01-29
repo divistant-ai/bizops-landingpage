@@ -5,7 +5,7 @@ import { cardHover, cardStyles, focusStyles } from '@/design-tokens';
 import { cn } from '@/libs/utils/cn';
 import { SpotlightCard } from './LazyComponents';
 
-export interface FeatureCardProps {
+export type FeatureCardProps = {
   /** Lucide icon component */
   icon: LucideIcon;
   /** Card title */
@@ -26,7 +26,7 @@ export interface FeatureCardProps {
   interactive?: boolean;
   /** onClick handler */
   onClick?: () => void;
-}
+};
 
 const colorStyles = {
   primary: {
@@ -88,12 +88,14 @@ export function FeatureCard({
       onClick={onClick}
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}
-      onKeyDown={interactive && onClick ? (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick();
-        }
-      } : undefined}
+      onKeyDown={interactive && onClick
+        ? (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onClick();
+            }
+          }
+        : undefined}
     >
       {/* Icon */}
       <div

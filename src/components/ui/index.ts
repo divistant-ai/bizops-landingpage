@@ -4,8 +4,8 @@
  */
 
 export { default as Accordion } from './Accordion';
-export { default as Badge } from './Badge';
 export { BackgroundDecoration, HeroBackground, SectionBackground } from './BackgroundDecoration';
+export { default as Badge } from './Badge';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 // Hybrid design components

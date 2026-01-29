@@ -6,7 +6,7 @@ import { Button } from '@/components/ui';
 import { colorShadows } from '@/design-tokens';
 import { cn } from '@/libs/utils/cn';
 
-export interface CTAButtonConfig {
+export type CTAButtonConfig = {
   /** Button label */
   label: string;
   /** Link href */
@@ -15,9 +15,9 @@ export interface CTAButtonConfig {
   icon?: LucideIcon;
   /** Icon position */
   iconPosition?: 'left' | 'right';
-}
+};
 
-export interface CTAGroupProps {
+export type CTAGroupProps = {
   /** Primary CTA button configuration */
   primary: CTAButtonConfig;
   /** Secondary CTA button configuration (optional) */
@@ -30,7 +30,7 @@ export interface CTAGroupProps {
   stackOnMobile?: boolean;
   /** Additional className */
   className?: string;
-}
+};
 
 const sizeStyles = {
   sm: {

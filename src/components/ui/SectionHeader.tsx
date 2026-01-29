@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui';
 import { modularTypography, sectionHeaderSpacing } from '@/design-tokens';
 import { cn } from '@/libs/utils/cn';
 
-export interface SectionHeaderProps {
+export type SectionHeaderProps = {
   /** Optional badge text displayed above the title */
   badge?: string;
   /** Badge variant */
@@ -25,7 +25,7 @@ export interface SectionHeaderProps {
   titleClassName?: string;
   /** Additional className for the description */
   descriptionClassName?: string;
-}
+};
 
 // Using modular typography scale (1.125x ratio) - More Compact
 const sizeStyles = {

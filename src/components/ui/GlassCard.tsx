@@ -1,10 +1,10 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { glass } from '@/design-tokens';
 import { cn } from '@/libs/utils/cn';
-import type { ReactNode } from 'react';
 
-export interface GlassCardProps {
+export type GlassCardProps = {
   /** Glass variant */
   variant?: 'light' | 'medium' | 'strong' | 'subtle' | 'dark' | 'primary' | 'accent' | 'danger' | 'success';
   /** Border radius size */
@@ -19,14 +19,14 @@ export interface GlassCardProps {
   children: ReactNode;
   /** onClick handler */
   onClick?: () => void;
-}
+};
 
 const roundedStyles = {
-  lg: 'rounded-lg',
-  xl: 'rounded-xl',
+  'lg': 'rounded-lg',
+  'xl': 'rounded-xl',
   '2xl': 'rounded-2xl',
   '3xl': 'rounded-3xl',
-  full: 'rounded-full',
+  'full': 'rounded-full',
 };
 
 const paddingStyles = {
@@ -69,12 +69,14 @@ export function GlassCard({
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
-      onKeyDown={onClick ? (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick();
-        }
-      } : undefined}
+      onKeyDown={onClick
+        ? (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onClick();
+            }
+          }
+        : undefined}
     >
       {children}
     </div>

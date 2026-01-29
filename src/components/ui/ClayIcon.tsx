@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { clay } from '@/design-tokens';
 import { cn } from '@/libs/utils/cn';
 
-export interface ClayIconProps {
+export type ClayIconProps = {
   /** Lucide icon component */
   icon: LucideIcon;
   /** Color variant */
@@ -15,7 +15,7 @@ export interface ClayIconProps {
   className?: string;
   /** Animation on hover */
   animated?: boolean;
-}
+};
 
 const sizeStyles = {
   sm: {

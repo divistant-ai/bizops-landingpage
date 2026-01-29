@@ -214,17 +214,17 @@ export const cardHover = {
 // Optimized for information density and cleaner look
 export const modularTypography = {
   sizes: {
-    'xs': '0.79rem',    // 12.64px
-    'sm': '0.89rem',    // 14.22px
-    'base': '1rem',     // 16px
-    'lg': '1.125rem',   // 18px
-    'xl': '1.266rem',   // 20.25px
-    '2xl': '1.424rem',  // 22.78px
-    '3xl': '1.602rem',  // 25.63px
-    '4xl': '1.802rem',  // 28.83px
-    '5xl': '2.027rem',  // 32.44px
-    '6xl': '2.281rem',  // 36.49px
-    '7xl': '2.566rem',  // 41.05px
+    'xs': '0.79rem', // 12.64px
+    'sm': '0.89rem', // 14.22px
+    'base': '1rem', // 16px
+    'lg': '1.125rem', // 18px
+    'xl': '1.266rem', // 20.25px
+    '2xl': '1.424rem', // 22.78px
+    '3xl': '1.602rem', // 25.63px
+    '4xl': '1.802rem', // 28.83px
+    '5xl': '2.027rem', // 32.44px
+    '6xl': '2.281rem', // 36.49px
+    '7xl': '2.566rem', // 41.05px
   },
   // Pre-built classes using compact modular scale
   hero: 'text-[1.75rem] sm:text-[2rem] md:text-[2.75rem] lg:text-[3.5rem] font-bold leading-[1.15] tracking-[-0.02em]',
@@ -305,7 +305,7 @@ export const contentWidth = {
 // Updated grid gaps - Tighter
 export const gridGapsHybrid = {
   tight: 'gap-3 md:gap-4',
-  default: 'gap-5 md:gap-6',      // Reduced from 6/8 -> 5/6
-  relaxed: 'gap-6 md:gap-8',      // Reduced from 8/12 -> 6/8
-  spacious: 'gap-8 md:gap-10',    // Reduced from 12/16 -> 8/10
+  default: 'gap-5 md:gap-6', // Reduced from 6/8 -> 5/6
+  relaxed: 'gap-6 md:gap-8', // Reduced from 8/12 -> 6/8
+  spacious: 'gap-8 md:gap-10', // Reduced from 12/16 -> 8/10
 } as const;

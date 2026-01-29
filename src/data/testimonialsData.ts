@@ -5,7 +5,7 @@
  * Avatar photos from Unsplash
  */
 
-export interface Testimonial {
+export type Testimonial = {
   id: number;
   quote: string;
   author: string;
@@ -18,7 +18,7 @@ export interface Testimonial {
     after: string;
   };
   avatar: string;
-}
+};
 
 export const testimonials: Testimonial[] = [
   {
@@ -197,10 +197,10 @@ export const testimonialsEn: Testimonial[] = [
 
 // Industry color mapping
 export const industryColors: Record<string, { bg: string; text: string; gradient: string }> = {
-  Manufacturing: { bg: 'bg-blue-50 dark:bg-blue-950', text: 'text-blue-600 dark:text-blue-400', gradient: 'from-blue-500 to-blue-600' },
-  Distribution: { bg: 'bg-emerald-50 dark:bg-emerald-950', text: 'text-emerald-600 dark:text-emerald-400', gradient: 'from-emerald-500 to-emerald-600' },
-  Construction: { bg: 'bg-amber-50 dark:bg-amber-950', text: 'text-amber-600 dark:text-amber-400', gradient: 'from-amber-500 to-amber-600' },
-  Services: { bg: 'bg-purple-50 dark:bg-purple-950', text: 'text-purple-600 dark:text-purple-400', gradient: 'from-purple-500 to-purple-600' },
-  Retail: { bg: 'bg-pink-50 dark:bg-pink-950', text: 'text-pink-600 dark:text-pink-400', gradient: 'from-pink-500 to-pink-600' },
+  'Manufacturing': { bg: 'bg-blue-50 dark:bg-blue-950', text: 'text-blue-600 dark:text-blue-400', gradient: 'from-blue-500 to-blue-600' },
+  'Distribution': { bg: 'bg-emerald-50 dark:bg-emerald-950', text: 'text-emerald-600 dark:text-emerald-400', gradient: 'from-emerald-500 to-emerald-600' },
+  'Construction': { bg: 'bg-amber-50 dark:bg-amber-950', text: 'text-amber-600 dark:text-amber-400', gradient: 'from-amber-500 to-amber-600' },
+  'Services': { bg: 'bg-purple-50 dark:bg-purple-950', text: 'text-purple-600 dark:text-purple-400', gradient: 'from-purple-500 to-purple-600' },
+  'Retail': { bg: 'bg-pink-50 dark:bg-pink-950', text: 'text-pink-600 dark:text-pink-400', gradient: 'from-pink-500 to-pink-600' },
   'F&B': { bg: 'bg-orange-50 dark:bg-orange-950', text: 'text-orange-600 dark:text-orange-400', gradient: 'from-orange-500 to-orange-600' },
 };

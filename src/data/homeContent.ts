@@ -1,7 +1,6 @@
 import {
   BarChart,
   Briefcase,
-  Building2,
   Code,
   Coffee,
   CreditCard,
@@ -14,7 +13,6 @@ import {
   Layers,
   Link as LinkIcon,
   MessageCircle,
-  MessageSquare,
   MonitorPlay,
   Puzzle,
   Rocket,
@@ -130,7 +128,7 @@ export const homeUVP = [
   {
     title: 'Consumer-Grade UX',
     subtitle: 'Semudah Menggunakan Sosmed',
-    desc: "Kami mendesain BizOps dengan prinsip 'Zero Training'. Antarmuka intuitif memastikan staf gudang hingga direksi bisa langsung produktif sejak hari pertama.",
+    desc: 'Kami mendesain BizOps dengan prinsip \'Zero Training\'. Antarmuka intuitif memastikan staf gudang hingga direksi bisa langsung produktif sejak hari pertama.',
     icon: Smartphone,
   },
   {
@@ -526,4 +524,3 @@ export const homeRolesData = {
   ops: { title: 'Ops Manager', subtitle: 'Efisiensi rantai pasok & produksi.', icon: Truck },
   it: { title: 'IT Manager', subtitle: 'Keamanan data & integrasi sistem.', icon: Code },
 };
-

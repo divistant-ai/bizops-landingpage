@@ -257,7 +257,7 @@ const config: Config = {
         1000: '1000ms',
       },
       backdropBlur: {
-        xs: '2px',
+        'xs': '2px',
         '3xl': '64px',
         '4xl': '100px',
       },

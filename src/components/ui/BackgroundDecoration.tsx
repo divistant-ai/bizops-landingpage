@@ -2,7 +2,7 @@
 
 import { cn } from '@/libs/utils/cn';
 
-export interface BackgroundDecorationProps {
+export type BackgroundDecorationProps = {
   /** Type of decoration */
   variant: 'blur' | 'gradient' | 'noise' | 'grid';
   /** Color scheme */
@@ -17,7 +17,7 @@ export interface BackgroundDecorationProps {
   animated?: boolean;
   /** Additional className */
   className?: string;
-}
+};
 
 const colorStyles = {
   primary: {
