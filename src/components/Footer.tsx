@@ -182,12 +182,12 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-slate-50 font-sans text-slate-900 dark:border-slate-900/50 dark:bg-[#0B0F19] dark:text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-[#0B0F19] dark:to-slate-950 dark:text-white">
       {/* Ambient Background Glow */}
-      <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-blue-600/5 blur-[120px] dark:bg-blue-600/5" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-indigo-600/5 blur-[100px] dark:bg-indigo-600/5" />
+      <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-primary-500/5 blur-[120px] dark:bg-primary-600/5" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-8 sm:px-6 md:pt-20 md:pb-10 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-8 sm:px-6 md:pt-16 md:pb-10 lg:px-8">
         {/* MAIN GRID */}
         <div className="mb-12 grid grid-cols-1 gap-10 md:mb-20 md:grid-cols-12 md:gap-12 xl:gap-12">
           {/* BRAND COLUMN (Left) */}
@@ -197,21 +197,18 @@ export const Footer: React.FC = () => {
               className="group flex items-center focus:outline-none"
               aria-label="BizOps Home"
             >
-              {mounted ? (
-                <Image
+              <Image
                   src={
-                    resolvedTheme === 'dark'
+                    mounted && resolvedTheme === 'dark'
                       ? '/assets/images/Logo BizOps - Dark.svg'
                       : '/assets/images/Logo BizOps - Light.svg'
                   }
                   alt="BizOps Logo"
                   width={120}
                   height={40}
-                  className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
+                  className="transition-all duration-200 group-hover:scale-105"
+                  style={{ width: 'auto', height: 'auto' }}
                 />
-              ) : (
-                <div className="h-10 w-[120px]" />
-              )}
             </Link>
 
             <p className="w-full text-sm leading-relaxed text-slate-600 md:max-w-sm dark:text-slate-400">
@@ -413,7 +410,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 md:flex-row dark:border-slate-900">
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 md:flex-row dark:border-slate-800">
           {/* Copyright & Language Switcher */}
           <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
             <p className="text-xs text-slate-500">

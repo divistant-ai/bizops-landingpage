@@ -1,16 +1,26 @@
 import {
   BarChart,
   Briefcase,
+  Building2,
   Code,
+  Coffee,
+  CreditCard,
   Database,
   DollarSign,
+  FileText,
+  Fingerprint,
   HardHat,
+  Heart,
   Layers,
   Link as LinkIcon,
+  MessageCircle,
   MessageSquare,
   MonitorPlay,
   Puzzle,
+  Rocket,
   ShieldCheck,
+  ShoppingBag,
+  ShoppingCart,
   Smartphone,
   TrendingUp,
   Truck,
@@ -97,10 +107,16 @@ export const getHomeUVP = (t: (key: string) => string) => [
     icon: Smartphone,
   },
   {
-    title: t('Homepage.uvp_data.chat_title'),
-    subtitle: t('Homepage.uvp_data.chat_subtitle'),
-    desc: t('Homepage.uvp_data.chat_desc'),
-    icon: MessageSquare,
+    title: t('Homepage.uvp_data.compliance_title'),
+    subtitle: t('Homepage.uvp_data.compliance_subtitle'),
+    desc: t('Homepage.uvp_data.compliance_desc'),
+    icon: ShieldCheck,
+  },
+  {
+    title: t('Homepage.uvp_data.ai_title'),
+    subtitle: t('Homepage.uvp_data.ai_subtitle'),
+    desc: t('Homepage.uvp_data.ai_desc'),
+    icon: Zap,
   },
 ];
 
@@ -118,10 +134,16 @@ export const homeUVP = [
     icon: Smartphone,
   },
   {
-    title: 'Contextual Chat',
-    subtitle: 'Kolaborasi di Atas Data',
-    desc: 'Diskusi PO, Invoice, atau Cuti langsung di dalam dokumennya. Hentikan screenshot yang bertebaran di WhatsApp. Semua konteks tersimpan rapi.',
-    icon: MessageSquare,
+    title: 'Indonesia-Ready Compliance',
+    subtitle: 'Pajak, BPJS, e-Faktur Built-in',
+    desc: 'Siap audit sejak hari pertama. PPh 21 TER, BPJS, dan e-Faktur terintegrasi. Update regulasi otomatis tanpa biaya tambahan.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'AI-Powered Insights',
+    subtitle: 'Keputusan Berbasis Data',
+    desc: 'Machine learning menganalisa tren penjualan, prediksi cashflow, dan rekomendasi inventory otomatis. Tidak perlu data scientist.',
+    icon: Zap,
   },
 ];
 
@@ -349,7 +371,7 @@ export const getHomeProcess = (t: (key: string) => string) => [
     step: '04',
     title: t('Homepage.process_data.step4_title'),
     desc: t('Homepage.process_data.step4_desc'),
-    icon: RocketIcon,
+    icon: Rocket,
   },
 ];
 
@@ -376,7 +398,7 @@ export const homeProcess = [
     step: '04',
     title: 'Go-Live & Support',
     desc: 'Peluncuran resmi dengan pendampingan intensif (Hypercare) untuk menjamin kelancaran transisi.',
-    icon: RocketIcon, // Defined below helper
+    icon: Rocket,
   },
 ];
 
@@ -385,14 +407,14 @@ export const homeProcess = [
 
 // --- HOMEPAGE: INTEGRATIONS ---
 export const homeIntegrations = [
-  { name: 'BCA KlikBisnis', cat: 'Banking', icon: 'BCA' },
-  { name: 'DJP e-Faktur', cat: 'Taxation', icon: 'DJP' },
-  { name: 'Tokopedia', cat: 'Marketplace', icon: 'TKP' },
-  { name: 'Shopee', cat: 'Marketplace', icon: 'SHP' },
-  { name: 'WooCommerce', cat: 'E-Commerce', icon: 'WOO' },
-  { name: 'Google Data Studio', cat: 'Analytics', icon: 'GDS' },
-  { name: 'WhatsApp Business', cat: 'Communication', icon: 'WA' },
-  { name: 'Fingerprint Machine', cat: 'Hardware', icon: 'FINGER' },
+  { name: 'BCA KlikBisnis', cat: 'Banking', icon: CreditCard, color: 'text-blue-600' },
+  { name: 'DJP e-Faktur', cat: 'Taxation', icon: FileText, color: 'text-red-600' },
+  { name: 'Tokopedia', cat: 'Marketplace', icon: ShoppingBag, color: 'text-green-600' },
+  { name: 'Shopee', cat: 'Marketplace', icon: ShoppingCart, color: 'text-orange-500' },
+  { name: 'WooCommerce', cat: 'E-Commerce', icon: ShoppingCart, color: 'text-purple-600' },
+  { name: 'Google Data Studio', cat: 'Analytics', icon: BarChart, color: 'text-amber-600' },
+  { name: 'WhatsApp Business', cat: 'Communication', icon: MessageCircle, color: 'text-emerald-500' },
+  { name: 'Fingerprint Machine', cat: 'Hardware', icon: Fingerprint, color: 'text-slate-600' },
 ];
 
 export const getHomeIndustriesData = (t: (key: string) => string) => ({
@@ -416,29 +438,49 @@ export const getHomeIndustriesData = (t: (key: string) => string) => ({
     description: t('Homepage.industries_data.construction_desc'),
     icon: HardHat,
   },
+  fnb: {
+    title: t('Homepage.industries_data.fnb_title'),
+    description: t('Homepage.industries_data.fnb_desc'),
+    icon: Coffee,
+  },
+  healthcare: {
+    title: t('Homepage.industries_data.healthcare_title'),
+    description: t('Homepage.industries_data.healthcare_desc'),
+    icon: Heart,
+  },
 });
 
 export const homeIndustriesData = {
   manufacturing: {
     title: 'Manufaktur',
-    description: 'BOM, MRP, dan Shop Floor Control untuk pabrik.',
+    description: 'Otomatisasi produksi dan inventory. Kurangi waste hingga 30%.',
     icon: Puzzle,
   },
   retail: {
     title: 'Retail & Distribusi',
-    description: 'POS, Multi-Gudang, dan Manajemen Stok terpusat.',
+    description: 'Stok terpusat, pengiriman tepat waktu. Tingkatkan akurasi 99%.',
     icon: Truck,
   },
   services: {
     title: 'Jasa & Agensi',
-    description: 'Project Costing, Timesheet, dan Penagihan.',
+    description: 'Pantau profitabilitas proyek real-time. Tagih lebih cepat 50%.',
     icon: Briefcase,
   },
   construction: {
     title: 'Konstruksi',
-    description: 'RAB, Progress Fisik vs Biaya, dan Manajemen Subkon.',
+    description: 'Kontrol biaya proyek vs aktual. Hindari cost overrun.',
     icon: HardHat,
-  }, // Placeholder icon name
+  },
+  fnb: {
+    title: 'F&B & Restoran',
+    description: 'Kelola multi-outlet, inventory bahan baku, dan resep terpusat.',
+    icon: Coffee,
+  },
+  healthcare: {
+    title: 'Kesehatan',
+    description: 'Manajemen pasien, jadwal dokter, dan billing terintegrasi.',
+    icon: Heart,
+  },
 };
 
 export const getHomeRolesData = (t: (key: string) => string) => ({
@@ -485,7 +527,3 @@ export const homeRolesData = {
   it: { title: 'IT Manager', subtitle: 'Keamanan data & integrasi sistem.', icon: Code },
 };
 
-// Icons Helpers (Mocking imports for data file if not strictly typed with React Components in usage file)
-function RocketIcon() {
-  return null;
-}
