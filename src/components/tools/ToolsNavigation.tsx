@@ -122,7 +122,7 @@ const allTools: Tool[] = [
     id: 'pricing-calculator',
     title: 'Pricing Calculator',
     icon: Calculator,
-    href: '/pricing/calculator',
+    href: '/tools/pricing-calculator',
     description: 'Estimasi biaya investasi',
     category: 'consultant',
   },
@@ -158,15 +158,15 @@ export default function ToolsNavigation({
 
   // Filter by recommended IDs if provided
   if (recommendedNext) {
-    displayTools = displayTools.filter(tool => recommendedNext.includes(tool.id));
+    displayTools = displayTools.filter((tool) => recommendedNext.includes(tool.id));
   }
   // Otherwise filter by category
   else if (category !== 'all') {
-    displayTools = displayTools.filter(tool => tool.category === category);
+    displayTools = displayTools.filter((tool) => tool.category === category);
   }
 
   // Filter out current tool
-  displayTools = displayTools.filter(tool => !pathname.includes(tool.id));
+  displayTools = displayTools.filter((tool) => !pathname.includes(tool.id));
 
   // Limit to 3 tools
   const toolsToShow = displayTools.slice(0, 3);
@@ -193,11 +193,11 @@ export default function ToolsNavigation({
               <h4 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 font-bold text-neutral-900 dark:text-white">
                 {tool.title}
               </h4>
-              <p className="mb-4 text-sm leading-relaxed text-neutral-600 dark:text-slate-400">{tool.description}</p>
+              <p className="mb-4 text-sm leading-relaxed text-neutral-600 dark:text-slate-400">
+                {tool.description}
+              </p>
               <div className="text-primary-600 dark:text-primary-400 flex items-center text-xs font-bold">
-                Coba Sekarang
-                {' '}
-                <ChevronRight className="ml-1 size-3" />
+                Coba Sekarang <ChevronRight className="ml-1 size-3" />
               </div>
             </Link>
           );
@@ -210,9 +210,7 @@ export default function ToolsNavigation({
           href="/tools"
           className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 transition-colors dark:text-slate-400"
         >
-          Lihat Semua Tools
-          {' '}
-          <ChevronRight className="size-4" />
+          Lihat Semua Tools <ChevronRight className="size-4" />
         </Link>
       </div>
     </div>

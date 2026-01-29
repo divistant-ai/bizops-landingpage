@@ -310,7 +310,7 @@ export const toolsRegistry: ToolMetadata[] = [
       en: 'Get accurate pricing estimates based on your specific requirements.',
     },
     icon: Calculator,
-    href: '/pricing/calculator',
+    href: '/tools/pricing-calculator',
     color: 'rose',
     category: 'consultant',
     badge: null,

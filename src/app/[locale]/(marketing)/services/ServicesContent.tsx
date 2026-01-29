@@ -327,7 +327,7 @@ export default function ServicesContent() {
                 {t('cta_contact')}
               </Button>
             </Link>
-            <Link href="/pricing/calculator">
+            <Link href="/tools/pricing-calculator">
               <Button
                 size="lg"
                 variant="outline"

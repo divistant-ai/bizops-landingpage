@@ -42,7 +42,7 @@ export const LanguageSwitch: React.FC = () => {
   };
 
   return (
-    <div className="relative z-[100]" ref={dropdownRef}>
+    <div className="relative z-30" ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}

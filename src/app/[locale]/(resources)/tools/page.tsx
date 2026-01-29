@@ -1,30 +1,9 @@
-import type { Metadata } from 'next';
 import { BarChart3, Calculator, LineChart, Rocket, Sparkles, Target } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Badge, Button, Card } from '@/components/ui';
 import { consultantTools, customerTools } from '@/data/toolsRegistry';
-import { generateMetadata as genMeta } from '@/libs/utils/metadata';
-
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-
-  return genMeta({
-    title:
-      locale === 'en'
-        ? 'Free Business Tools & Calculators | BizOps'
-        : 'Alat & Kalkulator Bisnis Gratis | BizOps',
-    description:
-      locale === 'en'
-        ? 'Explore our free business tools and calculators designed to help you optimize operations, plan strategically, and grow your business faster.'
-        : 'Jelajahi alat dan kalkulator bisnis gratis kami yang dirancang untuk membantu Anda mengoptimalkan operasi, merencanakan secara strategis, dan mempercepat pertumbuhan bisnis Anda.',
-  });
-}
 
 const getContent = (content: any, locale: string) => {
   if (typeof content === 'string') {
@@ -97,7 +76,7 @@ const colorClasses = {
     badge: 'bg-slate-100 text-slate-700 dark:bg-slate-900/30 dark:text-slate-400',
     hover: 'hover:border-slate-400 dark:hover:border-slate-600',
   },
-}; 
+};
 
 function ToolCard({ tool, locale }: { tool: (typeof customerTools)[0]; locale: string }) {
   const colors = colorClasses[tool.color as keyof typeof colorClasses];

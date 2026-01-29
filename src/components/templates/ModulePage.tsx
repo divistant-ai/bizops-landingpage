@@ -503,7 +503,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
               {data.cta?.buttonLabel || t('cta_demo')}
             </BouncyLink>
             <BouncyLink
-              href="/pricing/calculator"
+              href="/tools/pricing-calculator"
               className="h-16 border-2 border-slate-300 bg-white px-10 text-xl text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
             >
               <span className="text-slate-600 dark:text-white">{t('cta_calculate')}</span>

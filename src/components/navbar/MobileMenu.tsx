@@ -526,7 +526,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                   fullWidth
                   size="lg"
                   onClick={onDemoClick}
-                  className="rounded-xl shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
+                  className="rounded-xl text-slate-800 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] dark:text-white"
                 >
                   {t('book_demo')}
                 </Button>

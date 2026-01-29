@@ -116,7 +116,7 @@ export default function HomePageContent() {
                 {t('cta_demo')}
               </BouncyLink>
               <BouncyLink
-                href="/pricing/calculator"
+                href="/tools/pricing-calculator"
                 className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50 dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
               >
                 <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />{' '}
@@ -805,7 +805,7 @@ export default function HomePageContent() {
                     variant="primary"
                     className="h-14 w-full transform border-none bg-gradient-to-r from-blue-600 to-indigo-600 text-base font-bold shadow-xl shadow-blue-600/20 transition-all hover:scale-[1.01] hover:from-blue-500 hover:to-indigo-500 hover:shadow-blue-600/40"
                   >
-                    <Link href="/pricing/calculator">{t('pricing_solution_cta')}</Link>
+                    <Link href="/tools/pricing-calculator">{t('pricing_solution_cta')}</Link>
                   </Button>
                 </div>
               </Stack>
@@ -1186,7 +1186,7 @@ export default function HomePageContent() {
               size="lg"
               className="h-16 w-full border-2 border-slate-300 px-10 text-xl text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
             >
-              <Link href="/pricing/calculator">{t('cta_view_pricing')}</Link>
+              <Link href="/tools/pricing-calculator">{t('cta_view_pricing')}</Link>
             </Button>
           </Stack>
           <p className="mt-6 block text-sm text-slate-500 dark:text-slate-400">{t('cta_trial')}</p>
