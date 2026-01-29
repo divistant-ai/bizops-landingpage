@@ -6,15 +6,34 @@ import {
   Calculator,
   CheckCircle2,
   ChevronRight,
+  Database,
   Lock,
   PlayCircle,
+  Shield,
+  X,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
-import { Badge, Button, Grid, OptimizedImage, Stack } from '@/components/ui';
-import { BouncyLink } from '@/components/ui/BouncyLink';
+import {
+  Badge,
+  Button,
+  ClayIcon,
+  CTAGroup,
+  FinalCTAGroup,
+  FeatureCard,
+  GlassCard,
+  GlassPanel,
+  Grid,
+  HeroBackground,
+  OptimizedImage,
+  SectionHeader,
+  Stack,
+  ClayBadge,
+} from '@/components/ui';
+import { BackgroundDecoration } from '@/components/ui/BackgroundDecoration';
 import { FadeIn } from '@/components/ui/FadeIn';
 import {
   BarChart,
@@ -23,6 +42,15 @@ import {
   SpotlightCard,
 } from '@/components/ui/LazyComponents';
 import { StaggeredText } from '@/components/ui/motion-text';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import {
+  cardHover,
+  clay,
+  glass,
+  modularTypography,
+  neumorph,
+  sectionPaddingHybrid,
+} from '@/design-tokens';
 import {
   getHomeIndustriesData,
   getHomeProblems,
@@ -45,7 +73,18 @@ export default function HomePageContent() {
   const homeRolesData = getHomeRolesData((key) => t(key.replace('Homepage.', '') as any));
 
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
+  const activeTabIndex = homeSolutions.findIndex((s) => s.id === activeTab);
   const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  // Sample YouTube video IDs for each module (demo/explainer videos)
+  const moduleVideoIds: Record<string, string> = {
+    hr: 'dQw4w9WgXcQ', // Sample: Rick Astley - will be replaced with actual demo
+    finance: 'jNQXAC9IVRw', // Sample: Me at the zoo (first YouTube video)
+    operations: 'kJQP7kiw5Fk', // Sample: Despacito
+    sales: 'RgKAFK5djSk', // Sample: See You Again
+    projects: '9bZkp7q19f0', // Sample: Gangnam Style
+  };
 
   if (!activeSolution) {
     return null; // Early return if no solution found
@@ -60,1138 +99,1338 @@ export default function HomePageContent() {
 
   return (
     <>
-      {/* 1. HERO SECTION */}
-      <div className="relative overflow-hidden bg-white pt-24 pb-20 transition-colors duration-300 lg:pb-32 dark:bg-slate-950">
+      {/* 1. HERO SECTION - Hybrid Design (Compact) */}
+      <Section
+        id="hero"
+        className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.hero}
+      >
         {/* Background Elements */}
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay dark:opacity-10"></div>
-        <div className="pointer-events-none absolute top-0 left-1/2 h-full w-full max-w-7xl -translate-x-1/2">
-          <div className="animate-pulse-slow absolute top-[10%] left-[10%] h-96 w-96 rounded-full bg-blue-500/20 blur-[100px] dark:bg-blue-500/10"></div>
-          <div className="animate-pulse-slow absolute right-[10%] bottom-[20%] h-80 w-80 rounded-full bg-sky-500/20 blur-[100px] dark:bg-sky-500/10"></div>
-          <div className="animate-pulse-slow absolute top-[40%] left-[60%] h-64 w-64 rounded-full bg-indigo-500/20 blur-[80px] dark:bg-indigo-500/10"></div>
-        </div>
+        <HeroBackground />
 
-        <Container size="7xl" className="relative z-10 text-center">
-          {/* Announcement Pill */}
-          <FadeIn delay={0.1} className="mb-8 inline-flex w-full justify-center">
-            <div className="group inline-flex cursor-pointer items-center gap-3 rounded-full border border-slate-200/60 bg-white px-5 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-blue-200 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] dark:border-slate-800/60 dark:bg-slate-900 dark:shadow-[0_2px_8px_rgba(0,0,0,0.2)] dark:hover:border-blue-800 dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></span>
-              </span>
-              <span className="text-sm font-semibold text-slate-600 transition-colors group-hover:text-blue-700 dark:text-slate-400 dark:group-hover:text-blue-400">
-                {t('announcement')}
-              </span>
-              <ArrowRight className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400" />
-            </div>
-          </FadeIn>
-
-          {/* Main Headline */}
-          <div className="mx-auto mb-8 max-w-6xl">
-            <h1 className="text-5xl leading-[1.1] font-bold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white">
-              <StaggeredText
-                text={t('hero_title_prefix')}
-                className="mb-2 flex w-full justify-center"
-                delay={0.2}
-              />
-              <span className="mt-2 block bg-gradient-to-r from-slate-900 via-blue-700 to-blue-600 bg-clip-text pb-4 text-transparent dark:from-white dark:via-blue-400 dark:to-blue-500">
-                {t('hero_title_highlight')}
-              </span>
-            </h1>
-          </div>
-
-          {/* Subheadline */}
-          <FadeIn delay={0.3}>
-            <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-normal text-slate-500 md:text-2xl dark:text-slate-400">
-              {t('hero_description')}
-            </p>
-          </FadeIn>
-
-          {/* CTAs */}
-          <FadeIn delay={0.4}>
-            <div className="mb-20 flex flex-col justify-center gap-4 sm:flex-row">
-              <BouncyLink
-                href="/demo"
-                className="h-14 px-10 text-lg font-semibold shadow-xl shadow-blue-900/10"
-              >
-                {t('cta_demo')}
-              </BouncyLink>
-              <BouncyLink
-                href="/tools/pricing-calculator"
-                className="h-14 bg-white px-10 text-lg font-medium text-black shadow-sm hover:bg-slate-50 dark:bg-slate-800 dark:text-black dark:hover:bg-slate-700"
-              >
-                <Calculator className="mr-2 h-5 w-5 text-slate-900 dark:text-white" />{' '}
-                <p className="text-slate-900 dark:text-white">{t('cta_pricing')}</p>
-              </BouncyLink>
-            </div>
-          </FadeIn>
-
-          {/* Hero Visual / Dashboard Preview */}
-          <div className="group relative mx-auto mt-8 max-w-6xl">
-            <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-gradient-to-t from-white via-transparent to-transparent dark:from-slate-950"></div>
-            <div className="relative aspect-[16/9] transform overflow-hidden rounded-2xl border border-slate-300 bg-slate-100 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-transform duration-700 group-hover:scale-[1.01] group-hover:shadow-[0_20px_60px_-12px_rgba(37,99,235,0.2)] md:aspect-[21/9] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)]">
-              <OptimizedImage
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
-                alt="Preview dashboard BizOps ERP"
-                width={1920}
-                height={1080}
-                priority={true}
-                loading="eager"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-                className="h-full w-full object-cover opacity-90 transition-opacity hover:opacity-100"
-              />
-
-              {/* Overlay UI Badge */}
-              <Stack
-                direction="horizontal"
-                gap={2}
-                align="center"
-                className="absolute top-4 left-4 z-30 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-[10px] text-slate-700 shadow-lg backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300"
-              >
-                <Lock className="h-3 w-3 text-green-600 dark:text-green-400" />{' '}
-                <span className="font-mono">secure://bizops.id/dashboard</span>
-              </Stack>
-            </div>
-          </div>
-
-          {/* Social Proof Logos */}
-          <div className="mt-20 overflow-hidden border-t border-slate-100 pt-10 dark:border-slate-800">
-            <p className="mb-6 text-sm leading-normal text-slate-500 dark:text-slate-400">
-              {t('trusted_by')}
-            </p>
-            <div className="flex items-center justify-center gap-8 opacity-70 grayscale transition-all duration-500 hover:grayscale-0">
-              {[
-                'Divistant',
-                'Dikstra',
-                'Arena Rasa Nusantara',
-                'Aero Travel Indonesia',
-                'TechCorp',
-                'BuildCo',
-              ].map((brand) => (
-                <span
-                  key={brand}
-                  className="cursor-default text-xl font-black tracking-tighter whitespace-nowrap text-slate-800 md:text-2xl dark:text-slate-200"
+        <Container size="7xl" className="relative z-10">
+          {/* Two-Column Layout: Text Left, Image Right */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            {/* Left Column - Text Content (7 cols) */}
+            <div className="text-center lg:text-left order-1 lg:col-span-7">
+              {/* Announcement Pill - Glassmorphism */}
+              <FadeIn delay={0.1} className="mb-6 inline-flex w-full justify-center lg:justify-start">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  className={`group inline-flex cursor-pointer items-center gap-3 rounded-full px-5 py-2 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${glass.light}`}
+                  aria-label={t('announcement')}
                 >
-                  {brand}
-                </span>
-              ))}
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 shadow-sm"></span>
+                  </span>
+                  <span className="text-sm font-semibold text-slate-700 transition-colors group-hover:text-primary-700 dark:text-slate-300 dark:group-hover:text-primary-400">
+                    {t('announcement')}
+                  </span>
+                  <ArrowRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-primary-600 dark:text-slate-500 dark:group-hover:text-primary-400" />
+                </div>
+              </FadeIn>
+
+              {/* Main Headline - Modular Typography - Fixed for Desktop */}
+              <FadeIn delay={0.2}>
+                <div className="mb-6">
+                  <h1 className={`${modularTypography.hero} text-slate-900 dark:text-white leading-[1.1]`}>
+                    <span className="block">{t('hero_title_prefix')}</span>
+                    <span className="block text-blue-600 dark:text-blue-400">
+                      {t('hero_title_highlight')}
+                    </span>
+                  </h1>
+                </div>
+              </FadeIn>
+
+              {/* Subheadline */}
+              <FadeIn delay={0.3}>
+                <p className={`mb-8 max-w-xl mx-auto lg:mx-0 ${modularTypography.body} font-normal text-slate-600 dark:text-slate-400`}>
+                  {t('hero_description')}
+                </p>
+              </FadeIn>
+
+              {/* CTAs - Primary more prominent */}
+              <FadeIn delay={0.4}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button
+                    asChild
+                    variant="clay"
+                    size="lg"
+                    className="h-14 px-10 text-lg font-bold shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300"
+                  >
+                    <Link href="/demo">{t('cta_demo')}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="lg"
+                    className="h-14 px-8 text-base font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600"
+                  >
+                    <Link href="/pricing/calculator">
+                      <Calculator className="mr-2 h-4 w-4" />
+                      {t('cta_pricing')}
+                    </Link>
+                  </Button>
+                </div>
+              </FadeIn>
+
+            </div>
+
+            {/* Right Column - Dashboard Preview (5 cols) */}
+            <div className="order-2 relative lg:col-span-5">
+              <FadeIn delay={0.5}>
+                <div className="group relative">
+                  {/* Glass frame wrapper */}
+                  <div className={`relative p-2 rounded-2xl ${glass.medium} transition-all duration-500 group-hover:shadow-[0_24px_48px_rgba(37,99,235,0.15)]`}>
+                    <div className="relative aspect-[16/10] transform overflow-hidden rounded-xl bg-slate-900 shadow-inner">
+                      <OptimizedImage
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+                        alt="Preview dashboard BizOps ERP"
+                        width={1920}
+                        height={1080}
+                        priority={true}
+                        loading="eager"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                        className="h-full w-full object-cover opacity-95 transition-all duration-500 group-hover:scale-[1.02] group-hover:opacity-100"
+                      />
+
+                      {/* Overlay UI Badge - Glass */}
+                      <Stack
+                        direction="horizontal"
+                        gap={2}
+                        align="center"
+                        className={`absolute top-3 left-3 z-30 rounded-full px-3 py-1.5 text-[10px] ${glass.strong}`}
+                      >
+                        <Lock className="h-3 w-3 text-emerald-500" />{' '}
+                        <span className="font-mono font-medium text-slate-700 dark:text-slate-200">secure://bizops.id/dashboard</span>
+                      </Stack>
+                    </div>
+                  </div>
+
+                  {/* Floating Stats Card - Bottom Right - with pulse animation */}
+                  <div className={`absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 p-4 rounded-xl ${glass.strong} shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-float-slow`}>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/30">
+                        <CheckCircle2 className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-slate-600 dark:text-slate-400">{t('hero_savings_label') || 'Penghematan'}</p>
+                        <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">85% Biaya</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Users Card - Top Left - with pulse animation */}
+                  <div className={`absolute -top-4 -left-4 md:-top-6 md:-left-6 p-3 rounded-xl ${glass.strong} shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hidden sm:block animate-float-slow`} style={{ animationDelay: '1s' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="flex -space-x-2">
+                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 ring-2 ring-white dark:ring-slate-900 flex items-center justify-center text-xs font-bold text-white shadow-lg">R</div>
+                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 ring-2 ring-white dark:ring-slate-900 flex items-center justify-center text-xs font-bold text-white shadow-lg">B</div>
+                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 ring-2 ring-white dark:ring-slate-900 flex items-center justify-center text-xs font-bold text-white shadow-lg">D</div>
+                      </div>
+                      <p className="text-sm font-bold text-slate-700 dark:text-slate-300">{t('hero_companies_count') || '500+ Perusahaan'}</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
           </div>
         </Container>
-      </div>
 
-      {/* 2. PROBLEMS SECTION */}
-      <Section
-        id="problems"
-        className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
-        noPadding
-        containerClassName="py-24 md:py-32"
-      >
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
-
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-            {t('problems_title')}{' '}
-            <span className="relative inline-block text-red-500 dark:text-red-400">
-              {t('problems_stuck')}{' '}
-              <span className="absolute bottom-2 left-0 -z-10 h-3 w-full -rotate-2 transform bg-red-200 opacity-30 dark:bg-red-900 dark:opacity-40"></span>
-            </span>
-          </h2>
-          <p className="mt-4 text-lg text-slate-600 md:text-lg dark:text-slate-300">
-            {t('problems_desc')}
-          </p>
-        </div>
-
-        <CardSlider
-          desktopClassName="md:grid md:grid-cols-3 gap-8"
-          mobileItemWidth="w-[85vw] sm:w-[350px]"
-        >
-          {homeProblems.map((prob, idx) => {
-            const Icon = prob.icon;
-            return (
-              <SpotlightCard
-                key={idx}
-                className="h-full rounded-3xl"
-                spotlightColor="rgba(239, 68, 68, 0.1)"
-              >
-                <div className="flex h-full flex-col p-8">
+        {/* Social Proof - Full Width Slider */}
+        <FadeIn delay={0.6}>
+          <div className="mt-12 pt-8 border-t border-slate-200/50 dark:border-slate-800/50">
+            <p className="mb-6 text-center text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {t('trusted_by')}
+            </p>
+            <div className="w-full overflow-hidden">
+              <InfiniteScrollLoop speed={30} direction="left">
+                {[
+                  'Divistant',
+                  'Dikstra',
+                  'Arena Rasa Nusantara',
+                  'Aero Travel Indonesia',
+                  'TechCorp',
+                  'BuildCo',
+                  'PT Maju Bersama',
+                  'Distribusi Nusantara',
+                  'Konstruksi Prima',
+                  'Mitra Sejahtera',
+                ].map((brand) => (
                   <div
-                    className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${prob.bg} ring-1 ring-black/5 ring-inset`}
+                    key={brand}
+                    className="mx-3 cursor-default rounded-full px-6 py-3 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <Icon className={`h-7 w-7 ${prob.color}`} aria-hidden="true" />
+                    <span className="text-sm font-semibold tracking-tight whitespace-nowrap text-slate-700 dark:text-slate-300">
+                      {brand}
+                    </span>
                   </div>
-                  <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                    {prob.title}
-                  </h3>
-                  <p className="mb-3 text-sm font-bold tracking-wide text-red-500 uppercase dark:text-red-400">
-                    {prob.subtitle}
-                  </p>
-                  <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-300">
-                    {prob.desc}
-                  </p>
-                </div>
-              </SpotlightCard>
-            );
-          })}
-        </CardSlider>
+                ))}
+              </InfiniteScrollLoop>
+            </div>
+          </div>
+        </FadeIn>
       </Section>
 
-      {/* 3. SOLUTIONS SECTION */}
+      {/* 2. PROBLEMS SECTION - Modern Spacious Layout */}
+      <Section
+        id="problems"
+        className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-rose-100 rounded-full blur-3xl dark:bg-rose-900/20" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100 rounded-full blur-3xl dark:bg-orange-900/20" />
+        </div>
+
+        <Container size="7xl" className="relative z-10">
+          {/* Centered Header */}
+          <FadeIn>
+            <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+              <div className="inline-flex items-center gap-2 rounded-full bg-rose-100 px-5 py-2.5 text-sm font-bold text-rose-700 uppercase tracking-wider mb-6 dark:bg-rose-900/30 dark:text-rose-400">
+                <span className="h-2.5 w-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+                {t('problems_badge') || 'Masalah Umum'}
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                {t('problems_title').replace(t('problems_stuck'), '')}{' '}
+                <span className="text-rose-600 dark:text-rose-400">{t('problems_stuck')}</span>
+              </h2>
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+                {t('problems_desc')}
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Cards Grid - 3 columns on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {homeProblems.map((prob, idx) => {
+              const Icon = prob.icon;
+              const colors = [
+                { bg: 'from-rose-500 to-red-600', shadow: 'shadow-rose-500/25', light: 'bg-rose-50 dark:bg-rose-900/20', text: 'text-rose-600 dark:text-rose-400' },
+                { bg: 'from-orange-500 to-amber-600', shadow: 'shadow-orange-500/25', light: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                { bg: 'from-red-500 to-rose-600', shadow: 'shadow-red-500/25', light: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-600 dark:text-red-400' },
+              ];
+              const color = colors[idx % 3];
+              
+              return (
+                <FadeIn key={idx} delay={0.1 + idx * 0.15}>
+                  <div className="group relative h-full">
+                    <div className={`relative h-full p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2`}>
+                      {/* Top Gradient Line */}
+                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${color.bg} rounded-t-2xl`} />
+                      
+                      {/* Number Badge */}
+                      <div className={`absolute -top-4 left-8 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-lg font-bold text-white shadow-lg ${color.shadow}`}>
+                        {idx + 1}
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className={`mt-4 mb-6 inline-flex p-4 rounded-2xl ${color.light}`}>
+                        <Icon className={`h-8 w-8 ${color.text}`} strokeWidth={1.5} />
+                      </div>
+                      
+                      {/* Content */}
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                        {prob.title}
+                      </h3>
+                      <span className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4 ${color.light} ${color.text}`}>
+                        {prob.subtitle}
+                      </span>
+                      <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {prob.desc}
+                      </p>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </Container>
+      </Section>
+
+      {/* 3. SOLUTIONS SECTION - Modern Bento-style Design */}
       <Section
         id="solutions"
-        className="relative overflow-hidden bg-white dark:bg-slate-950"
+        className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
         noPadding
-        containerClassName="py-24 md:py-32"
+        containerClassName="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 lg:py-28"
       >
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent dark:from-blue-900/20 dark:via-slate-900 dark:to-slate-950"></div>
-        <div className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-transparent to-transparent dark:from-slate-950"></div>
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+        </div>
 
-        <Stack
-          direction="vertical"
-          gap={8}
-          className="relative z-10 mb-16 items-end justify-between md:flex-row"
-        >
-          <div className="max-w-2xl">
-            <Badge variant="outline-white" className="mb-4">
-              {t('solutions_badge')}
-            </Badge>
-            <h2 className="text-3xl leading-tight font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
-              {t('solutions_title')} <br />
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                {t('solutions_highlight')}
-              </span>
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">{t('solutions_desc')}</p>
+        {/* Header - Centered with strong visual hierarchy */}
+        <div className="relative z-10 text-center mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 dark:bg-primary-900/20 px-4 py-2 text-sm font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+            {t('solutions_badge')}
           </div>
-          <Button asChild size="md" variant="white" className="group">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            {t('solutions_title').replace(t('solutions_highlight'), '')}
+            <span className="text-primary-600 dark:text-primary-400">{t('solutions_highlight')}</span>
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">
+            {t('solutions_desc')}
+          </p>
+          <Button asChild size="md" variant="outline" className="group rounded-full h-11 px-6 text-sm border-2 border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/20">
             <Link href="/platform">
               {t('solutions_cta')}{' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-        </Stack>
+        </div>
 
-        <Grid cols={12} gap={8} className="relative z-10">
-          {/* Navigation Tabs */}
-          <div className="space-y-3 lg:col-span-4" role="tablist" aria-label="Solution categories">
-            {homeSolutions.map((sol) => {
+        {/* Horizontal scrollable tabs for mobile, grid for desktop */}
+        <div className="relative z-10 mb-8">
+          <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-5 lg:gap-3 lg:overflow-visible lg:pb-0" role="tablist" aria-label="Solution categories">
+            {homeSolutions.map((sol, idx) => {
               const Icon = sol.icon;
+              const isActive = activeTab === sol.id;
+              const tabColors = [
+                { active: 'bg-blue-500', ring: 'ring-blue-500/20' },
+                { active: 'bg-emerald-500', ring: 'ring-emerald-500/20' },
+                { active: 'bg-amber-500', ring: 'ring-amber-500/20' },
+                { active: 'bg-purple-500', ring: 'ring-purple-500/20' },
+                { active: 'bg-rose-500', ring: 'ring-rose-500/20' },
+              ];
+              const color = tabColors[idx % tabColors.length];
+              
               return (
                 <button
                   key={sol.id}
                   onClick={() => setActiveTab(sol.id)}
                   role="tab"
-                  aria-selected={activeTab === sol.id}
+                  aria-selected={isActive}
                   aria-controls={`panel-${sol.id}`}
                   id={`tab-${sol.id}`}
-                  className={`group flex w-full items-center justify-between rounded-2xl border px-6 py-5 text-left transition-all duration-300 ${
-                    activeTab === sol.id
-                      ? 'translate-x-2 border-slate-200 bg-gradient-to-r from-slate-100 to-slate-50 shadow-lg dark:border-slate-700 dark:from-slate-800 dark:to-slate-800/50'
-                      : 'border-transparent text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/30'
+                  className={`group relative flex-shrink-0 flex flex-col items-center gap-2 rounded-2xl px-5 py-4 text-center transition-all duration-300 min-w-[120px] lg:min-w-0 ${
+                    isActive
+                      ? `bg-white dark:bg-slate-800 shadow-xl ring-4 ${color.ring} scale-105`
+                      : 'bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg border border-slate-200/50 dark:border-slate-700/50'
                   }`}
                 >
-                  <Stack direction="horizontal" gap={4} align="center">
-                    <div
-                      className={`rounded-xl p-2.5 transition-colors ${activeTab === sol.id ? sol.bg : 'bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-800 dark:group-hover:bg-slate-700'}`}
-                    >
-                      <Icon
-                        className={`h-5 w-5 ${activeTab === sol.id ? sol.color : 'text-slate-500 dark:text-slate-500'}`}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div>
-                      <div
-                        className={`text-base font-bold ${activeTab === sol.id ? 'text-slate-900 dark:text-white' : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
-                      >
-                        {sol.label}
-                      </div>
-                      <div className="mt-0.5 text-xs font-medium tracking-wider text-slate-500 uppercase dark:text-slate-500">
-                        {sol.category}
-                      </div>
-                    </div>
-                  </Stack>
-                  {activeTab === sol.id && (
-                    <ChevronRight className={`h-5 w-5 ${sol.color}`} aria-hidden="true" />
+                  {/* Active indicator dot */}
+                  {isActive && (
+                    <div className={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full ${color.active} shadow-lg`} />
                   )}
+                  
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
+                    isActive ? `${color.active} shadow-lg` : 'bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600'
+                  }`}>
+                    <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-white' : 'text-slate-600 dark:text-slate-300'}`} />
+                  </div>
+                  <div>
+                    <div className={`text-sm font-semibold transition-colors ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>
+                      {sol.label}
+                    </div>
+                    <div className={`text-xs font-medium uppercase tracking-wide ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-slate-400 dark:text-slate-500'}`}>
+                      {sol.category}
+                    </div>
+                  </div>
                 </button>
               );
             })}
           </div>
+        </div>
 
-          {/* Content Panel */}
-          <div className="lg:col-span-8">
-            <div
-              key={activeTab}
-              role="tabpanel"
-              id={`panel-${activeTab}`}
-              aria-labelledby={`tab-${activeTab}`}
-              className="animate-fade-in relative flex h-full flex-col gap-4 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-md transition-all duration-500 md:p-12 dark:border-slate-700 dark:bg-slate-800/40"
-            >
-              <div
-                className={`absolute top-0 right-0 h-96 w-96 ${activeSolution.bg} pointer-events-none rounded-full opacity-20 blur-[120px]`}
-              ></div>
-
-              <div className="relative z-10">
-                <div className="mb-10">
-                  <Stack direction="horizontal" gap={3} align="center" className="mb-4">
-                    <div className={`rounded-lg p-2 ${activeSolution.bg} bg-opacity-20`}>
-                      {(() => {
-                        const Icon = activeSolution.icon;
-                        return (
-                          <Icon className={`h-6 w-6 ${activeSolution.color}`} aria-hidden="true" />
-                        );
-                      })()}
+        {/* Content Panel - Modern card design */}
+        <div className="relative z-10">
+          <div className="relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            {/* Decorative gradient overlay */}
+            <div className={`absolute top-0 right-0 w-1/2 h-full ${activeSolution.bg} opacity-5 pointer-events-none`} />
+            
+            <div className="relative p-6 sm:p-8 lg:p-10">
+              {(() => {
+                // Content panel color themes matching tab colors
+                const contentColors = [
+                  { iconBg: 'bg-blue-500', iconShadow: 'shadow-blue-500/25', label: 'text-blue-600 dark:text-blue-400', checkBg: 'bg-blue-100 dark:bg-blue-900/30', checkIcon: 'text-blue-600 dark:text-blue-400', hoverBorder: 'hover:border-blue-200 dark:hover:border-blue-800' },
+                  { iconBg: 'bg-emerald-500', iconShadow: 'shadow-emerald-500/25', label: 'text-emerald-600 dark:text-emerald-400', checkBg: 'bg-emerald-100 dark:bg-emerald-900/30', checkIcon: 'text-emerald-600 dark:text-emerald-400', hoverBorder: 'hover:border-emerald-200 dark:hover:border-emerald-800' },
+                  { iconBg: 'bg-amber-500', iconShadow: 'shadow-amber-500/25', label: 'text-amber-600 dark:text-amber-400', checkBg: 'bg-amber-100 dark:bg-amber-900/30', checkIcon: 'text-amber-600 dark:text-amber-400', hoverBorder: 'hover:border-amber-200 dark:hover:border-amber-800' },
+                  { iconBg: 'bg-purple-500', iconShadow: 'shadow-purple-500/25', label: 'text-purple-600 dark:text-purple-400', checkBg: 'bg-purple-100 dark:bg-purple-900/30', checkIcon: 'text-purple-600 dark:text-purple-400', hoverBorder: 'hover:border-purple-200 dark:hover:border-purple-800' },
+                  { iconBg: 'bg-rose-500', iconShadow: 'shadow-rose-500/25', label: 'text-rose-600 dark:text-rose-400', checkBg: 'bg-rose-100 dark:bg-rose-900/30', checkIcon: 'text-rose-600 dark:text-rose-400', hoverBorder: 'hover:border-rose-200 dark:hover:border-rose-800' },
+                ];
+                const contentColor = contentColors[activeTabIndex >= 0 ? activeTabIndex % contentColors.length : 0];
+                
+                return (
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                {/* Left side - Module info */}
+                <div className="lg:col-span-3">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${contentColor.iconBg} shadow-lg ${contentColor.iconShadow}`}>
+                      <activeSolution.icon className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-3xl leading-tight font-bold text-slate-900 dark:text-white">
-                      {activeSolution.label}
-                    </h3>
-                  </Stack>
-                  <p className="border-l-4 border-slate-300 pl-4 text-xl leading-relaxed text-slate-600 italic dark:border-slate-700 dark:text-slate-300">
-                    "{activeSolution.impact}"
+                    <div>
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        {activeSolution.label}
+                      </h3>
+                      <p className={`text-sm font-medium ${contentColor.label} uppercase tracking-wide`}>
+                        {activeSolution.category}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
+                    {activeSolution.impact}
                   </p>
-                </div>
 
-                <Grid cols={1} mdCols={2} gap={8}>
                   <div>
-                    <h4 className="mb-4 text-xl font-semibold text-slate-900 dark:text-white">
+                    <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                       {t('solutions_features')}
                     </h4>
-                    <ul className="space-y-4">
-                      {activeSolution.modules.map((mod, idx) => (
-                        <li key={idx} className="group flex items-start gap-3">
-                          <CheckCircle2
-                            className={`h-5 w-5 ${activeSolution.color} mt-0.5 flex-shrink-0 transition-transform group-hover:scale-110`}
-                            aria-hidden="true"
-                          />
-                          <span className="text-sm text-slate-700 transition-colors group-hover:text-slate-900 md:text-base dark:text-slate-300 dark:group-hover:text-white">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {activeSolution.modules.map((mod, modIdx) => (
+                        <div key={modIdx} className={`flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 transition-all ${contentColor.hoverBorder} hover:shadow-md`}>
+                          <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${contentColor.checkBg}`}>
+                            <CheckCircle2 className={`h-4 w-4 ${contentColor.checkIcon}`} />
+                          </div>
+                          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                             {mod}
                           </span>
-                        </li>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                  <Stack
-                    direction="vertical"
-                    gap={4}
-                    align="center"
-                    justify="center"
-                    className="rounded-2xl border border-slate-200 bg-white/50 p-8 text-center transition-colors hover:border-slate-300 dark:border-slate-700/50 dark:bg-slate-900/60 dark:hover:border-slate-600"
-                  >
-                    <div className="group mb-2 cursor-pointer rounded-full bg-slate-100 p-4 ring-1 ring-slate-200 transition-all hover:ring-slate-300 dark:bg-slate-800 dark:ring-slate-700 dark:hover:ring-slate-600">
-                      <PlayCircle
-                        className={`h-10 w-10 ${activeSolution.color} transition-transform group-hover:scale-110`}
-                        aria-hidden="true"
-                      />
                     </div>
-                    <h5 className="text-lg font-semibold text-slate-900 dark:text-white">
-                      {t('solutions_demo_title')}
-                    </h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      {t('solutions_demo_desc')}
-                    </p>
-                    <Button asChild size="sm" variant="outline-white" className="mt-2">
-                      <Link href="/platform">{t('solutions_demo_cta')}</Link>
-                    </Button>
-                  </Stack>
-                </Grid>
-              </div>
-            </div>
-          </div>
-        </Grid>
-      </Section>
-
-      {/* 4. VALUE PROPOSITION (UVP) */}
-      <Section
-        id="uvp"
-        className="bg-white dark:bg-slate-950"
-        noPadding
-        containerClassName="py-24 md:py-32"
-      >
-        <Container size="3xl" className="mb-16 text-center">
-          <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-            {t('uvp_title')}
-          </h2>
-          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">{t('uvp_desc')}</p>
-        </Container>
-
-        <CardSlider
-          desktopClassName="md:grid md:grid-cols-3 gap-8"
-          mobileItemWidth="w-[85vw] sm:w-[350px]"
-        >
-          {homeUVP.map((uvp, idx) => {
-            const Icon = uvp.icon;
-            return (
-              <SpotlightCard
-                key={idx}
-                className="h-full rounded-3xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900"
-                spotlightColor="rgba(37, 99, 235, 0.1)"
-              >
-                <div className="relative flex h-full flex-col p-8">
-                  <div className="pointer-events-none absolute top-8 right-8 text-slate-200 transition-colors group-hover:text-blue-100 dark:text-slate-700 dark:group-hover:text-blue-900">
-                    <Icon
-                      className="h-24 w-24 transform opacity-20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div className="relative z-10 flex-grow">
-                    <Stack
-                      direction="horizontal"
-                      gap={4}
-                      align="center"
-                      justify="center"
-                      className="mb-6 h-14 w-14 rounded-2xl bg-slate-50 text-blue-600 shadow-sm ring-1 ring-slate-100 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white dark:bg-slate-800 dark:ring-slate-700 dark:group-hover:bg-blue-600"
-                    >
-                      <Icon className="h-7 w-7" aria-hidden="true" />
-                    </Stack>
-                    <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                      {uvp.title}
-                    </h3>
-                    <p className="mb-3 font-medium tracking-wide text-blue-600 dark:text-blue-400">
-                      {uvp.subtitle}
-                    </p>
-                    <p className="leading-relaxed text-slate-600 dark:text-slate-400">{uvp.desc}</p>
                   </div>
                 </div>
-              </SpotlightCard>
-            );
-          })}
-        </CardSlider>
+
+                {/* Right side - Demo CTA with Video Placeholder */}
+                <div className="lg:col-span-2">
+                  {(() => {
+                    // Color themes matching tab colors
+                    const demoColors = [
+                      { bg: 'from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20', border: 'border-blue-200 dark:border-blue-800/50', text: 'text-blue-600 dark:text-blue-400', button: 'bg-blue-500 hover:bg-blue-600', ping: 'bg-blue-400', dot: 'bg-blue-500', shadow: 'shadow-blue-500/25' },
+                      { bg: 'from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20', border: 'border-emerald-200 dark:border-emerald-800/50', text: 'text-emerald-600 dark:text-emerald-400', button: 'bg-emerald-500 hover:bg-emerald-600', ping: 'bg-emerald-400', dot: 'bg-emerald-500', shadow: 'shadow-emerald-500/25' },
+                      { bg: 'from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20', border: 'border-amber-200 dark:border-amber-800/50', text: 'text-amber-600 dark:text-amber-400', button: 'bg-amber-500 hover:bg-amber-600', ping: 'bg-amber-400', dot: 'bg-amber-500', shadow: 'shadow-amber-500/25' },
+                      { bg: 'from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20', border: 'border-purple-200 dark:border-purple-800/50', text: 'text-purple-600 dark:text-purple-400', button: 'bg-purple-500 hover:bg-purple-600', ping: 'bg-purple-400', dot: 'bg-purple-500', shadow: 'shadow-purple-500/25' },
+                      { bg: 'from-rose-50 to-rose-100 dark:from-rose-900/20 dark:to-rose-800/20', border: 'border-rose-200 dark:border-rose-800/50', text: 'text-rose-600 dark:text-rose-400', button: 'bg-rose-500 hover:bg-rose-600', ping: 'bg-rose-400', dot: 'bg-rose-500', shadow: 'shadow-rose-500/25' },
+                    ];
+                    const demoColor = demoColors[activeTabIndex >= 0 ? activeTabIndex % demoColors.length : 0];
+                    
+                    return (
+                      <div className={`h-full rounded-2xl bg-gradient-to-br ${demoColor.bg} border ${demoColor.border} p-5 flex flex-col`}>
+                        {/* Video Thumbnail - Clickable to open modal */}
+                        <button 
+                          onClick={() => setIsVideoModalOpen(true)}
+                          className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                          aria-label="Putar video demo"
+                        >
+                          {/* YouTube Thumbnail */}
+                          <img 
+                            src={`https://img.youtube.com/vi/${moduleVideoIds[activeSolution.id] || 'dQw4w9WgXcQ'}/maxresdefault.jpg`}
+                            alt={`Demo video ${activeSolution.label}`}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          {/* Dark overlay */}
+                          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                          {/* Play button overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className={`flex h-16 w-16 items-center justify-center rounded-full ${demoColor.button} text-white shadow-2xl ${demoColor.shadow} transition-transform group-hover:scale-110`}>
+                              <PlayCircle className="h-8 w-8" />
+                            </div>
+                          </div>
+                          {/* Duration badge */}
+                          <div className="absolute bottom-2 right-2 px-2 py-1 rounded bg-black/70 text-white text-xs font-medium">
+                            2:00
+                          </div>
+                          {/* Live indicator */}
+                          <div className="absolute top-2 left-2 flex items-center gap-1.5">
+                            <span className="relative flex h-2 w-2">
+                              <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${demoColor.ping} opacity-75`}></span>
+                              <span className={`relative inline-flex h-2 w-2 rounded-full ${demoColor.dot}`}></span>
+                            </span>
+                            <span className="text-xs font-medium text-white bg-black/50 px-1.5 py-0.5 rounded">DEMO</span>
+                          </div>
+                        </button>
+                        
+                        {/* Text content */}
+                        <div className="text-center flex-1 flex flex-col justify-center">
+                          <h5 className="text-base font-bold text-slate-900 dark:text-white mb-1">
+                            {t('solutions_demo_title')}
+                          </h5>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                            {t('solutions_demo_desc')}
+                          </p>
+                          <Button 
+                            onClick={() => setIsVideoModalOpen(true)}
+                            size="md" 
+                            variant="default" 
+                            className={`w-full rounded-xl h-11 text-sm font-semibold ${demoColor.button} text-white shadow-lg ${demoColor.shadow} border-0`}
+                          >
+                            <PlayCircle className="h-4 w-4 mr-2" />
+                            {t('solutions_demo_cta')}
+                          </Button>
+                          <Link href="/platform" className={`mt-3 text-sm font-medium ${demoColor.text} hover:underline inline-flex items-center justify-center gap-1`}>
+                            Lihat Harga
+                            <ArrowRight className="h-3 w-3" />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
       </Section>
 
-      {/* 5. PRICING COMPARISON */}
+      {/* 4. VALUE PROPOSITION (UVP) - Modern Bento Grid */}
+      <Section
+        id="uvp"
+        className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        {/* Background decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        </div>
+
+        {/* Header */}
+        <div className="relative z-10 text-center mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 dark:bg-primary-900/20 px-4 py-2 text-sm font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+            Keunggulan Kami
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            {t('uvp_title')}
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            {t('uvp_desc')}
+          </p>
+        </div>
+
+        {/* Bento Grid - Balanced 2x2 Layout */}
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          {(() => {
+            // Bento card configurations - all same size, different colors
+            const bentoConfigs = [
+              { 
+                type: 'gradient',
+                bg: 'from-blue-500 via-blue-600 to-indigo-600',
+                iconBg: 'bg-white/20',
+                textColor: 'text-white',
+                subtitleColor: 'text-blue-100',
+                descColor: 'text-blue-50/90',
+                accent: 'blue'
+              },
+              { 
+                type: 'gradient',
+                bg: 'from-purple-500 via-purple-600 to-pink-600',
+                iconBg: 'bg-white/20',
+                textColor: 'text-white',
+                subtitleColor: 'text-purple-100',
+                descColor: 'text-purple-50/90',
+                accent: 'purple'
+              },
+              { 
+                type: 'gradient',
+                bg: 'from-emerald-500 via-emerald-600 to-teal-600',
+                iconBg: 'bg-white/20',
+                textColor: 'text-white',
+                subtitleColor: 'text-emerald-100',
+                descColor: 'text-emerald-50/90',
+                accent: 'emerald'
+              },
+              { 
+                type: 'gradient',
+                bg: 'from-amber-500 via-orange-500 to-orange-600',
+                iconBg: 'bg-white/20',
+                textColor: 'text-white',
+                subtitleColor: 'text-amber-100',
+                descColor: 'text-amber-50/90',
+                accent: 'amber'
+              },
+            ];
+
+            return homeUVP.map((uvp, idx) => {
+              const Icon = uvp.icon;
+              const config = bentoConfigs[idx % bentoConfigs.length];
+
+              return (
+                <FadeIn key={idx} delay={0.1 + idx * 0.1}>
+                  <div className="group h-full">
+                    <div className={`relative h-full rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 bg-gradient-to-br ${config.bg} p-6 sm:p-8 lg:p-10 min-h-[280px] sm:min-h-[300px]`}>
+                      
+                      {/* Background pattern */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0" style={{ 
+                          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                          backgroundSize: '24px 24px'
+                        }} />
+                      </div>
+                      
+                      {/* Decorative blurs */}
+                      <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+                      <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+
+                      {/* Floating icon decoration */}
+                      <div className="absolute -bottom-6 -right-6 pointer-events-none">
+                        <Icon 
+                          className="h-32 w-32 sm:h-36 sm:w-36 text-white/10 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
+                          strokeWidth={0.5}
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative z-10 flex flex-col h-full">
+                        {/* Icon */}
+                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${config.iconBg} backdrop-blur-sm mb-5 shadow-lg`}>
+                          <Icon className="h-7 w-7 text-white" />
+                        </div>
+
+                        {/* Text */}
+                        <div className="flex-1">
+                          <h3 className={`text-xl sm:text-2xl lg:text-2xl font-bold ${config.textColor} mb-2`}>
+                            {uvp.title}
+                          </h3>
+                          <p className={`text-xs sm:text-sm font-bold tracking-wide uppercase ${config.subtitleColor} mb-3`}>
+                            {uvp.subtitle}
+                          </p>
+                          <p className={`text-sm sm:text-base ${config.descColor} leading-relaxed line-clamp-3`}>
+                            {uvp.desc}
+                          </p>
+                        </div>
+
+                        {/* CTA */}
+                        <div className="mt-5 pt-4 border-t border-white/20">
+                          <button className="inline-flex items-center gap-2 text-white font-semibold text-sm group/btn hover:gap-3 transition-all duration-300">
+                            Pelajari Lebih
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            });
+          })()}
+        </div>
+      </Section>
+
+      {/* 5. PRICING COMPARISON - Modern Visual Comparison */}
       <Section
         id="pricing-comparison"
-        className="relative overflow-hidden border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900"
+        className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
         noPadding
-        containerClassName="py-24 md:py-32"
+        containerClassName={sectionPaddingHybrid.default}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent dark:from-blue-900/20"></div>
+        {/* Background decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/3 -left-32 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+        </div>
 
-        <div className="relative z-10 mb-20 text-center">
-          <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent dark:from-white dark:to-slate-300">
-              {t('pricing_title')}
-            </span>
+        {/* Header */}
+        <div className="relative z-10 text-center mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900 px-4 py-2 text-sm font-bold uppercase tracking-wider mb-6 border border-slate-200 dark:border-slate-700">
+            <span className="text-slate-600 dark:text-slate-400">Perbandingan Nilai</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            {t('pricing_title')}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             {t('pricing_desc')}
           </p>
         </div>
 
-        <Grid cols={12} gap={6} className="relative z-10 items-stretch">
-          {/* LEFT COLUMN: The Problems */}
-          <CardSlider
-            breakpoint="lg"
-            className="h-full lg:col-span-5"
-            desktopClassName="lg:grid lg:grid-cols-1 lg:grid-rows-2 gap-6 h-full"
-            mobileItemWidth="w-full"
-            desktopItemWidth="lg:w-full"
-          >
-            {/* Card 1: Fragmented Stack */}
-            <SpotlightCard
-              className="h-full rounded-3xl border-red-200 dark:border-red-900"
-              spotlightColor="rgba(239, 68, 68, 0.1)"
-            >
-              <div className="flex h-full flex-col p-8">
-                <Stack direction="horizontal" justify="between" className="mb-6">
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                    {t('pricing_problem1_badge')}
-                  </span>
-                  <div className="rounded-xl bg-red-50 p-2 text-red-500 dark:bg-red-950 dark:text-red-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                      />
-                    </svg>
-                  </div>
-                </Stack>
-
-                <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {t('pricing_problem1_title')}
-                </h3>
-                <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t('pricing_problem1_desc')}
-                </p>
-
-                <div className="mt-auto">
-                  <Stack
-                    direction="vertical"
-                    gap={3}
-                    className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
-                  >
-                    {[
-                      { label: t('pricing_problem1_crm'), price: 'Rp 150rb' },
-                      { label: t('pricing_problem1_accounting'), price: 'Rp 250rb' },
-                      { label: t('pricing_problem1_hris'), price: 'Rp 20rb' },
-                    ].map((item, i) => (
-                      <Stack
-                        key={i}
-                        direction="horizontal"
-                        justify="between"
-                        className="text-xs text-slate-600 dark:text-slate-400"
-                      >
-                        <span>{item.label}</span>
-                        <span className="font-bold text-slate-800 dark:text-slate-200">
-                          {item.price}
-                          <span className="font-normal opacity-70">{t('pricing_per_user')}</span>
-                        </span>
-                      </Stack>
-                    ))}
-                  </Stack>
-
-                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-                    <Stack direction="horizontal" align="end" justify="between" className="mb-2">
-                      <span className="text-sm text-slate-600 dark:text-slate-400">
-                        {t('pricing_total_cost')}
-                      </span>
-                      <span className="text-lg font-bold text-slate-900 dark:text-white">
-                        ~Rp 21 Jt
-                        <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                          {t('pricing_per_month')}
-                        </span>
-                      </span>
-                    </Stack>
-                    <div className="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                      <div className="h-full w-[90%] bg-red-400 dark:bg-red-500"></div>
+        {/* VS Comparison Cards */}
+        <div className="relative z-10 grid gap-6 lg:gap-8 lg:grid-cols-2 items-stretch">
+          {/* Problem Card - "Before" Style */}
+          <div className="group relative">
+            <div className="relative h-full rounded-3xl overflow-hidden bg-gradient-to-br from-red-500 via-red-600 to-rose-600 p-1">
+              <div className="h-full rounded-[22px] bg-white dark:bg-slate-900 p-6 sm:p-8">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/30">
+                      <X className="h-6 w-6 text-red-600 dark:text-red-400" />
                     </div>
-                    <Stack
-                      direction="horizontal"
-                      justify="between"
-                      className="text-[10px] text-slate-500 dark:text-slate-400"
-                    >
-                      <span>{t('pricing_integration_time')}</span>
-                      <span className="font-bold text-red-600 dark:text-red-400">
-                        {t('pricing_integration_months')}
-                      </span>
-                    </Stack>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                        {t('pricing_problem_title')}
+                      </h3>
+                      <p className="text-sm text-red-500 font-medium">Pendekatan Lama</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pain Points */}
+                <ul className="space-y-4 mb-8">
+                  {['pricing_problem_1', 'pricing_problem_2', 'pricing_problem_3', 'pricing_problem_4'].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-red-50/50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/50 mt-0.5">
+                        <X className="h-3.5 w-3.5 text-red-600 dark:text-red-400" />
+                      </div>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{t(item as any)}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Cost Footer */}
+                <div className="mt-auto pt-6 border-t-2 border-dashed border-red-200 dark:border-red-900/50">
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">
+                        {t('pricing_hidden_cost')}
+                      </p>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">15jt</span>
+                        <span className="text-lg text-slate-500">++</span>
+                        <span className="text-sm text-slate-400">/ {t('month')}</span>
+                      </div>
+                    </div>
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/30">
+                      <ArrowUpRight className="h-6 w-6 text-red-500" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </SpotlightCard>
+            </div>
+          </div>
 
-            {/* Card 2: Legacy ERP */}
-            <SpotlightCard
-              className="h-full rounded-3xl border-amber-200 dark:border-amber-900"
-              spotlightColor="rgba(245, 158, 11, 0.1)"
-            >
-              <div className="flex h-full flex-col p-8">
-                <Stack direction="horizontal" justify="between" className="mb-6">
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold tracking-wider text-slate-500 uppercase dark:bg-slate-800 dark:text-slate-400">
-                    {t('pricing_problem2_badge')}
-                  </span>
-                  <div className="rounded-xl bg-amber-50 p-2 text-amber-500 dark:bg-amber-950 dark:text-amber-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                      />
-                    </svg>
-                  </div>
-                </Stack>
-                <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {t('pricing_problem2_title')}
-                </h3>
-                <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t('pricing_problem2_desc')}{' '}
-                  <span className="font-semibold text-amber-600 dark:text-amber-400">
-                    {t('pricing_problem2_penalty')}
-                  </span>
-                </p>
-
-                <div className="mt-auto">
-                  <Stack
-                    direction="vertical"
-                    gap={3}
-                    className="mb-6 border-b border-slate-200 pb-4 dark:border-slate-700"
-                  >
-                    {[
-                      { label: t('pricing_problem2_license'), price: '~Rp 210rb', perUser: true },
-                      {
-                        label: t('pricing_problem2_implementation'),
-                        price: t('pricing_problem2_implementation_cost'),
-                        perUser: false,
-                      },
-                      {
-                        label: t('pricing_problem2_maintenance'),
-                        price: t('pricing_problem2_maintenance_cost'),
-                        perUser: false,
-                      },
-                    ].map((item, i) => (
-                      <Stack
-                        key={i}
-                        direction="horizontal"
-                        justify="between"
-                        className="text-xs text-slate-600 dark:text-slate-400"
-                      >
-                        <span>{item.label}</span>
-                        <span className="font-bold text-slate-800 dark:text-slate-200">
-                          {item.price}
-                          {item.perUser && (
-                            <span className="font-normal opacity-70">{t('pricing_per_user')}</span>
-                          )}
-                        </span>
-                      </Stack>
-                    ))}
-                  </Stack>
-
-                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-                    <Stack direction="horizontal" align="end" justify="between" className="mb-2">
-                      <span className="text-sm text-slate-600 dark:text-slate-400">
-                        {t('pricing_total_cost')}
-                      </span>
-                      <span className="text-lg font-bold text-slate-900 dark:text-white">
-                        ~Rp 10.5 Jt
-                        <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                          {t('pricing_per_month')}
-                        </span>
-                      </span>
-                    </Stack>
-                    <div className="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                      <div className="h-full w-[60%] bg-amber-400 dark:bg-amber-500"></div>
-                    </div>
-                    <Stack
-                      direction="horizontal"
-                      justify="between"
-                      className="text-[10px] text-slate-500 dark:text-slate-400"
-                    >
-                      <span>{t('pricing_implementation_time')}</span>
-                      <span className="font-bold text-amber-600 dark:text-amber-400">
-                        {t('pricing_implementation_months')}
-                      </span>
-                    </Stack>
-                  </div>
-                </div>
-              </div>
-            </SpotlightCard>
-          </CardSlider>
-
-          {/* RIGHT COLUMN: The Solution */}
-          <div className="lg:col-span-7">
-            <div className="group relative h-full rounded-[2.5rem] bg-slate-50 p-1 shadow-2xl ring-1 shadow-blue-900/10 ring-slate-200 dark:bg-slate-950 dark:shadow-blue-900/40 dark:ring-white/10">
-              <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 p-[2px] opacity-100"></div>
-
-              <Stack
-                direction="vertical"
-                gap={4}
-                justify="between"
-                className="relative h-full overflow-hidden rounded-[2.4rem] bg-white p-8 md:p-12 dark:bg-slate-900"
-              >
-                <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px]"></div>
-                <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-indigo-500/10 blur-[100px]"></div>
-                <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-
-                <div className="relative z-10 flex h-full flex-col">
-                  <Stack
-                    direction="vertical"
-                    gap={4}
-                    className="mb-8 justify-between md:items-center"
-                  >
-                    <Stack
-                      direction="horizontal"
-                      gap={2}
-                      align="center"
-                      className="w-fit rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase shadow-lg shadow-blue-500/20"
-                    >
-                      <CheckCircle2 className="h-3.5 w-3.5" /> {t('pricing_solution_badge')}
-                    </Stack>
-                    <div className="text-left md:text-right">
-                      <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">
-                        {t('pricing_solution_best_value')}
-                      </span>
-                    </div>
-                  </Stack>
-
-                  <h3 className="mb-4 text-3xl leading-tight font-black tracking-tight text-slate-900 md:text-4xl dark:text-white">
-                    {t('pricing_solution_title')}
-                    <br />
-                    <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                      {t('pricing_solution_subtitle')}
+          {/* Solution Card - "After" Style */}
+          <div className="group relative">
+            {/* Glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-primary-500 to-emerald-500 rounded-[28px] opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-500"></div>
+            
+            <div className="relative h-full rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-500 via-primary-500 to-emerald-600 p-1">
+              <div className="h-full rounded-[22px] bg-gradient-to-br from-white to-emerald-50/50 dark:from-slate-900 dark:to-emerald-950/20 p-6 sm:p-8">
+                {/* Recommended Badge */}
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+                  <div className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-primary-500 px-3 py-1.5 text-xs font-bold text-white shadow-lg shadow-emerald-500/30">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
                     </span>
-                  </h3>
-                  <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-                    {t('pricing_solution_desc')}
-                  </p>
-
-                  <div className="relative mb-8 flex-grow rounded-3xl border border-slate-200 bg-slate-50/50 p-6 backdrop-blur-md transition-colors duration-500 group-hover:bg-slate-100 md:p-8 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
-                    <div className="absolute top-0 bottom-0 left-0 w-1.5 rounded-l-3xl bg-gradient-to-b from-green-400 to-emerald-600"></div>
-                    <Grid cols={1} mdCols={2} gap={8} className="h-full items-center">
-                      <div>
-                        <span className="text-sm font-medium tracking-wider text-slate-500 dark:text-slate-400">
-                          {t('pricing_solution_flat_cost')}
-                        </span>
-                        <p className="my-2 text-4xl leading-tight font-black tracking-tighter text-slate-900 md:text-5xl dark:text-white">
-                          Rp 3 Jt
-                        </p>
-                        <p className="text-sm text-slate-600 dark:text-slate-500">
-                          {t('pricing_solution_package')}
-                        </p>
-                      </div>
-                      <Stack
-                        direction="vertical"
-                        gap={2}
-                        align="end"
-                        justify="center"
-                        className="border-slate-200 text-right md:border-l md:pl-6 dark:border-white/10"
-                      >
-                        <div className="mb-1 ml-auto w-fit rounded-lg border border-green-500/30 bg-green-500/20 px-3 py-1.5 text-sm font-bold text-green-600 dark:text-green-400">
-                          {t('pricing_solution_save')}
-                        </div>
-                        <span className="text-xs text-slate-500 dark:text-slate-400">
-                          {t('pricing_solution_vs')}
-                        </span>
-                        <span className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                          {t('pricing_solution_golive')}
-                          <span className="font-bold text-slate-900 dark:text-white">
-                            {t('pricing_solution_golive_days')}
-                          </span>
-                        </span>
-                      </Stack>
-                    </Grid>
+                    {t('pricing_recommended')}
                   </div>
-
-                  <Grid cols={1} smCols={2} gap={4} className="mb-8">
-                    <Stack
-                      direction="horizontal"
-                      gap={3}
-                      align="start"
-                      className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/5 dark:bg-slate-900/50"
-                    >
-                      <div className="mt-1 text-green-600 dark:text-green-400">
-                        <CheckCircle2 className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                          {t('pricing_solution_compliance_title')}
-                        </h4>
-                        <p className="text-xs text-slate-600 dark:text-slate-400">
-                          {t('pricing_solution_compliance_desc')}
-                        </p>
-                      </div>
-                    </Stack>
-                    <Stack
-                      direction="horizontal"
-                      gap={3}
-                      align="start"
-                      className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/5 dark:bg-slate-900/50"
-                    >
-                      <div className="mt-1 text-blue-600 dark:text-blue-400">
-                        <CheckCircle2 className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                          {t('pricing_solution_infra_title')}
-                        </h4>
-                        <p className="text-xs text-slate-600 dark:text-slate-400">
-                          {t('pricing_solution_infra_desc')}
-                        </p>
-                      </div>
-                    </Stack>
-                  </Grid>
                 </div>
 
-                <div className="relative z-10 mt-auto">
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-primary-500 shadow-lg shadow-emerald-500/30">
+                    <CheckCircle2 className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                      {t('pricing_solution_title')}
+                    </h3>
+                    <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">BizOps Platform</p>
+                  </div>
+                </div>
+
+                {/* Benefits */}
+                <ul className="space-y-4 mb-8">
+                  {['pricing_solution_1', 'pricing_solution_2', 'pricing_solution_3', 'pricing_solution_4'].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/30">
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 shadow-md shadow-emerald-500/30 mt-0.5">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-slate-800 dark:text-slate-200">{t(item as any)}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing Footer */}
+                <div className="mt-auto p-5 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-primary-500/10 dark:from-emerald-500/20 dark:to-primary-500/20 border border-emerald-200/50 dark:border-emerald-800/50">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
+                        {t('pricing_starting_from')}
+                      </p>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">299rb</span>
+                        <span className="text-sm text-slate-500">/ {t('month')}</span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1">{t('pricing_subtitle')}</p>
+                    </div>
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-primary-500 shadow-lg shadow-emerald-500/30">
+                      <ArrowRight className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  
                   <Button
                     asChild
-                    size="md"
-                    variant="primary"
-                    className="h-14 w-full transform border-none bg-gradient-to-r from-blue-600 to-indigo-600 text-base font-bold shadow-xl shadow-blue-600/20 transition-all hover:scale-[1.01] hover:from-blue-500 hover:to-indigo-500 hover:shadow-blue-600/40"
+                    size="lg"
+                    className="w-full h-12 text-base font-bold bg-gradient-to-r from-emerald-500 to-primary-500 hover:from-emerald-600 hover:to-primary-600 text-white shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 border-0"
                   >
-                    <Link href="/tools/pricing-calculator">{t('pricing_solution_cta')}</Link>
+                    <Link href="/pricing/calculator">{t('cta_view_pricing')}</Link>
                   </Button>
                 </div>
-              </Stack>
+              </div>
             </div>
           </div>
-        </Grid>
+        </div>
+
+        {/* VS Badge - Center */}
+        <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-2xl border-4 border-slate-100 dark:border-slate-700">
+            <span className="text-xl font-black text-slate-400">VS</span>
+          </div>
+        </div>
       </Section>
 
-      {/* 6. PROCESS SECTION */}
+      {/* 6. PROCESS SECTION - Modern Timeline */}
       <Section
         id="process"
-        className="relative overflow-hidden bg-white dark:bg-slate-900"
+        className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
         noPadding
-        containerClassName="py-24 md:py-32"
+        containerClassName={sectionPaddingHybrid.default}
       >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:32px_32px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+        </div>
 
-        <Stack
-          direction="vertical"
-          gap={6}
-          className="relative z-10 mb-16 items-end justify-between md:flex-row"
-        >
-          <div className="max-w-2xl">
-            <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              {t('process_title')}{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                {t('process_days')}
-              </span>
+        <div className="relative z-10">
+          {/* Centered Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+            <div className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-50 to-primary-50 dark:from-blue-900/20 dark:to-primary-900/20 px-5 py-2.5 text-sm font-bold uppercase tracking-wider mb-6 border border-blue-100 dark:border-blue-800">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-primary-600 text-sm font-bold text-white shadow-lg shadow-blue-500/30">30</span>
+              <span className="text-blue-600 dark:text-blue-400">{t('process_days_badge') || 'Hari Go-Live'}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+              {t('process_title').replace(t('process_days'), '')}{' '}
+              <span className="text-blue-600 dark:text-blue-400">{t('process_days')}</span>
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              {t('process_desc_1')}{' '}
-              <strong className="font-medium text-slate-900 dark:text-white">
-                {t('process_desc_2')}
-              </strong>
-              {t('process_desc_3')}
+            <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mb-8">
+              {t('process_desc_1')} {t('process_desc_2')} {t('process_desc_3')}
             </p>
+            <Button
+              asChild
+              size="md"
+              variant="clay"
+              className="rounded-xl h-12 px-8 text-sm font-semibold shadow-lg shadow-primary-500/20"
+            >
+              <Link href="/services">{t('process_cta')}</Link>
+            </Button>
           </div>
-          <Button
-            asChild
-            size="md"
-            variant="outline-white"
-            className="border-slate-300 px-6 font-medium text-slate-700 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
-          >
-            <Link href="/services">{t('process_cta')}</Link>
-          </Button>
-        </Stack>
 
-        <CardSlider
-          desktopClassName="md:grid md:grid-cols-4 gap-6"
-          mobileItemWidth="w-[85vw] sm:w-[350px]"
-        >
-          {homeProcess.map((step, idx) => {
-            return (
-              <div key={idx} className="group relative h-full">
-                {idx < homeProcess.length - 1 && (
-                  <div className="absolute top-12 left-full z-0 -ml-4 hidden h-0.5 w-full bg-slate-300 md:block dark:bg-slate-700">
-                    <div className="absolute inset-0 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-1000 ease-out group-hover:w-full"></div>
-                  </div>
-                )}
+          {/* Timeline Steps */}
+          <div className="relative">
 
-                <div className="relative z-10 flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-1 hover:border-blue-500/50 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/20 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:bg-slate-800 dark:hover:shadow-blue-900/20">
-                  <div className="mb-6 text-5xl leading-tight font-black text-slate-200 transition-colors duration-500 group-hover:text-blue-500/20 dark:text-slate-700/30">
-                    {step.step}
-                  </div>
-                  <h3 className="mb-3 text-2xl font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-slate-600 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-300">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </CardSlider>
-      </Section>
-
-      {/* 7. INDUSTRIES & ROLES */}
-      <Section
-        id="industries"
-        className="bg-white dark:bg-slate-950"
-        noPadding
-        containerClassName="py-24 md:py-32"
-      >
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            {t('industries_title')}
-          </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('industries_desc')}</p>
-        </div>
-
-        <CardSlider
-          desktopClassName="md:grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          mobileItemWidth="w-[85vw] sm:w-[350px]"
-          className="mb-24"
-        >
-          {industries.map((ind) => {
-            const Icon = ind.icon;
-            return (
-              <Link key={ind.id} href={`/solutions/${ind.id}`} className="group block h-full">
-                <SpotlightCard
-                  className="h-full rounded-3xl"
-                  spotlightColor="rgba(37, 99, 235, 0.1)"
-                >
-                  <div className="flex h-full flex-col p-8">
-                    <Stack
-                      direction="horizontal"
-                      gap={4}
-                      align="center"
-                      justify="center"
-                      className="mb-6 h-12 w-12 rounded-xl bg-slate-100 text-slate-600 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-blue-600 dark:group-hover:text-white"
-                    >
-                      <Icon className="h-6 w-6" aria-hidden="true" />
-                    </Stack>
-                    <h3 className="mb-3 text-xl font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-                      {ind.title}
-                    </h3>
-                    <p className="mb-4 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                      {ind.description}
-                    </p>
-                    <Stack
-                      direction="horizontal"
-                      gap={4}
-                      align="center"
-                      className="-translate-x-2 text-sm font-bold text-blue-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-blue-400"
-                    >
-                      {t('industries_explore')}{' '}
-                      <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-                    </Stack>
-                  </div>
-                </SpotlightCard>
-              </Link>
-            );
-          })}
-        </CardSlider>
-
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('roles_title')}</h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('roles_desc')}</p>
-        </div>
-
-        <CardSlider
-          desktopClassName="md:grid md:grid-cols-3 lg:grid-cols-5 gap-4"
-          mobileItemWidth="w-[85vw] sm:w-[250px]"
-        >
-          {roles.map((role) => {
-            const Icon = role.icon;
-            return (
-              <Link key={role.id} href={`/role/${role.id}`} className="group block h-full">
-                <SpotlightCard
-                  className="h-full rounded-2xl text-center"
-                  spotlightColor="rgba(59, 130, 246, 0.1)"
-                >
-                  <div className="flex h-full flex-col items-center p-6">
-                    <Stack
-                      direction="horizontal"
-                      gap={4}
-                      align="center"
-                      justify="center"
-                      className="mx-auto mb-3 h-10 w-10 rounded-full bg-blue-50 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-950 dark:text-blue-400 dark:group-hover:bg-blue-600 dark:group-hover:text-white"
-                    >
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </Stack>
-                    <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
-                      {role.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-400">{role.subtitle}</p>
-                  </div>
-                </SpotlightCard>
-              </Link>
-            );
-          })}
-        </CardSlider>
-      </Section>
-
-      {/* 8. INFRASTRUCTURE & SECURITY */}
-      <Section
-        id="security"
-        className="relative overflow-hidden border-t border-slate-200 bg-white dark:border-slate-800/50 dark:bg-slate-950"
-        noPadding
-        containerClassName="py-24 md:py-32"
-      >
-        <div className="pointer-events-none absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-900/10 blur-[120px]"></div>
-
-        <Grid cols={1} mdCols={2} gap={12} className="relative z-10 mb-16 items-center">
-          <div>
-            <Badge variant="outline-white" className="mb-4">
-              {t('security_badge')}
-            </Badge>
-            <h2 className="text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
-              {t('security_title')}
-            </h2>
-            <p className="mt-4 mb-8 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              {t('security_desc')}
-            </p>
-
-            <Stack direction="vertical" gap={6}>
-              {[
-                {
-                  title: t('security_encryption_title'),
-                  desc: t('security_encryption_desc'),
-                  icon: Lock,
-                },
-                {
-                  title: t('security_uptime_title'),
-                  desc: t('security_uptime_desc'),
-                  icon: CheckCircle2,
-                },
-                {
-                  title: t('security_backup_title'),
-                  desc: t('security_backup_desc'),
-                  icon: PlayCircle,
-                },
-              ].map((item, idx) => {
-                const Icon = item.icon;
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {homeProcess.map((step, idx) => {
+                const weekLabels = [
+                  t('process_week_1') || 'Minggu 1',
+                  t('process_week_2') || 'Minggu 2', 
+                  t('process_week_3') || 'Minggu 3',
+                  t('process_week_4') || 'Minggu 4'
+                ];
+                const stepColors = [
+                  { bg: 'bg-blue-600', bgLight: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', hoverBorder: 'group-hover:border-blue-300 dark:group-hover:border-blue-700' },
+                  { bg: 'bg-emerald-600', bgLight: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', hoverBorder: 'group-hover:border-emerald-300 dark:group-hover:border-emerald-700' },
+                  { bg: 'bg-amber-500', bgLight: 'bg-amber-50 dark:bg-amber-900/20', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', hoverBorder: 'group-hover:border-amber-300 dark:group-hover:border-amber-700' },
+                  { bg: 'bg-rose-600', bgLight: 'bg-rose-50 dark:bg-rose-900/20', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', hoverBorder: 'group-hover:border-rose-300 dark:group-hover:border-rose-700' },
+                ];
+                const color = stepColors[idx];
+                const stepNumber = String(idx + 1).padStart(2, '0');
+                
                 return (
-                  <div key={idx} className="group flex gap-4">
-                    <Stack
-                      direction="horizontal"
-                      gap={4}
-                      align="center"
-                      justify="center"
-                      className="h-12 w-12 flex-shrink-0 rounded-xl bg-slate-100 ring-1 ring-slate-200 transition-all group-hover:ring-blue-500/50 dark:bg-slate-800/50 dark:ring-white/10"
-                    >
-                      <Icon
-                        className="h-6 w-6 text-blue-600 dark:text-blue-400"
-                        aria-hidden="true"
-                      />
-                    </Stack>
-                    <div>
-                      <h3 className="mb-1 text-lg font-bold text-slate-900 dark:text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                        {item.desc}
-                      </p>
+                  <FadeIn key={idx} delay={0.1 + idx * 0.1}>
+                    <div className="group h-full">
+                      <div className={`relative h-full bg-white dark:bg-slate-900 rounded-2xl border ${color.border} ${color.hoverBorder} p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl`}>
+                        {/* Step Number Badge */}
+                        <div className="flex items-center justify-between mb-5">
+                          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${color.bg} text-xl font-bold text-white shadow-lg`}>
+                            {stepNumber}
+                          </div>
+                          <span className={`text-xs font-semibold ${color.text} ${color.bgLight} px-3 py-1.5 rounded-full uppercase tracking-wide`}>
+                            {weekLabels[idx]}
+                          </span>
+                        </div>
+                        
+                        {/* Content */}
+                        <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
+                          {step.title}
+                        </h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </FadeIn>
                 );
               })}
-            </Stack>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 7. INDUSTRIES & ROLES - Vertical Cards with Auto Slider */}
+      <Section
+        id="industries"
+        className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        {/* Decorative blurs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative z-10">
+          {/* Industries Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 dark:bg-primary-900/20 px-4 py-2 text-sm font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-6">
+              {t('industries_title')}
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              {t('industries_desc')}
+            </h2>
           </div>
 
-          <div className="relative mt-8 md:mt-0">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20 blur-2xl"></div>
-            <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80">
-              <Stack
-                direction="horizontal"
-                gap={4}
-                align="center"
-                justify="between"
-                className="mb-8 border-b border-slate-200 pb-6 dark:border-white/10"
-              >
-                <div>
-                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-                    {t('security_system_status')}
-                  </div>
-                  <Stack direction="horizontal" gap={2} align="center">
-                    <span className="relative flex h-3 w-3">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
-                    </span>
-                    <span className="font-bold text-slate-900 dark:text-white">
-                      {t('security_all_operational')}
-                    </span>
-                  </Stack>
-                </div>
-                <div className="text-right">
-                  <div className="mb-1 text-xs font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-                    {t('security_uptime_label')}
-                  </div>
-                  <div className="font-bold text-slate-900 dark:text-white">99.98%</div>
-                </div>
-              </Stack>
+          {/* Industries - Infinity Slider (Story-style cards, 4 per screen) */}
+          <div className="mb-20 -mx-5 sm:-mx-6 md:-mx-8 lg:-mx-12 pt-4 pb-8">
+            <InfiniteScrollLoop speed={40} className="py-4">
+              {industries.map((ind, idx) => {
+                const Icon = ind.icon;
+                const colorThemes = [
+                  { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', overlay: 'from-blue-900/60' },
+                  { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', overlay: 'from-emerald-900/60' },
+                  { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', overlay: 'from-amber-900/60' },
+                  { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', overlay: 'from-purple-900/60' },
+                  { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', overlay: 'from-rose-900/60' },
+                  { bg: 'bg-cyan-600', text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-100 dark:border-cyan-900', overlay: 'from-cyan-900/60' },
+                ];
+                const theme = colorThemes[idx % colorThemes.length];
+                
+                // Unsplash placeholder images for each industry
+                const industryImages = [
+                  'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=400&h=600&fit=crop', // Manufaktur - factory
+                  'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=600&fit=crop', // Retail - store
+                  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=600&fit=crop', // Jasa - office meeting
+                  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=600&fit=crop', // Konstruksi - construction
+                  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=600&fit=crop', // F&B - restaurant
+                  'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=600&fit=crop', // Kesehatan - hospital
+                ];
+                
+                return (
+                  <Link 
+                    key={ind.id}
+                    href={`/solutions/${ind.id}`} 
+                    className="group block flex-shrink-0 w-[220px] sm:w-[250px] mx-2 py-2"
+                  >
+                    <div className={`relative overflow-visible rounded-2xl bg-white dark:bg-slate-900 border ${theme.border} transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-2xl shadow-lg`}>
+                      {/* Top image banner - story style */}
+                      <div className="h-44 relative overflow-hidden rounded-t-2xl">
+                        <img 
+                          src={industryImages[idx % industryImages.length]} 
+                          alt={ind.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className={`absolute inset-0 bg-gradient-to-t ${theme.overlay} via-transparent to-transparent opacity-60`} />
+                        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white dark:from-slate-900 to-transparent" />
+                      </div>
+                      
+                      {/* Icon - floating on banner */}
+                      <div className="relative -mt-8 px-5">
+                        <div className={`inline-flex h-16 w-16 items-center justify-center rounded-xl ${theme.bg} shadow-xl border-4 border-white dark:border-slate-900`}>
+                          <Icon className="h-8 w-8 text-white" aria-hidden="true" />
+                        </div>
+                      </div>
+                      
+                      {/* Content - compact */}
+                      <div className="p-5 pt-3">
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                          {ind.title}
+                        </h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3 line-clamp-2">
+                          {ind.description}
+                        </p>
+                        
+                        {/* CTA */}
+                        <div className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}>
+                          <span>Pelajari Lebih</span>
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </InfiniteScrollLoop>
+          </div>
 
-              <Stack direction="vertical" gap={4}>
-                <Stack
-                  direction="horizontal"
-                  gap={4}
-                  justify="between"
-                  className="mb-4 text-xs text-slate-500"
-                >
-                  <span>00:00</span>
-                  <span>06:00</span>
-                  <span>12:00</span>
-                  <span>18:00</span>
-                  <span>24:00</span>
-                </Stack>
-                <BarChart bars={40} animated={true} />
-                <Stack
-                  direction="horizontal"
-                  gap={2}
-                  align="center"
-                  className="mt-4 rounded-lg bg-slate-100 p-3 text-xs text-slate-600 dark:bg-slate-800/50 dark:text-slate-400"
-                >
-                  <CheckCircle2 className="h-4 w-4 text-green-500" aria-hidden="true" />
-                  <span>{t('security_backup_last')}</span>
-                </Stack>
-              </Stack>
+          {/* Roles - Auto-scrolling slider (opposite direction from industries) */}
+          <div className="border-t border-slate-200 dark:border-slate-800 pt-14">
+            <div className="text-center mb-10">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">{t('roles_title')}</h3>
+              <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{t('roles_desc')}</p>
             </div>
+
+            {/* Roles Infinite Scroll - Right direction (opposite of industries) */}
+            <div className="-mx-5 sm:-mx-6 md:-mx-8 lg:-mx-12 pb-4">
+              <InfiniteScrollLoop speed={35} direction="right" className="py-2">
+                {roles.map((role, idx) => {
+                  const Icon = role.icon;
+                  const roleColors = [
+                    { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', gradient: 'from-blue-500 to-blue-600' },
+                    { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', gradient: 'from-emerald-500 to-emerald-600' },
+                    { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', gradient: 'from-amber-500 to-amber-600' },
+                    { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', gradient: 'from-purple-500 to-purple-600' },
+                    { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', gradient: 'from-rose-500 to-rose-600' },
+                  ];
+                  const theme = roleColors[idx % roleColors.length];
+                  
+                  return (
+                    <Link 
+                      key={role.id}
+                      href={`/role/${role.id}`} 
+                      className="group block mx-2 flex-shrink-0"
+                    >
+                      <div className={`relative w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] rounded-2xl overflow-hidden border ${theme.border} bg-white dark:bg-slate-900 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl`}>
+                        {/* Background gradient accent */}
+                        <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${theme.gradient} opacity-10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2`} />
+                        
+                        {/* Content */}
+                        <div className="relative z-10 h-full flex flex-col justify-between p-5">
+                          {/* Icon & Title */}
+                          <div className="flex items-start gap-4">
+                            <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${theme.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}>
+                              <Icon className="h-6 w-6 text-white" aria-hidden="true" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
+                                {role.title}
+                              </h4>
+                              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{role.subtitle}</p>
+                            </div>
+                          </div>
+                          
+                          {/* CTA */}
+                          <div className="flex items-center justify-end">
+                            <span className={`text-xs font-semibold ${theme.text} flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                              Lihat Detail
+                              <ArrowRight className="h-3 w-3" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </InfiniteScrollLoop>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 8. INFRASTRUCTURE & SECURITY - Modern with Illustration */}
+      <Section
+        id="security"
+        className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        {/* Background decorations */}
+        <div className="pointer-events-none absolute top-0 left-1/4 h-[400px] w-[400px] rounded-full bg-emerald-500/5 blur-[100px]" />
+        <div className="pointer-events-none absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-blue-500/5 blur-[80px]" />
+
+        <Grid cols={1} mdCols={2} lgCols={2} gap={10} className="relative z-10 items-center">
+          {/* Left: Content */}
+          <div className="order-2 md:order-1">
+            <FadeIn delay={0.1}>
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 dark:bg-emerald-900/20 px-4 py-1.5 mb-4">
+                <Shield className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                  Enterprise Security
+                </span>
+              </div>
+            </FadeIn>
+            
+            <SectionHeader
+              title={t('security_title')}
+              description={t('security_desc')}
+              align="left"
+              className="mb-8"
+            />
+            
+            <ul className="space-y-4">
+              {['security_1', 'security_2', 'security_3'].map((item, idx) => {
+                const icons = [Lock, CheckCircle2, Database];
+                const IconComponent = icons[idx];
+                const iconColors = [
+                  'from-emerald-500 to-emerald-600',
+                  'from-blue-500 to-blue-600',
+                  'from-purple-500 to-purple-600',
+                ];
+                
+                return (
+                  <FadeIn key={idx} delay={0.15 + idx * 0.1}>
+                    <li className="group flex gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-lg hover:border-primary-100 dark:hover:border-primary-900">
+                      <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${iconColors[idx]} shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                        <IconComponent className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-slate-900 dark:text-white mb-0.5">
+                          {t(`${item}_title` as any)}
+                        </h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                          {t(`${item}_desc` as any)}
+                        </p>
+                      </div>
+                    </li>
+                  </FadeIn>
+                );
+              })}
+            </ul>
+          </div>
+          
+          {/* Right: Illustration with Security Visual */}
+          <div className="relative order-1 md:order-2">
+            <FadeIn delay={0.2}>
+              <div className="relative">
+                {/* Main Image Container */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  {/* Security Illustration from Unsplash */}
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop"
+                      alt="Security Infrastructure"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent" />
+                    
+                    {/* Floating Security Badges */}
+                    <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-lg">
+                        <Lock className="h-3.5 w-3.5 text-emerald-600" />
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">AES-256</span>
+                      </div>
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-lg">
+                        <Shield className="h-3.5 w-3.5 text-blue-600" />
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">SSL/TLS</span>
+                      </div>
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-lg">
+                        <Database className="h-3.5 w-3.5 text-purple-600" />
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">ISO 27001</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating Status Card */}
+                <div className="absolute -bottom-4 -right-4 sm:bottom-4 sm:-right-8">
+                  <GlassCard
+                    variant="light"
+                    rounded="xl"
+                    padding="none"
+                    className="p-4 shadow-xl border border-slate-200 dark:border-slate-700"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                        <span className="relative flex h-3 w-3">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                          <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Uptime SLA</p>
+                        <p className="text-lg font-bold text-slate-900 dark:text-white">99.9%</p>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute -top-4 -left-4 h-20 w-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 opacity-20 blur-xl" />
+                <div className="absolute -bottom-6 left-1/3 h-16 w-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 opacity-20 blur-xl" />
+              </div>
+            </FadeIn>
           </div>
         </Grid>
       </Section>
 
-      {/* 9. INTEGRATIONS */}
+      {/* 9. TESTIMONIALS */}
+      <TestimonialsSection />
+
+      {/* 10. INTEGRATIONS - Glass Pills (Compact) */}
       <Section
         id="integrations"
-        className="border-y border-slate-200 !bg-slate-50 dark:border-slate-800 dark:!bg-slate-900"
+        className="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
         noPadding
-        containerClassName="py-24 md:py-32"
+        containerClassName={sectionPaddingHybrid.compact}
       >
-        <Container size="4xl" className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            {t('integrations_title')}
-          </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">{t('integrations_desc')}</p>
-        </Container>
+        <SectionHeader
+          title={t('integrations_title')}
+          description={t('integrations_desc')}
+          className="mb-8"
+        />
 
         <div className="max-w-full overflow-hidden">
-          <InfiniteScrollLoop speed={40} direction="right">
+          <InfiniteScrollLoop speed={30} direction="right">
             {homeIntegrations.map((int, idx) => (
               <div
                 key={idx}
-                className="mx-2 flex cursor-default items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 whitespace-nowrap shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-600"
+                className="group mx-2.5 flex cursor-default items-center gap-3 rounded-full px-5 py-3 whitespace-nowrap transition-all duration-300 hover:scale-105 hover:shadow-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700"
               >
                 <div
-                  className="text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500"
-                  aria-hidden="true"
+                  className={`flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-slate-100 dark:ring-slate-700 transition-transform duration-300 group-hover:scale-110 ${int.color}`}
                 >
-                  {int.icon}
+                  <int.icon className="h-5 w-5" />
                 </div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                  {int.name}
-                </div>
+                <span className="font-semibold text-slate-700 dark:text-slate-200">{int.name}</span>
               </div>
             ))}
           </InfiniteScrollLoop>
         </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/platform/technologies/integration"
-            className="inline-flex items-center gap-2 font-bold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+        <div className="mt-10 text-center">
+          <Button
+            asChild
+            variant="glass"
+            size="md"
+            className="h-11 px-6 text-sm font-semibold"
           >
-            {t('integrations_view_more')}{' '}
-            <ArrowUpRight className="ml-1 h-4 w-4" aria-hidden="true" />
-          </Link>
+            <Link href="/platform/technologies/integration">
+              {t('integrations_view_more')}{' '}
+              <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
       </Section>
 
-      {/* 10. CTA / FOOTER PREVIEW */}
+      {/* 11. CTA / FOOTER PREVIEW - Modern Gradient Card */}
       <Section
         id="cta"
         className="relative overflow-hidden bg-white dark:bg-slate-950"
         noPadding
-        containerClassName="py-24 md:py-32"
+        containerClassName={sectionPaddingHybrid.default}
       >
-        <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-500/20"></div>
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-500/20"></div>
-
-        <Container size="4xl" className="relative z-10 text-center">
-          <h2 className="mb-6 text-4xl leading-tight font-extrabold text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mb-10 text-xl text-slate-600 dark:text-slate-300">{t('cta_desc')}</p>
-          <Stack direction="vertical" gap={4} className="justify-center sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              variant="primary"
-              className="h-16 w-full bg-gradient-to-r from-blue-600 to-indigo-600 px-10 text-xl font-bold text-white shadow-2xl shadow-blue-600/20 hover:from-blue-500 hover:to-indigo-500 sm:w-auto"
-            >
-              <Link href="/contact">{t('cta_contact')}</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline-white"
-              size="lg"
-              className="h-16 w-full border-2 border-slate-300 px-10 text-xl text-slate-700 transition-colors hover:bg-slate-100 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
-            >
-              <Link href="/tools/pricing-calculator">{t('cta_view_pricing')}</Link>
-            </Button>
-          </Stack>
-          <p className="mt-6 block text-sm text-slate-500 dark:text-slate-400">{t('cta_trial')}</p>
+        <Container size="5xl" className="relative z-10">
+          {/* CTA Card with Gradient Background */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-blue-700 p-8 sm:p-12 lg:p-16">
+            {/* Decorative elements - Floating shapes */}
+            <div className="absolute top-0 right-0 w-72 h-72 bg-white/15 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-56 h-56 bg-blue-300/25 rounded-full blur-2xl translate-y-1/3 -translate-x-1/3" />
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-cyan-400/20 rounded-full blur-2xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-indigo-300/20 rounded-full blur-xl" />
+            
+            {/* Dot pattern overlay - more visible */}
+            <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              {/* Badge */}
+              <FadeIn>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 mb-6">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
+                  </span>
+                  <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">
+                    {t('cta_trial')}
+                  </span>
+                </div>
+              </FadeIn>
+              
+              {/* Title */}
+              <FadeIn delay={0.1}>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+                  {t('cta_title')}
+                </h2>
+              </FadeIn>
+              
+              {/* Description */}
+              <FadeIn delay={0.15}>
+                <p className="text-base sm:text-lg text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  {t('cta_desc')}
+                </p>
+              </FadeIn>
+              
+              {/* Buttons */}
+              <FadeIn delay={0.2}>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg font-bold bg-white text-primary-700 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <Link href="/demo">
+                      Mulai Demo Gratis
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="lg"
+                    className="h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg font-semibold text-white border-2 border-white/30 hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+                  >
+                    <Link href="/contact">{t('cta_contact')}</Link>
+                  </Button>
+                </div>
+              </FadeIn>
+              
+              {/* Trust indicators */}
+              <FadeIn delay={0.25}>
+                <div className="mt-10 flex flex-wrap justify-center gap-6 text-white/60 text-sm">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span>14 hari gratis</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span>Tanpa kartu kredit</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span>Batalkan kapan saja</span>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
         </Container>
       </Section>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          {/* Modal Content */}
+          <div 
+            className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute -top-12 right-0 z-10 p-2 text-white/80 hover:text-white transition-colors"
+              aria-label="Tutup video"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            
+            {/* YouTube iframe */}
+            <iframe
+              src={`https://www.youtube.com/embed/${moduleVideoIds[activeSolution.id] || 'dQw4w9WgXcQ'}?autoplay=1&rel=0`}
+              title={`Demo video ${activeSolution.label}`}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
