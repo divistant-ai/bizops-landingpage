@@ -1,13 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, ChevronRight, HelpCircle, Smartphone } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, ChevronRight, HelpCircle } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
-import { Badge, Card, Grid } from '@/components/ui';
-import { BouncyLink } from '@/components/ui/BouncyLink';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import { Button, SectionHeader } from '@/components/ui';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
 import { CounterUp } from '@/components/ui/motion-scroll';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
@@ -15,6 +15,7 @@ import {
   platformCapabilitiesTranslations,
   platformModulesTranslations,
 } from '@/data/platformContentTranslations';
+import { sectionPaddingHybrid } from '@/design-tokens';
 
 type ModulePageProps = {
   moduleId: string;
@@ -24,37 +25,32 @@ type ModulePageProps = {
   }>;
 };
 
-// Elegant FAQ Component
+// Accordion FAQ Component
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <div className="border-b border-slate-200 last:border-b-0 dark:border-slate-700">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-slate-50 focus:outline-none dark:hover:bg-slate-800/50"
+        className="flex w-full items-center justify-between py-5 text-left transition-colors hover:text-blue-600 dark:hover:text-blue-400"
       >
-        <span className="pr-4 text-sm font-semibold text-slate-900 transition-colors group-hover:text-blue-600 md:text-base dark:text-white dark:group-hover:text-blue-400">
+        <span className="pr-4 text-base font-semibold text-slate-900 dark:text-white">
           {question}
         </span>
-        <div
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
-            isOpen
-              ? 'rotate-180 bg-blue-600 text-white dark:bg-blue-500'
-              : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
+        <ChevronRight
+          className={`h-5 w-5 shrink-0 text-slate-500 transition-transform duration-300 dark:text-slate-400 ${
+            isOpen ? 'rotate-90' : ''
           }`}
-        >
-          <ChevronRight className="h-4 w-4" />
-        </div>
+        />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-200 ease-in-out ${
-          isOpen ? 'max-h-96' : 'max-h-0'
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-96 pb-5' : 'max-h-0'
         }`}
       >
-        <p className="px-4 pb-4 text-xs leading-relaxed text-slate-600 md:text-sm dark:text-slate-400">
-          {answer}
-        </p>
+        <p className="pr-8 leading-relaxed text-slate-600 dark:text-slate-400">{answer}</p>
       </div>
     </div>
   );
@@ -64,18 +60,14 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
   const t = useTranslations('ModulePage');
   const locale = useLocale() as 'en' | 'id';
 
-  // Rehydrate data on client side to avoid serialization issues
   let data = modulesData[moduleId] || capabilitiesData[moduleId];
-
   if (!data) {
     return null;
-  } // Or handle not found
+  }
 
-  // Determine if this is a module or capability
   const isModule = moduleId in modulesData;
   const isCapability = moduleId in capabilitiesData;
 
-  // Override dengan translation jika ada
   let translation;
   if (isModule) {
     translation =
@@ -94,24 +86,15 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
   }
 
   const Icon = data.icon || HelpCircle;
-  const testimonial = data.testimonial || {
-    quote: 'Sistem ini mengubah cara kami bekerja. Sangat intuitif dan powerful.',
-    author: 'Budi Santoso',
-    role: 'CEO at Teknologi Maju',
-    avatar: 'https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff',
-  };
 
-  // Rehydrate related modules
   const relatedModules = relatedModuleIds
     .map((item) => {
       const source = item.type === 'module' ? modulesData : capabilitiesData;
       let modData = source[item.id];
-
       if (!modData) {
         return null;
       }
 
-      // Apply translation override based on locale and type
       let modTranslation;
       if (item.type === 'module') {
         modTranslation =
@@ -137,124 +120,203 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         type: item.type,
       };
     })
-    .filter((m) => m?.title); // Filter out invalid ones
+    .filter((m) => m?.title);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-slate-950">
-      {/* 1. COMPACT PREMIUM HERO */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white pt-24 pb-12 lg:pt-32 lg:pb-16 dark:border-slate-800 dark:bg-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+    <div className="flex flex-col">
+      {/* 1. HERO SECTION - Same style as HomePageContent */}
+      <Section
+        id="hero"
+        className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center overflow-hidden bg-slate-50 lg:min-h-[calc(100vh-7rem)] dark:bg-slate-950"
+        noPadding
+      >
+        {/* Background Elements */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5" />
+          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-500/5" />
+          <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-3xl" />
+        </div>
 
-        <Container size="5xl" className="relative z-10">
+        <Container size="5xl" className="relative z-10 py-16">
+          {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 flex items-center justify-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400"
+            className="mb-8 flex items-center justify-center gap-2 text-sm font-medium"
           >
             <Link
               href="/platform"
-              className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+              className="text-slate-500 transition-colors hover:text-blue-600 dark:text-slate-400"
             >
               {t('breadcrumb_platform')}
             </Link>
-            <ChevronRight className="h-3 w-3" />
+            <ChevronRight className="h-3 w-3 text-slate-400" />
             <span className="text-blue-600 dark:text-blue-400">{data.title}</span>
           </motion.div>
 
           <div className="mx-auto max-w-3xl text-center">
+            {/* Icon */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="mb-6 inline-flex items-center justify-center"
+              className="mb-8 inline-flex"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg ring-4 shadow-blue-600/20 ring-blue-50 dark:ring-blue-900/20">
-                <Icon className="h-8 w-8 text-white" />
+              <div className="relative">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 opacity-40 blur-xl" />
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-2xl ring-4 shadow-blue-600/30 ring-white/50 dark:ring-slate-800/50">
+                  <Icon className="h-10 w-10 text-white" />
+                </div>
               </div>
             </motion.div>
 
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
+                {data.subtitle}
+              </span>
+            </motion.div>
+
+            {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-4 text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white"
+              className="mb-6 text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white"
             >
               {data.title}
             </motion.h1>
 
+            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="mb-8 text-lg font-medium text-blue-600 dark:text-blue-400"
-            >
-              {data.subtitle}
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
               className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg dark:text-slate-400"
             >
               {data.description}
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col justify-center gap-3 sm:flex-row"
+              transition={{ delay: 0.2 }}
+              className="flex flex-col justify-center gap-4 sm:flex-row"
             >
-              <BouncyLink
-                href="/demo"
-                className="flex h-11 items-center justify-center rounded-xl bg-blue-600 px-6 font-semibold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700"
+              <Button
+                asChild
+                variant="clay"
+                size="lg"
+                className="h-14 px-10 text-lg font-bold shadow-xl shadow-blue-500/30"
               >
-                {data.cta?.buttonLabel || t('cta_demo')}
-              </BouncyLink>
-              <BouncyLink
-                href="/contact"
-                className="flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 font-medium hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800"
+                <Link href="/demo">{data.cta?.buttonLabel || t('cta_demo')}</Link>
+              </Button>
+              <Button
+                asChild
+                variant="ghost"
+                size="lg"
+                className="h-14 border border-slate-200 px-8 text-base font-medium text-slate-600 hover:border-slate-300 dark:border-slate-700 dark:text-slate-400"
               >
-                <span className="text-slate-900 dark:text-white">{t('cta_contact_sales')}</span>
-              </BouncyLink>
+                <Link href="/contact">{t('cta_contact_sales')}</Link>
+              </Button>
             </motion.div>
           </div>
         </Container>
-      </section>
+      </Section>
 
-      {/* 2. COMPACT METRICS */}
+      {/* 2. METRICS - Same style as HomePageContent Problems */}
       {data.metrics && data.metrics.length > 0 && (
-        <Section className="border-b border-slate-200 bg-slate-50 py-12 dark:border-slate-800 dark:bg-slate-900">
-          <Container size="5xl">
-            <div className="grid gap-6 sm:grid-cols-3">
-              {data.metrics.map((metric: { value: string; label: string }, idx: number) => (
-                <FadeIn key={idx} delay={0.1 * idx}>
-                  <div className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-colors hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700">
-                    <div className="mb-1 text-3xl font-bold text-blue-600 md:text-4xl dark:text-blue-400">
-                      <CounterUp to={metric.value} label={metric.label} />
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <Container size="7xl" className="relative z-10">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {data.metrics.map((metric: { value: string; label: string }, idx: number) => {
+                const colors = [
+                  {
+                    bg: 'from-blue-500 to-blue-600',
+                    shadow: 'shadow-blue-500/25',
+                    light: 'bg-blue-50 dark:bg-blue-900/20',
+                    text: 'text-blue-600 dark:text-blue-400',
+                  },
+                  {
+                    bg: 'from-emerald-500 to-emerald-600',
+                    shadow: 'shadow-emerald-500/25',
+                    light: 'bg-emerald-50 dark:bg-emerald-900/20',
+                    text: 'text-emerald-600 dark:text-emerald-400',
+                  },
+                  {
+                    bg: 'from-purple-500 to-purple-600',
+                    shadow: 'shadow-purple-500/25',
+                    light: 'bg-purple-50 dark:bg-purple-900/20',
+                    text: 'text-purple-600 dark:text-purple-400',
+                  },
+                ];
+                const color = colors[idx % 3]!;
+
+                return (
+                  <FadeIn key={idx} delay={0.1 + idx * 0.15}>
+                    <div className="group relative h-full">
+                      <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                        <div
+                          className={`absolute top-0 right-0 left-0 h-1 rounded-t-2xl bg-gradient-to-r ${color.bg}`}
+                        />
+                        <div
+                          className={`absolute -top-4 left-8 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-lg font-bold text-white shadow-lg ${color.shadow}`}
+                        >
+                          {idx + 1}
+                        </div>
+                        <div className={`mt-4 mb-4 inline-flex rounded-2xl p-4 ${color.light}`}>
+                          <CheckCircle2 className={`h-8 w-8 ${color.text}`} />
+                        </div>
+                        <div className={`mb-2 text-4xl font-bold ${color.text}`}>
+                          <CounterUp to={metric.value} label={metric.label} />
+                        </div>
+                        <p className="text-base text-slate-600 dark:text-slate-400">
+                          {metric.label}
+                        </p>
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                      {metric.label}
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
+                  </FadeIn>
+                );
+              })}
             </div>
           </Container>
         </Section>
       )}
 
-      {/* 3. ELEGANT FEATURES GRID */}
-      <Section className="bg-white py-20 lg:py-24 dark:bg-slate-950">
-        <Container size="6xl">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-              {t('features_title')}
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">{t('features_subtitle')}</p>
-          </div>
+      {/* 3. FEATURES - Same style as HomePageContent Solutions */}
+      <Section
+        className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
+          <div className="absolute -right-20 bottom-1/4 h-96 w-96 rounded-full bg-purple-500/5 blur-3xl" />
+        </div>
+
+        <Container size="7xl" className="relative z-10">
+          <FadeIn>
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-bold tracking-wider text-blue-700 uppercase dark:bg-blue-900/30 dark:text-blue-400">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
+                {t('features_title')}
+              </div>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+                {t('features_subtitle')}
+              </h2>
+            </div>
+          </FadeIn>
 
           <FadeInStagger>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.features?.map(
                 (
                   feature: {
@@ -265,13 +327,50 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                   idx: number,
                 ) => {
                   const FeatureIcon = feature.icon || Check;
+                  const featureColors = [
+                    {
+                      bg: 'from-blue-500 to-blue-600',
+                      light: 'bg-blue-50 dark:bg-blue-900/20',
+                      text: 'text-blue-600 dark:text-blue-400',
+                    },
+                    {
+                      bg: 'from-emerald-500 to-emerald-600',
+                      light: 'bg-emerald-50 dark:bg-emerald-900/20',
+                      text: 'text-emerald-600 dark:text-emerald-400',
+                    },
+                    {
+                      bg: 'from-purple-500 to-purple-600',
+                      light: 'bg-purple-50 dark:bg-purple-900/20',
+                      text: 'text-purple-600 dark:text-purple-400',
+                    },
+                    {
+                      bg: 'from-amber-500 to-amber-600',
+                      light: 'bg-amber-50 dark:bg-amber-900/20',
+                      text: 'text-amber-600 dark:text-amber-400',
+                    },
+                    {
+                      bg: 'from-rose-500 to-rose-600',
+                      light: 'bg-rose-50 dark:bg-rose-900/20',
+                      text: 'text-rose-600 dark:text-rose-400',
+                    },
+                    {
+                      bg: 'from-cyan-500 to-cyan-600',
+                      light: 'bg-cyan-50 dark:bg-cyan-900/20',
+                      text: 'text-cyan-600 dark:text-cyan-400',
+                    },
+                  ];
+                  const color = featureColors[idx % featureColors.length]!;
+
                   return (
                     <FadeIn key={idx} className="h-full">
-                      <div className="group h-full rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-none">
-                        <div className="mb-4 inline-flex rounded-lg bg-blue-50 p-3 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
-                          <FeatureIcon className="h-6 w-6" />
+                      <div className="group relative h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                        <div
+                          className={`absolute top-0 right-0 left-0 h-1 rounded-t-2xl bg-gradient-to-r ${color.bg}`}
+                        />
+                        <div className={`mb-6 inline-flex rounded-2xl p-4 ${color.light}`}>
+                          <FeatureIcon className={`h-7 w-7 ${color.text}`} />
                         </div>
-                        <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                        <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
                           {feature.title}
                         </h3>
                         <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
@@ -287,152 +386,200 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         </Container>
       </Section>
 
-      {/* 4. PROBLEMS SECTION */}
+      {/* 4. PROBLEMS - Same style as HomePageContent */}
       {data.problems && data.problems.length > 0 && (
-        <Section className="bg-slate-50 dark:bg-slate-900">
-          <Container size="7xl">
-            <div className="mx-auto mb-12 max-w-3xl text-center">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                {t('problems_title')}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">{t('problems_subtitle')}</p>
-            </div>
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0 opacity-30">
+            <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-rose-100 blur-3xl dark:bg-rose-900/20" />
+            <div className="absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-orange-100 blur-3xl dark:bg-orange-900/20" />
+          </div>
 
-            <FadeInStagger>
-              <Grid cols={3} mdCols={3} gap={6}>
-                {data.problems.map(
-                  (
-                    problem: {
-                      title: string;
-                      desc: string;
-                      icon?: React.ComponentType<{ className?: string }>;
+          <Container size="7xl" className="relative z-10">
+            <FadeIn>
+              <div className="mx-auto mb-16 max-w-3xl text-center">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-rose-100 px-5 py-2.5 text-sm font-bold tracking-wider text-rose-700 uppercase dark:bg-rose-900/30 dark:text-rose-400">
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-rose-500" />
+                  {t('problems_title')}
+                </div>
+                <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+                  {t('problems_subtitle')}
+                </h2>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {data.problems.map(
+                (
+                  problem: {
+                    title: string;
+                    desc: string;
+                    icon?: React.ComponentType<{ className?: string }>;
+                  },
+                  idx: number,
+                ) => {
+                  const ProblemIcon = problem.icon || HelpCircle;
+                  const colors = [
+                    {
+                      bg: 'from-rose-500 to-red-600',
+                      shadow: 'shadow-rose-500/25',
+                      light: 'bg-rose-50 dark:bg-rose-900/20',
+                      text: 'text-rose-600 dark:text-rose-400',
                     },
-                    idx: number,
-                  ) => {
-                    const ProblemIcon = problem.icon || HelpCircle;
-                    return (
-                      <FadeIn key={idx} className="h-full">
-                        <div className="h-full rounded-3xl border border-red-200 bg-white p-8 transition-all hover:shadow-lg dark:border-red-900/30 dark:bg-slate-900">
-                          <div className="mb-6 inline-flex rounded-2xl bg-red-50 p-3 text-red-600 dark:bg-red-900/20 dark:text-red-400">
-                            <ProblemIcon className="h-8 w-8" />
+                    {
+                      bg: 'from-orange-500 to-amber-600',
+                      shadow: 'shadow-orange-500/25',
+                      light: 'bg-orange-50 dark:bg-orange-900/20',
+                      text: 'text-orange-600 dark:text-orange-400',
+                    },
+                    {
+                      bg: 'from-red-500 to-rose-600',
+                      shadow: 'shadow-red-500/25',
+                      light: 'bg-red-50 dark:bg-red-900/20',
+                      text: 'text-red-600 dark:text-red-400',
+                    },
+                  ];
+                  const color = colors[idx % 3]!;
+
+                  return (
+                    <FadeIn key={idx} delay={0.1 + idx * 0.15}>
+                      <div className="group relative h-full">
+                        <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                          <div
+                            className={`absolute top-0 right-0 left-0 h-1 rounded-t-2xl bg-gradient-to-r ${color.bg}`}
+                          />
+                          <div
+                            className={`absolute -top-4 left-8 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-lg font-bold text-white shadow-lg ${color.shadow}`}
+                          >
+                            {idx + 1}
                           </div>
-                          <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                          <div className={`mt-4 mb-6 inline-flex rounded-2xl p-4 ${color.light}`}>
+                            <ProblemIcon className={`h-8 w-8 ${color.text}`} strokeWidth={1.5} />
+                          </div>
+                          <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
                             {problem.title}
                           </h3>
-                          <p className="leading-relaxed text-slate-600 dark:text-slate-400">
+                          <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
                             {problem.desc}
                           </p>
                         </div>
-                      </FadeIn>
-                    );
-                  },
-                )}
-              </Grid>
-            </FadeInStagger>
+                      </div>
+                    </FadeIn>
+                  );
+                },
+              )}
+            </div>
           </Container>
         </Section>
       )}
 
-      {/* 5. MOBILE ADVANTAGE */}
-      {data.mobileAdvantage && (
-        <Section className="bg-white dark:bg-slate-950">
-          <Container size="7xl">
-            <Grid cols={1} lgCols={2} gap={16} className="items-center">
-              <div>
-                <Badge className="mb-6 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
-                  {t('mobile_first')}
-                </Badge>
-                <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                  {data.mobileAdvantage.title}
-                </h2>
-                <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                  {data.mobileAdvantage.desc}
-                </p>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500/20 to-blue-500/20 blur-2xl"></div>
-                  <div className="relative flex items-center justify-center rounded-3xl border border-slate-200 bg-white p-12 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
-                    <Smartphone className="text-primary-600 h-32 w-32" />
-                  </div>
-                </div>
-              </div>
-            </Grid>
-          </Container>
-        </Section>
-      )}
-
-      {/* 6. MODULE CONNECTIONS */}
+      {/* 5. CONNECTIONS - Same style as HomePageContent Process */}
       {data.connections && data.connections.length > 0 && (
-        <Section className="bg-slate-50 dark:bg-slate-900">
-          <Container size="7xl">
-            <div className="mx-auto mb-12 max-w-3xl text-center">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                {t('integrations_title')}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 right-10 h-72 w-72 rounded-full bg-blue-500/5 blur-3xl" />
+            <div className="absolute bottom-20 left-10 h-96 w-96 rounded-full bg-indigo-500/5 blur-3xl" />
+          </div>
+
+          <Container size="7xl" className="relative z-10">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 px-5 py-2.5 text-sm font-bold tracking-wider uppercase dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20">
+                <ArrowRight className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <span className="text-blue-600 dark:text-blue-400">{t('integrations_title')}</span>
+              </div>
+              <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
                 {t('integrations_subtitle')}
-              </p>
+              </h2>
             </div>
 
-            <div className="space-y-6">
-              {data.connections.map((conn: { target: string; desc: string }, idx: number) => (
-                <FadeIn key={idx} delay={0.1 * idx}>
-                  <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                    <div className="bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400 flex-shrink-0 rounded-xl p-3">
-                      <ArrowRight className="h-6 w-6" />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {data.connections.map((conn: { target: string; desc: string }, idx: number) => {
+                const stepColors = [
+                  {
+                    bg: 'bg-blue-600',
+                    bgLight: 'bg-blue-50 dark:bg-blue-900/20',
+                    text: 'text-blue-600 dark:text-blue-400',
+                    border: 'border-blue-100 dark:border-blue-900',
+                  },
+                  {
+                    bg: 'bg-emerald-600',
+                    bgLight: 'bg-emerald-50 dark:bg-emerald-900/20',
+                    text: 'text-emerald-600 dark:text-emerald-400',
+                    border: 'border-emerald-100 dark:border-emerald-900',
+                  },
+                  {
+                    bg: 'bg-amber-500',
+                    bgLight: 'bg-amber-50 dark:bg-amber-900/20',
+                    text: 'text-amber-600 dark:text-amber-400',
+                    border: 'border-amber-100 dark:border-amber-900',
+                  },
+                  {
+                    bg: 'bg-rose-600',
+                    bgLight: 'bg-rose-50 dark:bg-rose-900/20',
+                    text: 'text-rose-600 dark:text-rose-400',
+                    border: 'border-rose-100 dark:border-rose-900',
+                  },
+                ];
+                const color = stepColors[idx % stepColors.length]!;
+
+                return (
+                  <FadeIn key={idx} delay={0.1 + idx * 0.1}>
+                    <div className="group h-full">
+                      <div
+                        className={`relative h-full rounded-2xl border bg-white dark:bg-slate-900 ${color.border} p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl`}
+                      >
+                        <div className="mb-5 flex items-center justify-between">
+                          <div
+                            className={`flex h-12 w-12 items-center justify-center rounded-xl ${color.bg} text-xl font-bold text-white shadow-lg`}
+                          >
+                            {String(idx + 1).padStart(2, '0')}
+                          </div>
+                        </div>
+                        <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
+                          {conn.target}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                          {conn.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                        →{conn.target}
-                      </h3>
-                      <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                        {conn.desc}
-                      </p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
+                  </FadeIn>
+                );
+              })}
             </div>
           </Container>
         </Section>
       )}
 
-      {/* 7. TESTIMONIAL */}
-      <Section className="bg-white dark:bg-slate-950">
-        <Container size="4xl">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-12 dark:border-slate-800 dark:bg-slate-900">
-            <div className="mb-6 text-5xl text-slate-300 dark:text-slate-700">"</div>
-            <p className="mb-8 text-2xl leading-relaxed font-medium text-slate-900 dark:text-white">
-              {testimonial.quote}
-            </p>
-            <div className="flex items-center gap-4">
-              <img
-                src={testimonial.avatar}
-                alt={testimonial.author}
-                className="h-16 w-16 rounded-full"
-              />
-              <div>
-                <div className="font-bold text-slate-900 dark:text-white">{testimonial.author}</div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">{testimonial.role}</div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      {/* 6. TESTIMONIALS - Reusable Component from HomePageContent */}
+      <TestimonialsSection />
 
-      {/* 8. FAQs */}
+      {/* 7. FAQs */}
       {data.faqs && data.faqs.length > 0 && (
-        <Section className="bg-slate-50 dark:bg-slate-900">
-          <Container size="4xl">
-            <div className="mx-auto mb-12 max-w-3xl text-center">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                {t('faqs_title')}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">{t('faqs_subtitle')}</p>
-            </div>
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-[100px]" />
+          </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-950">
+          <Container size="7xl" className="relative z-10">
+            <SectionHeader
+              title={t('faqs_title')}
+              description={t('faqs_subtitle')}
+              className="mb-12"
+            />
+
+            <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 dark:border-slate-800 dark:bg-slate-900/50">
               {data.faqs.map((faq: { question: string; answer: string }, idx: number) => (
                 <FAQItem key={idx} question={faq.question} answer={faq.answer} />
               ))}
@@ -441,74 +588,173 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         </Section>
       )}
 
-      {/* 9. RELATED MODULES */}
+      {/* 8. RELATED MODULES */}
       {relatedModules.length > 0 && (
-        <Section className="bg-white dark:bg-slate-950">
-          <Container size="7xl">
-            <div className="mx-auto mb-12 max-w-3xl text-center">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+        <Section
+          className="relative overflow-hidden bg-white dark:bg-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
+            <div className="absolute right-1/4 bottom-0 h-80 w-80 rounded-full bg-indigo-500/5 blur-3xl" />
+          </div>
+
+          <Container size="7xl" className="relative z-10">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold tracking-wider text-indigo-700 uppercase dark:bg-indigo-900/30 dark:text-indigo-400">
                 {t('related_title')}
+              </div>
+              <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
+                {t('related_subtitle')} {data.title}
               </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                {t('related_subtitle')} {data.title}.
-              </p>
             </div>
 
-            <Grid cols={3} mdCols={3} gap={6}>
-              {relatedModules.map((module) => {
-                if (!module) {
-                  return null;
-                }
+            <FadeInStagger>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedModules.map((module, idx) => {
+                  if (!module) {
+                    return null;
+                  }
 
-                const ModuleIcon = module.icon || HelpCircle;
-                const linkPath =
-                  module.type === 'capability'
-                    ? `/platform/capabilities/${module.id}`
-                    : `/platform/modules/${module.id}`;
+                  const ModuleIcon = module.icon || HelpCircle;
+                  const linkPath =
+                    module.type === 'capability'
+                      ? `/platform/capabilities/${module.id}`
+                      : `/platform/modules/${module.id}`;
+                  const cardColors = [
+                    {
+                      bg: 'from-blue-500 to-blue-600',
+                      light: 'bg-blue-50 dark:bg-blue-900/20',
+                      text: 'text-blue-600 dark:text-blue-400',
+                    },
+                    {
+                      bg: 'from-emerald-500 to-emerald-600',
+                      light: 'bg-emerald-50 dark:bg-emerald-900/20',
+                      text: 'text-emerald-600 dark:text-emerald-400',
+                    },
+                    {
+                      bg: 'from-purple-500 to-purple-600',
+                      light: 'bg-purple-50 dark:bg-purple-900/20',
+                      text: 'text-purple-600 dark:text-purple-400',
+                    },
+                  ];
+                  const color = cardColors[idx % cardColors.length]!;
 
-                return (
-                  <Link key={module.id} href={linkPath} className="group block">
-                    <Card className="h-full p-8 transition-all hover:shadow-xl">
-                      <div className="bg-primary-50 text-primary-600 group-hover:bg-primary-600 dark:bg-primary-900/20 dark:text-primary-400 dark:group-hover:bg-primary-600 mb-6 inline-flex rounded-2xl p-3 transition-colors">
-                        <ModuleIcon className="h-8 w-8" />
-                      </div>
-                      <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 text-xl font-bold text-slate-900 transition-colors dark:text-white">
-                        {module.title}
-                      </h3>
-                      {module.subtitle && (
-                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                          {module.subtitle}
-                        </p>
-                      )}
-                    </Card>
-                  </Link>
-                );
-              })}
-            </Grid>
+                  return (
+                    <FadeIn key={module.id} className="h-full">
+                      <Link href={linkPath} className="group block h-full">
+                        <div className="relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                          <div
+                            className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${color.bg}`}
+                          />
+                          <div className={`mb-4 inline-flex rounded-xl p-3 ${color.light}`}>
+                            <ModuleIcon className={`h-6 w-6 ${color.text}`} />
+                          </div>
+                          <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                            {module.title}
+                          </h3>
+                          {module.subtitle && (
+                            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                              {module.subtitle}
+                            </p>
+                          )}
+                          <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400">
+                            {t('learn_more' as any)}
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </Link>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            </FadeInStagger>
           </Container>
         </Section>
       )}
 
-      {/* 10. FINAL CTA */}
-      <Section className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-8 text-4xl leading-tight font-bold text-slate-900 md:text-5xl dark:text-white">
-            {data.cta?.text || t('final_cta_title')}
-          </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-xl text-slate-600 dark:text-slate-400">
-            {t('final_cta_subtitle')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <BouncyLink href="/demo" className="shadow-primary-500/20 h-16 px-10 text-xl shadow-xl">
-              {data.cta?.buttonLabel || t('cta_demo')}
-            </BouncyLink>
-            <BouncyLink
-              href="/tools/pricing-calculator"
-              className="h-16 border-2 border-slate-300 bg-white px-10 text-xl text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
-            >
-              <span className="text-slate-600 dark:text-white">{t('cta_calculate')}</span>
-            </BouncyLink>
-          </div>
+      {/* 9. CTA - Same style as HomePageContent */}
+      <Section
+        className="relative overflow-hidden bg-white dark:bg-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        <Container size="5xl" className="relative z-10">
+          <FadeIn>
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 shadow-2xl shadow-slate-900/50 sm:p-12 lg:p-16 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full bg-indigo-500/30 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/20 blur-2xl" />
+              <div className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-cyan-500/20 blur-2xl" />
+
+              {/* Dot pattern */}
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
+                  backgroundSize: '24px 24px',
+                }}
+              />
+
+              {/* Inner glow border */}
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10 ring-inset" />
+
+              <div className="relative z-10 mx-auto max-w-3xl text-center">
+                {/* Badge */}
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 shadow-lg backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">
+                    {t('ready_to_start' as any)}
+                  </span>
+                </div>
+
+                <h2 className="mb-6 text-3xl leading-tight font-bold text-white sm:text-4xl lg:text-5xl">
+                  {data.cta?.text || t('final_cta_title')}
+                </h2>
+                <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+                  {t('final_cta_subtitle')}
+                </p>
+
+                <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-14 bg-white px-10 text-lg font-bold text-slate-900 shadow-xl shadow-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-2xl"
+                  >
+                    <Link href="/demo">
+                      {data.cta?.buttonLabel || t('cta_demo')}
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="lg"
+                    className="h-14 border-2 border-white/30 px-10 text-lg font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/10"
+                  >
+                    <Link href="/tools/pricing-calculator">{t('cta_calculate')}</Link>
+                  </Button>
+                </div>
+
+                {/* Trust indicators */}
+                <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_free_trial' as any)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_no_commitment' as any)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </Section>
     </div>

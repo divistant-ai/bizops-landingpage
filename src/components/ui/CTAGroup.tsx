@@ -93,11 +93,11 @@ export function CTAGroup({
         )}
       >
         <Link href={primary.href}>
-          {primary.icon && primary.iconPosition === 'left' && (
+          {PrimaryIcon && primary.iconPosition === 'left' && (
             <PrimaryIcon className={cn(styles.icon, 'mr-2')} aria-hidden="true" />
           )}
           {primary.label}
-          {primary.icon && primary.iconPosition !== 'left' && (
+          {PrimaryIcon && primary.iconPosition !== 'left' && (
             <PrimaryIcon className={cn(styles.icon, 'ml-2')} aria-hidden="true" />
           )}
         </Link>
@@ -117,11 +117,11 @@ export function CTAGroup({
           )}
         >
           <Link href={secondary.href}>
-            {secondary.icon && secondary.iconPosition === 'left' && (
+            {SecondaryIcon && secondary.iconPosition === 'left' && (
               <SecondaryIcon className={cn(styles.icon, 'mr-2')} aria-hidden="true" />
             )}
             {secondary.label}
-            {secondary.icon && secondary.iconPosition !== 'left' && (
+            {SecondaryIcon && secondary.iconPosition !== 'left' && (
               <SecondaryIcon className={cn(styles.icon, 'ml-2')} aria-hidden="true" />
             )}
           </Link>
@@ -160,11 +160,11 @@ export function FinalCTAGroup({
         )}
       >
         <Link href={primary.href}>
-          {primary.icon && primary.iconPosition === 'left' && (
+          {PrimaryIcon && primary.iconPosition === 'left' && (
             <PrimaryIcon className="mr-2 h-6 w-6" aria-hidden="true" />
           )}
           {primary.label}
-          {primary.icon && primary.iconPosition !== 'left' && (
+          {PrimaryIcon && primary.iconPosition !== 'left' && (
             <PrimaryIcon className="ml-2 h-6 w-6" aria-hidden="true" />
           )}
         </Link>
@@ -182,11 +182,11 @@ export function FinalCTAGroup({
           )}
         >
           <Link href={secondary.href}>
-            {secondary.icon && secondary.iconPosition === 'left' && (
+            {SecondaryIcon && secondary.iconPosition === 'left' && (
               <SecondaryIcon className="mr-2 h-6 w-6" aria-hidden="true" />
             )}
             {secondary.label}
-            {secondary.icon && secondary.iconPosition !== 'left' && (
+            {SecondaryIcon && secondary.iconPosition !== 'left' && (
               <SecondaryIcon className="ml-2 h-6 w-6" aria-hidden="true" />
             )}
           </Link>

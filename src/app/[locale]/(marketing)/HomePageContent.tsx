@@ -11,7 +11,7 @@ import {
   Shield,
   X,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -27,9 +27,7 @@ import {
   Stack,
 } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
-import {
-  InfiniteScrollLoop,
-} from '@/components/ui/LazyComponents';
+import { InfiniteScrollLoop } from '@/components/ui/LazyComponents';
 import {
   getHomeIndustriesData,
   getHomeProblems,
@@ -39,26 +37,23 @@ import {
   getHomeUVP,
   homeIntegrations,
 } from '@/data/homeContent';
-import {
-  glass,
-  modularTypography,
-  sectionPaddingHybrid,
-} from '@/design-tokens';
+import { glass, modularTypography, sectionPaddingHybrid } from '@/design-tokens';
 
 export default function HomePageContent() {
   const t = useTranslations('Homepage');
+  const locale = useLocale();
 
   // Get translated data
-  const homeProblems = getHomeProblems(key => t(key.replace('Homepage.', '') as any));
-  const homeUVP = getHomeUVP(key => t(key.replace('Homepage.', '') as any));
-  const homeSolutions = getHomeSolutions(key => t(key.replace('Homepage.', '') as any));
-  const homeProcess = getHomeProcess(key => t(key.replace('Homepage.', '') as any));
-  const homeIndustriesData = getHomeIndustriesData(key => t(key.replace('Homepage.', '') as any));
-  const homeRolesData = getHomeRolesData(key => t(key.replace('Homepage.', '') as any));
+  const homeProblems = getHomeProblems((key) => t(key.replace('Homepage.', '') as any));
+  const homeUVP = getHomeUVP((key) => t(key.replace('Homepage.', '') as any));
+  const homeSolutions = getHomeSolutions((key) => t(key.replace('Homepage.', '') as any));
+  const homeProcess = getHomeProcess((key) => t(key.replace('Homepage.', '') as any));
+  const homeIndustriesData = getHomeIndustriesData((key) => t(key.replace('Homepage.', '') as any));
+  const homeRolesData = getHomeRolesData((key) => t(key.replace('Homepage.', '') as any));
 
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
-  const activeTabIndex = homeSolutions.findIndex(s => s.id === activeTab);
-  const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
+  const activeTabIndex = homeSolutions.findIndex((s) => s.id === activeTab);
+  const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   // Sample YouTube video IDs for each module (demo/explainer videos)
@@ -99,17 +94,16 @@ export default function HomePageContent() {
             {/* Left Column - Text Content (7 cols) */}
             <div className="order-1 text-center lg:col-span-7 lg:text-left">
               {/* Announcement Pill - Glassmorphism */}
-              <FadeIn delay={0.1} className="mb-6 inline-flex w-full justify-center lg:justify-start">
+              <FadeIn
+                delay={0.1}
+                className="mb-6 inline-flex w-full justify-center lg:justify-start"
+              >
                 <div
                   role="button"
                   tabIndex={0}
                   className={`group focus:ring-primary-500 inline-flex cursor-pointer items-center gap-3 rounded-full px-5 py-2 transition-all duration-300 hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 focus:outline-none ${glass.light}`}
                   aria-label={t('announcement')}
                 >
-                  <span className="relative flex h-2 w-2">
-                    <span className="bg-primary-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                    <span className="from-primary-500 to-primary-600 relative inline-flex h-2 w-2 rounded-full bg-gradient-to-br shadow-sm"></span>
-                  </span>
                   <span className="group-hover:text-primary-700 dark:group-hover:text-primary-400 text-sm font-semibold text-slate-700 transition-colors dark:text-slate-300">
                     {t('announcement')}
                   </span>
@@ -120,7 +114,9 @@ export default function HomePageContent() {
               {/* Main Headline - Modular Typography - Fixed for Desktop */}
               <FadeIn delay={0.2}>
                 <div className="mb-6">
-                  <h1 className={`${modularTypography.hero} leading-[1.1] text-slate-900 dark:text-white`}>
+                  <h1
+                    className={`${modularTypography.hero} leading-[1.1] text-slate-900 dark:text-white`}
+                  >
                     <span className="block">{t('hero_title_prefix')}</span>
                     <span className="block text-blue-600 dark:text-blue-400">
                       {t('hero_title_highlight')}
@@ -131,7 +127,9 @@ export default function HomePageContent() {
 
               {/* Subheadline */}
               <FadeIn delay={0.3}>
-                <p className={`mx-auto mb-8 max-w-xl lg:mx-0 ${modularTypography.body} font-normal text-slate-600 dark:text-slate-400`}>
+                <p
+                  className={`mx-auto mb-8 max-w-xl lg:mx-0 ${modularTypography.body} font-normal text-slate-600 dark:text-slate-400`}
+                >
                   {t('hero_description')}
                 </p>
               </FadeIn>
@@ -153,14 +151,13 @@ export default function HomePageContent() {
                     size="lg"
                     className="h-14 border border-slate-200 px-8 text-base font-medium text-slate-600 hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-white"
                   >
-                    <Link href="/pricing/calculator">
+                    <Link href="/tools/pricing-calculator">
                       <Calculator className="mr-2 h-4 w-4" />
                       {t('cta_pricing')}
                     </Link>
                   </Button>
                 </div>
               </FadeIn>
-
             </div>
 
             {/* Right Column - Dashboard Preview (5 cols) */}
@@ -168,7 +165,9 @@ export default function HomePageContent() {
               <FadeIn delay={0.5}>
                 <div className="group relative">
                   {/* Glass frame wrapper */}
-                  <div className={`relative rounded-2xl p-2 ${glass.medium} transition-all duration-500 group-hover:shadow-[0_24px_48px_rgba(37,99,235,0.15)]`}>
+                  <div
+                    className={`relative rounded-2xl p-2 ${glass.medium} transition-all duration-500 group-hover:shadow-[0_24px_48px_rgba(37,99,235,0.15)]`}
+                  >
                     <div className="relative aspect-[16/10] transform overflow-hidden rounded-xl bg-slate-900 shadow-inner">
                       <OptimizedImage
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
@@ -188,35 +187,53 @@ export default function HomePageContent() {
                         align="center"
                         className={`absolute top-3 left-3 z-30 rounded-full px-3 py-1.5 text-[10px] ${glass.strong}`}
                       >
-                        <Lock className="h-3 w-3 text-emerald-500" />
-                        {' '}
-                        <span className="font-mono font-medium text-slate-700 dark:text-slate-200">secure://bizops.id/dashboard</span>
+                        <Lock className="h-3 w-3 text-emerald-500" />{' '}
+                        <span className="font-mono font-medium text-slate-700 dark:text-slate-200">
+                          secure://bizops.id/dashboard
+                        </span>
                       </Stack>
                     </div>
                   </div>
 
                   {/* Floating Stats Card - Bottom Right - with pulse animation */}
-                  <div className={`absolute -right-4 -bottom-4 rounded-xl p-4 md:-right-6 md:-bottom-6 ${glass.strong} animate-float-slow shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}>
+                  <div
+                    className={`absolute -right-4 -bottom-4 rounded-xl p-4 md:-right-6 md:-bottom-6 ${glass.strong} animate-float-slow shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+                  >
                     <div className="flex items-center gap-3">
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/30">
                         <CheckCircle2 className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-slate-600 dark:text-slate-400">{t('hero_savings_label') || 'Penghematan'}</p>
-                        <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">85% Biaya</p>
+                        <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                          {t('hero_savings_label') || 'Penghematan'}
+                        </p>
+                        <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+                          85% {locale === 'id' ? 'Biaya' : 'Cost'}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   {/* Floating Users Card - Top Left - with pulse animation */}
-                  <div className={`absolute -top-4 -left-4 rounded-xl p-3 md:-top-6 md:-left-6 ${glass.strong} animate-float-slow hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:block`} style={{ animationDelay: '1s' }}>
+                  <div
+                    className={`absolute -top-4 -left-4 rounded-xl p-3 md:-top-6 md:-left-6 ${glass.strong} animate-float-slow hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:block`}
+                    style={{ animationDelay: '1s' }}
+                  >
                     <div className="flex items-center gap-3">
                       <div className="flex -space-x-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">R</div>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-purple-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">B</div>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">D</div>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">
+                          R
+                        </div>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-purple-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">
+                          B
+                        </div>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-xs font-bold text-white shadow-lg ring-2 ring-white dark:ring-slate-900">
+                          D
+                        </div>
                       </div>
-                      <p className="text-sm font-bold text-slate-700 dark:text-slate-300">{t('hero_companies_count') || '500+ Perusahaan'}</p>
+                      <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                        {t('hero_companies_count') || '500+ Perusahaan'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -244,7 +261,7 @@ export default function HomePageContent() {
                   'Distribusi Nusantara',
                   'Konstruksi Prima',
                   'Mitra Sejahtera',
-                ].map(brand => (
+                ].map((brand) => (
                   <div
                     key={brand}
                     className="mx-3 cursor-default rounded-full border border-slate-100 bg-white px-6 py-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
@@ -282,8 +299,7 @@ export default function HomePageContent() {
                 {t('problems_badge') || 'Masalah Umum'}
               </div>
               <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-                {t('problems_title').replace(t('problems_stuck'), '')}
-                {' '}
+                {t('problems_title').replace(t('problems_stuck'), '')}{' '}
                 <span className="text-rose-600 dark:text-rose-400">{t('problems_stuck')}</span>
               </h2>
               <p className="text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400">
@@ -297,21 +313,40 @@ export default function HomePageContent() {
             {homeProblems.map((prob, idx) => {
               const Icon = prob.icon;
               const colors = [
-                { bg: 'from-rose-500 to-red-600', shadow: 'shadow-rose-500/25', light: 'bg-rose-50 dark:bg-rose-900/20', text: 'text-rose-600 dark:text-rose-400' },
-                { bg: 'from-orange-500 to-amber-600', shadow: 'shadow-orange-500/25', light: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
-                { bg: 'from-red-500 to-rose-600', shadow: 'shadow-red-500/25', light: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-600 dark:text-red-400' },
+                {
+                  bg: 'from-rose-500 to-red-600',
+                  shadow: 'shadow-rose-500/25',
+                  light: 'bg-rose-50 dark:bg-rose-900/20',
+                  text: 'text-rose-600 dark:text-rose-400',
+                },
+                {
+                  bg: 'from-orange-500 to-amber-600',
+                  shadow: 'shadow-orange-500/25',
+                  light: 'bg-orange-50 dark:bg-orange-900/20',
+                  text: 'text-orange-600 dark:text-orange-400',
+                },
+                {
+                  bg: 'from-red-500 to-rose-600',
+                  shadow: 'shadow-red-500/25',
+                  light: 'bg-red-50 dark:bg-red-900/20',
+                  text: 'text-red-600 dark:text-red-400',
+                },
               ];
-              const color = colors[idx % 3];
+              const color = colors[idx % 3]!;
 
               return (
                 <FadeIn key={idx} delay={0.1 + idx * 0.15}>
                   <div className="group relative h-full">
                     <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
                       {/* Top Gradient Line */}
-                      <div className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${color.bg} rounded-t-2xl`} />
+                      <div
+                        className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${color.bg} rounded-t-2xl`}
+                      />
 
                       {/* Number Badge */}
-                      <div className={`absolute -top-4 left-8 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-lg font-bold text-white shadow-lg ${color.shadow}`}>
+                      <div
+                        className={`absolute -top-4 left-8 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color.bg} text-lg font-bold text-white shadow-lg ${color.shadow}`}
+                      >
                         {idx + 1}
                       </div>
 
@@ -324,7 +359,9 @@ export default function HomePageContent() {
                       <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
                         {prob.title}
                       </h3>
-                      <span className={`mb-4 inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${color.light} ${color.text}`}>
+                      <span
+                        className={`mb-4 inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${color.light} ${color.text}`}
+                      >
                         {prob.subtitle}
                       </span>
                       <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
@@ -360,15 +397,21 @@ export default function HomePageContent() {
           </div>
           <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
             {t('solutions_title').replace(t('solutions_highlight'), '')}
-            <span className="text-primary-600 dark:text-primary-400">{t('solutions_highlight')}</span>
+            <span className="text-primary-600 dark:text-primary-400">
+              {t('solutions_highlight')}
+            </span>
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             {t('solutions_desc')}
           </p>
-          <Button asChild size="md" variant="outline" className="group border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 h-11 rounded-full border-2 px-6 text-sm">
+          <Button
+            asChild
+            size="md"
+            variant="outline"
+            className="group border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 h-11 rounded-full border-2 px-6 text-sm"
+          >
             <Link href="/platform">
-              {t('solutions_cta')}
-              {' '}
+              {t('solutions_cta')}{' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -376,7 +419,11 @@ export default function HomePageContent() {
 
         {/* Horizontal scrollable tabs for mobile, grid for desktop */}
         <div className="relative z-10 mb-8">
-          <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:gap-3 lg:overflow-visible lg:pb-0" role="tablist" aria-label="Solution categories">
+          <div
+            className="scrollbar-hide flex gap-2 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:gap-3 lg:overflow-visible lg:pb-0"
+            role="tablist"
+            aria-label="Solution categories"
+          >
             {homeSolutions.map((sol, idx) => {
               const Icon = sol.icon;
               const isActive = activeTab === sol.id;
@@ -387,7 +434,7 @@ export default function HomePageContent() {
                 { active: 'bg-purple-500', ring: 'ring-purple-500/20' },
                 { active: 'bg-rose-500', ring: 'ring-rose-500/20' },
               ];
-              const color = tabColors[idx % tabColors.length];
+              const color = tabColors[idx % tabColors.length]!;
 
               return (
                 <button
@@ -405,20 +452,31 @@ export default function HomePageContent() {
                 >
                   {/* Active indicator dot */}
                   {isActive && (
-                    <div className={`absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full ${color.active} shadow-lg`} />
+                    <div
+                      className={`absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full ${color.active} shadow-lg`}
+                    />
                   )}
 
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
-                    isActive ? `${color.active} shadow-lg` : 'bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-700 dark:group-hover:bg-slate-600'
-                  }`}
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? `${color.active} shadow-lg`
+                        : 'bg-slate-100 group-hover:bg-slate-200 dark:bg-slate-700 dark:group-hover:bg-slate-600'
+                    }`}
                   >
-                    <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-white' : 'text-slate-600 dark:text-slate-300'}`} />
+                    <Icon
+                      className={`h-6 w-6 transition-colors ${isActive ? 'text-white' : 'text-slate-600 dark:text-slate-300'}`}
+                    />
                   </div>
                   <div>
-                    <div className={`text-sm font-semibold transition-colors ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>
+                    <div
+                      className={`text-sm font-semibold transition-colors ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
                       {sol.label}
                     </div>
-                    <div className={`text-xs font-medium tracking-wide uppercase ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-slate-400 dark:text-slate-500'}`}>
+                    <div
+                      className={`text-xs font-medium tracking-wide uppercase ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-slate-400 dark:text-slate-500'}`}
+                    >
                       {sol.category}
                     </div>
                   </div>
@@ -432,33 +490,75 @@ export default function HomePageContent() {
         <div className="relative z-10">
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
             {/* Decorative gradient overlay */}
-            <div className={`absolute top-0 right-0 h-full w-1/2 ${activeSolution.bg} pointer-events-none opacity-5`} />
+            <div
+              className={`absolute top-0 right-0 h-full w-1/2 ${activeSolution.bg} pointer-events-none opacity-5`}
+            />
 
             <div className="relative p-6 sm:p-8 lg:p-10">
               {(() => {
                 // Content panel color themes matching tab colors
                 const contentColors = [
-                  { iconBg: 'bg-blue-500', iconShadow: 'shadow-blue-500/25', label: 'text-blue-600 dark:text-blue-400', checkBg: 'bg-blue-100 dark:bg-blue-900/30', checkIcon: 'text-blue-600 dark:text-blue-400', hoverBorder: 'hover:border-blue-200 dark:hover:border-blue-800' },
-                  { iconBg: 'bg-emerald-500', iconShadow: 'shadow-emerald-500/25', label: 'text-emerald-600 dark:text-emerald-400', checkBg: 'bg-emerald-100 dark:bg-emerald-900/30', checkIcon: 'text-emerald-600 dark:text-emerald-400', hoverBorder: 'hover:border-emerald-200 dark:hover:border-emerald-800' },
-                  { iconBg: 'bg-amber-500', iconShadow: 'shadow-amber-500/25', label: 'text-amber-600 dark:text-amber-400', checkBg: 'bg-amber-100 dark:bg-amber-900/30', checkIcon: 'text-amber-600 dark:text-amber-400', hoverBorder: 'hover:border-amber-200 dark:hover:border-amber-800' },
-                  { iconBg: 'bg-purple-500', iconShadow: 'shadow-purple-500/25', label: 'text-purple-600 dark:text-purple-400', checkBg: 'bg-purple-100 dark:bg-purple-900/30', checkIcon: 'text-purple-600 dark:text-purple-400', hoverBorder: 'hover:border-purple-200 dark:hover:border-purple-800' },
-                  { iconBg: 'bg-rose-500', iconShadow: 'shadow-rose-500/25', label: 'text-rose-600 dark:text-rose-400', checkBg: 'bg-rose-100 dark:bg-rose-900/30', checkIcon: 'text-rose-600 dark:text-rose-400', hoverBorder: 'hover:border-rose-200 dark:hover:border-rose-800' },
+                  {
+                    iconBg: 'bg-blue-500',
+                    iconShadow: 'shadow-blue-500/25',
+                    label: 'text-blue-600 dark:text-blue-400',
+                    checkBg: 'bg-blue-100 dark:bg-blue-900/30',
+                    checkIcon: 'text-blue-600 dark:text-blue-400',
+                    hoverBorder: 'hover:border-blue-200 dark:hover:border-blue-800',
+                  },
+                  {
+                    iconBg: 'bg-emerald-500',
+                    iconShadow: 'shadow-emerald-500/25',
+                    label: 'text-emerald-600 dark:text-emerald-400',
+                    checkBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+                    checkIcon: 'text-emerald-600 dark:text-emerald-400',
+                    hoverBorder: 'hover:border-emerald-200 dark:hover:border-emerald-800',
+                  },
+                  {
+                    iconBg: 'bg-amber-500',
+                    iconShadow: 'shadow-amber-500/25',
+                    label: 'text-amber-600 dark:text-amber-400',
+                    checkBg: 'bg-amber-100 dark:bg-amber-900/30',
+                    checkIcon: 'text-amber-600 dark:text-amber-400',
+                    hoverBorder: 'hover:border-amber-200 dark:hover:border-amber-800',
+                  },
+                  {
+                    iconBg: 'bg-purple-500',
+                    iconShadow: 'shadow-purple-500/25',
+                    label: 'text-purple-600 dark:text-purple-400',
+                    checkBg: 'bg-purple-100 dark:bg-purple-900/30',
+                    checkIcon: 'text-purple-600 dark:text-purple-400',
+                    hoverBorder: 'hover:border-purple-200 dark:hover:border-purple-800',
+                  },
+                  {
+                    iconBg: 'bg-rose-500',
+                    iconShadow: 'shadow-rose-500/25',
+                    label: 'text-rose-600 dark:text-rose-400',
+                    checkBg: 'bg-rose-100 dark:bg-rose-900/30',
+                    checkIcon: 'text-rose-600 dark:text-rose-400',
+                    hoverBorder: 'hover:border-rose-200 dark:hover:border-rose-800',
+                  },
                 ];
-                const contentColor = contentColors[activeTabIndex >= 0 ? activeTabIndex % contentColors.length : 0];
+                const contentColor =
+                  contentColors[activeTabIndex >= 0 ? activeTabIndex % contentColors.length : 0]!;
 
                 return (
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
                     {/* Left side - Module info */}
                     <div className="lg:col-span-3">
                       <div className="mb-6 flex items-center gap-4">
-                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${contentColor.iconBg} shadow-lg ${contentColor.iconShadow}`}>
+                        <div
+                          className={`flex h-16 w-16 items-center justify-center rounded-2xl ${contentColor.iconBg} shadow-lg ${contentColor.iconShadow}`}
+                        >
                           <activeSolution.icon className="h-8 w-8 text-white" />
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                             {activeSolution.label}
                           </h3>
-                          <p className={`text-sm font-medium ${contentColor.label} tracking-wide uppercase`}>
+                          <p
+                            className={`text-sm font-medium ${contentColor.label} tracking-wide uppercase`}
+                          >
                             {activeSolution.category}
                           </p>
                         </div>
@@ -474,8 +574,13 @@ export default function HomePageContent() {
                         </h4>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                           {activeSolution.modules.map((mod, modIdx) => (
-                            <div key={modIdx} className={`flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 p-3 transition-all dark:border-slate-700/50 dark:bg-slate-800/50 ${contentColor.hoverBorder} hover:shadow-md`}>
-                              <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${contentColor.checkBg}`}>
+                            <div
+                              key={modIdx}
+                              className={`flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 p-3 transition-all dark:border-slate-700/50 dark:bg-slate-800/50 ${contentColor.hoverBorder} hover:shadow-md`}
+                            >
+                              <div
+                                className={`flex h-8 w-8 items-center justify-center rounded-lg ${contentColor.checkBg}`}
+                              >
                                 <CheckCircle2 className={`h-4 w-4 ${contentColor.checkIcon}`} />
                               </div>
                               <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -492,16 +597,59 @@ export default function HomePageContent() {
                       {(() => {
                         // Color themes matching tab colors
                         const demoColors = [
-                          { bg: 'from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20', border: 'border-blue-200 dark:border-blue-800/50', text: 'text-blue-600 dark:text-blue-400', button: 'bg-blue-500 hover:bg-blue-600', ping: 'bg-blue-400', dot: 'bg-blue-500', shadow: 'shadow-blue-500/25' },
-                          { bg: 'from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20', border: 'border-emerald-200 dark:border-emerald-800/50', text: 'text-emerald-600 dark:text-emerald-400', button: 'bg-emerald-500 hover:bg-emerald-600', ping: 'bg-emerald-400', dot: 'bg-emerald-500', shadow: 'shadow-emerald-500/25' },
-                          { bg: 'from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20', border: 'border-amber-200 dark:border-amber-800/50', text: 'text-amber-600 dark:text-amber-400', button: 'bg-amber-500 hover:bg-amber-600', ping: 'bg-amber-400', dot: 'bg-amber-500', shadow: 'shadow-amber-500/25' },
-                          { bg: 'from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20', border: 'border-purple-200 dark:border-purple-800/50', text: 'text-purple-600 dark:text-purple-400', button: 'bg-purple-500 hover:bg-purple-600', ping: 'bg-purple-400', dot: 'bg-purple-500', shadow: 'shadow-purple-500/25' },
-                          { bg: 'from-rose-50 to-rose-100 dark:from-rose-900/20 dark:to-rose-800/20', border: 'border-rose-200 dark:border-rose-800/50', text: 'text-rose-600 dark:text-rose-400', button: 'bg-rose-500 hover:bg-rose-600', ping: 'bg-rose-400', dot: 'bg-rose-500', shadow: 'shadow-rose-500/25' },
+                          {
+                            bg: 'from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20',
+                            border: 'border-blue-200 dark:border-blue-800/50',
+                            text: 'text-blue-600 dark:text-blue-400',
+                            button: 'bg-blue-500 hover:bg-blue-600',
+                            ping: 'bg-blue-400',
+                            dot: 'bg-blue-500',
+                            shadow: 'shadow-blue-500/25',
+                          },
+                          {
+                            bg: 'from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20',
+                            border: 'border-emerald-200 dark:border-emerald-800/50',
+                            text: 'text-emerald-600 dark:text-emerald-400',
+                            button: 'bg-emerald-500 hover:bg-emerald-600',
+                            ping: 'bg-emerald-400',
+                            dot: 'bg-emerald-500',
+                            shadow: 'shadow-emerald-500/25',
+                          },
+                          {
+                            bg: 'from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20',
+                            border: 'border-amber-200 dark:border-amber-800/50',
+                            text: 'text-amber-600 dark:text-amber-400',
+                            button: 'bg-amber-500 hover:bg-amber-600',
+                            ping: 'bg-amber-400',
+                            dot: 'bg-amber-500',
+                            shadow: 'shadow-amber-500/25',
+                          },
+                          {
+                            bg: 'from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20',
+                            border: 'border-purple-200 dark:border-purple-800/50',
+                            text: 'text-purple-600 dark:text-purple-400',
+                            button: 'bg-purple-500 hover:bg-purple-600',
+                            ping: 'bg-purple-400',
+                            dot: 'bg-purple-500',
+                            shadow: 'shadow-purple-500/25',
+                          },
+                          {
+                            bg: 'from-rose-50 to-rose-100 dark:from-rose-900/20 dark:to-rose-800/20',
+                            border: 'border-rose-200 dark:border-rose-800/50',
+                            text: 'text-rose-600 dark:text-rose-400',
+                            button: 'bg-rose-500 hover:bg-rose-600',
+                            ping: 'bg-rose-400',
+                            dot: 'bg-rose-500',
+                            shadow: 'shadow-rose-500/25',
+                          },
                         ];
-                        const demoColor = demoColors[activeTabIndex >= 0 ? activeTabIndex % demoColors.length : 0];
+                        const demoColor =
+                          demoColors[activeTabIndex >= 0 ? activeTabIndex % demoColors.length : 0]!;
 
                         return (
-                          <div className={`h-full rounded-2xl bg-gradient-to-br ${demoColor.bg} border ${demoColor.border} flex flex-col p-5`}>
+                          <div
+                            className={`h-full rounded-2xl bg-gradient-to-br ${demoColor.bg} border ${demoColor.border} flex flex-col p-5`}
+                          >
                             {/* Video Thumbnail - Clickable to open modal */}
                             <button
                               onClick={() => setIsVideoModalOpen(true)}
@@ -518,7 +666,9 @@ export default function HomePageContent() {
                               <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/20" />
                               {/* Play button overlay */}
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className={`flex h-16 w-16 items-center justify-center rounded-full ${demoColor.button} text-white shadow-2xl ${demoColor.shadow} transition-transform group-hover:scale-110`}>
+                                <div
+                                  className={`flex h-16 w-16 items-center justify-center rounded-full ${demoColor.button} text-white shadow-2xl ${demoColor.shadow} transition-transform group-hover:scale-110`}
+                                >
                                   <PlayCircle className="h-8 w-8" />
                                 </div>
                               </div>
@@ -529,10 +679,16 @@ export default function HomePageContent() {
                               {/* Live indicator */}
                               <div className="absolute top-2 left-2 flex items-center gap-1.5">
                                 <span className="relative flex h-2 w-2">
-                                  <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${demoColor.ping} opacity-75`}></span>
-                                  <span className={`relative inline-flex h-2 w-2 rounded-full ${demoColor.dot}`}></span>
+                                  <span
+                                    className={`absolute inline-flex h-full w-full animate-ping rounded-full ${demoColor.ping} opacity-75`}
+                                  ></span>
+                                  <span
+                                    className={`relative inline-flex h-2 w-2 rounded-full ${demoColor.dot}`}
+                                  ></span>
                                 </span>
-                                <span className="rounded bg-black/50 px-1.5 py-0.5 text-xs font-medium text-white">DEMO</span>
+                                <span className="rounded bg-black/50 px-1.5 py-0.5 text-xs font-medium text-white">
+                                  DEMO
+                                </span>
                               </div>
                             </button>
 
@@ -547,14 +703,17 @@ export default function HomePageContent() {
                               <Button
                                 onClick={() => setIsVideoModalOpen(true)}
                                 size="md"
-                                variant="default"
+                                variant="primary"
                                 className={`h-11 w-full rounded-xl text-sm font-semibold ${demoColor.button} text-white shadow-lg ${demoColor.shadow} border-0`}
                               >
                                 <PlayCircle className="mr-2 h-4 w-4" />
                                 {t('solutions_demo_cta')}
                               </Button>
-                              <Link href="/platform" className={`mt-3 text-sm font-medium ${demoColor.text} inline-flex items-center justify-center gap-1 hover:underline`}>
-                                Lihat Harga
+                              <Link
+                                href="/platform"
+                                className={`mt-3 text-sm font-medium ${demoColor.text} inline-flex items-center justify-center gap-1 hover:underline`}
+                              >
+                                {t('view_pricing_link' as any)}
                                 <ArrowRight className="h-3 w-3" />
                               </Link>
                             </div>
@@ -642,19 +801,21 @@ export default function HomePageContent() {
 
             return homeUVP.map((uvp, idx) => {
               const Icon = uvp.icon;
-              const config = bentoConfigs[idx % bentoConfigs.length];
+              const config = bentoConfigs[idx % bentoConfigs.length]!;
 
               return (
                 <FadeIn key={idx} delay={0.1 + idx * 0.1}>
                   <div className="group h-full">
-                    <div className={`relative h-full overflow-hidden rounded-3xl bg-gradient-to-br transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${config.bg} min-h-[280px] p-6 sm:min-h-[300px] sm:p-8 lg:p-10`}>
-
+                    <div
+                      className={`relative h-full overflow-hidden rounded-3xl bg-gradient-to-br transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${config.bg} min-h-[280px] p-6 sm:min-h-[300px] sm:p-8 lg:p-10`}
+                    >
                       {/* Background pattern */}
                       <div className="absolute inset-0 opacity-10">
                         <div
                           className="absolute inset-0"
                           style={{
-                            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                            backgroundImage:
+                              'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
                             backgroundSize: '24px 24px',
                           }}
                         />
@@ -675,19 +836,27 @@ export default function HomePageContent() {
                       {/* Content */}
                       <div className="relative z-10 flex h-full flex-col">
                         {/* Icon */}
-                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${config.iconBg} mb-5 shadow-lg backdrop-blur-sm`}>
+                        <div
+                          className={`flex h-14 w-14 items-center justify-center rounded-2xl ${config.iconBg} mb-5 shadow-lg backdrop-blur-sm`}
+                        >
                           <Icon className="h-7 w-7 text-white" />
                         </div>
 
                         {/* Text */}
                         <div className="flex-1">
-                          <h3 className={`text-xl font-bold sm:text-2xl lg:text-2xl ${config.textColor} mb-2`}>
+                          <h3
+                            className={`text-xl font-bold sm:text-2xl lg:text-2xl ${config.textColor} mb-2`}
+                          >
                             {uvp.title}
                           </h3>
-                          <p className={`text-xs font-bold tracking-wide uppercase sm:text-sm ${config.subtitleColor} mb-3`}>
+                          <p
+                            className={`text-xs font-bold tracking-wide uppercase sm:text-sm ${config.subtitleColor} mb-3`}
+                          >
                             {uvp.subtitle}
                           </p>
-                          <p className={`text-sm sm:text-base ${config.descColor} line-clamp-3 leading-relaxed`}>
+                          <p
+                            className={`text-sm sm:text-base ${config.descColor} line-clamp-3 leading-relaxed`}
+                          >
                             {uvp.desc}
                           </p>
                         </div>
@@ -695,7 +864,7 @@ export default function HomePageContent() {
                         {/* CTA */}
                         <div className="mt-5 border-t border-white/20 pt-4">
                           <button className="group/btn inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 hover:gap-3">
-                            Pelajari Lebih
+                            {t('learn_more_short' as any)}
                             <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                           </button>
                         </div>
@@ -725,7 +894,9 @@ export default function HomePageContent() {
         {/* Header */}
         <div className="relative z-10 mb-12 text-center lg:mb-16">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-gradient-to-r from-slate-100 to-slate-50 px-4 py-2 text-sm font-bold tracking-wider uppercase dark:border-slate-700 dark:from-slate-800 dark:to-slate-900">
-            <span className="text-slate-600 dark:text-slate-400">Perbandingan Nilai</span>
+            <span className="text-slate-600 dark:text-slate-400">
+              {t('pricing_comparison_badge' as any)}
+            </span>
           </div>
           <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
             {t('pricing_title')}
@@ -751,19 +922,31 @@ export default function HomePageContent() {
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                         {t('pricing_problem_title')}
                       </h3>
-                      <p className="text-sm font-medium text-red-500">Pendekatan Lama</p>
+                      <p className="text-sm font-medium text-red-500">
+                        {t('pricing_old_approach' as any)}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Pain Points */}
                 <ul className="mb-8 space-y-4">
-                  {['pricing_problem_1', 'pricing_problem_2', 'pricing_problem_3', 'pricing_problem_4'].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 rounded-xl border border-red-100 bg-red-50/50 p-3 dark:border-red-900/30 dark:bg-red-950/20">
+                  {[
+                    'pricing_problem_1',
+                    'pricing_problem_2',
+                    'pricing_problem_3',
+                    'pricing_problem_4',
+                  ].map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 rounded-xl border border-red-100 bg-red-50/50 p-3 dark:border-red-900/30 dark:bg-red-950/20"
+                    >
                       <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/50">
                         <X className="h-3.5 w-3.5 text-red-600 dark:text-red-400" />
                       </div>
-                      <span className="text-sm text-slate-700 dark:text-slate-300">{t(item as any)}</span>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">
+                        {t(item as any)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -776,12 +959,11 @@ export default function HomePageContent() {
                         {t('pricing_hidden_cost')}
                       </p>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">15jt</span>
-                        <span className="text-lg text-slate-500">++</span>
-                        <span className="text-sm text-slate-400">
-                          /
-                          {t('month')}
+                        <span className="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
+                          15jt
                         </span>
+                        <span className="text-lg text-slate-500">++</span>
+                        <span className="text-sm text-slate-400">/{t('month')}</span>
                       </div>
                     </div>
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/30">
@@ -820,18 +1002,30 @@ export default function HomePageContent() {
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       {t('pricing_solution_title')}
                     </h3>
-                    <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">BizOps Platform</p>
+                    <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                      {t('bizops_platform' as any)}
+                    </p>
                   </div>
                 </div>
 
                 {/* Benefits */}
                 <ul className="mb-8 space-y-4">
-                  {['pricing_solution_1', 'pricing_solution_2', 'pricing_solution_3', 'pricing_solution_4'].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 rounded-xl border border-emerald-100 bg-emerald-50/70 p-3 dark:border-emerald-900/30 dark:bg-emerald-950/30">
+                  {[
+                    'pricing_solution_1',
+                    'pricing_solution_2',
+                    'pricing_solution_3',
+                    'pricing_solution_4',
+                  ].map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 rounded-xl border border-emerald-100 bg-emerald-50/70 p-3 dark:border-emerald-900/30 dark:bg-emerald-950/30"
+                    >
                       <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 shadow-md shadow-emerald-500/30">
                         <CheckCircle2 className="h-3.5 w-3.5 text-white" />
                       </div>
-                      <span className="text-sm font-medium text-slate-800 dark:text-slate-200">{t(item as any)}</span>
+                      <span className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                        {t(item as any)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -844,11 +1038,10 @@ export default function HomePageContent() {
                         {t('pricing_starting_from')}
                       </p>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">299rb</span>
-                        <span className="text-sm text-slate-500">
-                          /
-                          {t('month')}
+                        <span className="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
+                          {t('pricing_amount' as any)}
                         </span>
+                        <span className="text-sm text-slate-500">/{t('month')}</span>
                       </div>
                       <p className="mt-1 text-xs text-slate-500">{t('pricing_subtitle')}</p>
                     </div>
@@ -862,7 +1055,7 @@ export default function HomePageContent() {
                     size="lg"
                     className="to-primary-500 hover:to-primary-600 h-12 w-full border-0 bg-gradient-to-r from-emerald-500 text-base font-bold text-white shadow-lg shadow-emerald-500/30 hover:from-emerald-600 hover:shadow-xl hover:shadow-emerald-500/40"
                   >
-                    <Link href="/pricing/calculator">{t('cta_view_pricing')}</Link>
+                    <Link href="/tools/pricing-calculator">{t('cta_view_pricing')}</Link>
                   </Button>
                 </div>
               </div>
@@ -895,20 +1088,19 @@ export default function HomePageContent() {
           {/* Centered Header */}
           <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
             <div className="to-primary-50 dark:to-primary-900/20 mb-6 inline-flex items-center gap-3 rounded-full border border-blue-100 bg-gradient-to-r from-blue-50 px-5 py-2.5 text-sm font-bold tracking-wider uppercase dark:border-blue-800 dark:from-blue-900/20">
-              <span className="to-primary-600 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 text-sm font-bold text-white shadow-lg shadow-blue-500/30">30</span>
-              <span className="text-blue-600 dark:text-blue-400">{t('process_days_badge') || 'Hari Go-Live'}</span>
+              <span className="to-primary-600 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 text-sm font-bold text-white shadow-lg shadow-blue-500/30">
+                30
+              </span>
+              <span className="text-blue-600 dark:text-blue-400">
+                {t('process_days_badge') || 'Hari Go-Live'}
+              </span>
             </div>
             <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-              {t('process_title').replace(t('process_days'), '')}
-              {' '}
+              {t('process_title').replace(t('process_days'), '')}{' '}
               <span className="text-blue-600 dark:text-blue-400">{t('process_days')}</span>
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-              {t('process_desc_1')}
-              {' '}
-              {t('process_desc_2')}
-              {' '}
-              {t('process_desc_3')}
+              {t('process_desc_1')} {t('process_desc_2')} {t('process_desc_3')}
             </p>
             <Button
               asChild
@@ -922,7 +1114,6 @@ export default function HomePageContent() {
 
           {/* Timeline Steps */}
           <div className="relative">
-
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {homeProcess.map((step, idx) => {
                 const weekLabels = [
@@ -932,24 +1123,55 @@ export default function HomePageContent() {
                   t('process_week_4') || 'Minggu 4',
                 ];
                 const stepColors = [
-                  { bg: 'bg-blue-600', bgLight: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', hoverBorder: 'group-hover:border-blue-300 dark:group-hover:border-blue-700' },
-                  { bg: 'bg-emerald-600', bgLight: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', hoverBorder: 'group-hover:border-emerald-300 dark:group-hover:border-emerald-700' },
-                  { bg: 'bg-amber-500', bgLight: 'bg-amber-50 dark:bg-amber-900/20', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', hoverBorder: 'group-hover:border-amber-300 dark:group-hover:border-amber-700' },
-                  { bg: 'bg-rose-600', bgLight: 'bg-rose-50 dark:bg-rose-900/20', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', hoverBorder: 'group-hover:border-rose-300 dark:group-hover:border-rose-700' },
+                  {
+                    bg: 'bg-blue-600',
+                    bgLight: 'bg-blue-50 dark:bg-blue-900/20',
+                    text: 'text-blue-600 dark:text-blue-400',
+                    border: 'border-blue-100 dark:border-blue-900',
+                    hoverBorder: 'group-hover:border-blue-300 dark:group-hover:border-blue-700',
+                  },
+                  {
+                    bg: 'bg-emerald-600',
+                    bgLight: 'bg-emerald-50 dark:bg-emerald-900/20',
+                    text: 'text-emerald-600 dark:text-emerald-400',
+                    border: 'border-emerald-100 dark:border-emerald-900',
+                    hoverBorder:
+                      'group-hover:border-emerald-300 dark:group-hover:border-emerald-700',
+                  },
+                  {
+                    bg: 'bg-amber-500',
+                    bgLight: 'bg-amber-50 dark:bg-amber-900/20',
+                    text: 'text-amber-600 dark:text-amber-400',
+                    border: 'border-amber-100 dark:border-amber-900',
+                    hoverBorder: 'group-hover:border-amber-300 dark:group-hover:border-amber-700',
+                  },
+                  {
+                    bg: 'bg-rose-600',
+                    bgLight: 'bg-rose-50 dark:bg-rose-900/20',
+                    text: 'text-rose-600 dark:text-rose-400',
+                    border: 'border-rose-100 dark:border-rose-900',
+                    hoverBorder: 'group-hover:border-rose-300 dark:group-hover:border-rose-700',
+                  },
                 ];
-                const color = stepColors[idx];
+                const color = stepColors[idx % stepColors.length]!;
                 const stepNumber = String(idx + 1).padStart(2, '0');
 
                 return (
                   <FadeIn key={idx} delay={0.1 + idx * 0.1}>
                     <div className="group h-full">
-                      <div className={`relative h-full rounded-2xl border bg-white dark:bg-slate-900 ${color.border} ${color.hoverBorder} p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl`}>
+                      <div
+                        className={`relative h-full rounded-2xl border bg-white dark:bg-slate-900 ${color.border} ${color.hoverBorder} p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl`}
+                      >
                         {/* Step Number Badge */}
                         <div className="mb-5 flex items-center justify-between">
-                          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${color.bg} text-xl font-bold text-white shadow-lg`}>
+                          <div
+                            className={`flex h-12 w-12 items-center justify-center rounded-xl ${color.bg} text-xl font-bold text-white shadow-lg`}
+                          >
                             {stepNumber}
                           </div>
-                          <span className={`text-xs font-semibold ${color.text} ${color.bgLight} rounded-full px-3 py-1.5 tracking-wide uppercase`}>
+                          <span
+                            className={`text-xs font-semibold ${color.text} ${color.bgLight} rounded-full px-3 py-1.5 tracking-wide uppercase`}
+                          >
                             {weekLabels[idx]}
                           </span>
                         </div>
@@ -1001,14 +1223,44 @@ export default function HomePageContent() {
               {industries.map((ind, idx) => {
                 const Icon = ind.icon;
                 const colorThemes = [
-                  { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', overlay: 'from-blue-900/60' },
-                  { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', overlay: 'from-emerald-900/60' },
-                  { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', overlay: 'from-amber-900/60' },
-                  { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', overlay: 'from-purple-900/60' },
-                  { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', overlay: 'from-rose-900/60' },
-                  { bg: 'bg-cyan-600', text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-100 dark:border-cyan-900', overlay: 'from-cyan-900/60' },
+                  {
+                    bg: 'bg-blue-600',
+                    text: 'text-blue-600 dark:text-blue-400',
+                    border: 'border-blue-100 dark:border-blue-900',
+                    overlay: 'from-blue-900/60',
+                  },
+                  {
+                    bg: 'bg-emerald-600',
+                    text: 'text-emerald-600 dark:text-emerald-400',
+                    border: 'border-emerald-100 dark:border-emerald-900',
+                    overlay: 'from-emerald-900/60',
+                  },
+                  {
+                    bg: 'bg-amber-500',
+                    text: 'text-amber-600 dark:text-amber-400',
+                    border: 'border-amber-100 dark:border-amber-900',
+                    overlay: 'from-amber-900/60',
+                  },
+                  {
+                    bg: 'bg-purple-600',
+                    text: 'text-purple-600 dark:text-purple-400',
+                    border: 'border-purple-100 dark:border-purple-900',
+                    overlay: 'from-purple-900/60',
+                  },
+                  {
+                    bg: 'bg-rose-600',
+                    text: 'text-rose-600 dark:text-rose-400',
+                    border: 'border-rose-100 dark:border-rose-900',
+                    overlay: 'from-rose-900/60',
+                  },
+                  {
+                    bg: 'bg-cyan-600',
+                    text: 'text-cyan-600 dark:text-cyan-400',
+                    border: 'border-cyan-100 dark:border-cyan-900',
+                    overlay: 'from-cyan-900/60',
+                  },
                 ];
-                const theme = colorThemes[idx % colorThemes.length];
+                const theme = colorThemes[idx % colorThemes.length]!;
 
                 // Unsplash placeholder images for each industry
                 const industryImages = [
@@ -1026,7 +1278,9 @@ export default function HomePageContent() {
                     href={`/solutions/${ind.id}`}
                     className="group mx-2 block w-[220px] flex-shrink-0 py-2 sm:w-[250px]"
                   >
-                    <div className={`relative overflow-visible rounded-2xl border bg-white dark:bg-slate-900 ${theme.border} shadow-lg transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-2xl`}>
+                    <div
+                      className={`relative overflow-visible rounded-2xl border bg-white dark:bg-slate-900 ${theme.border} shadow-lg transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-2xl`}
+                    >
                       {/* Top image banner - story style */}
                       <div className="relative h-44 overflow-hidden rounded-t-2xl">
                         <img
@@ -1034,13 +1288,17 @@ export default function HomePageContent() {
                           alt={ind.title}
                           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className={`absolute inset-0 bg-gradient-to-t ${theme.overlay} via-transparent to-transparent opacity-60`} />
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-t ${theme.overlay} via-transparent to-transparent opacity-60`}
+                        />
                         <div className="absolute right-0 bottom-0 left-0 h-20 bg-gradient-to-t from-white to-transparent dark:from-slate-900" />
                       </div>
 
                       {/* Icon - floating on banner */}
                       <div className="relative -mt-8 px-5">
-                        <div className={`inline-flex h-16 w-16 items-center justify-center rounded-xl ${theme.bg} border-4 border-white shadow-xl dark:border-slate-900`}>
+                        <div
+                          className={`inline-flex h-16 w-16 items-center justify-center rounded-xl ${theme.bg} border-4 border-white shadow-xl dark:border-slate-900`}
+                        >
                           <Icon className="h-8 w-8 text-white" aria-hidden="true" />
                         </div>
                       </div>
@@ -1055,8 +1313,10 @@ export default function HomePageContent() {
                         </p>
 
                         {/* CTA */}
-                        <div className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}>
-                          <span>Pelajari Lebih</span>
+                        <div
+                          className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}
+                        >
+                          <span>{t('learn_more_short' as any)}</span>
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
@@ -1070,8 +1330,12 @@ export default function HomePageContent() {
           {/* Roles - Auto-scrolling slider (opposite direction from industries) */}
           <div className="border-t border-slate-200 pt-14 dark:border-slate-800">
             <div className="mb-10 text-center">
-              <h3 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">{t('roles_title')}</h3>
-              <p className="mx-auto max-w-2xl text-base text-slate-600 dark:text-slate-400">{t('roles_desc')}</p>
+              <h3 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">
+                {t('roles_title')}
+              </h3>
+              <p className="mx-auto max-w-2xl text-base text-slate-600 dark:text-slate-400">
+                {t('roles_desc')}
+              </p>
             </div>
 
             {/* Roles Infinite Scroll - Right direction (opposite of industries) */}
@@ -1080,13 +1344,38 @@ export default function HomePageContent() {
                 {roles.map((role, idx) => {
                   const Icon = role.icon;
                   const roleColors = [
-                    { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', gradient: 'from-blue-500 to-blue-600' },
-                    { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', gradient: 'from-emerald-500 to-emerald-600' },
-                    { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', gradient: 'from-amber-500 to-amber-600' },
-                    { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', gradient: 'from-purple-500 to-purple-600' },
-                    { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', gradient: 'from-rose-500 to-rose-600' },
+                    {
+                      bg: 'bg-blue-600',
+                      text: 'text-blue-600 dark:text-blue-400',
+                      border: 'border-blue-100 dark:border-blue-900',
+                      gradient: 'from-blue-500 to-blue-600',
+                    },
+                    {
+                      bg: 'bg-emerald-600',
+                      text: 'text-emerald-600 dark:text-emerald-400',
+                      border: 'border-emerald-100 dark:border-emerald-900',
+                      gradient: 'from-emerald-500 to-emerald-600',
+                    },
+                    {
+                      bg: 'bg-amber-500',
+                      text: 'text-amber-600 dark:text-amber-400',
+                      border: 'border-amber-100 dark:border-amber-900',
+                      gradient: 'from-amber-500 to-amber-600',
+                    },
+                    {
+                      bg: 'bg-purple-600',
+                      text: 'text-purple-600 dark:text-purple-400',
+                      border: 'border-purple-100 dark:border-purple-900',
+                      gradient: 'from-purple-500 to-purple-600',
+                    },
+                    {
+                      bg: 'bg-rose-600',
+                      text: 'text-rose-600 dark:text-rose-400',
+                      border: 'border-rose-100 dark:border-rose-900',
+                      gradient: 'from-rose-500 to-rose-600',
+                    },
                   ];
-                  const theme = roleColors[idx % roleColors.length];
+                  const theme = roleColors[idx % roleColors.length]!;
 
                   return (
                     <Link
@@ -1094,29 +1383,39 @@ export default function HomePageContent() {
                       href={`/role/${role.id}`}
                       className="group mx-2 block flex-shrink-0"
                     >
-                      <div className={`relative h-[140px] w-[220px] overflow-hidden rounded-2xl border sm:h-[160px] sm:w-[260px] ${theme.border} bg-white transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-900`}>
+                      <div
+                        className={`relative h-[140px] w-[220px] overflow-hidden rounded-2xl border sm:h-[160px] sm:w-[260px] ${theme.border} bg-white transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-900`}
+                      >
                         {/* Background gradient accent */}
-                        <div className={`absolute top-0 right-0 h-24 w-24 bg-gradient-to-br ${theme.gradient} translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-2xl`} />
+                        <div
+                          className={`absolute top-0 right-0 h-24 w-24 bg-gradient-to-br ${theme.gradient} translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-2xl`}
+                        />
 
                         {/* Content */}
                         <div className="relative z-10 flex h-full flex-col justify-between p-5">
                           {/* Icon & Title */}
                           <div className="flex items-start gap-4">
-                            <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${theme.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}>
+                            <div
+                              className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${theme.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                            >
                               <Icon className="h-6 w-6 text-white" aria-hidden="true" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <h4 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 truncate text-base font-bold text-slate-900 transition-colors dark:text-white">
                                 {role.title}
                               </h4>
-                              <p className="mt-1 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">{role.subtitle}</p>
+                              <p className="mt-1 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">
+                                {role.subtitle}
+                              </p>
                             </div>
                           </div>
 
                           {/* CTA */}
                           <div className="flex items-center justify-end">
-                            <span className={`text-xs font-semibold ${theme.text} flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100`}>
-                              Lihat Detail
+                            <span
+                              className={`text-xs font-semibold ${theme.text} flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                            >
+                              {t('view_detail')}
                               <ArrowRight className="h-3 w-3" />
                             </span>
                           </div>
@@ -1164,7 +1463,7 @@ export default function HomePageContent() {
             <ul className="space-y-4">
               {['security_1', 'security_2', 'security_3'].map((item, idx) => {
                 const icons = [Lock, CheckCircle2, Database];
-                const IconComponent = icons[idx];
+                const IconComponent = icons[idx]!;
                 const iconColors = [
                   'from-emerald-500 to-emerald-600',
                   'from-blue-500 to-blue-600',
@@ -1174,7 +1473,9 @@ export default function HomePageContent() {
                 return (
                   <FadeIn key={idx} delay={0.15 + idx * 0.1}>
                     <li className="group hover:border-primary-100 dark:hover:border-primary-900 flex gap-4 rounded-xl border border-slate-100 bg-white p-4 transition-all duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
-                      <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${iconColors[idx]} shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                      <div
+                        className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${iconColors[idx]} shadow-md transition-transform duration-300 group-hover:scale-110`}
+                      >
                         <IconComponent className="h-5 w-5 text-white" />
                       </div>
                       <div>
@@ -1214,15 +1515,21 @@ export default function HomePageContent() {
                     <div className="absolute right-4 bottom-4 left-4 flex flex-wrap gap-2">
                       <div className="flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 shadow-lg backdrop-blur-sm dark:bg-slate-800/90">
                         <Lock className="h-3.5 w-3.5 text-emerald-600" />
-                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">AES-256</span>
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                          AES-256
+                        </span>
                       </div>
                       <div className="flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 shadow-lg backdrop-blur-sm dark:bg-slate-800/90">
                         <Shield className="h-3.5 w-3.5 text-blue-600" />
-                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">SSL/TLS</span>
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                          SSL/TLS
+                        </span>
                       </div>
                       <div className="flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 shadow-lg backdrop-blur-sm dark:bg-slate-800/90">
                         <Database className="h-3.5 w-3.5 text-purple-600" />
-                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">ISO 27001</span>
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+                          ISO 27001
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -1244,7 +1551,9 @@ export default function HomePageContent() {
                         </span>
                       </div>
                       <div>
-                        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Uptime SLA</p>
+                        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                          Uptime SLA
+                        </p>
                         <p className="text-lg font-bold text-slate-900 dark:text-white">99.9%</p>
                       </div>
                     </div>
@@ -1295,15 +1604,9 @@ export default function HomePageContent() {
         </div>
 
         <div className="mt-10 text-center">
-          <Button
-            asChild
-            variant="glass"
-            size="md"
-            className="h-11 px-6 text-sm font-semibold"
-          >
+          <Button asChild variant="glass" size="md" className="h-11 px-6 text-sm font-semibold">
             <Link href="/platform/technologies/integration">
-              {t('integrations_view_more')}
-              {' '}
+              {t('integrations_view_more')}{' '}
               <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -1319,23 +1622,33 @@ export default function HomePageContent() {
       >
         <Container size="5xl" className="relative z-10">
           {/* CTA Card with Gradient Background */}
-          <div className="from-primary-600 via-primary-700 relative overflow-hidden rounded-3xl bg-gradient-to-br to-blue-700 p-8 sm:p-12 lg:p-16">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 shadow-2xl shadow-slate-900/50 sm:p-12 lg:p-16 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
             {/* Decorative elements - Floating shapes */}
-            <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full bg-white/15 blur-3xl" />
-            <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-300/25 blur-2xl" />
-            <div className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-cyan-400/20 blur-2xl" />
-            <div className="absolute right-1/4 bottom-1/4 h-24 w-24 rounded-full bg-indigo-300/20 blur-xl" />
+            <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full bg-indigo-500/30 blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/20 blur-2xl" />
+            <div className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-cyan-500/20 blur-2xl" />
+            <div className="absolute right-1/4 bottom-1/4 h-24 w-24 rounded-full bg-purple-500/20 blur-xl" />
 
-            {/* Dot pattern overlay - more visible */}
-            <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            {/* Dot pattern overlay */}
+            <div
+              className="absolute inset-0 opacity-[0.08]"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
+                backgroundSize: '24px 24px',
+              }}
+            />
+
+            {/* Inner glow border effect */}
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10 ring-inset" />
 
             <div className="relative z-10 mx-auto max-w-3xl text-center">
               {/* Badge */}
               <FadeIn>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 backdrop-blur-sm">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 shadow-lg backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
                   </span>
                   <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">
                     {t('cta_trial')}
@@ -1352,7 +1665,7 @@ export default function HomePageContent() {
 
               {/* Description */}
               <FadeIn delay={0.15}>
-                <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+                <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
                   {t('cta_desc')}
                 </p>
               </FadeIn>
@@ -1363,10 +1676,10 @@ export default function HomePageContent() {
                   <Button
                     asChild
                     size="lg"
-                    className="text-primary-700 h-12 bg-white px-8 text-base font-bold shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-2xl sm:h-14 sm:px-10 sm:text-lg"
+                    className="h-12 bg-white px-8 text-base font-bold text-slate-900 shadow-xl shadow-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-2xl sm:h-14 sm:px-10 sm:text-lg"
                   >
                     <Link href="/demo">
-                      Mulai Demo Gratis
+                      {t('cta_demo')}
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
@@ -1383,18 +1696,18 @@ export default function HomePageContent() {
 
               {/* Trust indicators */}
               <FadeIn delay={0.25}>
-                <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/60">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4" />
-                    <span>14 hari gratis</span>
+                <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_14_days' as any)}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4" />
-                    <span>Tanpa kartu kredit</span>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_no_credit_card')}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4" />
-                    <span>Batalkan kapan saja</span>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_cancel_anytime' as any)}</span>
                   </div>
                 </div>
               </FadeIn>
@@ -1412,7 +1725,7 @@ export default function HomePageContent() {
           {/* Modal Content */}
           <div
             className="animate-in zoom-in-95 relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl duration-300"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button

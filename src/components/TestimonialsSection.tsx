@@ -120,22 +120,22 @@ export default function TestimonialsSection() {
       >
         <div className="max-w-2xl text-center md:text-left">
           <Badge variant="outline-white" className="mb-4">
-            Hasil Nyata
+            {t('testimonials_badge' as any)}
           </Badge>
           <h2 className="text-2xl leading-tight font-bold tracking-tight text-slate-900 sm:text-3xl md:text-4xl dark:text-white">
-            Dipercaya oleh
+            {t('testimonials_title_1' as any)}
             {' '}
             <span className="text-teal-600 dark:text-teal-400">
-              Pemimpin Industri
+              {t('testimonials_title_highlight' as any)}
             </span>
           </h2>
           <p className="mt-3 text-base text-slate-600 dark:text-slate-400">
-            Lihat bagaimana perusahaan Indonesia bertransformasi dengan BizOps.
+            {t('testimonials_desc' as any)}
           </p>
         </div>
         <Button asChild size="md" variant="white" className="group">
           <Link href="/customers">
-            Lihat Semua Cerita
+            {t('testimonials_view_all' as any)}
             {' '}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
