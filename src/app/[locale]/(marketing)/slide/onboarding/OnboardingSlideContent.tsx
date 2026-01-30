@@ -24,6 +24,7 @@ import {
   Users,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import SlideDeck from '@/components/presentation/SlideDeck';
@@ -138,11 +139,13 @@ const FeatureCard = ({
 
 // --- SLIDE DEFINITIONS ---
 export default function OnboardingSlideContent() {
+  const t = useTranslations('Onboarding');
+
   const slides: SlideData[] = [
     // SLIDE 1: Cover
     {
       id: 'cover',
-      title: 'BizOps Onboarding Journey',
+      title: t('cover_title'),
       content: (
         <>
           <SlideBg variant="blue" />
@@ -157,16 +160,16 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="mb-6 text-center text-6xl leading-tight font-bold text-slate-900 dark:text-white"
             >
-              BizOps Onboarding Journey
+              {t('cover_title')}
             </motion.h1>
             <motion.p
               variants={itemVariants}
               className="mb-12 max-w-3xl text-center text-2xl text-slate-700 dark:text-slate-300"
             >
-              Panduan Lengkap Implementasi End-to-End
+              {t('cover_subtitle')}
               <br />
               <span className="text-lg text-slate-600 dark:text-slate-400">
-                Dari Kickoff hingga Go-Live dalam 90 Hari
+                {t('cover_duration')}
               </span>
             </motion.p>
             <motion.div variants={itemVariants}>
@@ -175,9 +178,7 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  Jadwalkan Onboarding
-                  {' '}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('cover_cta')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -193,10 +194,10 @@ export default function OnboardingSlideContent() {
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
             <h2 className="mb-4 text-5xl font-bold text-slate-900 dark:text-white">
-              Mengapa Onboarding Penting?
+              {t('why_title')}
             </h2>
             <p className="mx-auto max-w-3xl text-xl text-slate-600 dark:text-slate-400">
-              Onboarding yang terstruktur adalah kunci kesuksesan implementasi ERP
+              {t('why_subtitle')}
             </p>
           </motion.div>
 
@@ -205,10 +206,14 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/30 dark:bg-green-900/10"
             >
-              <div className="mb-4 text-6xl font-bold text-green-600 dark:text-green-400">95%</div>
-              <p className="text-lg font-semibold text-slate-900 dark:text-white">Success Rate</p>
+              <div className="mb-4 text-6xl font-bold text-green-600 dark:text-green-400">
+                {t('why_stat_1')}
+              </div>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                {t('why_stat_1_label')}
+              </p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                Proyek dengan onboarding terstruktur berhasil tepat waktu
+                {t('why_stat_1_desc')}
               </p>
             </motion.div>
 
@@ -216,12 +221,14 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="rounded-2xl border border-blue-200 bg-blue-50 p-8 text-center dark:border-blue-900/30 dark:bg-blue-900/10"
             >
-              <div className="mb-4 text-6xl font-bold text-blue-600 dark:text-blue-400">50%</div>
+              <div className="mb-4 text-6xl font-bold text-blue-600 dark:text-blue-400">
+                {t('why_stat_2')}
+              </div>
               <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                Faster Adoption
+                {t('why_stat_2_label')}
               </p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                User lebih cepat produktif dengan training yang tepat
+                {t('why_stat_2_desc')}
               </p>
             </motion.div>
 
@@ -230,11 +237,13 @@ export default function OnboardingSlideContent() {
               className="rounded-2xl border border-purple-200 bg-purple-50 p-8 text-center dark:border-purple-900/30 dark:bg-purple-900/10"
             >
               <div className="mb-4 text-6xl font-bold text-purple-600 dark:text-purple-400">
-                30%
+                {t('why_stat_3')}
               </div>
-              <p className="text-lg font-semibold text-slate-900 dark:text-white">Cost Reduction</p>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                {t('why_stat_3_label')}
+              </p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                Hemat biaya support dan rework dengan persiapan yang baik
+                {t('why_stat_3_desc')}
               </p>
             </motion.div>
           </div>
@@ -245,52 +254,50 @@ export default function OnboardingSlideContent() {
     // SLIDE 3: Complete Timeline
     {
       id: 'timeline-overview',
-      title: '90-Day Onboarding Timeline',
+      title: t('timeline_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-12 text-center">
             <h2 className="mb-4 text-5xl font-bold text-slate-900 dark:text-white">
-              90-Day Onboarding Timeline
+              {t('timeline_title')}
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400">
-              5 fase terstruktur untuk implementasi yang sukses
-            </p>
+            <p className="text-xl text-slate-600 dark:text-slate-400">{t('timeline_subtitle')}</p>
           </motion.div>
 
           <div className="flex w-full max-w-6xl flex-col gap-6">
             <TimelineItem
               icon={Rocket}
-              title="Phase 1: Kickoff & Discovery"
-              subtitle="Project scoping, stakeholder alignment, requirement gathering"
-              duration="Week 1-2"
+              title={t('phase1_title')}
+              subtitle={t('phase1_subtitle')}
+              duration={t('phase1_duration')}
               color="bg-gradient-to-br from-blue-500 to-cyan-600"
             />
             <TimelineItem
               icon={Settings}
-              title="Phase 2: Configuration & Setup"
-              subtitle="System configuration, module setup, workflow design"
-              duration="Week 3-5"
+              title={t('phase2_title')}
+              subtitle={t('phase2_subtitle')}
+              duration={t('phase2_duration')}
               color="bg-gradient-to-br from-purple-500 to-indigo-600"
             />
             <TimelineItem
               icon={Database}
-              title="Phase 3: Data Migration"
-              subtitle="Data cleansing, mapping, import, validation"
-              duration="Week 6-7"
+              title={t('phase3_title')}
+              subtitle={t('phase3_subtitle')}
+              duration={t('phase3_duration')}
               color="bg-gradient-to-br from-amber-500 to-orange-600"
             />
             <TimelineItem
               icon={GraduationCap}
-              title="Phase 4: Training & Testing"
-              subtitle="User training, UAT, process refinement"
-              duration="Week 8-10"
+              title={t('phase4_title')}
+              subtitle={t('phase4_subtitle')}
+              duration={t('phase4_duration')}
               color="bg-gradient-to-br from-green-500 to-emerald-600"
             />
             <TimelineItem
               icon={CheckCircle2}
-              title="Phase 5: Go-Live & Hypercare"
-              subtitle="Production launch, intensive support, stabilization"
-              duration="Week 11-13"
+              title={t('phase5_title')}
+              subtitle={t('phase5_subtitle')}
+              duration={t('phase5_duration')}
               color="bg-gradient-to-br from-red-500 to-rose-600"
             />
           </div>
@@ -301,7 +308,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 4: Phase 1 - Kickoff & Discovery
     {
       id: 'phase1-kickoff',
-      title: 'Phase 1: Kickoff & Discovery',
+      title: t('phase1_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -309,36 +316,36 @@ export default function OnboardingSlideContent() {
               <Rocket className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-              Phase 1: Kickoff & Discovery
+              {t('phase1_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Week 1-2 · Foundation Setting
+              {t('phase1_detail_title')}
             </p>
           </motion.div>
 
           <div className="grid w-full max-w-6xl grid-cols-2 gap-6">
             <FeatureCard
               icon={Target}
-              title="Project Scoping"
-              desc="Define clear objectives, success criteria, scope boundaries, and deliverables with all stakeholders"
+              title={t('phase1_card_1_title')}
+              desc={t('phase1_card_1_desc')}
               color="bg-blue-600"
             />
             <FeatureCard
               icon={Users}
-              title="Stakeholder Alignment"
-              desc="Identify key users, form project team, establish RACI matrix, communication plan"
+              title={t('phase1_card_2_title')}
+              desc={t('phase1_card_2_desc')}
               color="bg-cyan-600"
             />
             <FeatureCard
               icon={BookOpen}
-              title="Requirement Gathering"
-              desc="Document current processes, pain points, must-have vs nice-to-have requirements"
+              title={t('phase1_card_3_title')}
+              desc={t('phase1_card_3_desc')}
               color="bg-indigo-600"
             />
             <FeatureCard
               icon={Shield}
-              title="Environment Setup"
-              desc="Provision sandbox & production environments, configure security, access control"
+              title={t('phase1_card_4_title')}
+              desc={t('phase1_card_4_desc')}
               color="bg-purple-600"
             />
           </div>
@@ -350,10 +357,10 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Project Charter, Requirement Document, Environment Access
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  {t('phase1_deliverable')}
                 </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase1_deliverable_desc')}</p>
               </div>
             </div>
           </motion.div>
@@ -364,7 +371,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 5: Phase 2 - Configuration
     {
       id: 'phase2-configuration',
-      title: 'Phase 2: Configuration & Setup',
+      title: t('phase2_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -372,48 +379,48 @@ export default function OnboardingSlideContent() {
               <Settings className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-              Phase 2: Configuration & Setup
+              {t('phase2_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Week 3-5 · System Design
+              {t('phase2_detail_title')}
             </p>
           </motion.div>
 
           <div className="grid w-full max-w-6xl grid-cols-3 gap-6">
             <FeatureCard
               icon={Layers}
-              title="Module Activation"
-              desc="Enable required modules: Finance, HR, Sales, SCM, Operations based on scope"
+              title={t('phase2_card_1_title')}
+              desc={t('phase2_card_1_desc')}
               color="bg-purple-600"
             />
             <FeatureCard
               icon={Briefcase}
-              title="Company Setup"
-              desc="Configure company structure, departments, cost centers, org hierarchy"
+              title={t('phase2_card_2_title')}
+              desc={t('phase2_card_2_desc')}
               color="bg-indigo-600"
             />
             <FeatureCard
               icon={FileSpreadsheet}
-              title="Master Data"
-              desc="Setup chart of accounts, product catalog, customer/vendor master"
+              title={t('phase2_card_3_title')}
+              desc={t('phase2_card_3_desc')}
               color="bg-blue-600"
             />
             <FeatureCard
               icon={Zap}
-              title="Workflow Design"
-              desc="Configure approval flows, automation rules, notification triggers"
+              title={t('phase2_card_4_title')}
+              desc={t('phase2_card_4_desc')}
               color="bg-cyan-600"
             />
             <FeatureCard
               icon={UserCheck}
-              title="Role & Permission"
-              desc="Define user roles, access rights, segregation of duties"
+              title={t('phase2_card_5_title')}
+              desc={t('phase2_card_5_desc')}
               color="bg-purple-500"
             />
             <FeatureCard
               icon={Globe}
-              title="Integration Setup"
-              desc="Connect with existing systems: email, payment gateway, logistics"
+              title={t('phase2_card_6_title')}
+              desc={t('phase2_card_6_desc')}
               color="bg-indigo-500"
             />
           </div>
@@ -425,10 +432,10 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-purple-600 dark:text-purple-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Fully configured system ready for data import
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  {t('phase2_deliverable')}
                 </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase2_deliverable_desc')}</p>
               </div>
             </div>
           </motion.div>
@@ -439,7 +446,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 6: Phase 3 - Data Migration
     {
       id: 'phase3-migration',
-      title: 'Phase 3: Data Migration',
+      title: t('phase3_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -447,10 +454,10 @@ export default function OnboardingSlideContent() {
               <Database className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-              Phase 3: Data Migration
+              {t('phase3_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Week 6-7 · Historical Data Transfer
+              {t('phase3_detail_title')}
             </p>
           </motion.div>
 
@@ -464,12 +471,9 @@ export default function OnboardingSlideContent() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  Data Cleansing
+                  {t('phase3_step_1_title')}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Clean legacy data: remove duplicates, fix inconsistencies, validate formats before
-                  import
-                </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase3_step_1_desc')}</p>
               </div>
             </motion.div>
 
@@ -482,12 +486,9 @@ export default function OnboardingSlideContent() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  Field Mapping
+                  {t('phase3_step_2_title')}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Map old system fields to BizOps structure: Customer → Contact, Product → Item,
-                  etc.
-                </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase3_step_2_desc')}</p>
               </div>
             </motion.div>
 
@@ -500,11 +501,9 @@ export default function OnboardingSlideContent() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  Batch Import
+                  {t('phase3_step_3_title')}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Import in stages: Master Data → Opening Balances → Historical Transactions
-                </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase3_step_3_desc')}</p>
               </div>
             </motion.div>
 
@@ -517,11 +516,9 @@ export default function OnboardingSlideContent() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  Validation & Reconciliation
+                  {t('phase3_step_4_title')}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  Verify data integrity: compare totals, check references, reconcile balances
-                </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase3_step_4_desc')}</p>
               </div>
             </motion.div>
           </div>
@@ -533,10 +530,10 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-amber-600 dark:text-amber-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
-                <p className="text-slate-600 dark:text-slate-400">
-                  100% data migrated and validated, ready for UAT
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  {t('phase3_deliverable')}
                 </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase3_deliverable_desc')}</p>
               </div>
             </div>
           </motion.div>
@@ -547,7 +544,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 7: Phase 4 - Training & Testing
     {
       id: 'phase4-training',
-      title: 'Phase 4: Training & Testing',
+      title: t('phase4_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -555,10 +552,10 @@ export default function OnboardingSlideContent() {
               <GraduationCap className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-              Phase 4: Training & Testing
+              {t('phase4_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Week 8-10 · User Enablement
+              {t('phase4_detail_title')}
             </p>
           </motion.div>
 
@@ -568,41 +565,32 @@ export default function OnboardingSlideContent() {
                 <div className="mb-4 flex items-center gap-3">
                   <GraduationCap className="h-8 w-8 text-green-600 dark:text-green-400" />
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    Training Program
+                    {t('phase4_training_title')}
                   </h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Admin Training:</strong>
-                      {' '}
-                      System admin, configuration, report builder
+                      <strong>{t('phase4_training_1')}</strong> {t('phase4_training_1_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>End-User Training:</strong>
-                      {' '}
-                      Role-specific workflows, daily operations
+                      <strong>{t('phase4_training_2')}</strong> {t('phase4_training_2_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Train-the-Trainer:</strong>
-                      {' '}
-                      Internal champions for ongoing support
+                      <strong>{t('phase4_training_3')}</strong> {t('phase4_training_3_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>Documentation:</strong>
-                      {' '}
-                      User manuals, video tutorials, FAQ knowledge
-                      base
+                      <strong>{t('phase4_training_4')}</strong> {t('phase4_training_4_desc')}
                     </span>
                   </li>
                 </ul>
@@ -613,40 +601,33 @@ export default function OnboardingSlideContent() {
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 dark:border-emerald-900/30 dark:bg-emerald-900/10">
                 <div className="mb-4 flex items-center gap-3">
                   <Target className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">UAT Testing</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {t('phase4_uat_title')}
+                  </h3>
                 </div>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Test Scenarios:</strong>
-                      {' '}
-                      End-to-end process testing with real data
+                      <strong>{t('phase4_uat_1')}</strong> {t('phase4_uat_1_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Bug Tracking:</strong>
-                      {' '}
-                      Log issues, prioritize fixes, retest
+                      <strong>{t('phase4_uat_2')}</strong> {t('phase4_uat_2_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Performance Testing:</strong>
-                      {' '}
-                      Load testing, stress testing,
-                      optimization
+                      <strong>{t('phase4_uat_3')}</strong> {t('phase4_uat_3_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>Sign-off:</strong>
-                      {' '}
-                      Formal UAT acceptance from business owners
+                      <strong>{t('phase4_uat_4')}</strong> {t('phase4_uat_4_desc')}
                     </span>
                   </li>
                 </ul>
@@ -661,10 +642,10 @@ export default function OnboardingSlideContent() {
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 shrink-0 text-green-600 dark:text-green-400" />
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">Key Deliverable:</p>
-                <p className="text-slate-600 dark:text-slate-400">
-                  All users trained, UAT passed, ready for Go-Live
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  {t('phase4_deliverable')}
                 </p>
+                <p className="text-slate-600 dark:text-slate-400">{t('phase4_deliverable_desc')}</p>
               </div>
             </div>
           </motion.div>
@@ -675,7 +656,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 8: Phase 5 - Go-Live
     {
       id: 'phase5-golive',
-      title: 'Phase 5: Go-Live & Hypercare',
+      title: t('phase5_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
@@ -683,36 +664,36 @@ export default function OnboardingSlideContent() {
               <CheckCircle2 className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-              Phase 5: Go-Live & Hypercare
+              {t('phase5_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Week 11-13 · Production Launch
+              {t('phase5_detail_title')}
             </p>
           </motion.div>
 
           <div className="grid w-full max-w-6xl grid-cols-2 gap-6">
             <FeatureCard
               icon={Rocket}
-              title="Go-Live Execution"
-              desc="Cutover from old system, production data sync, final switch, go/no-go decision"
+              title={t('phase5_card_1_title')}
+              desc={t('phase5_card_1_desc')}
               color="bg-red-600"
             />
             <FeatureCard
               icon={Headphones}
-              title="Intensive Support"
-              desc="24/7 on-call support team, dedicated war room, rapid issue resolution for first 2 weeks"
+              title={t('phase5_card_2_title')}
+              desc={t('phase5_card_2_desc')}
               color="bg-rose-600"
             />
             <FeatureCard
               icon={BarChart3}
-              title="Performance Monitoring"
-              desc="Track system health, user adoption metrics, transaction volumes, identify bottlenecks"
+              title={t('phase5_card_3_title')}
+              desc={t('phase5_card_3_desc')}
               color="bg-orange-600"
             />
             <FeatureCard
               icon={TrendingUp}
-              title="Continuous Improvement"
-              desc="Collect feedback, refine workflows, optimize processes, plan Phase 2 enhancements"
+              title={t('phase5_card_4_title')}
+              desc={t('phase5_card_4_desc')}
               color="bg-amber-600"
             />
           </div>
@@ -722,41 +703,41 @@ export default function OnboardingSlideContent() {
               <div className="mb-6 flex items-center gap-3">
                 <Clock className="h-8 w-8 text-red-600 dark:text-red-400" />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  Hypercare Schedule
+                  {t('phase5_hypercare_title')}
                 </h3>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="rounded-lg border border-red-200 bg-white p-4 text-center dark:border-red-800 dark:bg-slate-900">
                   <div className="mb-2 text-3xl font-bold text-red-600 dark:text-red-400">
-                    Week 1-2
+                    {t('phase5_hypercare_1')}
                   </div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                    24/7 Support
+                    {t('phase5_hypercare_1_label')}
                   </p>
                   <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-                    On-site + remote team
+                    {t('phase5_hypercare_1_desc')}
                   </p>
                 </div>
                 <div className="rounded-lg border border-orange-200 bg-white p-4 text-center dark:border-orange-800 dark:bg-slate-900">
                   <div className="mb-2 text-3xl font-bold text-orange-600 dark:text-orange-400">
-                    Week 3-4
+                    {t('phase5_hypercare_2')}
                   </div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                    Business Hours
+                    {t('phase5_hypercare_2_label')}
                   </p>
                   <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-                    8 AM - 8 PM support
+                    {t('phase5_hypercare_2_desc')}
                   </p>
                 </div>
                 <div className="rounded-lg border border-amber-200 bg-white p-4 text-center dark:border-amber-800 dark:bg-slate-900">
                   <div className="mb-2 text-3xl font-bold text-amber-600 dark:text-amber-400">
-                    Month 2-3
+                    {t('phase5_hypercare_3')}
                   </div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                    Standard SLA
+                    {t('phase5_hypercare_3_label')}
                   </p>
                   <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-                    Ticketing system
+                    {t('phase5_hypercare_3_desc')}
                   </p>
                 </div>
               </div>
@@ -769,16 +750,14 @@ export default function OnboardingSlideContent() {
     // SLIDE 9: Success Metrics
     {
       id: 'success-metrics',
-      title: 'Success Metrics & KPIs',
+      title: t('metrics_title'),
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-12 text-center">
             <h2 className="mb-4 text-5xl font-bold text-slate-900 dark:text-white">
-              How We Measure Success
+              {t('metrics_title')}
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400">
-              Key performance indicators untuk onboarding yang sukses
-            </p>
+            <p className="text-xl text-slate-600 dark:text-slate-400">{t('metrics_subtitle')}</p>
           </motion.div>
 
           <div className="grid w-full max-w-6xl grid-cols-2 gap-8">
@@ -788,24 +767,24 @@ export default function OnboardingSlideContent() {
             >
               <TrendingUp className="mb-4 h-12 w-12 text-blue-600 dark:text-blue-400" />
               <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                Business KPIs
+                {t('metrics_business_title')}
               </h3>
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-                  <span>Process cycle time reduction: 30-50%</span>
+                  <span>{t('metrics_business_1')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-                  <span>Manual data entry reduction: 60-80%</span>
+                  <span>{t('metrics_business_2')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-                  <span>Report generation time: hours → minutes</span>
+                  <span>{t('metrics_business_3')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-                  <span>Data accuracy improvement: 95%+</span>
+                  <span>{t('metrics_business_4')}</span>
                 </li>
               </ul>
             </motion.div>
@@ -816,24 +795,24 @@ export default function OnboardingSlideContent() {
             >
               <Users className="mb-4 h-12 w-12 text-green-600 dark:text-green-400" />
               <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                Adoption KPIs
+                {t('metrics_adoption_title')}
               </h3>
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
-                  <span>User login rate: 90%+ daily active users</span>
+                  <span>{t('metrics_adoption_1')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
-                  <span>Training completion rate: 95%+</span>
+                  <span>{t('metrics_adoption_2')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
-                  <span>Support ticket reduction: 70% month-over-month</span>
+                  <span>{t('metrics_adoption_3')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
-                  <span>User satisfaction score: 4.5/5.0</span>
+                  <span>{t('metrics_adoption_4')}</span>
                 </li>
               </ul>
             </motion.div>
@@ -845,7 +824,7 @@ export default function OnboardingSlideContent() {
     // SLIDE 10: CTA
     {
       id: 'cta',
-      title: 'Ready to Start Your Journey?',
+      title: t('cta_title_2'),
       content: (
         <>
           <SlideBg variant="blue" />
@@ -860,19 +839,17 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="mb-6 text-center text-5xl leading-tight font-bold text-slate-900 dark:text-white"
             >
-              Ready to Start Your
-              {' '}
-              <br />
-              BizOps Journey?
+              {t('cta_title_1')} <br />
+              {t('cta_title_2')}
             </motion.h1>
             <motion.p
               variants={itemVariants}
               className="mb-12 max-w-3xl text-center text-xl text-slate-700 dark:text-slate-300"
             >
-              Mari kita mulai onboarding Anda dengan pendampingan tim expert kami.
+              {t('cta_subtitle')}
               <br />
               <span className="text-lg text-slate-600 dark:text-slate-400">
-                90 hari dari kickoff hingga Go-Live yang sukses.
+                {t('cta_duration')}
               </span>
             </motion.p>
             <motion.div
@@ -884,9 +861,7 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  Jadwalkan Kickoff Meeting
-                  {' '}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('cta_button_1')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/contact">
@@ -895,7 +870,7 @@ export default function OnboardingSlideContent() {
                   variant="outline"
                   className="h-14 rounded-xl border-2 border-slate-900 bg-transparent px-10 text-lg font-semibold text-slate-900 hover:bg-slate-900/10 dark:border-white dark:text-white dark:hover:bg-white/10"
                 >
-                  Hubungi Implementation Team
+                  {t('cta_button_2')}
                 </Button>
               </Link>
             </motion.div>

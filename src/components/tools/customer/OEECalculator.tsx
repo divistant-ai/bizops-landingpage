@@ -2,6 +2,7 @@
 
 import type { CalculationError } from '@/utils/errorHandling';
 import { AlertCircle, Factory, Gauge, Info, Loader2, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import ActionButtons from '@/components/tools/shared/ActionButtons';
 import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
@@ -36,6 +37,8 @@ type OEEResult = {
 };
 
 export default function OEECalculator() {
+  const t = useTranslations('CustomerTools.ProductionEfficiency');
+
   const [plannedProductionTime, setPlannedProductionTime] = useState<string>('480');
   const [downtime, setDowntime] = useState<string>('60');
   const [idealCycleTime, setIdealCycleTime] = useState<string>('1');
@@ -50,11 +53,11 @@ export default function OEECalculator() {
     setIsCalculating(true);
 
     const validationErrors = validateFields([
-      () => validateNumber(plannedProductionTime, { min: 0, fieldName: 'Waktu Produksi' }),
-      () => validateNumber(downtime, { min: 0, fieldName: 'Downtime' }),
-      () => validateNumber(idealCycleTime, { min: 0, fieldName: 'Cycle Time Ideal' }),
-      () => validateNumber(totalUnits, { min: 0, fieldName: 'Total Unit' }),
-      () => validateNumber(goodUnits, { min: 0, fieldName: 'Good Units' }),
+      () => validateNumber(plannedProductionTime, { min: 0, fieldName: t('planned_time') }),
+      () => validateNumber(downtime, { min: 0, fieldName: t('downtime') }),
+      () => validateNumber(idealCycleTime, { min: 0, fieldName: t('cycle_time') }),
+      () => validateNumber(totalUnits, { min: 0, fieldName: t('total_units') }),
+      () => validateNumber(goodUnits, { min: 0, fieldName: t('good_units') }),
     ]);
 
     if (validationErrors.length > 0) {
@@ -82,13 +85,13 @@ export default function OEECalculator() {
 
           const oee = (availability * performance * quality) / 10000;
 
-          let classification = 'Poor';
+          let classification = t('classification_poor');
           if (oee >= 85) {
-            classification = 'World Class';
+            classification = t('classification_world_class');
           } else if (oee >= 60) {
-            classification = 'Good';
+            classification = t('classification_good');
           } else if (oee >= 40) {
-            classification = 'Fair';
+            classification = t('classification_fair');
           }
 
           const lossesBreakdown = {
@@ -126,24 +129,25 @@ export default function OEECalculator() {
     }
 
     const content = formatResultAsText(
-      'Kalkulator OEE (Overall Equipment Effectiveness)',
+      t('download_title'),
       {
-        'Waktu Produksi (menit)': plannedProductionTime,
-        'Downtime (menit)': downtime,
-        'Cycle Time Ideal (menit/unit)': idealCycleTime,
-        'Total Unit Diproduksi': totalUnits,
-        'Good Units': goodUnits,
+        [t('download_planned_time')]: plannedProductionTime,
+        [t('download_downtime')]: downtime,
+        [t('download_cycle_time')]: idealCycleTime,
+        [t('download_total_units')]: totalUnits,
+        [t('download_good_units')]: goodUnits,
       },
       {
-        'Availability': `${result.availability.toFixed(2)}%`,
-        'Performance': `${result.performance.toFixed(2)}%`,
-        'Quality': `${result.quality.toFixed(2)}%`,
-        'OEE Score': `${result.oee.toFixed(2)}%`,
-        'Classification': result.classification,
+        [t('download_availability')]: `${result.availability.toFixed(2)}%`,
+        [t('download_performance')]: `${result.performance.toFixed(2)}%`,
+        [t('download_quality')]: `${result.quality.toFixed(2)}%`,
+        [t('download_oee')]: `${result.oee.toFixed(2)}%`,
+        [t('download_classification')]: result.classification,
       },
     );
 
-    downloadAsText(content, `oee-${Date.now()}.txt`);
+    const timestamp = Date.now();
+    downloadAsText(content, `oee-${timestamp}.txt`);
   };
 
   const handleShare = async () => {
@@ -152,11 +156,11 @@ export default function OEECalculator() {
     }
 
     const shareText = generateShareText(
-      'Kalkulator OEE',
-      `OEE Score: ${result.oee.toFixed(1)}% (${result.classification})`,
+      t('share_title'),
+      `${t('share_oee_score')}: ${result.oee.toFixed(1)}% (${result.classification})`,
     );
 
-    await shareResult('Hasil Kalkulator OEE', shareText);
+    await shareResult(t('share_title'), shareText);
   };
 
   const getOEEBgColor = (oee: number) => {
@@ -180,12 +184,9 @@ export default function OEECalculator() {
             <Factory className="h-4 w-4" />
             Customer Tool
           </div>
-          <h1 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-            Kalkulator OEE (Overall Equipment Effectiveness)
-          </h1>
+          <h1 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">{t('title')}</h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Ukur efisiensi produksi dengan metode OEE. Identifikasi losses dan tingkatkan
-            produktivitas!
+            {t('subtitle')}
           </p>
         </div>
 
@@ -195,7 +196,7 @@ export default function OEECalculator() {
           <div className="space-y-6">
             <Card className="p-6">
               <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
-                Input Data Produksi
+                {t('input_title')}
               </h2>
 
               <div className="space-y-6">
@@ -204,7 +205,7 @@ export default function OEECalculator() {
                     htmlFor="planned-time"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Waktu Produksi Terencana (menit)
+                    {t('planned_time')}
                   </label>
                   <input
                     id="planned-time"
@@ -222,7 +223,7 @@ export default function OEECalculator() {
                     id="planned-time-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    Contoh: 8 jam = 480 menit
+                    {t('planned_time_help')}
                   </p>
                 </div>
 
@@ -231,7 +232,7 @@ export default function OEECalculator() {
                     htmlFor="downtime"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Total Downtime (menit)
+                    {t('downtime')}
                   </label>
                   <input
                     id="downtime"
@@ -246,7 +247,7 @@ export default function OEECalculator() {
                     aria-describedby="downtime-help"
                   />
                   <p id="downtime-help" className="mt-1 text-xs text-gray-500 dark:text-slate-500">
-                    Waktu mesin berhenti (breakdown, setup, dll)
+                    {t('downtime_help')}
                   </p>
                 </div>
 
@@ -255,7 +256,7 @@ export default function OEECalculator() {
                     htmlFor="cycle-time"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Cycle Time Ideal (menit/unit)
+                    {t('cycle_time')}
                   </label>
                   <input
                     id="cycle-time"
@@ -273,7 +274,7 @@ export default function OEECalculator() {
                     id="cycle-time-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    Waktu ideal untuk memproduksi 1 unit
+                    {t('cycle_time_help')}
                   </p>
                 </div>
 
@@ -282,7 +283,7 @@ export default function OEECalculator() {
                     htmlFor="total-units"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Total Unit Diproduksi
+                    {t('total_units')}
                   </label>
                   <input
                     id="total-units"
@@ -302,7 +303,7 @@ export default function OEECalculator() {
                     htmlFor="good-units"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Good Units (Tanpa Defect)
+                    {t('good_units')}
                   </label>
                   <input
                     id="good-units"
@@ -324,19 +325,17 @@ export default function OEECalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung OEE"
                 >
-                  {isCalculating
-                    ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Menghitung...
-                        </>
-                      )
-                    : (
-                        <>
-                          <Gauge className="mr-2 h-5 w-5" />
-                          Hitung OEE
-                        </>
-                      )}
+                  {isCalculating ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      {t('calculating')}
+                    </>
+                  ) : (
+                    <>
+                      <Gauge className="mr-2 h-5 w-5" />
+                      {t('calculate_button')}
+                    </>
+                  )}
                 </Button>
               </div>
             </Card>
@@ -345,32 +344,20 @@ export default function OEECalculator() {
               <div className="flex gap-2">
                 <Info className="h-5 w-5 flex-shrink-0 text-indigo-600 dark:text-indigo-400" />
                 <div className="text-xs text-gray-700 dark:text-slate-300">
-                  <p className="mb-1 font-semibold dark:text-white">OEE Formula:</p>
-                  <p>OEE = Availability × Performance × Quality</p>
+                  <p className="mb-1 font-semibold dark:text-white">{t('info_title')}</p>
+                  <p>{t('info_formula')}</p>
                   <ul className="mt-2 space-y-0.5">
                     <li>
-                      •
-                      <strong>World Class:</strong>
-                      {' '}
-                      ≥ 85%
+                      •<strong>{t('info_world_class')}</strong> ≥ 85%
                     </li>
                     <li>
-                      •
-                      <strong>Good:</strong>
-                      {' '}
-                      60-84%
+                      •<strong>{t('info_good')}</strong> 60-84%
                     </li>
                     <li>
-                      •
-                      <strong>Fair:</strong>
-                      {' '}
-                      40-59%
+                      •<strong>{t('info_fair')}</strong> 40-59%
                     </li>
                     <li>
-                      •
-                      <strong>Poor:</strong>
-                      {' '}
-                      &lt; 40%
+                      •<strong>{t('info_poor')}</strong> &lt; 40%
                     </li>
                   </ul>
                 </div>
@@ -379,154 +366,129 @@ export default function OEECalculator() {
           </div>
 
           <div className="space-y-6">
-            {result
-              ? (
-                  <div
-                    role="region"
-                    aria-live="polite"
-                    aria-label="Hasil perhitungan OEE"
-                    className="space-y-6"
-                  >
-                    <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
-                      <h3 className="mb-4 text-lg font-semibold">OEE Score</h3>
-                      <div className="mb-4 text-center">
-                        <p className="text-6xl font-bold">
-                          {result.oee.toFixed(1)}
-                          %
-                        </p>
-                        <p className="mt-2 text-xl font-semibold">{result.classification}</p>
-                      </div>
-                      <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
-                        <div>
-                          <p className="opacity-80">Availability</p>
-                          <p className="text-lg font-bold">
-                            {result.availability.toFixed(1)}
-                            %
-                          </p>
-                        </div>
-                        <div>
-                          <p className="opacity-80">Performance</p>
-                          <p className="text-lg font-bold">
-                            {result.performance.toFixed(1)}
-                            %
-                          </p>
-                        </div>
-                        <div>
-                          <p className="opacity-80">Quality</p>
-                          <p className="text-lg font-bold">
-                            {result.quality.toFixed(1)}
-                            %
-                          </p>
-                        </div>
-                      </div>
-                    </Card>
-
-                    <Card className="p-6">
-                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                        <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                        Analisis Losses
-                      </h3>
-
-                      <div className="space-y-3">
-                        <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
-                          <div className="mb-1 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Downtime Loss
-                            </span>
-                            <span className="text-lg font-bold text-red-600 dark:text-red-400">
-                              {result.lossesBreakdown.unplannedDowntime.toFixed(1)}
-                              %
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-600 dark:text-slate-400">
-                            Mesin berhenti:
-                            {' '}
-                            {downtime}
-                            {' '}
-                            menit
-                          </p>
-                        </div>
-
-                        <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
-                          <div className="mb-1 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Speed Loss
-                            </span>
-                            <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
-                              {result.lossesBreakdown.speedLoss.toFixed(1)}
-                              %
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-600 dark:text-slate-400">
-                            Produksi lebih lambat dari ideal
-                          </p>
-                        </div>
-
-                        <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
-                          <div className="mb-1 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Quality Loss
-                            </span>
-                            <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
-                              {result.lossesBreakdown.qualityLoss.toFixed(1)}
-                              %
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-600 dark:text-slate-400">
-                            Defect:
-                            {' '}
-                            {Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits)}
-                            {' '}
-                            unit
-                          </p>
-                        </div>
-                      </div>
-
-                      <ActionButtons
-                        onDownload={handleDownload}
-                        onShare={handleShare}
-                        disabled={!result}
-                        className="mt-6"
-                      />
-                    </Card>
-
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                        Rekomendasi Improvement
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
-                        {result.availability < 90 && (
-                          <li className="flex items-start gap-2">
-                            <span className="text-red-600 dark:text-red-400">•</span>
-                            <span>Kurangi downtime dengan preventive maintenance</span>
-                          </li>
-                        )}
-                        {result.performance < 95 && (
-                          <li className="flex items-start gap-2">
-                            <span className="text-yellow-600 dark:text-yellow-400">•</span>
-                            <span>Optimalkan kecepatan produksi dan kurangi small stops</span>
-                          </li>
-                        )}
-                        {result.quality < 99 && (
-                          <li className="flex items-start gap-2">
-                            <span className="text-orange-600 dark:text-orange-400">•</span>
-                            <span>Tingkatkan quality control dan kurangi defect rate</span>
-                          </li>
-                        )}
-                      </ul>
-                    </Card>
+            {result ? (
+              <div
+                role="region"
+                aria-live="polite"
+                aria-label="Hasil perhitungan OEE"
+                className="space-y-6"
+              >
+                <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
+                  <h3 className="mb-4 text-lg font-semibold">{t('oee_score')}</h3>
+                  <div className="mb-4 text-center">
+                    <p className="text-6xl font-bold">{result.oee.toFixed(1)}%</p>
+                    <p className="mt-2 text-xl font-semibold">{result.classification}</p>
                   </div>
-                )
-              : (
-                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                  <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
                     <div>
-                      <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                      <p className="text-gray-500 dark:text-slate-500">
-                        Masukkan data produksi dan klik tombol hitung
+                      <p className="opacity-80">{t('availability')}</p>
+                      <p className="text-lg font-bold">{result.availability.toFixed(1)}%</p>
+                    </div>
+                    <div>
+                      <p className="opacity-80">{t('performance')}</p>
+                      <p className="text-lg font-bold">{result.performance.toFixed(1)}%</p>
+                    </div>
+                    <div>
+                      <p className="opacity-80">{t('quality')}</p>
+                      <p className="text-lg font-bold">{result.quality.toFixed(1)}%</p>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                    <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                    {t('losses_title')}
+                  </h3>
+
+                  <div className="space-y-3">
+                    <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
+                      <div className="mb-1 flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('downtime_loss')}
+                        </span>
+                        <span className="text-lg font-bold text-red-600 dark:text-red-400">
+                          {result.lossesBreakdown.unplannedDowntime.toFixed(1)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-slate-400">
+                        {t('downtime_loss_desc', { minutes: downtime })}
                       </p>
                     </div>
-                  </Card>
-                )}
+
+                    <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
+                      <div className="mb-1 flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('speed_loss')}
+                        </span>
+                        <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                          {result.lossesBreakdown.speedLoss.toFixed(1)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-slate-400">
+                        {t('speed_loss_desc')}
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
+                      <div className="mb-1 flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('quality_loss')}
+                        </span>
+                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                          {result.lossesBreakdown.qualityLoss.toFixed(1)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-slate-400">
+                        {t('quality_loss_desc', {
+                          units: Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits),
+                        })}
+                      </p>
+                    </div>
+                  </div>
+
+                  <ActionButtons
+                    onDownload={handleDownload}
+                    onShare={handleShare}
+                    disabled={!result}
+                    className="mt-6"
+                  />
+                </Card>
+
+                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                  <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
+                    {t('recommendations_title')}
+                  </h4>
+                  <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
+                    {result.availability < 90 && (
+                      <li className="flex items-start gap-2">
+                        <span className="text-red-600 dark:text-red-400">•</span>
+                        <span>{t('rec_reduce_downtime')}</span>
+                      </li>
+                    )}
+                    {result.performance < 95 && (
+                      <li className="flex items-start gap-2">
+                        <span className="text-yellow-600 dark:text-yellow-400">•</span>
+                        <span>{t('rec_optimize_speed')}</span>
+                      </li>
+                    )}
+                    {result.quality < 99 && (
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange-600 dark:text-orange-400">•</span>
+                        <span>{t('rec_improve_quality')}</span>
+                      </li>
+                    )}
+                  </ul>
+                </Card>
+              </div>
+            ) : (
+              <Card className="flex h-full items-center justify-center p-12 text-center">
+                <div>
+                  <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                </div>
+              </Card>
+            )}
           </div>
         </div>
 
@@ -538,18 +500,15 @@ export default function OEECalculator() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
-                  Real-time OEE Monitoring & Analytics
+                  {t('upsell_title')}
                 </h3>
-                <p className="mb-4 text-gray-600 dark:text-slate-400">
-                  Hitung OEE manual setiap hari? BizOps otomatis tracking OEE real-time, analisis
-                  losses, dan rekomendasi improvement untuk setiap mesin.
-                </p>
+                <p className="mb-4 text-gray-600 dark:text-slate-400">{t('upsell_desc')}</p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
-                    Coba BizOps Gratis 14 Hari
+                    {t('upsell_cta')}
                   </Button>
                   <Button variant="outline" size="lg">
-                    Lihat Demo Manufacturing Module
+                    {t('upsell_demo')}
                   </Button>
                 </div>
               </div>
@@ -561,13 +520,13 @@ export default function OEECalculator() {
           <div className="flex gap-3">
             <AlertCircle className="h-5 w-5 flex-shrink-0 text-indigo-600 dark:text-indigo-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold dark:text-white">Tips Meningkatkan OEE:</p>
+              <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">
-                <li>Implementasi TPM (Total Productive Maintenance)</li>
-                <li>Standardisasi proses dan work instructions</li>
-                <li>Training operator secara berkala</li>
-                <li>Monitor OEE per shift untuk identifikasi pattern</li>
-                <li>Focus on biggest losses first (Pareto principle)</li>
+                <li>{t('tip_1')}</li>
+                <li>{t('tip_2')}</li>
+                <li>{t('tip_3')}</li>
+                <li>{t('tip_4')}</li>
+                <li>{t('tip_5')}</li>
               </ul>
             </div>
           </div>

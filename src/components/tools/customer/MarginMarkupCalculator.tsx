@@ -2,6 +2,7 @@
 
 import type { CalculationError } from '@/utils/errorHandling';
 import { AlertCircle, Calculator, DollarSign, Info, Loader2, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import ActionButtons from '@/components/tools/shared/ActionButtons';
 import ErrorDisplay from '@/components/tools/shared/ErrorDisplay';
@@ -26,6 +27,8 @@ type Result = {
 };
 
 export default function MarginMarkupCalculator() {
+  const t = useTranslations('CustomerTools.MarginMarkup');
+
   const [mode, setMode] = useState<CalculationMode>('margin');
   const [cost, setCost] = useState<string>('100000');
   const [percentage, setPercentage] = useState<string>('30');
@@ -42,17 +45,17 @@ export default function MarginMarkupCalculator() {
 
     if (mode === 'selling-price') {
       validationErrors = validateFields([
-        () => validateNumber(cost, { min: 0, fieldName: 'Harga Pokok' }),
-        () => validateNumber(sellingPrice, { min: 0, fieldName: 'Harga Jual' }),
+        () => validateNumber(cost, { min: 0, fieldName: t('cost_price') }),
+        () => validateNumber(sellingPrice, { min: 0, fieldName: t('selling_price') }),
       ]);
     } else {
       validationErrors = validateFields([
-        () => validateNumber(cost, { min: 0, fieldName: 'Harga Pokok' }),
+        () => validateNumber(cost, { min: 0, fieldName: t('cost_price') }),
         () =>
           validateNumber(percentage, {
             min: 0,
             max: 1000,
-            fieldName: mode === 'margin' ? 'Margin' : 'Markup',
+            fieldName: mode === 'margin' ? t('margin_label') : t('markup_label'),
           }),
       ]);
     }
@@ -130,29 +133,46 @@ export default function MarginMarkupCalculator() {
     }, 100);
   };
 
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0,
+    }).format(value);
+  };
+
   const handleDownload = () => {
     if (!result) {
       return;
     }
 
+    const modeText =
+      mode === 'margin'
+        ? t('download_mode_margin')
+        : mode === 'markup'
+          ? t('download_mode_markup')
+          : t('download_mode_selling');
+
     const content = formatResultAsText(
-      'Kalkulator Margin & Markup',
+      t('download_title'),
       {
-        'Mode Perhitungan':
-          mode === 'margin' ? 'Dari Margin' : mode === 'markup' ? 'Dari Markup' : 'Dari Harga Jual',
-        'Harga Pokok': formatCurrency(result.cost),
-        ...(mode !== 'selling-price' ? { Persentase: `${percentage}%` } : {}),
-        ...(mode === 'selling-price' ? { 'Harga Jual': formatCurrency(result.sellingPrice) } : {}),
+        [t('download_mode')]: modeText,
+        [t('download_cost')]: formatCurrency(result.cost),
+        ...(mode !== 'selling-price' ? { [t('download_percentage')]: `${percentage}%` } : {}),
+        ...(mode === 'selling-price'
+          ? { [t('download_selling_price')]: formatCurrency(result.sellingPrice) }
+          : {}),
       },
       {
-        'Harga Jual': formatCurrency(result.sellingPrice),
-        'Profit': formatCurrency(result.profit),
-        'Margin': `${result.margin.toFixed(2)}%`,
-        'Markup': `${result.markup.toFixed(2)}%`,
+        [t('download_selling_price')]: formatCurrency(result.sellingPrice),
+        [t('download_profit')]: formatCurrency(result.profit),
+        [t('download_margin')]: `${result.margin.toFixed(2)}%`,
+        [t('download_markup')]: `${result.markup.toFixed(2)}%`,
       },
     );
 
-    downloadAsText(content, `margin-markup-${Date.now()}.txt`);
+    const timestamp = Date.now();
+    downloadAsText(content, `margin-markup-${timestamp}.txt`);
   };
 
   const handleShare = async () => {
@@ -161,19 +181,11 @@ export default function MarginMarkupCalculator() {
     }
 
     const shareText = generateShareText(
-      'Kalkulator Margin & Markup',
-      `Harga Jual: ${formatCurrency(result.sellingPrice)} | Margin: ${result.margin.toFixed(1)}% | Markup: ${result.markup.toFixed(1)}%`,
+      t('title'),
+      `${t('share_selling_price')}: ${formatCurrency(result.sellingPrice)} | ${t('share_margin')}: ${result.margin.toFixed(1)}% | ${t('share_markup')}: ${result.markup.toFixed(1)}%`,
     );
 
-    await shareResult('Hasil Kalkulator Margin & Markup', shareText);
-  };
-
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0,
-    }).format(value);
+    await shareResult(t('share_title'), shareText);
   };
 
   return (
@@ -184,11 +196,9 @@ export default function MarginMarkupCalculator() {
             <Calculator className="h-4 w-4" />
             Customer Tool
           </div>
-          <h1 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
-            Kalkulator Margin & Markup
-          </h1>
+          <h1 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">{t('title')}</h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Hitung harga jual optimal dengan margin atau markup yang tepat. Pahami perbedaannya!
+            {t('subtitle')}
           </p>
         </div>
 
@@ -198,7 +208,7 @@ export default function MarginMarkupCalculator() {
           <div className="space-y-6">
             <Card className="p-6">
               <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
-                Mode Perhitungan
+                {t('calculation_mode_title')}
               </h2>
 
               <div className="mb-6 grid grid-cols-3 gap-2">
@@ -211,7 +221,7 @@ export default function MarginMarkupCalculator() {
                   }`}
                   aria-pressed={mode === 'margin'}
                 >
-                  Dari Margin
+                  {t('mode_from_margin')}
                 </button>
                 <button
                   onClick={() => setMode('markup')}
@@ -222,7 +232,7 @@ export default function MarginMarkupCalculator() {
                   }`}
                   aria-pressed={mode === 'markup'}
                 >
-                  Dari Markup
+                  {t('mode_from_markup')}
                 </button>
                 <button
                   onClick={() => setMode('selling-price')}
@@ -233,7 +243,7 @@ export default function MarginMarkupCalculator() {
                   }`}
                   aria-pressed={mode === 'selling-price'}
                 >
-                  Dari Harga Jual
+                  {t('mode_from_selling_price')}
                 </button>
               </div>
 
@@ -243,7 +253,7 @@ export default function MarginMarkupCalculator() {
                     htmlFor="cost"
                     className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
-                    Harga Pokok / Cost
+                    {t('cost_price')}
                   </label>
                   <div className="relative">
                     <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
@@ -267,66 +277,64 @@ export default function MarginMarkupCalculator() {
                   </p>
                 </div>
 
-                {mode !== 'selling-price'
-                  ? (
-                      <div>
-                        <label
-                          htmlFor="percentage"
-                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
-                        >
-                          {mode === 'margin' ? 'Target Margin (%)' : 'Target Markup (%)'}
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="percentage"
-                            type="text"
-                            value={percentage}
-                            onChange={(e) => {
-                              const value = e.target.value.replace(/[^\d.]/g, '');
-                              setPercentage(value);
-                            }}
-                            className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                            placeholder="30"
-                          />
-                          <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">
-                            %
-                          </span>
-                        </div>
-                      </div>
-                    )
-                  : (
-                      <div>
-                        <label
-                          htmlFor="selling-price"
-                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
-                        >
-                          Harga Jual
-                        </label>
-                        <div className="relative">
-                          <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
-                            Rp
-                          </span>
-                          <input
-                            id="selling-price"
-                            type="text"
-                            value={sellingPrice}
-                            onChange={(e) => {
-                              const value = e.target.value.replace(/\D/g, '');
-                              setSellingPrice(value);
-                            }}
-                            className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-12 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                            placeholder="150000"
-                            aria-describedby="selling-price-help"
-                          />
-                        </div>
-                        <p
-                          id="selling-price-help"
-                          className="mt-1 text-xs text-gray-500 dark:text-slate-500"
-                        >
-                          {sellingPrice && formatCurrency(Number.parseFloat(sellingPrice) || 0)}
-                        </p>
-                      </div>
-                    )}
+                {mode !== 'selling-price' ? (
+                  <div>
+                    <label
+                      htmlFor="percentage"
+                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                    >
+                      {mode === 'margin' ? t('target_margin') : t('target_markup')}
+                    </label>
+                    <div className="relative">
+                      <input
+                        id="percentage"
+                        type="text"
+                        value={percentage}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/[^\d.]/g, '');
+                          setPercentage(value);
+                        }}
+                        className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                        placeholder="30"
+                      />
+                      <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">
+                        %
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <label
+                      htmlFor="selling-price"
+                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                    >
+                      {t('selling_price')}
+                    </label>
+                    <div className="relative">
+                      <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                        Rp
+                      </span>
+                      <input
+                        id="selling-price"
+                        type="text"
+                        value={sellingPrice}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/\D/g, '');
+                          setSellingPrice(value);
+                        }}
+                        className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-12 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                        placeholder="150000"
+                        aria-describedby="selling-price-help"
+                      />
+                    </div>
+                    <p
+                      id="selling-price-help"
+                      className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                    >
+                      {sellingPrice && formatCurrency(Number.parseFloat(sellingPrice) || 0)}
+                    </p>
+                  </div>
+                )}
 
                 <Button
                   onClick={calculate}
@@ -335,19 +343,17 @@ export default function MarginMarkupCalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung margin dan markup"
                 >
-                  {isCalculating
-                    ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Menghitung...
-                        </>
-                      )
-                    : (
-                        <>
-                          <Calculator className="mr-2 h-5 w-5" />
-                          Hitung
-                        </>
-                      )}
+                  {isCalculating ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      {t('calculating')}
+                    </>
+                  ) : (
+                    <>
+                      <Calculator className="mr-2 h-5 w-5" />
+                      {t('calculate_button')}
+                    </>
+                  )}
                 </Button>
               </div>
             </Card>
@@ -356,17 +362,13 @@ export default function MarginMarkupCalculator() {
               <div className="flex gap-2">
                 <Info className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
                 <div className="text-xs text-gray-700 dark:text-slate-300">
-                  <p className="mb-2 font-semibold dark:text-white">Perbedaan Margin vs Markup:</p>
+                  <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
                   <ul className="space-y-1">
                     <li>
-                      <strong>Margin:</strong>
-                      {' '}
-                      Profit dibagi Harga Jual × 100%
+                      <strong>{t('info_margin')}:</strong> {t('info_margin_desc')}
                     </li>
                     <li>
-                      <strong>Markup:</strong>
-                      {' '}
-                      Profit dibagi Harga Pokok × 100%
+                      <strong>{t('info_markup')}:</strong> {t('info_markup_desc')}
                     </li>
                   </ul>
                 </div>
@@ -375,136 +377,132 @@ export default function MarginMarkupCalculator() {
           </div>
 
           <div className="space-y-6">
-            {result
-              ? (
-                  <div
-                    role="region"
-                    aria-live="polite"
-                    aria-label="Hasil perhitungan margin markup"
-                    className="space-y-6"
-                  >
-                    <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
-                      <h3 className="mb-4 text-lg font-semibold">Hasil Perhitungan</h3>
-                      <div className="mb-4 text-center">
-                        <p className="text-sm text-purple-100">Harga Jual Optimal</p>
-                        <p className="text-4xl font-bold">{formatCurrency(result.sellingPrice)}</p>
-                      </div>
-                      <div className="space-y-2 border-t border-white/20 pt-4">
-                        <div className="flex justify-between">
-                          <span className="text-purple-100">Harga Pokok</span>
-                          <span className="font-medium">{formatCurrency(result.cost)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-purple-100">Profit</span>
-                          <span className="font-bold text-yellow-300">
-                            {formatCurrency(result.profit)}
-                          </span>
-                        </div>
-                      </div>
-                    </Card>
-
-                    <Card className="p-6">
-                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                        <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                        Analisis Profit
-                      </h3>
-
-                      <div className="space-y-4">
-                        <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
-                          <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Margin
-                            </span>
-                            <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                              {result.margin.toFixed(2)}
-                              %
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-600 dark:text-slate-400">
-                            Dari setiap Rp 100 penjualan, Rp
-                            {' '}
-                            {result.margin.toFixed(0)}
-                            {' '}
-                            adalah profit
-                          </p>
-                        </div>
-
-                        <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
-                          <div className="mb-2 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Markup
-                            </span>
-                            <span className="text-2xl font-bold text-pink-600 dark:text-pink-400">
-                              {result.markup.toFixed(2)}
-                              %
-                            </span>
-                          </div>
-                          <p className="text-xs text-gray-600 dark:text-slate-400">
-                            Harga jual
-                            {' '}
-                            {result.markup.toFixed(0)}
-                            % lebih tinggi dari harga pokok
-                          </p>
-                        </div>
-
-                        <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-800">
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                              Profit per Unit
-                            </span>
-                            <span className="text-xl font-bold text-green-600 dark:text-green-400">
-                              {formatCurrency(result.profit)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <ActionButtons
-                        onDownload={handleDownload}
-                        onShare={handleShare}
-                        disabled={!result}
-                        className="mt-6"
-                      />
-                    </Card>
-
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                      <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-                        <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                        Proyeksi Penjualan
-                      </h4>
-                      <div className="grid grid-cols-3 gap-3 text-center text-sm">
-                        <div>
-                          <p className="text-gray-600 dark:text-slate-400">10 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">
-                            {formatCurrency(result.profit * 10)}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-gray-600 dark:text-slate-400">100 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">
-                            {formatCurrency(result.profit * 100)}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-gray-600 dark:text-slate-400">1000 Unit</p>
-                          <p className="font-bold text-gray-900 dark:text-white">
-                            {formatCurrency(result.profit * 1000)}
-                          </p>
-                        </div>
-                      </div>
-                    </Card>
+            {result ? (
+              <div
+                role="region"
+                aria-live="polite"
+                aria-label="Hasil perhitungan margin markup"
+                className="space-y-6"
+              >
+                <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
+                  <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
+                  <div className="mb-4 text-center">
+                    <p className="text-sm text-purple-100">{t('optimal_selling_price')}</p>
+                    <p className="text-4xl font-bold">{formatCurrency(result.sellingPrice)}</p>
                   </div>
-                )
-              : (
-                  <Card className="flex h-full items-center justify-center p-12 text-center">
-                    <div>
-                      <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                      <p className="text-gray-500 dark:text-slate-500">
-                        Pilih mode dan masukkan data untuk menghitung
+                  <div className="space-y-2 border-t border-white/20 pt-4">
+                    <div className="flex justify-between">
+                      <span className="text-purple-100">{t('cost_price_label')}</span>
+                      <span className="font-medium">{formatCurrency(result.cost)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-purple-100">{t('profit_label')}</span>
+                      <span className="font-bold text-yellow-300">
+                        {formatCurrency(result.profit)}
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                    <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                    {t('profit_analysis_title')}
+                  </h3>
+
+                  <div className="space-y-4">
+                    <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('margin_label')}
+                        </span>
+                        <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                          {result.margin.toFixed(2)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-slate-400">
+                        {t('margin_desc', { amount: result.margin.toFixed(0) })}
                       </p>
                     </div>
-                  </Card>
-                )}
+
+                    <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('markup_label')}
+                        </span>
+                        <span className="text-2xl font-bold text-pink-600 dark:text-pink-400">
+                          {result.markup.toFixed(2)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-slate-400">
+                        {t('markup_desc', { amount: result.markup.toFixed(0) })}
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-800">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                          {t('profit_per_unit')}
+                        </span>
+                        <span className="text-xl font-bold text-green-600 dark:text-green-400">
+                          {formatCurrency(result.profit)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ActionButtons
+                    onDownload={handleDownload}
+                    onShare={handleShare}
+                    disabled={!result}
+                    className="mt-6"
+                  />
+                </Card>
+
+                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                  <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                    <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                    {t('sales_projection_title')}
+                  </h4>
+                  <div className="grid grid-cols-3 gap-3 text-center text-sm">
+                    <div>
+                      <p className="text-gray-600 dark:text-slate-400">
+                        10
+                        {t('units')}
+                      </p>
+                      <p className="font-bold text-gray-900 dark:text-white">
+                        {formatCurrency(result.profit * 10)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600 dark:text-slate-400">
+                        100
+                        {t('units')}
+                      </p>
+                      <p className="font-bold text-gray-900 dark:text-white">
+                        {formatCurrency(result.profit * 100)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600 dark:text-slate-400">
+                        1000
+                        {t('units')}
+                      </p>
+                      <p className="font-bold text-gray-900 dark:text-white">
+                        {formatCurrency(result.profit * 1000)}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            ) : (
+              <Card className="flex h-full items-center justify-center p-12 text-center">
+                <div>
+                  <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                </div>
+              </Card>
+            )}
           </div>
         </div>
 
@@ -516,18 +514,15 @@ export default function MarginMarkupCalculator() {
               </div>
               <div className="flex-1">
                 <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
-                  Otomasi Pricing & Profit Analysis
+                  {t('upsell_title')}
                 </h3>
-                <p className="mb-4 text-gray-600 dark:text-slate-400">
-                  Hitung margin untuk ratusan produk secara manual? BizOps otomatis menghitung harga
-                  jual optimal, analisis profit, dan rekomendasi pricing strategy.
-                </p>
+                <p className="mb-4 text-gray-600 dark:text-slate-400">{t('upsell_desc')}</p>
                 <div className="flex flex-wrap gap-3">
                   <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
-                    Coba BizOps Gratis 14 Hari
+                    {t('upsell_cta')}
                   </Button>
                   <Button variant="outline" size="lg">
-                    Lihat Demo Pricing Module
+                    {t('upsell_demo')}
                   </Button>
                 </div>
               </div>
@@ -539,12 +534,12 @@ export default function MarginMarkupCalculator() {
           <div className="flex gap-3">
             <AlertCircle className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
-              <p className="mb-2 font-semibold dark:text-white">Tips Pricing:</p>
+              <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">
-                <li>Margin 20-30% cocok untuk produk retail dengan kompetisi tinggi</li>
-                <li>Margin 40-60% untuk produk premium atau niche market</li>
-                <li>Pertimbangkan biaya operasional dan overhead dalam harga pokok</li>
-                <li>Monitor harga kompetitor untuk tetap kompetitif</li>
+                <li>{t('tip_1')}</li>
+                <li>{t('tip_2')}</li>
+                <li>{t('tip_3')}</li>
+                <li>{t('tip_4')}</li>
               </ul>
             </div>
           </div>

@@ -153,6 +153,22 @@ const config: Config = {
         // Linear-like shadows
         'linear': '0px 1px 2px rgba(0, 0, 0, 0.08), 0px 4px 12px rgba(0, 0, 0, 0.05)',
         'linear-lg': '0px 2px 4px rgba(0, 0, 0, 0.06), 0px 8px 24px rgba(0, 0, 0, 0.08)',
+        // Glassmorphism shadows
+        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+        'glass-lg': '0 8px 32px rgba(0, 0, 0, 0.12)',
+        'glass-xl': '0 16px 48px rgba(0, 0, 0, 0.15)',
+        // Neumorphism shadows (light mode)
+        'neu-raised': '6px 6px 12px #d1d5db, -6px -6px 12px #ffffff',
+        'neu-pressed': 'inset 4px 4px 8px #d1d5db, inset -4px -4px 8px #ffffff',
+        'neu-flat': '3px 3px 6px #d1d5db, -3px -3px 6px #ffffff',
+        'neu-button': '4px 4px 10px #d1d5db, -4px -4px 10px #ffffff',
+        // Claymorphism shadows
+        'clay': '0 8px 32px rgba(0,0,0,0.08), inset 0 -4px 8px rgba(0,0,0,0.04), inset 0 4px 8px rgba(255,255,255,0.8)',
+        'clay-sm': '0 4px 16px rgba(0,0,0,0.06), inset 0 -2px 4px rgba(0,0,0,0.03), inset 0 2px 4px rgba(255,255,255,0.7)',
+        'clay-primary': '0 8px 24px rgba(37,99,235,0.35), inset 0 2px 4px rgba(255,255,255,0.3)',
+        'clay-danger': '0 8px 24px rgba(239,68,68,0.35), inset 0 2px 4px rgba(255,255,255,0.3)',
+        'clay-success': '0 8px 24px rgba(16,185,129,0.35), inset 0 2px 4px rgba(255,255,255,0.3)',
+        'clay-warning': '0 8px 24px rgba(245,158,11,0.35), inset 0 2px 4px rgba(255,255,255,0.3)',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
@@ -164,8 +180,14 @@ const config: Config = {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-slow': 'bounce 3s infinite',
         'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'floatSlow 8s ease-in-out infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'gradient': 'gradient 8s ease infinite',
+        'gradient-x': 'gradientX 15s ease infinite',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'scroll': 'scroll 30s linear infinite',
+        'scroll-fast': 'scroll 20s linear infinite',
+        'scroll-slow': 'scroll 40s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -204,6 +226,22 @@ const config: Config = {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
         },
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        gradientX: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(37,99,235,0.4)' },
+          '50%': { opacity: '0.8', boxShadow: '0 0 40px rgba(37,99,235,0.6)' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       transitionDuration: {
         0: '0ms',
@@ -219,7 +257,9 @@ const config: Config = {
         1000: '1000ms',
       },
       backdropBlur: {
-        xs: '2px',
+        'xs': '2px',
+        '3xl': '64px',
+        '4xl': '100px',
       },
       backgroundSize: {
         200: '200% 200%',

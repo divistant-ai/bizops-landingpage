@@ -2,11 +2,13 @@
 
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { Calendar, Clock, Search, X } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
 import { OptimizedImage } from '@/components/ui';
 import Button from '@/components/ui/Button';
+import { blogPosts } from '@/data/blogData';
 
 // SpotlightCard Component
 const SpotlightCard = ({
@@ -51,82 +53,11 @@ const SpotlightCard = ({
 
 const ITEMS_PER_PAGE = 6;
 
-// Sample blog data - should come from props or API
-const blogPosts = [
-  {
-    title: '10 Tanda Perusahaan Anda Butuh ERP',
-    summary:
-      'Pelajari indikator kunci yang menunjukkan bisnis Anda siap untuk transformasi digital dengan sistem ERP terintegrasi.',
-    category: 'Business Strategy',
-    date: '15 Nov 2024',
-    author: 'Tim BizOps',
-    slug: '10-tanda-butuh-erp',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-  },
-  {
-    title: 'Panduan Implementasi ERP untuk UMKM',
-    summary:
-      'Langkah-langkah praktis memulai digitalisasi untuk bisnis skala kecil dan menengah.',
-    category: 'Implementation',
-    date: '10 Nov 2024',
-    author: 'Andi Wijaya',
-    slug: 'panduan-erp-umkm',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
-  },
-  {
-    title: 'Cara Menghitung ROI Investasi ERP',
-    summary:
-      'Metode perhitungan return on investment yang akurat untuk proyek transformasi digital.',
-    category: 'Finance',
-    date: '5 Nov 2024',
-    author: 'Sarah Chen',
-    slug: 'hitung-roi-erp',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-  },
-  {
-    title: 'Otomasi Proses Bisnis dengan Workflow Engine',
-    summary:
-      'Tingkatkan efisiensi operasional dengan mengotomatisasi approval dan notifikasi.',
-    category: 'Technology',
-    date: '1 Nov 2024',
-    author: 'Budi Hartono',
-    slug: 'otomasi-workflow',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
-  },
-  {
-    title: 'Manajemen Inventory untuk Retail Modern',
-    summary:
-      'Strategi mengelola stok multi-gudang dengan akurasi tinggi dan real-time tracking.',
-    category: 'Operations',
-    date: '28 Okt 2024',
-    author: 'Linda Tan',
-    slug: 'manajemen-inventory',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
-  },
-  {
-    title: 'Kepatuhan Pajak Digital: Update Regulasi 2024',
-    summary:
-      'Perubahan terbaru dalam perpajakan digital dan dampaknya terhadap bisnis Anda.',
-    category: 'Compliance',
-    date: '25 Okt 2024',
-    author: 'Dewi Kusuma',
-    slug: 'pajak-digital-2024',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80',
-  },
-  {
-    title: 'Dashboard Analytics untuk Pengambilan Keputusan',
-    summary: 'Visualisasi data yang efektif untuk insight bisnis yang actionable.',
-    category: 'Analytics',
-    date: '20 Okt 2024',
-    author: 'Rudi Santoso',
-    slug: 'dashboard-analytics',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-  },
-];
-
 const featuredPost = blogPosts[0]!;
 
 export default function BlogContent() {
+  const t = useTranslations('Blog');
+  const locale = useLocale() as 'en' | 'id';
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -144,37 +75,32 @@ export default function BlogContent() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    document
-      .getElementById('blog-grid')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Extract unique categories and counts
-  const categories = [
-    'All',
-    ...Array.from(new Set(blogPosts.map(p => p.category))).sort(),
-  ];
+  const categories = ['All', ...Array.from(new Set(blogPosts.map((p) => p.category))).sort()];
 
   const getCategoryCount = (cat: string) => {
     if (cat === 'All') {
       return blogPosts.length;
     }
-    return blogPosts.filter(p => p.category === cat).length;
+    return blogPosts.filter((p) => p.category === cat).length;
   };
 
   // Filter Logic
   const filteredPosts = blogPosts.filter((post) => {
-    const matchSearch
-      = post.title.toLowerCase().includes(searchQuery.toLowerCase())
-        || post.summary.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchSearch =
+      post.title[locale].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.summary[locale].toLowerCase().includes(searchQuery.toLowerCase());
     const matchCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchSearch && matchCategory;
   });
 
   // If filtering, show all matches. If not filtering (All), exclude featured from grid to avoid duplicate
-  const gridPosts
-    = selectedCategory === 'All' && !searchQuery && featuredPost
-      ? filteredPosts.filter(p => p.slug !== featuredPost.slug)
+  const gridPosts =
+    selectedCategory === 'All' && !searchQuery && featuredPost
+      ? filteredPosts.filter((p) => p.slug !== featuredPost.slug)
       : filteredPosts;
 
   // Pagination Logic
@@ -195,13 +121,13 @@ export default function BlogContent() {
             className="mb-12 text-center"
           >
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white">
-              BizOps
-              {' '}
-              <span className="text-primary-600 dark:text-primary-400">Insights</span>
+              {t('hero_title')}{' '}
+              <span className="text-primary-600 dark:text-primary-400">
+                {t('hero_title_highlight')}
+              </span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              Panduan praktis, tren industri, dan best practices untuk pemimpin bisnis yang
-              ingin bertumbuh.
+              {t('hero_subtitle')}
             </p>
           </motion.div>
 
@@ -216,9 +142,9 @@ export default function BlogContent() {
               <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
               <input
                 type="text"
-                placeholder="Cari artikel..."
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-300 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-slate-500"
               />
               {searchQuery && (
@@ -239,7 +165,7 @@ export default function BlogContent() {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap justify-center gap-3"
           >
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -249,13 +175,7 @@ export default function BlogContent() {
                     : 'hover:border-primary-400 border border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300'
                 }`}
               >
-                {cat}
-                {' '}
-                <span className="text-xs opacity-70">
-                  (
-                  {getCategoryCount(cat)}
-                  )
-                </span>
+                {cat} <span className="text-xs opacity-70">({getCategoryCount(cat)})</span>
               </button>
             ))}
           </motion.div>
@@ -268,7 +188,7 @@ export default function BlogContent() {
           <div className="group relative min-h-[500px] overflow-hidden rounded-3xl shadow-2xl">
             <OptimizedImage
               src={featuredPost.image}
-              alt={featuredPost.title}
+              alt={featuredPost.title[locale]}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               width={1200}
               height={600}
@@ -276,25 +196,27 @@ export default function BlogContent() {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent"></div>
             <div className="absolute bottom-0 left-0 max-w-3xl p-8 md:p-12">
               <span className="bg-primary-600 mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase">
-                Featured Article
+                {t('featured_badge')}
               </span>
               <h2 className="group-hover:text-primary-200 mb-4 text-3xl font-bold text-white transition-colors md:text-5xl">
-                <Link href={`/blog/${featuredPost.slug}`}>{featuredPost.title}</Link>
+                <Link href={`/${locale}/blog/${featuredPost.slug}`}>
+                  {featuredPost.title[locale]}
+                </Link>
               </h2>
               <p className="mb-6 line-clamp-2 text-lg text-slate-300">
-                {featuredPost.summary}
+                {featuredPost.summary[locale]}
               </p>
               <div className="flex items-center gap-6 text-slate-300">
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  {featuredPost.date}
+                  {featuredPost.date[locale]}
                 </span>
                 <span>•</span>
-                <span>{featuredPost.author}</span>
+                <span>{featuredPost.author[locale]}</span>
                 <span>•</span>
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
-                  8 min read
+                  {featuredPost.readTime[locale]}
                 </span>
               </div>
             </div>
@@ -316,9 +238,7 @@ export default function BlogContent() {
           </div>
         ) : paginatedPosts.length === 0 ? (
           <div className="py-20 text-center">
-            <p className="text-lg text-slate-500 dark:text-slate-400">
-              Tidak ada artikel yang sesuai dengan pencarian Anda.
-            </p>
+            <p className="text-lg text-slate-500 dark:text-slate-400">{t('no_results')}</p>
             <Button
               onClick={() => {
                 setSearchQuery('');
@@ -326,7 +246,7 @@ export default function BlogContent() {
               }}
               className="mt-6"
             >
-              Reset Filter
+              {t('reset_filter')}
             </Button>
           </div>
         ) : (
@@ -339,14 +259,14 @@ export default function BlogContent() {
                 exit={{ opacity: 0, y: -20 }}
                 className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
               >
-                {paginatedPosts.map(post => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`}>
+                {paginatedPosts.map((post) => (
+                  <Link key={post.slug} href={`/${locale}/blog/${post.slug}`}>
                     <SpotlightCard className="h-full rounded-2xl">
                       <article className="flex h-full flex-col p-6">
                         <div className="relative mb-4 h-48 overflow-hidden rounded-xl">
                           <OptimizedImage
                             src={post.image}
-                            alt={post.title}
+                            alt={post.title[locale]}
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                             width={400}
                             height={300}
@@ -356,16 +276,16 @@ export default function BlogContent() {
                           {post.category}
                         </span>
                         <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 line-clamp-2 text-xl font-bold text-slate-900 transition-colors dark:text-white">
-                          {post.title}
+                          {post.title[locale]}
                         </h3>
                         <p className="mb-4 line-clamp-3 flex-grow text-sm text-slate-600 dark:text-slate-400">
-                          {post.summary}
+                          {post.summary[locale]}
                         </p>
                         <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-4 text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                          <span>{post.date}</span>
+                          <span>{post.date[locale]}</span>
                           <span className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            5 min
+                            {post.readTime[locale]}
                           </span>
                         </div>
                       </article>
@@ -393,19 +313,17 @@ export default function BlogContent() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8 dark:bg-slate-900">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-            Ingin Artikel Dikirim ke Email Anda?
+            {t('cta_title')}
           </h2>
-          <p className="mb-8 text-slate-600 dark:text-slate-300">
-            Dapatkan insight terbaru setiap minggu langsung ke inbox Anda.
-          </p>
+          <p className="mb-8 text-slate-600 dark:text-slate-300">{t('cta_subtitle')}</p>
           <div className="mx-auto flex max-w-md flex-col justify-center gap-4 sm:flex-row">
             <input
               type="email"
-              placeholder="email@perusahaan.com"
+              placeholder={t('cta_email_placeholder')}
               className="focus:ring-primary-500 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:ring-2 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-white"
             />
             <Button className="bg-primary-600 hover:bg-primary-700 text-slate-900 dark:text-white">
-              Subscribe
+              {t('cta_subscribe')}
             </Button>
           </div>
         </div>

@@ -1,27 +1,20 @@
 'use client';
 
+import type { CustomerStory } from '@/data/companyContent';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { AlertTriangle, CheckCircle2, Quote } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Typography } from '@/components/ui';
 import Stack from '@/components/ui/Stack';
-
-type CustomerStory = {
-  client: string;
-  industry: string;
-  logo: string;
-  title: string;
-  chaos: string;
-  solution: string;
-  desc: string;
-  metrics: Array<{ value: string; label: string }>;
-};
 
 type CustomerStoryCardProps = {
   story: CustomerStory;
   idx: number;
+  locale: 'en' | 'id';
 };
 
-export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
+export function CustomerStoryCard({ story, idx, locale }: CustomerStoryCardProps) {
+  const t = useTranslations('Customers');
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -69,7 +62,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
               {story.client}
             </Typography>
             <Typography variant="body" className="tracking-wider text-slate-400">
-              {story.industry}
+              {story.industry[locale]}
             </Typography>
 
             <Stack direction="horizontal" gap={6} className="w-full border-t border-white/10 pt-8">
@@ -78,7 +71,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
                   <div className="mb-1 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-4xl leading-tight font-bold text-transparent">
                     {m.value}
                   </div>
-                  <div className="text-sm font-medium text-slate-400">{m.label}</div>
+                  <div className="text-sm font-medium text-slate-400">{m.label[locale]}</div>
                 </div>
               ))}
             </Stack>
@@ -92,9 +85,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
               variant="h5"
               className="mb-4 leading-tight font-bold text-slate-900 dark:text-white"
             >
-              "
-              {story.title}
-              "
+              "{story.title[locale]}"
             </Typography>
 
             <div className="flex gap-4">
@@ -103,7 +94,7 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
                 variant="body"
                 className="leading-relaxed text-slate-600 dark:text-slate-300"
               >
-                {story.desc}
+                {story.desc[locale]}
               </Typography>
             </div>
           </div>
@@ -113,25 +104,25 @@ export function CustomerStoryCard({ story, idx }: CustomerStoryCardProps) {
             <div className="rounded-xl border border-red-100 bg-red-50 p-5 dark:border-red-900/20 dark:bg-red-900/10">
               <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-red-700 uppercase dark:text-red-400">
                 <AlertTriangle className="h-4 w-4" />
-                Before BizOps
+                {t('before_bizops')}
               </div>
               <Typography
                 variant="small"
                 className="leading-relaxed text-slate-700 dark:text-slate-300"
               >
-                {story.chaos}
+                {story.chaos[locale]}
               </Typography>
             </div>
             <div className="rounded-xl border border-green-100 bg-green-50 p-5 dark:border-green-900/20 dark:bg-green-900/10">
               <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-wider text-green-700 uppercase dark:text-green-400">
                 <CheckCircle2 className="h-4 w-4" />
-                After BizOps
+                {t('after_bizops')}
               </div>
               <Typography
                 variant="small"
                 className="leading-relaxed text-slate-700 dark:text-slate-300"
               >
-                {story.solution}
+                {story.solution[locale]}
               </Typography>
             </div>
           </div>

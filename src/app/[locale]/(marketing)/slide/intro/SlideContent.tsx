@@ -17,6 +17,7 @@ import {
   Wallet,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import SlideDeck from '@/components/presentation/SlideDeck';
@@ -107,6 +108,8 @@ const Card = ({ title, icon: Icon, desc, color = 'blue', children }: any) => (
 
 // --- MAIN CONTENT ---
 export default function SlideContent() {
+  const t = useTranslations('Intro');
+
   const slides: SlideData[] = [
     // 1. COVER
     {
@@ -125,26 +128,17 @@ export default function SlideContent() {
                 variant="outline-white"
                 className="mb-8 border-blue-500/30 bg-blue-500/10 px-6 py-2 text-base text-blue-600 backdrop-blur-md dark:text-blue-300"
               >
-                <span className="text-slate-800 dark:text-white">
-                  The Adaptive Business Operating System
-                </span>
+                <span className="text-slate-800 dark:text-white">{t('intro_badge')}</span>
               </Badge>
             </MotionItem>
             <MotionItem className="max-w-5xl text-center">
-              <h1 className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white">
-                <span className="text-slate-800 dark:text-white">Modernisasi Tanpa</span>
-                {' '}
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Merombak Segalanya.
-                </span>
+              <h1 className="mb-8 text-4xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl dark:text-white">
+                <span className="text-slate-800 dark:text-white">{t('intro_title')}</span>
               </h1>
             </MotionItem>
             <MotionItem>
               <p className="max-w-3xl text-center text-xl leading-relaxed text-slate-600 md:text-2xl dark:text-slate-400">
-                <span className="text-slate-800 dark:text-white">
-                  Satu platform terintegrasi untuk menyatukan HR, Finance, dan Operasional.
-                </span>
+                <span className="text-slate-800 dark:text-white">{t('intro_desc')}</span>
               </p>
             </MotionItem>
           </AnimatedSlide>
@@ -163,22 +157,19 @@ export default function SlideContent() {
               <div>
                 <MotionItem>
                   <h2 className="mb-8 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">
-                    <span className="text-slate-800 dark:text-white">Mengapa Sekarang?</span>
+                    <span className="text-slate-800 dark:text-white">{t('context_title')}</span>
                   </h2>
                 </MotionItem>
                 <MotionItem>
                   <p className="mb-10 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-                    <span className="text-slate-800 dark:text-white">
-                      Bisnis menghadapi tekanan efisiensi yang belum pernah terjadi sebelumnya. Cara
-                      lama tidak lagi cukup.
-                    </span>
+                    <span className="text-slate-800 dark:text-white">{t('context_desc')}</span>
                   </p>
                 </MotionItem>
                 <div className="space-y-6">
                   {[
-                    { text: 'Kompetisi semakin global & digital.', icon: Globe, color: 'red' },
-                    { text: 'Ekspektasi pelanggan terhadap kecepatan.', icon: Zap, color: 'amber' },
-                    { text: 'Regulasi & Compliance semakin ketat.', icon: Shield, color: 'blue' },
+                    { text: t('context_item_1'), icon: Globe, color: 'red' },
+                    { text: t('context_item_2'), icon: Zap, color: 'amber' },
+                    { text: t('context_item_3'), icon: Shield, color: 'blue' },
                   ].map((item, i) => (
                     <MotionItem key={i}>
                       <div className="flex items-center gap-6 rounded-2xl border border-slate-200 bg-slate-100 p-5 transition-colors hover:border-slate-300 dark:border-white/5 dark:bg-white/5 dark:hover:border-white/10">
@@ -200,11 +191,13 @@ export default function SlideContent() {
                 <div className="relative z-10 text-center">
                   <TrendingUp className="mx-auto mb-6 h-32 w-32 text-blue-500 drop-shadow-lg" />
                   <p className="mb-2 text-3xl font-bold text-slate-900 dark:text-white">
-                    <span className="text-slate-800 dark:text-white">Efficiency Gap</span>
+                    <span className="text-slate-800 dark:text-white">
+                      {t('context_item_right')}
+                    </span>
                   </p>
                   <p className="text-slate-600 dark:text-slate-400">
                     <span className="text-slate-800 dark:text-white">
-                      Cost of Inaction is Rising
+                      {t('context_item_right_desc')}
                     </span>
                   </p>
                 </div>
@@ -225,12 +218,10 @@ export default function SlideContent() {
             <div className="w-full max-w-7xl px-4">
               <MotionItem className="mb-16 text-center">
                 <h2 className="mb-6 text-4xl font-bold text-slate-900 md:text-6xl dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Dilema Sistem Enterprise</span>
+                  <span className="text-slate-800 dark:text-white">{t('problem_title')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400">
-                  <span className="text-slate-800 dark:text-white">
-                    Dua pilihan ekstrem yang sama-sama menyakitkan.
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('problem_desc')}</span>
                 </p>
               </MotionItem>
 
@@ -241,31 +232,27 @@ export default function SlideContent() {
                       <Layers className="h-10 w-10" />
                     </div>
                     <h3 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Fragmented Stack</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('problem_item_1_title')}
+                      </span>
                     </h3>
                     <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
                       <span className="text-slate-800 dark:text-white">
-                        "Frankenstein" system: Menggabungkan 5+ aplikasi SaaS berbeda.
+                        {t('problem_item_1_desc')}
                       </span>
                     </p>
                     <ul className="space-y-4 text-lg text-red-900 dark:text-red-200/80">
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">
-                          Data Silo & Duplikasi
-                        </span>
+                        </span>{' '}
+                        <span className="text-slate-800 dark:text-white">{t('problem_1')}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">
-                          Biaya Langganan Bertumpuk
-                        </span>
+                        </span>{' '}
+                        <span className="text-slate-800 dark:text-white">{t('problem_2')}</span>
                       </li>
                     </ul>
                   </div>
@@ -277,29 +264,27 @@ export default function SlideContent() {
                       <Shield className="h-10 w-10" />
                     </div>
                     <h3 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Legacy ERP</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('problem_item_2_title')}
+                      </span>
                     </h3>
                     <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
                       <span className="text-slate-800 dark:text-white">
-                        Software raksasa masa lalu yang kaku dan mahal.
+                        {t('problem_item_2_desc')}
                       </span>
                     </p>
                     <ul className="space-y-4 text-lg text-amber-900 dark:text-amber-200/80">
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">
-                          Implementasi 1-2 Tahun
-                        </span>
+                        </span>{' '}
+                        <span className="text-slate-800 dark:text-white">{t('problem_3')}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Sulit Dikustomisasi</span>
+                        </span>{' '}
+                        <span className="text-slate-800 dark:text-white">{t('problem_4')}</span>
                       </li>
                     </ul>
                   </div>
@@ -327,28 +312,20 @@ export default function SlideContent() {
               </MotionItem>
               <MotionItem>
                 <h2 className="mb-10 text-5xl font-bold text-slate-900 md:text-7xl dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Adaptive Business OS</span>
+                  <span className="text-slate-800 dark:text-white">{t('philosophy_title')}</span>
                 </h2>
               </MotionItem>
               <MotionItem>
                 <p className="mx-auto mb-16 max-w-4xl text-2xl leading-relaxed font-light text-blue-900 dark:text-blue-100">
-                  <span className="text-slate-800 dark:text-white">
-                    Bayangkan ERP seperti mainan
-                  </span>
-                  {' '}
-                  <strong className="text-slate-900 dark:text-white">LEGO</strong>
-                  <span className="text-slate-800 dark:text-white">
-                    . Kami menyediakan blok standar industri, Anda menyusunnya sesuai workflow unik
-                    perusahaan.
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('philosophy_desc')}</span>
                 </p>
               </MotionItem>
 
               <div className="grid grid-cols-3 gap-8">
                 {[
-                  { title: 'Modular', desc: 'Mulai dari yang butuh saja.', color: 'blue' },
-                  { title: 'Integrated', desc: 'Semua terhubung by design.', color: 'green' },
-                  { title: 'Low-Code', desc: 'Mudah disesuaikan tanpa dev.', color: 'purple' },
+                  { title: t('philosophy_1'), desc: t('philosophy_1_desc'), color: 'blue' },
+                  { title: t('philosophy_2'), desc: t('philosophy_2_desc'), color: 'green' },
+                  { title: t('philosophy_3'), desc: t('philosophy_3_desc'), color: 'purple' },
                 ].map((item, i) => (
                   <MotionItem key={i}>
                     <div className="h-full rounded-3xl border border-slate-200 bg-slate-100 p-8 backdrop-blur-md dark:border-white/10 dark:bg-white/5">
@@ -378,12 +355,10 @@ export default function SlideContent() {
             <div className="w-full max-w-7xl px-4">
               <MotionItem className="mb-16 text-center">
                 <h2 className="mb-6 text-5xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Positioning BizOps</span>
+                  <span className="text-slate-800 dark:text-white">{t('spot_title')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400">
-                  <span className="text-slate-800 dark:text-white">
-                    Titik temu antara fleksibilitas Enterprise dan kemudahan SaaS.
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('spot_desc')}</span>
                 </p>
               </MotionItem>
 
@@ -391,12 +366,10 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="scale-95 rounded-[2rem] border border-slate-300 bg-slate-200 p-10 opacity-50 grayscale dark:border-slate-800 dark:bg-slate-900/50">
                     <h3 className="mb-4 text-2xl font-bold text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-800 dark:text-white">SaaS Lokal</span>
+                      <span className="text-slate-800 dark:text-white">{t('spot_1_title')}</span>
                     </h3>
                     <p className="text-slate-500">
-                      <span className="text-slate-800 dark:text-white">
-                        Mudah, murah, tapi fitur terbatas.
-                      </span>
+                      <span className="text-slate-800 dark:text-white">{t('spot_1_desc')}</span>
                     </p>
                   </div>
                 </MotionItem>
@@ -407,30 +380,30 @@ export default function SlideContent() {
                       <span className="text-white dark:text-slate-600">The Winner</span>
                     </div>
                     <h3 className="mt-7 mb-8 text-center text-4xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">BizOps</span>
+                      <span className="text-slate-800 dark:text-white">{t('spot_2_title')}</span>
                     </h3>
                     <ul className="space-y-4 text-lg text-blue-900 dark:text-blue-100">
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-                        {' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
                         <span className="text-slate-800 dark:text-white">
-                          Enterprise Grade Security
+                          {t('spot_2_point_1')}
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Fully Customizable</span>
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('spot_2_point_2')}
+                        </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-                        {' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
                         <span className="text-slate-800 dark:text-white">Mobile Native</span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Fast Implementation</span>
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('spot_2_point_3')}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -439,12 +412,10 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="scale-95 rounded-[2rem] border border-slate-300 bg-slate-200 p-10 opacity-50 grayscale dark:border-slate-800 dark:bg-slate-900/50">
                     <h3 className="mb-4 text-2xl font-bold text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-800 dark:text-white">Legacy ERP</span>
+                      <span className="text-slate-800 dark:text-white">{t('spot_3')}</span>
                     </h3>
                     <p className="text-slate-500">
-                      <span className="text-slate-800 dark:text-white">
-                        Powerful, tapi kompleks & mahal.
-                      </span>
+                      <span className="text-slate-800 dark:text-white">{t('spot_3_desc')}</span>
                     </p>
                   </div>
                 </MotionItem>
@@ -465,63 +436,59 @@ export default function SlideContent() {
             <div className="w-full max-w-7xl px-4">
               <MotionItem className="mb-16 text-center">
                 <h2 className="mb-6 text-5xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">
-                    Satu Platform, Solusi End-to-End
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('platform_title')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400">
-                  <span className="text-slate-800 dark:text-white">
-                    Pilih modul yang Anda butuhkan sekarang, tambah nanti.
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('platform_desc')}</span>
                 </p>
               </MotionItem>
 
               <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
                 <MotionItem>
                   <Card
-                    title="Human Capital"
+                    title={t('platform_module_1_title')}
                     icon={Users}
-                    desc="Payroll, KPI, Absensi, Recruit"
+                    desc={t('platform_module_1_desc')}
                     color="pink"
                   />
                 </MotionItem>
                 <MotionItem>
                   <Card
-                    title="Finance"
+                    title={t('platform_module_2_title')}
                     icon={Wallet}
-                    desc="General Ledger, Budgeting, Tax"
+                    desc={t('platform_module_2_desc')}
                     color="emerald"
                   />
                 </MotionItem>
                 <MotionItem>
                   <Card
-                    title="Operations"
+                    title={t('platform_module_3_title')}
                     icon={Zap}
-                    desc="Project Mgmt, Asset, Maintenance"
+                    desc={t('platform_module_3_desc')}
                     color="blue"
                   />
                 </MotionItem>
                 <MotionItem>
                   <Card
-                    title="Sales & CRM"
+                    title={t('platform_module_4_title')}
                     icon={Briefcase}
-                    desc="Pipeline, Quotation, Support"
+                    desc={t('platform_module_4_desc')}
                     color="amber"
                   />
                 </MotionItem>
                 <MotionItem>
                   <Card
-                    title="Supply Chain"
+                    title={t('platform_module_5_title')}
                     icon={Layers}
-                    desc="Inventory, Procurement, Logistic"
+                    desc={t('platform_module_5_desc')}
                     color="indigo"
                   />
                 </MotionItem>
                 <MotionItem>
                   <Card
-                    title="Manufacturing"
+                    title={t('platform_module_6_title')}
                     icon={Factory}
-                    desc="Production Plan, BOM, Quality"
+                    desc={t('platform_module_6_desc')}
                     color="purple"
                   />
                 </MotionItem>
@@ -546,35 +513,27 @@ export default function SlideContent() {
                     <span className="text-slate-800 dark:text-white">Human Capital Management</span>
                   </Badge>
                   <h2 className="mb-8 text-5xl font-bold text-slate-900 dark:text-white">
-                    <span className="text-slate-800 dark:text-white">
-                      Kelola Karyawan, Bukan Kertas
-                    </span>
+                    <span className="text-slate-800 dark:text-white">{t('hr_title')}</span>
                   </h2>
                 </MotionItem>
                 <MotionItem>
                   <p className="mb-10 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-                    <span className="text-slate-800 dark:text-white">
-                      Otomatisasi seluruh siklus karyawan dari rekrutmen hingga pensiun. Hitung gaji
-                      dan pajak dalam hitungan detik.
-                    </span>
+                    <span className="text-slate-800 dark:text-white">{t('hr_desc')}</span>
                   </p>
                 </MotionItem>
                 <div className="space-y-4">
-                  {[
-                    'Perhitungan PPh 21 & BPJS Otomatis',
-                    'Absensi Mobile dengan Geotagging',
-                    'Self-Service Portal (Cuti/Reimburse)',
-                    'KPI & Performance Appraisal',
-                  ].map((feat, i) => (
-                    <MotionItem key={i}>
-                      <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-100 p-4 dark:border-slate-800 dark:bg-slate-900/50">
-                        <CheckCircle2 className="h-6 w-6 text-pink-600 dark:text-pink-500" />
-                        <span className="text-lg text-slate-900 dark:text-slate-200">
-                          <span className="text-slate-800 dark:text-white">{feat}</span>
-                        </span>
-                      </div>
-                    </MotionItem>
-                  ))}
+                  {[t('hr_feature_1'), t('hr_feature_2'), t('hr_feature_3'), t('hr_feature_4')].map(
+                    (feat, i) => (
+                      <MotionItem key={i}>
+                        <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-100 p-4 dark:border-slate-800 dark:bg-slate-900/50">
+                          <CheckCircle2 className="h-6 w-6 text-pink-600 dark:text-pink-500" />
+                          <span className="text-lg text-slate-900 dark:text-slate-200">
+                            <span className="text-slate-800 dark:text-white">{feat}</span>
+                          </span>
+                        </div>
+                      </MotionItem>
+                    ),
+                  )}
                 </div>
               </div>
               <MotionItem className="relative flex h-[500px] items-center justify-center rounded-3xl border border-slate-200 bg-slate-100 p-8 dark:border-slate-800 dark:bg-slate-900">
@@ -614,25 +573,20 @@ export default function SlideContent() {
                     <span className="text-slate-800 dark:text-white">Finance & Accounting</span>
                   </Badge>
                   <h2 className="mb-8 text-5xl font-bold text-slate-900 dark:text-white">
-                    <span className="text-slate-800 dark:text-white">
-                      Keuangan Real-time, Keputusan Cepat
-                    </span>
+                    <span className="text-slate-800 dark:text-white">{t('finance_title')}</span>
                   </h2>
                 </MotionItem>
                 <MotionItem>
                   <p className="mb-10 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-                    <span className="text-slate-800 dark:text-white">
-                      Tinggalkan spreadsheet manual. Dapatkan laporan Laba Rugi, Neraca, dan Arus
-                      Kas secara otomatis setiap saat.
-                    </span>
+                    <span className="text-slate-800 dark:text-white">{t('finance_desc')}</span>
                   </p>
                 </MotionItem>
                 <div className="space-y-4">
                   {[
-                    'Multi-Currency & Multi-Company',
-                    'Budgeting & Cost Control',
-                    'Otomasi Rekonsiliasi Bank',
-                    'e-Faktur Pajak Integration',
+                    t('finance_feature_1'),
+                    t('finance_feature_2'),
+                    t('finance_feature_3'),
+                    t('finance_feature_4'),
                   ].map((feat, i) => (
                     <MotionItem key={i}>
                       <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-100 p-4 dark:border-slate-800 dark:bg-slate-900/50">
@@ -661,12 +615,10 @@ export default function SlideContent() {
             <div className="w-full max-w-7xl px-4">
               <MotionItem className="mb-16 text-center">
                 <h2 className="mb-6 text-5xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Open Ecosystem</span>
+                  <span className="text-slate-800 dark:text-white">{t('integration_title')}</span>
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400">
-                  <span className="text-slate-800 dark:text-white">
-                    Terhubung native dengan ekosistem digital Indonesia.
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('integration_desc')}</span>
                 </p>
               </MotionItem>
 
@@ -694,12 +646,13 @@ export default function SlideContent() {
               <MotionItem className="mx-auto mt-16 max-w-3xl rounded-3xl border border-slate-200 bg-slate-100 p-8 text-center dark:border-slate-800 dark:bg-slate-900/80">
                 <Code className="mx-auto mb-4 h-10 w-10 text-blue-500" />
                 <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">API-First Architecture</span>
+                  <span className="text-slate-800 dark:text-white">
+                    {t('integration_api_title')}
+                  </span>
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400">
                   <span className="text-slate-800 dark:text-white">
-                    Punya sistem custom sendiri? Hubungkan dengan mudah melalui REST API kami yang
-                    terdokumentasi lengkap.
+                    {t('integration_api_desc')}
                   </span>
                 </p>
               </MotionItem>
@@ -719,9 +672,7 @@ export default function SlideContent() {
             <div className="w-full max-w-6xl px-4 text-center">
               <MotionItem>
                 <h2 className="mb-12 text-5xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">
-                    Dipercaya Pemimpin Industri
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('trust_title')}</span>
                 </h2>
               </MotionItem>
 
@@ -729,10 +680,7 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2.5rem] border border-slate-200 bg-slate-100 p-10 text-left dark:border-white/10 dark:bg-white/5">
                     <p className="mb-8 text-xl leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">
-                        "BizOps mengubah cara kami bekerja. Laporan keuangan yang dulu butuh 2
-                        minggu, sekarang selesai dalam 2 hari. Efisiensi luar biasa."
-                      </span>
+                      <span className="text-slate-800 dark:text-white">"{t('trust_quote_1')}"</span>
                     </p>
                     <div className="flex items-center gap-6">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
@@ -740,11 +688,13 @@ export default function SlideContent() {
                       </div>
                       <div>
                         <p className="text-lg font-bold text-slate-900 dark:text-white">
-                          <span className="text-slate-800 dark:text-white">Budi Santoso</span>
+                          <span className="text-slate-800 dark:text-white">
+                            {t('trust_name_1')}
+                          </span>
                         </p>
                         <p className="text-slate-600 dark:text-slate-400">
                           <span className="text-slate-800 dark:text-white">
-                            CFO, PT Maju Mundur
+                            {t('trust_company_1')}
                           </span>
                         </p>
                       </div>
@@ -754,10 +704,7 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2.5rem] border border-slate-200 bg-slate-100 p-10 text-left dark:border-white/10 dark:bg-white/5">
                     <p className="mb-8 text-xl leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">
-                        "Implementasi tercepat yang pernah kami alami. Support tim BizOps sangat
-                        responsif dan mengerti kebutuhan unik industri kami."
-                      </span>
+                      <span className="text-slate-800 dark:text-white">"{t('trust_quote_2')}"</span>
                     </p>
                     <div className="flex items-center gap-6">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-xl font-bold text-white">
@@ -765,11 +712,13 @@ export default function SlideContent() {
                       </div>
                       <div>
                         <p className="text-lg font-bold text-slate-900 dark:text-white">
-                          <span className="text-slate-800 dark:text-white">Siti Aminah</span>
+                          <span className="text-slate-800 dark:text-white">
+                            {t('trust_name_2')}
+                          </span>
                         </p>
                         <p className="text-slate-600 dark:text-slate-400">
                           <span className="text-slate-800 dark:text-white">
-                            Ops Manager, RetailIndo
+                            {t('trust_company_2')}
                           </span>
                         </p>
                       </div>
@@ -793,7 +742,7 @@ export default function SlideContent() {
             <div className="w-full max-w-6xl px-4 text-center">
               <MotionItem>
                 <h2 className="mb-16 text-5xl font-bold text-slate-900 dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Investasi Transparan</span>
+                  <span className="text-slate-800 dark:text-white">{t('pricing_title')}</span>
                 </h2>
               </MotionItem>
 
@@ -801,25 +750,35 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2rem] border border-slate-200 bg-slate-100 p-8 text-left dark:border-slate-800 dark:bg-slate-900/50">
                     <h3 className="mb-2 text-xl font-bold text-slate-700 dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">Starter</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_starter_name')}
+                      </span>
                     </h3>
                     <p className="mb-2 text-4xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Rp 2.5jt</span>
-                      <span className="text-lg font-normal text-slate-500">/bln</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_starter_price')}
+                      </span>
+                      <span className="text-lg font-normal text-slate-500">
+                        {t('pricing_starter_price_suffix')}
+                      </span>
                     </p>
                     <p className="mb-8 text-sm text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-800 dark:text-white">Untuk bisnis kecil.</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_starter_desc')}
+                      </span>
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">5 Users</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_starter_feature_1')}
+                        </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Core Modules</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_starter_feature_2')}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -828,35 +787,46 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="relative z-10 scale-105 transform rounded-[2.5rem] border-2 border-blue-500 bg-slate-100 p-10 text-left shadow-2xl shadow-blue-500/20 dark:bg-slate-900 dark:shadow-blue-900/50">
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-sm font-bold tracking-wider text-white">
-                      <span className="text-white dark:text-slate-600">POPULAR</span>
+                      <span className="text-white dark:text-slate-600">{t('pricing_popular')}</span>
                     </div>
                     <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Business</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_business_name')}
+                      </span>
                     </h3>
                     <p className="mb-2 text-5xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Rp 7.5jt</span>
-                      <span className="text-lg font-normal text-slate-500">/bln</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_business_price')}
+                      </span>
+                      <span className="text-lg font-normal text-slate-500">
+                        {t('pricing_starter_price_suffix')}
+                      </span>
                     </p>
                     <p className="mb-8 text-sm text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-800 dark:text-white">Scale up tanpa batas.</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_business_desc')}
+                      </span>
                     </p>
                     <ul className="space-y-4 text-lg text-slate-900 dark:text-white">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        {' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
                         <span className="font-bold">
-                          <span className="text-slate-800 dark:text-white">50 Users</span>
+                          <span className="text-slate-800 dark:text-white">
+                            {t('pricing_business_feature_1')}
+                          </span>
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">All Modules</span>
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_business_feature_2')}
+                        </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Priority Support</span>
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_business_feature_3')}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -865,24 +835,32 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2rem] border border-slate-200 bg-slate-100 p-8 text-left dark:border-slate-800 dark:bg-slate-900/50">
                     <h3 className="mb-2 text-xl font-bold text-slate-700 dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">Enterprise</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_enterprise_name')}
+                      </span>
                     </h3>
                     <p className="mb-2 text-4xl font-bold text-slate-900 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Custom</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_enterprise_price')}
+                      </span>
                     </p>
                     <p className="mb-8 text-sm text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-800 dark:text-white">Kebutuhan khusus.</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('pricing_enterprise_desc')}
+                      </span>
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Unlimited Users</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_enterprise_feature_1')}
+                        </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
-                        {' '}
-                        <span className="text-slate-800 dark:text-white">Dedicated Server</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <span className="text-slate-800 dark:text-white">
+                          {t('pricing_enterprise_feature_2')}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -904,17 +882,13 @@ export default function SlideContent() {
             <div className="max-w-5xl px-4 text-center">
               <MotionItem>
                 <h2 className="mb-12 text-6xl leading-tight font-black tracking-tighter text-slate-900 md:text-8xl dark:text-white">
-                  <span className="text-slate-800 dark:text-white">Let's Build</span>
-                  {' '}
-                  <br />
-                  <span className="text-slate-800 dark:text-white">The Future.</span>
+                  <span className="text-slate-800 dark:text-white">{t('cta_title_1')}</span> <br />
+                  <span className="text-slate-800 dark:text-white">{t('cta_title_2')}</span>
                 </h2>
               </MotionItem>
               <MotionItem>
                 <p className="mb-16 text-2xl font-light text-blue-900 dark:text-blue-100">
-                  <span className="text-slate-800 dark:text-white">
-                    Siap mengubah operasional bisnis Anda menjadi keunggulan kompetitif?
-                  </span>
+                  <span className="text-slate-800 dark:text-white">{t('cta_desc')}</span>
                 </p>
               </MotionItem>
               <MotionItem>
@@ -924,7 +898,7 @@ export default function SlideContent() {
                       size="lg"
                       className="h-20 rounded-full border-none bg-white px-16 text-2xl font-bold text-blue-700 shadow-xl hover:bg-blue-50 dark:bg-slate-600"
                     >
-                      <span className="text-blue-700 dark:text-white">Jadwalkan Demo</span>
+                      <span className="text-blue-700 dark:text-white">{t('cta_button')}</span>
                     </Button>
                   </Link>
                 </Stack>
@@ -934,19 +908,21 @@ export default function SlideContent() {
                 <div className="grid grid-cols-3 gap-12 text-lg text-slate-600 dark:text-slate-300">
                   <div>
                     <p className="mb-2 text-sm font-bold tracking-wider text-slate-900 uppercase opacity-70 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Email</span>
+                      <span className="text-slate-800 dark:text-white">{t('cta_email_label')}</span>
                     </p>
                     <span className="text-slate-800 dark:text-white">hello@bizops.id</span>
                   </div>
                   <div>
                     <p className="mb-2 text-sm font-bold tracking-wider text-slate-900 uppercase opacity-70 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Phone/WA</span>
+                      <span className="text-slate-800 dark:text-white">{t('cta_phone_label')}</span>
                     </p>
                     <span className="text-slate-800 dark:text-white">+62 21 3970 2834</span>
                   </div>
                   <div>
                     <p className="mb-2 text-sm font-bold tracking-wider text-slate-900 uppercase opacity-70 dark:text-white">
-                      <span className="text-slate-800 dark:text-white">Website</span>
+                      <span className="text-slate-800 dark:text-white">
+                        {t('cta_website_label')}
+                      </span>
                     </p>
                     <span className="text-slate-800 dark:text-white">bizops.id</span>
                   </div>

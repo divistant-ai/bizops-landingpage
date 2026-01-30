@@ -390,7 +390,7 @@ export const resourcesContent: Record<string, MenuContent> = {
         icon: GanttChartSquare,
       },
       {
-        to: '/pricing/calculator',
+        to: '/tools/pricing-calculator',
         label: 'Pricing Calculator',
         desc: 'Cost estimation',
         icon: Calculator,

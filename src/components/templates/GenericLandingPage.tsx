@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle2,
@@ -9,13 +12,44 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
-import FAQAccordion from '@/components/FAQAccordion';
 import { Container, Section } from '@/components/layout';
-import { Button } from '@/components/ui';
-import { FadeIn } from '@/components/ui/FadeIn';
+import { Button, SectionHeader } from '@/components/ui';
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
+import { sectionPaddingHybrid } from '@/design-tokens';
+
+// Accordion FAQ Component - Same as ModulePage
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-b border-slate-200 last:border-b-0 dark:border-slate-700">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between py-5 text-left transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+      >
+        <span className="pr-4 text-base font-semibold text-slate-900 dark:text-white">
+          {question}
+        </span>
+        <ChevronRight
+          className={`h-5 w-5 shrink-0 text-slate-500 transition-transform duration-300 dark:text-slate-400 ${
+            isOpen ? 'rotate-90' : ''
+          }`}
+        />
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-96 pb-5' : 'max-h-0'
+        }`}
+      >
+        <p className="pr-8 leading-relaxed text-slate-600 dark:text-slate-400">{answer}</p>
+      </div>
+    </div>
+  );
+}
 
 // Flexible types to accommodate different data structures (Industries vs Roles vs Services)
 type Metric = {
@@ -133,87 +167,152 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
     typeof data.cta === 'string' ? t('ready_to_start') : data.cta?.head || t('ready_to_transform');
 
   return (
-    <div className="selection:bg-primary-500/30 bg-slate-50 font-sans transition-colors dark:bg-slate-950">
+    <div className="flex flex-col bg-slate-50 font-sans transition-colors dark:bg-slate-950">
       {/* --- HERO SECTION --- */}
-      <section className="relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-36 lg:pb-32 dark:bg-slate-950">
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        {/* Animated Glow Orbs */}
-        <div className="bg-primary-100/50 pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full opacity-60 blur-[120px]"></div>
-        <div className="bg-primary-200/50 pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full opacity-60 blur-[100px]"></div>
+      <Section
+        id="hero"
+        className="relative flex min-h-[calc(100vh-6rem)] items-center justify-center overflow-hidden bg-slate-50 lg:min-h-[calc(100vh-7rem)] dark:bg-slate-950"
+        noPadding
+      >
+        {/* Background Elements */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5" />
+          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-500/5" />
+          <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-3xl" />
+        </div>
 
-        <Container size="7xl" className="relative z-10">
+        <Container size="5xl" className="relative z-10 py-16">
           {data.breadcrumbs && (
-            <div className="mb-8 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 flex items-center justify-center"
+            >
               <Breadcrumbs items={data.breadcrumbs} />
-            </div>
+            </motion.div>
           )}
 
-          <div className="text-center">
+          <div className="mx-auto max-w-3xl text-center">
+            {/* Icon */}
             {data.icon && (
-              <FadeIn>
-                <div className="bg-primary-50 mx-auto mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 text-slate-800 shadow-sm dark:border-slate-800 dark:text-slate-200">
-                  {data.icon}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="mb-8 inline-flex"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 opacity-40 blur-xl" />
+                  <div className="relative flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-2xl ring-4 shadow-blue-600/30 ring-white/50 dark:ring-slate-800/50">
+                    <span className="text-white">{data.icon}</span>
+                  </div>
                 </div>
-              </FadeIn>
+              </motion.div>
             )}
 
-            <FadeIn delay={0.1}>
-              <h1 className="mb-6 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-slate-50">
-                {headline}
-              </h1>
-            </FadeIn>
+            {/* Badge */}
+            {data.subtitle && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
+                  {data.subtitle}
+                </span>
+              </motion.div>
+            )}
 
-            <FadeIn delay={0.2}>
-              <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed font-normal text-slate-600 md:text-2xl dark:text-slate-50">
-                {subheadline}
-              </p>
-            </FadeIn>
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 text-3xl leading-tight font-bold tracking-tight text-slate-900 md:text-4xl lg:text-5xl dark:text-white"
+            >
+              {headline}
+            </motion.h1>
 
-            <FadeIn delay={0.3}>
-              <div className="flex justify-center gap-4">
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg dark:text-slate-400"
+            >
+              {subheadline}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col justify-center gap-4 sm:flex-row"
+            >
+              <Button
+                asChild
+                variant="clay"
+                size="lg"
+                className="h-14 px-10 text-lg font-bold shadow-xl shadow-blue-500/30"
+              >
                 <Link href="/demo">
-                  <Button
-                    size="lg"
-                    className="bg-primary-600 hover:bg-primary-700 shadow-primary-500/20 transform rounded-full px-8 text-slate-950 shadow-xl transition-all hover:-translate-y-1 dark:text-white"
-                  >
-                    {ctaBtnText} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  {ctaBtnText} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="rounded-full border-neutral-300 px-8 text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
-                  >
-                    {t('contact_us')}
-                  </Button>
-                </Link>
-              </div>
-            </FadeIn>
+              </Button>
+              <Button
+                asChild
+                variant="ghost"
+                size="lg"
+                className="h-14 border border-slate-200 px-8 text-base font-medium text-slate-600 hover:border-slate-300 dark:border-slate-700 dark:text-slate-400"
+              >
+                <Link href="/contact">{t('contact_us')}</Link>
+              </Button>
+            </motion.div>
           </div>
-
-          {/* Metrics Grid */}
-          {data.metrics && (
-            <FadeIn delay={0.4} className="mt-20">
-              <div className="mx-auto max-w-4xl">
-                <div className="grid grid-cols-3 divide-x divide-neutral-200 text-center md:gap-8">
-                  {data.metrics.map((m, i) => (
-                    <div key={i} className="px-4">
-                      <div className="mb-1 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-                        {m.value}
-                      </div>
-                      <div className="text-sm font-medium tracking-wide text-neutral-500 uppercase md:text-base dark:text-neutral-400">
-                        {m.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          )}
         </Container>
-      </section>
+      </Section>
+
+      {/* --- METRICS SECTION --- */}
+      {data.metrics && data.metrics.length > 0 && (
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <Container size="7xl" className="relative z-10">
+            <FadeInStagger faster>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                {data.metrics.map((metric, idx) => {
+                  const colorVariants = [
+                    'from-blue-500 to-blue-600',
+                    'from-emerald-500 to-emerald-600',
+                    'from-purple-500 to-purple-600',
+                  ];
+                  const colorBg = colorVariants[idx % colorVariants.length];
+
+                  return (
+                    <FadeIn key={idx}>
+                      <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                        <div
+                          className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${colorBg}`}
+                        />
+                        <div
+                          className={`mb-2 bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent md:text-5xl ${colorBg}`}
+                        >
+                          {metric.value}
+                        </div>
+                        <div className="text-sm font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
+                          {metric.label}
+                        </div>
+                      </div>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            </FadeInStagger>
+          </Container>
+        </Section>
+      )}
 
       {/* --- DASHBOARD HIGHLIGHTS (ROLES) --- */}
       {data.dashboardInsight && (
@@ -339,18 +438,25 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* --- DELIVERABLES (SERVICES) --- */}
       {data.deliverables && (
-        <Section className="relative overflow-hidden bg-slate-900 text-white">
-          <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
           <Container size="4xl">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">{t('what_you_get')}</h2>
-              <p className="text-neutral-400">{t('real_deliverables')}</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md">
+            <SectionHeader
+              title={t('what_you_get')}
+              description={t('real_deliverables')}
+              className="mb-12"
+            />
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-900">
               <div className="grid gap-4 md:grid-cols-2">
                 {data.deliverables.map((d, i) => (
-                  <div key={i} className="flex items-center gap-3 text-neutral-200">
-                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-green-400" />
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 text-slate-700 dark:text-slate-300"
+                  >
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500" />
                     <span>{d}</span>
                   </div>
                 ))}
@@ -361,118 +467,180 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
       )}
 
       {/* --- PROBLEMS / CHALLENGES --- */}
-      {data.challenges && (
-        <Section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
-          <Container size="6xl">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                {t('why_old_way_fails')}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                {t('challenges_description')}
-              </p>
-            </div>
+      {data.challenges && data.challenges.length > 0 && (
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-red-500/5 blur-3xl dark:bg-red-500/10" />
+            <div className="absolute -right-24 -bottom-24 h-96 w-96 rounded-full bg-orange-500/5 blur-3xl dark:bg-orange-500/10" />
+          </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              {data.challenges.map((c, i) => (
-                <FadeIn key={i} delay={i * 0.1} className="h-full">
-                  <div className="h-full rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-                    {/* Industry Style Challenge */}
-                    {c.title && (
-                      <>
-                        <h3 className="mb-3 text-xl font-bold text-slate-950 dark:text-white">
-                          {c.title}
-                        </h3>
-                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                          {c.desc}
-                        </p>
-                      </>
-                    )}
+          <Container size="7xl" className="relative z-10">
+            <SectionHeader
+              title={t('why_old_way_fails')}
+              description={t('challenges_description')}
+              className="mb-12"
+            />
 
-                    {/* Role Style Challenge (Pain vs Gain) */}
-                    {c.pain && (
-                      <>
-                        <div className="mb-6">
-                          <div className="mb-2 text-xs font-bold tracking-wider text-red-500 uppercase">
-                            {t('pain_point')}
-                          </div>
-                          <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                            {c.pain}
-                          </h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                            {c.context}
-                          </p>
-                        </div>
-                        <div className="border-t border-slate-100 pt-6 dark:border-slate-800">
-                          <div className="mb-2 text-xs font-bold tracking-wider text-green-600 uppercase">
-                            {t('the_bizops_way')}
-                          </div>
-                          <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                            {c.gain}
-                          </h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                            {c.gainDesc}
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
+            <FadeInStagger faster>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+                {data.challenges.map((c, idx) => (
+                  <FadeIn key={idx}>
+                    <div className="group relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                      {/* Number badge */}
+                      <div className="absolute top-4 right-4 text-6xl font-black text-slate-100 dark:text-slate-800">
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
+
+                      <div className="relative z-10">
+                        {/* Industry Style Challenge */}
+                        {c.title && (
+                          <>
+                            <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                              {c.title}
+                            </h3>
+                            <p className="leading-relaxed text-slate-600 dark:text-slate-400">
+                              {c.desc}
+                            </p>
+                          </>
+                        )}
+
+                        {/* Role Style Challenge (Pain vs Gain) */}
+                        {c.pain && (
+                          <>
+                            <div className="mb-6">
+                              <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-xs font-bold tracking-wider text-red-600 uppercase dark:bg-red-500/20 dark:text-red-400">
+                                {t('pain_point')}
+                              </div>
+                              <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                                {c.pain}
+                              </h3>
+                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                {c.context}
+                              </p>
+                            </div>
+                            <div className="border-t border-slate-200 pt-6 dark:border-slate-700">
+                              <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold tracking-wider text-emerald-600 uppercase dark:bg-emerald-500/20 dark:text-emerald-400">
+                                {t('the_bizops_way')}
+                              </div>
+                              <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
+                                {c.gain}
+                              </h3>
+                              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                {c.gainDesc}
+                              </p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeInStagger>
           </Container>
         </Section>
       )}
 
       {/* --- SOLUTIONS / FEATURES --- */}
       {featuresList.length > 0 && (
-        <Section className="bg-white dark:bg-slate-900">
-          <Container size="7xl">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                {t('bizops_solutions')}
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                {t('features_description')}
-              </p>
-            </div>
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 -left-24 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
+            <div className="absolute -right-24 bottom-1/4 h-96 w-96 rounded-full bg-indigo-500/5 blur-3xl" />
+          </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
-              {featuresList.map((f, i) => {
-                return (
-                  <FadeIn key={i} delay={i * 0.1} className="h-full">
-                    <div className="group hover:bg-primary-50/50 hover:border-primary-100 h-full rounded-[2rem] border border-slate-100 bg-slate-50 p-8 transition-colors dark:border-slate-800 dark:bg-slate-950">
-                      <div className="text-primary-600 mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-100 bg-white shadow-sm transition-transform duration-300 group-hover:scale-110 dark:border-slate-800 dark:bg-slate-900">
-                        {f.icon ? f.icon : <CheckCircle2 className="h-7 w-7" />}
+          <Container size="7xl" className="relative z-10">
+            <SectionHeader
+              title={t('bizops_solutions')}
+              description={t('features_description')}
+              className="mb-12"
+            />
+
+            <FadeInStagger faster>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {featuresList.map((f, idx) => {
+                  const isFirst = idx === 0;
+                  return (
+                    <FadeIn key={idx} className={isFirst ? 'sm:col-span-2 lg:col-span-1' : ''}>
+                      <div
+                        className={`group relative h-full overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                          isFirst
+                            ? 'border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 dark:border-blue-800 dark:from-blue-950/50 dark:to-indigo-950/50'
+                            : 'border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900'
+                        }`}
+                      >
+                        <div
+                          className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${
+                            isFirst
+                              ? 'from-blue-500 to-indigo-500'
+                              : 'from-slate-300 to-slate-400 dark:from-slate-700 dark:to-slate-600'
+                          }`}
+                        />
+                        <div className="p-6">
+                          <div
+                            className={`mb-4 inline-flex rounded-xl p-3 ${
+                              isFirst
+                                ? 'bg-blue-100 dark:bg-blue-900/30'
+                                : 'bg-slate-100 dark:bg-slate-800'
+                            }`}
+                          >
+                            {f.icon ? (
+                              <span
+                                className={
+                                  isFirst
+                                    ? 'text-blue-600 dark:text-blue-400'
+                                    : 'text-slate-600 dark:text-slate-400'
+                                }
+                              >
+                                {f.icon}
+                              </span>
+                            ) : (
+                              <CheckCircle2
+                                className={`h-6 w-6 ${isFirst ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}`}
+                              />
+                            )}
+                          </div>
+                          <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
+                            {f.title || f.desc}
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                            {f.desc || f.description}
+                          </p>
+                        </div>
                       </div>
-                      <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
-                        {f.title || f.desc}
-                      </h3>{' '}
-                      {/* Handle generic lists */}
-                      <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                        {f.desc || f.description}
-                      </p>
-                    </div>
-                  </FadeIn>
-                );
-              })}
-            </div>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            </FadeInStagger>
           </Container>
         </Section>
       )}
 
       {/* --- MOBILE ADVANTAGE --- */}
       {data.mobileAdvantage && (
-        <Section className="relative overflow-hidden bg-slate-900">
-          <div className="bg-primary-600/10 absolute top-0 right-0 h-[600px] w-[600px] rounded-full blur-[120px]"></div>
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-[120px] dark:bg-blue-500/10" />
           <Container size="5xl" className="relative z-10 text-center">
-            <div className="bg-primary-500/20 text-primary-400 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full">
+            <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
               <Smartphone className="h-8 w-8" />
             </div>
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
               {data.mobileAdvantage.title}
             </h2>
-            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-300 dark:text-slate-400">
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400">
               {data.mobileAdvantage.desc}
             </p>
           </Container>
@@ -620,48 +788,113 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
       )}
 
       {/* --- FAQ SECTION --- */}
-      {data.faqs && (
-        <Section className="bg-white dark:bg-slate-900">
-          <Container size="4xl">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                {t('common_questions')}
-              </h2>
+      {data.faqs && data.faqs.length > 0 && (
+        <Section
+          className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+          noPadding
+          containerClassName={sectionPaddingHybrid.default}
+        >
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-[100px]" />
+          </div>
+
+          <Container size="7xl" className="relative z-10">
+            <SectionHeader
+              title={t('common_questions')}
+              description={t('faq_subtitle' as any)}
+              className="mb-12"
+            />
+
+            <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 dark:border-slate-800 dark:bg-slate-900/50">
+              {data.faqs.map((faq, idx) => (
+                <FAQItem key={idx} question={faq.question} answer={faq.answer} />
+              ))}
             </div>
-            <FAQAccordion faqs={data.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
           </Container>
         </Section>
       )}
 
-      {/* --- FINAL CTA --- */}
-      <Section className="border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold text-slate-900 md:text-4xl dark:text-white">
-            {ctaHeadText}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            {t('final_cta_description')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/demo">
-              <Button
-                size="lg"
-                className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-700 h-14 rounded-xl px-10 text-lg text-slate-950 shadow-xl dark:text-white"
-              >
-                {ctaBtnText}
-              </Button>
-            </Link>
+      {/* --- FINAL CTA - Same style as ModulePage --- */}
+      <Section
+        className="relative overflow-hidden bg-white dark:bg-slate-950"
+        noPadding
+        containerClassName={sectionPaddingHybrid.default}
+      >
+        <Container size="5xl" className="relative z-10">
+          <FadeIn>
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 shadow-2xl shadow-slate-900/50 sm:p-12 lg:p-16 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full bg-indigo-500/30 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/20 blur-2xl" />
+              <div className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-cyan-500/20 blur-2xl" />
 
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 rounded-xl border-neutral-300 bg-white px-10 text-lg text-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-300"
-              >
-                {t('schedule_free_consultation')}
-              </Button>
-            </Link>
-          </div>
+              {/* Dot pattern */}
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
+                  backgroundSize: '24px 24px',
+                }}
+              />
+
+              {/* Inner glow border */}
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10 ring-inset" />
+
+              <div className="relative z-10 mx-auto max-w-3xl text-center">
+                {/* Badge */}
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 shadow-lg backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">
+                    {t('ready_to_start')}
+                  </span>
+                </div>
+
+                <h2 className="mb-6 text-3xl leading-tight font-bold text-white sm:text-4xl lg:text-5xl">
+                  {ctaHeadText}
+                </h2>
+                <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+                  {t('final_cta_description')}
+                </p>
+
+                <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-14 bg-white px-10 text-lg font-bold text-slate-900 shadow-xl shadow-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-2xl"
+                  >
+                    <Link href="/demo">
+                      {ctaBtnText}
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="lg"
+                    className="h-14 border-2 border-white/30 px-10 text-lg font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/10"
+                  >
+                    <Link href="/contact">{t('schedule_free_consultation')}</Link>
+                  </Button>
+                </div>
+
+                {/* Trust indicators */}
+                <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_free_trial' as any)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <span>{t('trust_no_commitment' as any)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </Section>
     </div>

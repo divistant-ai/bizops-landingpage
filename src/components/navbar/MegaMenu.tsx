@@ -263,7 +263,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     if (url.includes('/timeline-generator')) {
       return 'timeline';
     }
-    if (url.includes('/pricing/calculator')) {
+    if (url.includes('/pricing-calculator')) {
       return 'pricing';
     }
     if (url.includes('/biaya-turnover')) {
