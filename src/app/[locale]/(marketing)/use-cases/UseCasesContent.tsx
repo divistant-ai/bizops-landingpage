@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { ArrowRight, Briefcase, Filter, Search, X } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
 import Button from '@/components/ui/Button';
-import { StaggeredText } from '@/components/ui/motion-text';
 import { useCasesData } from '@/data/useCasesContent';
 
 const FADE_UP_VARIANTS = {
@@ -68,6 +68,8 @@ const SpotlightCard = ({
 const ITEMS_PER_PAGE = 6;
 
 export default function UseCasesContent() {
+  const t = useTranslations('UseCases');
+  const locale = useLocale() as 'en' | 'id';
   const [selectedIndustry, setSelectedIndustry] = useState<string>('All');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -75,17 +77,17 @@ export default function UseCasesContent() {
   const cases = Object.values(useCasesData);
 
   // Extract unique industries and categories
-  const industries = ['All', ...Array.from(new Set(cases.map(c => c.industry))).sort()];
-  const categories = ['All', ...Array.from(new Set(cases.map(c => c.category))).sort()];
+  const industries = ['All', ...Array.from(new Set(cases.map((c) => c.industry))).sort()];
+  const categories = ['All', ...Array.from(new Set(cases.map((c) => c.category))).sort()];
 
   // Filtering Logic
   const filteredCases = cases.filter((c) => {
     const matchIndustry = selectedIndustry === 'All' || c.industry === selectedIndustry;
     const matchCategory = selectedCategory === 'All' || c.category === selectedCategory;
-    const matchSearch
-      = c.title.toLowerCase().includes(searchQuery.toLowerCase())
-        || c.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
-        || c.challenge.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchSearch =
+      c.title[locale].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.subtitle[locale].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.challenge[locale].toLowerCase().includes(searchQuery.toLowerCase());
     return matchIndustry && matchCategory && matchSearch;
   });
 
@@ -110,23 +112,23 @@ export default function UseCasesContent() {
   const getIndustryCount = (industry: string) => {
     let filtered = cases;
     if (selectedCategory !== 'All') {
-      filtered = filtered.filter(c => c.category === selectedCategory);
+      filtered = filtered.filter((c) => c.category === selectedCategory);
     }
     if (industry === 'All') {
       return filtered.length;
     }
-    return filtered.filter(c => c.industry === industry).length;
+    return filtered.filter((c) => c.industry === industry).length;
   };
 
   const getCategoryCount = (category: string) => {
     let filtered = cases;
     if (selectedIndustry !== 'All') {
-      filtered = filtered.filter(c => c.industry === selectedIndustry);
+      filtered = filtered.filter((c) => c.industry === selectedIndustry);
     }
     if (category === 'All') {
       return filtered.length;
     }
-    return filtered.filter(c => c.category === category).length;
+    return filtered.filter((c) => c.category === category).length;
   };
 
   return (
@@ -144,16 +146,11 @@ export default function UseCasesContent() {
             >
               <Briefcase className="h-4 w-4 text-slate-900 dark:text-white" />
               <span className="text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-300">
-                Customer Success
+                {t('customer_success')}
               </span>
             </motion.div>
 
             <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white">
-              <StaggeredText
-                text="Bukti Nyata,"
-                className="mb-2 flex w-full justify-center"
-                delay={0.1}
-              />
               <motion.span
                 variants={FADE_UP_VARIANTS}
                 initial="hidden"
@@ -161,7 +158,7 @@ export default function UseCasesContent() {
                 transition={{ delay: 0.3 }}
                 className="text-primary-600 dark:text-primary-400"
               >
-                Bukan Teori.
+                {t('hero_title')}
               </motion.span>
             </h1>
 
@@ -169,8 +166,7 @@ export default function UseCasesContent() {
               variants={FADE_UP_VARIANTS}
               className="mx-auto mb-12 max-w-3xl text-lg text-slate-600 dark:text-slate-400"
             >
-              Kumpulan studi kasus implementasi BizOps yang berhasil memecahkan masalah operasional
-              kompleks di lapangan. Dari startup hingga enterprise, dari manufaktur hingga retail.
+              {t('hero_desc')}
             </motion.p>
           </motion.div>
 
@@ -185,9 +181,9 @@ export default function UseCasesContent() {
               <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Cari studi kasus..."
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-200 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
               {searchQuery && (
@@ -213,10 +209,10 @@ export default function UseCasesContent() {
               <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
                 <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
                   <Filter className="h-4 w-4" />
-                  Industry
+                  {t('industry_filter')}
                 </h3>
                 <div className="space-y-2">
-                  {industries.map(industry => (
+                  {industries.map((industry) => (
                     <button
                       key={industry}
                       onClick={() => setSelectedIndustry(industry)}
@@ -228,9 +224,7 @@ export default function UseCasesContent() {
                     >
                       <span>{industry}</span>
                       <span className="float-right text-xs opacity-70">
-                        (
-                        {getIndustryCount(industry)}
-                        )
+                        ({getIndustryCount(industry)})
                       </span>
                     </button>
                   ))}
@@ -240,10 +234,10 @@ export default function UseCasesContent() {
               {/* Category Filter */}
               <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
                 <h3 className="mb-4 text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-                  Category
+                  {t('category_filter')}
                 </h3>
                 <div className="space-y-2">
-                  {categories.map(category => (
+                  {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
@@ -255,9 +249,7 @@ export default function UseCasesContent() {
                     >
                       <span>{category}</span>
                       <span className="float-right text-xs opacity-70">
-                        (
-                        {getCategoryCount(category)}
-                        )
+                        ({getCategoryCount(category)})
                       </span>
                     </button>
                   ))}
@@ -275,7 +267,7 @@ export default function UseCasesContent() {
                   variant="outline"
                   className="w-full"
                 >
-                  Reset Filters
+                  {t('reset_filters')}
                 </Button>
               )}
             </div>
@@ -285,20 +277,18 @@ export default function UseCasesContent() {
           <div className="lg:col-span-9">
             <div className="mb-8 flex items-center justify-between">
               <p className="text-slate-600 dark:text-slate-400">
-                Menampilkan
-                {' '}
+                {t('show')}{' '}
                 <span className="font-bold text-slate-900 dark:text-white">
                   {filteredCases.length}
-                </span>
-                {' '}
-                studi kasus
+                </span>{' '}
+                {t('study_cases')}
               </p>
             </div>
 
             {paginatedCases.length === 0 ? (
               <div className="py-20 text-center">
                 <p className="mb-6 text-lg text-slate-500 dark:text-slate-400">
-                  Tidak ada studi kasus yang sesuai dengan filter Anda.
+                  {t('no_study_cases')}
                 </p>
                 <Button
                   onClick={() => {
@@ -307,7 +297,7 @@ export default function UseCasesContent() {
                     setSelectedCategory('All');
                   }}
                 >
-                  <span className="text-slate-800 dark:text-white">Reset Filter</span>
+                  <span className="text-slate-800 dark:text-white">{t('reset_filter')}</span>
                 </Button>
               </div>
             ) : (
@@ -338,29 +328,29 @@ export default function UseCasesContent() {
                               </div>
 
                               <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 text-2xl font-bold text-slate-900 transition-colors dark:text-white">
-                                {useCase.title}
+                                {useCase.title[locale]}
                               </h3>
                               <p className="mb-4 text-sm font-medium text-slate-500 dark:text-slate-400">
-                                {useCase.subtitle}
+                                {useCase.subtitle[locale]}
                               </p>
 
                               <div className="mb-6 flex-grow">
                                 <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
-                                  Challenge:
+                                  {t('challenge')}
                                 </h4>
                                 <p className="line-clamp-3 text-sm text-slate-600 dark:text-slate-400">
-                                  {useCase.challenge}
+                                  {useCase.challenge[locale]}
                                 </p>
                               </div>
 
                               {/* Results Preview */}
-                              {useCase.results && useCase.results.length > 0 && (
+                              {useCase.results && useCase.results[locale].length > 0 && (
                                 <div className="border-t border-slate-100 pt-4 dark:border-slate-800">
                                   <h4 className="mb-3 text-xs font-bold tracking-wider text-green-600 uppercase dark:text-green-400">
-                                    Key Results:
+                                    {t('key_results')}
                                   </h4>
                                   <ul className="space-y-2">
-                                    {useCase.results.slice(0, 2).map((result, idx) => (
+                                    {useCase.results[locale].slice(0, 2).map((result, idx) => (
                                       <li
                                         key={idx}
                                         className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300"
@@ -374,9 +364,7 @@ export default function UseCasesContent() {
                               )}
 
                               <div className="text-primary-600 dark:text-primary-400 mt-6 flex items-center text-sm font-bold transition-all group-hover:gap-2">
-                                Baca Studi Kasus
-                                {' '}
-                                <ArrowRight className="ml-1 h-4 w-4" />
+                                {t('read_case_study')} <ArrowRight className="ml-1 h-4 w-4" />
                               </div>
                             </article>
                           </SpotlightCard>
@@ -406,19 +394,16 @@ export default function UseCasesContent() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8 dark:border-t dark:border-slate-800 dark:bg-slate-900 dark:bg-slate-950">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-            Ingin Hasil Serupa untuk Bisnis Anda?
+            {t('cta_title')}
           </h2>
-          <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">
-            Diskusikan tantangan operasional Anda dengan tim konsultan kami. Gratis dan tanpa
-            komitmen.
-          </p>
+          <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">{t('cta_desc')}</p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact">
               <Button
                 size="lg"
                 className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto"
               >
-                <span className="text-slate-900 dark:text-white">Jadwalkan Konsultasi</span>
+                <span className="text-slate-900 dark:text-white">{t('cta_button_left')}</span>
               </Button>
             </Link>
             <Link href="/demo">
@@ -427,7 +412,7 @@ export default function UseCasesContent() {
                 variant="outline"
                 className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto"
               >
-                <span className="text-slate-900 dark:text-white">Lihat Demo Platform</span>
+                <span className="text-slate-900 dark:text-white">{t('cta_button_right')}</span>
               </Button>
             </Link>
           </div>

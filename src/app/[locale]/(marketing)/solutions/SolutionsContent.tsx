@@ -228,7 +228,7 @@ export default function SolutionsContent() {
               </span>
             </BouncyLink>
             <BouncyLink
-              href="/pricing/calculator"
+              href="/tools/pricing-calculator"
               className="h-16 w-full border-2 border-slate-300 bg-white px-10 text-xl text-slate-900 hover:bg-slate-100 sm:w-auto dark:border-white dark:bg-transparent dark:text-white dark:hover:bg-white/10"
             >
               <span className="text-slate-900 dark:text-white">

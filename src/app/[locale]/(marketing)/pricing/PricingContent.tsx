@@ -374,7 +374,7 @@ const PricingContent = () => {
                   <p className="text-lg leading-relaxed text-slate-300">
                     {t('calculator_description')}
                   </p>
-                  <Link href="/pricing/calculator" className="inline-block w-full md:w-auto">
+                  <Link href="/tools/pricing-calculator" className="inline-block w-full md:w-auto">
                     <Button
                       variant="white"
                       size="lg"

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Book, Check, Copy, MessageSquare, Search, Shield, Terminal, Zap } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Section } from '@/components/layout';
@@ -11,6 +12,8 @@ import Card from '@/components/ui/Card';
 import { docsData } from '@/data/resourcesContent';
 
 export default function DocsPage() {
+  const t = useTranslations('Docs');
+  const locale = useLocale() as 'en' | 'id';
   const [searchFocused, setSearchFocused] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -32,9 +35,7 @@ export default function DocsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-white px-3 py-1 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Book className="h-3 w-3" />
-            {' '}
-            Knowledge Base
+            <Book className="h-3 w-3" /> Docs
           </motion.div>
 
           <motion.h1
@@ -43,7 +44,7 @@ export default function DocsPage() {
             transition={{ delay: 0.1 }}
             className="mb-8 text-4xl leading-tight font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white"
           >
-            How can we help you?
+            {t('hero_title')}
           </motion.h1>
 
           <motion.div
@@ -54,10 +55,10 @@ export default function DocsPage() {
           >
             <div className="bg-primary-500/20 group-hover:bg-primary-500/30 absolute inset-0 rounded-2xl blur-xl transition-colors"></div>
             <div className="relative flex items-center gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
-              <Search className="ml-5 h-6 w-6 flex-shrink-0 text-slate-400" />
+              <Search className="ml-5 h-6 w-6 shrink-0 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search guides, API docs, or troubleshooting..."
+                placeholder={t('search_placeholder')}
                 className="w-full border-none bg-transparent px-4 py-5 text-lg text-slate-900 placeholder-slate-400 focus:ring-0 focus:outline-none dark:text-white"
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
@@ -76,30 +77,32 @@ export default function DocsPage() {
             transition={{ delay: 0.3 }}
             className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-600 dark:text-slate-400"
           >
-            <span className="text-slate-700 dark:text-slate-500">Popular topics:</span>
+            <span className="text-slate-700 dark:text-slate-500">
+              {t('popular_topics', { default: 'Popular topics:' })}
+            </span>
             <Link
               href="/docs/import-data"
               className="decoration-primary-500 underline-offset-4 transition-all hover:text-slate-900 hover:underline dark:hover:text-white"
             >
-              Import Excel Data
+              {t('topic_import_excel', { default: 'Import Excel Data' })}
             </Link>
             <Link
               href="/docs/setup-payroll"
               className="decoration-primary-500 underline-offset-4 transition-all hover:text-slate-900 hover:underline dark:hover:text-white"
             >
-              Setup PPh 21 TER
+              {t('topic_setup_pph21', { default: 'Setup PPh 21 TER' })}
             </Link>
             <Link
               href="/docs/api-keys"
               className="decoration-primary-500 underline-offset-4 transition-all hover:text-slate-900 hover:underline dark:hover:text-white"
             >
-              Generate API Key
+              {t('topic_generate_api', { default: 'Generate API Key' })}
             </Link>
             <Link
               href="/docs/troubleshoot"
               className="decoration-primary-500 underline-offset-4 transition-all hover:text-slate-900 hover:underline dark:hover:text-white"
             >
-              Connection Error 502
+              {t('topic_connection_error', { default: 'Connection Error 502' })}
             </Link>
           </motion.div>
         </Container>
@@ -110,7 +113,7 @@ export default function DocsPage() {
         <div className="mb-24">
           <div className="md:hidden">
             <CardSlider>
-              {docsData.categories.map((cat, idx) => {
+              {docsData.categories[locale].map((cat, idx) => {
                 const Icon = cat.icon;
                 return (
                   <motion.div
@@ -145,7 +148,7 @@ export default function DocsPage() {
           </div>
 
           <Grid cols={3} gap={8} className="hidden md:grid">
-            {docsData.categories.map((cat, idx) => {
+            {docsData.categories[locale].map((cat, idx) => {
               const Icon = cat.icon;
               return (
                 <motion.div
@@ -184,27 +187,27 @@ export default function DocsPage() {
           <Grid cols={2} mdCols={1} gap={12} className="items-center">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold tracking-wider text-blue-700 uppercase dark:bg-slate-800 dark:text-blue-300">
-                <Terminal className="h-3 w-3" />
-                {' '}
-                API Reference
+                <Terminal className="h-3 w-3" /> {t('api_reference', { default: 'API Reference' })}
               </div>
               <Typography
                 variant="h2"
                 as="h2"
                 className="mb-6 font-bold text-slate-900 dark:text-white"
               >
-                Integrate with REST API
+                {t('api_section_title', { default: 'Integrate with REST API' })}
               </Typography>
               <Typography
                 variant="body"
                 className="mb-8 leading-relaxed text-slate-600 dark:text-slate-400"
               >
-                BizOps menyediakan REST API yang lengkap dan konsisten untuk integrasi dengan sistem
-                eksternal. Semua endpoint menggunakan autentikasi berbasis token.
+                {t('api_section_desc', {
+                  default:
+                    'BizOps provides a complete and consistent REST API for integration with external systems. All endpoints use token-based authentication.',
+                })}
               </Typography>
 
               <div className="space-y-4">
-                {docsData.apiPreview.map((api, idx) => (
+                {docsData.apiPreview[locale].map((api, idx) => (
                   <div
                     key={idx}
                     className="flex items-start gap-4 rounded-xl border border-slate-300 bg-white p-4 dark:border-slate-700 dark:bg-slate-800/50"
@@ -237,51 +240,41 @@ export default function DocsPage() {
                   <div className="flex items-center gap-4">
                     <span className="text-xs text-slate-600 dark:text-slate-500">bash</span>
                     <button
+                      type="button"
                       onClick={handleCopy}
                       className="group flex items-center gap-1.5 text-xs text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                     >
-                      {copied
-                        ? (
-                            <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                          )
-                        : (
-                            <Copy className="h-3 w-3 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
-                          )}
-                      {copied
-                        ? (
-                            <span className="text-green-500 dark:text-green-400">Copied!</span>
-                          )
-                        : (
-                            'Copy'
-                          )}
+                      {copied ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      ) : (
+                        <Copy className="h-3 w-3 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
+                      )}
+                      {copied ? (
+                        <span className="text-green-500 dark:text-green-400">Copied!</span>
+                      ) : (
+                        'Copy'
+                      )}
                     </button>
                   </div>
                 </div>
                 <div className="overflow-x-auto p-6 text-sm leading-relaxed">
                   <div className="font-mono text-slate-700 dark:text-slate-300">
-                    <span className="text-purple-600 dark:text-purple-400">curl</span>
-                    {' '}
-                    --request GET
+                    <span className="text-purple-600 dark:text-purple-400">curl</span> --request GET
                     \
                     <br />
-                    &nbsp;&nbsp;--url
-                    {' '}
+                    &nbsp;&nbsp;--url{' '}
                     <span className="text-green-600 dark:text-green-400">
                       'https://api.bizops.id/v2/resource/Employee'
-                    </span>
-                    {' '}
+                    </span>{' '}
                     \
                     <br />
-                    &nbsp;&nbsp;--header
-                    {' '}
+                    &nbsp;&nbsp;--header{' '}
                     <span className="text-green-600 dark:text-green-400">
                       'Authorization: Token xyz:123'
-                    </span>
-                    {' '}
+                    </span>{' '}
                     \
                     <br />
-                    &nbsp;&nbsp;--header
-                    {' '}
+                    &nbsp;&nbsp;--header{' '}
                     <span className="text-green-600 dark:text-green-400">
                       'Content-Type: application/json'
                     </span>
@@ -295,10 +288,10 @@ export default function DocsPage() {
         {/* COMMUNITY & SUPPORT */}
         <div className="text-center">
           <Typography variant="h2" as="h2" className="mb-4">
-            Still need help?
+            {t('need_help_title')}
           </Typography>
           <Typography variant="body" className="mb-12 text-slate-600 dark:text-slate-400">
-            Our support team and community are here for you.
+            {t('need_help_desc')}
           </Typography>
 
           <Grid cols={3} gap={6}>
@@ -313,13 +306,17 @@ export default function DocsPage() {
                   <MessageSquare className="h-8 w-8" />
                 </div>
                 <Typography variant="h3" as="h3" className="mb-3">
-                  Developer Community
+                  {t('community_title', { default: 'Developer Community' })}
                 </Typography>
                 <Typography variant="small" className="mb-4 text-slate-500 dark:text-slate-400">
-                  Join 2,000+ developers. Discuss API integration, share custom scripts, and get
-                  help.
+                  {t('community_desc', {
+                    default:
+                      'Join 2,000+ developers. Discuss API integration, share custom scripts, and get help.',
+                  })}
                 </Typography>
-                <span className="text-sm font-bold text-indigo-600">Join Discord →</span>
+                <span className="text-sm font-bold text-indigo-600">
+                  {t('community_cta', { default: 'Join Discord →' })}
+                </span>
               </Card>
             </a>
 
@@ -329,12 +326,16 @@ export default function DocsPage() {
                   <Zap className="h-8 w-8" />
                 </div>
                 <Typography variant="h3" as="h3" className="mb-3">
-                  Feature Requests
+                  {t('feature_requests_title', { default: 'Feature Requests' })}
                 </Typography>
                 <Typography variant="small" className="mb-4 text-slate-500 dark:text-slate-400">
-                  Missing a feature? Submit a request or vote on our public roadmap.
+                  {t('feature_requests_desc', {
+                    default: 'Missing a feature? Submit a request or vote on our public roadmap.',
+                  })}
                 </Typography>
-                <span className="text-sm font-bold text-amber-600">View Roadmap →</span>
+                <span className="text-sm font-bold text-amber-600">
+                  {t('feature_requests_cta', { default: 'View Roadmap →' })}
+                </span>
               </Card>
             </Link>
 
@@ -344,12 +345,17 @@ export default function DocsPage() {
                   <Shield className="h-8 w-8" />
                 </div>
                 <Typography variant="h3" as="h3" className="mb-3">
-                  Premium Support
+                  {t('premium_support_title', { default: 'Premium Support' })}
                 </Typography>
                 <Typography variant="small" className="mb-4 text-slate-500 dark:text-slate-400">
-                  Priority support channel for Enterprise and Partner plans. 24/7 SLAs available.
+                  {t('premium_support_desc', {
+                    default:
+                      'Priority support channel for Enterprise and Partner plans. 24/7 SLAs available.',
+                  })}
                 </Typography>
-                <span className="text-sm font-bold text-blue-600">Open Ticket →</span>
+                <span className="text-sm font-bold text-blue-600">
+                  {t('premium_support_cta', { default: 'Open Ticket →' })}
+                </span>
               </Card>
             </Link>
           </Grid>

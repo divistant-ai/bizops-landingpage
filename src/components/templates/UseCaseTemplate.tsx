@@ -2,6 +2,7 @@
 
 import type { UseCase } from '@/data/useCasesContent';
 import { CheckCircle2, Layers, Lightbulb, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Badge, Button } from '@/components/ui';
@@ -12,9 +13,11 @@ type UseCaseWithTransformedIcon = Omit<UseCase, 'icon'> & {
 };
 type UseCaseTemplateProps = {
   data: UseCaseWithTransformedIcon;
+  locale: 'en' | 'id';
 };
 
-export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
+export function UseCaseTemplate({ data, locale }: UseCaseTemplateProps) {
+  const t = useTranslations('UseCases');
   // Icon is already transformed in the server component as ReactNode
   const icon = data.icon;
 
@@ -30,16 +33,14 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
           </div>
           <h2 className="text-primary-600 dark:text-primary-400 mb-4 text-lg font-bold tracking-wider uppercase">
             <span className="text-slate-800 dark:text-white">
-              {data.industry}
-              {' '}
-              Case Study
+              {data.industry} {locale === 'en' ? 'Case Study' : 'Studi Kasus'}
             </span>
           </h2>
           <h1 className="mb-6 text-4xl leading-tight font-extrabold text-slate-900 md:text-6xl dark:text-white">
-            <span className="text-slate-800 dark:text-white">{data.title}</span>
+            <span className="text-slate-800 dark:text-white">{data.title[locale]}</span>
           </h1>
           <p className="mx-auto max-w-2xl text-2xl leading-relaxed font-light text-slate-600 dark:text-slate-400">
-            <span className="text-slate-800 dark:text-white">{data.subtitle}</span>
+            <span className="text-slate-800 dark:text-white">{data.subtitle[locale]}</span>
           </p>
         </Container>
       </Section>
@@ -56,13 +57,13 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
                     <TrendingUp className="h-6 w-6 rotate-180" />
                   </div>
                   <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                    <span className="text-slate-800 dark:text-white">The Challenge</span>
+                    <span className="text-slate-800 dark:text-white">
+                      {locale === 'en' ? 'The Challenge' : 'Tantangan'}
+                    </span>
                   </h3>
                   <p className="flex-grow text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                     <span className="text-slate-800 dark:text-white">
-                      "
-                      {data.challenge}
-                      "
+                      "{data.challenge[locale]}"
                     </span>
                   </p>
                 </div>
@@ -75,10 +76,12 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
                     <Lightbulb className="h-6 w-6" />
                   </div>
                   <h3 className="mb-4 text-2xl font-bold">
-                    <span className="text-slate-800 dark:text-white">The BizOps Solution</span>
+                    <span className="text-slate-800 dark:text-white">
+                      {locale === 'en' ? 'The BizOps Solution' : 'Solusi BizOps'}
+                    </span>
                   </h3>
                   <p className="flex-grow text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-                    <span className="text-slate-800 dark:text-white">{data.solution}</span>
+                    <span className="text-slate-800 dark:text-white">{data.solution[locale]}</span>
                   </p>
                 </div>
               </FadeIn>
@@ -92,17 +95,21 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
         <Container size="5xl">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-              <span className="text-slate-800 dark:text-white">Impact & Results</span>
+              <span className="text-slate-800 dark:text-white">
+                {locale === 'en' ? 'Impact & Results' : 'Dampak & Hasil'}
+              </span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
               <span className="text-slate-800 dark:text-white">
-                Dampak nyata implementasi sistem terhadap operasional bisnis.
+                {locale === 'en'
+                  ? 'Real impact of system implementation on business operations.'
+                  : 'Dampak nyata implementasi sistem terhadap operasional bisnis.'}
               </span>
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {data.results.map((result, i) => (
+            {data.results[locale].map((result, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <div className="hover:border-primary-200 dark:hover:border-primary-700 h-full rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-colors dark:border-slate-800 dark:bg-slate-900">
                   <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
@@ -122,9 +129,10 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
       <Section className="bg-slate-50 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <h3 className="mb-8 flex items-center justify-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
-            <Layers className="h-5 w-5 text-neutral-500" />
-            {' '}
-            <span className="text-slate-800 dark:text-white">Technology Stack Used</span>
+            <Layers className="h-5 w-5 text-neutral-500" />{' '}
+            <span className="text-slate-800 dark:text-white">
+              {locale === 'en' ? 'Technology Stack Used' : 'Teknologi yang Digunakan'}
+            </span>
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {data.techStack.map((tech, i) => (
@@ -141,27 +149,24 @@ export function UseCaseTemplate({ data }: UseCaseTemplateProps) {
           <div className="mt-20">
             <div className="bg-primary-600 shadow-primary-600/30 rounded-3xl p-10 text-center text-white shadow-2xl md:p-16">
               <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-                <span className="text-slate-800 dark:text-white">Hadapi Masalah Serupa?</span>
+                <span className="text-slate-800 dark:text-white">{t('cta_title')}</span>
               </h2>
               <p className="text-primary-100 mx-auto mb-10 max-w-2xl text-xl">
-                <span className="text-slate-800 dark:text-white">
-                  Jangan biarkan inefisiensi memakan profit Anda. Diskusikan solusi yang tepat
-                  dengan tim ahli kami.
-                </span>
+                <span className="text-slate-800 dark:text-white">{t('cta_desc')}</span>
               </p>
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                <Link href="/contact">
+                <Link href={`/${locale}/contact`}>
                   <Button size="lg" variant="white" className="text-primary-600 w-full sm:w-auto">
-                    <span className="text-slate-600 dark:text-white">Konsultasi Gratis</span>
+                    <span className="text-slate-600 dark:text-white">{t('cta_button_left')}</span>
                   </Button>
                 </Link>
-                <Link href="/use-cases">
+                <Link href={`/${locale}/use-cases`}>
                   <Button
                     size="lg"
                     variant="outline"
                     className="w-full border-white text-white hover:bg-white/10 sm:w-auto"
                   >
-                    <span className="text-slate-600 dark:text-white">Lihat Studi Kasus Lain</span>
+                    <span className="text-slate-600 dark:text-white">{t('cta_button_right')}</span>
                   </Button>
                 </Link>
               </div>

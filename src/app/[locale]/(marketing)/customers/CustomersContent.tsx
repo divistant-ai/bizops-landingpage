@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Section } from '@/components/layout';
 import Container from '@/components/layout/Container';
@@ -12,7 +13,9 @@ import Stack from '@/components/ui/Stack';
 import { customerStories } from '@/data/companyContent';
 
 export default function CustomersContent() {
-  const logos = customerStories.map(s => s.client);
+  const t = useTranslations('Customers');
+  const locale = useLocale() as 'en' | 'id';
+  const logos = customerStories.map((s) => s.client);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30 dark:bg-slate-950">
@@ -26,24 +29,21 @@ export default function CustomersContent() {
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium backdrop-blur-sm dark:border-white/20 dark:bg-white/10">
               <ShieldCheck className="h-4 w-4 text-slate-900 dark:text-white" />
-              <span className="text-slate-800 dark:text-white">
-                Dipercaya oleh 500+ Perusahaan
-              </span>
+              <span className="text-slate-800 dark:text-white">{t('hero_badge')}</span>
             </div>
 
             <Typography
               variant="h1"
               className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white"
             >
-              Cerita Sukses Pelanggan Kami
+              {t('hero_title')}
             </Typography>
 
             <Typography
               variant="body"
               className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl dark:text-slate-300"
             >
-              Dari startup hingga enterprise, lihat bagaimana BizOps membantu bisnis
-              Indonesia mencapai efisiensi operasional dan pertumbuhan berkelanjutan.
+              {t('hero_desc')}
             </Typography>
           </motion.div>
         </Container>
@@ -57,20 +57,19 @@ export default function CustomersContent() {
               variant="h2"
               className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white"
             >
-              Transformasi Nyata, Hasil Terukur
+              {t('stories_title')}
             </Typography>
             <Typography
               variant="body"
               className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400"
             >
-              Setiap bisnis memiliki tantangan unik. Lihat bagaimana BizOps memberikan
-              solusi yang tepat.
+              {t('stories_desc')}
             </Typography>
           </div>
 
           <CardSlider desktopClassName="md:grid md:grid-cols-2 gap-8">
             {customerStories.map((story, idx) => (
-              <CustomerStoryCard key={idx} story={story} idx={idx} />
+              <CustomerStoryCard key={idx} story={story} idx={idx} locale={locale} />
             ))}
           </CardSlider>
         </Container>
@@ -83,7 +82,7 @@ export default function CustomersContent() {
             variant="body"
             className="mb-8 text-center text-sm font-medium tracking-wider text-slate-500 uppercase dark:text-slate-400"
           >
-            Dipercaya oleh Pemimpin Industri
+            {t('trusted_by')}
           </Typography>
 
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0 md:gap-12">
@@ -106,28 +105,22 @@ export default function CustomersContent() {
             variant="h2"
             className="mb-6 text-3xl font-extrabold text-slate-900 md:text-4xl dark:text-white"
           >
-            Siap Menjadi Cerita Sukses Berikutnya?
+            {t('cta_title')}
           </Typography>
           <Typography
             variant="body"
             className="mb-10 text-lg text-slate-600 md:text-xl dark:text-slate-400"
           >
-            Bergabunglah dengan ratusan perusahaan yang telah meningkatkan efisiensi
-            operasional mereka dengan BizOps.
+            {t('cta_desc')}
           </Typography>
 
-          <Stack
-            direction="horizontal"
-            gap={4}
-            justify="center"
-            className="flex-col sm:flex-row"
-          >
+          <Stack direction="horizontal" gap={4} justify="center" className="flex-col sm:flex-row">
             <Button
               asChild
               size="lg"
               className="bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-slate-700 dark:text-white"
             >
-              <Link href="/demo">Request Demo</Link>
+              <Link href={`/${locale}/demo`}>{t('cta_button_demo')}</Link>
             </Button>
             <Button
               asChild
@@ -135,7 +128,7 @@ export default function CustomersContent() {
               variant="outline"
               className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
             >
-              <Link href="/contact">Hubungi Sales</Link>
+              <Link href={`/${locale}/contact`}>{t('cta_button_contact')}</Link>
             </Button>
           </Stack>
         </Container>

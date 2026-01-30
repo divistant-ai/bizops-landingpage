@@ -916,7 +916,7 @@ export default function MaturityAssessment() {
 
               {/* ROI Calculator */}
               <Link
-                href="/pricing/calculator"
+                href="/tools/pricing-calculator"
                 className="group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-md transition-all hover:border-emerald-400 hover:bg-emerald-50 hover:shadow-lg dark:border-white/5 dark:bg-slate-900/40 dark:hover:border-emerald-500/30 dark:hover:bg-slate-800"
               >
                 <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white dark:bg-emerald-500/10 dark:text-emerald-400">

@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui';
@@ -19,6 +20,7 @@ type SlideDeckProps = {
 };
 
 export default function SlideDeck({ slides }: SlideDeckProps) {
+  const t = useTranslations('Intro');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
@@ -26,11 +28,11 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1 < slides.length ? prev + 1 : prev));
+    setCurrentIndex((prev) => (prev + 1 < slides.length ? prev + 1 : prev));
   }, [slides.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 >= 0 ? prev - 1 : prev));
+    setCurrentIndex((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
   }, []);
 
   const toggleFullscreen = () => {
@@ -146,13 +148,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
             </Link>
             <div className="mx-2 hidden h-6 w-px bg-slate-300 sm:block dark:bg-white/10"></div>
             <span className="hidden text-sm text-slate-600 sm:block dark:text-slate-400">
-              Slide
-              {' '}
-              {currentIndex + 1}
-              {' '}
-              /
-              {' '}
-              {slides.length}
+              Slide {currentIndex + 1} / {slides.length}
             </span>
           </div>
 
@@ -176,7 +172,7 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
               className="h-12 rounded-full px-8 shadow-lg shadow-blue-600/20"
             >
               <span className="text-slate-600 dark:text-white">
-                {currentIndex === slides.length - 1 ? 'Selesai' : 'Lanjut'}
+                {currentIndex === slides.length - 1 ? t('complete_button') : t('next_button')}
               </span>
             </Button>
           </div>
