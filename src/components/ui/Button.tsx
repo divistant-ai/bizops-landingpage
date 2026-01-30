@@ -26,7 +26,7 @@ type ButtonProps = {
   /** Button content */
   'children'?: React.ReactNode;
   /** Visual style variant */
-  'variant'?: 'primary' | 'secondary' | 'accent' | 'white' | 'outline' | 'outline-white' | 'ghost' | 'link';
+  'variant'?: 'primary' | 'secondary' | 'accent' | 'white' | 'outline' | 'outline-white' | 'ghost' | 'link' | 'neumorph' | 'glass' | 'clay';
   /** Size of the button */
   'size'?: 'sm' | 'md' | 'lg';
   /** Make button full width */
@@ -92,6 +92,12 @@ const Button: React.FC<ButtonProps> = memo(({
     'ghost': 'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
     // Link: Text-only button
     'link': 'text-primary-600 hover:text-primary-700 hover:underline px-0 shadow-none active:scale-100 dark:text-primary-400 dark:hover:text-primary-300',
+    // Neumorphism: Soft embossed button with pressed effect
+    'neumorph': 'bg-gradient-to-br from-slate-50 to-slate-100 text-slate-700 border-none shadow-[4px_4px_10px_#d1d5db,-4px_-4px_10px_#ffffff] hover:shadow-[2px_2px_5px_#d1d5db,-2px_-2px_5px_#ffffff] active:shadow-[inset_2px_2px_5px_#d1d5db,inset_-2px_-2px_5px_#ffffff] focus:ring-slate-400 dark:from-slate-800 dark:to-slate-900 dark:text-slate-200 dark:shadow-[4px_4px_10px_#0f172a,-4px_-4px_10px_#334155] dark:hover:shadow-[2px_2px_5px_#0f172a,-2px_-2px_5px_#334155] dark:active:shadow-[inset_2px_2px_5px_#0f172a,inset_-2px_-2px_5px_#334155]',
+    // Glassmorphism: Frosted glass button
+    'glass': 'bg-white/70 backdrop-blur-xl text-slate-900 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:bg-white/80 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] focus:ring-white/50 dark:bg-slate-900/70 dark:text-white dark:border-white/10 dark:hover:bg-slate-900/80',
+    // Claymorphism: 3D clay-like button - solid blue with white text
+    'clay': 'bg-blue-600 text-white border-none shadow-lg shadow-blue-500/40 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/50 active:shadow-md active:shadow-blue-500/30 focus:ring-blue-400 rounded-2xl',
   };
 
   const sizes: Record<NonNullable<ButtonProps['size']>, string> = {

@@ -7,6 +7,7 @@ type InfiniteScrollLoopProps = {
   speed?: number;
   direction?: 'left' | 'right';
   className?: string;
+  pauseOnHover?: boolean;
 };
 
 const InfiniteScrollLoop: React.FC<InfiniteScrollLoopProps> = ({
@@ -14,11 +15,12 @@ const InfiniteScrollLoop: React.FC<InfiniteScrollLoopProps> = ({
   speed = 30,
   direction = 'left',
   className = '',
+  pauseOnHover = true,
 }) => {
   return (
     <div className={`overflow-hidden ${className}`}>
       <div
-        className="flex gap-4"
+        className={`flex gap-4 ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''}`}
         style={{
           animation: `scroll ${speed}s linear infinite`,
           animationDirection: direction === 'right' ? 'reverse' : 'normal',

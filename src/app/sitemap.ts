@@ -11,7 +11,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const createEntry = (
     path: string,
     priority: number = 0.7,
-    changeFreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' = 'weekly',
+    changeFreq:
+      | 'always'
+      | 'hourly'
+      | 'daily'
+      | 'weekly'
+      | 'monthly'
+      | 'yearly'
+      | 'never' = 'weekly',
   ): MetadataRoute.Sitemap[0] => ({
     url: `${baseUrl}${path}`,
     lastModified: now,
@@ -35,12 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createEntry('/product-tour', 0.7, 'monthly'),
 
     // Platform Modules
-    ...Object.keys(modulesData).map(slug =>
+    ...Object.keys(modulesData).map((slug) =>
       createEntry(`/platform/modules/${slug}`, 0.8, 'monthly'),
     ),
 
     // Platform Capabilities
-    ...Object.keys(capabilitiesData).map(slug =>
+    ...Object.keys(capabilitiesData).map((slug) =>
       createEntry(`/platform/capabilities/${slug}`, 0.7, 'monthly'),
     ),
 
@@ -50,19 +57,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createEntry('/platform/technologies/architecture', 0.7, 'monthly'),
 
     // Solutions - By Industry
-    ...(solutionsContent.industry?.items.map(item =>
-      createEntry(item.to, 0.7, 'monthly'),
-    ) || []),
+    ...(solutionsContent.industry?.items.map((item) => createEntry(item.to, 0.7, 'monthly')) || []),
 
     // Solutions - By Role
-    ...(solutionsContent.role?.items.map(item =>
-      createEntry(item.to, 0.7, 'monthly'),
-    ) || []),
+    ...(solutionsContent.role?.items.map((item) => createEntry(item.to, 0.7, 'monthly')) || []),
 
     // Services
-    ...servicesItems.map(item =>
-      createEntry(item.to, 0.8, 'monthly'),
-    ),
+    ...servicesItems.map((item) => createEntry(item.to, 0.8, 'monthly')),
 
     // Resources
     createEntry('/blog', 0.8, 'daily'),
@@ -95,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createEntry('/tools/roi-calculator', 0.8, 'monthly'),
     createEntry('/tools/timeline-generator', 0.7, 'monthly'),
     createEntry('/tools/biaya-turnover', 0.7, 'monthly'),
-    createEntry('/pricing/calculator', 0.8, 'monthly'),
+    createEntry('/tools/pricing-calculator', 0.8, 'monthly'),
 
     // Company Pages
     createEntry('/careers', 0.7, 'weekly'),

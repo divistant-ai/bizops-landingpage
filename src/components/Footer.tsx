@@ -182,12 +182,12 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-slate-50 font-sans text-slate-900 dark:border-slate-900/50 dark:bg-[#0B0F19] dark:text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-[#0B0F19] dark:to-slate-950 dark:text-white">
       {/* Ambient Background Glow */}
-      <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-blue-600/5 blur-[120px] dark:bg-blue-600/5" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-indigo-600/5 blur-[100px] dark:bg-indigo-600/5" />
+      <div className="bg-primary-500/5 dark:bg-primary-600/5 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-8 sm:px-6 md:pt-20 md:pb-10 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-8 sm:px-6 md:pt-16 md:pb-10 lg:px-8">
         {/* MAIN GRID */}
         <div className="mb-12 grid grid-cols-1 gap-10 md:mb-20 md:grid-cols-12 md:gap-12 xl:gap-12">
           {/* BRAND COLUMN (Left) */}
@@ -197,21 +197,18 @@ export const Footer: React.FC = () => {
               className="group flex items-center focus:outline-none"
               aria-label="BizOps Home"
             >
-              {mounted ? (
-                <Image
-                  src={
-                    resolvedTheme === 'dark'
-                      ? '/assets/images/Logo BizOps - Dark.svg'
-                      : '/assets/images/Logo BizOps - Light.svg'
-                  }
-                  alt="BizOps Logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto transition-all duration-200 group-hover:scale-105"
-                />
-              ) : (
-                <div className="h-10 w-[120px]" />
-              )}
+              <Image
+                src={
+                  mounted && resolvedTheme === 'dark'
+                    ? '/assets/images/Logo BizOps - Dark.svg'
+                    : '/assets/images/Logo BizOps - Light.svg'
+                }
+                alt="BizOps Logo"
+                width={120}
+                height={40}
+                className="transition-all duration-200 group-hover:scale-105"
+                style={{ width: 'auto', height: 'auto' }}
+              />
             </Link>
 
             <p className="w-full text-sm leading-relaxed text-slate-600 md:max-w-sm dark:text-slate-400">
@@ -329,42 +326,44 @@ export const Footer: React.FC = () => {
                 {t('stay_updated')}
               </h3>
 
-              {subscribed ? (
-                <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
-                  <CheckCircle className="h-5 w-5 shrink-0" />
-                  <span className="text-sm font-medium">{t('subscribed_success')}</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="relative">
-                  <div className="relative flex items-center">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        setError(null);
-                      }}
-                      placeholder={t('email_placeholder')}
-                      className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
-                      required
-                      disabled={isPending}
-                    />
-                    <button
-                      type="submit"
-                      aria-label="Subscribe"
-                      disabled={isPending}
-                      className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                  {error && (
-                    <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
-                      {error}
-                    </p>
+              {subscribed
+                ? (
+                    <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+                      <CheckCircle className="h-5 w-5 shrink-0" />
+                      <span className="text-sm font-medium">{t('subscribed_success')}</span>
+                    </div>
+                  )
+                : (
+                    <form onSubmit={handleSubscribe} className="relative">
+                      <div className="relative flex items-center">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            setError(null);
+                          }}
+                          placeholder={t('email_placeholder')}
+                          className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
+                          required
+                          disabled={isPending}
+                        />
+                        <button
+                          type="submit"
+                          aria-label="Subscribe"
+                          disabled={isPending}
+                          className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </button>
+                      </div>
+                      {error && (
+                        <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
+                          {error}
+                        </p>
+                      )}
+                    </form>
                   )}
-                </form>
-              )}
             </div>
 
             {/* Mobile Apps - Compact */}
@@ -413,16 +412,20 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 md:flex-row dark:border-slate-900">
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 md:flex-row dark:border-slate-800">
           {/* Copyright & Language Switcher */}
           <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} {t('copyright')}
+              ©
+              {' '}
+              {new Date().getFullYear()}
+              {' '}
+              {t('copyright')}
             </p>
 
             {/* Language & Theme Switcher Pill - Mobile */}
             <div className="flex items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:hidden dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map((loc) => (
+              {routing.locales.map(loc => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -445,21 +448,25 @@ export const Footer: React.FC = () => {
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted ? (
-                  resolvedTheme === 'dark' ? (
-                    <Sun className="h-3 w-3" />
-                  ) : (
-                    <Moon className="h-3 w-3" />
-                  )
-                ) : (
-                  <div className="h-3 w-3" />
-                )}
+                {mounted
+                  ? (
+                      resolvedTheme === 'dark'
+                        ? (
+                            <Sun className="h-3 w-3" />
+                          )
+                        : (
+                            <Moon className="h-3 w-3" />
+                          )
+                    )
+                  : (
+                      <div className="h-3 w-3" />
+                    )}
               </button>
             </div>
 
             {/* Language & Theme Switcher Pill - Desktop */}
             <div className="hidden items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:flex dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map((loc) => (
+              {routing.locales.map(loc => (
                 <button
                   key={loc}
                   onClick={() => {
@@ -482,15 +489,19 @@ export const Footer: React.FC = () => {
                 className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                 aria-label="Toggle Theme"
               >
-                {mounted ? (
-                  resolvedTheme === 'dark' ? (
-                    <Sun className="h-3 w-3" />
-                  ) : (
-                    <Moon className="h-3 w-3" />
-                  )
-                ) : (
-                  <div className="h-3 w-3" />
-                )}
+                {mounted
+                  ? (
+                      resolvedTheme === 'dark'
+                        ? (
+                            <Sun className="h-3 w-3" />
+                          )
+                        : (
+                            <Moon className="h-3 w-3" />
+                          )
+                    )
+                  : (
+                      <div className="h-3 w-3" />
+                    )}
               </button>
             </div>
           </div>
@@ -513,13 +524,17 @@ export const Footer: React.FC = () => {
               href="/legal/dpa"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Lock className="h-3 w-3" /> {t('dpa')}
+              <Lock className="h-3 w-3" />
+              {' '}
+              {t('dpa')}
             </Link>
             <Link
               href="/security/report"
               className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
             >
-              <Bug className="h-3 w-3" /> {t('report_bug')}
+              <Bug className="h-3 w-3" />
+              {' '}
+              {t('report_bug')}
             </Link>
             <Link
               href="/sitemap"
