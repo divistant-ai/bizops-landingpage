@@ -182,7 +182,7 @@ export default function TurnoverCostCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-orange-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-rose-50 via-white to-orange-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-100 px-4 py-2 text-sm font-medium text-rose-700">
@@ -340,7 +340,7 @@ export default function TurnoverCostCalculator() {
 
             <Card className="border-l-4 border-rose-500 bg-rose-50 p-4 dark:border-rose-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
+                <Info className="h-5 w-5 shrink-0 text-rose-600 dark:text-rose-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
                   <p className="mb-1 font-semibold dark:text-white">Komponen Biaya Turnover:</p>
                   <ul className="space-y-0.5">
@@ -370,7 +370,7 @@ export default function TurnoverCostCalculator() {
                     className="space-y-6"
                   >
                     <Card
-                      className={`bg-gradient-to-br ${getTurnoverRateBg(result.turnoverRate)} p-6 text-white`}
+                      className={`bg-linear-to-br ${getTurnoverRateBg(result.turnoverRate)} p-6 text-white`}
                     >
                       <h3 className="mb-4 text-lg font-semibold">Turnover Rate & Total Cost</h3>
                       <div className="mb-4 text-center">
@@ -476,7 +476,7 @@ export default function TurnoverCostCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                    <Card className="bg-linear-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
                       <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
                         ROI Retention Strategy
                       </h4>
@@ -502,7 +502,7 @@ export default function TurnoverCostCalculator() {
                     >
                       <div className="flex gap-2">
                         <AlertTriangle
-                          className={`h-5 w-5 flex-shrink-0 ${
+                          className={`h-5 w-5 shrink-0 ${
                             result.turnoverRate < 10
                               ? 'text-green-600 dark:text-green-400'
                               : result.turnoverRate < 15
@@ -544,7 +544,7 @@ export default function TurnoverCostCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-rose-200 bg-gradient-to-r from-rose-50 to-orange-50 p-6 dark:border-rose-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-rose-200 bg-linear-to-r from-rose-50 to-orange-50 p-6 dark:border-rose-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-rose-100 p-3 dark:bg-rose-950">
                 <TrendingUp className="h-6 w-6 text-rose-600 dark:text-rose-400" />
@@ -572,7 +572,7 @@ export default function TurnoverCostCalculator() {
 
         <Card className="mt-8 border-l-4 border-rose-500 bg-rose-50 p-6 dark:border-rose-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertTriangle className="h-5 w-5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
+            <AlertTriangle className="h-5 w-5 shrink-0 text-rose-600 dark:text-rose-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">Strategi Menurunkan Turnover:</p>
               <ul className="list-inside list-disc space-y-1">

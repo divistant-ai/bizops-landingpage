@@ -89,7 +89,7 @@ export function CTAGroup({
           'font-semibold',
           colorShadows.primary,
           'hover:shadow-xl hover:shadow-primary-600/30',
-          'bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500',
+          'bg-linear-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500',
         )}
       >
         <Link href={primary.href}>
@@ -155,7 +155,7 @@ export function FinalCTAGroup({
         variant="primary"
         className={cn(
           'h-16 w-full px-10 text-xl font-bold sm:w-auto',
-          'bg-gradient-to-r from-primary-600 to-indigo-600 text-white shadow-2xl shadow-primary-600/20',
+          'bg-linear-to-r from-primary-600 to-indigo-600 text-white shadow-2xl shadow-primary-600/20',
           'hover:from-primary-500 hover:to-indigo-500',
         )}
       >

@@ -164,7 +164,7 @@ export default function BPJSCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-teal-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-sm font-medium text-teal-700">
@@ -263,7 +263,7 @@ export default function BPJSCalculator() {
 
             <Card className="mt-6 border-l-4 border-teal-500 bg-teal-50 p-4 dark:border-teal-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
+                <Info className="h-5 w-5 shrink-0 text-teal-600 dark:text-teal-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
                   <p className="mb-1 font-semibold dark:text-white">{t('salary_limit_title')}</p>
                   <ul className="list-inside list-disc space-y-0.5">
@@ -284,7 +284,7 @@ export default function BPJSCalculator() {
                     aria-label="Hasil perhitungan BPJS"
                     className="space-y-6"
                   >
-                    <Card className="bg-gradient-to-br from-teal-600 to-blue-600 p-6 text-white">
+                    <Card className="bg-linear-to-br from-teal-600 to-blue-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
                       <div className="mb-4 text-center">
                         <p className="text-sm text-teal-100">{t('total_contribution_month')}</p>
@@ -436,7 +436,7 @@ export default function BPJSCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-teal-200 bg-gradient-to-r from-teal-50 to-blue-50 p-6 dark:border-teal-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-teal-200 bg-linear-to-r from-teal-50 to-blue-50 p-6 dark:border-teal-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-teal-100 p-3 dark:bg-teal-950">
                 <TrendingUp className="h-6 w-6 text-teal-600 dark:text-teal-400" />
@@ -461,7 +461,7 @@ export default function BPJSCalculator() {
 
         <Card className="mt-8 border-l-4 border-teal-500 bg-teal-50 p-6 dark:border-teal-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-teal-600 dark:text-teal-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
               <ul className="list-inside list-disc space-y-1">

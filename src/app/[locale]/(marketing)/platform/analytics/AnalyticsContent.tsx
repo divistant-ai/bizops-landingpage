@@ -14,7 +14,7 @@ export default function AnalyticsContent() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
         <Container size="5xl" className="relative z-10 text-center">
           <FadeIn delay={0.1}>
-            <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 p-3 shadow-lg shadow-blue-500/30">
+            <div className="mb-6 inline-flex rounded-2xl bg-linear-to-br from-blue-500 to-cyan-600 p-3 shadow-lg shadow-blue-500/30">
               <BarChart2 className="h-8 w-8 text-white" />
             </div>
           </FadeIn>

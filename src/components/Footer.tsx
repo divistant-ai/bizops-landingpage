@@ -182,7 +182,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-dark-bg dark:to-slate-950 dark:text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-linear-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-dark-bg dark:to-slate-950 dark:text-white">
       {/* Ambient Background Glow */}
       <div className="bg-primary-500/5 dark:bg-primary-600/5 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5" />
@@ -217,7 +217,7 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-5 pt-2">
               <div className="flex items-start gap-4">
-                <div className="bg-primary-100 text-primary-600 dark:text-primary-400 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg dark:bg-white/5">
+                <div className="bg-primary-100 text-primary-600 dark:text-primary-400 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg dark:bg-white/5">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
@@ -236,7 +236,7 @@ export const Footer: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
+                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
                   <Mail className="h-4 w-4" />
                 </div>
                 <a
@@ -247,7 +247,7 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="flex items-center gap-4">
-                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
+                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
                   <Phone className="h-4 w-4" />
                 </div>
                 <a

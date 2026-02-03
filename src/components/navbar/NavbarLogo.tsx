@@ -22,7 +22,7 @@ const NavbarLogo: React.FC = () => {
       : '/assets/images/Logo BizOps - Light.svg';
 
   return (
-    <div className="flex flex-shrink-0 items-center">
+    <div className="flex shrink-0 items-center">
       <Link
         href="/"
         className="group focus-visible:ring-primary-500 flex items-center rounded-lg transition-all duration-200 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"

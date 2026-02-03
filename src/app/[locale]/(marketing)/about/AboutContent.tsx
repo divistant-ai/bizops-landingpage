@@ -4,12 +4,10 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Building2,
-  CheckCircle2,
   Code,
   ExternalLink,
   FileText,
   Heart,
-  Linkedin,
   MapPin,
   Rocket,
   ShieldCheck,
@@ -20,8 +18,9 @@ import {
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
-import { Button, CardSlider, OptimizedImage } from '@/components/ui';
-import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
+import { TeamSection, ValuesGrid } from '@/components/sections/about';
+import { CTASection, PageHero, StatCard } from '@/components/sections/shared';
+import { Button } from '@/components/ui';
 import { aboutContent } from '@/data/companyContent';
 
 const teamMembers = [
@@ -81,90 +80,45 @@ export default function AboutContent() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Hero Section (Cinematic) */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pb-40 dark:bg-dark-bg">
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        {/* Animated Glow Orbs */}
-        <div className="pointer-events-none absolute right-0 bottom-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-600/10"></div>
-
-        <div className="relative z-10 mx-auto max-w-5xl px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-indigo-100 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase shadow-xl backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-indigo-300"
-          >
-            <Rocket className="h-3 w-3" />
-            {' '}
-            {t('hero_badge')}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-            className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-7xl dark:text-white"
-          >
+      <PageHero
+        badge={{ icon: Rocket, text: t('hero_badge') }}
+        title={(
+          <>
             {t('hero_title_1')}
             {' '}
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-cyan-300">
+            <span className="bg-linear-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-cyan-300">
               {t('hero_title_2')}
             </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto mb-12 max-w-3xl text-lg leading-relaxed font-light text-slate-700 md:text-2xl dark:text-slate-300"
+          </>
+        )}
+        subtitle={t('hero_subheadline')}
+      >
+        <a href="https://divistant.com/our-profile" target="_blank" rel="noopener noreferrer">
+          <Button
+            size="lg"
+            className="h-14 w-full transform rounded-full border-none bg-slate-900 px-8 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-indigo-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
           >
-            {t('hero_subheadline')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <a href="https://divistant.com/our-profile" target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                className="h-14 w-full transform rounded-full border-none bg-slate-900 px-8 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-indigo-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
-              >
-                {t('cta_profile')}
-                {' '}
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
-            </a>
-          </motion.div>
-        </div>
-      </section>
+            {t('cta_profile')}
+            {' '}
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </Button>
+        </a>
+      </PageHero>
 
       {/* Stats Section */}
-      <Section className="relative z-10 -mt-16 !bg-white dark:!bg-slate-900">
+      <Section className="pointer-events-none relative z-10 -mt-24 !bg-transparent">
         <Container size="7xl">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {stats.map((stat, idx) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
-                >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <div className="mb-1 text-3xl font-bold text-slate-900 dark:text-white">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">{stat.label}</div>
-                </motion.div>
-              );
-            })}
+          <div className="pointer-events-auto grid grid-cols-2 gap-6 md:grid-cols-4">
+            {stats.map((stat, idx) => (
+              <StatCard
+                key={idx}
+                value={stat.value}
+                label={stat.label}
+                icon={stat.icon}
+                index={idx}
+              />
+            ))}
           </div>
         </Container>
       </Section>
@@ -206,7 +160,7 @@ export default function AboutContent() {
                     </span>
                   </div>
                   <div
-                    className={`rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl md:col-span-4 md:p-10 ${idx === 2 ? 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-white shadow-lg dark:border-indigo-900/30 dark:from-indigo-950/30 dark:to-slate-900' : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700'}`}
+                    className={`rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl md:col-span-4 md:p-10 ${idx === 2 ? 'border-indigo-200 bg-linear-to-br from-indigo-50 to-white shadow-lg dark:border-indigo-900/30 dark:from-indigo-950/30 dark:to-slate-900' : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700'}`}
                   >
                     <h3
                       className={`mb-4 text-2xl font-bold ${idx === 2 ? 'text-indigo-900 dark:text-indigo-300' : 'text-slate-900 dark:text-white'}`}
@@ -227,163 +181,15 @@ export default function AboutContent() {
       </section>
 
       {/* Core Values (Glassmorphism) */}
-      <section className="relative overflow-hidden bg-slate-100 py-24 dark:bg-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
-        {/* Background Shapes */}
-        <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-600/5 blur-[120px] dark:bg-blue-600/10"></div>
-        <div className="absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-600/5 blur-[120px] dark:bg-indigo-600/10"></div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              {t('values_title')}
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg font-light text-slate-600 dark:text-slate-300">
-              {t('values_subtitle')}
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {[1, 2, 3].map((idx) => {
-              const icons = [Zap, ShieldCheck, Users];
-              const Icon = icons[idx - 1] || Users;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: (idx - 1) * 0.1 }}
-                  className="group relative rounded-3xl border border-slate-200 bg-white p-8 backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-slate-50 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-indigo-500/10"></div>
-                  <div className="relative">
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-500/20 dark:text-blue-400">
-                      <Icon className="h-7 w-7" />
-                    </div>
-                    <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-                      {t(`value_${idx}_title` as any)}
-                    </h3>
-                    <p className="mb-6 leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      "
-                      {t(`value_${idx}_manifesto` as any)}
-                      "
-                    </p>
-                    <div className="border-t border-slate-200 pt-6 dark:border-white/10">
-                      <p className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-500" />
-                        {t(`value_${idx}_proof` as any)}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <ValuesGrid />
 
       {/* Team Section */}
-      <Section className="!bg-slate-50 dark:!bg-slate-950">
-        <Container size="7xl">
-          <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              {t('team_title')}
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg font-light text-slate-600 dark:text-slate-400">
-              {t('team_subtitle')}
-            </p>
-          </div>
-
-          {/* Mobile: CardSlider */}
-          <div className="md:hidden">
-            <CardSlider>
-              {teamMembers.map((member, idx) => (
-                <div key={idx} className="group w-[280px]">
-                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className="relative h-64 overflow-hidden">
-                      <OptimizedImage
-                        src={member.image}
-                        alt={member.name}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        width={280}
-                        height={256}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
-                        {member.name}
-                      </h3>
-                      <p className="text-primary-600 dark:text-primary-400 mb-4 text-sm font-medium">
-                        {member.role}
-                      </p>
-                      <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "
-                        {member.quote}
-                        "
-                      </p>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors dark:text-slate-300"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                        {t('team_connect')}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </CardSlider>
-          </div>
-
-          {/* Desktop: Grid */}
-          <FadeInStagger>
-            <div className="hidden gap-6 md:grid md:grid-cols-3">
-              {teamMembers.map((member, idx) => (
-                <FadeIn key={idx}>
-                  <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className="relative h-64 w-full overflow-hidden">
-                      <OptimizedImage
-                        src={member.image}
-                        alt={member.name}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        width={360}
-                        height={256}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
-                        {member.name}
-                      </h3>
-                      <p className="text-primary-600 dark:text-primary-400 mb-4 text-sm font-medium">
-                        {member.role}
-                      </p>
-                      <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "
-                        {member.quote}
-                        "
-                      </p>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors dark:text-slate-300"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                        {t('team_connect')}
-                      </a>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </FadeInStagger>
-        </Container>
-      </Section>
+      {/* Team Section */}
+      <TeamSection
+        members={teamMembers}
+        title={t('team_title')}
+        subtitle={t('team_subtitle')}
+      />
 
       {/* Entity Section */}
       <Section className="border-t border-slate-200 !bg-white dark:border-slate-800 dark:!bg-slate-950">
@@ -449,42 +255,31 @@ export default function AboutContent() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="bg-slate-100 dark:bg-slate-950">
-        <Container size="4xl" className="text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-sm dark:border-white/20 dark:bg-white/10 dark:text-blue-300">
-            <Sparkles className="h-3 w-3" />
+      <CTASection
+        badge={{ icon: Sparkles, text: t('cta_badge') }}
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+      >
+        <Link href="/careers">
+          <Button
+            size="lg"
+            className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
+          >
+            {t('cta_careers')}
             {' '}
-            {t('cta_badge')}
-          </div>
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-700 dark:text-slate-300">
-            {t('cta_subtitle')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/careers">
-              <Button
-                size="lg"
-                className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
-              >
-                {t('cta_careers')}
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/partners">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
-              >
-                {t('cta_partners')}
-              </Button>
-            </Link>
-          </div>
-        </Container>
-      </Section>
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
+        <Link href="/partners">
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
+          >
+            {t('cta_partners')}
+          </Button>
+        </Link>
+      </CTASection>
     </div>
   );
 }

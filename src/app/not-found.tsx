@@ -19,7 +19,8 @@ export default function NotFound() {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-[10%] -left-[10%] size-[500px] rounded-full bg-blue-500/10 blur-[120px]" />
         <div className="absolute -right-[10%] -bottom-[10%] size-[500px] rounded-full bg-indigo-500/10 blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        {/* Local noise substitute */}
+        <div className="absolute inset-0 bg-slate-50 opacity-20 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:16px_16px] dark:bg-slate-950 dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px)]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl">
@@ -36,7 +37,7 @@ export default function NotFound() {
             {t('title_1')}
             {' '}
             <br />
-            <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
               {t('title_2')}
             </span>
           </h1>

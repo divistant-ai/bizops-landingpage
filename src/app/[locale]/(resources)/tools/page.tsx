@@ -140,7 +140,7 @@ export default function ToolsHubPage() {
   const locale = useLocale();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-slate-950 dark:to-slate-900">
+    <div className="min-h-screen bg-linear-to-b from-white to-neutral-50 dark:from-slate-950 dark:to-slate-900">
       <Section className="pt-24 pb-20">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -151,7 +151,7 @@ export default function ToolsHubPage() {
             <h1 className="mb-6 text-5xl leading-tight font-extrabold text-slate-900 md:text-6xl dark:text-white">
               {t('hero_title')}
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
                 {t('hero_title_1')}
               </span>
             </h1>
@@ -202,7 +202,7 @@ export default function ToolsHubPage() {
             </div>
           </div>
 
-          <div className="from-primary-50 dark:from-primary-900/20 mt-20 rounded-3xl border border-slate-200 bg-gradient-to-br to-purple-50 p-8 md:p-12 dark:border-neutral-800 dark:border-slate-800 dark:to-purple-900/20">
+          <div className="from-primary-50 dark:from-primary-900/20 mt-20 rounded-3xl border border-slate-200 bg-linear-to-br to-purple-50 p-8 md:p-12 dark:border-neutral-800 dark:border-slate-800 dark:to-purple-900/20">
             <div className="mx-auto max-w-3xl text-center">
               <div className="mb-6 flex justify-center">
                 <div className="bg-primary-100 dark:bg-primary-900/30 rounded-full p-4">

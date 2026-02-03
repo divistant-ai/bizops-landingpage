@@ -153,7 +153,7 @@ const NotificationCenter: React.FC = () => {
             <div className="border-b border-blue-100 bg-blue-50 p-3 dark:border-blue-800/30 dark:bg-blue-900/20">
               <div className="flex items-start gap-3">
                 <Radio className="mt-0.5 h-4 w-4 text-blue-600" />
-                <div className="flex-grow">
+                <div className="grow">
                   <p className="mb-1 text-xs font-medium text-blue-800 dark:text-blue-300">Enable Push Notifications</p>
                   <p className="mb-2 text-[10px] text-blue-600 dark:text-blue-400">Get real-time updates on system status & roadmap.</p>
                   <Button size="sm" onClick={handleEnablePush} className="h-7 py-1 text-xs">Allow Access</Button>
@@ -176,15 +176,15 @@ const NotificationCenter: React.FC = () => {
                   className={`group relative block cursor-pointer border-b border-slate-50 p-4 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800 ${!n.read ? 'bg-primary-50/30 dark:bg-primary-900/10' : ''}`}
                 >
                   <div className="flex gap-3">
-                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
                       {getIcon(n.type)}
                     </div>
-                    <div className="flex-grow pr-4">
+                    <div className="grow pr-4">
                       <div className="mb-1 flex items-start justify-between">
                         <h4 className={`text-sm font-medium ${!n.read ? 'font-bold text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-300'}`}>
                           {n.title}
                         </h4>
-                        {!n.read && <div className="bg-primary-500 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"></div>}
+                        {!n.read && <div className="bg-primary-500 mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"></div>}
                       </div>
                       <p className="mb-1 line-clamp-2 text-xs leading-snug text-slate-500 dark:text-slate-400">
                         {n.desc}

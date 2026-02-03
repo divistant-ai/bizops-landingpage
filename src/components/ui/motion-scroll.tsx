@@ -91,7 +91,7 @@ export const CounterUp: React.FC<{
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
-      <motion.span className="mb-2 block bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl">
+      <motion.span className="mb-2 block bg-linear-to-r from-blue-600 to-blue-900 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl">
         {hasNumber
           ? (
               <>
@@ -143,7 +143,7 @@ export const InfiniteScrollLoop: React.FC<{
 }> = ({ children, speed = 20, direction = 'left', className }) => {
   return (
     <div
-      className={`flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}
+      className={`flex overflow-hidden mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}
     >
       <motion.div
         initial={{ x: direction === 'left' ? 0 : '-50%' }}

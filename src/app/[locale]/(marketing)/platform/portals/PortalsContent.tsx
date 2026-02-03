@@ -14,7 +14,7 @@ const PortalsContent: React.FC = () => {
       <Section className="bg-slate-900 py-20 text-white lg:py-24 dark:bg-slate-950">
         <Container size="5xl" className="text-center">
           <FadeIn delay={0.1}>
-            <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 p-3 shadow-lg shadow-blue-500/30">
+            <div className="mb-6 inline-flex rounded-2xl bg-linear-to-br from-blue-500 to-cyan-600 p-3 shadow-lg shadow-blue-500/30">
               <Globe className="h-8 w-8 text-white" />
             </div>
           </FadeIn>
@@ -48,7 +48,7 @@ const PortalsContent: React.FC = () => {
             <div className="grid gap-8 md:grid-cols-2">
               <FadeIn delay={0.1}>
                 <div className="group h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-none">
-                  <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 text-white">
+                  <div className="bg-linear-to-br from-blue-600 to-blue-700 p-8 text-white">
                     <div className="mb-4 inline-flex rounded-xl bg-white/20 p-3">
                       <ShoppingBag className="h-7 w-7 text-white" />
                     </div>
@@ -81,7 +81,7 @@ const PortalsContent: React.FC = () => {
 
               <FadeIn delay={0.2}>
                 <div className="group h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-none">
-                  <div className="bg-gradient-to-br from-amber-600 to-amber-700 p-8 text-white">
+                  <div className="bg-linear-to-br from-amber-600 to-amber-700 p-8 text-white">
                     <div className="mb-4 inline-flex rounded-xl bg-white/20 p-3">
                       <Truck className="h-7 w-7 text-white" />
                     </div>

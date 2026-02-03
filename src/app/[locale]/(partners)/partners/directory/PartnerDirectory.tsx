@@ -42,7 +42,7 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
 
           {/* Filters */}
           <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative flex-grow">
+            <div className="relative grow">
               <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-neutral-400 dark:text-slate-500" />
               <input
                 type="text"

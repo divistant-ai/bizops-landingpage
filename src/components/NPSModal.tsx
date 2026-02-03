@@ -72,7 +72,7 @@ const NPSModal: React.FC = () => {
             {' '}
             Feedback
           </h3>
-          <button onClick={handleDismiss} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <button onClick={handleDismiss} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Dismiss feedback">
             <X className="h-4 w-4" />
           </button>
         </div>

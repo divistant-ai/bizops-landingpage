@@ -117,7 +117,7 @@ export default function BlogDetailContent({ post, relatedPosts }: BlogDetailCont
       {/* HERO SECTION */}
       <div className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-slate-900">
         <motion.div style={{ opacity: heroOpacity, scale: heroScale }} className="absolute inset-0">
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+          <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
           <OptimizedImage
             src={post.image}
             alt={post.title}
@@ -262,9 +262,9 @@ export default function BlogDetailContent({ post, relatedPosts }: BlogDetailCont
 
             {/* Author CTA */}
             <div className="mt-16 border-t border-slate-200 pt-12 dark:border-slate-800">
-              <div className="from-primary-50 dark:from-primary-900/20 border-primary-100 dark:border-primary-900/50 rounded-3xl border bg-gradient-to-br to-blue-50 p-8 md:p-12 dark:to-blue-900/20">
+              <div className="from-primary-50 dark:from-primary-900/20 border-primary-100 dark:border-primary-900/50 rounded-3xl border bg-linear-to-br to-blue-50 p-8 md:p-12 dark:to-blue-900/20">
                 <div className="flex items-start gap-6">
-                  <div className="bg-primary-600 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full text-xl font-bold text-white">
+                  <div className="bg-primary-600 flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-xl font-bold text-white">
                     {post.author.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div className="flex-1">
@@ -309,14 +309,14 @@ export default function BlogDetailContent({ post, relatedPosts }: BlogDetailCont
                         height={300}
                       />
                     </div>
-                    <div className="flex flex-grow flex-col p-6">
+                    <div className="flex grow flex-col p-6">
                       <Badge variant="neutral" className="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 mb-3 w-fit">
                         {related.category}
                       </Badge>
                       <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 line-clamp-2 text-lg font-bold text-slate-900 transition-colors dark:text-white">
                         {related.title}
                       </h3>
-                      <p className="line-clamp-2 flex-grow text-sm text-slate-600 dark:text-slate-400">
+                      <p className="line-clamp-2 grow text-sm text-slate-600 dark:text-slate-400">
                         {related.summary}
                       </p>
                       <div className="text-primary-600 dark:text-primary-400 mt-4 flex items-center text-sm font-bold transition-all group-hover:gap-2">

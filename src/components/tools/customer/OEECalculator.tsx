@@ -177,7 +177,7 @@ export default function OEECalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700">
@@ -344,7 +344,7 @@ export default function OEECalculator() {
 
             <Card className="border-l-4 border-indigo-500 bg-indigo-50 p-4 dark:border-indigo-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-indigo-600 dark:text-indigo-400" />
+                <Info className="h-5 w-5 shrink-0 text-indigo-600 dark:text-indigo-400" />
                 <div className="text-xs text-gray-700 dark:text-slate-300">
                   <p className="mb-1 font-semibold dark:text-white">{t('info_title')}</p>
                   <p>{t('info_formula')}</p>
@@ -388,7 +388,7 @@ export default function OEECalculator() {
                     aria-label="Hasil perhitungan OEE"
                     className="space-y-6"
                   >
-                    <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
+                    <Card className={`bg-linear-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
                       <h3 className="mb-4 text-lg font-semibold">{t('oee_score')}</h3>
                       <div className="mb-4 text-center">
                         <p className="text-6xl font-bold">
@@ -485,7 +485,7 @@ export default function OEECalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                    <Card className="bg-linear-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
                       <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
                         {t('recommendations_title')}
                       </h4>
@@ -524,7 +524,7 @@ export default function OEECalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-50 p-6 dark:border-indigo-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-indigo-200 bg-linear-to-r from-indigo-50 to-purple-50 p-6 dark:border-indigo-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-indigo-100 p-3 dark:bg-indigo-950">
                 <TrendingUp className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
@@ -549,7 +549,7 @@ export default function OEECalculator() {
 
         <Card className="mt-8 border-l-4 border-indigo-500 bg-indigo-50 p-6 dark:border-indigo-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-indigo-600 dark:text-indigo-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-indigo-600 dark:text-indigo-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">

@@ -1,6 +1,5 @@
 'use client';
 
-import type { SlideData } from '@/components/presentation/SlideDeck';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -27,47 +26,41 @@ import {
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import SlideDeck from '@/components/presentation/SlideDeck';
+
+import {
+  AnimatedSlide,
+  itemVariants,
+  SlideBg,
+  SlideDeck,
+} from '@/components/presentation';
+import type { SlideData } from '@/components/presentation';
 import { Badge, Button } from '@/components/ui';
 
-// --- ANIMATION HELPERS ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring' as const, stiffness: 100, damping: 20 },
-  },
-};
-
-const AnimatedSlide = ({
-  children,
-  className = '',
+// Local FeatureCard with different styling than shared one
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  desc,
+  color,
 }: {
-  children: React.ReactNode;
-  className?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  desc: string;
+  color: string;
 }) => (
   <motion.div
-    variants={containerVariants}
-    initial="hidden"
-    animate="visible"
-    className={`flex h-full flex-col items-center justify-center px-8 ${className}`}
+    variants={itemVariants}
+    className="group h-full rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-2 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900"
   >
-    {children}
+    <div className={`mb-4 inline-flex rounded-xl ${color} p-4`}>
+      <Icon className="h-6 w-6 text-white" />
+    </div>
+    <h4 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">{title}</h4>
+    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{desc}</p>
   </motion.div>
 );
 
+// Local TimelineItem with specific styling
 const TimelineItem = ({
   icon: Icon,
   title,
@@ -96,44 +89,6 @@ const TimelineItem = ({
       </div>
       <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">{subtitle}</p>
     </div>
-  </motion.div>
-);
-
-const SlideBg = ({ variant = 'default' }: { variant?: 'default' | 'blue' }) => (
-  <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-    {variant === 'default' && (
-      <>
-        <div className="absolute top-0 left-0 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-900/10"></div>
-        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-900/10"></div>
-      </>
-    )}
-    {variant === 'blue' && (
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-slate-100 to-slate-100 dark:from-blue-950 dark:via-slate-950 dark:to-slate-950"></div>
-    )}
-    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-  </div>
-);
-
-const FeatureCard = ({
-  icon: Icon,
-  title,
-  desc,
-  color,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  desc: string;
-  color: string;
-}) => (
-  <motion.div
-    variants={itemVariants}
-    className="group h-full rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-2 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900"
-  >
-    <div className={`mb-4 inline-flex rounded-xl ${color} p-4`}>
-      <Icon className="h-6 w-6 text-white" />
-    </div>
-    <h4 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">{title}</h4>
-    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{desc}</p>
   </motion.div>
 );
 
@@ -272,35 +227,35 @@ export default function OnboardingSlideContent() {
               title={t('phase1_title')}
               subtitle={t('phase1_subtitle')}
               duration={t('phase1_duration')}
-              color="bg-gradient-to-br from-blue-500 to-cyan-600"
+              color="bg-linear-to-br from-blue-500 to-cyan-600"
             />
             <TimelineItem
               icon={Settings}
               title={t('phase2_title')}
               subtitle={t('phase2_subtitle')}
               duration={t('phase2_duration')}
-              color="bg-gradient-to-br from-purple-500 to-indigo-600"
+              color="bg-linear-to-br from-purple-500 to-indigo-600"
             />
             <TimelineItem
               icon={Database}
               title={t('phase3_title')}
               subtitle={t('phase3_subtitle')}
               duration={t('phase3_duration')}
-              color="bg-gradient-to-br from-amber-500 to-orange-600"
+              color="bg-linear-to-br from-amber-500 to-orange-600"
             />
             <TimelineItem
               icon={GraduationCap}
               title={t('phase4_title')}
               subtitle={t('phase4_subtitle')}
               duration={t('phase4_duration')}
-              color="bg-gradient-to-br from-green-500 to-emerald-600"
+              color="bg-linear-to-br from-green-500 to-emerald-600"
             />
             <TimelineItem
               icon={CheckCircle2}
               title={t('phase5_title')}
               subtitle={t('phase5_subtitle')}
               duration={t('phase5_duration')}
-              color="bg-gradient-to-br from-red-500 to-rose-600"
+              color="bg-linear-to-br from-red-500 to-rose-600"
             />
           </div>
         </AnimatedSlide>
@@ -314,7 +269,7 @@ export default function OnboardingSlideContent() {
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 p-4">
+            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-linear-to-br from-blue-500 to-cyan-600 p-4">
               <Rocket className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
@@ -377,7 +332,7 @@ export default function OnboardingSlideContent() {
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 p-4">
+            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-linear-to-br from-purple-500 to-indigo-600 p-4">
               <Settings className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
@@ -452,7 +407,7 @@ export default function OnboardingSlideContent() {
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 p-4">
+            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-linear-to-br from-amber-500 to-orange-600 p-4">
               <Database className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
@@ -550,7 +505,7 @@ export default function OnboardingSlideContent() {
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-4">
+            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-linear-to-br from-green-500 to-emerald-600 p-4">
               <GraduationCap className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
@@ -678,7 +633,7 @@ export default function OnboardingSlideContent() {
       content: (
         <AnimatedSlide>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 p-4">
+            <div className="mx-auto mb-6 inline-flex rounded-2xl bg-linear-to-br from-red-500 to-rose-600 p-4">
               <CheckCircle2 className="h-12 w-12 text-white" />
             </div>
             <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">
@@ -781,7 +736,7 @@ export default function OnboardingSlideContent() {
           <div className="grid w-full max-w-6xl grid-cols-2 gap-8">
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 dark:border-blue-900/30 dark:from-blue-900/10 dark:to-cyan-900/10"
+              className="rounded-2xl border border-blue-200 bg-linear-to-br from-blue-50 to-cyan-50 p-8 dark:border-blue-900/30 dark:from-blue-900/10 dark:to-cyan-900/10"
             >
               <TrendingUp className="mb-4 h-12 w-12 text-blue-600 dark:text-blue-400" />
               <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
@@ -809,7 +764,7 @@ export default function OnboardingSlideContent() {
 
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 p-8 dark:border-green-900/30 dark:from-green-900/10 dark:to-emerald-900/10"
+              className="rounded-2xl border border-green-200 bg-linear-to-br from-green-50 to-emerald-50 p-8 dark:border-green-900/30 dark:from-green-900/10 dark:to-emerald-900/10"
             >
               <Users className="mb-4 h-12 w-12 text-green-600 dark:text-green-400" />
               <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">

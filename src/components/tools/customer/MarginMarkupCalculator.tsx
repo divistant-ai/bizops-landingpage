@@ -189,7 +189,7 @@ export default function MarginMarkupCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-white to-pink-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-sm font-medium text-purple-700">
@@ -364,7 +364,7 @@ export default function MarginMarkupCalculator() {
 
             <Card className="border-l-4 border-purple-500 bg-purple-50 p-4 dark:border-purple-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+                <Info className="h-5 w-5 shrink-0 text-purple-600 dark:text-purple-400" />
                 <div className="text-xs text-gray-700 dark:text-slate-300">
                   <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
                   <ul className="space-y-1">
@@ -399,7 +399,7 @@ export default function MarginMarkupCalculator() {
                     aria-label="Hasil perhitungan margin markup"
                     className="space-y-6"
                   >
-                    <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
+                    <Card className="bg-linear-to-br from-purple-600 to-pink-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
                       <div className="mb-4 text-center">
                         <p className="text-sm text-purple-100">{t('optimal_selling_price')}</p>
@@ -426,7 +426,7 @@ export default function MarginMarkupCalculator() {
                       </h3>
 
                       <div className="space-y-4">
-                        <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
+                        <div className="rounded-lg bg-linear-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
                           <div className="mb-2 flex items-center justify-between">
                             <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
                               {t('margin_label')}
@@ -441,7 +441,7 @@ export default function MarginMarkupCalculator() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
+                        <div className="rounded-lg bg-linear-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
                           <div className="mb-2 flex items-center justify-between">
                             <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
                               {t('markup_label')}
@@ -476,7 +476,7 @@ export default function MarginMarkupCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                    <Card className="bg-linear-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
                       <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
                         <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                         {t('sales_projection_title')}
@@ -525,7 +525,7 @@ export default function MarginMarkupCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:border-purple-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-purple-200 bg-linear-to-r from-purple-50 to-pink-50 p-6 dark:border-purple-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-purple-100 p-3 dark:bg-purple-950">
                 <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-400" />
@@ -550,7 +550,7 @@ export default function MarginMarkupCalculator() {
 
         <Card className="mt-8 border-l-4 border-purple-500 bg-purple-50 p-6 dark:border-purple-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-purple-600 dark:text-purple-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">

@@ -174,7 +174,7 @@ export default function ResourcesContent() {
                 width={800}
                 height={600}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-6 md:p-8">
                 <span className="bg-primary-600 mb-3 inline-block rounded-full px-3 py-1 text-xs font-bold text-white">
                   {latestBlogs[0].category}
@@ -207,7 +207,7 @@ export default function ResourcesContent() {
                 <h3 className="hover:text-primary-600 mb-2 line-clamp-2 text-lg font-bold text-slate-900 dark:text-white">
                   <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
-                <p className="mb-4 line-clamp-2 flex-grow text-sm text-slate-600 dark:text-slate-400">
+                <p className="mb-4 line-clamp-2 grow text-sm text-slate-600 dark:text-slate-400">
                   {post.summary}
                 </p>
                 <div className="mt-auto text-xs text-slate-500 dark:text-slate-500">
@@ -322,7 +322,7 @@ export default function ResourcesContent() {
               </div>
             </div>
             <div className="w-full max-w-xs opacity-80">
-              <div className="from-primary-100 to-primary-50 flex aspect-square items-center justify-center rounded-full bg-gradient-to-tr">
+              <div className="from-primary-100 to-primary-50 flex aspect-square items-center justify-center rounded-full bg-linear-to-tr">
                 <FileText className="text-primary-300 h-32 w-32" />
               </div>
             </div>

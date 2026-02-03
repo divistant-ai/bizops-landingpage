@@ -200,7 +200,7 @@ export default function BlogContent() {
               width={1200}
               height={600}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-slate-900/95 via-slate-900/60 to-transparent"></div>
             <div className="absolute bottom-0 left-0 max-w-3xl p-8 md:p-12">
               <span className="bg-primary-600 mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-wider text-white uppercase">
                 {t('featured_badge')}
@@ -285,7 +285,7 @@ export default function BlogContent() {
                         <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 line-clamp-2 text-xl font-bold text-slate-900 transition-colors dark:text-white">
                           {post.title[locale]}
                         </h3>
-                        <p className="mb-4 line-clamp-3 flex-grow text-sm text-slate-600 dark:text-slate-400">
+                        <p className="mb-4 line-clamp-3 grow text-sm text-slate-600 dark:text-slate-400">
                           {post.summary[locale]}
                         </p>
                         <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-4 text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">

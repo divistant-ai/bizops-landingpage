@@ -15,7 +15,7 @@ export default function ErrorDisplay({ errors, className = '' }: ErrorDisplayPro
   return (
     <div className={`rounded-lg border-l-4 border-red-500 bg-red-50 p-4 ${className}`}>
       <div className="flex items-start gap-3">
-        <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600" />
+        <AlertCircle className="h-5 w-5 shrink-0 text-red-600" />
         <div>
           <p className="font-semibold text-red-900">Terjadi Kesalahan:</p>
           <ul className="mt-1 list-inside list-disc text-sm text-red-700">

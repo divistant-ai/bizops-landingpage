@@ -275,7 +275,7 @@ export default function InvoiceChecker() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-cyan-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-sm font-medium text-cyan-700">
@@ -466,7 +466,7 @@ export default function InvoiceChecker() {
 
             <Card className="border-l-4 border-cyan-500 bg-cyan-50 p-4 dark:border-cyan-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-cyan-600 dark:text-cyan-400" />
+                <Info className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
                   <p className="mb-1 font-semibold dark:text-white">{t('info_title')}</p>
                   <ul className="list-inside list-disc space-y-0.5">
@@ -489,7 +489,7 @@ export default function InvoiceChecker() {
                     aria-label="Hasil validasi invoice"
                     className="space-y-6"
                   >
-                    <Card className={`bg-gradient-to-br ${getScoreColor(result.score)} p-6 text-white`}>
+                    <Card className={`bg-linear-to-br ${getScoreColor(result.score)} p-6 text-white`}>
                       <h3 className="mb-4 text-lg font-semibold">{t('validation_score')}</h3>
                       <div className="mb-4 text-center">
                         <p className="text-6xl font-bold">
@@ -562,7 +562,7 @@ export default function InvoiceChecker() {
                     {result.failedChecks > 0 && (
                       <Card className="border-l-4 border-red-500 bg-red-50 p-4 dark:border-red-600 dark:bg-red-950/20">
                         <div className="flex gap-2">
-                          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
+                          <AlertTriangle className="h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
                           <div className="text-sm text-slate-700 dark:text-slate-300">
                             <p className="font-semibold dark:text-white">{t('action_required')}</p>
                             <p>{t('fix_failed_items', { count: result.failedChecks })}</p>
@@ -584,7 +584,7 @@ export default function InvoiceChecker() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-cyan-200 bg-gradient-to-r from-cyan-50 to-blue-50 p-6 dark:border-cyan-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-cyan-200 bg-linear-to-r from-cyan-50 to-blue-50 p-6 dark:border-cyan-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-cyan-100 p-3 dark:bg-cyan-950">
                 <TrendingUp className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
@@ -609,7 +609,7 @@ export default function InvoiceChecker() {
 
         <Card className="mt-8 border-l-4 border-cyan-500 bg-cyan-50 p-6 dark:border-cyan-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertTriangle className="h-5 w-5 flex-shrink-0 text-cyan-600 dark:text-cyan-400" />
+            <AlertTriangle className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">

@@ -130,7 +130,7 @@ export default function EventsPage() {
                         {' '}
                         {evt.type}
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-slate-900/90 to-transparent opacity-60"></div>
                     </div>
 
                     <div className="flex flex-1 flex-col gap-4 p-6">
@@ -206,7 +206,7 @@ export default function EventsPage() {
                       {' '}
                       {evt.type}
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-60"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-900/90 to-transparent opacity-60"></div>
                   </div>
 
                   <div className="flex flex-1 flex-col gap-4 p-6">

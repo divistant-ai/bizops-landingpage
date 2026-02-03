@@ -75,7 +75,7 @@ export default function TimelineGenerator() {
             {' '}
             <br />
             {' '}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
               Secara Realistis
             </span>
           </h1>
@@ -452,7 +452,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300"
                                         >
-                                          <CheckSquare className="mt-0.5 size-3 flex-shrink-0 text-emerald-500" />
+                                          <CheckSquare className="mt-0.5 size-3 shrink-0 text-emerald-500" />
                                           {' '}
                                           {item}
                                         </li>
@@ -473,7 +473,7 @@ export default function TimelineGenerator() {
                                           key={i}
                                           className="flex items-start gap-2 text-xs text-amber-700 dark:text-amber-400"
                                         >
-                                          <AlertTriangle className="mt-0.5 size-3 flex-shrink-0" />
+                                          <AlertTriangle className="mt-0.5 size-3 shrink-0" />
                                           {' '}
                                           {item}
                                         </li>

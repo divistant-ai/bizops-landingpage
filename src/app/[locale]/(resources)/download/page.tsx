@@ -46,7 +46,7 @@ export default function DownloadPage() {
                 {t('hero_title_line1')}
                 {' '}
                 <br />
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text py-3 text-transparent dark:from-blue-400 dark:to-indigo-400">
+                <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text py-3 text-transparent dark:from-blue-400 dark:to-indigo-400">
                   {t('hero_title_line2')}
                 </span>
               </Typography>
@@ -139,7 +139,7 @@ export default function DownloadPage() {
                     {/* App Header */}
                     <div className="relative z-10 rounded-b-[2rem] bg-slate-900 p-6 pb-8 text-white shadow-lg">
                       <div className="mb-6 flex items-center justify-between">
-                        <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500"></div>
+                        <div className="h-8 w-8 rounded-full bg-linear-to-tr from-blue-500 to-purple-500"></div>
                         <Bell className="h-5 w-5 text-slate-300" />
                       </div>
                       <Typography variant="h2" as="h2">
@@ -167,7 +167,7 @@ export default function DownloadPage() {
                           {[1, 2, 3].map(i => (
                             <div
                               key={i}
-                              className="h-10 w-10 flex-shrink-0 rounded-full border-2 border-white bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
+                              className="h-10 w-10 shrink-0 rounded-full border-2 border-white bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
                             >
                             </div>
                           ))}

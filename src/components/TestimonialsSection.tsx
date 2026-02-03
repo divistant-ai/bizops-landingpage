@@ -23,10 +23,10 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
   };
 
   return (
-    <div className="group relative mx-3 w-[320px] flex-shrink-0 sm:w-[380px]">
+    <div className="group relative mx-3 w-[320px] shrink-0 sm:w-[380px]">
       <div className="group-hover:border-primary-200 dark:group-hover:border-primary-700 relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
         {/* Gradient accent top */}
-        <div className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${colors.gradient}`} />
+        <div className={`absolute top-0 right-0 left-0 h-1 bg-linear-to-r ${colors.gradient}`} />
 
         <div className="p-6">
           {/* Header: Industry + Stars */}
@@ -53,7 +53,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
           {/* Author Info with Photo */}
           <div className="mb-4 flex items-center gap-3 border-b border-slate-100 pb-4 dark:border-slate-800">
-            <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full shadow-md ring-2 ring-white dark:ring-slate-800">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full shadow-md ring-2 ring-white dark:ring-slate-800">
               <Image
                 src={testimonial.avatar}
                 alt={testimonial.author}
@@ -75,7 +75,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
           </div>
 
           {/* Metrics - Compact */}
-          <div className="flex items-center justify-between rounded-xl bg-gradient-to-r from-slate-50 to-slate-100 p-3 dark:from-slate-800 dark:to-slate-800/50">
+          <div className="flex items-center justify-between rounded-xl bg-linear-to-r from-slate-50 to-slate-100 p-3 dark:from-slate-800 dark:to-slate-800/50">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-emerald-500" aria-hidden="true" />
               <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
@@ -104,7 +104,7 @@ export default function TestimonialsSection() {
   return (
     <Section
       id="testimonials"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950"
+      className="relative overflow-hidden bg-linear-to-b from-white via-slate-50/50 to-white dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950"
       noPadding
       containerClassName={sectionPaddingHybrid.default}
     >

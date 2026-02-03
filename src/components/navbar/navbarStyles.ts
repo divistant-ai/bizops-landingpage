@@ -23,7 +23,7 @@ export const navbarStyles = {
   // CTA Button Enhancement
   ctaButton: {
     gradient:
-      'dark:bg-gradient-to-r dark:from-primary-600 dark:to-primary-700 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-slate-900 dark:text-white',
+      'dark:bg-linear-to-r dark:from-primary-600 dark:to-primary-700 bg-linear-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-slate-900 dark:text-white',
     shadow: 'dark:shadow-lg dark:shadow-primary-500/30 dark:shadow-primary-500/20',
     animation: 'dark:transition-all dark:duration-200',
   },
@@ -31,7 +31,7 @@ export const navbarStyles = {
   // Container Styles
   container: {
     nav: 'flex h-full items-center gap-1.5 flex-nowrap overflow-visible',
-    actions: 'flex flex-shrink-0 items-center gap-2',
+    actions: 'flex shrink-0 items-center gap-2',
     separator: 'mx-2 hidden h-8 w-px bg-slate-200 dark:bg-slate-700 xl:block',
   },
 

@@ -98,7 +98,7 @@ export default function WhyBizOpsContent() {
             {t('hero_title_1')}
             {' '}
             <br />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
+            <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
               {t('hero_title_2')}
             </span>
           </motion.h1>
@@ -170,7 +170,7 @@ export default function WhyBizOpsContent() {
               <div className="absolute top-[15%] right-[15%] z-10 -translate-x-1/2 -translate-y-1/2 transform text-center">
                 <div className="relative">
                   <div className="bg-primary-500 absolute inset-0 animate-ping rounded-full opacity-20"></div>
-                  <div className="from-primary-500 shadow-primary-500/30 mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-gradient-to-br to-indigo-600 text-2xl font-bold text-white shadow-xl dark:border-slate-800">
+                  <div className="from-primary-500 shadow-primary-500/30 mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-linear-to-br to-indigo-600 text-2xl font-bold text-white shadow-xl dark:border-slate-800">
                     B
                   </div>
                 </div>
@@ -183,7 +183,7 @@ export default function WhyBizOpsContent() {
             {/* Explanation */}
             <div className="w-full space-y-6 lg:w-1/2">
               <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20">
                   <X className="h-5 w-5 text-red-600 dark:text-red-400" />
                 </div>
                 <div>
@@ -197,7 +197,7 @@ export default function WhyBizOpsContent() {
               </div>
 
               <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-900/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-900/20">
                   <X className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
@@ -210,8 +210,8 @@ export default function WhyBizOpsContent() {
                 </div>
               </div>
 
-              <div className="from-primary-50 dark:from-primary-900/20 border-primary-200 dark:border-primary-800 flex items-start gap-4 rounded-2xl border bg-gradient-to-br to-indigo-50 p-6 shadow-lg dark:to-indigo-900/20">
-                <div className="bg-primary-500 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg">
+              <div className="from-primary-50 dark:from-primary-900/20 border-primary-200 dark:border-primary-800 flex items-start gap-4 rounded-2xl border bg-linear-to-br to-indigo-50 p-6 shadow-lg dark:to-indigo-900/20">
+                <div className="bg-primary-500 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                   <CheckCircle className="h-5 w-5 text-green-800 dark:text-green-200" />
                 </div>
                 <div>

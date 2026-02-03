@@ -155,7 +155,7 @@ export default function GajiBersihCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-green-50 via-white to-blue-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400">
@@ -310,7 +310,7 @@ export default function GajiBersihCalculator() {
                     aria-label="Hasil perhitungan gaji bersih"
                     className="space-y-6"
                   >
-                    <Card className="bg-gradient-to-br from-green-600 to-blue-600 p-6 text-white">
+                    <Card className="bg-linear-to-br from-green-600 to-blue-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
                       <div className="mb-6 text-center">
                         <p className="mb-2 text-sm text-green-100">{t('take_home_pay')}</p>
@@ -392,7 +392,7 @@ export default function GajiBersihCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:from-purple-950/20 dark:to-pink-950/20">
+                    <Card className="bg-linear-to-r from-purple-50 to-pink-50 p-6 dark:from-purple-950/20 dark:to-pink-950/20">
                       <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
                         {t('annual_projection')}
                       </h4>
@@ -429,7 +429,7 @@ export default function GajiBersihCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-blue-50 p-6 dark:border-green-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-green-200 bg-linear-to-r from-green-50 to-blue-50 p-6 dark:border-green-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-green-100 p-3 dark:bg-green-950">
                 <TrendingUp className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -454,7 +454,7 @@ export default function GajiBersihCalculator() {
 
         <Card className="mt-8 border-l-4 border-green-500 bg-green-50 p-6 dark:border-green-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
               <ul className="list-inside list-disc space-y-1">

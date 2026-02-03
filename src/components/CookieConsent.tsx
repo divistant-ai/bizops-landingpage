@@ -180,7 +180,7 @@ const CookieConsent: React.FC = () => {
                 </div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Privasi & Data</h3>
               </div>
-              <button onClick={() => setShowBanner(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+              <button onClick={() => setShowBanner(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" aria-label="Dismiss cookie banner">
                 <X className="h-5 w-5" />
               </button>
             </div>

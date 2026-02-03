@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { Briefcase, Eye, EyeOff, Handshake, Lock, ShieldCheck, Users } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -148,6 +149,7 @@ export function LoginContent() {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute top-[34px] right-3 text-slate-400 transition-colors hover:text-slate-600 focus:outline-none dark:text-slate-300"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
@@ -217,7 +219,7 @@ export function LoginContent() {
               className="mb-10"
             >
               {loginType === 'employee' && (
-                <div className="rotate-[-2deg] transform rounded-2xl border border-slate-700 bg-slate-800/50 p-6 text-left shadow-2xl backdrop-blur-md">
+                <div className="-rotate-2 transform rounded-2xl border border-slate-700 bg-slate-800/50 p-6 text-left shadow-2xl backdrop-blur-md">
                   <div className="mb-4 flex items-center gap-4 border-b border-slate-700 pb-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 font-bold text-white">JD</div>
                     <div>
@@ -237,16 +239,18 @@ export function LoginContent() {
                 </div>
               )}
               {loginType === 'admin' && (
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=2064&auto=format&fit=crop"
                   alt="Admin Dashboard"
+                  width={400}
+                  height={300}
                   className="rotate-2 transform rounded-2xl border border-slate-700/50 shadow-2xl transition-transform duration-700 hover:rotate-0"
                 />
               )}
               {loginType === 'partner' && (
-                <div className="rounded-2xl border border-indigo-700/50 bg-gradient-to-br from-indigo-900 to-purple-900 p-8 text-white shadow-2xl">
+                <div className="rounded-2xl border border-indigo-700/50 bg-linear-to-br from-indigo-900 to-purple-900 p-8 text-white shadow-2xl">
                   <Typography variant="h3" as="h3">Partner Growth</Typography>
-                  <div className="mb-6 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-4xl leading-tight font-extrabold text-transparent">
+                  <div className="mb-6 bg-linear-to-r from-green-400 to-emerald-300 bg-clip-text text-4xl leading-tight font-extrabold text-transparent">
                     +125%
                     {' '}
                     <span className="text-sm font-normal text-slate-300">YoY</span>
@@ -286,7 +290,7 @@ export function LoginContent() {
             className="flex items-center justify-center gap-4"
           >
             <div className="h-10 w-10 overflow-hidden rounded-full bg-slate-200">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="User" />
+              <Image src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="User avatar" width={40} height={40} />
             </div>
             <div className="text-left">
               <div className="text-sm font-bold text-white">Budi Santoso</div>

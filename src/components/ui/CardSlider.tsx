@@ -99,7 +99,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
           }
 
           return (
-            <div key={index} className={`flex-shrink-0 snap-center ${mobileItemWidth} ${desktopClass} h-full`}>
+            <div key={index} className={`shrink-0 snap-center ${mobileItemWidth} ${desktopClass} h-full`}>
               {child}
             </div>
           );

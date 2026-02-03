@@ -1,9 +1,9 @@
 'use client';
 
+import type { ScenarioDef, ScenarioType } from './product-tour';
 import {
   ArrowRight,
   BarChart3,
-  Bell,
   Briefcase,
   Check,
   ChevronRight,
@@ -24,25 +24,15 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import { CardSlider, Grid, Typography } from '@/components/ui';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+
 import Stack from '@/components/ui/Stack';
-
-type ScenarioType = 'sales' | 'manager' | 'warehouse' | 'employee' | 'finance' | 'ceo';
-
-type ScenarioDef = {
-  id: ScenarioType;
-  label: string;
-  role: string;
-  icon: any;
-  device: 'mobile' | 'desktop';
-  title: string;
-  desc: string;
-  color: string;
-};
+import { DesktopFrame, MobileFrame } from './product-tour';
 
 export default function ProductTourContent() {
   const t = useTranslations('ProductTour');
@@ -138,7 +128,7 @@ export default function ProductTourContent() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-white pt-20 font-sans text-slate-900 dark:bg-dark-bg dark:text-white">
+    <div className="dark:bg-dark-bg relative min-h-screen overflow-x-hidden bg-white pt-20 font-sans text-slate-900 dark:text-white">
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
       <div className="bg-primary-500/5 pointer-events-none absolute top-0 left-0 h-[600px] w-[600px] rounded-full blur-[120px]"></div>
@@ -290,7 +280,7 @@ export default function ProductTourContent() {
 
             {/* Loading Overlay */}
             {isLoading && (
-              <div className="absolute inset-0 z-50 flex flex-col items-center justify-center rounded-3xl bg-white/90 backdrop-blur-sm transition-opacity duration-300 dark:bg-dark-bg/90">
+              <div className="dark:bg-dark-bg/90 absolute inset-0 z-50 flex flex-col items-center justify-center rounded-3xl bg-white/90 backdrop-blur-sm transition-opacity duration-300">
                 <Loader2 className="text-primary-500 mb-4 h-12 w-12 animate-spin" />
                 <span className="text-primary-600 dark:text-primary-200 animate-pulse text-sm font-medium tracking-wider">
                   <span>
@@ -439,108 +429,6 @@ export default function ProductTourContent() {
   );
 }
 
-// Mobile Frame Component
-const MobileFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="relative mx-auto flex h-[650px] w-[320px] transform flex-col overflow-hidden rounded-[2.5rem] border-[12px] border-slate-300 bg-slate-200 shadow-2xl ring-1 ring-slate-300/50 transition-transform duration-500 hover:scale-[1.02] md:h-[720px] md:w-[360px] md:rounded-[3rem] md:border-[14px] dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-700/50">
-    <div className="pointer-events-none absolute top-0 right-0 z-30 h-full w-1/2 bg-gradient-to-l from-white/5 to-transparent"></div>
-    <div className="absolute top-[80px] -left-[15px] h-[32px] w-[3px] rounded-l-lg bg-slate-400 md:-left-[17px] dark:bg-slate-700"></div>
-    <div className="absolute top-[140px] -left-[15px] h-[46px] w-[3px] rounded-l-lg bg-slate-400 md:-left-[17px] dark:bg-slate-700"></div>
-    <div className="absolute top-[160px] -right-[15px] h-[64px] w-[3px] rounded-r-lg bg-slate-400 md:-right-[17px] dark:bg-slate-700"></div>
-    <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-slate-50 dark:bg-slate-950">
-      <div className="z-20 flex h-10 shrink-0 items-center justify-between bg-slate-900 px-6 text-[10px] text-white select-none dark:bg-slate-950">
-        <span>9:41</span>
-        <div className="absolute top-0 left-1/2 h-5 w-20 -translate-x-1/2 rounded-b-2xl bg-slate-800 dark:bg-black"></div>
-        <div className="flex gap-1.5">
-          <span className="text-xs">📶</span>
-          <div className="h-2.5 w-5 rounded bg-white"></div>
-        </div>
-      </div>
-      {children}
-      <div className="absolute bottom-2 left-1/2 z-20 h-1 w-1/3 -translate-x-1/2 rounded-full bg-slate-400/50 backdrop-blur-sm"></div>
-    </div>
-  </div>
-);
-
-// Desktop Frame Component
-const DesktopFrame: React.FC<{ children: React.ReactNode; role: string }> = ({
-  children,
-  role,
-}) => (
-  <div className="relative flex aspect-[16/10] w-full transform flex-col overflow-hidden rounded-xl border border-slate-300 bg-slate-100 shadow-2xl ring-4 ring-slate-200/50 transition-transform duration-500 hover:scale-[1.01] md:rounded-2xl dark:border-slate-700 dark:bg-slate-900 dark:ring-slate-900/50">
-    <div className="flex h-8 items-center border-b border-slate-300 bg-slate-200 px-4 select-none md:h-10 dark:border-slate-700 dark:bg-slate-800">
-      <div className="flex gap-1.5 md:gap-2">
-        <div className="h-2.5 w-2.5 rounded-full bg-macos-close md:h-3 md:w-3"></div>
-        <div className="h-2.5 w-2.5 rounded-full bg-macos-minimize md:h-3 md:w-3"></div>
-        <div className="h-2.5 w-2.5 rounded-full bg-macos-maximize md:h-3 md:w-3"></div>
-      </div>
-      <div className="ml-4 flex h-5 flex-1 items-center overflow-hidden rounded-md border border-slate-300/50 bg-slate-100/80 px-3 text-[10px] whitespace-nowrap text-slate-600 shadow-inner md:h-6 md:text-xs dark:border-slate-800/50 dark:bg-slate-900/80 dark:text-slate-400">
-        <span className="mr-1 text-slate-500">https://</span>
-        <span>app.bizops.id/desk</span>
-      </div>
-    </div>
-    <div className="flex flex-1 overflow-hidden bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-white">
-      <div className="flex hidden w-48 shrink-0 flex-col border-r border-slate-300 bg-slate-100 p-3 sm:flex md:w-64 md:p-4 dark:border-slate-800 dark:bg-slate-900">
-        <div className="mb-6 flex items-center gap-3 px-2 text-base font-bold text-slate-900 md:mb-8 md:text-lg dark:text-white">
-          <div className="from-primary-600 to-primary-700 shadow-primary-900/50 flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br text-xs shadow-lg md:h-8 md:w-8 md:text-sm">
-            <span>B</span>
-          </div>
-          <span className="tracking-tight">BizOps</span>
-        </div>
-        <Stack direction="vertical" gap={1}>
-          <div className="bg-primary-600/10 text-primary-600 border-primary-500/10 dark:text-primary-400 flex items-center gap-3 rounded-lg border px-3 py-2 text-xs font-medium md:py-2.5 md:text-sm">
-            <BarChart3 className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Dashboard</span>
-          </div>
-          <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <Bell className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Inbox</span>
-            <span className="ml-auto rounded-md bg-red-500 px-1.5 py-0.5 text-[10px] font-bold text-white shadow-md shadow-red-500/20">
-              3
-            </span>
-          </div>
-          <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 md:py-2.5 md:text-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" />
-            {' '}
-            <span>Reports</span>
-          </div>
-        </Stack>
-        <div className="mt-auto flex items-center gap-3 border-t border-slate-300/50 pt-4 dark:border-slate-800/50">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-indigo-500 to-purple-600 text-xs font-bold text-white shadow-md md:h-9 md:w-9">
-            <span>{role.charAt(0)}</span>
-          </div>
-          <div className="flex-1 overflow-hidden">
-            <div className="truncate text-xs font-bold text-slate-900 dark:text-white">
-              <span>{role}</span>
-            </div>
-            <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
-              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600 dark:bg-emerald-400"></div>
-              {' '}
-              <span>Online</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="relative flex flex-1 flex-col overflow-hidden bg-slate-100 dark:bg-slate-900">
-        <div className="z-10 flex h-12 items-center justify-between border-b border-slate-200 bg-slate-100/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-slate-100/60 md:h-16 md:px-6 dark:border-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
-          <div className="flex items-center gap-2 text-xs font-medium text-slate-600 md:text-sm dark:text-slate-400">
-            <span className="text-slate-500">Workspace</span>
-            {' '}
-            <ChevronRight className="h-3 w-3" />
-            {' '}
-            <span className="text-slate-900 dark:text-white">Desk</span>
-          </div>
-        </div>
-        <div className="relative flex-1 overflow-y-auto bg-slate-50 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] p-4 md:p-8 dark:bg-dark-bg dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)]">
-          {children}
-          {children}
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 // Scenario Content Component (Simplified version with key scenarios)
 const ScenarioContent: React.FC<{
   id: ScenarioType;
@@ -554,7 +442,7 @@ const ScenarioContent: React.FC<{
   if (step === 3) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center">
-        <div className="animate-bounce-slow mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-400/20 to-emerald-600/20 ring-1 ring-green-500/30 md:h-24 md:w-24">
+        <div className="animate-bounce-slow mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-br from-green-400/20 to-emerald-600/20 ring-1 ring-green-500/30 md:h-24 md:w-24">
           <Check className="h-10 w-10 text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)] md:h-12 md:w-12" />
         </div>
         <Typography variant="h3" as="h3">
@@ -600,7 +488,7 @@ const ScenarioContent: React.FC<{
             </div>
           </div>
           <Stack direction="vertical" gap={4} className="flex-1 overflow-y-auto p-4">
-            <div className="relative mb-4 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white shadow-lg">
+            <div className="relative mb-4 overflow-hidden rounded-2xl bg-linear-to-br from-blue-600 to-blue-800 p-5 text-white shadow-lg">
               <div className="mb-1 text-xs font-bold tracking-wider text-blue-200 uppercase">
                 <span>{t('ui.sales_target')}</span>
               </div>
@@ -746,7 +634,7 @@ const ScenarioContent: React.FC<{
             <Stack direction="vertical" gap={3} className="w-full">
               <button
                 onClick={onNext}
-                className="flex w-full items-center justify-center gap-3 rounded-xl bg-whatsapp p-4 font-bold text-white shadow-lg shadow-green-900/20 transition-transform hover:bg-whatsapp-hover active:scale-95"
+                className="bg-whatsapp hover:bg-whatsapp-hover flex w-full items-center justify-center gap-3 rounded-xl p-4 font-bold text-white shadow-lg shadow-green-900/20 transition-transform active:scale-95"
               >
                 <Send className="h-5 w-5" />
                 {' '}

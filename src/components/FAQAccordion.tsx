@@ -31,7 +31,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
             <h3 className="pr-4 font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
               {faq.q}
             </h3>
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {expandedIndex === idx
                 ? (
                     <ChevronUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />

@@ -15,7 +15,7 @@ export default function CaseStudyDetailContent({ caseStudy }: CaseStudyDetailCon
   return (
     <div className="bg-white dark:bg-slate-950">
       {/* Hero Section */}
-      <Section className="bg-gradient-to-br from-slate-50 to-white pt-32 pb-20 dark:from-slate-900 dark:to-slate-950">
+      <Section className="bg-linear-to-br from-slate-50 to-white pt-32 pb-20 dark:from-slate-900 dark:to-slate-950">
         <Container size="4xl">
           <FadeIn>
             <Link
@@ -100,7 +100,7 @@ export default function CaseStudyDetailContent({ caseStudy }: CaseStudyDetailCon
               </div>
             </div>
 
-            <div className="rounded-3xl bg-gradient-to-br from-slate-50 to-slate-100 p-8 lg:p-12">
+            <div className="rounded-3xl bg-linear-to-br from-slate-50 to-slate-100 p-8 lg:p-12">
               <div className="flex h-full flex-col justify-center">
                 <div className="bg-primary-100 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl">
                   <TrendingUp className="text-primary-600 h-8 w-8" />
@@ -172,7 +172,7 @@ export default function CaseStudyDetailContent({ caseStudy }: CaseStudyDetailCon
           </div>
 
           {/* Testimonial */}
-          <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 lg:p-12">
+          <div className="rounded-3xl border border-slate-200 bg-linear-to-br from-slate-50 to-white p-8 lg:p-12">
             <Quote className="text-primary-600 mb-6 h-12 w-12 opacity-50" />
             <p className="mb-8 text-2xl leading-relaxed font-medium text-slate-900">
               "
@@ -199,7 +199,7 @@ export default function CaseStudyDetailContent({ caseStudy }: CaseStudyDetailCon
       </Section>
 
       {/* CTA Section */}
-      <Section className="from-primary-600 to-primary-700 bg-gradient-to-br text-white">
+      <Section className="from-primary-600 to-primary-700 bg-linear-to-br text-white">
         <Container size="4xl">
           <div className="text-center">
             <h2 className="mb-6 text-3xl font-bold md:text-4xl">

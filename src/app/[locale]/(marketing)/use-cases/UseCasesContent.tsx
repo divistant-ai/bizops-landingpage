@@ -340,7 +340,7 @@ export default function UseCasesContent() {
                                 {useCase.subtitle[locale]}
                               </p>
 
-                              <div className="mb-6 flex-grow">
+                              <div className="mb-6 grow">
                                 <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
                                   {t('challenge')}
                                 </h4>

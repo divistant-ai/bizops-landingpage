@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import React from 'react';
 
 type SpotlightCardProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
@@ -14,38 +15,34 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   spotlightColor = 'rgba(14, 165, 233, 0.15)',
   ...props
 }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (!cardRef.current) {
-      return;
-    }
-    const { left, top } = cardRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - left,
-      y: e.clientY - top,
-    });
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
     if (props.onMouseMove) {
-      props.onMouseMove(e);
+      props.onMouseMove(props as any);
     }
   }
 
   return (
     <div
-      ref={cardRef}
       className={`group relative overflow-hidden border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 ${className}`}
       onMouseMove={handleMouseMove}
       {...props}
     >
-      <div
+      <motion.div
         className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(
-            650px circle at ${mousePosition.x}px ${mousePosition.y}px,
-            ${spotlightColor},
-            transparent 80%
-          )`,
+          background: useMotionTemplate`
+            radial-gradient(
+              650px circle at ${mouseX}px ${mouseY}px,
+              ${spotlightColor},
+              transparent 80%
+            )
+          `,
         }}
       />
       <div className="relative h-full">{children}</div>

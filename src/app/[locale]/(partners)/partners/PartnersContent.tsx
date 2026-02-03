@@ -92,7 +92,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
               >
                 {t('hero_title_1')}
                 {' '}
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500">
+                <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500">
                   {t('hero_title_2')}
                 </span>
               </motion.h1>
@@ -329,7 +329,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                   {t('calculator_results_title')}
                 </h3>
 
-                <div className="rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-500/20 to-emerald-500/20 p-6">
+                <div className="rounded-2xl border border-green-500/30 bg-linear-to-br from-green-500/20 to-emerald-500/20 p-6">
                   <div className="mb-2 text-sm font-medium text-green-700 dark:text-green-400">
                     {t('calculator_current_monthly')}
                   </div>
@@ -345,7 +345,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 p-6">
+                <div className="rounded-2xl border border-blue-500/30 bg-linear-to-br from-blue-500/20 to-indigo-500/20 p-6">
                   <div className="mb-2 text-sm font-medium text-blue-700 dark:text-blue-400">
                     {t('calculator_year1')}
                   </div>
@@ -357,7 +357,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6">
+                <div className="rounded-2xl border border-purple-500/30 bg-linear-to-br from-purple-500/20 to-pink-500/20 p-6">
                   <div className="mb-2 text-sm font-medium text-purple-700 dark:text-purple-400">
                     {t('calculator_year2')}
                   </div>

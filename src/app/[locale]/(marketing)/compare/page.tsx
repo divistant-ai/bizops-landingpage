@@ -75,7 +75,7 @@ export default async function ComparisonIndexPage({ params }: Props) {
                     </div>
                   </div>
 
-                  <div className="flex-grow border-t border-neutral-100 bg-neutral-50/50 p-8 pt-6 dark:border-slate-800 dark:bg-slate-950/50">
+                  <div className="grow border-t border-neutral-100 bg-neutral-50/50 p-8 pt-6 dark:border-slate-800 dark:bg-slate-950/50">
                     <h3 className="mb-4 text-sm font-bold tracking-wider text-neutral-900 uppercase dark:text-white">
                       {t('limitations_title')}
                     </h3>

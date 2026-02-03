@@ -201,7 +201,7 @@ export default function AssessmentWizard() {
                     <h3 className={`font-bold ${answers.painPoints.includes(pp.id) ? 'text-red-700' : 'text-neutral-900'}`}>{pp.label}</h3>
                     <p className="mt-1 text-sm text-neutral-500">{pp.desc}</p>
                   </div>
-                  {answers.painPoints.includes(pp.id) && <CheckCircle2 className="ml-auto h-6 w-6 flex-shrink-0 text-red-500" />}
+                  {answers.painPoints.includes(pp.id) && <CheckCircle2 className="ml-auto h-6 w-6 shrink-0 text-red-500" />}
                 </button>
               ))}
             </div>
@@ -325,7 +325,7 @@ export default function AssessmentWizard() {
                 </h3>
                 {results.topModules.map((mod, i) => (
                   <div key={mod.id} className="bg-primary-50/50 border-primary-100 flex items-start gap-4 rounded-xl border p-4">
-                    <div className="text-primary-600 border-primary-100 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border bg-white font-bold">
+                    <div className="text-primary-600 border-primary-100 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-white font-bold">
                       {i + 1}
                     </div>
                     <div>

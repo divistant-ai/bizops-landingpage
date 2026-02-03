@@ -15,7 +15,7 @@ export const CardSlider = dynamic(() => import('./CardSlider'), {
 
 export const InfiniteScrollLoop = dynamic(() => import('./InfiniteScrollLoop'), {
   loading: () => <div className="h-32 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />,
-  ssr: true,
+  ssr: false,
 });
 
 export const BarChart = dynamic(() => import('@/components/BarChart').then(mod => ({ default: mod.BarChart })), {

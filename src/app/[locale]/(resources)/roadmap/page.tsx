@@ -250,7 +250,7 @@ export default function RoadmapPage() {
 
           {/* CTA Section */}
           <Container size="6xl" className="mt-16">
-            <div className="from-primary-900 to-primary-800 rounded-3xl bg-gradient-to-br p-12 text-center text-white">
+            <div className="from-primary-900 to-primary-800 rounded-3xl bg-linear-to-br p-12 text-center text-white">
               <Rocket className="text-primary-300 mx-auto mb-6 h-12 w-12 text-slate-800 dark:text-white" />
               <h2 className="mb-4 text-3xl font-bold text-slate-800 dark:text-white">
                 Tidak Menemukan Fitur yang Anda Cari?

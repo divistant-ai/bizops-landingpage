@@ -107,7 +107,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
                 <div className="space-y-6">
                   <div className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-green-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-green-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
                       <CheckCircle className="h-5 w-5" />
                     </div>
                     <div>
@@ -120,7 +120,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-blue-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-blue-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
                       <MessageSquare className="h-5 w-5" />
                     </div>
                     <div>
@@ -133,7 +133,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-purple-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-purple-500 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
                       <Shield className="h-5 w-5" />
                     </div>
                     <div>

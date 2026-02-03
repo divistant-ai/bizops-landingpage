@@ -14,7 +14,7 @@ const MultiCompanyContent: React.FC = () => {
       <Section className="bg-slate-900 py-20 text-white lg:py-24 dark:bg-slate-950">
         <Container size="5xl" className="text-center">
           <FadeIn delay={0.1}>
-            <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 p-3 shadow-lg shadow-purple-500/30">
+            <div className="mb-6 inline-flex rounded-2xl bg-linear-to-br from-purple-500 to-indigo-600 p-3 shadow-lg shadow-purple-500/30">
               <Network className="h-8 w-8 text-white" />
             </div>
           </FadeIn>

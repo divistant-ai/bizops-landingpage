@@ -13,7 +13,7 @@ export default async function PartnersLayout(props: {
   return (
     <>
       <Navbar />
-      <main className="flex-grow">{props.children}</main>
+      <main className="grow">{props.children}</main>
       <Footer />
     </>
   );

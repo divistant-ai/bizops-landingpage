@@ -67,7 +67,7 @@ export default function PlatformContent() {
       {/* 1. HERO SECTION - Clean & Balanced */}
       <div className="relative overflow-hidden bg-white pt-24 pb-16 lg:pt-32 lg:pb-24 dark:bg-slate-950">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-800"></div>
+        <div className="absolute top-0 right-0 left-0 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-slate-800"></div>
 
         <Container size="7xl" className="relative z-10">
           <div className="mx-auto max-w-4xl text-center">
@@ -81,7 +81,7 @@ export default function PlatformContent() {
               {t('hero_title_1')}
               {' '}
               <br className="hidden md:block" />
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 {t('hero_title_2')}
               </span>
             </h1>
@@ -140,7 +140,7 @@ export default function PlatformContent() {
                     <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
                       {module.title}
                     </h3>
-                    <p className="mb-6 flex-grow text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p className="mb-6 grow text-base leading-relaxed text-slate-600 dark:text-slate-400">
                       {module.subtitle}
                     </p>
 

@@ -42,7 +42,7 @@ export function BarChart({
                 initial={shouldAnimate ? { width: 0 } : undefined}
                 animate={{ width: `${(item.value / maxValue) * 100}%` }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
+                className="h-full rounded-full bg-linear-to-r from-blue-500 to-blue-600"
               />
             </div>
           </div>

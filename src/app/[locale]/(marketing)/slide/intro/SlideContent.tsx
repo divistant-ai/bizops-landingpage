@@ -1,7 +1,6 @@
 'use client';
 
-import type { SlideData } from '@/components/presentation/SlideDeck';
-import { motion } from 'framer-motion';
+import type { SlideData } from '@/components/presentation';
 import {
   BarChart3,
   Briefcase,
@@ -18,93 +17,19 @@ import {
   Zap,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+
 import Link from 'next/link';
-import React from 'react';
-import SlideDeck from '@/components/presentation/SlideDeck';
+import {
+  AnimatedSlide,
+  MotionItem,
+  SlideBg,
+  SlideCard,
+  SlideDeck,
+} from '@/components/presentation';
 import { Badge, Button, Stack } from '@/components/ui';
 
-// --- ANIMATION HELPERS ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring' as const, stiffness: 100, damping: 20 },
-  },
-};
-
-const AnimatedSlide = ({
-  children,
-  className = '',
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <motion.div
-    variants={containerVariants}
-    initial="hidden"
-    animate="visible"
-    className={`relative z-10 flex h-full w-full flex-col items-center justify-center ${className}`}
-  >
-    {children}
-  </motion.div>
-);
-
-const MotionItem = ({
-  children,
-  className = '',
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <motion.div variants={itemVariants} className={className}>
-    {children}
-  </motion.div>
-);
-
-// --- COMPONENTS ---
-const SlideBg = ({ variant = 'default' }: { variant?: 'default' | 'blue' | 'dark' }) => (
-  <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-    {variant === 'default' && (
-      <>
-        <div className="absolute top-0 left-0 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-900/10"></div>
-        <div className="absolute right-0 bottom-0 h-[600px] w-[600px] translate-x-1/3 translate-y-1/3 rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-900/10"></div>
-      </>
-    )}
-    {variant === 'blue' && (
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-slate-100 to-slate-100 dark:from-blue-950 dark:via-slate-950 dark:to-slate-950"></div>
-    )}
-    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-  </div>
-);
-
-const Card = ({ title, icon: Icon, desc, color = 'blue', children }: any) => (
-  <div
-    className={`hover:border- h-full rounded-3xl border border-slate-200 bg-slate-100 p-8 px-10 py-5${color}-500/30 group backdrop-blur-sm transition-all duration-300 hover:bg-slate-200 dark:border-white/5 dark:bg-slate-900/50 dark:hover:bg-slate-800/50`}
-  >
-    <div className="mb-6 flex items-start justify-between">
-      <div
-        className={`bg- rounded-2xl p-3${color}-500/10 text-${color}-600 dark:text- transition-transform duration-300 group-hover:scale-110${color}-400`}
-      >
-        {Icon && <Icon className="h-8 w-8" />}
-      </div>
-    </div>
-    <h3 className="mb-3 text-2xl font-bold text-slate-900 dark:text-white">{title}</h3>
-    <p className="leading-relaxed text-slate-600 dark:text-slate-400">{desc}</p>
-    {children}
-  </div>
-);
+// Alias Card component for this file (backward compatibility)
+const Card = SlideCard;
 
 // --- MAIN CONTENT ---
 export default function SlideContent() {
@@ -186,7 +111,7 @@ export default function SlideContent() {
                   ))}
                 </div>
               </div>
-              <MotionItem className="group relative flex h-[500px] items-center justify-center overflow-hidden rounded-[2.5rem] border border-slate-300 bg-gradient-to-br from-slate-100 to-slate-200 p-1 dark:border-white/10 dark:from-slate-900 dark:to-slate-950">
+              <MotionItem className="group relative flex h-[500px] items-center justify-center overflow-hidden rounded-[2.5rem] border border-slate-300 bg-linear-to-br from-slate-100 to-slate-200 p-1 dark:border-white/10 dark:from-slate-900 dark:to-slate-950">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 <div className="relative z-10 text-center">
                   <TrendingUp className="mx-auto mb-6 h-32 w-32 text-blue-500 drop-shadow-lg" />
@@ -379,7 +304,7 @@ export default function SlideContent() {
                 </MotionItem>
 
                 <MotionItem className="z-10">
-                  <div className="relative scale-110 transform overflow-hidden rounded-[2.5rem] border border-blue-500/50 bg-gradient-to-b from-blue-100 to-slate-100 p-12 shadow-[0_0_80px_rgba(37,99,235,0.3)] dark:from-blue-900 dark:to-slate-900">
+                  <div className="relative scale-110 transform overflow-hidden rounded-[2.5rem] border border-blue-500/50 bg-linear-to-b from-blue-100 to-slate-100 p-12 shadow-[0_0_80px_rgba(37,99,235,0.3)] dark:from-blue-900 dark:to-slate-900">
                     <div className="absolute top-7 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-6 py-2 text-sm font-bold tracking-wider text-white uppercase shadow-lg">
                       <span className="text-white dark:text-slate-600">The Winner</span>
                     </div>
@@ -388,26 +313,26 @@ export default function SlideContent() {
                     </h3>
                     <ul className="space-y-4 text-lg text-blue-900 dark:text-blue-100">
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
                         {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_1')}
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
                         {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_2')}
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
                         {' '}
                         <span className="text-slate-800 dark:text-white">Mobile Native</span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        <CheckCircle2 className="h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
                         {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_3')}

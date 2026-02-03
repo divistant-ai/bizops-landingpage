@@ -1,141 +1,174 @@
-import React from 'react';
+'use client';
+
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import {
+  Controller,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+  FormProvider,
+  useFormContext,
+} from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
+import { Label } from '@/components/ui/label';
 
-type InputProps = {
-  label?: string;
-  error?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+const Form = FormProvider;
 
-export const Input = ({ ref, className, label, error, ...props }: InputProps & { ref?: React.RefObject<HTMLInputElement | null> }) => {
+type FormFieldContextValue<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
+  name: TName;
+};
+
+const FormFieldContext = React.createContext<FormFieldContextValue>(
+  {} as FormFieldContextValue,
+);
+
+const FormField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+  ...props
+}: ControllerProps<TFieldValues, TName>) => {
   return (
-    <div className="w-full">
-      {label && (
-        <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-          {label}
-        </label>
-      )}
-      <input
-        ref={ref}
-        className={twMerge(
-          'w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed',
-          error && 'border-red-500 dark:border-red-500 focus:ring-red-500',
-          className,
-        )}
-        {...props}
-      />
-      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
-    </div>
+    <FormFieldContext.Provider value={{ name: props.name }}>
+      <Controller {...props} />
+    </FormFieldContext.Provider>
   );
 };
-Input.displayName = 'Input';
 
-type TextAreaProps = {
-  label?: string;
-  error?: string;
-} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+const useFormField = () => {
+  const fieldContext = React.useContext(FormFieldContext);
+  const itemContext = React.useContext(FormItemContext);
+  const { getFieldState, formState } = useFormContext();
 
-export const TextArea = ({ ref, className, label, error, ...props }: TextAreaProps & { ref?: React.RefObject<HTMLTextAreaElement | null> }) => {
-  return (
-    <div className="w-full">
-      {label && (
-        <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-          {label}
-        </label>
-      )}
-      <textarea
-        ref={ref}
-        className={twMerge(
-          'w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed',
-          error && 'border-red-500 dark:border-red-500 focus:ring-red-500',
-          className,
-        )}
-        {...props}
-      />
-      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
-    </div>
-  );
+  const fieldState = getFieldState(fieldContext.name, formState);
+
+  if (!fieldContext) {
+    throw new Error('useFormField should be used within <FormField>');
+  }
+
+  const { id } = itemContext;
+
+  return {
+    id,
+    name: fieldContext.name,
+    formItemId: `${id}-form-item`,
+    formDescriptionId: `${id}-form-item-description`,
+    formMessageId: `${id}-form-item-message`,
+    ...fieldState,
+  };
 };
-TextArea.displayName = 'TextArea';
 
-type SelectProps = {
-  label?: string;
-  error?: string;
-  options: { value: string; label: string }[];
-} & React.SelectHTMLAttributes<HTMLSelectElement>;
-
-export const Select = ({ ref, className, label, error, options, ...props }: SelectProps & { ref?: React.RefObject<HTMLSelectElement | null> }) => {
-  return (
-    <div className="w-full">
-      {label && (
-        <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-          {label}
-        </label>
-      )}
-      <div className="relative">
-        <select
-          ref={ref}
-          className={twMerge(
-            'w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed appearance-none',
-            error && 'border-red-500 dark:border-red-500 focus:ring-red-500',
-            className,
-          )}
-          {...props}
-        >
-          <option value="" disabled selected>Pilih opsi...</option>
-          {options.map(opt => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-        <div className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-slate-500">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-        </div>
-      </div>
-      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
-    </div>
-  );
+type FormItemContextValue = {
+  id: string;
 };
-Select.displayName = 'Select';
 
-type CheckboxProps = {
-  label: React.ReactNode;
-  error?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue,
+);
 
-export const Checkbox = ({ ref, className, label, error, ...props }: CheckboxProps & { ref?: React.RefObject<HTMLInputElement | null> }) => {
+const FormItem = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const id = React.useId();
+
   return (
-    <div className="flex flex-col gap-1">
-      <label className="flex cursor-pointer items-start gap-3">
-        <div className="relative flex items-center">
-          <input
-            type="checkbox"
-            ref={ref}
-            className={twMerge(
-              'peer h-5 w-5 cursor-pointer appearance-none rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition-all checked:border-primary-600 checked:bg-primary-600 focus:ring-2 focus:ring-primary-500/20',
-              className,
-            )}
-            {...props}
-          />
-          <svg
-            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100"
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <span className="text-sm text-slate-700 select-none dark:text-slate-300">{label}</span>
-      </label>
-      {error && <p className="ml-8 text-xs text-red-500">{error}</p>}
-    </div>
+    <FormItemContext.Provider value={{ id }}>
+      <div ref={ref} className={twMerge('space-y-2', className)} {...props} />
+    </FormItemContext.Provider>
   );
+});
+FormItem.displayName = 'FormItem';
+
+const FormLabel = React.forwardRef<
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label>
+>(({ className, ...props }, ref) => {
+  const { error, formItemId } = useFormField();
+
+  return (
+    <Label
+      ref={ref}
+      className={twMerge(error && 'text-red-500 dark:text-red-400', className)}
+      htmlFor={formItemId}
+      {...props}
+    />
+  );
+});
+FormLabel.displayName = 'FormLabel';
+
+const FormControl = React.forwardRef<
+  React.ElementRef<typeof Slot>,
+  React.ComponentPropsWithoutRef<typeof Slot>
+>(({ ...props }, ref) => {
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
+
+  return (
+    <Slot
+      ref={ref}
+      id={formItemId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
+      aria-invalid={!!error}
+      {...props}
+    />
+  );
+});
+FormControl.displayName = 'FormControl';
+
+const FormDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => {
+  const { formDescriptionId } = useFormField();
+
+  return (
+    <p
+      ref={ref}
+      id={formDescriptionId}
+      className={twMerge('text-sm text-slate-500 dark:text-slate-400', className)}
+      {...props}
+    />
+  );
+});
+FormDescription.displayName = 'FormDescription';
+
+const FormMessage = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, children, ...props }, ref) => {
+  const { error, formMessageId } = useFormField();
+  const body = error ? String(error?.message) : children;
+
+  if (!body) {
+    return null;
+  }
+
+  return (
+    <p
+      ref={ref}
+      id={formMessageId}
+      className={twMerge('text-sm font-medium text-red-500 dark:text-red-400', className)}
+      {...props}
+    />
+  );
+});
+FormMessage.displayName = 'FormMessage';
+
+export {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
 };
-Checkbox.displayName = 'Checkbox';

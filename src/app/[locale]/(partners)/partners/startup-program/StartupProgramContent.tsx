@@ -99,7 +99,7 @@ export default function StartupProgramContent() {
             {t('hero_title_1')}
             {' '}
             <br />
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
+            <span className="bg-linear-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
               {t('hero_title_2')}
             </span>
           </motion.h1>
@@ -197,7 +197,7 @@ export default function StartupProgramContent() {
                     <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
                       {t(perk.titleKey as any)}
                     </h3>
-                    <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p className="grow leading-relaxed text-slate-600 dark:text-slate-400">
                       {t(perk.descKey as any)}
                     </p>
                   </div>
@@ -227,7 +227,7 @@ export default function StartupProgramContent() {
                   <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
                     {t(perk.titleKey as any)}
                   </h3>
-                  <p className="flex-grow leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="grow leading-relaxed text-slate-600 dark:text-slate-400">
                     {t(perk.descKey as any)}
                   </p>
                 </motion.div>
@@ -260,7 +260,7 @@ export default function StartupProgramContent() {
                   transition={{ delay: idx * 0.1 }}
                   className="flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900"
                 >
-                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
                     <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                   </div>
                   <p className="leading-relaxed text-slate-700 dark:text-slate-300">
@@ -362,10 +362,10 @@ export default function StartupProgramContent() {
                   </span>
                   {openFaq === idx
                     ? (
-                        <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+                        <Minus className="h-5 w-5 shrink-0 text-purple-600 dark:text-purple-400" />
                       )
                     : (
-                        <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
+                        <Plus className="h-5 w-5 shrink-0 text-slate-400" />
                       )}
                 </button>
                 <AnimatePresence>
@@ -390,7 +390,7 @@ export default function StartupProgramContent() {
       </Section>
 
       {/* FINAL CTA */}
-      <Section className="bg-white dark:bg-gradient-to-br dark:from-purple-900 dark:to-indigo-900">
+      <Section className="bg-white dark:bg-linear-to-br dark:from-purple-900 dark:to-indigo-900">
         <Container size="4xl" className="text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             {t('cta_title')}

@@ -4,12 +4,8 @@ import { motion } from 'framer-motion';
 import {
   Check,
   Copy,
-  Download,
-  ExternalLink,
   FileText,
-  Globe,
   Image as ImageIcon,
-  Mail,
   Palette,
   Type,
   X,
@@ -17,10 +13,13 @@ import {
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
+
 import Container from '@/components/layout/Container';
 import { CardSlider, Grid, Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
 import Stack from '@/components/ui/Stack';
+
+import { HeroSection, PressContactSection } from './media-kit';
 
 export default function MediaKitContent() {
   const t = useTranslations('MediaKit');
@@ -37,71 +36,7 @@ export default function MediaKitContent() {
   return (
     <div className="bg-slate-50 font-sans transition-colors duration-300 dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pb-32 dark:bg-dark-bg dark:text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-indigo-600/20 blur-[120px]"></div>
-
-        <Container size="5xl" className="relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase backdrop-blur-md dark:bg-slate-800/50 dark:text-indigo-300"
-          >
-            <Download className="h-3 w-3" />
-            {' '}
-            {t('hero_badge')}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-            className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
-          >
-            {t('hero_title_1')}
-            {' '}
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-300">
-              {t('hero_title_2')}
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light text-slate-700 dark:text-slate-300"
-          >
-            {t('hero_subtitle')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex flex-col justify-center gap-4 sm:flex-row"
-          >
-            <Button
-              size="lg"
-              className="border-none bg-slate-900 font-bold text-white shadow-xl hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
-            >
-              {t('hero_download_all')}
-              {' '}
-              <Download className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-300 text-slate-900 hover:bg-slate-200 dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
-            >
-              {t('hero_brand_guidelines')}
-              {' '}
-              <ExternalLink className="ml-2 h-4 w-4" />
-            </Button>
-          </motion.div>
-        </Container>
-      </section>
+      <HeroSection />
 
       <Container size="7xl" className="space-y-32 py-24">
         {/* LOGO PACK */}
@@ -126,7 +61,7 @@ export default function MediaKitContent() {
               whileHover={{ y: -5 }}
               className="flex flex-col rounded-3xl border border-slate-200 bg-white p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
-              <div className="bg-opacity-50 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
+              <div className="bg-opacity-50 mb-10 flex min-h-[160px] w-full grow items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
                 <Image
                   src="/assets/images/Logo BizOps - Light.svg"
                   alt="BizOps Logo Dark"
@@ -163,7 +98,7 @@ export default function MediaKitContent() {
               className="relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-10 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
             >
               <div className="absolute inset-0 bg-slate-800/50 mix-blend-overlay"></div>
-              <div className="relative z-10 mb-10 flex min-h-[160px] w-full flex-grow items-center justify-center">
+              <div className="relative z-10 mb-10 flex min-h-[160px] w-full grow items-center justify-center">
                 <Image
                   src="/assets/images/Logo BizOps - Dark.svg"
                   alt="BizOps Logo Light"
@@ -476,7 +411,7 @@ export default function MediaKitContent() {
           </div>
 
           <div className="relative lg:col-span-2">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-purple-500/20 to-indigo-500/20 opacity-70 blur-xl"></div>
+            <div className="absolute -inset-4 rounded-[2rem] bg-linear-to-r from-purple-500/20 to-indigo-500/20 opacity-70 blur-xl"></div>
             <div className="relative rounded-[2rem] border border-slate-200 bg-white p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
               <Stack direction="vertical" gap={4}>
                 <Typography variant="h1" as="h1">
@@ -601,78 +536,7 @@ export default function MediaKitContent() {
         </section>
 
         {/* PRESS CONTACT */}
-        <section className="relative overflow-hidden rounded-3xl bg-white p-8 text-center md:rounded-[3rem] md:p-12 lg:text-left dark:bg-slate-900">
-          <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-indigo-600/20 blur-[100px]"></div>
-          <div className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]"></div>
-
-          <Stack
-            direction="vertical"
-            gap={12}
-            className="relative z-10 lg:flex-row lg:items-center lg:justify-between"
-          >
-            <div className="max-w-xl">
-              <Typography variant="h2" as="h2" className="text-slate-900 dark:text-white">
-                {t('press_title')}
-              </Typography>
-              <Typography
-                variant="body"
-                className="leading-relaxed text-slate-600 dark:text-slate-300"
-              >
-                {t('press_subtitle')}
-              </Typography>
-              <Stack direction="vertical" gap={4} className="mt-6">
-                <a
-                  href="mailto:pr@divistant.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-bold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
-                >
-                  <Mail className="h-4 w-4" />
-                  {' '}
-                  {t('press_contact_button')}
-                </a>
-                <a
-                  href="https://wa.me/6281234567890"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-transparent px-6 py-3 font-bold text-slate-900 transition-colors hover:bg-slate-200 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
-                >
-                  {t('press_whatsapp')}
-                </a>
-              </Stack>
-            </div>
-
-            <div className="w-full max-w-sm rounded-3xl border border-slate-300 bg-white p-8 backdrop-blur-md dark:border-white/10 dark:bg-white/10">
-              <div className="mb-6 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-indigo-400 bg-gradient-to-br from-indigo-400 to-purple-500 text-lg font-bold text-white">
-                  SJ
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-slate-900 dark:text-white">
-                    {t('press_contact_name')}
-                  </div>
-                  <div className="text-sm text-indigo-600 dark:text-indigo-300">
-                    {t('press_contact_role')}
-                  </div>
-                </div>
-              </div>
-              <Stack
-                direction="vertical"
-                gap={3}
-                className="text-sm text-slate-600 dark:text-slate-300"
-              >
-                <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" />
-                  {' '}
-                  pr@divistant.com
-                </div>
-                <div className="flex items-center gap-3">
-                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />
-                  {' '}
-                  {t('press_contact_location')}
-                </div>
-              </Stack>
-            </div>
-          </Stack>
-        </section>
+        <PressContactSection />
       </Container>
     </div>
   );

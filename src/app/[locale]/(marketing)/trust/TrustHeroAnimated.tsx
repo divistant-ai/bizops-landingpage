@@ -31,7 +31,7 @@ export function TrustHeroAnimated() {
         {t('hero_title_1')}
         {' '}
         <br />
-        <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+        <span className="bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
           {t('hero_title_2')}
         </span>
       </motion.h1>

@@ -79,7 +79,7 @@ export default function SolutionsContent() {
               className="mr-3 inline-flex flex-wrap justify-center"
               delay={0.2}
             />
-            <span className="dark:from-primary-400 bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent dark:to-blue-400">
+            <span className="dark:from-primary-400 bg-linear-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent dark:to-blue-400">
               {t('hero.title_highlight')}
               {t('hero.title_part2')}
             </span>
@@ -142,7 +142,7 @@ export default function SolutionsContent() {
                           <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 text-2xl font-bold text-slate-900 transition-colors dark:text-white">
                             {ind.title}
                           </h3>
-                          <p className="mb-6 line-clamp-3 flex-grow leading-relaxed text-slate-600 dark:text-slate-400">
+                          <p className="mb-6 line-clamp-3 grow leading-relaxed text-slate-600 dark:text-slate-400">
                             {ind.description}
                           </p>
                           <div className="text-primary-600 dark:text-primary-400 mt-auto flex items-center text-sm font-semibold transition-transform group-hover:translate-x-2">

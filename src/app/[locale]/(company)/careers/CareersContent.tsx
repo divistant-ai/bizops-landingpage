@@ -81,7 +81,7 @@ export default function CareersContent() {
             {t('hero_title_1')}
             {' '}
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-purple-400">
+            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-purple-400">
               {t('hero_title_2')}
             </span>
           </motion.h1>
@@ -379,7 +379,7 @@ export default function CareersContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-white dark:bg-gradient-to-br dark:from-indigo-900 dark:to-purple-900">
+      <Section className="bg-white dark:bg-linear-to-br dark:from-indigo-900 dark:to-purple-900">
         <Container size="4xl" className="text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             {t('cta_title')}

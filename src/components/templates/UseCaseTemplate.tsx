@@ -63,7 +63,7 @@ export function UseCaseTemplate({ data, locale }: UseCaseTemplateProps) {
                       {locale === 'en' ? 'The Challenge' : 'Tantangan'}
                     </span>
                   </h3>
-                  <p className="flex-grow text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="grow text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                     <span className="text-slate-800 dark:text-white">
                       "
                       {data.challenge[locale]}
@@ -84,7 +84,7 @@ export function UseCaseTemplate({ data, locale }: UseCaseTemplateProps) {
                       {locale === 'en' ? 'The BizOps Solution' : 'Solusi BizOps'}
                     </span>
                   </h3>
-                  <p className="flex-grow text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+                  <p className="grow text-lg leading-relaxed text-slate-600 dark:text-slate-300">
                     <span className="text-slate-800 dark:text-white">{data.solution[locale]}</span>
                   </p>
                 </div>

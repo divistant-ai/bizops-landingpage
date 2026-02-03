@@ -28,7 +28,7 @@ export function StartupHeroAnimated() {
         Build Fast.
         {' '}
         <br />
-        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+        <span className="bg-linear-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
           Scale Safe.
         </span>
       </motion.h1>

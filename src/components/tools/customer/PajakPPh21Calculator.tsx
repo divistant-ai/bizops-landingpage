@@ -198,7 +198,7 @@ export default function PajakPPh21Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -217,7 +217,7 @@ export default function PajakPPh21Calculator() {
           <div className="mx-auto mb-6 max-w-4xl">
             <div className="rounded-lg border-l-4 border-red-500 bg-red-50 p-4">
               <div className="flex items-start gap-3">
-                <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600" />
+                <AlertCircle className="h-5 w-5 shrink-0 text-red-600" />
                 <div>
                   <p className="font-semibold text-red-900">
                     {t('error')}
@@ -363,7 +363,7 @@ export default function PajakPPh21Calculator() {
                     aria-label="Hasil perhitungan pajak"
                     className="space-y-6"
                   >
-                    <Card className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
+                    <Card className="bg-linear-to-br from-blue-600 to-purple-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between border-b border-white/20 pb-2">
@@ -487,7 +487,7 @@ export default function PajakPPh21Calculator() {
 
         {/* Upsell Section */}
         {showUpsell && (
-          <Card className="mt-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 p-6 dark:border-blue-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-blue-200 bg-linear-to-r from-blue-50 to-purple-50 p-6 dark:border-blue-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-950">
                 <TrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400" />
@@ -513,7 +513,7 @@ export default function PajakPPh21Calculator() {
         {/* Info Section */}
         <Card className="mt-8 border-l-4 border-blue-500 bg-blue-50 p-6 dark:border-blue-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
             <div className="text-sm text-gray-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
               <ul className="list-inside list-disc space-y-1">

@@ -1,6 +1,7 @@
 'use client';
 
 import { Check } from 'lucide-react';
+
 import { usePricingContext } from '../PricingContext';
 
 export function StepIndicator() {
@@ -40,5 +41,3 @@ export function StepIndicator() {
     </div>
   );
 }
-
-export default StepIndicator;

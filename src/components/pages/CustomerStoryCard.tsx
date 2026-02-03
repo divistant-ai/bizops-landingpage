@@ -68,7 +68,7 @@ export function CustomerStoryCard({ story, idx, locale }: CustomerStoryCardProps
             <Stack direction="horizontal" gap={6} className="w-full border-t border-white/10 pt-8">
               {story.metrics.map((m, i) => (
                 <div key={i}>
-                  <div className="mb-1 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-4xl leading-tight font-bold text-transparent">
+                  <div className="mb-1 bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-4xl leading-tight font-bold text-transparent">
                     {m.value}
                   </div>
                   <div className="text-sm font-medium text-slate-400">{m.label[locale]}</div>
@@ -91,7 +91,7 @@ export function CustomerStoryCard({ story, idx, locale }: CustomerStoryCardProps
             </Typography>
 
             <div className="flex gap-4">
-              <Quote className="h-10 w-10 flex-shrink-0 text-blue-200 dark:text-blue-900" />
+              <Quote className="h-10 w-10 shrink-0 text-blue-200 dark:text-blue-900" />
               <Typography
                 variant="body"
                 className="leading-relaxed text-slate-600 dark:text-slate-300"

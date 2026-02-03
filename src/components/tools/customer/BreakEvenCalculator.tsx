@@ -149,7 +149,7 @@ export default function BreakEvenCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 via-white to-red-50 py-12 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700">
@@ -325,7 +325,7 @@ export default function BreakEvenCalculator() {
 
             <Card className="border-l-4 border-orange-500 bg-orange-50 p-4 dark:border-orange-600 dark:bg-slate-900">
               <div className="flex gap-2">
-                <Info className="h-5 w-5 flex-shrink-0 text-orange-600 dark:text-orange-400" />
+                <Info className="h-5 w-5 shrink-0 text-orange-600 dark:text-orange-400" />
                 <div className="text-xs text-slate-700 dark:text-slate-300">
                   <p className="mb-1 font-semibold dark:text-white">{t('info_title')}</p>
                   <p>{t('info_desc')}</p>
@@ -343,7 +343,7 @@ export default function BreakEvenCalculator() {
                     aria-label="Hasil perhitungan break even point"
                     className="space-y-6"
                   >
-                    <Card className="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
+                    <Card className="bg-linear-to-br from-orange-600 to-red-600 p-6 text-white">
                       <h3 className="mb-4 text-lg font-semibold">{t('bep_title')}</h3>
                       <div className="space-y-4">
                         <div className="text-center">
@@ -379,7 +379,7 @@ export default function BreakEvenCalculator() {
                       </h3>
 
                       <div className="space-y-4">
-                        <div className="rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
+                        <div className="rounded-lg bg-linear-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
                           <div className="mb-2 flex items-center justify-between">
                             <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                               {t('contribution_margin')}
@@ -393,7 +393,7 @@ export default function BreakEvenCalculator() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
+                        <div className="rounded-lg bg-linear-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
                           <div className="mb-2 flex items-center justify-between">
                             <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                               {t('cm_ratio')}
@@ -445,7 +445,7 @@ export default function BreakEvenCalculator() {
                       />
                     </Card>
 
-                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                    <Card className="bg-linear-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
                       <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
                         {t('profit_projection_title')}
                       </h4>
@@ -489,7 +489,7 @@ export default function BreakEvenCalculator() {
         </div>
 
         {result && (
-          <Card className="mt-8 border-2 border-orange-200 bg-gradient-to-r from-orange-50 to-red-50 p-6 dark:border-orange-800 dark:from-slate-900 dark:to-slate-800">
+          <Card className="mt-8 border-2 border-orange-200 bg-linear-to-r from-orange-50 to-red-50 p-6 dark:border-orange-800 dark:from-slate-900 dark:to-slate-800">
             <div className="flex items-start gap-4">
               <div className="rounded-full bg-orange-100 p-3 dark:bg-orange-950">
                 <TrendingUp className="h-6 w-6 text-orange-600 dark:text-orange-400" />
@@ -514,7 +514,7 @@ export default function BreakEvenCalculator() {
 
         <Card className="mt-8 border-l-4 border-orange-500 bg-orange-50 p-6 dark:border-orange-600 dark:bg-slate-900">
           <div className="flex gap-3">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-orange-600 dark:text-orange-400" />
+            <AlertCircle className="h-5 w-5 shrink-0 text-orange-600 dark:text-orange-400" />
             <div className="text-sm text-slate-700 dark:text-slate-300">
               <p className="mb-2 font-semibold dark:text-white">{t('tips_title')}</p>
               <ul className="list-inside list-disc space-y-1">

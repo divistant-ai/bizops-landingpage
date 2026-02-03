@@ -236,7 +236,7 @@ export default function ManagedServicesContent() {
                   'Certified Ethical Hackers & DevOps',
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-500" />
+                    <CheckCircle className="h-5 w-5 shrink-0 text-green-500" />
                     <span className="font-medium text-slate-700 dark:text-slate-300">{item}</span>
                   </li>
                 ))}
@@ -248,7 +248,7 @@ export default function ManagedServicesContent() {
             </div>
 
             <div className="relative">
-              <div className="from-primary-500/20 absolute inset-0 rotate-3 transform rounded-[2rem] bg-gradient-to-tr to-purple-500/20"></div>
+              <div className="from-primary-500/20 absolute inset-0 rotate-3 transform rounded-[2rem] bg-linear-to-tr to-purple-500/20"></div>
               <div className="relative rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-2xl md:p-12 dark:border-slate-700 dark:bg-slate-800">
                 <Grid cols={2} gap={6}>
                   {[
