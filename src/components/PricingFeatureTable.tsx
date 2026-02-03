@@ -19,8 +19,8 @@ const PricingFeatureTable: React.FC = () => {
   }
 
   const toggleCategory = (category: string) => {
-    setExpandedCategories((prev) =>
-      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
+    setExpandedCategories(prev =>
+      prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category],
     );
   };
 
@@ -91,7 +91,7 @@ const PricingFeatureTable: React.FC = () => {
         </Card>
 
         {/* Categories */}
-        {data.map((category) => (
+        {data.map(category => (
           <Card key={category.category} padding="none">
             <button
               onClick={() => toggleCategory(category.category)}
@@ -100,11 +100,13 @@ const PricingFeatureTable: React.FC = () => {
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                 {category.category}
               </h3>
-              {expandedCategories.includes(category.category) ? (
-                <ChevronUp className="h-5 w-5 text-slate-500" />
-              ) : (
-                <ChevronDown className="h-5 w-5 text-slate-500" />
-              )}
+              {expandedCategories.includes(category.category)
+                ? (
+                    <ChevronUp className="h-5 w-5 text-slate-500" />
+                  )
+                : (
+                    <ChevronDown className="h-5 w-5 text-slate-500" />
+                  )}
             </button>
 
             {expandedCategories.includes(category.category) && (
@@ -118,7 +120,11 @@ const PricingFeatureTable: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <span>{feature.name}</span>
                         {feature.description && (
-                          <span className="text-xs text-slate-500">({feature.description})</span>
+                          <span className="text-xs text-slate-500">
+                            (
+                            {feature.description}
+                            )
+                          </span>
                         )}
                       </div>
                     </div>
@@ -141,18 +147,20 @@ const PricingFeatureTable: React.FC = () => {
 
       {/* Mobile Accordion View */}
       <div className="space-y-4 lg:hidden">
-        {data.map((category) => (
+        {data.map(category => (
           <Card key={category.category} padding="none">
             <button
               onClick={() => toggleCategory(category.category)}
               className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
             >
               <h3 className="font-bold text-slate-900 dark:text-white">{category.category}</h3>
-              {expandedCategories.includes(category.category) ? (
-                <ChevronUp className="h-5 w-5 text-slate-500" />
-              ) : (
-                <ChevronDown className="h-5 w-5 text-slate-500" />
-              )}
+              {expandedCategories.includes(category.category)
+                ? (
+                    <ChevronUp className="h-5 w-5 text-slate-500" />
+                  )
+                : (
+                    <ChevronDown className="h-5 w-5 text-slate-500" />
+                  )}
             </button>
 
             {expandedCategories.includes(category.category) && (

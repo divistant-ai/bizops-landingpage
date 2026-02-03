@@ -70,7 +70,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   }, []);
 
   const handleMenuClick = useCallback((menu: MenuType) => {
-    setActiveMenu((prev) => (prev === menu ? null : menu));
+    setActiveMenu(prev => (prev === menu ? null : menu));
   }, []);
 
   const handleCloseMenu = useCallback(() => {
@@ -135,7 +135,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
                 : 'invisible translate-y-1 opacity-0'
             }`}
           >
-            {servicesItems.map((item) => (
+            {servicesItems.map(item => (
               <Link
                 key={item.to}
                 href={item.to}

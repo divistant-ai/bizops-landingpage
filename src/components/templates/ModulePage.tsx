@@ -70,13 +70,13 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
 
   let translation;
   if (isModule) {
-    translation =
-      platformModulesTranslations[locale]?.[
+    translation
+      = platformModulesTranslations[locale]?.[
         moduleId as keyof typeof platformModulesTranslations.en
       ];
   } else if (isCapability) {
-    translation =
-      platformCapabilitiesTranslations[locale]?.[
+    translation
+      = platformCapabilitiesTranslations[locale]?.[
         moduleId as keyof typeof platformCapabilitiesTranslations.en
       ];
   }
@@ -97,13 +97,13 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
 
       let modTranslation;
       if (item.type === 'module') {
-        modTranslation =
-          platformModulesTranslations[locale]?.[
+        modTranslation
+          = platformModulesTranslations[locale]?.[
             item.id as keyof typeof platformModulesTranslations.en
           ];
       } else {
-        modTranslation =
-          platformCapabilitiesTranslations[locale]?.[
+        modTranslation
+          = platformCapabilitiesTranslations[locale]?.[
             item.id as keyof typeof platformCapabilitiesTranslations.en
           ];
       }
@@ -120,7 +120,7 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         type: item.type,
       };
     })
-    .filter((m) => m?.title);
+    .filter(m => m?.title);
 
   return (
     <div className="flex flex-col">
@@ -606,7 +606,9 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                 {t('related_title')}
               </div>
               <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
-                {t('related_subtitle')} {data.title}
+                {t('related_subtitle')}
+                {' '}
+                {data.title}
               </h2>
             </div>
 
@@ -618,8 +620,8 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
                   }
 
                   const ModuleIcon = module.icon || HelpCircle;
-                  const linkPath =
-                    module.type === 'capability'
+                  const linkPath
+                    = module.type === 'capability'
                       ? `/platform/capabilities/${module.id}`
                       : `/platform/modules/${module.id}`;
                   const cardColors = [

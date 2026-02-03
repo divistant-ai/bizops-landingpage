@@ -33,7 +33,7 @@ function TrustContent() {
   return (
     <div className="bg-slate-50 font-sans transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <Section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pt-32 lg:pb-32 dark:bg-[#0B1120]">
+      <Section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pt-32 lg:pb-32 dark:bg-dark-bg">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] animate-pulse rounded-full bg-emerald-500/10 blur-[120px] dark:bg-emerald-900/20"></div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-900/20"></div>
@@ -60,10 +60,14 @@ function TrustContent() {
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1">
-              <Clock className="h-3 w-3" /> {t('status_uptime')}
+              <Clock className="h-3 w-3" />
+              {' '}
+              {t('status_uptime')}
             </span>
             <span className="hidden items-center gap-1 sm:flex">
-              <RefreshCw className="h-3 w-3" /> {t('status_updated')}
+              <RefreshCw className="h-3 w-3" />
+              {' '}
+              {t('status_updated')}
             </span>
             <Link href="/status" className="text-emerald-600 hover:underline">
               {t('status_history')}
@@ -200,7 +204,9 @@ function TrustContent() {
         <section className="grid grid-cols-1 items-center gap-16 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold tracking-wider text-slate-600 uppercase dark:bg-slate-800 dark:text-slate-400">
-              <Layers className="h-3 w-3" /> {t('security_badge')}
+              <Layers className="h-3 w-3" />
+              {' '}
+              {t('security_badge')}
             </div>
             <Typography variant="h2" as="h2" className="mb-6">
               {t('security_title')}
@@ -306,25 +312,33 @@ function TrustContent() {
               <Stack direction="vertical" gap={4} className="relative z-10 h-full justify-center">
                 <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur">
                   <div className="flex items-center gap-3 text-xs text-emerald-400">
-                    <Globe className="h-4 w-4" /> Cloudflare WAF
+                    <Globe className="h-4 w-4" />
+                    {' '}
+                    Cloudflare WAF
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></div>
                 </div>
                 <div className="ml-4 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-8">
                   <div className="flex items-center gap-3 text-xs text-blue-400">
-                    <Server className="h-4 w-4" /> Load Balancer
+                    <Server className="h-4 w-4" />
+                    {' '}
+                    Load Balancer
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-blue-500"></div>
                 </div>
                 <div className="ml-8 flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/80 p-4 backdrop-blur sm:ml-16">
                   <div className="flex items-center gap-3 text-xs text-purple-400">
-                    <Lock className="h-4 w-4" /> App Server (Pod)
+                    <Lock className="h-4 w-4" />
+                    {' '}
+                    App Server (Pod)
                   </div>
                   <div className="h-2 w-2 animate-pulse rounded-full bg-purple-500"></div>
                 </div>
                 <div className="ml-12 flex items-center justify-between gap-4 rounded-xl border border-emerald-500/30 bg-emerald-900/50 p-4 shadow-[0_0_30px_rgba(16,185,129,0.2)] backdrop-blur sm:ml-24">
                   <div className="flex items-center gap-3 text-xs font-bold text-white">
-                    <Database className="h-4 w-4" /> Encrypted DB
+                    <Database className="h-4 w-4" />
+                    {' '}
+                    Encrypted DB
                   </div>
                   <div className="flex gap-1">
                     <Lock className="h-3 w-3 text-emerald-400" />
@@ -418,7 +432,9 @@ function TrustContent() {
             {t('cta_subtitle')}
           </Typography>
           <Button size="lg" className="px-8 font-bold text-slate-950 dark:text-white">
-            {t('cta_button')} <ChevronRight className="ml-2 h-4 w-4" />
+            {t('cta_button')}
+            {' '}
+            <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </section>
       </Container>

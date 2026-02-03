@@ -43,9 +43,9 @@ export function DemoContent() {
     } else if (!emailRegex.test(email)) {
       newErrors.workEmail = t('error_email_format');
     } else if (
-      email.includes('gmail.com') ||
-      email.includes('yahoo.com') ||
-      email.includes('hotmail.com')
+      email.includes('gmail.com')
+      || email.includes('yahoo.com')
+      || email.includes('hotmail.com')
     ) {
       newErrors.workEmail = t('error_email_personal');
     }
@@ -95,7 +95,7 @@ export function DemoContent() {
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     await traceAction('business.lead.submit', async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1500));
       window.open(whatsappUrl, '_blank');
       setFormState('success');
     });
@@ -108,7 +108,7 @@ export function DemoContent() {
         gap={4}
         align="center"
         justify="center"
-        className="min-h-screen bg-slate-50 px-4 text-center dark:bg-[#0B0F19]"
+        className="min-h-screen bg-slate-50 px-4 text-center dark:bg-dark-bg"
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -131,7 +131,7 @@ export function DemoContent() {
   }
 
   return (
-    <div className="selection:bg-primary-500/30 min-h-screen bg-slate-50 font-sans text-slate-900 dark:bg-[#0B0F19] dark:text-slate-200">
+    <div className="selection:bg-primary-500/30 min-h-screen bg-slate-50 font-sans text-slate-900 dark:bg-dark-bg dark:text-slate-200">
       <div className="relative overflow-hidden pt-28 pb-24">
         <div className="bg-primary-600/20 pointer-events-none absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-30 blur-[120px] dark:opacity-60"></div>
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-white/10"></div>
@@ -151,14 +151,18 @@ export function DemoContent() {
                   align="center"
                   className="bg-primary-100 dark:bg-primary-500/10 text-primary-700 dark:text-primary-400 mb-6 py-1 text-sm font-bold tracking-wider uppercase"
                 >
-                  <Video className="h-5 w-5" /> {t('badge_text')}
+                  <Video className="h-5 w-5" />
+                  {' '}
+                  {t('badge_text')}
                 </Stack>
                 <Typography
                   variant="h1"
                   as="h1"
                   className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
                 >
-                  {t('hero_title_part1')} <br />
+                  {t('hero_title_part1')}
+                  {' '}
+                  <br />
                   <span className="bg-gradient-to-r from-cyan-500 to-cyan-600 bg-clip-text text-transparent dark:to-cyan-400">
                     {t('hero_title_part2')}
                   </span>
@@ -342,7 +346,8 @@ export function DemoContent() {
 
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
                     <span className="mb-4 block flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />{' '}
+                      <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />
+                      {' '}
                       {t('needs_title')}
                     </span>
                     <Grid cols={1} gap={4}>
@@ -382,24 +387,28 @@ export function DemoContent() {
                   <div className="pt-2">
                     <Checkbox
                       name="consent"
-                      label={
+                      label={(
                         <span className="text-sm text-slate-600 dark:text-slate-400">
-                          {t('consent_text')}{' '}
+                          {t('consent_text')}
+                          {' '}
                           <Link
                             href="/legal/privacy"
                             className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
                             target="_blank"
                           >
                             {t('consent_link')}
-                          </Link>{' '}
+                          </Link>
+                          {' '}
                           {t('consent_text_end')}
                         </span>
-                      }
+                      )}
                       required
                     />
                     {errors.consent && (
                       <Typography variant="body">
-                        <Shield className="h-3 w-3" /> {errors.consent}
+                        <Shield className="h-3 w-3" />
+                        {' '}
+                        {errors.consent}
                       </Typography>
                     )}
                   </div>

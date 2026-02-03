@@ -19,8 +19,8 @@ export default function PlatformContent() {
     id: key,
     ...val,
     // Override dengan translation
-    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en] ||
-      {}),
+    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en]
+      || {}),
   }));
   const capabilities = Object.entries(capabilitiesData).map(([key, val]) => ({
     id: key,
@@ -34,20 +34,20 @@ export default function PlatformContent() {
   // Color mapping for modules
   const getModuleColor = (id: string) => {
     const colorMap: Record<string, { bg: string; text: string; hover: string }> = {
-      hr: { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100' },
-      finance: {
+      'hr': { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100' },
+      'finance': {
         bg: 'bg-emerald-50',
         text: 'text-emerald-600',
         hover: 'hover:bg-emerald-100',
       },
-      operations: { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100' },
-      sales: { bg: 'bg-amber-50', text: 'text-amber-600', hover: 'hover:bg-amber-100' },
+      'operations': { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100' },
+      'sales': { bg: 'bg-amber-50', text: 'text-amber-600', hover: 'hover:bg-amber-100' },
       'supply-chain': {
         bg: 'bg-indigo-50',
         text: 'text-indigo-600',
         hover: 'hover:bg-indigo-100',
       },
-      governance: {
+      'governance': {
         bg: 'bg-slate-100',
         text: 'text-slate-700',
         hover: 'hover:bg-slate-200',
@@ -78,7 +78,9 @@ export default function PlatformContent() {
             </div>
 
             <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white">
-              {t('hero_title_1')} <br className="hidden md:block" />
+              {t('hero_title_1')}
+              {' '}
+              <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 {t('hero_title_2')}
               </span>

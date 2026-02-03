@@ -219,7 +219,7 @@ export default function GajiBersihCalculator() {
                 <select
                   id="marital-status"
                   value={maritalStatus}
-                  onChange={(e) => setMaritalStatus(e.target.value)}
+                  onChange={e => setMaritalStatus(e.target.value)}
                   className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-label="Pilih status PTKP"
                 >
@@ -236,7 +236,7 @@ export default function GajiBersihCalculator() {
                   type="checkbox"
                   id="bpjs"
                   checked={includeBPJS}
-                  onChange={(e) => setIncludeBPJS(e.target.checked)}
+                  onChange={e => setIncludeBPJS(e.target.checked)}
                   className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-2 focus:ring-green-500 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-describedby="bpjs-help"
                 />
@@ -284,140 +284,147 @@ export default function GajiBersihCalculator() {
                 disabled={isCalculating}
                 aria-label="Hitung gaji bersih"
               >
-                {isCalculating ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    {t('calculating')}
-                  </>
-                ) : (
-                  <>
-                    <Wallet className="mr-2 h-5 w-5" />
-                    {t('calculate_button')}
-                  </>
-                )}
+                {isCalculating
+                  ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        {t('calculating')}
+                      </>
+                    )
+                  : (
+                      <>
+                        <Wallet className="mr-2 h-5 w-5" />
+                        {t('calculate_button')}
+                      </>
+                    )}
               </Button>
             </div>
           </Card>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan gaji bersih"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-green-600 to-blue-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
-                  <div className="mb-6 text-center">
-                    <p className="mb-2 text-sm text-green-100">{t('take_home_pay')}</p>
-                    <p className="text-4xl font-bold">{formatCurrency(result.netSalary)}</p>
-                    <p className="mt-2 text-sm text-green-100">
-                      {result.takeHomePercentage.toFixed(1)}% {t('percentage_of_gross')}
-                    </p>
-                  </div>
-                  <div className="space-y-2 border-t border-white/20 pt-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-green-100">{t('gross_salary_label')}</span>
-                      <span className="font-medium">{formatCurrency(result.grossSalary)}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-green-100">{t('total_deductions')}</span>
-                      <span className="font-medium text-red-200">
-                        -{formatCurrency(result.deductions.total)}
-                      </span>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <div className="mb-4 flex items-center gap-2">
-                    <PieChart className="h-5 w-5 text-gray-700 dark:text-slate-300" />
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {t('deduction_details')}
-                    </h3>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between rounded-lg bg-red-50 px-4 py-3 dark:bg-red-950/20">
-                      <span className="text-sm text-gray-700 dark:text-slate-300">
-                        {t('tax_pph21')}
-                      </span>
-                      <span className="font-semibold text-red-600 dark:text-red-400">
-                        {formatCurrency(result.deductions.pph21)}
-                      </span>
-                    </div>
-                    {includeBPJS && (
-                      <>
-                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
-                          <span className="text-sm text-gray-700 dark:text-slate-300">
-                            {t('bpjs_health')}
-                          </span>
-                          <span className="font-semibold text-blue-600 dark:text-blue-400">
-                            {formatCurrency(result.deductions.bpjsKesehatan)}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
-                          <span className="text-sm text-gray-700 dark:text-slate-300">
-                            {t('bpjs_employment')}
-                          </span>
-                          <span className="font-semibold text-blue-600 dark:text-blue-400">
-                            {formatCurrency(result.deductions.bpjsKetenagakerjaan)}
-                          </span>
-                        </div>
-                      </>
-                    )}
-                    {result.deductions.other > 0 && (
-                      <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3 dark:bg-slate-800">
-                        <span className="text-sm text-gray-700 dark:text-slate-300">
-                          {t('other_deductions_label')}
-                        </span>
-                        <span className="font-semibold text-gray-600 dark:text-slate-400">
-                          {formatCurrency(result.deductions.other)}
-                        </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan gaji bersih"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-green-600 to-blue-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
+                      <div className="mb-6 text-center">
+                        <p className="mb-2 text-sm text-green-100">{t('take_home_pay')}</p>
+                        <p className="text-4xl font-bold">{formatCurrency(result.netSalary)}</p>
+                        <p className="mt-2 text-sm text-green-100">
+                          {result.takeHomePercentage.toFixed(1)}
+                          %
+                          {t('percentage_of_gross')}
+                        </p>
                       </div>
-                    )}
-                  </div>
+                      <div className="space-y-2 border-t border-white/20 pt-4">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-green-100">{t('gross_salary_label')}</span>
+                          <span className="font-medium">{formatCurrency(result.grossSalary)}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-green-100">{t('total_deductions')}</span>
+                          <span className="font-medium text-red-200">
+                            -
+                            {formatCurrency(result.deductions.total)}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
 
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
+                    <Card className="p-6">
+                      <div className="mb-4 flex items-center gap-2">
+                        <PieChart className="h-5 w-5 text-gray-700 dark:text-slate-300" />
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {t('deduction_details')}
+                        </h3>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between rounded-lg bg-red-50 px-4 py-3 dark:bg-red-950/20">
+                          <span className="text-sm text-gray-700 dark:text-slate-300">
+                            {t('tax_pph21')}
+                          </span>
+                          <span className="font-semibold text-red-600 dark:text-red-400">
+                            {formatCurrency(result.deductions.pph21)}
+                          </span>
+                        </div>
+                        {includeBPJS && (
+                          <>
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                              <span className="text-sm text-gray-700 dark:text-slate-300">
+                                {t('bpjs_health')}
+                              </span>
+                              <span className="font-semibold text-blue-600 dark:text-blue-400">
+                                {formatCurrency(result.deductions.bpjsKesehatan)}
+                              </span>
+                            </div>
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-950/20">
+                              <span className="text-sm text-gray-700 dark:text-slate-300">
+                                {t('bpjs_employment')}
+                              </span>
+                              <span className="font-semibold text-blue-600 dark:text-blue-400">
+                                {formatCurrency(result.deductions.bpjsKetenagakerjaan)}
+                              </span>
+                            </div>
+                          </>
+                        )}
+                        {result.deductions.other > 0 && (
+                          <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3 dark:bg-slate-800">
+                            <span className="text-sm text-gray-700 dark:text-slate-300">
+                              {t('other_deductions_label')}
+                            </span>
+                            <span className="font-semibold text-gray-600 dark:text-slate-400">
+                              {formatCurrency(result.deductions.other)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
 
-                <Card className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:from-purple-950/20 dark:to-pink-950/20">
-                  <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                    {t('annual_projection')}
-                  </h4>
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        {t('gross_salary_year')}
-                      </p>
-                      <p className="text-lg font-bold text-gray-900 dark:text-white">
-                        {formatCurrency(result.grossSalary * 12)}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600 dark:text-slate-400">
-                        {t('net_salary_year')}
-                      </p>
-                      <p className="text-lg font-bold text-green-600 dark:text-green-400">
-                        {formatCurrency(result.netSalary * 12)}
-                      </p>
-                    </div>
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    <Card className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 dark:from-purple-950/20 dark:to-pink-950/20">
+                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
+                        {t('annual_projection')}
+                      </h4>
+                      <div className="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                          <p className="text-sm text-gray-600 dark:text-slate-400">
+                            {t('gross_salary_year')}
+                          </p>
+                          <p className="text-lg font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.grossSalary * 12)}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600 dark:text-slate-400">
+                            {t('net_salary_year')}
+                          </p>
+                          <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                            {formatCurrency(result.netSalary * 12)}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Wallet className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Wallet className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: PageProps) {
 
 export async function generateStaticParams() {
   return Object.keys(comparisonsData)
-    .filter((id) => id !== 'bizops')
-    .map((slug) => ({
+    .filter(id => id !== 'bizops')
+    .map(slug => ({
       slug,
     }));
 }
@@ -62,7 +62,9 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
             href="/compare"
             className="hover:text-primary-600 dark:hover:text-primary-400 mb-8 inline-flex items-center text-neutral-500 transition-colors dark:text-slate-400"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" /> {t('back_to_list')}
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {' '}
+            {t('back_to_list')}
           </Link>
 
           <div className="mb-12 flex flex-col items-center justify-center gap-8 md:flex-row md:gap-16">
@@ -98,7 +100,9 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
               {t('our_verdict')}
             </h2>
             <p className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-xl leading-relaxed text-neutral-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-              "{competitor.verdict[locale as 'en' | 'id']}"
+              "
+              {competitor.verdict[locale as 'en' | 'id']}
+              "
             </p>
           </div>
         </Container>

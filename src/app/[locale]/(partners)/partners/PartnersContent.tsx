@@ -67,7 +67,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
   return (
     <div className="min-h-screen bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-[#0B1120] dark:text-white">
+      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-dark-bg dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-600/20 blur-[120px]"></div>
         <div className="bg-primary-900/30 pointer-events-none absolute bottom-0 left-0 h-[800px] w-[800px] rounded-full blur-[100px]"></div>
@@ -80,7 +80,9 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8 inline-flex items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400"
               >
-                <Users className="mr-2 h-3 w-3" /> {t('hero_badge')}
+                <Users className="mr-2 h-3 w-3" />
+                {' '}
+                {t('hero_badge')}
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -88,7 +90,8 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                 transition={{ delay: 0.1 }}
                 className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white"
               >
-                {t('hero_title_1')}{' '}
+                {t('hero_title_1')}
+                {' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500">
                   {t('hero_title_2')}
                 </span>
@@ -112,7 +115,9 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     size="lg"
                     className="h-14 w-full rounded-full border-none bg-slate-900 px-10 text-lg font-bold text-white shadow-xl transition-all hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                   >
-                    {t('hero_button_apply')} <ArrowRight className="ml-2 h-5 w-5" />
+                    {t('hero_button_apply')}
+                    {' '}
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href={`/${locale}/partners/directory`}>
@@ -233,7 +238,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     max="10000000"
                     step="500000"
                     value={sellingPrice}
-                    onChange={(e) => setSellingPrice(Number(e.target.value))}
+                    onChange={e => setSellingPrice(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -251,7 +256,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     max="8000000"
                     step="500000"
                     value={partnerCost}
-                    onChange={(e) => setPartnerCost(Number(e.target.value))}
+                    onChange={e => setPartnerCost(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -269,7 +274,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     max="50000000"
                     step="5000000"
                     value={setupFee}
-                    onChange={(e) => setSetupFee(Number(e.target.value))}
+                    onChange={e => setSetupFee(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
@@ -287,11 +292,13 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     max="50"
                     step="1"
                     value={activeClients}
-                    onChange={(e) => setActiveClients(Number(e.target.value))}
+                    onChange={e => setActiveClients(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
-                    {activeClients} {t('calculator_clients')}
+                    {activeClients}
+                    {' '}
+                    {t('calculator_clients')}
                   </div>
                 </div>
 
@@ -305,11 +312,12 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     max="5"
                     step="1"
                     value={growthRate}
-                    onChange={(e) => setGrowthRate(Number(e.target.value))}
+                    onChange={e => setGrowthRate(Number(e.target.value))}
                     className="w-full"
                   />
                   <div className="mt-2 text-right text-2xl font-bold text-slate-900 dark:text-white">
-                    +{growthRate}
+                    +
+                    {growthRate}
                     {t('calculator_month')}
                   </div>
                 </div>
@@ -329,7 +337,11 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                     {formatCurrency(currentMonthlyProfit)}
                   </div>
                   <div className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                    {t('calculator_from')} {activeClients} {t('calculator_active')}
+                    {t('calculator_from')}
+                    {' '}
+                    {activeClients}
+                    {' '}
+                    {t('calculator_active')}
                   </div>
                 </div>
 
@@ -358,7 +370,8 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                 </div>
 
                 <div className="rounded-xl border border-slate-300 bg-slate-200 p-4 text-xs text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
-                  <strong className="text-slate-900 dark:text-white">Note:</strong>{' '}
+                  <strong className="text-slate-900 dark:text-white">Note:</strong>
+                  {' '}
                   {t('calculator_note')}
                 </div>
               </div>
@@ -488,7 +501,9 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
                 size="lg"
                 className="w-full bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-indigo-900 dark:hover:bg-slate-100"
               >
-                {t('cta_button_apply')} <ArrowRight className="ml-2 h-4 w-4" />
+                {t('cta_button_apply')}
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href={`/${locale}/contact`}>

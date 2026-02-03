@@ -21,7 +21,9 @@ export default function PartnerApplyPage() {
             {/* Placeholder for actual form integration (e.g. Typeform or Hubspot) */}
             <div className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-10 dark:border-slate-800 dark:bg-slate-950">
               <p className="mb-6 text-slate-500 italic dark:text-slate-400">
-                [{t('form_placeholder')}]
+                [
+                {t('form_placeholder')}
+                ]
               </p>
               <Button
                 size="lg"

@@ -1,6 +1,6 @@
 export const platformModulesTranslations = {
   en: {
-    hr: {
+    'hr': {
       title: 'Human Capital Management (HRIS)',
       subtitle: 'Automate HR Admin. Focus on People, Not Paper.',
       description:
@@ -69,7 +69,7 @@ export const platformModulesTranslations = {
         },
       ],
       cta: {
-        text: "It's time for HR to shift to more impactful tasks.",
+        text: 'It\'s time for HR to shift to more impactful tasks.',
         buttonLabel: 'See HRIS Demo',
       },
       testimonial: {
@@ -102,7 +102,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    finance: {
+    'finance': {
       title: 'Finance & Procurement',
       subtitle: 'Complete Control Over Every Dollar.',
       description:
@@ -204,7 +204,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    operations: {
+    'operations': {
       title: 'Operations & Project Management',
       subtitle: 'Deliver Projects On Time, On Budget.',
       description:
@@ -306,7 +306,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    sales: {
+    'sales': {
       title: 'Sales & CRM',
       subtitle: 'Close Deals Faster, Anywhere.',
       description:
@@ -314,7 +314,7 @@ export const platformModulesTranslations = {
       features: [
         {
           title: 'Visual Sales Pipeline',
-          desc: "Monitor each prospect's movement from 'New Lead' to 'Won'. Drag-and-drop deals on Kanban board for instant status updates.",
+          desc: 'Monitor each prospect\'s movement from \'New Lead\' to \'Won\'. Drag-and-drop deals on Kanban board for instant status updates.',
         },
         {
           title: 'Mobile Quotation',
@@ -357,7 +357,7 @@ export const platformModulesTranslations = {
         },
       ],
       mobileAdvantage: {
-        title: "The Salesman's Office is the Road",
+        title: 'The Salesman\'s Office is the Road',
         desc: 'Our Sales Force Automation (SFA) app works offline-first. Salespeople can still input orders and update visit status even in basement areas or remote locations.',
       },
       connections: [
@@ -485,7 +485,7 @@ export const platformModulesTranslations = {
       },
       testimonial: {
         quote:
-          "We used to need 3 days of store closure for Stock Opname. Now with QR Scan, it's done in half a day without stopping operations.",
+          'We used to need 3 days of store closure for Stock Opname. Now with QR Scan, it\'s done in half a day without stopping operations.',
         author: 'Surya Kencana',
         role: 'Logistics Manager at Retail Chain',
         avatar: 'https://ui-avatars.com/api/?name=Surya+Kencana&background=10B981&color=fff',
@@ -494,7 +494,7 @@ export const platformModulesTranslations = {
         {
           question: 'Does it support Average and FIFO methods?',
           answer:
-            "Yes, you can choose the inventory valuation method that fits your company's accounting policy (Moving Average or FIFO).",
+            'Yes, you can choose the inventory valuation method that fits your company\'s accounting policy (Moving Average or FIFO).',
         },
         {
           question: 'What if items have variants (Color/Size)?',
@@ -513,7 +513,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    governance: {
+    'governance': {
       title: 'Governance & Insight',
       subtitle: 'Full Control, Without Compromise.',
       description:
@@ -620,25 +620,25 @@ export const platformModulesTranslations = {
     },
   },
   id: {
-    hr: {
+    'hr': {
       title: 'Human Capital Management (HRIS)',
       subtitle: 'Otomatisasi Admin HR. Fokus pada Manusia, Bukan Kertas.',
       description:
         'Tinggalkan spreadsheet yang rentan error. BizOps HRIS mengotomatiskan seluruh siklus karyawan—dari rekrutmen hingga pensiun—agar Anda bisa fokus membangun budaya juara.',
     },
-    finance: {
+    'finance': {
       title: 'Finance & Procurement',
       subtitle: 'Kendali Penuh Atas Setiap Rupiah.',
       description:
         'Hilangkan kebocoran anggaran (Budget Leakage) dengan sistem persetujuan bertingkat. Integrasikan pembelian, aset, dan akuntansi dalam satu aliran data real-time.',
     },
-    operations: {
+    'operations': {
       title: 'Operations & Projects',
       subtitle: 'Eksekusi Proyek Tepat Waktu dan Sesuai Budget.',
       description:
         'Stop kelola proyek via grup WhatsApp. Lacak biaya, material, dan progress tim secara real-time dengan sistem terintegrasi.',
     },
-    sales: {
+    'sales': {
       title: 'Sales & CRM',
       subtitle: 'Revenue yang Predictable, Bukan Sekadar Harapan.',
       description:
@@ -749,7 +749,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    governance: {
+    'governance': {
       title: 'Governance & Insight',
       subtitle: 'Kontrol Penuh, Tanpa Kompromi.',
       description:
@@ -768,7 +768,7 @@ export const platformModulesTranslations = {
         },
         {
           title: 'Role-Based Access Control',
-          desc: "Pengaturan hak akses granular hingga level field. Terapkan prinsip 'Least Privilege' untuk melindungi data sensitif.",
+          desc: 'Pengaturan hak akses granular hingga level field. Terapkan prinsip \'Least Privilege\' untuk melindungi data sensitif.',
         },
         {
           title: 'Dynamic Approval Matrix',
@@ -809,7 +809,7 @@ export const platformModulesTranslations = {
       connections: [
         {
           target: 'All Modules',
-          desc: "Governance adalah 'Muara' dari seluruh aliran data HR, Finance, Sales, dan Ops untuk dianalisis.",
+          desc: 'Governance adalah \'Muara\' dari seluruh aliran data HR, Finance, Sales, dan Ops untuk dianalisis.',
         },
         {
           target: 'HR',
@@ -859,7 +859,7 @@ export const platformModulesTranslations = {
 
 export const platformCapabilitiesTranslations = {
   en: {
-    mobile: {
+    'mobile': {
       title: 'Native Mobile Experience',
       subtitle: 'Not Just a Shrunk Web. This is True Mobile Native.',
       description:
@@ -978,7 +978,7 @@ export const platformCapabilitiesTranslations = {
       problems: [
         {
           title: 'Vendor Lock-In',
-          desc: "Once migrating to cloud SaaS, your data is 'hostage'. Want to move? It's very difficult and costly.",
+          desc: 'Once migrating to cloud SaaS, your data is \'hostage\'. Want to move? It\'s very difficult and costly.',
         },
         {
           title: 'Cloud Costs Spiral',
@@ -1008,7 +1008,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
       cta: {
-        text: "Want to deploy on your own infrastructure? We'll assist with setup.",
+        text: 'Want to deploy on your own infrastructure? We\'ll assist with setup.',
         buttonLabel: 'Self-Hosted Consultation',
       },
       testimonial: {
@@ -1041,7 +1041,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    integration: {
+    'integration': {
       title: 'Integration Architecture',
       subtitle: 'API-First: Natively Connected to the Outside World.',
       description:
@@ -1072,15 +1072,15 @@ export const platformCapabilitiesTranslations = {
       problems: [
         {
           title: 'Siloed Systems',
-          desc: "HR, Accounting, and Sales software don't talk to each other. Data must be manually re-entered multiple times.",
+          desc: 'HR, Accounting, and Sales software don\'t talk to each other. Data must be manually re-entered multiple times.',
         },
         {
           title: 'Complex Setup',
-          desc: "'Do-It-Yourself' integration often fails due to complex data mapping not matching business processes.",
+          desc: '\'Do-It-Yourself\' integration often fails due to complex data mapping not matching business processes.',
         },
         {
           title: 'IoT Disconnect',
-          desc: "Factory machines or digital scales have data, but don't automatically enter the recording system.",
+          desc: 'Factory machines or digital scales have data, but don\'t automatically enter the recording system.',
         },
       ],
       mobileAdvantage: {
@@ -1120,12 +1120,12 @@ export const platformCapabilitiesTranslations = {
         {
           question: 'Is integration Plug & Play?',
           answer:
-            "Currently, integration is a 'Managed Service'. Our technical team will handle configuration, data mapping, and testing to ensure connections run smoothly without you worrying about technical details.",
+            'Currently, integration is a \'Managed Service\'. Our technical team will handle configuration, data mapping, and testing to ensure connections run smoothly without you worrying about technical details.',
         },
         {
           question: 'Are there additional costs?',
           answer:
-            "For standard integration (API access) it's free. However, for 'Managed Integration' requiring custom connector development, there may be a one-time setup fee.",
+            'For standard integration (API access) it\'s free. However, for \'Managed Integration\' requiring custom connector development, there may be a one-time setup fee.',
         },
         {
           question: 'How long is the integration process?',
@@ -1139,7 +1139,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    collaboration: {
+    'collaboration': {
       title: 'Contextual Collaboration',
       subtitle: 'Stop Confusing "Ping-Pong" Chats on WhatsApp.',
       description:
@@ -1159,7 +1159,7 @@ export const platformCapabilitiesTranslations = {
         },
         {
           title: 'Integrated File Sharing',
-          desc: "Drag-and-drop supporting files directly into chat column. Centralize documents so they don't scatter in private chats.",
+          desc: 'Drag-and-drop supporting files directly into chat column. Centralize documents so they don\'t scatter in private chats.',
         },
       ],
       metrics: [
@@ -1183,7 +1183,7 @@ export const platformCapabilitiesTranslations = {
       ],
       mobileAdvantage: {
         title: 'Uninterrupted Discussion',
-        desc: "Reply to chats and mention colleagues directly from phone notifications. Stay connected to work context while you're mobile or on field duty.",
+        desc: 'Reply to chats and mention colleagues directly from phone notifications. Stay connected to work context while you\'re mobile or on field duty.',
       },
       connections: [
         {
@@ -1226,7 +1226,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    whitelabel: {
+    'whitelabel': {
       title: 'Whitelabel Platform',
       subtitle: 'Our System, Your Brand Identity.',
     },
@@ -1501,7 +1501,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    portals: {
+    'portals': {
       title: 'Self-Service Portals',
       subtitle: 'Engage Customers & Vendors Directly.',
       description:
@@ -1545,7 +1545,7 @@ export const platformCapabilitiesTranslations = {
       ],
       mobileAdvantage: {
         title: 'Easy Access for Partners',
-        desc: "Vendors and Customers don't need to install any apps. Our portal is 100% Mobile Responsive, lightweight, and fast to access via phone browser.",
+        desc: 'Vendors and Customers don\'t need to install any apps. Our portal is 100% Mobile Responsive, lightweight, and fast to access via phone browser.',
       },
       connections: [
         {
@@ -1593,11 +1593,11 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    analytics: {
+    'analytics': {
       title: 'Analytics & Report Builder',
       subtitle: 'Your Data, Your Way.',
       description:
-        "Don't be stuck with standard reports. Create custom reports tailored to your unique business needs with powerful Report Builder tools.",
+        'Don\'t be stuck with standard reports. Create custom reports tailored to your unique business needs with powerful Report Builder tools.',
       features: [
         {
           title: 'Drag & Drop Report Builder',
@@ -1637,7 +1637,7 @@ export const platformCapabilitiesTranslations = {
       ],
       mobileAdvantage: {
         title: 'Dashboard in Your Pocket',
-        desc: "Monitor company KPIs in real-time while you're in meetings outside the office. Interactive charts adapt to phone screens for easy analysis.",
+        desc: 'Monitor company KPIs in real-time while you\'re in meetings outside the office. Interactive charts adapt to phone screens for easy analysis.',
       },
       connections: [
         {
@@ -1646,7 +1646,7 @@ export const platformCapabilitiesTranslations = {
         },
         {
           target: 'Email',
-          desc: "Send PDF reports automatically to Directors' inboxes every Monday morning.",
+          desc: 'Send PDF reports automatically to Directors\' inboxes every Monday morning.',
         },
         {
           target: 'Dashboard',
@@ -1686,7 +1686,7 @@ export const platformCapabilitiesTranslations = {
       title: 'Report Builder',
       subtitle: 'Create custom reports without IT help.',
     },
-    architecture: {
+    'architecture': {
       title: 'Enterprise Architecture',
       subtitle: 'Scalable, secure, and developer-friendly infrastructure.',
       description:
@@ -1782,7 +1782,7 @@ export const platformCapabilitiesTranslations = {
     },
   },
   id: {
-    mobile: {
+    'mobile': {
       title: 'Native Mobile Experience',
       subtitle: 'Bukan Sekadar Web yang Dikecilkan. Ini Mobile Native Sesungguhnya.',
       description:
@@ -1874,7 +1874,7 @@ export const platformCapabilitiesTranslations = {
       title: 'Self-Hosted Deployment',
       subtitle: 'Infrastruktur Anda, Kendali Penuh Anda.',
     },
-    integration: {
+    'integration': {
       title: 'Integration Architecture',
       subtitle: 'API-First: Terhubung Secara Native dengan Dunia Luar.',
       description:
@@ -1909,7 +1909,7 @@ export const platformCapabilitiesTranslations = {
         },
         {
           title: 'Complex Setup',
-          desc: "Integrasi 'Do-It-Yourself' seringkali gagal karena mapping data yang rumit dan tidak sesuai proses bisnis.",
+          desc: 'Integrasi \'Do-It-Yourself\' seringkali gagal karena mapping data yang rumit dan tidak sesuai proses bisnis.',
         },
         {
           title: 'IoT Disconnect',
@@ -1953,12 +1953,12 @@ export const platformCapabilitiesTranslations = {
         {
           question: 'Apakah integrasi bersifat Plug & Play?',
           answer:
-            "Saat ini, integrasi bersifat 'Managed Service'. Tim teknis kami akan menangani konfigurasi, mapping data, dan testing untuk memastikan koneksi berjalan lancar tanpa Anda pusing teknis.",
+            'Saat ini, integrasi bersifat \'Managed Service\'. Tim teknis kami akan menangani konfigurasi, mapping data, dan testing untuk memastikan koneksi berjalan lancar tanpa Anda pusing teknis.',
         },
         {
           question: 'Apakah ada biaya tambahan?',
           answer:
-            "Untuk integrasi standar (API access) gratis. Namun untuk 'Managed Integration' yang membutuhkan development connector khusus, mungkin ada biaya setup one-time.",
+            'Untuk integrasi standar (API access) gratis. Namun untuk \'Managed Integration\' yang membutuhkan development connector khusus, mungkin ada biaya setup one-time.',
         },
         {
           question: 'Berapa lama proses integrasi?',
@@ -1972,9 +1972,9 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    collaboration: {
+    'collaboration': {
       title: 'Contextual Collaboration',
-      subtitle: "Hentikan 'Ping-Pong' Chat di WhatsApp yang Membingungkan.",
+      subtitle: 'Hentikan \'Ping-Pong\' Chat di WhatsApp yang Membingungkan.',
       description:
         'Masalah terbesar komunikasi kerja adalah hilangnya konteks. BizOps menyatukan percakapan dengan data. Diskusikan pekerjaan tepat di tempat pekerjaan itu berada (Dokumen Transaksi).',
       features: [
@@ -2060,7 +2060,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    whitelabel: {
+    'whitelabel': {
       title: 'Whitelabel Platform',
       subtitle: 'Sistem Kami, Identitas Brand Anda.',
     },
@@ -2336,7 +2336,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    portals: {
+    'portals': {
       title: 'Self-Service Portals',
       subtitle: 'Libatkan Pelanggan & Vendor Secara Langsung.',
       description:
@@ -2428,7 +2428,7 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    analytics: {
+    'analytics': {
       title: 'Analytics & Report Builder',
       subtitle: 'Data Anda, Cara Anda.',
       description:
@@ -2521,7 +2521,7 @@ export const platformCapabilitiesTranslations = {
       title: 'Report Builder',
       subtitle: 'Buat laporan custom tanpa bantuan IT.',
     },
-    architecture: {
+    'architecture': {
       title: 'Enterprise Architecture',
       subtitle: 'Infrastruktur scalable, aman, dan ramah developer.',
       description:

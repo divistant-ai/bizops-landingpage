@@ -31,12 +31,12 @@ export default function SolutionsContent() {
     return { ...baseData, ...translationData } as RoleData;
   };
 
-  const industries = Object.keys(industriesData).map((key) => ({
+  const industries = Object.keys(industriesData).map(key => ({
     id: key,
     ...getIndustryData(key),
   }));
 
-  const roles = Object.keys(rolesData).map((key) => ({
+  const roles = Object.keys(rolesData).map(key => ({
     id: key,
     ...getRoleData(key),
   }));
@@ -146,7 +146,9 @@ export default function SolutionsContent() {
                             {ind.description}
                           </p>
                           <div className="text-primary-600 dark:text-primary-400 mt-auto flex items-center text-sm font-semibold transition-transform group-hover:translate-x-2">
-                            {t('explore_industry')} <ChevronRight className="ml-1 h-4 w-4" />
+                            {t('explore_industry')}
+                            {' '}
+                            <ChevronRight className="ml-1 h-4 w-4" />
                           </div>
                         </div>
                       </SpotlightCard>
@@ -186,7 +188,8 @@ export default function SolutionsContent() {
                       {role.subtitle}
                     </p>
                     <div className="text-primary-600 flex items-center justify-center text-sm font-medium">
-                      <span className="dark:text-white">{t('explore_role')}</span>{' '}
+                      <span className="dark:text-white">{t('explore_role')}</span>
+                      {' '}
                       <ArrowRight className="ml-1 h-3 w-3" />
                     </div>
                   </div>
@@ -210,7 +213,8 @@ export default function SolutionsContent() {
             {t('final_cta.badge')}
           </Badge>
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('final_cta.title_part1')}{' '}
+            {t('final_cta.title_part1')}
+            {' '}
             <span className="text-primary-600 dark:text-primary-400">
               {t('final_cta.title_highlight')}
             </span>

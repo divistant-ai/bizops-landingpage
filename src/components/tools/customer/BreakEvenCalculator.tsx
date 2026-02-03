@@ -200,7 +200,8 @@ export default function BreakEvenCalculator() {
                     id="fixed-costs-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    {t('fixed_costs_help')}{' '}
+                    {t('fixed_costs_help')}
+                    {' '}
                     {fixedCosts && formatCurrency(Number.parseFloat(fixedCosts) || 0)}
                   </p>
                 </div>
@@ -233,7 +234,8 @@ export default function BreakEvenCalculator() {
                     id="variable-cost-help"
                     className="mt-1 text-xs text-gray-500 dark:text-slate-500"
                   >
-                    {t('variable_cost_help')}{' '}
+                    {t('variable_cost_help')}
+                    {' '}
                     {variableCost && formatCurrency(Number.parseFloat(variableCost) || 0)}
                   </p>
                 </div>
@@ -304,17 +306,19 @@ export default function BreakEvenCalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung break even point"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      {t('calculating')}
-                    </>
-                  ) : (
-                    <>
-                      <Target className="mr-2 h-5 w-5" />
-                      {t('calculate_button')}
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          {t('calculating')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <Target className="mr-2 h-5 w-5" />
+                          {t('calculate_button')}
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -331,147 +335,156 @@ export default function BreakEvenCalculator() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan break even point"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">{t('bep_title')}</h3>
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <p className="text-sm text-orange-100">{t('minimum_sales_units')}</p>
-                      <p className="text-4xl font-bold">
-                        {Math.ceil(result.breakEvenUnits).toLocaleString('id-ID')}
-                      </p>
-                      <p className="mt-1 text-sm text-orange-100">{t('units')}</p>
-                    </div>
-                    <div className="border-t border-white/20 pt-4 text-center">
-                      <p className="text-sm text-orange-100">{t('minimum_revenue')}</p>
-                      <p className="text-2xl font-bold">
-                        {formatCurrency(result.breakEvenRevenue)}
-                      </p>
-                    </div>
-                    {result.monthsToBreakEven > 0 && (
-                      <div className="border-t border-white/20 pt-4 text-center">
-                        <p className="text-sm text-orange-100">{t('time_to_bep')}</p>
-                        <p className="text-2xl font-bold">
-                          {result.monthsToBreakEven.toFixed(1)} {t('months')}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
-                    <BarChart3 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-                    {t('contribution_margin_title')}
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          {t('contribution_margin')}
-                        </span>
-                        <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                          {formatCurrency(result.contributionMargin)}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
-                        {t('contribution_margin_desc')}
-                      </p>
-                    </div>
-
-                    <div className="rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          {t('cm_ratio')}
-                        </span>
-                        <span className="text-2xl font-bold text-red-600 dark:text-red-400">
-                          {result.contributionMarginRatio.toFixed(2)}%
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
-                        {t('cm_ratio_desc')}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2 border-t pt-4 text-sm dark:border-slate-700">
-                      <div className="flex justify-between">
-                        <span className="text-slate-600 dark:text-slate-400">
-                          {t('selling_price_label')}
-                        </span>
-                        <span className="font-medium dark:text-white">
-                          {formatCurrency(result.sellingPricePerUnit)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-600 dark:text-slate-400">
-                          {t('variable_cost_label')}
-                        </span>
-                        <span className="font-medium text-red-600 dark:text-red-400">
-                          -{formatCurrency(result.variableCostPerUnit)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-t pt-2 dark:border-slate-700">
-                        <span className="font-medium text-slate-900 dark:text-white">
-                          {t('contribution_margin')}
-                        </span>
-                        <span className="font-bold text-green-600 dark:text-green-400">
-                          {formatCurrency(result.contributionMargin)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
-
-                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                  <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
-                    {t('profit_projection_title')}
-                  </h4>
-                  <div className="space-y-2 text-sm">
-                    {[1.2, 1.5, 2].map((multiplier) => {
-                      const units = Math.ceil(result.breakEvenUnits * multiplier);
-                      const revenue = units * result.sellingPricePerUnit;
-                      const totalCost = result.fixedCosts + units * result.variableCostPerUnit;
-                      const profit = revenue - totalCost;
-
-                      return (
-                        <div
-                          key={multiplier}
-                          className="flex items-center justify-between rounded-lg bg-white p-3 dark:bg-slate-800"
-                        >
-                          <span className="text-slate-700 dark:text-slate-300">
-                            {units.toLocaleString('id-ID')} {t('unit')}
-                          </span>
-                          <span className="font-bold text-green-600 dark:text-green-400">
-                            +{formatCurrency(profit)}
-                          </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan break even point"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-orange-600 to-red-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">{t('bep_title')}</h3>
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <p className="text-sm text-orange-100">{t('minimum_sales_units')}</p>
+                          <p className="text-4xl font-bold">
+                            {Math.ceil(result.breakEvenUnits).toLocaleString('id-ID')}
+                          </p>
+                          <p className="mt-1 text-sm text-orange-100">{t('units')}</p>
                         </div>
-                      );
-                    })}
+                        <div className="border-t border-white/20 pt-4 text-center">
+                          <p className="text-sm text-orange-100">{t('minimum_revenue')}</p>
+                          <p className="text-2xl font-bold">
+                            {formatCurrency(result.breakEvenRevenue)}
+                          </p>
+                        </div>
+                        {result.monthsToBreakEven > 0 && (
+                          <div className="border-t border-white/20 pt-4 text-center">
+                            <p className="text-sm text-orange-100">{t('time_to_bep')}</p>
+                            <p className="text-2xl font-bold">
+                              {result.monthsToBreakEven.toFixed(1)}
+                              {' '}
+                              {t('months')}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
+                        <BarChart3 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                        {t('contribution_margin_title')}
+                      </h3>
+
+                      <div className="space-y-4">
+                        <div className="rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:from-orange-950/20 dark:to-red-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                              {t('contribution_margin')}
+                            </span>
+                            <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                              {formatCurrency(result.contributionMargin)}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 dark:text-slate-400">
+                            {t('contribution_margin_desc')}
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-4 dark:from-red-950/20 dark:to-orange-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                              {t('cm_ratio')}
+                            </span>
+                            <span className="text-2xl font-bold text-red-600 dark:text-red-400">
+                              {result.contributionMarginRatio.toFixed(2)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 dark:text-slate-400">
+                            {t('cm_ratio_desc')}
+                          </p>
+                        </div>
+
+                        <div className="space-y-2 border-t pt-4 text-sm dark:border-slate-700">
+                          <div className="flex justify-between">
+                            <span className="text-slate-600 dark:text-slate-400">
+                              {t('selling_price_label')}
+                            </span>
+                            <span className="font-medium dark:text-white">
+                              {formatCurrency(result.sellingPricePerUnit)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-600 dark:text-slate-400">
+                              {t('variable_cost_label')}
+                            </span>
+                            <span className="font-medium text-red-600 dark:text-red-400">
+                              -
+                              {formatCurrency(result.variableCostPerUnit)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                            <span className="font-medium text-slate-900 dark:text-white">
+                              {t('contribution_margin')}
+                            </span>
+                            <span className="font-bold text-green-600 dark:text-green-400">
+                              {formatCurrency(result.contributionMargin)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                      <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
+                        {t('profit_projection_title')}
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        {[1.2, 1.5, 2].map((multiplier) => {
+                          const units = Math.ceil(result.breakEvenUnits * multiplier);
+                          const revenue = units * result.sellingPricePerUnit;
+                          const totalCost = result.fixedCosts + units * result.variableCostPerUnit;
+                          const profit = revenue - totalCost;
+
+                          return (
+                            <div
+                              key={multiplier}
+                              className="flex items-center justify-between rounded-lg bg-white p-3 dark:bg-slate-800"
+                            >
+                              <span className="text-slate-700 dark:text-slate-300">
+                                {units.toLocaleString('id-ID')}
+                                {' '}
+                                {t('unit')}
+                              </span>
+                              <span className="font-bold text-green-600 dark:text-green-400">
+                                +
+                                {formatCurrency(profit)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </Card>
                   </div>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Target className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Target className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

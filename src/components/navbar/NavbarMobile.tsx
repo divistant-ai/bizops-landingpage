@@ -33,11 +33,13 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({ isOpen, onToggle, onClose, 
           aria-label={isOpen ? t('close_menu') : t('open_menu')}
           aria-expanded={isOpen}
         >
-          {isOpen ? (
-            <X className={navbarStyles.iconSize.large} />
-          ) : (
-            <Menu className={navbarStyles.iconSize.large} />
-          )}
+          {isOpen
+            ? (
+                <X className={navbarStyles.iconSize.large} />
+              )
+            : (
+                <Menu className={navbarStyles.iconSize.large} />
+              )}
         </button>
       </div>
 

@@ -178,9 +178,9 @@ export default function InvoiceChecker() {
             });
           }
 
-          const passedChecks = checks.filter((c) => c.status === 'valid').length;
-          const failedChecks = checks.filter((c) => c.status === 'invalid').length;
-          const warningChecks = checks.filter((c) => c.status === 'warning').length;
+          const passedChecks = checks.filter(c => c.status === 'valid').length;
+          const failedChecks = checks.filter(c => c.status === 'invalid').length;
+          const warningChecks = checks.filter(c => c.status === 'warning').length;
           const totalChecks = checks.length;
           const score = Math.round((passedChecks / totalChecks) * 100);
 
@@ -309,7 +309,7 @@ export default function InvoiceChecker() {
                     id="invoice-number"
                     type="text"
                     value={invoiceNumber}
-                    onChange={(e) => setInvoiceNumber(e.target.value)}
+                    onChange={e => setInvoiceNumber(e.target.value)}
                     className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     placeholder={t('invoice_number_placeholder')}
                   />
@@ -327,7 +327,7 @@ export default function InvoiceChecker() {
                       id="invoice-date"
                       type="date"
                       value={invoiceDate}
-                      onChange={(e) => setInvoiceDate(e.target.value)}
+                      onChange={e => setInvoiceDate(e.target.value)}
                       className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     />
                   </div>
@@ -342,7 +342,7 @@ export default function InvoiceChecker() {
                       id="due-date"
                       type="date"
                       value={dueDate}
-                      onChange={(e) => setDueDate(e.target.value)}
+                      onChange={e => setDueDate(e.target.value)}
                       className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     />
                   </div>
@@ -359,7 +359,7 @@ export default function InvoiceChecker() {
                     id="vendor-name"
                     type="text"
                     value={vendorName}
-                    onChange={(e) => setVendorName(e.target.value)}
+                    onChange={e => setVendorName(e.target.value)}
                     className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     placeholder={t('vendor_name_placeholder')}
                   />
@@ -376,7 +376,7 @@ export default function InvoiceChecker() {
                     id="vendor-tax"
                     type="text"
                     value={vendorTax}
-                    onChange={(e) => setVendorTax(e.target.value)}
+                    onChange={e => setVendorTax(e.target.value)}
                     className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     placeholder={t('vendor_tax_placeholder')}
                   />
@@ -432,7 +432,9 @@ export default function InvoiceChecker() {
                   </div>
                   {amount && (
                     <p className="mt-1 text-xs text-gray-500 dark:text-slate-500">
-                      {t('expected_vat')}: Rp{' '}
+                      {t('expected_vat')}
+                      : Rp
+                      {' '}
                       {((Number.parseFloat(amount) || 0) * 0.11).toLocaleString('id-ID')}
                     </p>
                   )}
@@ -445,17 +447,19 @@ export default function InvoiceChecker() {
                   disabled={isCalculating}
                   aria-label="Validasi invoice"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      {t('validating')}
-                    </>
-                  ) : (
-                    <>
-                      <FileCheck className="mr-2 h-5 w-5" />
-                      {t('validate_button')}
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          {t('validating')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <FileCheck className="mr-2 h-5 w-5" />
+                          {t('validate_button')}
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -477,96 +481,105 @@ export default function InvoiceChecker() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil validasi invoice"
-                className="space-y-6"
-              >
-                <Card className={`bg-gradient-to-br ${getScoreColor(result.score)} p-6 text-white`}>
-                  <h3 className="mb-4 text-lg font-semibold">{t('validation_score')}</h3>
-                  <div className="mb-4 text-center">
-                    <p className="text-6xl font-bold">{result.score}%</p>
-                    <p className="mt-2 text-sm opacity-90">
-                      {result.passedChecks} dari
-                      {result.totalChecks} {t('checks_passed')}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
-                    <div>
-                      <p className="opacity-80">{t('passed')}</p>
-                      <p className="text-lg font-bold">{result.passedChecks}</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">{t('failed')}</p>
-                      <p className="text-lg font-bold">{result.failedChecks}</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">{t('warnings')}</p>
-                      <p className="text-lg font-bold">{result.warningChecks}</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
-                    {t('detail_validation')}
-                  </h3>
-
-                  <div className="space-y-3">
-                    {result.items.map((item) => (
-                      <div
-                        key={item.id}
-                        className={`flex items-start gap-3 rounded-lg border p-3 ${
-                          item.status === 'valid'
-                            ? 'border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950/20'
-                            : item.status === 'invalid'
-                              ? 'border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/20'
-                              : 'border-yellow-200 bg-yellow-50 dark:border-yellow-900 dark:bg-yellow-950/20'
-                        }`}
-                      >
-                        {getStatusIcon(item.status)}
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-slate-900 dark:text-white">
-                            {item.label}
-                          </p>
-                          <p className="text-xs text-slate-600 dark:text-slate-400">
-                            {item.message}
-                          </p>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil validasi invoice"
+                    className="space-y-6"
+                  >
+                    <Card className={`bg-gradient-to-br ${getScoreColor(result.score)} p-6 text-white`}>
+                      <h3 className="mb-4 text-lg font-semibold">{t('validation_score')}</h3>
+                      <div className="mb-4 text-center">
+                        <p className="text-6xl font-bold">
+                          {result.score}
+                          %
+                        </p>
+                        <p className="mt-2 text-sm opacity-90">
+                          {result.passedChecks}
+                          {' '}
+                          dari
+                          {result.totalChecks}
+                          {' '}
+                          {t('checks_passed')}
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
+                        <div>
+                          <p className="opacity-80">{t('passed')}</p>
+                          <p className="text-lg font-bold">{result.passedChecks}</p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">{t('failed')}</p>
+                          <p className="text-lg font-bold">{result.failedChecks}</p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">{t('warnings')}</p>
+                          <p className="text-lg font-bold">{result.warningChecks}</p>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </Card>
 
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
+                    <Card className="p-6">
+                      <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
+                        {t('detail_validation')}
+                      </h3>
 
-                {result.failedChecks > 0 && (
-                  <Card className="border-l-4 border-red-500 bg-red-50 p-4 dark:border-red-600 dark:bg-red-950/20">
-                    <div className="flex gap-2">
-                      <AlertTriangle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
-                      <div className="text-sm text-slate-700 dark:text-slate-300">
-                        <p className="font-semibold dark:text-white">{t('action_required')}</p>
-                        <p>{t('fix_failed_items', { count: result.failedChecks })}</p>
+                      <div className="space-y-3">
+                        {result.items.map(item => (
+                          <div
+                            key={item.id}
+                            className={`flex items-start gap-3 rounded-lg border p-3 ${
+                              item.status === 'valid'
+                                ? 'border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950/20'
+                                : item.status === 'invalid'
+                                  ? 'border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/20'
+                                  : 'border-yellow-200 bg-yellow-50 dark:border-yellow-900 dark:bg-yellow-950/20'
+                            }`}
+                          >
+                            {getStatusIcon(item.status)}
+                            <div className="flex-1">
+                              <p className="text-sm font-medium text-slate-900 dark:text-white">
+                                {item.label}
+                              </p>
+                              <p className="text-xs text-slate-600 dark:text-slate-400">
+                                {item.message}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    {result.failedChecks > 0 && (
+                      <Card className="border-l-4 border-red-500 bg-red-50 p-4 dark:border-red-600 dark:bg-red-950/20">
+                        <div className="flex gap-2">
+                          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
+                          <div className="text-sm text-slate-700 dark:text-slate-300">
+                            <p className="font-semibold dark:text-white">{t('action_required')}</p>
+                            <p>{t('fix_failed_items', { count: result.failedChecks })}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    )}
+                  </div>
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <FileCheck className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
                     </div>
                   </Card>
                 )}
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <FileCheck className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
           </div>
         </div>
 

@@ -180,9 +180,9 @@ const AddonItem: React.FC<AddonItemProps> = ({
   isExclusive,
 }) => {
   const isSelected = quantity > 0;
-  const isConfigurable =
-    !isExclusive &&
-    (addon.unit.includes('per') || addon.unit.includes('sistem') || addon.unit.includes('sesi'));
+  const isConfigurable
+    = !isExclusive
+      && (addon.unit.includes('per') || addon.unit.includes('sistem') || addon.unit.includes('sesi'));
 
   return (
     <div
@@ -220,33 +220,35 @@ const AddonItem: React.FC<AddonItemProps> = ({
           <span className="text-[9px] text-slate-500 dark:text-slate-400">{addon.unit}</span>
         </div>
 
-        {isConfigurable ? (
-          <div
-            className={`flex items-center rounded-lg border p-0.5 ${isSelected ? 'border-primary-300 bg-primary-50 dark:border-white/10 dark:bg-black/40' : 'border-slate-300 bg-slate-100 dark:border-white/10 dark:bg-black/40'}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => onQuantityChange(addon.id, -1)}
-              className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
-              disabled={quantity === 0}
-            >
-              <Minus className="h-3.5 w-3.5" />
-            </button>
-            <span
-              className={`w-8 text-center text-xs font-bold ${quantity > 0 ? 'text-slate-800 dark:text-white' : 'text-slate-500'}`}
-            >
-              {quantity}
-            </span>
-            <button
-              onClick={() => onQuantityChange(addon.id, 1)}
-              className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
-            >
-              <Plus className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        ) : (
-          <div className="w-8"></div>
-        )}
+        {isConfigurable
+          ? (
+              <div
+                className={`flex items-center rounded-lg border p-0.5 ${isSelected ? 'border-primary-300 bg-primary-50 dark:border-white/10 dark:bg-black/40' : 'border-slate-300 bg-slate-100 dark:border-white/10 dark:bg-black/40'}`}
+                onClick={e => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => onQuantityChange(addon.id, -1)}
+                  className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
+                  disabled={quantity === 0}
+                >
+                  <Minus className="h-3.5 w-3.5" />
+                </button>
+                <span
+                  className={`w-8 text-center text-xs font-bold ${quantity > 0 ? 'text-slate-800 dark:text-white' : 'text-slate-500'}`}
+                >
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => onQuantityChange(addon.id, 1)}
+                  className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
+                >
+                  <Plus className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            )
+          : (
+              <div className="w-8"></div>
+            )}
       </div>
     </div>
   );
@@ -322,9 +324,9 @@ const PricingCalculator: React.FC = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       if (direction === 'next') {
-        setAssessmentStep((prev) => prev + 1);
+        setAssessmentStep(prev => prev + 1);
       } else if (direction === 'prev') {
-        setAssessmentStep((prev) => prev - 1);
+        setAssessmentStep(prev => prev - 1);
       } else if (direction === 'jump' && target) {
         if (typeof target === 'number') {
           setAssessmentStep(target);
@@ -469,7 +471,7 @@ const PricingCalculator: React.FC = () => {
     }
   }, [currentStep, recommendedPlanId, selectedPlanId]);
 
-  const selectedPlanData = pricingPlans.find((p) => p.id === selectedPlanId);
+  const selectedPlanData = pricingPlans.find(p => p.id === selectedPlanId);
 
   const calculations = useMemo(() => {
     if (!selectedPlanData) {
@@ -482,11 +484,11 @@ const PricingCalculator: React.FC = () => {
         totalFirstPayment: 0,
       };
     }
-    const basePrice =
-      billingCycle === 'yearly' ? selectedPlanData.priceYearly : selectedPlanData.priceMonthly;
+    const basePrice
+      = billingCycle === 'yearly' ? selectedPlanData.priceYearly : selectedPlanData.priceMonthly;
     const recurringAddOnsTotal = Object.entries(selectedAddOns).reduce(
       (sum, [addOnId, quantity]) => {
-        const addOn = addOns.find((a) => a.id === addOnId);
+        const addOn = addOns.find(a => a.id === addOnId);
         if (!addOn || addOn.unit.includes('one-time') || addOn.unit.includes('per')) {
           return sum;
         }
@@ -495,15 +497,15 @@ const PricingCalculator: React.FC = () => {
       0,
     );
     const oneTimeFees = Object.entries(selectedAddOns).reduce((sum, [addOnId, quantity]) => {
-      const addOn = addOns.find((a) => a.id === addOnId);
+      const addOn = addOns.find(a => a.id === addOnId);
       if (addOn && (addOn.unit.includes('one-time') || addOn.unit.includes('per'))) {
         return sum + addOn.price * quantity;
       }
       return sum;
     }, 0);
     const monthlyRecurring = basePrice + recurringAddOnsTotal;
-    const subtotal =
-      billingCycle === 'yearly'
+    const subtotal
+      = billingCycle === 'yearly'
         ? monthlyRecurring * 12 + oneTimeFees
         : monthlyRecurring + oneTimeFees;
     const discountAmount = appliedDiscount ? (subtotal * appliedDiscount.percent) / 100 : 0;
@@ -607,7 +609,7 @@ const PricingCalculator: React.FC = () => {
   };
 
   const updateAssessment = (field: keyof AssessmentData, value: any) =>
-    setAssessment((prev) => ({ ...prev, [field]: value }));
+    setAssessment(prev => ({ ...prev, [field]: value }));
 
   const StepIndicator = () => (
     <div className="mx-auto mb-4 w-full max-w-2xl">
@@ -646,7 +648,9 @@ const PricingCalculator: React.FC = () => {
   const SummaryPanel = () => (
     <div className="flex h-full flex-col border-l border-slate-200 bg-slate-50 p-6 backdrop-blur-sm dark:border-white/5 dark:bg-white/5">
       <h3 className="mb-4 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-600 uppercase dark:text-slate-400">
-        <Sparkles className="h-3 w-3 text-amber-500 dark:text-amber-400" /> Live Summary
+        <Sparkles className="h-3 w-3 text-amber-500 dark:text-amber-400" />
+        {' '}
+        Live Summary
       </h3>
       <div className="flex-1 space-y-5">
         <div>
@@ -655,37 +659,43 @@ const PricingCalculator: React.FC = () => {
             <Tooltip text="Jumlah pengguna yang memiliki akses login ke sistem." />
           </div>
           <div className="text-xl font-bold text-slate-900 dark:text-white">
-            {assessment.userCount}{' '}
+            {assessment.userCount}
+            {' '}
             <span className="text-sm font-normal text-slate-500">accounts</span>
           </div>
         </div>
         <div>
           <div className="mb-1 text-xs text-slate-600 dark:text-slate-500">Industry</div>
           <div className="flex items-center gap-2 text-sm font-medium text-slate-900 capitalize dark:text-white">
-            {assessment.industry ? (
-              assessment.industry
-            ) : (
-              <span className="text-slate-400 italic dark:text-slate-600">Not selected</span>
-            )}
+            {assessment.industry
+              ? (
+                  assessment.industry
+                )
+              : (
+                  <span className="text-slate-400 italic dark:text-slate-600">Not selected</span>
+                )}
           </div>
         </div>
         <div>
           <div className="mb-1 text-xs text-slate-600 dark:text-slate-500">Modules</div>
           <div className="flex flex-wrap gap-1">
             {Object.keys(assessment).filter(
-              (k) => k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
-            ).length > 0 ? (
-              <span className="text-sm font-medium text-slate-900 dark:text-white">
-                {
-                  Object.keys(assessment).filter(
-                    (k) => k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
-                  ).length
-                }{' '}
-                Selected
-              </span>
-            ) : (
-              <span className="text-xs text-slate-400 italic dark:text-slate-600">None</span>
-            )}
+              k => k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
+            ).length > 0
+              ? (
+                  <span className="text-sm font-medium text-slate-900 dark:text-white">
+                    {
+                      Object.keys(assessment).filter(
+                        k => k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
+                      ).length
+                    }
+                    {' '}
+                    Selected
+                  </span>
+                )
+              : (
+                  <span className="text-xs text-slate-400 italic dark:text-slate-600">None</span>
+                )}
           </div>
         </div>
       </div>
@@ -709,25 +719,27 @@ const PricingCalculator: React.FC = () => {
 
         {/* Desktop Navigation Actions */}
         <div className="hidden gap-3 lg:grid">
-          {assessmentStep < 6 ? (
-            <Button
-              variant="primary"
-              onClick={() => changeStep('next')}
-              className="bg-primary-600 shadow-primary-500/20 hover:bg-primary-700 h-12 w-full rounded-xl text-sm font-bold text-slate-800 shadow-lg dark:text-white"
-            >
-              Next Step
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          ) : (
-            <Button
-              variant="primary"
-              onClick={() => changeStep('jump', 'recommendation')}
-              className="h-12 w-full rounded-xl bg-emerald-600 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-500"
-            >
-              Calculate Price
-              <Rocket className="ml-2 h-4 w-4" />
-            </Button>
-          )}
+          {assessmentStep < 6
+            ? (
+                <Button
+                  variant="primary"
+                  onClick={() => changeStep('next')}
+                  className="bg-primary-600 shadow-primary-500/20 hover:bg-primary-700 h-12 w-full rounded-xl text-sm font-bold text-slate-800 shadow-lg dark:text-white"
+                >
+                  Next Step
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              )
+            : (
+                <Button
+                  variant="primary"
+                  onClick={() => changeStep('jump', 'recommendation')}
+                  className="h-12 w-full rounded-xl bg-emerald-600 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-500"
+                >
+                  Calculate Price
+                  <Rocket className="ml-2 h-4 w-4" />
+                </Button>
+              )}
           <Button
             variant="ghost"
             onClick={() => changeStep('prev')}
@@ -775,7 +787,9 @@ const PricingCalculator: React.FC = () => {
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/5 dark:bg-white/5">
                   <div className="mb-4 flex items-center justify-between">
                     <label className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-                      <Users className="text-primary-600 dark:text-primary-400 h-4 w-4" /> User
+                      <Users className="text-primary-600 dark:text-primary-400 h-4 w-4" />
+                      {' '}
+                      User
                       Capacity
                       <Tooltip text="Jumlah total karyawan yang akan memiliki akses login ke sistem ERP." />
                     </label>
@@ -789,7 +803,7 @@ const PricingCalculator: React.FC = () => {
                     max="500"
                     step="5"
                     value={assessment.userCount}
-                    onChange={(e) => updateAssessment('userCount', Number.parseInt(e.target.value))}
+                    onChange={e => updateAssessment('userCount', Number.parseInt(e.target.value))}
                     className="accent-primary-500 hover:accent-primary-600 dark:hover:accent-primary-400 h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 transition-all dark:bg-slate-700"
                   />
                   <div className="mt-2 flex justify-between text-[10px] font-medium tracking-wider text-slate-500 uppercase">
@@ -802,7 +816,9 @@ const PricingCalculator: React.FC = () => {
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/5 dark:bg-white/5">
                   <div className="mb-4 flex items-center justify-between">
                     <label className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-                      <MapPin className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Branch /
+                      <MapPin className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                      {' '}
+                      Branch /
                       Warehouse
                       <Tooltip text="Jumlah lokasi fisik (kantor cabang, gudang, pabrik) yang akan terhubung." />
                     </label>
@@ -816,9 +832,8 @@ const PricingCalculator: React.FC = () => {
                     max="50"
                     step="1"
                     value={assessment.branchCount}
-                    onChange={(e) =>
-                      updateAssessment('branchCount', Number.parseInt(e.target.value))
-                    }
+                    onChange={e =>
+                      updateAssessment('branchCount', Number.parseInt(e.target.value))}
                     className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-amber-600 transition-all hover:accent-amber-700 dark:bg-slate-700 dark:accent-amber-500 dark:hover:accent-amber-400"
                   />
                 </div>
@@ -843,7 +858,7 @@ const PricingCalculator: React.FC = () => {
                       desc: 'Keamanan & kustomisasi tinggi.',
                       icon: Globe,
                     },
-                  ].map((opt) => (
+                  ].map(opt => (
                     <SelectableCard
                       key={opt.id}
                       selected={assessment.companySize === opt.id}
@@ -867,7 +882,7 @@ const PricingCalculator: React.FC = () => {
                       { id: 'healthcare', name: 'Healthcare', icon: Stethoscope },
                       { id: 'fnb', name: 'Food & Beverage', icon: Info },
                       { id: 'other', name: 'Other', icon: MoreHorizontal },
-                    ].map((ind) => (
+                    ].map(ind => (
                       <div
                         key={ind.id}
                         onClick={() => updateAssessment('industry', ind.id)}
@@ -927,7 +942,7 @@ const PricingCalculator: React.FC = () => {
                       desc: 'Self Hosted di kantor Anda.',
                       icon: HardDrive,
                     },
-                  ].map((opt) => (
+                  ].map(opt => (
                     <SelectableCard
                       key={opt.id}
                       selected={assessment.deployment === opt.id}
@@ -946,7 +961,7 @@ const PricingCalculator: React.FC = () => {
                       { id: 'jakarta', label: 'Jakarta (ID)', sub: 'Sesuai Regulasi UU PDP' },
                       { id: 'singapore', label: 'Singapore (SG)', sub: 'Tier 3 Data Center' },
                       { id: 'usa', label: 'Global (US)', sub: 'Hemat Biaya' },
-                    ].map((loc) => (
+                    ].map(loc => (
                       <button
                         key={loc.id}
                         onClick={() => updateAssessment('serverLocation', loc.id)}
@@ -1015,7 +1030,9 @@ const PricingCalculator: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-                    <LayoutGrid className="h-3 w-3" /> Core Operations
+                    <LayoutGrid className="h-3 w-3" />
+                    {' '}
+                    Core Operations
                   </h4>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {[
@@ -1049,15 +1066,14 @@ const PricingCalculator: React.FC = () => {
                         desc: 'Absensi, Cuti, Gaji, PPh21',
                         icon: Users,
                       },
-                    ].map((m) => (
+                    ].map(m => (
                       <div
                         key={m.key}
                         onClick={() =>
                           updateAssessment(
                             m.key as keyof AssessmentData,
                             !assessment[m.key as keyof AssessmentData],
-                          )
-                        }
+                          )}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
@@ -1091,7 +1107,9 @@ const PricingCalculator: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-                    <Settings className="h-3 w-3" /> Specialized
+                    <Settings className="h-3 w-3" />
+                    {' '}
+                    Specialized
                   </h4>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {[
@@ -1131,15 +1149,14 @@ const PricingCalculator: React.FC = () => {
                         desc: 'Webstore & Payment Gateway',
                         icon: Globe,
                       },
-                    ].map((m) => (
+                    ].map(m => (
                       <div
                         key={m.key}
                         onClick={() =>
                           updateAssessment(
                             m.key as keyof AssessmentData,
                             !assessment[m.key as keyof AssessmentData],
-                          )
-                        }
+                          )}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
@@ -1173,7 +1190,9 @@ const PricingCalculator: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-                    <Activity className="h-3 w-3" /> Advanced
+                    <Activity className="h-3 w-3" />
+                    {' '}
+                    Advanced
                   </h4>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
                     {[
@@ -1201,15 +1220,14 @@ const PricingCalculator: React.FC = () => {
                         desc: 'Advanced Dashboard',
                         icon: PieChart,
                       },
-                    ].map((m) => (
+                    ].map(m => (
                       <div
                         key={m.key}
                         onClick={() =>
                           updateAssessment(
                             m.key as keyof AssessmentData,
                             !assessment[m.key as keyof AssessmentData],
-                          )
-                        }
+                          )}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
@@ -1265,7 +1283,7 @@ const PricingCalculator: React.FC = () => {
                       { id: 'low', label: 'Master Data Only', sub: 'Customer, Vendor, Item' },
                       { id: 'medium', label: 'Active Transactions', sub: 'Open PO/SO/Invoice' },
                       { id: 'high', label: 'Full History', sub: 'All Historical Data' },
-                    ].map((vol) => (
+                    ].map(vol => (
                       <button
                         key={vol.id}
                         onClick={() => updateAssessment('dataVolume', vol.id)}
@@ -1311,20 +1329,23 @@ const PricingCalculator: React.FC = () => {
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
                   <div className="mb-4 flex justify-between">
                     <label className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <Plug className="h-4 w-4 text-slate-900 dark:text-white" /> API Integrations
+                      <Plug className="h-4 w-4 text-slate-900 dark:text-white" />
+                      {' '}
+                      API Integrations
                       <Tooltip text="Koneksi ke sistem lain seperti Marketplace (Tokopedia/Shopee), Bank, Payment Gateway, atau Logistics." />
                     </label>
                     <span className="rounded bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-900 dark:bg-slate-700 dark:text-white">
-                      {assessment.apiIntegrations} connections
+                      {assessment.apiIntegrations}
+                      {' '}
+                      connections
                     </span>
                   </div>
                   <input
                     type="range"
                     max="10"
                     value={assessment.apiIntegrations}
-                    onChange={(e) =>
-                      updateAssessment('apiIntegrations', Number.parseInt(e.target.value))
-                    }
+                    onChange={e =>
+                      updateAssessment('apiIntegrations', Number.parseInt(e.target.value))}
                     className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-slate-900 dark:bg-slate-700 dark:accent-white"
                   />
                   <p className="mt-2 text-[10px] text-slate-500">
@@ -1334,28 +1355,30 @@ const PricingCalculator: React.FC = () => {
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
                   <div className="mb-4 flex justify-between">
                     <label className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
-                      <FileText className="h-4 w-4 text-slate-900 dark:text-white" /> Custom Reports
+                      <FileText className="h-4 w-4 text-slate-900 dark:text-white" />
+                      {' '}
+                      Custom Reports
                       Dev
                       <Tooltip text="Pembuatan laporan format khusus yang tidak tersedia di standar (misal: Laporan Pajak format spesifik)." />
                     </label>
                     <span className="rounded bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-900 dark:bg-slate-700 dark:text-white">
-                      {assessment.customReports} reports
+                      {assessment.customReports}
+                      {' '}
+                      reports
                     </span>
                   </div>
                   <input
                     type="range"
                     max="20"
                     value={assessment.customReports}
-                    onChange={(e) =>
-                      updateAssessment('customReports', Number.parseInt(e.target.value))
-                    }
+                    onChange={e =>
+                      updateAssessment('customReports', Number.parseInt(e.target.value))}
                     className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-slate-900 dark:bg-slate-700 dark:accent-white"
                   />
                 </div>
                 <div
                   onClick={() =>
-                    updateAssessment('needsCustomModule', !assessment.needsCustomModule)
-                  }
+                    updateAssessment('needsCustomModule', !assessment.needsCustomModule)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
@@ -1428,7 +1451,7 @@ const PricingCalculator: React.FC = () => {
                       icon: CreditCard,
                       tooltip: 'Implementasi bertahap (Phased).',
                     },
-                  ].map((t) => (
+                  ].map(t => (
                     <SelectableCard
                       key={t.id}
                       selected={assessment.goLiveTimeline === t.id}
@@ -1448,7 +1471,7 @@ const PricingCalculator: React.FC = () => {
                       { id: 'online', label: 'Online (Zoom)', sub: 'Flexible & Recorded' },
                       { id: 'hybrid', label: 'Hybrid Mix', sub: 'Online + 1 Day Onsite' },
                       { id: 'onsite', label: 'Full Onsite', sub: 'Intensive Face-to-Face' },
-                    ].map((tp) => (
+                    ].map(tp => (
                       <button
                         key={tp.id}
                         onClick={() => updateAssessment('trainingPreference', tp.id)}
@@ -1470,7 +1493,7 @@ const PricingCalculator: React.FC = () => {
                     Support SLA Level
                   </h4>
                   <div className="grid grid-cols-3 gap-2">
-                    {['standard', 'priority', 'premium'].map((lvl) => (
+                    {['standard', 'priority', 'premium'].map(lvl => (
                       <button
                         key={lvl}
                         onClick={() => updateAssessment('supportLevel', lvl)}
@@ -1546,13 +1569,17 @@ const PricingCalculator: React.FC = () => {
                       <div className="flex justify-between">
                         <span className="text-slate-400">Estimated Users</span>
                         <span className="font-bold text-slate-800 dark:text-white">
-                          {assessment.userCount} Accounts
+                          {assessment.userCount}
+                          {' '}
+                          Accounts
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-400">Branches</span>
                         <span className="font-bold text-slate-800 dark:text-white">
-                          {assessment.branchCount} Locations
+                          {assessment.branchCount}
+                          {' '}
+                          Locations
                         </span>
                       </div>
                     </div>
@@ -1605,10 +1632,10 @@ const PricingCalculator: React.FC = () => {
                     <div className="flex flex-wrap gap-2">
                       {Object.keys(assessment)
                         .filter(
-                          (k) =>
+                          k =>
                             k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
                         )
-                        .map((k) => (
+                        .map(k => (
                           <span
                             key={k}
                             className="rounded-full border border-emerald-500/30 bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 capitalize dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400"
@@ -1620,7 +1647,7 @@ const PricingCalculator: React.FC = () => {
                           </span>
                         ))}
                       {Object.keys(assessment).filter(
-                        (k) =>
+                        k =>
                           k.startsWith('needs') && assessment[k as keyof AssessmentData] === true,
                       ).length === 0 && (
                         <span className="text-sm text-slate-500 italic">No modules selected</span>
@@ -1640,13 +1667,17 @@ const PricingCalculator: React.FC = () => {
                       <div className="flex justify-between">
                         <span className="text-slate-500 dark:text-slate-400">Data Migration</span>
                         <span className="font-medium text-slate-900 capitalize dark:text-white">
-                          {assessment.dataVolume} Volume
+                          {assessment.dataVolume}
+                          {' '}
+                          Volume
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-500 dark:text-slate-400">API Integrations</span>
                         <span className="font-bold text-slate-900 dark:text-white">
-                          {assessment.apiIntegrations} Endpoints
+                          {assessment.apiIntegrations}
+                          {' '}
+                          Endpoints
                         </span>
                       </div>
                       <div className="flex justify-between">
@@ -1688,7 +1719,9 @@ const PricingCalculator: React.FC = () => {
                       <div className="flex justify-between">
                         <span className="text-slate-500 dark:text-slate-400">Support Level</span>
                         <span className="font-medium text-slate-900 capitalize dark:text-white">
-                          {assessment.supportLevel} SLA
+                          {assessment.supportLevel}
+                          {' '}
+                          SLA
                         </span>
                       </div>
                     </div>
@@ -1706,41 +1739,45 @@ const PricingCalculator: React.FC = () => {
       </div>
 
       {/* Footer Nav (Mobile Only) */}
-      <div className="fixed right-0 bottom-0 left-0 z-20 flex items-center justify-between border-t border-white/10 bg-[#0B0F19]/80 p-4 backdrop-blur-md lg:hidden">
+      <div className="fixed right-0 bottom-0 left-0 z-20 flex items-center justify-between border-t border-white/10 bg-dark-bg/80 p-4 backdrop-blur-md lg:hidden">
         <Button
           variant="ghost"
           onClick={() => changeStep('prev')}
           disabled={assessmentStep === 1 || isTransitioning}
           className="h-10 px-4 text-sm font-medium text-slate-400 hover:text-white"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          {' '}
+          Back
         </Button>
-        {assessmentStep < 6 ? (
-          <Button
-            variant="primary"
-            onClick={() => changeStep('next')}
-            className="shadow-primary-500/20 h-10 rounded-full bg-white px-6 text-sm font-bold text-slate-900 shadow-lg hover:bg-slate-200"
-          >
-            Next Step
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        ) : (
-          <Button
-            variant="primary"
-            onClick={() => changeStep('jump', 'recommendation')}
-            className="h-10 rounded-full bg-emerald-500 px-8 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-400"
-          >
-            Calculate Price
-            <Rocket className="ml-2 h-4 w-4" />
-          </Button>
-        )}
+        {assessmentStep < 6
+          ? (
+              <Button
+                variant="primary"
+                onClick={() => changeStep('next')}
+                className="shadow-primary-500/20 h-10 rounded-full bg-white px-6 text-sm font-bold text-slate-900 shadow-lg hover:bg-slate-200"
+              >
+                Next Step
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          : (
+              <Button
+                variant="primary"
+                onClick={() => changeStep('jump', 'recommendation')}
+                className="h-10 rounded-full bg-emerald-500 px-8 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-400"
+              >
+                Calculate Price
+                <Rocket className="ml-2 h-4 w-4" />
+              </Button>
+            )}
       </div>
     </div>
   );
 
   const renderRecommendation = () => {
     return (
-      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
+      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg">
         <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
           <div className="mx-auto max-w-5xl">
             <div className="mb-10 pt-4 text-center">
@@ -1810,24 +1847,26 @@ const PricingCalculator: React.FC = () => {
                         {plan.name}
                       </h3>
                       <div className="mt-2 flex items-baseline justify-center gap-1">
-                        {priceValue > 0 ? (
-                          <>
-                            <span
-                              className={`text-3xl font-black ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
-                            >
-                              {priceValue / 1000000}
-                            </span>
-                            <span className="text-xs font-bold text-slate-500 uppercase dark:text-slate-500">
-                              Juta / bln
-                            </span>
-                          </>
-                        ) : (
-                          <span
-                            className={`text-3xl font-black ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
-                          >
-                            Custom
-                          </span>
-                        )}
+                        {priceValue > 0
+                          ? (
+                              <>
+                                <span
+                                  className={`text-3xl font-black ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
+                                >
+                                  {priceValue / 1000000}
+                                </span>
+                                <span className="text-xs font-bold text-slate-500 uppercase dark:text-slate-500">
+                                  Juta / bln
+                                </span>
+                              </>
+                            )
+                          : (
+                              <span
+                                className={`text-3xl font-black ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}
+                              >
+                                Custom
+                              </span>
+                            )}
                       </div>
                       <div className="mt-1 text-[10px] text-slate-500 dark:text-slate-500">
                         {plan.id === 'enterprise'
@@ -1845,7 +1884,8 @@ const PricingCalculator: React.FC = () => {
                         >
                           <CheckCircle2
                             className={`h-3 w-3 flex-shrink-0 ${isSelected ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-600'}`}
-                          />{' '}
+                          />
+                          {' '}
                           {f}
                         </div>
                       ))}
@@ -1863,7 +1903,7 @@ const PricingCalculator: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="z-20 flex justify-center border-t border-slate-200 bg-white/90 p-4 backdrop-blur dark:border-white/10 dark:bg-[#0B0F19]/90">
+        <div className="z-20 flex justify-center border-t border-slate-200 bg-white/90 p-4 backdrop-blur dark:border-white/10 dark:bg-dark-bg/90">
           <Button
             variant="primary"
             onClick={() => changeStep('jump', 'customize')}
@@ -1879,11 +1919,11 @@ const PricingCalculator: React.FC = () => {
 
   const renderCustomize = () => {
     // Separate addons into 4 distinct groups
-    const infrastructureAddons = addOns.filter((a) => a.category === 'infrastructure');
-    const implementationAddons = addOns.filter((a) => a.category === 'implementation');
-    const supportAddons = addOns.filter((a) => a.category === 'support');
-    const integrationAddons = addOns.filter((a) => a.category === 'integration');
-    const managedServicesAddons = addOns.filter((a) => a.category === 'managed-services');
+    const infrastructureAddons = addOns.filter(a => a.category === 'infrastructure');
+    const implementationAddons = addOns.filter(a => a.category === 'implementation');
+    const supportAddons = addOns.filter(a => a.category === 'support');
+    const integrationAddons = addOns.filter(a => a.category === 'integration');
+    const managedServicesAddons = addOns.filter(a => a.category === 'managed-services');
 
     const sections = [
       {
@@ -1919,7 +1959,7 @@ const PricingCalculator: React.FC = () => {
     ];
 
     return (
-      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
+      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg">
         <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
           <div className="mx-auto grid h-full max-w-6xl gap-8 lg:grid-cols-12">
             <div className="space-y-8 pb-12 lg:col-span-8">
@@ -1964,8 +2004,8 @@ const PricingCalculator: React.FC = () => {
                   <div className="flex flex-col gap-3">
                     {section.items.map((addon) => {
                       if (
-                        addon.availableFor.includes(selectedPlanId) ||
-                        selectedPlanId === 'enterprise'
+                        addon.availableFor.includes(selectedPlanId)
+                        || selectedPlanId === 'enterprise'
                       ) {
                         return (
                           <AddonItem
@@ -1988,10 +2028,12 @@ const PricingCalculator: React.FC = () => {
 
             {/* Sticky Summary */}
             <div className="flex flex-col lg:col-span-4">
-              <div className="sticky top-6 my-6 flex max-h-[calc(100vh-3rem)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-[#0F1623]">
+              <div className="sticky top-6 my-6 flex max-h-[calc(100vh-3rem)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-dark-bg-light">
                 <div className="flex-shrink-0 border-b border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 p-6 dark:border-slate-800 dark:from-slate-800 dark:to-slate-900">
                   <h3 className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
-                    <Wallet className="h-3 w-3" /> Estimated Investment
+                    <Wallet className="h-3 w-3" />
+                    {' '}
+                    Estimated Investment
                   </h3>
                   <div className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                     {calculations.totalFirstPayment > 0
@@ -2004,7 +2046,11 @@ const PricingCalculator: React.FC = () => {
                 </div>
                 <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-1 space-y-4 overflow-y-auto p-6">
                   <div className="flex justify-between border-b border-slate-200 pb-3 text-xs text-slate-600 dark:border-white/5 dark:text-slate-400">
-                    <span>Paket ({billingCycle === 'yearly' ? 'Tahunan' : 'Bulanan'})</span>
+                    <span>
+                      Paket (
+                      {billingCycle === 'yearly' ? 'Tahunan' : 'Bulanan'}
+                      )
+                    </span>
                     <span className="font-medium text-slate-900 dark:text-white">
                       {calculations.basePrice > 0
                         ? formatIDR(
@@ -2017,19 +2063,22 @@ const PricingCalculator: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     {Object.entries(selectedAddOns).map(([id, qty]) => {
-                      const item = addOns.find((a) => a.id === id);
+                      const item = addOns.find(a => a.id === id);
                       if (!item || qty === 0) {
                         return null;
                       }
-                      const price =
-                        item.unit.includes('one-time') || item.unit.includes('per')
+                      const price
+                        = item.unit.includes('one-time') || item.unit.includes('per')
                           ? item.price * qty
                           : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
                       return (
                         <div key={id} className="flex justify-between text-[10px] text-slate-500">
                           <span>
-                            {item.name} {qty > 1 && `(${qty}x)`}
-                          </span>{' '}
+                            {item.name}
+                            {' '}
+                            {qty > 1 && `(${qty}x)`}
+                          </span>
+                          {' '}
                           <span className="text-slate-700 dark:text-slate-300">
                             {formatIDR(price)}
                           </span>
@@ -2038,7 +2087,8 @@ const PricingCalculator: React.FC = () => {
                     })}
                   </div>
                   <div className="flex justify-between border-t border-slate-200 pt-3 text-sm font-bold text-slate-900 dark:border-white/10 dark:text-white">
-                    <span>Subtotal</span>{' '}
+                    <span>Subtotal</span>
+                    {' '}
                     <span>
                       {calculations.subtotal > 0 ? formatIDR(calculations.subtotal) : 'Custom'}
                     </span>
@@ -2069,7 +2119,7 @@ const PricingCalculator: React.FC = () => {
   };
 
   const renderCheckout = () => (
-    <div className="flex h-full items-center justify-center overflow-y-auto bg-[#0B0F19] p-6">
+    <div className="flex h-full items-center justify-center overflow-y-auto bg-dark-bg p-6">
       <div className="grid w-full max-w-5xl gap-10 md:grid-cols-2">
         <div className="rounded-3xl border border-white/5 bg-slate-900 p-8 shadow-2xl">
           <div className="mb-8 flex items-center gap-3">
@@ -2088,7 +2138,7 @@ const PricingCalculator: React.FC = () => {
                   type="text"
                   className="focus:border-primary-500 w-full rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white transition-colors outline-none focus:bg-black/40"
                   value={contactInfo.firstName}
-                  onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })}
+                  onChange={e => setContactInfo({ ...contactInfo, firstName: e.target.value })}
                 />
               </div>
               <div>
@@ -2099,7 +2149,7 @@ const PricingCalculator: React.FC = () => {
                   type="text"
                   className="focus:border-primary-500 w-full rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white transition-colors outline-none focus:bg-black/40"
                   value={contactInfo.lastName}
-                  onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })}
+                  onChange={e => setContactInfo({ ...contactInfo, lastName: e.target.value })}
                 />
               </div>
             </div>
@@ -2111,7 +2161,7 @@ const PricingCalculator: React.FC = () => {
                 type="email"
                 className="focus:border-primary-500 w-full rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white transition-colors outline-none focus:bg-black/40"
                 value={contactInfo.email}
-                onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
+                onChange={e => setContactInfo({ ...contactInfo, email: e.target.value })}
               />
             </div>
             <div>
@@ -2122,7 +2172,7 @@ const PricingCalculator: React.FC = () => {
                 type="text"
                 className="focus:border-primary-500 w-full rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white transition-colors outline-none focus:bg-black/40"
                 value={contactInfo.company}
-                onChange={(e) => setContactInfo({ ...contactInfo, company: e.target.value })}
+                onChange={e => setContactInfo({ ...contactInfo, company: e.target.value })}
               />
             </div>
             <div>
@@ -2133,7 +2183,7 @@ const PricingCalculator: React.FC = () => {
                 type="tel"
                 className="focus:border-primary-500 w-full rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white transition-colors outline-none focus:bg-black/40"
                 value={contactInfo.phone}
-                onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
+                onChange={e => setContactInfo({ ...contactInfo, phone: e.target.value })}
               />
             </div>
 
@@ -2146,7 +2196,7 @@ const PricingCalculator: React.FC = () => {
                   type="text"
                   className="focus:border-primary-500 flex-1 rounded-xl border border-slate-700 bg-black/20 px-4 py-3 text-sm text-white uppercase outline-none"
                   value={discountCode}
-                  onChange={(e) => setDiscountCode(e.target.value)}
+                  onChange={e => setDiscountCode(e.target.value)}
                 />
                 <Button
                   variant="outline"
@@ -2158,12 +2208,16 @@ const PricingCalculator: React.FC = () => {
               </div>
               {appliedDiscount && (
                 <p className="mt-2 flex items-center gap-1 text-xs text-emerald-400">
-                  <CheckCircle2 className="h-3 w-3" /> Voucher berhasil digunakan!
+                  <CheckCircle2 className="h-3 w-3" />
+                  {' '}
+                  Voucher berhasil digunakan!
                 </p>
               )}
               {Object.keys(formErrors).length > 0 && (
                 <p className="mt-2 flex items-center gap-1 text-xs text-red-400">
-                  <AlertCircle className="h-3 w-3" /> Mohon lengkapi semua field wajib.
+                  <AlertCircle className="h-3 w-3" />
+                  {' '}
+                  Mohon lengkapi semua field wajib.
                 </p>
               )}
             </div>
@@ -2176,23 +2230,33 @@ const PricingCalculator: React.FC = () => {
             <h3 className="mb-6 text-xl font-bold text-white">Ringkasan Pesanan</h3>
             <div className="relative z-10 space-y-4 text-sm">
               <div className="flex justify-between border-b border-white/5 pb-3 text-slate-400">
-                <span>Paket Terpilih</span>{' '}
+                <span>Paket Terpilih</span>
+                {' '}
                 <span className="font-bold text-white">{selectedPlanData?.name}</span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-3 text-slate-400">
-                <span>Siklus</span>{' '}
+                <span>Siklus</span>
+                {' '}
                 <span className="font-bold text-white capitalize">
                   {billingCycle === 'yearly' ? 'Tahunan' : 'Bulanan'}
                 </span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-3 text-slate-400">
-                <span>Total User</span>{' '}
-                <span className="font-bold text-white">{assessment.userCount} Akun</span>
+                <span>Total User</span>
+                {' '}
+                <span className="font-bold text-white">
+                  {assessment.userCount}
+                  {' '}
+                  Akun
+                </span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-3 text-slate-400">
-                <span>Add-ons</span>{' '}
+                <span>Add-ons</span>
+                {' '}
                 <span className="font-bold text-white">
-                  {Object.keys(selectedAddOns).length} Item
+                  {Object.keys(selectedAddOns).length}
+                  {' '}
+                  Item
                 </span>
               </div>
               <div className="flex items-end justify-between pt-4">
@@ -2232,7 +2296,7 @@ const PricingCalculator: React.FC = () => {
   );
 
   const renderThankYou = () => (
-    <div className="h-full w-full overflow-y-auto bg-[#0B0F19]">
+    <div className="h-full w-full overflow-y-auto bg-dark-bg">
       <div className="flex min-h-full flex-col items-center justify-start p-8 pb-24 text-center">
         <motion.div
           initial={{ scale: 0 }}
@@ -2253,14 +2317,17 @@ const PricingCalculator: React.FC = () => {
             <div>
               <h1 className="mb-2 text-4xl font-bold tracking-tight text-slate-900">QUOTATION</h1>
               <p className="font-sans text-sm tracking-widest text-slate-500 uppercase">
-                Reference: #{quotationId}
+                Reference: #
+                {quotationId}
               </p>
             </div>
             <div className="text-right">
               <h2 className="text-primary-900 mb-1 text-2xl font-bold tracking-tight">BizOps</h2>
               <p className="font-sans text-sm text-slate-600">PT Divistant Teknologi Indonesia</p>
               <p className="mt-1 ml-auto max-w-[200px] font-sans text-xs text-slate-500">
-                Eco-S Sahid Sudirman Residence <br />
+                Eco-S Sahid Sudirman Residence
+                {' '}
+                <br />
                 Jl. Jenderal Sudirman No.86, Jakarta 10250
               </p>
             </div>
@@ -2275,7 +2342,9 @@ const PricingCalculator: React.FC = () => {
                 <p className="text-lg font-bold">{contactInfo.company}</p>
                 <p className="mt-1 text-sm">
                   Attn:
-                  {contactInfo.firstName} {contactInfo.lastName}
+                  {contactInfo.firstName}
+                  {' '}
+                  {contactInfo.lastName}
                 </p>
                 <p className="text-sm text-slate-600">{contactInfo.email}</p>
                 <p className="text-sm text-slate-600">{contactInfo.phone}</p>
@@ -2324,7 +2393,9 @@ const PricingCalculator: React.FC = () => {
               <tr>
                 <td className="py-4">
                   <span className="mb-1 block text-lg font-bold text-slate-900">
-                    {selectedPlanData?.name} Package
+                    {selectedPlanData?.name}
+                    {' '}
+                    Package
                   </span>
                   <span className="font-sans text-sm text-slate-500">
                     Billing Cycle:
@@ -2342,12 +2413,12 @@ const PricingCalculator: React.FC = () => {
                 </td>
               </tr>
               {Object.entries(selectedAddOns).map(([id, qty]) => {
-                const item = addOns.find((a) => a.id === id);
+                const item = addOns.find(a => a.id === id);
                 if (!item) {
                   return null;
                 }
-                const price =
-                  item.unit.includes('one-time') || item.unit.includes('per')
+                const price
+                  = item.unit.includes('one-time') || item.unit.includes('per')
                     ? item.price * qty
                     : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
                 return (
@@ -2356,7 +2427,10 @@ const PricingCalculator: React.FC = () => {
                       <span className="block font-medium text-slate-800">{item.name}</span>
                       <span className="font-sans text-xs text-slate-500">
                         Qty:
-                        {qty} x{item.unit}
+                        {qty}
+                        {' '}
+                        x
+                        {item.unit}
                       </span>
                     </td>
                     <td className="py-4 text-right font-medium text-slate-700">
@@ -2381,7 +2455,10 @@ const PricingCalculator: React.FC = () => {
                 <tr>
                   <td className="pt-2 font-sans text-sm text-emerald-600 italic">
                     Includes discount
-                    {appliedDiscount.percent}% ({appliedDiscount.code})
+                    {appliedDiscount.percent}
+                    % (
+                    {appliedDiscount.code}
+                    )
                   </td>
                   <td></td>
                 </tr>
@@ -2416,7 +2493,11 @@ const PricingCalculator: React.FC = () => {
           </div>
 
           <div className="mt-12 border-t border-slate-100 pt-6 text-center font-sans text-[10px] text-slate-400">
-            &copy; {new Date().getFullYear()} PT Divistant Teknologi Indonesia. All rights reserved.
+            &copy;
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            PT Divistant Teknologi Indonesia. All rights reserved.
             <br />
             This is a computer-generated document. No signature is required.
           </div>
@@ -2428,7 +2509,9 @@ const PricingCalculator: React.FC = () => {
             onClick={handlePrint}
             className="h-12 rounded-full bg-white px-8 font-bold text-slate-900 shadow-lg hover:bg-slate-200"
           >
-            <Printer className="mr-2 h-4 w-4" /> Download / Print PDF
+            <Printer className="mr-2 h-4 w-4" />
+            {' '}
+            Download / Print PDF
           </Button>
           <Button
             variant="outline"
@@ -2449,14 +2532,17 @@ const PricingCalculator: React.FC = () => {
           <div>
             <h1 className="mb-4 text-5xl font-bold tracking-tight">QUOTATION</h1>
             <p className="text-sm tracking-widest text-gray-500 uppercase">
-              Reference: #{quotationId}
+              Reference: #
+              {quotationId}
             </p>
           </div>
           <div className="text-right">
             <h2 className="mb-2 text-3xl font-bold">BizOps</h2>
             <p className="text-base font-bold">PT Divistant Teknologi Indonesia</p>
             <p className="mt-1 ml-auto max-w-[250px] text-sm text-slate-600">
-              Eco-S Sahid Sudirman Residence <br />
+              Eco-S Sahid Sudirman Residence
+              {' '}
+              <br />
               Jl. Jenderal Sudirman No.86, Jakarta 10250
             </p>
           </div>
@@ -2471,7 +2557,9 @@ const PricingCalculator: React.FC = () => {
               <p className="text-xl font-bold">{contactInfo.company}</p>
               <p className="text-base">
                 Attn:
-                {contactInfo.firstName} {contactInfo.lastName}
+                {contactInfo.firstName}
+                {' '}
+                {contactInfo.lastName}
               </p>
               <p className="text-base text-slate-600">{contactInfo.email}</p>
               <p className="text-base text-slate-600">{contactInfo.phone}</p>
@@ -2518,7 +2606,9 @@ const PricingCalculator: React.FC = () => {
             <tr>
               <td className="py-4">
                 <span className="mb-1 block text-lg font-bold">
-                  {selectedPlanData?.name} Package
+                  {selectedPlanData?.name}
+                  {' '}
+                  Package
                 </span>
                 <span className="text-sm text-slate-600">
                   Billing Cycle:
@@ -2536,12 +2626,12 @@ const PricingCalculator: React.FC = () => {
               </td>
             </tr>
             {Object.entries(selectedAddOns).map(([id, qty]) => {
-              const item = addOns.find((a) => a.id === id);
+              const item = addOns.find(a => a.id === id);
               if (!item) {
                 return null;
               }
-              const price =
-                item.unit.includes('one-time') || item.unit.includes('per')
+              const price
+                = item.unit.includes('one-time') || item.unit.includes('per')
                   ? item.price * qty
                   : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
               return (
@@ -2550,7 +2640,10 @@ const PricingCalculator: React.FC = () => {
                     <span className="block font-medium">{item.name}</span>
                     <span className="text-xs text-slate-600">
                       Qty:
-                      {qty} x{item.unit}
+                      {qty}
+                      {' '}
+                      x
+                      {item.unit}
                     </span>
                   </td>
                   <td className="py-4 text-right font-medium text-gray-800">{formatIDR(price)}</td>
@@ -2571,7 +2664,10 @@ const PricingCalculator: React.FC = () => {
               <tr>
                 <td className="pt-2 text-sm text-slate-600 italic">
                   Includes discount
-                  {appliedDiscount.percent}% ({appliedDiscount.code})
+                  {appliedDiscount.percent}
+                  % (
+                  {appliedDiscount.code}
+                  )
                 </td>
                 <td></td>
               </tr>
@@ -2604,7 +2700,11 @@ const PricingCalculator: React.FC = () => {
         </div>
 
         <div className="mt-16 border-t border-gray-200 pt-6 text-center text-[10px] text-gray-500">
-          &copy; {new Date().getFullYear()} PT Divistant Teknologi Indonesia. All rights reserved.
+          &copy;
+          {' '}
+          {new Date().getFullYear()}
+          {' '}
+          PT Divistant Teknologi Indonesia. All rights reserved.
           <br />
           This is a computer-generated document. No signature is required.
         </div>
@@ -2613,126 +2713,132 @@ const PricingCalculator: React.FC = () => {
   );
 
   return (
-    <div className="selection:bg-primary-500/30 flex min-h-screen flex-col overflow-hidden bg-slate-50 font-sans text-slate-900 dark:bg-[#0B0F19] dark:text-white">
+    <div className="selection:bg-primary-500/30 flex min-h-screen flex-col overflow-hidden bg-slate-50 font-sans text-slate-900 dark:bg-dark-bg dark:text-white">
       <AnimatePresence mode="wait">
-        {!isStarted ? (
-          <motion.section
-            key="intro"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -20, transition: { duration: 0.4, ease: 'easeInOut' } }}
-            className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6"
-          >
-            <div className="pointer-events-none absolute inset-0">
-              <div className="bg-primary-600/10 absolute top-[-10%] left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-60 mix-blend-screen blur-[120px] dark:opacity-60" />
-              <div className="absolute right-0 bottom-[-10%] h-[500px] w-[800px] rounded-full bg-indigo-600/10 opacity-40 mix-blend-screen blur-[120px] dark:opacity-40" />
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay dark:opacity-20" />
-            </div>
-
-            <Container
-              size="5xl"
-              className="relative z-10 flex h-full flex-col items-center justify-center pb-20 text-center"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-primary-600 dark:text-primary-300 mb-8 inline-flex cursor-default items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-bold tracking-widest uppercase shadow-lg backdrop-blur-md transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+        {!isStarted
+          ? (
+              <motion.section
+                key="intro"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, y: -20, transition: { duration: 0.4, ease: 'easeInOut' } }}
+                className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6"
               >
-                <Calculator className="h-3 w-3" /> Enterprise Cost Estimator
-              </motion.div>
+                <div className="pointer-events-none absolute inset-0">
+                  <div className="bg-primary-600/10 absolute top-[-10%] left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-60 mix-blend-screen blur-[120px] dark:opacity-60" />
+                  <div className="absolute right-0 bottom-[-10%] h-[500px] w-[800px] rounded-full bg-indigo-600/10 opacity-40 mix-blend-screen blur-[120px] dark:opacity-40" />
+                  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay dark:opacity-20" />
+                </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-900 md:text-7xl dark:text-white"
-              >
-                Transparansi Biaya <br />
-                <span className="bg-gradient-to-b from-slate-700 via-slate-600 to-slate-500 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-slate-500">
-                  Transformasi Digital
-                </span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed font-light text-slate-600 md:text-xl dark:text-slate-400"
-              >
-                Dapatkan estimasi investasi akurat untuk implementasi BizOps ERP. Sesuaikan skala
-                pengguna, modul, dan infrastruktur tanpa biaya tersembunyi.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-col items-center gap-8"
-              >
-                <button
-                  onClick={() => setIsStarted(true)}
-                  className="group relative inline-flex items-center gap-3 rounded-full bg-slate-900 px-10 py-4 text-base font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-white dark:text-[#0B0F19] dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)]"
+                <Container
+                  size="5xl"
+                  className="relative z-10 flex h-full flex-col items-center justify-center pb-20 text-center"
                 >
-                  <span>Mulai Simulasi Harga</span>
-                  <div className="rounded-full bg-white/10 p-1 transition-transform group-hover:translate-x-1 dark:bg-[#0B0F19]/10">
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                </button>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-primary-600 dark:text-primary-300 mb-8 inline-flex cursor-default items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-bold tracking-widest uppercase shadow-lg backdrop-blur-md transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+                  >
+                    <Calculator className="h-3 w-3" />
+                    {' '}
+                    Enterprise Cost Estimator
+                  </motion.div>
 
-                <div className="flex items-center gap-8 border-t border-slate-200 pt-4 dark:border-white/5">
-                  <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
-                    <ShieldCheck className="h-4 w-4 text-emerald-500" />
-                    <span>ISO 27001 Certified</span>
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.6 }}
+                    className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-900 md:text-7xl dark:text-white"
+                  >
+                    Transparansi Biaya
+                    {' '}
+                    <br />
+                    <span className="bg-gradient-to-b from-slate-700 via-slate-600 to-slate-500 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-slate-500">
+                      Transformasi Digital
+                    </span>
+                  </motion.h1>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed font-light text-slate-600 md:text-xl dark:text-slate-400"
+                  >
+                    Dapatkan estimasi investasi akurat untuk implementasi BizOps ERP. Sesuaikan skala
+                    pengguna, modul, dan infrastruktur tanpa biaya tersembunyi.
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-col items-center gap-8"
+                  >
+                    <button
+                      onClick={() => setIsStarted(true)}
+                      className="group relative inline-flex items-center gap-3 rounded-full bg-slate-900 px-10 py-4 text-base font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-white dark:text-dark-bg dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)]"
+                    >
+                      <span>Mulai Simulasi Harga</span>
+                      <div className="rounded-full bg-white/10 p-1 transition-transform group-hover:translate-x-1 dark:bg-dark-bg/10">
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </button>
+
+                    <div className="flex items-center gap-8 border-t border-slate-200 pt-4 dark:border-white/5">
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
+                        <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                        <span>ISO 27001 Certified</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
+                        <Lock className="h-4 w-4 text-blue-500" />
+                        <span>Data Encrypted</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
+                        <Award className="h-4 w-4 text-amber-500" />
+                        <span>Industry Leader</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Container>
+              </motion.section>
+            )
+          : (
+              <motion.div
+                key="calculator"
+                initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="flex h-screen flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg"
+              >
+                <div className="z-20 flex h-16 flex-shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-white/5 dark:bg-dark-bg/80">
+                  <button
+                    onClick={() => setIsStarted(false)}
+                    className="group flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+                  >
+                    <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                    <span className="hidden sm:inline">Back to Intro</span>
+                  </button>
+
+                  <div className="flex items-center gap-4">
+                    <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-[10px] font-bold text-slate-600 md:flex dark:border-white/5 dark:bg-white/5 dark:text-slate-500">
+                      <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></div>
+                      Live Estimation
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
-                    <Lock className="h-4 w-4 text-blue-500" />
-                    <span>Data Encrypted</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-500">
-                    <Award className="h-4 w-4 text-amber-500" />
-                    <span>Industry Leader</span>
+                </div>
+
+                <div className="relative flex-grow overflow-hidden">
+                  <div className="selection:bg-primary-500/30 h-full font-sans text-slate-200">
+                    {currentStep === 'assessment' && renderAssessment()}
+                    {currentStep === 'recommendation' && renderRecommendation()}
+                    {currentStep === 'customize' && renderCustomize()}
+                    {currentStep === 'checkout' && renderCheckout()}
+                    {currentStep === 'thankyou' && renderThankYou()}
                   </div>
                 </div>
               </motion.div>
-            </Container>
-          </motion.section>
-        ) : (
-          <motion.div
-            key="calculator"
-            initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="flex h-screen flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]"
-          >
-            <div className="z-20 flex h-16 flex-shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-white/5 dark:bg-[#0B0F19]/80">
-              <button
-                onClick={() => setIsStarted(false)}
-                className="group flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-              >
-                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                <span className="hidden sm:inline">Back to Intro</span>
-              </button>
-
-              <div className="flex items-center gap-4">
-                <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-[10px] font-bold text-slate-600 md:flex dark:border-white/5 dark:bg-white/5 dark:text-slate-500">
-                  <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></div>
-                  Live Estimation
-                </div>
-              </div>
-            </div>
-
-            <div className="relative flex-grow overflow-hidden">
-              <div className="selection:bg-primary-500/30 h-full font-sans text-slate-200">
-                {currentStep === 'assessment' && renderAssessment()}
-                {currentStep === 'recommendation' && renderRecommendation()}
-                {currentStep === 'customize' && renderCustomize()}
-                {currentStep === 'checkout' && renderCheckout()}
-                {currentStep === 'thankyou' && renderThankYou()}
-              </div>
-            </div>
-          </motion.div>
-        )}
+            )}
       </AnimatePresence>
     </div>
   );

@@ -207,7 +207,9 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
               </p>
               <div className="mb-8 flex items-center text-sm text-slate-500 dark:text-slate-400">
                 <Clock className="mr-2 h-4 w-4" />
-                {t('last_updated')} {slug === 'privacy' ? t('privacy.updated') : data.updated}
+                {t('last_updated')}
+                {' '}
+                {slug === 'privacy' ? t('privacy.updated') : data.updated}
               </div>
             </div>
           </div>
@@ -257,9 +259,8 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                       <input
                         type="checkbox"
                         checked={preferences.analytics}
-                        onChange={(e) =>
-                          setPreferences({ ...preferences, analytics: e.target.checked })
-                        }
+                        onChange={e =>
+                          setPreferences({ ...preferences, analytics: e.target.checked })}
                         className="h-5 w-5"
                       />
                     </div>
@@ -276,9 +277,8 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                       <input
                         type="checkbox"
                         checked={preferences.marketing}
-                        onChange={(e) =>
-                          setPreferences({ ...preferences, marketing: e.target.checked })
-                        }
+                        onChange={e =>
+                          setPreferences({ ...preferences, marketing: e.target.checked })}
                         className="h-5 w-5"
                       />
                     </div>
@@ -300,93 +300,95 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                     {t('data_rights.submit_title')}
                   </h3>
 
-                  {requestStatus === 'success' ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="py-8 text-center"
-                    >
-                      <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                        <CheckCircle className="h-8 w-8" />
-                      </div>
-                      <h4 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                        {t('data_rights.success_title')}
-                      </h4>
-                      <p className="text-slate-600 dark:text-slate-400">
-                        {t('data_rights.success_desc')}
-                      </p>
-                    </motion.div>
-                  ) : (
-                    <>
-                      <div className="mb-6 grid gap-4 sm:grid-cols-2">
-                        <button
-                          onClick={() => setRequestType('export')}
-                          className={`rounded-xl border-2 p-6 transition-all ${
-                            requestType === 'export'
-                              ? 'border-primary-600 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                              : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
-                          }`}
+                  {requestStatus === 'success'
+                    ? (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="py-8 text-center"
                         >
-                          <Download className="text-primary-600 dark:text-primary-400 mb-3 h-8 w-8" />
-                          <div className="font-bold text-slate-900 dark:text-white">
-                            {t('data_rights.export_title')}
+                          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                            <CheckCircle className="h-8 w-8" />
                           </div>
-                          <div className="text-sm text-slate-600 dark:text-slate-400">
-                            {t('data_rights.export_desc')}
-                          </div>
-                        </button>
+                          <h4 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                            {t('data_rights.success_title')}
+                          </h4>
+                          <p className="text-slate-600 dark:text-slate-400">
+                            {t('data_rights.success_desc')}
+                          </p>
+                        </motion.div>
+                      )
+                    : (
+                        <>
+                          <div className="mb-6 grid gap-4 sm:grid-cols-2">
+                            <button
+                              onClick={() => setRequestType('export')}
+                              className={`rounded-xl border-2 p-6 transition-all ${
+                                requestType === 'export'
+                                  ? 'border-primary-600 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/20'
+                                  : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
+                              }`}
+                            >
+                              <Download className="text-primary-600 dark:text-primary-400 mb-3 h-8 w-8" />
+                              <div className="font-bold text-slate-900 dark:text-white">
+                                {t('data_rights.export_title')}
+                              </div>
+                              <div className="text-sm text-slate-600 dark:text-slate-400">
+                                {t('data_rights.export_desc')}
+                              </div>
+                            </button>
 
-                        <button
-                          onClick={() => setRequestType('delete')}
-                          className={`rounded-xl border-2 p-6 transition-all ${
-                            requestType === 'delete'
-                              ? 'border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-900/20'
-                              : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
-                          }`}
-                        >
-                          <Trash2 className="mb-3 h-8 w-8 text-red-600 dark:text-red-400" />
-                          <div className="font-bold text-slate-900 dark:text-white">
-                            {t('data_rights.delete_title')}
+                            <button
+                              onClick={() => setRequestType('delete')}
+                              className={`rounded-xl border-2 p-6 transition-all ${
+                                requestType === 'delete'
+                                  ? 'border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-900/20'
+                                  : 'border-slate-200 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700'
+                              }`}
+                            >
+                              <Trash2 className="mb-3 h-8 w-8 text-red-600 dark:text-red-400" />
+                              <div className="font-bold text-slate-900 dark:text-white">
+                                {t('data_rights.delete_title')}
+                              </div>
+                              <div className="text-sm text-slate-600 dark:text-slate-400">
+                                {t('data_rights.delete_desc')}
+                              </div>
+                            </button>
                           </div>
-                          <div className="text-sm text-slate-600 dark:text-slate-400">
-                            {t('data_rights.delete_desc')}
-                          </div>
-                        </button>
-                      </div>
 
-                      {requestType && (
-                        <motion.form
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          onSubmit={handleDataRequest}
-                          className="space-y-4"
-                        >
-                          <div>
-                            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                              {t('data_rights.email_label')}
-                            </label>
-                            <input
-                              type="email"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              required
-                              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                              placeholder={t('data_rights.email_placeholder')}
-                            />
-                          </div>
-                          <Button
-                            type="submit"
-                            disabled={requestStatus === 'loading'}
-                            className="w-full sm:w-auto"
-                          >
-                            {requestStatus === 'loading'
-                              ? t('data_rights.processing_button')
-                              : t('data_rights.submit_button')}
-                          </Button>
-                        </motion.form>
+                          {requestType && (
+                            <motion.form
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              onSubmit={handleDataRequest}
+                              className="space-y-4"
+                            >
+                              <div>
+                                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                                  {t('data_rights.email_label')}
+                                </label>
+                                <input
+                                  type="email"
+                                  value={email}
+                                  onChange={e => setEmail(e.target.value)}
+                                  required
+                                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                                  placeholder={t('data_rights.email_placeholder')}
+                                />
+                              </div>
+                              <Button
+                                type="submit"
+                                disabled={requestStatus === 'loading'}
+                                className="w-full sm:w-auto"
+                              >
+                                {requestStatus === 'loading'
+                                  ? t('data_rights.processing_button')
+                                  : t('data_rights.submit_button')}
+                              </Button>
+                            </motion.form>
+                          )}
+                        </>
                       )}
-                    </>
-                  )}
                 </div>
               )}
 
@@ -402,19 +404,35 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                     <p>{t('privacy.data_collected_content')}</p>
                     <ul>
                       <li>
-                        <strong>{t('privacy.data_identity').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.data_identity').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.data_identity').split(':')[1]}
                       </li>
                       <li>
-                        <strong>{t('privacy.data_business').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.data_business').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.data_business').split(':')[1]}
                       </li>
                       <li>
-                        <strong>{t('privacy.data_technical').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.data_technical').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.data_technical').split(':')[1]}
                       </li>
                       <li>
-                        <strong>{t('privacy.data_transaction').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.data_transaction').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.data_transaction').split(':')[1]}
                       </li>
                     </ul>
@@ -442,15 +460,27 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                     <p>{t('privacy.data_sharing_content')}</p>
                     <ul>
                       <li>
-                        <strong>{t('privacy.sharing_subprocessors').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.sharing_subprocessors').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.sharing_subprocessors').split(':')[1]}
                       </li>
                       <li>
-                        <strong>{t('privacy.sharing_integration').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.sharing_integration').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.sharing_integration').split(':')[1]}
                       </li>
                       <li>
-                        <strong>{t('privacy.sharing_legal').split(':')[0]}:</strong>{' '}
+                        <strong>
+                          {t('privacy.sharing_legal').split(':')[0]}
+                          :
+                        </strong>
+                        {' '}
                         {t('privacy.sharing_legal').split(':')[1]}
                       </li>
                     </ul>
@@ -476,7 +506,7 @@ export default function LegalDetailContent({ slug, data }: LegalDetailContentPro
                     {t('table_of_contents')}
                   </h4>
                   <nav className="space-y-2">
-                    {headings.map((heading) => (
+                    {headings.map(heading => (
                       <a
                         key={heading.id}
                         href={`#${heading.id}`}

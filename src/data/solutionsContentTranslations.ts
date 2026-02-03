@@ -50,16 +50,16 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Budget 'Leakage'",
+          title: 'Budget \'Leakage\'',
           desc: 'Materials lost on site, remaining materials unrecorded, or purchases exceeding RAB volume without approval.',
         },
         {
           title: 'Stalled Cashflow',
-          desc: "Term invoices to Owner delayed because physical opname data from field hasn't been compiled by admin.",
+          desc: 'Term invoices to Owner delayed because physical opname data from field hasn\'t been compiled by admin.',
         },
         {
           title: 'Problematic Subcontractors',
-          desc: "Difficult to track Subcontractor DP, retention deductions, and foreman work progress that doesn't match payments.",
+          desc: 'Difficult to track Subcontractor DP, retention deductions, and foreman work progress that doesn\'t match payments.',
         },
       ],
       solutions: [
@@ -123,7 +123,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Stock 'Ghost'",
+          title: 'Stock \'Ghost\'',
           desc: 'Items in system exist, shelves empty. Or vice versa. Results in frequent order rejections or marketplace overselling.',
         },
         {
@@ -143,7 +143,7 @@ export const industriesTranslations: {
         },
         {
           title: 'Anti-Fraud POS',
-          desc: "Lock selling prices and discounts. Cashiers can't change prices arbitrarily. Mandatory deposit (Cash Count) at shift close.",
+          desc: 'Lock selling prices and discounts. Cashiers can\'t change prices arbitrarily. Mandatory deposit (Cash Count) at shift close.',
           icon: Monitor,
         },
         {
@@ -171,7 +171,7 @@ export const industriesTranslations: {
       ],
       caseStudyTitle: 'Revenue Up 30%',
       caseStudy:
-        "Berkah Mart Group successfully eliminated 'lost sales' due to out-of-stock and increased revenue 30% through real-time marketplace stock integration.",
+        'Berkah Mart Group successfully eliminated \'lost sales\' due to out-of-stock and increased revenue 30% through real-time marketplace stock integration.',
       testimonial: {
         quote:
           'Stock opname used to be a nightmare, had to close store for 2 days. Now we can do partial opname while selling via phone.',
@@ -211,7 +211,7 @@ export const industriesTranslations: {
       solutions: [
         {
           title: 'Bio-Geo Attendance',
-          desc: "Mandatory Selfie (Liveness Detection) + GPS Location Lock. Can't buddy punch or use Fake GPS.",
+          desc: 'Mandatory Selfie (Liveness Detection) + GPS Location Lock. Can\'t buddy punch or use Fake GPS.',
           icon: Scan,
         },
         {
@@ -269,7 +269,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "'Lost' Work Hours",
+          title: '\'Lost\' Work Hours',
           desc: 'Many additional work (Scope Creep) not recorded and ultimately free. Revenue leaks.',
         },
         {
@@ -294,7 +294,7 @@ export const industriesTranslations: {
         },
         {
           title: 'Resource Heatmap',
-          desc: "Visualize who's overloaded and who's idle. Allocate team more wisely.",
+          desc: 'Visualize who\'s overloaded and who\'s idle. Allocate team more wisely.',
           icon: Users,
         },
       ],
@@ -341,7 +341,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "'Guesswork' COGS",
+          title: '\'Guesswork\' COGS',
           desc: 'Calculating Cost of Goods Sold just by guessing, so selling price is not competitive or actually loses money.',
         },
         {
@@ -389,7 +389,7 @@ export const industriesTranslations: {
       ],
       caseStudyTitle: 'Save 500 Million/Month',
       caseStudy:
-        "Export Furniture Factory 'Kayu Mas' saves 500 million per month by reducing raw material waste and export delay penalties.",
+        'Export Furniture Factory \'Kayu Mas\' saves 500 million per month by reducing raw material waste and export delay penalties.',
       testimonial: {
         quote:
           'Now I can confidently negotiate prices with foreign buyers because I know my COGS precisely down to the penny.',
@@ -414,7 +414,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Excel 'Hell'",
+          title: 'Excel \'Hell\'',
           desc: 'Finance team overtime for weeks combining Excel reports from each subsidiary with different formats.',
         },
         {
@@ -452,7 +452,7 @@ export const industriesTranslations: {
         {
           question: 'Data security between PTs?',
           answer:
-            "PT A users can't peek at PT B data, unless given special access. Directors can see all.",
+            'PT A users can\'t peek at PT B data, unless given special access. Directors can see all.',
         },
         {
           question: 'Entity number limit?',
@@ -489,7 +489,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Budget 'Bocor Halus'",
+          title: 'Budget \'Bocor Halus\'',
           desc: 'Material hilang di lapangan, sisa bahan tidak terdata, atau pembelian melebihi volume RAB tanpa approval.',
         },
         {
@@ -562,7 +562,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Stok 'Ghaib'",
+          title: 'Stok \'Ghaib\'',
           desc: 'Barang di sistem ada, di rak kosong. Atau sebaliknya. Akibatnya sering tolak pesanan atau overselling di marketplace.',
         },
         {
@@ -610,7 +610,7 @@ export const industriesTranslations: {
       ],
       caseStudyTitle: 'Omzet Naik 30%',
       caseStudy:
-        "Berkah Mart Group berhasil menghilangkan 'lost sales' akibat stok kosong dan meningkatkan omzet 30% berkat integrasi stok marketplace real-time.",
+        'Berkah Mart Group berhasil menghilangkan \'lost sales\' akibat stok kosong dan meningkatkan omzet 30% berkat integrasi stok marketplace real-time.',
       testimonial: {
         quote:
           'Dulu stok opname itu mimpi buruk, harus tutup toko 2 hari. Sekarang sambil jualan pun bisa opname parsial via HP.',
@@ -708,7 +708,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Jam Kerja 'Hilang'",
+          title: 'Jam Kerja \'Hilang\'',
           desc: 'Banyak pekerjaan tambahan (Scope Creep) yang tidak tercatat dan akhirnya gratisan. Revenue bocor.',
         },
         {
@@ -780,7 +780,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "HPP 'Kira-kira'",
+          title: 'HPP \'Kira-kira\'',
           desc: 'Menghitung Harga Pokok Produksi hanya menebak-nebak, sehingga harga jual tidak kompetitif atau malah rugi.',
         },
         {
@@ -828,7 +828,7 @@ export const industriesTranslations: {
       ],
       caseStudyTitle: 'Hemat 500 Juta/Bulan',
       caseStudy:
-        "Pabrik Furniture Ekspor 'Kayu Mas' menghemat 500 juta per bulan dengan menekan waste bahan baku dan penalti keterlambatan ekspor.",
+        'Pabrik Furniture Ekspor \'Kayu Mas\' menghemat 500 juta per bulan dengan menekan waste bahan baku dan penalti keterlambatan ekspor.',
       testimonial: {
         quote:
           'Sekarang saya bisa tawar-menawar harga dengan buyer luar negeri dengan PD, karena saya tahu persis HPP saya sampai ke perak.',
@@ -853,7 +853,7 @@ export const industriesTranslations: {
       ],
       challenges: [
         {
-          title: "Excel 'Neraka'",
+          title: 'Excel \'Neraka\'',
           desc: 'Tim finance lembur berminggu-minggu menggabungkan laporan Excel dari tiap anak usaha yang formatnya beda-beda.',
         },
         {
@@ -921,7 +921,7 @@ export const rolesTranslations: {
   en: {
     ceo: {
       title: 'CEO & Founders',
-      subtitle: "The Captain's View",
+      subtitle: 'The Captain\'s View',
       icon: TrendingUp,
       metaTitle: 'CEO Dashboard & Business Intelligence',
       metaDesc:
@@ -948,7 +948,7 @@ export const rolesTranslations: {
         },
         {
           pain: 'Dark Operations',
-          context: "Don't know what's actually happening in field, branches, or warehouse.",
+          context: 'Don\'t know what\'s actually happening in field, branches, or warehouse.',
           gain: 'Total Transparency',
           gainDesc: 'Drill-down from global report to single transaction level for instant audit.',
         },
@@ -963,7 +963,7 @@ export const rolesTranslations: {
         'Journal automation, budget control, and cashflow management for modern finance teams.',
       heroHeadline: 'Not Just Bookkeeping. This is Strategy Center.',
       heroSub:
-        "Transform finance team from mere 'data entry' to strategic advisors who protect profitability.",
+        'Transform finance team from mere \'data entry\' to strategic advisors who protect profitability.',
       cta: { btn: 'Finance Module Demo', head: 'Modernize Your Finance Department' },
       dashboardInsight: 'Financial Health Command Center',
       dashboardFeatures: [
@@ -1034,7 +1034,7 @@ export const rolesTranslations: {
       metaDesc: 'Secure, scalable, and developer-friendly ERP platform. Self-hosted or Cloud.',
       heroHeadline: 'Modern Developer-Friendly Platform.',
       heroSub:
-        "Built with modern stack (Python/JS/Postgres), API-first, and container-ready. Not a rigid legacy 'black box' system.",
+        'Built with modern stack (Python/JS/Postgres), API-first, and container-ready. Not a rigid legacy \'black box\' system.',
       cta: { btn: 'Read Technical Docs', head: 'Evaluate Our Architecture' },
       dashboardInsight: 'System Health & Security Monitor',
       dashboardFeatures: [
@@ -1103,7 +1103,7 @@ export const rolesTranslations: {
   id: {
     ceo: {
       title: 'CEO & Founders',
-      subtitle: "The Captain's View",
+      subtitle: 'The Captain\'s View',
       icon: TrendingUp,
       metaTitle: 'Dashboard CEO & Business Intelligence',
       metaDesc:
@@ -1146,7 +1146,7 @@ export const rolesTranslations: {
         'Otomatisasi jurnal, kontrol budget, dan manajemen cashflow untuk tim keuangan modern.',
       heroHeadline: 'Bukan Sekadar Pembukuan. Ini Pusat Strategi.',
       heroSub:
-        "Transformasi tim finance dari sekadar 'tukang input' menjadi penasihat strategis perusahaan yang menjaga profitabilitas.",
+        'Transformasi tim finance dari sekadar \'tukang input\' menjadi penasihat strategis perusahaan yang menjaga profitabilitas.',
       cta: { btn: 'Demo Modul Finance', head: 'Modernisasi Departemen Keuangan Anda' },
       dashboardInsight: 'Financial Health Command Center',
       dashboardFeatures: [
@@ -1218,7 +1218,7 @@ export const rolesTranslations: {
       metaDesc: 'Platform ERP yang aman, scalable, dan developer-friendly. Self-hosted atau Cloud.',
       heroHeadline: 'Platform Modern yang Developer-Friendly.',
       heroSub:
-        "Dibangun dengan stack modern (Python/JS/Postgres), API-first, dan container-ready. Bukan sistem legacy 'kotak hitam' yang kaku.",
+        'Dibangun dengan stack modern (Python/JS/Postgres), API-first, dan container-ready. Bukan sistem legacy \'kotak hitam\' yang kaku.',
       cta: { btn: 'Baca Dokumentasi Teknis', head: 'Evaluasi Arsitektur Kami' },
       dashboardInsight: 'System Health & Security Monitor',
       dashboardFeatures: [

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ComparisonIndexPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations('Compare');
-  const competitors = Object.values(comparisonsData).filter((c) => c.id !== 'bizops');
+  const competitors = Object.values(comparisonsData).filter(c => c.id !== 'bizops');
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-slate-950">
@@ -68,7 +68,9 @@ export default async function ComparisonIndexPage({ params }: Props) {
                     </p>
 
                     <div className="mb-6 inline-flex w-full items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-700 dark:bg-red-950 dark:text-red-300">
-                      <Info className="h-4 w-4" /> {t('bottleneck_label')}
+                      <Info className="h-4 w-4" />
+                      {' '}
+                      {t('bottleneck_label')}
                       {comp.bottleneckLabel[locale as 'en' | 'id']}
                     </div>
                   </div>

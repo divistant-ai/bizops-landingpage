@@ -28,11 +28,11 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1 < slides.length ? prev + 1 : prev));
+    setCurrentIndex(prev => (prev + 1 < slides.length ? prev + 1 : prev));
   }, [slides.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
+    setCurrentIndex(prev => (prev - 1 >= 0 ? prev - 1 : prev));
   }, []);
 
   const toggleFullscreen = () => {
@@ -148,7 +148,13 @@ export default function SlideDeck({ slides }: SlideDeckProps) {
             </Link>
             <div className="mx-2 hidden h-6 w-px bg-slate-300 sm:block dark:bg-white/10"></div>
             <span className="hidden text-sm text-slate-600 sm:block dark:text-slate-400">
-              Slide {currentIndex + 1} / {slides.length}
+              Slide
+              {' '}
+              {currentIndex + 1}
+              {' '}
+              /
+              {' '}
+              {slides.length}
             </span>
           </div>
 

@@ -512,7 +512,7 @@ export default function StartupProgramPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="relative overflow-hidden bg-[#0B1120] py-40 text-center text-white">
+      <section className="relative overflow-hidden bg-dark-bg py-40 text-center text-white">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute bottom-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-indigo-600/30 blur-[150px]"></div>
 

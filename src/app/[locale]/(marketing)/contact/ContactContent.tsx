@@ -190,7 +190,8 @@ export default function ContactContent() {
                       rows={4}
                       className="focus:ring-primary-500 dark:focus:ring-primary-400 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                       placeholder={t('placeholder_message')}
-                    ></textarea>
+                    >
+                    </textarea>
                   </div>
 
                   <Button
@@ -200,7 +201,8 @@ export default function ContactContent() {
                     {t('submit_button')}
                   </Button>
                   <p className="text-center text-xs text-slate-500">
-                    {t('privacy_text')}{' '}
+                    {t('privacy_text')}
+                    {' '}
                     <Link href="/legal/privacy" className="text-primary-600 hover:underline">
                       {t('privacy_link')}
                     </Link>

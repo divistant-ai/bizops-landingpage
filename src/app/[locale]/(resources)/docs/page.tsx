@@ -35,7 +35,9 @@ export default function DocsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-white px-3 py-1 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Book className="h-3 w-3" /> Docs
+            <Book className="h-3 w-3" />
+            {' '}
+            Docs
           </motion.div>
 
           <motion.h1
@@ -187,7 +189,9 @@ export default function DocsPage() {
           <Grid cols={2} mdCols={1} gap={12} className="items-center">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold tracking-wider text-blue-700 uppercase dark:bg-slate-800 dark:text-blue-300">
-                <Terminal className="h-3 w-3" /> {t('api_reference', { default: 'API Reference' })}
+                <Terminal className="h-3 w-3" />
+                {' '}
+                {t('api_reference', { default: 'API Reference' })}
               </div>
               <Typography
                 variant="h2"
@@ -244,37 +248,48 @@ export default function DocsPage() {
                       onClick={handleCopy}
                       className="group flex items-center gap-1.5 text-xs text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                     >
-                      {copied ? (
-                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                      ) : (
-                        <Copy className="h-3 w-3 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
-                      )}
-                      {copied ? (
-                        <span className="text-green-500 dark:text-green-400">Copied!</span>
-                      ) : (
-                        'Copy'
-                      )}
+                      {copied
+                        ? (
+                            <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                          )
+                        : (
+                            <Copy className="h-3 w-3 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
+                          )}
+                      {copied
+                        ? (
+                            <span className="text-green-500 dark:text-green-400">Copied!</span>
+                          )
+                        : (
+                            'Copy'
+                          )}
                     </button>
                   </div>
                 </div>
                 <div className="overflow-x-auto p-6 text-sm leading-relaxed">
                   <div className="font-mono text-slate-700 dark:text-slate-300">
-                    <span className="text-purple-600 dark:text-purple-400">curl</span> --request GET
+                    <span className="text-purple-600 dark:text-purple-400">curl</span>
+                    {' '}
+                    --request GET
                     \
                     <br />
-                    &nbsp;&nbsp;--url{' '}
+                    &nbsp;&nbsp;--url
+                    {' '}
                     <span className="text-green-600 dark:text-green-400">
                       'https://api.bizops.id/v2/resource/Employee'
-                    </span>{' '}
+                    </span>
+                    {' '}
                     \
                     <br />
-                    &nbsp;&nbsp;--header{' '}
+                    &nbsp;&nbsp;--header
+                    {' '}
                     <span className="text-green-600 dark:text-green-400">
                       'Authorization: Token xyz:123'
-                    </span>{' '}
+                    </span>
+                    {' '}
                     \
                     <br />
-                    &nbsp;&nbsp;--header{' '}
+                    &nbsp;&nbsp;--header
+                    {' '}
                     <span className="text-green-600 dark:text-green-400">
                       'Content-Type: application/json'
                     </span>

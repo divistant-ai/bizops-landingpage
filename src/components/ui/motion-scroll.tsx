@@ -92,15 +92,17 @@ export const CounterUp: React.FC<{
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
       <motion.span className="mb-2 block bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-4xl font-extrabold text-transparent md:text-5xl">
-        {hasNumber ? (
-          <>
-            {prefix || autoPrefix}
-            {displayValue.toLocaleString()}
-            {suffix || autoSuffix}
-          </>
-        ) : (
-          to
-        )}
+        {hasNumber
+          ? (
+              <>
+                {prefix || autoPrefix}
+                {displayValue.toLocaleString()}
+                {suffix || autoSuffix}
+              </>
+            )
+          : (
+              to
+            )}
       </motion.span>
       <span className="text-sm font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
         {label}

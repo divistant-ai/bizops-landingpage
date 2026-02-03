@@ -41,14 +41,17 @@ mQINBF... (Truncated for display) ...
             animate={{ scale: 1, opacity: 1 }}
             className="border-primary-300 bg-primary-100 text-primary-700 dark:border-primary-700/50 dark:bg-primary-900/30 dark:text-primary-400 mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs"
           >
-            <Terminal className="h-3 w-3" /> {t('badge')}
+            <Terminal className="h-3 w-3" />
+            {' '}
+            {t('badge')}
           </motion.div>
           <Typography
             variant="h1"
             as="h1"
             className="font-bold tracking-tight text-slate-900 dark:text-white"
           >
-            {t('hero_title_1')}{' '}
+            {t('hero_title_1')}
+            {' '}
             <span className="text-primary-600 dark:text-primary-500">{t('hero_title_2')}</span>
           </Typography>
           <Typography variant="body" className="text-slate-600 dark:text-slate-400">
@@ -78,7 +81,9 @@ mQINBF... (Truncated for display) ...
                   key={idx}
                   className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300"
                 >
-                  <span className="text-primary-600 dark:text-primary-500 mt-1">▹</span> {item}
+                  <span className="text-primary-600 dark:text-primary-500 mt-1">▹</span>
+                  {' '}
+                  {item}
                 </li>
               ))}
             </ul>
@@ -102,7 +107,9 @@ mQINBF... (Truncated for display) ...
                   key={idx}
                   className="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-400"
                 >
-                  <span className="mt-1 text-red-600 dark:text-red-500">×</span> {item}
+                  <span className="mt-1 text-red-600 dark:text-red-500">×</span>
+                  {' '}
+                  {item}
                 </li>
               ))}
             </ul>
@@ -123,14 +130,17 @@ mQINBF... (Truncated for display) ...
                 {t('via_encrypted_email')}
               </Typography>
               <Typography variant="small" className="mb-4 block text-slate-600 dark:text-slate-400">
-                {t('email_instructions')}{' '}
+                {t('email_instructions')}
+                {' '}
                 <a
                   href="mailto:security@bizops.id"
                   className="text-primary-600 dark:text-primary-400 hover:underline"
                 >
                   security@bizops.id
                 </a>
-                . {t('use_pgp_key')}
+                .
+                {' '}
+                {t('use_pgp_key')}
               </Typography>
 
               <div className="relative overflow-x-auto rounded-xl border border-slate-300 bg-slate-50 p-4 text-xs text-slate-700 dark:border-slate-800 dark:bg-black dark:text-slate-500">
@@ -139,11 +149,13 @@ mQINBF... (Truncated for display) ...
                   className="absolute top-4 right-4 rounded bg-slate-200 p-2 text-slate-700 transition-colors hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   title="Copy PGP Key"
                 >
-                  {copied ? (
-                    <CheckCircle className="text-primary-600 dark:text-primary-400 h-4 w-4" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
+                  {copied
+                    ? (
+                        <CheckCircle className="text-primary-600 dark:text-primary-400 h-4 w-4" />
+                      )
+                    : (
+                        <Copy className="h-4 w-4" />
+                      )}
                 </button>
                 <pre>{pgpKey}</pre>
               </div>
@@ -153,7 +165,7 @@ mQINBF... (Truncated for display) ...
               <Typography variant="h4" as="h4" className="mb-4 text-slate-900 dark:text-white">
                 {t('quick_report')}
               </Typography>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={e => e.preventDefault()}>
                 <Grid cols={2} gap={4}>
                   <input
                     type="text"
@@ -170,7 +182,8 @@ mQINBF... (Truncated for display) ...
                   rows={4}
                   placeholder={t('placeholder_description')}
                   className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-600 dark:focus:ring-primary-600 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:ring-1 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
-                ></textarea>
+                >
+                </textarea>
                 <Button
                   size="md"
                   className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 md:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"

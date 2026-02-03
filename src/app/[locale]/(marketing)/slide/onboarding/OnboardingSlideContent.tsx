@@ -178,7 +178,9 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  {t('cover_cta')} <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('cover_cta')}
+                  {' '}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -572,25 +574,33 @@ export default function OnboardingSlideContent() {
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>{t('phase4_training_1')}</strong> {t('phase4_training_1_desc')}
+                      <strong>{t('phase4_training_1')}</strong>
+                      {' '}
+                      {t('phase4_training_1_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>{t('phase4_training_2')}</strong> {t('phase4_training_2_desc')}
+                      <strong>{t('phase4_training_2')}</strong>
+                      {' '}
+                      {t('phase4_training_2_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>{t('phase4_training_3')}</strong> {t('phase4_training_3_desc')}
+                      <strong>{t('phase4_training_3')}</strong>
+                      {' '}
+                      {t('phase4_training_3_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
                     <span>
-                      <strong>{t('phase4_training_4')}</strong> {t('phase4_training_4_desc')}
+                      <strong>{t('phase4_training_4')}</strong>
+                      {' '}
+                      {t('phase4_training_4_desc')}
                     </span>
                   </li>
                 </ul>
@@ -609,25 +619,33 @@ export default function OnboardingSlideContent() {
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>{t('phase4_uat_1')}</strong> {t('phase4_uat_1_desc')}
+                      <strong>{t('phase4_uat_1')}</strong>
+                      {' '}
+                      {t('phase4_uat_1_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>{t('phase4_uat_2')}</strong> {t('phase4_uat_2_desc')}
+                      <strong>{t('phase4_uat_2')}</strong>
+                      {' '}
+                      {t('phase4_uat_2_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>{t('phase4_uat_3')}</strong> {t('phase4_uat_3_desc')}
+                      <strong>{t('phase4_uat_3')}</strong>
+                      {' '}
+                      {t('phase4_uat_3_desc')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     <span>
-                      <strong>{t('phase4_uat_4')}</strong> {t('phase4_uat_4_desc')}
+                      <strong>{t('phase4_uat_4')}</strong>
+                      {' '}
+                      {t('phase4_uat_4_desc')}
                     </span>
                   </li>
                 </ul>
@@ -839,7 +857,9 @@ export default function OnboardingSlideContent() {
               variants={itemVariants}
               className="mb-6 text-center text-5xl leading-tight font-bold text-slate-900 dark:text-white"
             >
-              {t('cta_title_1')} <br />
+              {t('cta_title_1')}
+              {' '}
+              <br />
               {t('cta_title_2')}
             </motion.h1>
             <motion.p
@@ -861,7 +881,9 @@ export default function OnboardingSlideContent() {
                   size="lg"
                   className="h-14 rounded-xl border-none bg-slate-900 px-10 text-lg font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50"
                 >
-                  {t('cta_button_1')} <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('cta_button_1')}
+                  {' '}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/contact">

@@ -135,7 +135,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('core_modules')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.modules?.items.map((item) => (
+                      {platformContent.modules?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -162,7 +162,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('capabilities')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.capabilities?.items.map((item) => (
+                      {platformContent.capabilities?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -189,7 +189,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('technology')}
                     </div>
                     <div className="space-y-2">
-                      {platformContent.technology?.items.map((item) => (
+                      {platformContent.technology?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -237,7 +237,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('by_industry')}
                     </div>
                     <div className="space-y-2">
-                      {solutionsContent.industry?.items.map((item) => (
+                      {solutionsContent.industry?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -264,7 +264,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('by_role')}
                     </div>
                     <div className="space-y-2">
-                      {solutionsContent.role?.items.map((item) => (
+                      {solutionsContent.role?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -295,7 +295,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
               >
                 <div className="p-4">
                   <div className="space-y-2">
-                    {servicesItems.map((item) => (
+                    {servicesItems.map(item => (
                       <Link
                         key={item.to}
                         href={item.to}
@@ -330,7 +330,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('insights_news')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent.insights?.items.map((item) => (
+                      {resourcesContent.insights?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -357,7 +357,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('customer_tools')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['customer-tools']?.items.slice(0, 5).map((item) => (
+                      {resourcesContent['customer-tools']?.items.slice(0, 5).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -391,7 +391,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('strategic_tools')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map((item) => (
+                      {resourcesContent['strategic-tools']?.items.slice(0, 4).map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -418,7 +418,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('support')}
                     </div>
                     <div className="space-y-2">
-                      {resourcesContent.support?.items.map((item) => (
+                      {resourcesContent.support?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -454,7 +454,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('our_story')}
                     </div>
                     <div className="space-y-2">
-                      {companyContent.story?.items.map((item) => (
+                      {companyContent.story?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}
@@ -481,7 +481,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                       {t('ecosystem')}
                     </div>
                     <div className="space-y-2">
-                      {companyContent.ecosystem?.items.map((item) => (
+                      {companyContent.ecosystem?.items.map(item => (
                         <Link
                           key={item.to}
                           href={item.to}

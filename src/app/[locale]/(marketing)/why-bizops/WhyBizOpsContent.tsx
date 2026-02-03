@@ -72,7 +72,7 @@ export default function WhyBizOpsContent() {
   return (
     <div className="flex flex-col bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pb-32 dark:bg-[#0B1120]">
+      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pb-32 dark:bg-dark-bg">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="animate-pulse-slow pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20"></div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-600/10"></div>
@@ -84,7 +84,9 @@ export default function WhyBizOpsContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/50 dark:text-blue-300"
           >
-            <Layers className="h-3 w-3" /> {t('hero_badge')}
+            <Layers className="h-3 w-3" />
+            {' '}
+            {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -93,7 +95,9 @@ export default function WhyBizOpsContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white"
           >
-            {t('hero_title_1')} <br />
+            {t('hero_title_1')}
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
               {t('hero_title_2')}
             </span>
@@ -331,25 +335,31 @@ export default function WhyBizOpsContent() {
                   >
                     <td className="p-4 text-slate-700 dark:text-slate-300">{row.feature}</td>
                     <td className="bg-primary-50/50 dark:bg-primary-900/10 p-4 text-center">
-                      {row.bizops ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.bizops
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.legacy ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.legacy
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                     <td className="p-4 text-center">
-                      {row.saas ? (
-                        <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
-                      ) : (
-                        <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
-                      )}
+                      {row.saas
+                        ? (
+                            <CheckCircle className="mx-auto h-5 w-5 text-green-600 dark:text-green-400" />
+                          )
+                        : (
+                            <X className="mx-auto h-5 w-5 text-slate-300 dark:text-slate-600" />
+                          )}
                     </td>
                   </tr>
                 ))}
@@ -374,7 +384,9 @@ export default function WhyBizOpsContent() {
                 size="lg"
                 className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                {t('cta_demo')} <ArrowRight className="ml-2 h-4 w-4" />
+                {t('cta_demo')}
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/compare">

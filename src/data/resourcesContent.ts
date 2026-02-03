@@ -32,7 +32,7 @@ export const blogContent = {
   pillars: [
     {
       category: 'Operational Efficiency',
-      title: "5 Tanda Bisnis Anda Sudah 'Tumbuh Kelewat Batas' untuk Excel: Kapan Harus Migrasi?",
+      title: '5 Tanda Bisnis Anda Sudah \'Tumbuh Kelewat Batas\' untuk Excel: Kapan Harus Migrasi?',
       snippet:
         'Apakah spreadsheet stok Anda mulai lambat dibuka dan sering crash? Kenali titik kritis di mana proses manual mulai membunuh profitabilitas Anda.',
       icon: Activity,
@@ -42,7 +42,7 @@ export const blogContent = {
     {
       category: 'Finance & Cost Control',
       title:
-        "Menghentikan 'Maverick Buying': Menutup Kebocoran Anggaran Terbesar yang Tidak Anda Sadari",
+        'Menghentikan \'Maverick Buying\': Menutup Kebocoran Anggaran Terbesar yang Tidak Anda Sadari',
       snippet:
         'Pembelian liar di luar kontrak vendor resmi bisa memboroskan anggaran hingga 15%. Pelajari bagaimana fitur Budget Checking menutup celah ini.',
       icon: DollarSign,
@@ -125,7 +125,7 @@ export const blogPosts = [
   },
   {
     slug: 'tanda-bisnis-tumbuh-lewat-batas',
-    title: "5 Tanda Bisnis Anda Sudah 'Tumbuh Kelewat Batas' untuk Excel: Kapan Harus Migrasi?",
+    title: '5 Tanda Bisnis Anda Sudah \'Tumbuh Kelewat Batas\' untuk Excel: Kapan Harus Migrasi?',
     date: '10 September 2024',
     author: 'Sarah Wijaya, Ops Lead',
     category: 'Operational Efficiency',
@@ -164,7 +164,7 @@ export const blogPosts = [
   },
   {
     slug: 'maverick-buying',
-    title: "Menghentikan 'Maverick Buying': Menutup Kebocoran Anggaran Terbesar",
+    title: 'Menghentikan \'Maverick Buying\': Menutup Kebocoran Anggaran Terbesar',
     date: '22 August 2024',
     author: 'Finance Team',
     category: 'Finance & Cost Control',
@@ -645,7 +645,7 @@ export const glossaryData = [
   {
     char: 'K',
     term: 'Kurva-S (S-Curve)',
-    def: "Grafik yang menunjukkan kemajuan kumulatif proyek dibandingkan dengan waktu. Bentuk huruf 'S' merepresentasikan fase lambat di awal, cepat di tengah, dan melambat di akhir.",
+    def: 'Grafik yang menunjukkan kemajuan kumulatif proyek dibandingkan dengan waktu. Bentuk huruf \'S\' merepresentasikan fase lambat di awal, cepat di tengah, dan melambat di akhir.',
     context:
       'Alat utama bagi Kontraktor untuk mendeteksi keterlambatan proyek (slippage) lebih dini.',
   },

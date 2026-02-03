@@ -11,7 +11,7 @@ export const careersContentTranslations = {
       },
       {
         title: 'Continuous Learning',
-        desc: "Annual budget per employee for technical books, premium courses (Udemy/Coursera), and certifications. Technology changes fast, we don't want you to fall behind.",
+        desc: 'Annual budget per employee for technical books, premium courses (Udemy/Coursera), and certifications. Technology changes fast, we don\'t want you to fall behind.',
       },
     ],
     benefits: [

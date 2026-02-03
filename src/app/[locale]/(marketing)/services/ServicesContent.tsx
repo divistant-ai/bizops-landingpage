@@ -71,19 +71,19 @@ export default function ServicesContent() {
   // Mapping service ID to translation key
   const getServiceDescKey = (serviceId: string) => {
     const keyMap = {
-      consulting: 'service_consulting_desc',
-      implementation: 'service_implementation_desc',
+      'consulting': 'service_consulting_desc',
+      'implementation': 'service_implementation_desc',
       'custom-dev': 'service_custom_dev_desc',
       'managed-business-services': 'service_managed_desc',
-      training: 'service_training_desc',
-      support: 'service_support_desc',
+      'training': 'service_training_desc',
+      'support': 'service_support_desc',
     } as const;
     return keyMap[serviceId as keyof typeof keyMap] || keyMap.consulting;
   };
 
   const services = serviceOrder
-    .filter((key) => servicesData[key])
-    .map((key) => ({
+    .filter(key => servicesData[key])
+    .map(key => ({
       id: key,
       ...servicesData[key],
     }));
@@ -150,7 +150,9 @@ export default function ServicesContent() {
                   className="shadow-primary-500/20 h-14 w-full px-8 text-base shadow-xl sm:w-auto"
                 >
                   <span className="flex items-center text-slate-900 dark:text-white">
-                    {t('cta_consultation')} <ArrowRight className="ml-2 h-5 w-5" />
+                    {t('cta_consultation')}
+                    {' '}
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
                 </Button>
               </Link>
@@ -227,7 +229,9 @@ export default function ServicesContent() {
                           </p>
 
                           <div className="text-primary-600 dark:text-primary-400 mt-auto flex items-center text-sm font-bold transition-transform group-hover:translate-x-2">
-                            {t('view_detail')} <ArrowRight className="ml-2 h-4 w-4" />
+                            {t('view_detail')}
+                            {' '}
+                            <ArrowRight className="ml-2 h-4 w-4" />
                           </div>
                         </div>
                       </SpotlightCard>

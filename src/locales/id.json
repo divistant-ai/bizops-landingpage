@@ -431,29 +431,7 @@
     "error_reporting_powered_by": "Pelaporan error didukung oleh",
     "coverage_powered_by": "Coverage didukung oleh"
   },
-  "Platform": {
-    "automation_ai": {
-      "title": "Biarkan Sistem yang Bekerja, Bukan Anda.",
-      "description": "Kurangi pekerjaan manual yang repetitif dan membosankan hingga 80%. BizOps dilengkapi dengan mesin Otomatisasi (Workflow Builder) dan Kecerdasan Buatan (Applied AI) yang praktis untuk membuat bisnis Anda berjalan secara autopilot.",
-      "cta": "Lihat Demo Otomatisasi",
-      "workflow_title": "Workflow Automation (No-Code Logic)",
-      "ai_title": "Applied AI Capabilities"
-    },
-    "analytics": {
-      "title": "Laporan Anda, Cara Anda. Tanpa Coding.",
-      "description": "Setiap bisnis punya cara unik melihat data. Jangan terpaku pada laporan standar yang kaku. Dengan Report Builder, Anda menjadi analis data bagi perusahaan Anda sendiri.",
-      "cta": "Coba Report Builder"
-    },
-    "multi_company": {
-      "title": "Satu Platform untuk Seluruh Grup Bisnis Anda.",
-      "description": "Punya banyak PT, CV, atau unit bisnis berbeda? Jangan kelola mereka di pulau-pulau terpisah. Satukan manajemen grup perusahaan Anda dengan struktur Multi-Company yang native.",
-      "cta": "Demo Struktur Holding"
-    },
-    "portals": {
-      "title": "Berhenti Menjadi Admin untuk Klien Anda.",
-      "description": "Bebaskan tim CS, Sales Admin, dan Purchasing Anda dari pertanyaan berulang via WhatsApp. Berikan akses portal mandiri 24/7 kepada mitra bisnis Anda untuk melihat data yang mereka butuhkan sendiri."
-    }
-  },
+
   "Common": {
     "demo": "Demo",
     "login": "Login",
@@ -528,6 +506,27 @@
     }
   },
   "Platform": {
+    "automation_ai": {
+      "title": "Biarkan Sistem yang Bekerja, Bukan Anda.",
+      "description": "Kurangi pekerjaan manual yang repetitif dan membosankan hingga 80%. BizOps dilengkapi dengan mesin Otomatisasi (Workflow Builder) dan Kecerdasan Buatan (Applied AI) yang praktis untuk membuat bisnis Anda berjalan secara autopilot.",
+      "cta": "Lihat Demo Otomatisasi",
+      "workflow_title": "Workflow Automation (No-Code Logic)",
+      "ai_title": "Applied AI Capabilities"
+    },
+    "analytics": {
+      "title": "Laporan Anda, Cara Anda. Tanpa Coding.",
+      "description": "Setiap bisnis punya cara unik melihat data. Jangan terpaku pada laporan standar yang kaku. Dengan Report Builder, Anda menjadi analis data bagi perusahaan Anda sendiri.",
+      "cta": "Coba Report Builder"
+    },
+    "multi_company": {
+      "title": "Satu Platform untuk Seluruh Grup Bisnis Anda.",
+      "description": "Punya banyak PT, CV, atau unit bisnis berbeda? Jangan kelola mereka di pulau-pulau terpisah. Satukan manajemen grup perusahaan Anda dengan struktur Multi-Company yang native.",
+      "cta": "Demo Struktur Holding"
+    },
+    "portals": {
+      "title": "Berhenti Menjadi Admin untuk Klien Anda.",
+      "description": "Bebaskan tim CS, Sales Admin, dan Purchasing Anda dari pertanyaan berulang via WhatsApp. Berikan akses portal mandiri 24/7 kepada mitra bisnis Anda untuk melihat data yang mereka butuhkan sendiri."
+    },
     "badge": "Platform Enterprise Grade",
     "hero_title_1": "Sistem Operasional Bisnis",
     "hero_title_2": "yang Adaptif",

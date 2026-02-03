@@ -1,6 +1,6 @@
+import type { Metadata } from 'next';
 import OEECalculator from '@/components/tools/customer/OEECalculator';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
-import { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;

@@ -93,8 +93,8 @@ export const useCasesData: Record<string, UseCase> = {
       id: 'Klien memiliki skema komisi 5 lapis yang melibatkan margin produk, tenor pembayaran, target tim, dan performa individu. Perhitungan manual memakan waktu 1 minggu setiap bulan dan rawan error.',
     },
     solution: {
-      en: "We built a custom 'Commission Engine' on top of BizOps Sales module. The engine pulls real-time data from invoices and payments, then calculates incentives every night (batch processing).",
-      id: "Kami membangun 'Commission Engine' kustom di atas modul Sales BizOps. Engine ini mengambil data real-time dari faktur dan pelunasan, lalu menghitung insentif setiap malam (batch processing).",
+      en: 'We built a custom \'Commission Engine\' on top of BizOps Sales module. The engine pulls real-time data from invoices and payments, then calculates incentives every night (batch processing).',
+      id: 'Kami membangun \'Commission Engine\' kustom di atas modul Sales BizOps. Engine ini mengambil data real-time dari faktur dan pelunasan, lalu menghitung insentif setiap malam (batch processing).',
     },
     results: {
       en: [
@@ -239,8 +239,8 @@ export const useCasesData: Record<string, UseCase> = {
       id: 'Pabrik garmen kesulitan melacak sisa kain (waste) produksi. Stok kain di gudang sering tidak sesuai fisik karena pencatatan manual potongan pola yang rumit.',
     },
     solution: {
-      en: "'Smart Cutting' module integrated with BOM (Bill of Materials). System automatically calculates waste estimates based on cutting patterns and reduces warehouse stock precisely.",
-      id: "Modul 'Smart Cutting' yang terintegrasi dengan BOM (Bill of Materials). Sistem otomatis menghitung estimasi waste berdasarkan pola potong dan mengurangi stok gudang secara presisi.",
+      en: '\'Smart Cutting\' module integrated with BOM (Bill of Materials). System automatically calculates waste estimates based on cutting patterns and reduces warehouse stock precisely.',
+      id: 'Modul \'Smart Cutting\' yang terintegrasi dengan BOM (Bill of Materials). Sistem otomatis menghitung estimasi waste berdasarkan pola potong dan mengurangi stok gudang secara presisi.',
     },
     results: {
       en: [
@@ -529,8 +529,8 @@ export const useCasesData: Record<string, UseCase> = {
     color: 'orange',
     category: 'Supply Chain Management',
     challenge: {
-      en: "Customers often complain goods have not arrived even though status shows 'delivered'. Couriers find it difficult to prove successful delivery because physical proof is lost.",
-      id: "Customer sering komplain barang belum sampai padahal status 'delivered'. Kurir sulit membuktikan pengiriman sukses karena bukti fisik hilang.",
+      en: 'Customers often complain goods have not arrived even though status shows \'delivered\'. Couriers find it difficult to prove successful delivery because physical proof is lost.',
+      id: 'Customer sering komplain barang belum sampai padahal status \'delivered\'. Kurir sulit membuktikan pengiriman sukses karena bukti fisik hilang.',
     },
     solution: {
       en: 'Mobile App for Couriers. Must take photo of recipient & digital signature during goods handover. GPS coordinates & Timestamp automatically recorded.',
@@ -571,8 +571,8 @@ export const useCasesData: Record<string, UseCase> = {
       id: 'Kontraktor sering mengalami over-budget karena realisasi biaya material dan upah tukang baru ketahuan saat proyek selesai. Sulit memantau progress fisik vs biaya secara real-time.',
     },
     solution: {
-      en: "Implementation of Project module with 'Budget Lock' feature. Every material PR (Purchase Request) is automatically validated against remaining RAB budget for related items. Early warning if approaching limit.",
-      id: "Implementasi modul Project dengan fitur 'Budget Lock'. Setiap PR (Purchase Request) material otomatis divalidasi terhadap sisa budget RAB pos terkait. Peringatan dini jika mendekati limit.",
+      en: 'Implementation of Project module with \'Budget Lock\' feature. Every material PR (Purchase Request) is automatically validated against remaining RAB budget for related items. Early warning if approaching limit.',
+      id: 'Implementasi modul Project dengan fitur \'Budget Lock\'. Setiap PR (Purchase Request) material otomatis divalidasi terhadap sisa budget RAB pos terkait. Peringatan dini jika mendekati limit.',
     },
     results: {
       en: [
@@ -793,7 +793,7 @@ export const useCasesData: Record<string, UseCase> = {
       id: 'Firma konsultan hukum kesulitan menagih klien secara akurat karena pencatatan jam kerja konsultan (timesheet) manual dan sering lupa.',
     },
     solution: {
-      en: "Easy-to-use Mobile Timesheet App. Consultants input working hours per project/client. At month-end, system automatically generates draft invoices based on each consultant's rate card.",
+      en: 'Easy-to-use Mobile Timesheet App. Consultants input working hours per project/client. At month-end, system automatically generates draft invoices based on each consultant\'s rate card.',
       id: 'Mobile Timesheet App yang mudah digunakan. Konsultan input jam kerja per project/klien. Di akhir bulan, sistem otomatis generate draft invoice berdasarkan rate card masing-masing konsultan.',
     },
     results: {
@@ -937,7 +937,7 @@ export const useCasesData: Record<string, UseCase> = {
     color: 'sky',
     category: 'Operations',
     challenge: {
-      en: "International school with 2000 students has separate data between departments (Academic, Finance, Library). Parents find it difficult to monitor their children's development.",
+      en: 'International school with 2000 students has separate data between departments (Academic, Finance, Library). Parents find it difficult to monitor their children\'s development.',
       id: 'Sekolah internasional dengan 2000 siswa memiliki data terpisah antar departemen (Akademik, Keuangan, Perpustakaan). Orang tua sulit memantau perkembangan anak.',
     },
     solution: {
@@ -1163,8 +1163,8 @@ export const useCasesData: Record<string, UseCase> = {
       id: 'NGO internasional kesulitan membuat laporan pertanggungjawaban dana ke donor yang spesifik per program/negara. Dana operasional dan dana bantuan sering tercampur.',
     },
     solution: {
-      en: "Fund Accounting System. Each donation is tagged to specific program 'Cost Center'. Real-time fund usage reports available for donors via portal.",
-      id: "Sistem Akuntansi Dana (Fund Accounting). Setiap donasi ditagging ke 'Cost Center' program spesifik. Laporan penggunaan dana real-time tersedia untuk donor via portal.",
+      en: 'Fund Accounting System. Each donation is tagged to specific program \'Cost Center\'. Real-time fund usage reports available for donors via portal.',
+      id: 'Sistem Akuntansi Dana (Fund Accounting). Setiap donasi ditagging ke \'Cost Center\' program spesifik. Laporan penggunaan dana real-time tersedia untuk donor via portal.',
     },
     results: {
       en: [

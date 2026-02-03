@@ -33,7 +33,9 @@ export default function DownloadPage() {
             {/* Left Content */}
             <div className="relative z-10">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold tracking-wider text-blue-600 uppercase dark:bg-blue-900/30 dark:text-blue-400">
-                <Smartphone className="h-3 w-3" /> {t('badge')}
+                <Smartphone className="h-3 w-3" />
+                {' '}
+                {t('badge')}
               </div>
 
               <Typography
@@ -41,7 +43,9 @@ export default function DownloadPage() {
                 as="h1"
                 className="py-3 leading-[1.1] font-extrabold tracking-tight text-slate-900 dark:text-white"
               >
-                {t('hero_title_line1')} <br />
+                {t('hero_title_line1')}
+                {' '}
+                <br />
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text py-3 text-transparent dark:from-blue-400 dark:to-indigo-400">
                   {t('hero_title_line2')}
                 </span>
@@ -96,7 +100,7 @@ export default function DownloadPage() {
                 <div className="hidden h-12 w-px bg-slate-200 sm:block dark:bg-slate-800"></div>
                 <div>
                   <div className="mb-1 flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
+                    {[1, 2, 3, 4, 5].map(i => (
                       <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                     ))}
                     <span className="ml-2 text-sm font-bold text-slate-900 dark:text-white">
@@ -154,15 +158,18 @@ export default function DownloadPage() {
                             {t('todays_approval')}
                           </Typography>
                           <span className="rounded-full bg-red-100 px-2 py-1 text-xs font-bold text-red-600 dark:text-slate-300">
-                            3 {t('pending')}
+                            3
+                            {' '}
+                            {t('pending')}
                           </span>
                         </div>
                         <div className="flex gap-3 overflow-x-auto pb-2">
-                          {[1, 2, 3].map((i) => (
+                          {[1, 2, 3].map(i => (
                             <div
                               key={i}
                               className="h-10 w-10 flex-shrink-0 rounded-full border-2 border-white bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
-                            ></div>
+                            >
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -312,11 +319,13 @@ export default function DownloadPage() {
           </Typography>
           <Stack direction="vertical" gap={4} className="mt-8 justify-center">
             <Button size="md" variant="outline" className="border-slate-700 text-white">
-              <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <FileCode className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />
+              {' '}
               <span className="text-slate-700 dark:text-white">{t('download_apk')}</span>
             </Button>
             <Button size="md" variant="outline" className="border-slate-700 text-white">
-              <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />{' '}
+              <ShieldCheck className="mr-2 h-4 w-4 text-slate-700 dark:text-white" />
+              {' '}
               <span className="text-slate-700 dark:text-white">{t('mdm_config')}</span>
             </Button>
           </Stack>

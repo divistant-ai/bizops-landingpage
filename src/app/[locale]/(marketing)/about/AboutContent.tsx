@@ -81,7 +81,7 @@ export default function AboutContent() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Hero Section (Cinematic) */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pb-40 dark:bg-[#0B1120]">
+      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-24 lg:pb-40 dark:bg-dark-bg">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         {/* Animated Glow Orbs */}
         <div className="pointer-events-none absolute right-0 bottom-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-600/10"></div>
@@ -93,7 +93,9 @@ export default function AboutContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-indigo-100 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase shadow-xl backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-indigo-300"
           >
-            <Rocket className="h-3 w-3" /> {t('hero_badge')}
+            <Rocket className="h-3 w-3" />
+            {' '}
+            {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -102,7 +104,9 @@ export default function AboutContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-7xl dark:text-white"
           >
-            {t('hero_title_1')} <br />
+            {t('hero_title_1')}
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-blue-400 dark:to-cyan-300">
               {t('hero_title_2')}
             </span>
@@ -127,7 +131,9 @@ export default function AboutContent() {
                 size="lg"
                 className="h-14 w-full transform rounded-full border-none bg-slate-900 px-8 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-indigo-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
               >
-                {t('cta_profile')} <ExternalLink className="ml-2 h-4 w-4" />
+                {t('cta_profile')}
+                {' '}
+                <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             </a>
           </motion.div>
@@ -176,7 +182,7 @@ export default function AboutContent() {
           </div>
 
           <div className="relative ml-4 space-y-16 border-l-2 border-slate-300 md:ml-8 md:space-y-20 md:pl-8 dark:border-slate-700">
-            {[1, 2, 3].map((idx) => (
+            {[1, 2, 3].map(idx => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: -30 }}
@@ -188,7 +194,8 @@ export default function AboutContent() {
                 {/* Marker */}
                 <div
                   className={`absolute top-0 -left-[25px] z-10 h-6 w-6 rounded-full border-4 border-white transition-colors duration-500 md:-left-[41px] dark:border-slate-950 ${idx === 1 ? 'bg-indigo-500 shadow-[0_0_0_4px_rgba(99,102,241,0.2)]' : 'bg-slate-400 group-hover:bg-indigo-400'}`}
-                ></div>
+                >
+                </div>
 
                 <div className="md:grid md:grid-cols-5 md:gap-16">
                   <div className="mb-4 pt-1 md:col-span-1 md:mb-0">
@@ -258,7 +265,9 @@ export default function AboutContent() {
                       {t(`value_${idx}_title` as any)}
                     </h3>
                     <p className="mb-6 leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      "{t(`value_${idx}_manifesto` as any)}"
+                      "
+                      {t(`value_${idx}_manifesto` as any)}
+                      "
                     </p>
                     <div className="border-t border-slate-200 pt-6 dark:border-white/10">
                       <p className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
@@ -310,7 +319,9 @@ export default function AboutContent() {
                         {member.role}
                       </p>
                       <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "{member.quote}"
+                        "
+                        {member.quote}
+                        "
                       </p>
                       <a
                         href={member.linkedin}
@@ -352,7 +363,9 @@ export default function AboutContent() {
                         {member.role}
                       </p>
                       <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
-                        "{member.quote}"
+                        "
+                        {member.quote}
+                        "
                       </p>
                       <a
                         href={member.linkedin}
@@ -439,7 +452,9 @@ export default function AboutContent() {
       <Section className="bg-slate-100 dark:bg-slate-950">
         <Container size="4xl" className="text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase backdrop-blur-sm dark:border-white/20 dark:bg-white/10 dark:text-blue-300">
-            <Sparkles className="h-3 w-3" /> {t('cta_badge')}
+            <Sparkles className="h-3 w-3" />
+            {' '}
+            {t('cta_badge')}
           </div>
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
             {t('cta_title')}
@@ -453,7 +468,9 @@ export default function AboutContent() {
                 size="lg"
                 className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                {t('cta_careers')} <ArrowRight className="ml-2 h-4 w-4" />
+                {t('cta_careers')}
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/partners">

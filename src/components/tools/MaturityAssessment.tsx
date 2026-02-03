@@ -116,7 +116,7 @@ export default function MaturityAssessment() {
 
           const answeredIds = Object.keys(parsed.answers || {});
           const lastAnsweredIndex = assessmentQuestions.findIndex(
-            (q) => !answeredIds.includes(q.id),
+            q => !answeredIds.includes(q.id),
           );
           setCurrentStep(lastAnsweredIndex !== -1 ? lastAnsweredIndex : 0);
         }
@@ -176,7 +176,7 @@ export default function MaturityAssessment() {
     setAnswers(newAnswers);
 
     if (currentStep < assessmentQuestions.length - 1) {
-      setTimeout(() => setCurrentStep((prev) => prev + 1), 250);
+      setTimeout(() => setCurrentStep(prev => prev + 1), 250);
     } else if (Object.keys(newAnswers).length >= assessmentQuestions.length) {
       finishAssessment();
     }
@@ -216,7 +216,7 @@ export default function MaturityAssessment() {
 
     Object.entries(answers).forEach(([qId, score]) => {
       totalScore += score;
-      const question = assessmentQuestions.find((q) => q.id === qId);
+      const question = assessmentQuestions.find(q => q.id === qId);
       if (question) {
         const cat = question.category as CategoryKey;
         if (categoryScores[cat]) {
@@ -228,9 +228,9 @@ export default function MaturityAssessment() {
 
     const avgScore = totalScore / assessmentQuestions.length;
 
-    const maturityLevel =
-      maturityLevels.find((m) => avgScore >= m.minScore && avgScore <= m.maxScore) ||
-      maturityLevels[0]!;
+    const maturityLevel
+      = maturityLevels.find(m => avgScore >= m.minScore && avgScore <= m.maxScore)
+        || maturityLevels[0]!;
 
     return { avgScore, categoryScores, maturityLevel };
   };
@@ -275,7 +275,9 @@ export default function MaturityAssessment() {
             </div>
 
             <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-800 lg:text-6xl dark:text-white">
-              Unlock Your <br />
+              Unlock Your
+              {' '}
+              <br />
               Digital Potential
             </h1>
 
@@ -311,7 +313,8 @@ export default function MaturityAssessment() {
               size="lg"
               className="group w-fit bg-slate-50 px-8 text-lg font-bold text-slate-900 shadow-lg hover:bg-slate-100 sm:px-10 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
             >
-              <span className="text-slate-600 dark:text-white">Mulai Assessment Sekarang</span>{' '}
+              <span className="text-slate-600 dark:text-white">Mulai Assessment Sekarang</span>
+              {' '}
               <ArrowRight className="ml-2 size-5" />
             </Button>
 
@@ -319,7 +322,9 @@ export default function MaturityAssessment() {
               onClick={() => setShowMethodology(!showMethodology)}
               className="hover:text-primary-400 mx-auto mt-6 flex items-center gap-2 text-sm text-slate-500 transition-colors lg:mx-0"
             >
-              <Info className="size-4" /> Pelajari Metodologi & Leveling
+              <Info className="size-4" />
+              {' '}
+              Pelajari Metodologi & Leveling
             </button>
           </motion.div>
 
@@ -330,63 +335,65 @@ export default function MaturityAssessment() {
             transition={{ duration: 0.8 }}
             className="relative hidden lg:block"
           >
-            {showMethodology ? (
-              <div className="custom-scrollbar relative z-10 h-full max-h-[600px] overflow-y-auto rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl">
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-white">Framework Reference</h3>
-                  <button
-                    onClick={() => setShowMethodology(false)}
-                    className="text-slate-500 hover:text-white"
-                  >
-                    Tutup
-                  </button>
-                </div>
-                <MethodologyReference />
-              </div>
-            ) : (
-              <div className="relative z-10 rounded-3xl border border-white/10 bg-slate-600 p-8 shadow-2xl backdrop-blur-xl dark:bg-slate-900/80">
-                <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
-                  <h3 className="text-xl font-bold text-white">Assessment Preview</h3>
-                  <div className="flex gap-2">
-                    <div className="size-3 rounded-full bg-red-500/50" />
-                    <div className="size-3 rounded-full bg-yellow-500/50" />
-                    <div className="size-3 rounded-full bg-green-500/50" />
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  {Object.entries(categoryLabels).map(([key, label], idx) => (
-                    <div
-                      key={key}
-                      className="group hover:border-primary-500/30 flex items-center gap-4 rounded-xl border border-white/5 bg-slate-200 p-4 transition-all dark:bg-slate-800"
-                    >
-                      <div
-                        className={`rounded-lg bg-slate-950 p-3 shadow-inner ${
-                          idx === 0
-                            ? 'text-amber-400'
-                            : idx === 1
-                              ? 'text-red-400'
-                              : idx === 2
-                                ? 'text-blue-400'
-                                : idx === 3
-                                  ? 'text-purple-400'
-                                  : 'text-green-400'
-                        }`}
+            {showMethodology
+              ? (
+                  <div className="custom-scrollbar relative z-10 h-full max-h-[600px] overflow-y-auto rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl">
+                    <div className="mb-6 flex items-center justify-between">
+                      <h3 className="text-xl font-bold text-white">Framework Reference</h3>
+                      <button
+                        onClick={() => setShowMethodology(false)}
+                        className="text-slate-500 hover:text-white"
                       >
-                        {categoryIcons[key as CategoryKey]}
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-slate-800 dark:text-slate-200">
-                          {label}
-                        </div>
-                        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white">
-                          <div className="group-hover:bg-primary-500 h-full w-2/3 bg-slate-800 opacity-30 transition-all duration-500 group-hover:opacity-100 dark:bg-slate-600" />
-                        </div>
+                        Tutup
+                      </button>
+                    </div>
+                    <MethodologyReference />
+                  </div>
+                )
+              : (
+                  <div className="relative z-10 rounded-3xl border border-white/10 bg-slate-600 p-8 shadow-2xl backdrop-blur-xl dark:bg-slate-900/80">
+                    <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
+                      <h3 className="text-xl font-bold text-white">Assessment Preview</h3>
+                      <div className="flex gap-2">
+                        <div className="size-3 rounded-full bg-red-500/50" />
+                        <div className="size-3 rounded-full bg-yellow-500/50" />
+                        <div className="size-3 rounded-full bg-green-500/50" />
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                    <div className="space-y-4">
+                      {Object.entries(categoryLabels).map(([key, label], idx) => (
+                        <div
+                          key={key}
+                          className="group hover:border-primary-500/30 flex items-center gap-4 rounded-xl border border-white/5 bg-slate-200 p-4 transition-all dark:bg-slate-800"
+                        >
+                          <div
+                            className={`rounded-lg bg-slate-950 p-3 shadow-inner ${
+                              idx === 0
+                                ? 'text-amber-400'
+                                : idx === 1
+                                  ? 'text-red-400'
+                                  : idx === 2
+                                    ? 'text-blue-400'
+                                    : idx === 3
+                                      ? 'text-purple-400'
+                                      : 'text-green-400'
+                            }`}
+                          >
+                            {categoryIcons[key as CategoryKey]}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-medium text-slate-800 dark:text-slate-200">
+                              {label}
+                            </div>
+                            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white">
+                              <div className="group-hover:bg-primary-500 h-full w-2/3 bg-slate-800 opacity-30 transition-all duration-500 group-hover:opacity-100 dark:bg-slate-600" />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
             {/* Decorative elements */}
             <div className="bg-primary-500/30 absolute -top-10 -right-10 size-32 rounded-full blur-[60px]" />
@@ -449,7 +456,7 @@ export default function MaturityAssessment() {
                     required
                     className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.name}
-                    onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                    onChange={e => setLeadForm({ ...leadForm, name: e.target.value })}
                     placeholder="Nama Anda"
                     autoFocus
                   />
@@ -463,7 +470,7 @@ export default function MaturityAssessment() {
                     required
                     className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.company}
-                    onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
+                    onChange={e => setLeadForm({ ...leadForm, company: e.target.value })}
                     placeholder="Nama PT"
                   />
                 </div>
@@ -472,7 +479,9 @@ export default function MaturityAssessment() {
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
-                    <Mail className="size-3" /> Email Bisnis
+                    <Mail className="size-3" />
+                    {' '}
+                    Email Bisnis
                   </label>
                   <input
                     type="email"
@@ -493,19 +502,23 @@ export default function MaturityAssessment() {
                   />
                   {emailError && (
                     <p className="mt-1 ml-1 flex items-center text-xs text-red-400 dark:text-red-400">
-                      <AlertCircle className="mr-1 size-3" /> {emailError}
+                      <AlertCircle className="mr-1 size-3" />
+                      {' '}
+                      {emailError}
                     </p>
                   )}
                 </div>
                 <div>
                   <label className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
-                    <Phone className="size-3" /> WhatsApp (Opsional)
+                    <Phone className="size-3" />
+                    {' '}
+                    WhatsApp (Opsional)
                   </label>
                   <input
                     type="tel"
                     className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                     value={leadForm.phone}
-                    onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                    onChange={e => setLeadForm({ ...leadForm, phone: e.target.value })}
                     placeholder="0812..."
                   />
                 </div>
@@ -519,7 +532,7 @@ export default function MaturityAssessment() {
                   type="text"
                   className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                   value={leadForm.role}
-                  onChange={(e) => setLeadForm({ ...leadForm, role: e.target.value })}
+                  onChange={e => setLeadForm({ ...leadForm, role: e.target.value })}
                   placeholder="Manager IT / Ops"
                 />
               </div>
@@ -531,7 +544,8 @@ export default function MaturityAssessment() {
                   size="lg"
                   className="bg-primary-600 shadow-primary-900/20 hover:bg-primary-500 shadow-lg"
                 >
-                  <span className="text-slate-800 dark:text-white">Lanjut ke Pertanyaan</span>{' '}
+                  <span className="text-slate-800 dark:text-white">Lanjut ke Pertanyaan</span>
+                  {' '}
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
                 <button
@@ -660,7 +674,9 @@ export default function MaturityAssessment() {
               <div>
                 <div className="mb-3 flex items-center gap-3">
                   <div className="inline-flex items-center gap-2 rounded-full border border-green-600 bg-green-100 px-3 py-1 text-xs font-bold tracking-wider text-green-700 uppercase dark:border-green-800 dark:bg-green-900/30 dark:text-green-400 print:hidden">
-                    <CheckCircle className="size-3" /> Assessment Completed
+                    <CheckCircle className="size-3" />
+                    {' '}
+                    Assessment Completed
                   </div>
                   <button
                     onClick={handleReset}
@@ -676,7 +692,9 @@ export default function MaturityAssessment() {
                   Laporan Digital Maturity
                 </h1>
                 <p className="mt-1 text-sm text-slate-600 dark:text-slate-400 print:text-gray-500">
-                  ID Dokumen: {`RPT-${new Date().getFullYear()}${Math.floor(Math.random() * 1000)}`}
+                  ID Dokumen:
+                  {' '}
+                  {`RPT-${new Date().getFullYear()}${Math.floor(Math.random() * 1000)}`}
                 </p>
               </div>
 
@@ -749,7 +767,9 @@ export default function MaturityAssessment() {
                   <div
                     className={`mb-4 rounded-full px-3 py-1 text-xs font-bold text-white ${results.maturityLevel.color} print:bg-gray-200 print:text-black`}
                   >
-                    Level {results.maturityLevel.level}
+                    Level
+                    {' '}
+                    {results.maturityLevel.level}
                   </div>
                 </div>
               </div>
@@ -760,7 +780,11 @@ export default function MaturityAssessment() {
                   Executive Summary
                 </h3>
                 <p className="mb-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 print:text-slate-700">
-                  Perusahaan Anda berada pada tahap <strong>{results.maturityLevel.title}</strong>.{' '}
+                  Perusahaan Anda berada pada tahap
+                  {' '}
+                  <strong>{results.maturityLevel.title}</strong>
+                  .
+                  {' '}
                   {results.maturityLevel.description}
                   <br />
                   <br />
@@ -771,7 +795,9 @@ export default function MaturityAssessment() {
                   onClick={() => setShowMethodology(!showMethodology)}
                   className="text-primary-400 hover:text-primary-300 flex items-center gap-2 text-xs font-medium transition-colors print:hidden"
                 >
-                  <Info className="size-3" /> Bagaimana skor ini dihitung?
+                  <Info className="size-3" />
+                  {' '}
+                  Bagaimana skor ini dihitung?
                 </button>
               </div>
             </div>
@@ -889,7 +915,9 @@ export default function MaturityAssessment() {
           {/* NEXT STEPS / CROSS-SELL SECTION */}
           <div className="mt-16 break-before-page border-t border-slate-200 pt-10 pb-24 dark:border-white/10 print:hidden">
             <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
-              <Lightbulb className="size-5 text-amber-500 dark:text-amber-400" /> Rekomendasi Tindak
+              <Lightbulb className="size-5 text-amber-500 dark:text-amber-400" />
+              {' '}
+              Rekomendasi Tindak
               Lanjut
             </h3>
 
@@ -910,7 +938,9 @@ export default function MaturityAssessment() {
                   Anda.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-blue-600 dark:text-blue-500">
-                  Cari Solusi <ChevronRight className="ml-1 size-3" />
+                  Cari Solusi
+                  {' '}
+                  <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
@@ -930,7 +960,9 @@ export default function MaturityAssessment() {
                   Anda.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-emerald-600 dark:text-emerald-500">
-                  Hitung Biaya <ChevronRight className="ml-1 size-3" />
+                  Hitung Biaya
+                  {' '}
+                  <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
 
@@ -949,7 +981,9 @@ export default function MaturityAssessment() {
                   Diskusi mendalam tentang temuan skor ini dengan konsultan senior kami.
                 </p>
                 <div className="mt-4 flex items-center text-xs font-bold text-amber-600 dark:text-amber-500">
-                  Hubungi Kami <ChevronRight className="ml-1 size-3" />
+                  Hubungi Kami
+                  {' '}
+                  <ChevronRight className="ml-1 size-3" />
                 </div>
               </Link>
             </div>
@@ -967,14 +1001,18 @@ export default function MaturityAssessment() {
                   variant="outline-white"
                   className="h-10 flex-1 items-center gap-2 border-slate-300 text-slate-700 hover:bg-slate-100 sm:flex-none dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
                 >
-                  <Download className="size-4" /> <span>Save PDF</span>
+                  <Download className="size-4" />
+                  {' '}
+                  <span>Save PDF</span>
                 </Button>
                 <Link href="/contact" className="flex-1 sm:flex-none">
                   <Button
                     variant="primary"
                     className="from-primary-600 shadow-primary-500/20 h-10 w-full items-center gap-2 border-0 bg-gradient-to-r to-indigo-600 text-white shadow-lg"
                   >
-                    <span>Consultation</span> <ArrowRight className="size-4" />
+                    <span>Consultation</span>
+                    {' '}
+                    <ArrowRight className="size-4" />
                   </Button>
                 </Link>
               </div>
@@ -1018,7 +1056,10 @@ export default function MaturityAssessment() {
         <div className="sticky top-20 z-30 -mx-4 mb-8 border-b border-slate-200 bg-white/90 p-4 backdrop-blur-md lg:hidden dark:border-white/10 dark:bg-slate-950/90">
           <div className="mb-3 flex items-center justify-between text-xs font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
             <span>Progress</span>
-            <span>{Math.round(progress)}%</span>
+            <span>
+              {Math.round(progress)}
+              %
+            </span>
           </div>
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
             <div
@@ -1081,7 +1122,10 @@ export default function MaturityAssessment() {
               <div className="mt-8 border-t border-slate-200 pt-6 dark:border-white/10">
                 <div className="mb-2 flex justify-between text-xs font-bold tracking-widest text-slate-600 uppercase dark:text-slate-500">
                   <span>Completion</span>
-                  <span>{Math.round(progress)}%</span>
+                  <span>
+                    {Math.round(progress)}
+                    %
+                  </span>
                 </div>
                 <div className="h-2 w-full rounded-full border border-slate-200 bg-slate-100 p-0.5 dark:border-white/5 dark:bg-slate-950">
                   <div
@@ -1114,7 +1158,10 @@ export default function MaturityAssessment() {
                       {categoryLabels[currentCategory]}
                     </span>
                     <span className="text-sm text-slate-600 dark:text-slate-500">
-                      {currentStep + 1} /{totalQuestions}
+                      {currentStep + 1}
+                      {' '}
+                      /
+                      {totalQuestions}
                     </span>
                   </div>
 
@@ -1166,31 +1213,39 @@ export default function MaturityAssessment() {
                 <div className="relative z-10 mt-10 flex items-center justify-between border-t border-slate-200 pt-8 dark:border-white/10">
                   <Button
                     variant="ghost"
-                    onClick={() => currentStep > 0 && setCurrentStep((prev) => prev - 1)}
+                    onClick={() => currentStep > 0 && setCurrentStep(prev => prev - 1)}
                     disabled={currentStep === 0}
                     className="text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
                   >
-                    <ArrowLeft className="mr-1 size-4" /> Previous
+                    <ArrowLeft className="mr-1 size-4" />
+                    {' '}
+                    Previous
                   </Button>
 
-                  {currentStep < totalQuestions - 1 ? (
-                    <Button
-                      variant="primary"
-                      onClick={() => setCurrentStep((prev) => prev + 1)}
-                      className="ml-auto text-slate-800 dark:text-white"
-                    >
-                      Next Question <ArrowRight className="ml-1 size-4" />
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="primary"
-                      onClick={finishAssessment}
-                      disabled={Object.keys(answers).length < totalQuestions}
-                      className="ml-auto border-0 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-900/20 hover:from-green-400 hover:to-emerald-500"
-                    >
-                      See Results <CheckCircle className="ml-1 size-4" />
-                    </Button>
-                  )}
+                  {currentStep < totalQuestions - 1
+                    ? (
+                        <Button
+                          variant="primary"
+                          onClick={() => setCurrentStep(prev => prev + 1)}
+                          className="ml-auto text-slate-800 dark:text-white"
+                        >
+                          Next Question
+                          {' '}
+                          <ArrowRight className="ml-1 size-4" />
+                        </Button>
+                      )
+                    : (
+                        <Button
+                          variant="primary"
+                          onClick={finishAssessment}
+                          disabled={Object.keys(answers).length < totalQuestions}
+                          className="ml-auto border-0 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-900/20 hover:from-green-400 hover:to-emerald-500"
+                        >
+                          See Results
+                          {' '}
+                          <CheckCircle className="ml-1 size-4" />
+                        </Button>
+                      )}
                 </div>
               </motion.div>
             </AnimatePresence>

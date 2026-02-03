@@ -38,20 +38,20 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     const salesPhone = '622139702834'; // Sales Number
 
     // Construct a professional WhatsApp message
-    const text =
-      `*New Demo Request*\n\n` +
-      `${t('whatsapp_greeting')}\n\n` +
-      `*${t('whatsapp_contact_details')}*\n` +
-      `${t('whatsapp_name')}: ${name}\n` +
-      `${t('whatsapp_job_title')}: ${jobTitle}\n` +
-      `${t('whatsapp_company')}: ${company}\n` +
-      `${t('whatsapp_email')}: ${email}\n` +
-      `${t('whatsapp_phone')}: ${phoneInput}\n\n` +
-      `*${t('whatsapp_business_profile')}*\n` +
-      `${t('whatsapp_size')}: ${employees} ${t('whatsapp_employees')}\n` +
-      `${t('whatsapp_interest')}: ${interest}\n\n` +
-      `*${t('whatsapp_notes')}*\n${message || '-'}\n\n` +
-      `${t('whatsapp_closing')}`;
+    const text
+      = `*New Demo Request*\n\n`
+        + `${t('whatsapp_greeting')}\n\n`
+        + `*${t('whatsapp_contact_details')}*\n`
+        + `${t('whatsapp_name')}: ${name}\n`
+        + `${t('whatsapp_job_title')}: ${jobTitle}\n`
+        + `${t('whatsapp_company')}: ${company}\n`
+        + `${t('whatsapp_email')}: ${email}\n`
+        + `${t('whatsapp_phone')}: ${phoneInput}\n\n`
+        + `*${t('whatsapp_business_profile')}*\n`
+        + `${t('whatsapp_size')}: ${employees} ${t('whatsapp_employees')}\n`
+      + `${t('whatsapp_interest')}: ${interest}\n\n`
+      + `*${t('whatsapp_notes')}*\n${message || '-'}\n\n`
+      + `${t('whatsapp_closing')}`;
 
     const url = `https://wa.me/${salesPhone}?text=${encodeURIComponent(text)}`;
 
@@ -95,7 +95,9 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <div className="mb-8">
                   <span className="bg-primary/10 text-primary mb-4 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold tracking-wider uppercase">
-                    <Video className="h-3 w-3" /> {t('badge')}
+                    <Video className="h-3 w-3" />
+                    {' '}
+                    {t('badge')}
                   </span>
                   <h2 className="mb-2 text-2xl leading-tight font-bold text-slate-900 dark:text-slate-100">
                     {t('title')}
@@ -148,7 +150,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
               <div className="mt-8 border-t border-slate-200 pt-6 dark:border-slate-700">
                 <div className="mb-3 flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
+                  {[1, 2, 3, 4].map(i => (
                     <div
                       key={i}
                       className="h-8 w-8 rounded-full border-2 border-white bg-slate-100 dark:border-slate-900 dark:bg-slate-700"
@@ -274,13 +276,17 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     disabled={isLoading}
                     className="h-12 border border-slate-300 dark:border-slate-600"
                   >
-                    {isLoading ? (
-                      t('button_loading')
-                    ) : (
-                      <span className="flex items-center gap-2 text-slate-700 dark:text-white">
-                        <Send className="h-5 w-5" /> {t('button_submit')}
-                      </span>
-                    )}
+                    {isLoading
+                      ? (
+                          t('button_loading')
+                        )
+                      : (
+                          <span className="flex items-center gap-2 text-slate-700 dark:text-white">
+                            <Send className="h-5 w-5" />
+                            {' '}
+                            {t('button_submit')}
+                          </span>
+                        )}
                   </Button>
                   <p className="mt-3 text-center text-[10px] text-slate-600 dark:text-slate-400">
                     {t('privacy_notice')}

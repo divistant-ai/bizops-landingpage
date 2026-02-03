@@ -6,7 +6,7 @@ export type LegalDoc = {
 };
 
 export const legalContent: Record<string, LegalDoc> = {
-  privacy: {
+  'privacy': {
     title: 'i18n:privacy.title',
     subtitle: 'i18n:privacy.subtitle',
     updated: 'i18n:privacy.updated',
@@ -18,7 +18,7 @@ export const legalContent: Record<string, LegalDoc> = {
     updated: '2024-01-01',
     content: 'Content rendered via Component',
   },
-  dpa: {
+  'dpa': {
     title: 'Data Processing Agreement',
     subtitle: 'Perjanjian pemrosesan data untuk pelanggan Enterprise.',
     updated: '2024-01-01',
@@ -72,7 +72,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>BizOps tidak membagikan data operasional mentah Anda kepada penyedia model AI pihak ketiga (seperti OpenAI atau Anthropic) untuk tujuan pelatihan model dasar mereka (Zero Data Retention policy pada API).</p>
     `,
   },
-  terms: {
+  'terms': {
     title: 'Terms of Service',
     subtitle: 'Syarat dan ketentuan penggunaan platform BizOps.',
     updated: '2023-12-01',
@@ -102,7 +102,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Kami berhak menangguhkan atau menghentikan akses Anda jika terjadi pelanggaran terhadap ketentuan ini. Anda dapat membatalkan langganan kapan saja melalui dashboard admin, efektif pada akhir periode penagihan berjalan.</p>
     `,
   },
-  sla: {
+  'sla': {
     title: 'Service Level Agreement (SLA)',
     subtitle: 'Jaminan ketersediaan layanan dan dukungan teknis.',
     updated: '2024-01-01',
@@ -131,7 +131,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Kami melakukan pemeliharaan rutin pada akhir pekan di luar jam kerja bisnis standar (WIB). Pemberitahuan akan dikirimkan minimal 48 jam sebelum pemeliharaan yang berpotensi menyebabkan downtime.</p>
     `,
   },
-  cookies: {
+  'cookies': {
     title: 'Cookie Preferences',
     subtitle: 'Atur bagaimana kami menggunakan cookie pada browser Anda.',
     updated: '2024-01-01',
@@ -149,7 +149,7 @@ export const legalContent: Record<string, LegalDoc> = {
       <p>Anda dapat mengubah preferensi cookie Anda kapan saja menggunakan panel kendali di bawah ini.</p>
     `,
   },
-  accessibility: {
+  'accessibility': {
     title: 'Accessibility Statement',
     subtitle: 'Komitmen kami untuk membuat BizOps dapat diakses oleh semua orang.',
     updated: '2024-03-01',

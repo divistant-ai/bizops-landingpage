@@ -245,13 +245,15 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">{t('problem_1')}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-sm text-red-600 dark:text-red-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">{t('problem_2')}</span>
                       </li>
                     </ul>
@@ -277,13 +279,15 @@ export default function SlideContent() {
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">{t('problem_3')}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-sm text-amber-600 dark:text-amber-500">
                           ✕
-                        </span>{' '}
+                        </span>
+                        {' '}
                         <span className="text-slate-800 dark:text-white">{t('problem_4')}</span>
                       </li>
                     </ul>
@@ -384,23 +388,27 @@ export default function SlideContent() {
                     </h3>
                     <ul className="space-y-4 text-lg text-blue-900 dark:text-blue-100">
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_1')}
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_2')}
                         </span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">Mobile Native</span>
                       </li>
                       <li className="flex items-center gap-4">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('spot_2_point_3')}
                         </span>
@@ -680,7 +688,11 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2.5rem] border border-slate-200 bg-slate-100 p-10 text-left dark:border-white/10 dark:bg-white/5">
                     <p className="mb-8 text-xl leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">"{t('trust_quote_1')}"</span>
+                      <span className="text-slate-800 dark:text-white">
+                        "
+                        {t('trust_quote_1')}
+                        "
+                      </span>
                     </p>
                     <div className="flex items-center gap-6">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
@@ -704,7 +716,11 @@ export default function SlideContent() {
                 <MotionItem>
                   <div className="rounded-[2.5rem] border border-slate-200 bg-slate-100 p-10 text-left dark:border-white/10 dark:bg-white/5">
                     <p className="mb-8 text-xl leading-relaxed text-slate-700 italic dark:text-slate-300">
-                      <span className="text-slate-800 dark:text-white">"{t('trust_quote_2')}"</span>
+                      <span className="text-slate-800 dark:text-white">
+                        "
+                        {t('trust_quote_2')}
+                        "
+                      </span>
                     </p>
                     <div className="flex items-center gap-6">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-xl font-bold text-white">
@@ -769,13 +785,15 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_starter_feature_1')}
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_starter_feature_2')}
                         </span>
@@ -809,7 +827,8 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-4 text-lg text-slate-900 dark:text-white">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="font-bold">
                           <span className="text-slate-800 dark:text-white">
                             {t('pricing_business_feature_1')}
@@ -817,13 +836,15 @@ export default function SlideContent() {
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_business_feature_2')}
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />{' '}
+                        <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_business_feature_3')}
                         </span>
@@ -851,13 +872,15 @@ export default function SlideContent() {
                     </p>
                     <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_enterprise_feature_1')}
                         </span>
                       </li>
                       <li className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-500" />{' '}
+                        <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                        {' '}
                         <span className="text-slate-800 dark:text-white">
                           {t('pricing_enterprise_feature_2')}
                         </span>
@@ -882,7 +905,9 @@ export default function SlideContent() {
             <div className="max-w-5xl px-4 text-center">
               <MotionItem>
                 <h2 className="mb-12 text-6xl leading-tight font-black tracking-tighter text-slate-900 md:text-8xl dark:text-white">
-                  <span className="text-slate-800 dark:text-white">{t('cta_title_1')}</span> <br />
+                  <span className="text-slate-800 dark:text-white">{t('cta_title_1')}</span>
+                  {' '}
+                  <br />
                   <span className="text-slate-800 dark:text-white">{t('cta_title_2')}</span>
                 </h2>
               </MotionItem>

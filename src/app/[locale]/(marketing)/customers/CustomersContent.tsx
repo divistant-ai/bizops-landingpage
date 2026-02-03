@@ -15,7 +15,7 @@ import { customerStories } from '@/data/companyContent';
 export default function CustomersContent() {
   const t = useTranslations('Customers');
   const locale = useLocale() as 'en' | 'id';
-  const logos = customerStories.map((s) => s.client);
+  const logos = customerStories.map(s => s.client);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30 dark:bg-slate-950">

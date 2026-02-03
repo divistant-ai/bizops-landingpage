@@ -3,7 +3,7 @@
 import { MessageSquare, ThumbsUp, X } from 'lucide-react';
 
 import React, { useEffect, useState } from 'react';
-import { logger } from '@/libs/utils/logger';
+import { logger } from '@/utils/logger';
 import Button from './ui/Button';
 
 const NPSModal: React.FC = () => {
@@ -62,7 +62,7 @@ const NPSModal: React.FC = () => {
   }
 
   return (
-    <div className="animate-fade-in-up fixed bottom-4 left-4 z-[60] w-full max-w-sm">
+    <div className="animate-fade-in-up fixed bottom-4 left-4 z-60 w-full max-w-sm">
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl ring-1 ring-black/5 dark:border-slate-800 dark:bg-slate-900">
 
         {/* Header with Close */}

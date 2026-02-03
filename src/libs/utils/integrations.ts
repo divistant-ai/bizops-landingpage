@@ -6,7 +6,7 @@
  */
 
 import { getEnvConfig } from './env';
-import { logger } from './logger';
+import { logger } from '@/utils/logger';
 
 // Type declarations for third-party integrations
 declare global {

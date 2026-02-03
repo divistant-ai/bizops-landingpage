@@ -79,28 +79,28 @@ export default function BlogContent() {
   };
 
   // Extract unique categories and counts
-  const categories = ['All', ...Array.from(new Set(blogPosts.map((p) => p.category))).sort()];
+  const categories = ['All', ...Array.from(new Set(blogPosts.map(p => p.category))).sort()];
 
   const getCategoryCount = (cat: string) => {
     if (cat === 'All') {
       return blogPosts.length;
     }
-    return blogPosts.filter((p) => p.category === cat).length;
+    return blogPosts.filter(p => p.category === cat).length;
   };
 
   // Filter Logic
   const filteredPosts = blogPosts.filter((post) => {
-    const matchSearch =
-      post.title[locale].toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.summary[locale].toLowerCase().includes(searchQuery.toLowerCase());
+    const matchSearch
+      = post.title[locale].toLowerCase().includes(searchQuery.toLowerCase())
+        || post.summary[locale].toLowerCase().includes(searchQuery.toLowerCase());
     const matchCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchSearch && matchCategory;
   });
 
   // If filtering, show all matches. If not filtering (All), exclude featured from grid to avoid duplicate
-  const gridPosts =
-    selectedCategory === 'All' && !searchQuery && featuredPost
-      ? filteredPosts.filter((p) => p.slug !== featuredPost.slug)
+  const gridPosts
+    = selectedCategory === 'All' && !searchQuery && featuredPost
+      ? filteredPosts.filter(p => p.slug !== featuredPost.slug)
       : filteredPosts;
 
   // Pagination Logic
@@ -121,7 +121,8 @@ export default function BlogContent() {
             className="mb-12 text-center"
           >
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white">
-              {t('hero_title')}{' '}
+              {t('hero_title')}
+              {' '}
               <span className="text-primary-600 dark:text-primary-400">
                 {t('hero_title_highlight')}
               </span>
@@ -144,7 +145,7 @@ export default function BlogContent() {
                 type="text"
                 placeholder={t('search_placeholder')}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="focus:ring-primary-500 w-full rounded-2xl border border-slate-300 bg-white py-4 pr-12 pl-12 text-slate-900 placeholder-slate-400 transition-all focus:ring-2 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-slate-500"
               />
               {searchQuery && (
@@ -165,7 +166,7 @@ export default function BlogContent() {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap justify-center gap-3"
           >
-            {categories.map((cat) => (
+            {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -175,7 +176,13 @@ export default function BlogContent() {
                     : 'hover:border-primary-400 border border-slate-300 bg-white text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300'
                 }`}
               >
-                {cat} <span className="text-xs opacity-70">({getCategoryCount(cat)})</span>
+                {cat}
+                {' '}
+                <span className="text-xs opacity-70">
+                  (
+                  {getCategoryCount(cat)}
+                  )
+                </span>
               </button>
             ))}
           </motion.div>
@@ -259,7 +266,7 @@ export default function BlogContent() {
                 exit={{ opacity: 0, y: -20 }}
                 className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
               >
-                {paginatedPosts.map((post) => (
+                {paginatedPosts.map(post => (
                   <Link key={post.slug} href={`/${locale}/blog/${post.slug}`}>
                     <SpotlightCard className="h-full rounded-2xl">
                       <article className="flex h-full flex-col p-6">

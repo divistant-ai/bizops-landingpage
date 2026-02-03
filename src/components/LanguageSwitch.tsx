@@ -55,7 +55,7 @@ export const LanguageSwitch: React.FC = () => {
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute right-0 z-[110] mt-2 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
-          {languages.map((lang) => (
+          {languages.map(lang => (
             <button
               key={lang.code}
               type="button"

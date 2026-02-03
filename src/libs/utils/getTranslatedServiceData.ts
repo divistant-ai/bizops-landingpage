@@ -20,13 +20,13 @@ export async function getTranslatedServiceData(
   const t = await getTranslations({ locale, namespace: 'ServicesDetail' });
 
   // Check if translations exist for this service
-  const hasTranslations =
-    slug === 'consulting' ||
-    slug === 'implementation' ||
-    slug === 'custom-dev' ||
-    slug === 'managed-business-services' ||
-    slug === 'training' ||
-    slug === 'support';
+  const hasTranslations
+    = slug === 'consulting'
+      || slug === 'implementation'
+      || slug === 'custom-dev'
+      || slug === 'managed-business-services'
+      || slug === 'training'
+      || slug === 'support';
 
   if (!hasTranslations) {
     return baseData;

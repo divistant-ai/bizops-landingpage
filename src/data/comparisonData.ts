@@ -89,13 +89,13 @@ export const comparisonsData: Record<string, ComparisonData> = {
           feature: 'Pricing Model',
           them: 'Resource Based / Flat.',
           us: 'Predictable Cost.',
-          impact: "Costs don't explode as users increase.",
+          impact: 'Costs don\'t explode as users increase.',
         },
         {
           feature: 'User Experience',
           them: 'Modern Web Interface.',
           us: 'High Adoption Rate.',
-          impact: "Teams enjoy using the system because it's easy (like social media).",
+          impact: 'Teams enjoy using the system because it\'s easy (like social media).',
         },
       ],
       id: [
@@ -502,7 +502,7 @@ export const comparisonsData: Record<string, ComparisonData> = {
     },
     verdict: {
       en: 'Powerhouse for giant corporations, but "Overkill" (too complex & expensive) for companies needing agility.',
-      id: "Powerhouse untuk korporasi raksasa, namun 'Overkill' (terlalu rumit & mahal) untuk perusahaan yang butuh kelincahan.",
+      id: 'Powerhouse untuk korporasi raksasa, namun \'Overkill\' (terlalu rumit & mahal) untuk perusahaan yang butuh kelincahan.',
     },
     bottleneckScore: 45,
     bottleneckLabel: {

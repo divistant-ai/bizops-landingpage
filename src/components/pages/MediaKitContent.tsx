@@ -37,7 +37,7 @@ export default function MediaKitContent() {
   return (
     <div className="bg-slate-50 font-sans transition-colors duration-300 dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pb-32 dark:bg-[#0B1120] dark:text-white">
+      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pb-32 dark:bg-dark-bg dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-indigo-600/20 blur-[120px]"></div>
 
@@ -48,7 +48,9 @@ export default function MediaKitContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-1.5 text-xs font-bold tracking-wider text-indigo-700 uppercase backdrop-blur-md dark:bg-slate-800/50 dark:text-indigo-300"
           >
-            <Download className="h-3 w-3" /> {t('hero_badge')}
+            <Download className="h-3 w-3" />
+            {' '}
+            {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -57,7 +59,9 @@ export default function MediaKitContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
           >
-            {t('hero_title_1')} <br />
+            {t('hero_title_1')}
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-300">
               {t('hero_title_2')}
             </span>
@@ -82,14 +86,18 @@ export default function MediaKitContent() {
               size="lg"
               className="border-none bg-slate-900 font-bold text-white shadow-xl hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
             >
-              {t('hero_download_all')} <Download className="ml-2 h-4 w-4" />
+              {t('hero_download_all')}
+              {' '}
+              <Download className="ml-2 h-4 w-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-slate-300 text-slate-900 hover:bg-slate-200 dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
             >
-              {t('hero_brand_guidelines')} <ExternalLink className="ml-2 h-4 w-4" />
+              {t('hero_brand_guidelines')}
+              {' '}
+              <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         </Container>
@@ -265,11 +273,13 @@ export default function MediaKitContent() {
                     onClick={() => copyToClipboard('#2563EB', 'c1')}
                     className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
-                    {copied === 'c1' ? (
-                      <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                    ) : (
-                      <Copy className="h-3 w-3" />
-                    )}
+                    {copied === 'c1'
+                      ? (
+                          <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                        )
+                      : (
+                          <Copy className="h-3 w-3" />
+                        )}
                     {copied !== 'c1' && '#2563EB'}
                   </button>
                 </div>
@@ -297,11 +307,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#2563EB', 'c1')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c1' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c1'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c1' && '#2563EB'}
                 </button>
               </div>
@@ -326,11 +338,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#0F172A', 'c2')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c2' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c2'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c2' && '#0F172A'}
                 </button>
               </div>
@@ -355,11 +369,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#10B981', 'c3')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c3' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c3'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c3' && '#10B981'}
                 </button>
               </div>
@@ -384,11 +400,13 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard('#F59E0B', 'c4')}
                   className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
-                  {copied === 'c4' ? (
-                    <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
+                  {copied === 'c4'
+                    ? (
+                        <Check className="h-3 w-3 text-green-500 dark:text-green-400" />
+                      )
+                    : (
+                        <Copy className="h-3 w-3" />
+                      )}
                   {copied !== 'c4' && '#F59E0B'}
                 </button>
               </div>
@@ -516,19 +534,27 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard(t('boilerplate_short_text'), 'short')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'short' ? (
-                    <>
-                      <Check className="h-4 w-4" /> {t('copied')}
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4" /> {t('copy_text')}
-                    </>
-                  )}
+                  {copied === 'short'
+                    ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          {' '}
+                          {t('copied')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          {' '}
+                          {t('copy_text')}
+                        </>
+                      )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "{t('boilerplate_short_text')}"
+                "
+                {t('boilerplate_short_text')}
+                "
               </div>
             </div>
 
@@ -548,19 +574,27 @@ export default function MediaKitContent() {
                   onClick={() => copyToClipboard(t('boilerplate_standard_text'), 'standard')}
                   className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:hover:bg-primary-900/20 flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition-colors"
                 >
-                  {copied === 'standard' ? (
-                    <>
-                      <Check className="h-4 w-4" /> {t('copied')}
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4" /> {t('copy_text')}
-                    </>
-                  )}
+                  {copied === 'standard'
+                    ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          {' '}
+                          {t('copied')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          {' '}
+                          {t('copy_text')}
+                        </>
+                      )}
                 </button>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-sm leading-relaxed text-slate-700 italic dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300">
-                "{t('boilerplate_standard_text')}"
+                "
+                {t('boilerplate_standard_text')}
+                "
               </div>
             </div>
           </Grid>
@@ -591,7 +625,9 @@ export default function MediaKitContent() {
                   href="mailto:pr@divistant.com"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-bold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                 >
-                  <Mail className="h-4 w-4" /> {t('press_contact_button')}
+                  <Mail className="h-4 w-4" />
+                  {' '}
+                  {t('press_contact_button')}
                 </a>
                 <a
                   href="https://wa.me/6281234567890"
@@ -624,10 +660,13 @@ export default function MediaKitContent() {
                 className="text-sm text-slate-600 dark:text-slate-300"
               >
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" /> pr@divistant.com
+                  <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  {' '}
+                  pr@divistant.com
                 </div>
                 <div className="flex items-center gap-3">
-                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />{' '}
+                  <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  {' '}
                   {t('press_contact_location')}
                 </div>
               </Stack>

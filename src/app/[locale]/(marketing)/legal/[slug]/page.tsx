@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(legalContent).map((slug) => ({
+  return Object.keys(legalContent).map(slug => ({
     slug,
   }));
 }

@@ -9,7 +9,7 @@ import { generateMetadata as genMeta } from '@/libs/utils/metadata';
 import { transformContent } from '@/libs/utils/transformContent';
 
 export function generateStaticParams() {
-  return Object.keys(rolesData).map((slug) => ({
+  return Object.keys(rolesData).map(slug => ({
     slug,
   }));
 }

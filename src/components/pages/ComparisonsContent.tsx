@@ -74,7 +74,9 @@ export default function ComparisonsContent() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-300/50 bg-slate-200/50 px-4 py-1.5 text-xs font-bold tracking-wider text-slate-600 uppercase backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-400"
           >
-            <LayoutGrid className="h-4 w-4" /> System Architecture Comparison
+            <LayoutGrid className="h-4 w-4" />
+            {' '}
+            System Architecture Comparison
           </motion.div>
           <Typography
             variant="h1"
@@ -82,11 +84,15 @@ export default function ComparisonsContent() {
             className="leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
           >
             Upgrade Your
-            <br /> Business Engine.
+            <br />
+            {' '}
+            Business Engine.
           </Typography>
           <Typography variant="body" className="leading-relaxed text-slate-600 dark:text-slate-400">
-            Bandingkan arsitektur sistem Anda saat ini dengan{' '}
-            <span className="font-semibold text-slate-900 dark:text-white">BizOps Evolution</span>.
+            Bandingkan arsitektur sistem Anda saat ini dengan
+            {' '}
+            <span className="font-semibold text-slate-900 dark:text-white">BizOps Evolution</span>
+            .
             Lihat perbedaannya secara radikal.
           </Typography>
         </Container>
@@ -189,7 +195,8 @@ export default function ComparisonsContent() {
                 <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-2xl md:p-12 dark:border-slate-800 dark:bg-slate-900">
                   <div
                     className={`pointer-events-none absolute top-0 right-0 -mt-32 -mr-32 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px] ${getScoreBg(selectedData!.bottleneckScore)}`}
-                  ></div>
+                  >
+                  </div>
 
                   <div className="relative z-10">
                     <Stack direction="vertical" gap={10} className="mb-12 items-start">
@@ -212,7 +219,9 @@ export default function ComparisonsContent() {
                           as="h2"
                           className="leading-tight font-extrabold text-slate-900 dark:text-white"
                         >
-                          "{selectedData!.verdict[locale]}"
+                          "
+                          {selectedData!.verdict[locale]}
+                          "
                         </Typography>
                         <Typography
                           variant="body"
@@ -289,7 +298,9 @@ export default function ComparisonsContent() {
                           className="group rounded-2xl border border-transparent bg-slate-50 p-4 transition-colors hover:border-slate-200 hover:bg-white dark:bg-slate-800/50 dark:hover:border-slate-700 dark:hover:bg-slate-800"
                         >
                           <div className="group-hover:text-primary-500 mb-2 flex items-center gap-2 text-xs font-bold text-slate-400 uppercase transition-colors dark:text-slate-300">
-                            <metric.icon className="h-3.5 w-3.5" /> {metric.label}
+                            <metric.icon className="h-3.5 w-3.5" />
+                            {' '}
+                            {metric.label}
                           </div>
                           <div className="text-sm font-bold text-slate-900 dark:text-white">
                             {metric.value}
@@ -308,7 +319,9 @@ export default function ComparisonsContent() {
                       as="h3"
                       className="font-bold text-slate-900 dark:text-white"
                     >
-                      <LayoutGrid className="text-primary-500 inline h-5 w-5" /> Detail Perbandingan
+                      <LayoutGrid className="text-primary-500 inline h-5 w-5" />
+                      {' '}
+                      Detail Perbandingan
                     </Typography>
                   </div>
 
@@ -339,11 +352,13 @@ export default function ComparisonsContent() {
                             <div
                               className={`mb-1 flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase ${isBizOps ? 'text-blue-500' : 'text-red-500 dark:text-red-400'}`}
                             >
-                              {isBizOps ? (
-                                <Info className="h-3 w-3" />
-                              ) : (
-                                <XCircle className="h-3 w-3" />
-                              )}
+                              {isBizOps
+                                ? (
+                                    <Info className="h-3 w-3" />
+                                  )
+                                : (
+                                    <XCircle className="h-3 w-3" />
+                                  )}
                               {isBizOps ? 'Standard Capability' : 'Current Limit'}
                             </div>
                             <Typography
@@ -364,7 +379,8 @@ export default function ComparisonsContent() {
                         <Grid cols={2} gap={6} className="md:col-span-7">
                           <div className="relative rounded-xl border border-emerald-100 bg-emerald-50 p-5 dark:border-emerald-900/20 dark:bg-emerald-900/10">
                             <div className="mb-1 flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
-                              <CheckCircle2 className="h-3 w-3" />{' '}
+                              <CheckCircle2 className="h-3 w-3" />
+                              {' '}
                               {isBizOps ? 'BizOps Advantage' : 'BizOps Solution'}
                             </div>
                             <Typography
@@ -388,7 +404,9 @@ export default function ComparisonsContent() {
                                   variant="small"
                                   className="leading-relaxed text-slate-600 dark:text-slate-400"
                                 >
-                                  "{point.impact}"
+                                  "
+                                  {point.impact}
+                                  "
                                 </Typography>
                               </div>
                             </div>
@@ -407,7 +425,8 @@ export default function ComparisonsContent() {
                     <Grid cols={2} gap={12} className="relative z-10 items-center">
                       <div>
                         <Typography variant="h3" as="h3" className="font-bold">
-                          <AlertTriangle className="mr-2 inline h-6 w-6 text-amber-500" />{' '}
+                          <AlertTriangle className="mr-2 inline h-6 w-6 text-amber-500" />
+                          {' '}
                           <span className="text-white">Why Upgrade Now?</span>
                         </Typography>
                         <Typography variant="body" className="leading-relaxed text-slate-400">
@@ -420,7 +439,9 @@ export default function ComparisonsContent() {
                             className="mt-4 border-none bg-white font-bold text-slate-900 shadow-lg shadow-white/10 hover:bg-slate-200"
                             size="lg"
                           >
-                            <Calculator className="mr-2 h-4 w-4" /> Hitung Nominal Kerugian
+                            <Calculator className="mr-2 h-4 w-4" />
+                            {' '}
+                            Hitung Nominal Kerugian
                           </Button>
                         </Link>
                       </div>

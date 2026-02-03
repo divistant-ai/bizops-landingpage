@@ -325,17 +325,19 @@ export default function OEECalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung OEE"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      {t('calculating')}
-                    </>
-                  ) : (
-                    <>
-                      <Gauge className="mr-2 h-5 w-5" />
-                      {t('calculate_button')}
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          {t('calculating')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <Gauge className="mr-2 h-5 w-5" />
+                          {t('calculate_button')}
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -348,16 +350,28 @@ export default function OEECalculator() {
                   <p>{t('info_formula')}</p>
                   <ul className="mt-2 space-y-0.5">
                     <li>
-                      •<strong>{t('info_world_class')}</strong> ≥ 85%
+                      •
+                      <strong>{t('info_world_class')}</strong>
+                      {' '}
+                      ≥ 85%
                     </li>
                     <li>
-                      •<strong>{t('info_good')}</strong> 60-84%
+                      •
+                      <strong>{t('info_good')}</strong>
+                      {' '}
+                      60-84%
                     </li>
                     <li>
-                      •<strong>{t('info_fair')}</strong> 40-59%
+                      •
+                      <strong>{t('info_fair')}</strong>
+                      {' '}
+                      40-59%
                     </li>
                     <li>
-                      •<strong>{t('info_poor')}</strong> &lt; 40%
+                      •
+                      <strong>{t('info_poor')}</strong>
+                      {' '}
+                      &lt; 40%
                     </li>
                   </ul>
                 </div>
@@ -366,129 +380,146 @@ export default function OEECalculator() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan OEE"
-                className="space-y-6"
-              >
-                <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
-                  <h3 className="mb-4 text-lg font-semibold">{t('oee_score')}</h3>
-                  <div className="mb-4 text-center">
-                    <p className="text-6xl font-bold">{result.oee.toFixed(1)}%</p>
-                    <p className="mt-2 text-xl font-semibold">{result.classification}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
-                    <div>
-                      <p className="opacity-80">{t('availability')}</p>
-                      <p className="text-lg font-bold">{result.availability.toFixed(1)}%</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">{t('performance')}</p>
-                      <p className="text-lg font-bold">{result.performance.toFixed(1)}%</p>
-                    </div>
-                    <div>
-                      <p className="opacity-80">{t('quality')}</p>
-                      <p className="text-lg font-bold">{result.quality.toFixed(1)}%</p>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                    <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                    {t('losses_title')}
-                  </h3>
-
-                  <div className="space-y-3">
-                    <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('downtime_loss')}
-                        </span>
-                        <span className="text-lg font-bold text-red-600 dark:text-red-400">
-                          {result.lossesBreakdown.unplannedDowntime.toFixed(1)}%
-                        </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan OEE"
+                    className="space-y-6"
+                  >
+                    <Card className={`bg-gradient-to-br ${getOEEBgColor(result.oee)} p-6 text-white`}>
+                      <h3 className="mb-4 text-lg font-semibold">{t('oee_score')}</h3>
+                      <div className="mb-4 text-center">
+                        <p className="text-6xl font-bold">
+                          {result.oee.toFixed(1)}
+                          %
+                        </p>
+                        <p className="mt-2 text-xl font-semibold">{result.classification}</p>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        {t('downtime_loss_desc', { minutes: downtime })}
-                      </p>
-                    </div>
-
-                    <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('speed_loss')}
-                        </span>
-                        <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
-                          {result.lossesBreakdown.speedLoss.toFixed(1)}%
-                        </span>
+                      <div className="grid grid-cols-3 gap-3 border-t border-white/20 pt-4 text-center text-sm">
+                        <div>
+                          <p className="opacity-80">{t('availability')}</p>
+                          <p className="text-lg font-bold">
+                            {result.availability.toFixed(1)}
+                            %
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">{t('performance')}</p>
+                          <p className="text-lg font-bold">
+                            {result.performance.toFixed(1)}
+                            %
+                          </p>
+                        </div>
+                        <div>
+                          <p className="opacity-80">{t('quality')}</p>
+                          <p className="text-lg font-bold">
+                            {result.quality.toFixed(1)}
+                            %
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        {t('speed_loss_desc')}
-                      </p>
-                    </div>
+                    </Card>
 
-                    <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('quality_loss')}
-                        </span>
-                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
-                          {result.lossesBreakdown.qualityLoss.toFixed(1)}%
-                        </span>
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                        <AlertCircle className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                        {t('losses_title')}
+                      </h3>
+
+                      <div className="space-y-3">
+                        <div className="rounded-lg bg-red-50 p-4 dark:bg-red-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('downtime_loss')}
+                            </span>
+                            <span className="text-lg font-bold text-red-600 dark:text-red-400">
+                              {result.lossesBreakdown.unplannedDowntime.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            {t('downtime_loss_desc', { minutes: downtime })}
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('speed_loss')}
+                            </span>
+                            <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                              {result.lossesBreakdown.speedLoss.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            {t('speed_loss_desc')}
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-orange-50 p-4 dark:bg-orange-950/20">
+                          <div className="mb-1 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('quality_loss')}
+                            </span>
+                            <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                              {result.lossesBreakdown.qualityLoss.toFixed(1)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            {t('quality_loss_desc', {
+                              units: Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits),
+                            })}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        {t('quality_loss_desc', {
-                          units: Number.parseFloat(totalUnits) - Number.parseFloat(goodUnits),
-                        })}
-                      </p>
-                    </div>
+
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
+
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                      <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
+                        {t('recommendations_title')}
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
+                        {result.availability < 90 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-red-600 dark:text-red-400">•</span>
+                            <span>{t('rec_reduce_downtime')}</span>
+                          </li>
+                        )}
+                        {result.performance < 95 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-600 dark:text-yellow-400">•</span>
+                            <span>{t('rec_optimize_speed')}</span>
+                          </li>
+                        )}
+                        {result.quality < 99 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-orange-600 dark:text-orange-400">•</span>
+                            <span>{t('rec_improve_quality')}</span>
+                          </li>
+                        )}
+                      </ul>
+                    </Card>
                   </div>
-
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
-
-                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                  <h4 className="mb-3 font-semibold text-gray-900 dark:text-white">
-                    {t('recommendations_title')}
-                  </h4>
-                  <ul className="space-y-2 text-sm text-gray-700 dark:text-slate-300">
-                    {result.availability < 90 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-600 dark:text-red-400">•</span>
-                        <span>{t('rec_reduce_downtime')}</span>
-                      </li>
-                    )}
-                    {result.performance < 95 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-yellow-600 dark:text-yellow-400">•</span>
-                        <span>{t('rec_optimize_speed')}</span>
-                      </li>
-                    )}
-                    {result.quality < 99 && (
-                      <li className="flex items-start gap-2">
-                        <span className="text-orange-600 dark:text-orange-400">•</span>
-                        <span>{t('rec_improve_quality')}</span>
-                      </li>
-                    )}
-                  </ul>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Factory className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

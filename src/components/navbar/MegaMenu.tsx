@@ -371,7 +371,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
       <div
         className={`fixed inset-0 top-[70px] z-90 transition-all duration-200 lg:top-[80px] ${visibilityClasses}`}
         onClick={handleBackdropClick}
-        onKeyDown={(e) => e.key === 'Escape' && onClose?.()}
+        onKeyDown={e => e.key === 'Escape' && onClose?.()}
         role="button"
         tabIndex={-1}
         aria-label="Close menu"
@@ -394,7 +394,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                 {type === 'resources' && t.resources.sectionTitle}
                 {type === 'company' && t.company.sectionTitle}
               </div>
-              {tabs.map((tab) => (
+              {tabs.map(tab => (
                 <button
                   key={tab.id}
                   type="button"
@@ -478,9 +478,9 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
 
                   <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                     {activeContent.items.map((item: any, idx: number) => {
-                      const bgColor =
-                        item.bg ||
-                        'bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm';
+                      const bgColor
+                        = item.bg
+                          || 'bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm';
                       const iconColor = item.color || 'text-slate-600 dark:text-slate-400';
 
                       // Get translated item

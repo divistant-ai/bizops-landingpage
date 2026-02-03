@@ -91,6 +91,6 @@ export const migrationFaqs = [
   },
   {
     q: 'Bisakah saya membatalkan impor jika ada kesalahan?',
-    a: "Untuk impor master data (Produk/Pelanggan), kami menyediakan fitur 'Rollback' dalam 1 jam pertama. Namun, untuk data transaksi, kami sarankan melakukan backup database sebelum impor massal.",
+    a: 'Untuk impor master data (Produk/Pelanggan), kami menyediakan fitur \'Rollback\' dalam 1 jam pertama. Namun, untuk data transaksi, kami sarankan melakukan backup database sebelum impor massal.',
   },
 ];

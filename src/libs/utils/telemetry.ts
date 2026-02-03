@@ -1,7 +1,7 @@
 // Telemetry disabled - OpenTelemetry packages not installed
 // This file can be re-enabled when @opentelemetry packages are installed
 
-import { logger } from './logger';
+import { logger } from '@/utils/logger';
 
 // Stub types
 type Span = {

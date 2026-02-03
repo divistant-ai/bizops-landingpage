@@ -2,7 +2,7 @@
 
 import { Cookie, Settings, Shield, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { logger } from '@/libs/utils/logger';
+import { logger } from '@/utils/logger';
 import Button from './ui/Button';
 
 const CookieConsent: React.FC = () => {
@@ -78,7 +78,7 @@ const CookieConsent: React.FC = () => {
     <>
       {/* Settings Modal */}
       {showSettings && (
-        <div className="animate-fade-in-up fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+        <div className="animate-fade-in-up fixed inset-0 z-100 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
           <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-950">
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-slate-50/50 p-6 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/50">
               <h3 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
@@ -95,7 +95,7 @@ const CookieConsent: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex-grow space-y-6 p-6">
+            <div className="grow space-y-6 p-6">
               <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                 Kami menggunakan cookies untuk meningkatkan pengalaman browsing, menyajikan konten yang dipersonalisasi, dan menganalisis trafik situs kami. Sesuai dengan
                 {' '}
@@ -110,7 +110,7 @@ const CookieConsent: React.FC = () => {
               {/* Necessary */}
               <div className="flex items-start gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 opacity-75 dark:border-slate-800 dark:bg-slate-900">
                 <div className="mt-1"><Shield className="h-5 w-5 text-green-600" /></div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="mb-1 flex items-center justify-between">
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">Strictly Necessary</h4>
                     <span className="rounded border border-green-200 bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-700 dark:border-green-800 dark:bg-green-900/30 dark:text-green-400">REQUIRED</span>
@@ -125,7 +125,7 @@ const CookieConsent: React.FC = () => {
               {/* Analytics */}
               <div className="hover:border-primary-200 dark:hover:border-primary-900 flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-4 transition-colors dark:border-slate-800 dark:bg-slate-900">
                 <div className="mt-1"><Cookie className="h-5 w-5 text-blue-600" /></div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="mb-1 flex items-center justify-between">
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">Analytics & Performance</h4>
                   </div>
@@ -144,7 +144,7 @@ const CookieConsent: React.FC = () => {
               {/* Marketing */}
               <div className="hover:border-primary-200 dark:hover:border-primary-900 flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-4 transition-colors dark:border-slate-800 dark:bg-slate-900">
                 <div className="mt-1"><Cookie className="h-5 w-5 text-amber-600" /></div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="mb-1 flex items-center justify-between">
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">Marketing & Targeting</h4>
                   </div>
@@ -171,7 +171,7 @@ const CookieConsent: React.FC = () => {
 
       {/* Floating Banner */}
       {showBanner && !showSettings && (
-        <div className="animate-fade-in-up fixed right-4 bottom-4 left-4 z-[90] md:right-auto md:left-8 md:max-w-md">
+        <div className="animate-fade-in-up fixed right-4 bottom-4 left-4 z-90 md:right-auto md:left-8 md:max-w-md">
           <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl ring-1 ring-black/5 dark:border-slate-800 dark:bg-slate-950">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3">

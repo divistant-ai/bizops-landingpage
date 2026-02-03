@@ -219,7 +219,10 @@ export default function PajakPPh21Calculator() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600" />
                 <div>
-                  <p className="font-semibold text-red-900">{t('error')}:</p>
+                  <p className="font-semibold text-red-900">
+                    {t('error')}
+                    :
+                  </p>
                   <ul className="mt-1 list-inside list-disc text-sm text-red-700">
                     {errors.map((error, idx) => (
                       <li key={idx}>{formatErrorMessage(error)}</li>
@@ -283,7 +286,7 @@ export default function PajakPPh21Calculator() {
                 <select
                   id="marital-status"
                   value={maritalStatus}
-                  onChange={(e) => setMaritalStatus(e.target.value)}
+                  onChange={e => setMaritalStatus(e.target.value)}
                   className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-label="Pilih status pernikahan"
                 >
@@ -303,14 +306,26 @@ export default function PajakPPh21Calculator() {
                 <select
                   id="dependents"
                   value={dependents}
-                  onChange={(e) => setDependents(Number.parseInt(e.target.value))}
+                  onChange={e => setDependents(Number.parseInt(e.target.value))}
                   className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                   aria-label="Pilih jumlah tanggungan"
                 >
-                  <option value="0">0 {t('dependents')}</option>
-                  <option value="1">1 {t('dependents')}</option>
-                  <option value="2">2 {t('dependents')}</option>
-                  <option value="3">3 {t('dependents')}</option>
+                  <option value="0">
+                    0
+                    {t('dependents')}
+                  </option>
+                  <option value="1">
+                    1
+                    {t('dependents')}
+                  </option>
+                  <option value="2">
+                    2
+                    {t('dependents')}
+                  </option>
+                  <option value="3">
+                    3
+                    {t('dependents')}
+                  </option>
                 </select>
               </div>
 
@@ -321,138 +336,152 @@ export default function PajakPPh21Calculator() {
                 disabled={isCalculating}
                 aria-label="Hitung pajak PPh 21"
               >
-                {isCalculating ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    {t('calculating')}
-                  </>
-                ) : (
-                  <>
-                    <Calculator className="w-5text-white mr-2 h-5" />
-                    <span className="text-white">{t('calculate_tax')}</span>
-                  </>
-                )}
+                {isCalculating
+                  ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        {t('calculating')}
+                      </>
+                    )
+                  : (
+                      <>
+                        <Calculator className="w-5text-white mr-2 h-5" />
+                        <span className="text-white">{t('calculate_tax')}</span>
+                      </>
+                    )}
               </Button>
             </div>
           </Card>
 
           {/* Result Section */}
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan pajak"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between border-b border-white/20 pb-2">
-                      <span className="text-blue-100">{t('gross_salary_month')}</span>
-                      <span className="font-bold">{formatCurrency(result.grossSalary)}</span>
-                    </div>
-                    <div className="flex items-center justify-between border-b border-white/20 pb-2">
-                      <span className="text-blue-100">{t('tax_month')}</span>
-                      <span className="font-bold text-yellow-300">
-                        {formatCurrency(result.monthlyTax)}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between pt-2">
-                      <span className="text-lg font-semibold">{t('net_salary_month')}</span>
-                      <span className="text-2xl font-bold">{formatCurrency(result.netSalary)}</span>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-                    {t('detail_calculation')}
-                  </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-slate-400">
-                        {t('ptkp')} ({maritalStatus}
-                        {dependents})
-                      </span>
-                      <span className="font-medium">{formatCurrency(result.ptkp)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-slate-400">
-                        {t('taxable_income')}
-                      </span>
-                      <span className="font-medium">{formatCurrency(result.taxableIncome)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-slate-400">{t('annual_tax')}</span>
-                      <span className="font-medium">{formatCurrency(result.annualTax)}</span>
-                    </div>
-                    <div className="flex justify-between border-t pt-2 dark:border-slate-700">
-                      <span className="text-gray-600 dark:text-slate-400">
-                        {t('effective_tax_rate')}
-                      </span>
-                      <span className="font-bold text-blue-600 dark:text-blue-400">
-                        {result.effectiveRate.toFixed(2)}%
-                      </span>
-                    </div>
-                  </div>
-
-                  {result.breakdown.length > 0 && (
-                    <div className="mt-6">
-                      <h4 className="mb-3 text-sm font-semibold text-gray-700 dark:text-slate-300">
-                        {t('breakdown_per_bracket')}
-                      </h4>
-                      <div className="space-y-2">
-                        {result.breakdown.map((item) => (
-                          <div
-                            key={item.bracket}
-                            className="flex items-center justify-between rounded bg-gray-50 px-3 py-2 text-xs dark:bg-slate-800"
-                          >
-                            <span className="text-gray-600 dark:text-slate-400">
-                              {t('bracket')} {item.bracket} ({(item.rate * 100).toFixed(0)}
-                              %)
-                            </span>
-                            <span className="font-medium dark:text-white">
-                              {formatCurrency(item.amount)}
-                            </span>
-                          </div>
-                        ))}
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan pajak"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between border-b border-white/20 pb-2">
+                          <span className="text-blue-100">{t('gross_salary_month')}</span>
+                          <span className="font-bold">{formatCurrency(result.grossSalary)}</span>
+                        </div>
+                        <div className="flex items-center justify-between border-b border-white/20 pb-2">
+                          <span className="text-blue-100">{t('tax_month')}</span>
+                          <span className="font-bold text-yellow-300">
+                            {formatCurrency(result.monthlyTax)}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between pt-2">
+                          <span className="text-lg font-semibold">{t('net_salary_month')}</span>
+                          <span className="text-2xl font-bold">{formatCurrency(result.netSalary)}</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    </Card>
 
-                  <div className="mt-6 flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1"
-                      onClick={handleDownload}
-                      aria-label="Download hasil perhitungan"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      {t('download')}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1"
-                      onClick={handleShare}
-                      aria-label="Bagikan hasil perhitungan"
-                    >
-                      <Share2 className="mr-2 h-4 w-4" />
-                      {t('share')}
-                    </Button>
+                    <Card className="p-6">
+                      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                        {t('detail_calculation')}
+                      </h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-slate-400">
+                            {t('ptkp')}
+                            {' '}
+                            (
+                            {maritalStatus}
+                            {dependents}
+                            )
+                          </span>
+                          <span className="font-medium">{formatCurrency(result.ptkp)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-slate-400">
+                            {t('taxable_income')}
+                          </span>
+                          <span className="font-medium">{formatCurrency(result.taxableIncome)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-slate-400">{t('annual_tax')}</span>
+                          <span className="font-medium">{formatCurrency(result.annualTax)}</span>
+                        </div>
+                        <div className="flex justify-between border-t pt-2 dark:border-slate-700">
+                          <span className="text-gray-600 dark:text-slate-400">
+                            {t('effective_tax_rate')}
+                          </span>
+                          <span className="font-bold text-blue-600 dark:text-blue-400">
+                            {result.effectiveRate.toFixed(2)}
+                            %
+                          </span>
+                        </div>
+                      </div>
+
+                      {result.breakdown.length > 0 && (
+                        <div className="mt-6">
+                          <h4 className="mb-3 text-sm font-semibold text-gray-700 dark:text-slate-300">
+                            {t('breakdown_per_bracket')}
+                          </h4>
+                          <div className="space-y-2">
+                            {result.breakdown.map(item => (
+                              <div
+                                key={item.bracket}
+                                className="flex items-center justify-between rounded bg-gray-50 px-3 py-2 text-xs dark:bg-slate-800"
+                              >
+                                <span className="text-gray-600 dark:text-slate-400">
+                                  {t('bracket')}
+                                  {' '}
+                                  {item.bracket}
+                                  {' '}
+                                  (
+                                  {(item.rate * 100).toFixed(0)}
+                                  %)
+                                </span>
+                                <span className="font-medium dark:text-white">
+                                  {formatCurrency(item.amount)}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="mt-6 flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          onClick={handleDownload}
+                          aria-label="Download hasil perhitungan"
+                        >
+                          <Download className="mr-2 h-4 w-4" />
+                          {t('download')}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          onClick={handleShare}
+                          aria-label="Bagikan hasil perhitungan"
+                        >
+                          <Share2 className="mr-2 h-4 w-4" />
+                          {t('share')}
+                        </Button>
+                      </div>
+                    </Card>
                   </div>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

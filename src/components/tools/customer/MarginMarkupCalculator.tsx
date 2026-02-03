@@ -146,8 +146,8 @@ export default function MarginMarkupCalculator() {
       return;
     }
 
-    const modeText =
-      mode === 'margin'
+    const modeText
+      = mode === 'margin'
         ? t('download_mode_margin')
         : mode === 'markup'
           ? t('download_mode_markup')
@@ -277,64 +277,66 @@ export default function MarginMarkupCalculator() {
                   </p>
                 </div>
 
-                {mode !== 'selling-price' ? (
-                  <div>
-                    <label
-                      htmlFor="percentage"
-                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
-                    >
-                      {mode === 'margin' ? t('target_margin') : t('target_markup')}
-                    </label>
-                    <div className="relative">
-                      <input
-                        id="percentage"
-                        type="text"
-                        value={percentage}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/[^\d.]/g, '');
-                          setPercentage(value);
-                        }}
-                        className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="30"
-                      />
-                      <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">
-                        %
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <label
-                      htmlFor="selling-price"
-                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
-                    >
-                      {t('selling_price')}
-                    </label>
-                    <div className="relative">
-                      <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
-                        Rp
-                      </span>
-                      <input
-                        id="selling-price"
-                        type="text"
-                        value={sellingPrice}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/\D/g, '');
-                          setSellingPrice(value);
-                        }}
-                        className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-12 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-                        placeholder="150000"
-                        aria-describedby="selling-price-help"
-                      />
-                    </div>
-                    <p
-                      id="selling-price-help"
-                      className="mt-1 text-xs text-gray-500 dark:text-slate-500"
-                    >
-                      {sellingPrice && formatCurrency(Number.parseFloat(sellingPrice) || 0)}
-                    </p>
-                  </div>
-                )}
+                {mode !== 'selling-price'
+                  ? (
+                      <div>
+                        <label
+                          htmlFor="percentage"
+                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                        >
+                          {mode === 'margin' ? t('target_margin') : t('target_markup')}
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="percentage"
+                            type="text"
+                            value={percentage}
+                            onChange={(e) => {
+                              const value = e.target.value.replace(/[^\d.]/g, '');
+                              setPercentage(value);
+                            }}
+                            className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                            placeholder="30"
+                          />
+                          <span className="absolute top-3 right-3 text-gray-500 dark:text-slate-500">
+                            %
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  : (
+                      <div>
+                        <label
+                          htmlFor="selling-price"
+                          className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300"
+                        >
+                          {t('selling_price')}
+                        </label>
+                        <div className="relative">
+                          <span className="absolute top-3 left-3 text-gray-500 dark:text-slate-500">
+                            Rp
+                          </span>
+                          <input
+                            id="selling-price"
+                            type="text"
+                            value={sellingPrice}
+                            onChange={(e) => {
+                              const value = e.target.value.replace(/\D/g, '');
+                              setSellingPrice(value);
+                            }}
+                            className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-12 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                            placeholder="150000"
+                            aria-describedby="selling-price-help"
+                          />
+                        </div>
+                        <p
+                          id="selling-price-help"
+                          className="mt-1 text-xs text-gray-500 dark:text-slate-500"
+                        >
+                          {sellingPrice && formatCurrency(Number.parseFloat(sellingPrice) || 0)}
+                        </p>
+                      </div>
+                    )}
 
                 <Button
                   onClick={calculate}
@@ -343,17 +345,19 @@ export default function MarginMarkupCalculator() {
                   disabled={isCalculating}
                   aria-label="Hitung margin dan markup"
                 >
-                  {isCalculating ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      {t('calculating')}
-                    </>
-                  ) : (
-                    <>
-                      <Calculator className="mr-2 h-5 w-5" />
-                      {t('calculate_button')}
-                    </>
-                  )}
+                  {isCalculating
+                    ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          {t('calculating')}
+                        </>
+                      )
+                    : (
+                        <>
+                          <Calculator className="mr-2 h-5 w-5" />
+                          {t('calculate_button')}
+                        </>
+                      )}
                 </Button>
               </div>
             </Card>
@@ -365,10 +369,20 @@ export default function MarginMarkupCalculator() {
                   <p className="mb-2 font-semibold dark:text-white">{t('info_title')}</p>
                   <ul className="space-y-1">
                     <li>
-                      <strong>{t('info_margin')}:</strong> {t('info_margin_desc')}
+                      <strong>
+                        {t('info_margin')}
+                        :
+                      </strong>
+                      {' '}
+                      {t('info_margin_desc')}
                     </li>
                     <li>
-                      <strong>{t('info_markup')}:</strong> {t('info_markup_desc')}
+                      <strong>
+                        {t('info_markup')}
+                        :
+                      </strong>
+                      {' '}
+                      {t('info_markup_desc')}
                     </li>
                   </ul>
                 </div>
@@ -377,132 +391,136 @@ export default function MarginMarkupCalculator() {
           </div>
 
           <div className="space-y-6">
-            {result ? (
-              <div
-                role="region"
-                aria-live="polite"
-                aria-label="Hasil perhitungan margin markup"
-                className="space-y-6"
-              >
-                <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
-                  <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
-                  <div className="mb-4 text-center">
-                    <p className="text-sm text-purple-100">{t('optimal_selling_price')}</p>
-                    <p className="text-4xl font-bold">{formatCurrency(result.sellingPrice)}</p>
-                  </div>
-                  <div className="space-y-2 border-t border-white/20 pt-4">
-                    <div className="flex justify-between">
-                      <span className="text-purple-100">{t('cost_price_label')}</span>
-                      <span className="font-medium">{formatCurrency(result.cost)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-purple-100">{t('profit_label')}</span>
-                      <span className="font-bold text-yellow-300">
-                        {formatCurrency(result.profit)}
-                      </span>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-                    <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                    {t('profit_analysis_title')}
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('margin_label')}
-                        </span>
-                        <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                          {result.margin.toFixed(2)}%
-                        </span>
+            {result
+              ? (
+                  <div
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Hasil perhitungan margin markup"
+                    className="space-y-6"
+                  >
+                    <Card className="bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
+                      <h3 className="mb-4 text-lg font-semibold">{t('result_title')}</h3>
+                      <div className="mb-4 text-center">
+                        <p className="text-sm text-purple-100">{t('optimal_selling_price')}</p>
+                        <p className="text-4xl font-bold">{formatCurrency(result.sellingPrice)}</p>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        {t('margin_desc', { amount: result.margin.toFixed(0) })}
-                      </p>
-                    </div>
-
-                    <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('markup_label')}
-                        </span>
-                        <span className="text-2xl font-bold text-pink-600 dark:text-pink-400">
-                          {result.markup.toFixed(2)}%
-                        </span>
+                      <div className="space-y-2 border-t border-white/20 pt-4">
+                        <div className="flex justify-between">
+                          <span className="text-purple-100">{t('cost_price_label')}</span>
+                          <span className="font-medium">{formatCurrency(result.cost)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-purple-100">{t('profit_label')}</span>
+                          <span className="font-bold text-yellow-300">
+                            {formatCurrency(result.profit)}
+                          </span>
+                        </div>
                       </div>
-                      <p className="text-xs text-gray-600 dark:text-slate-400">
-                        {t('markup_desc', { amount: result.markup.toFixed(0) })}
-                      </p>
-                    </div>
+                    </Card>
 
-                    <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-800">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
-                          {t('profit_per_unit')}
-                        </span>
-                        <span className="text-xl font-bold text-green-600 dark:text-green-400">
-                          {formatCurrency(result.profit)}
-                        </span>
+                    <Card className="p-6">
+                      <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                        <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                        {t('profit_analysis_title')}
+                      </h3>
+
+                      <div className="space-y-4">
+                        <div className="rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 p-4 dark:from-purple-950/20 dark:to-pink-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('margin_label')}
+                            </span>
+                            <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                              {result.margin.toFixed(2)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            {t('margin_desc', { amount: result.margin.toFixed(0) })}
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg bg-gradient-to-r from-pink-50 to-purple-50 p-4 dark:from-pink-950/20 dark:to-purple-950/20">
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('markup_label')}
+                            </span>
+                            <span className="text-2xl font-bold text-pink-600 dark:text-pink-400">
+                              {result.markup.toFixed(2)}
+                              %
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-slate-400">
+                            {t('markup_desc', { amount: result.markup.toFixed(0) })}
+                          </p>
+                        </div>
+
+                        <div className="rounded-lg border-2 border-dashed border-gray-300 p-4 dark:border-slate-700 dark:bg-slate-800">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
+                              {t('profit_per_unit')}
+                            </span>
+                            <span className="text-xl font-bold text-green-600 dark:text-green-400">
+                              {formatCurrency(result.profit)}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <ActionButtons
-                    onDownload={handleDownload}
-                    onShare={handleShare}
-                    disabled={!result}
-                    className="mt-6"
-                  />
-                </Card>
+                      <ActionButtons
+                        onDownload={handleDownload}
+                        onShare={handleShare}
+                        disabled={!result}
+                        className="mt-6"
+                      />
+                    </Card>
 
-                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
-                  <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-                    <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    {t('sales_projection_title')}
-                  </h4>
-                  <div className="grid grid-cols-3 gap-3 text-center text-sm">
-                    <div>
-                      <p className="text-gray-600 dark:text-slate-400">
-                        10
-                        {t('units')}
-                      </p>
-                      <p className="font-bold text-gray-900 dark:text-white">
-                        {formatCurrency(result.profit * 10)}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-gray-600 dark:text-slate-400">
-                        100
-                        {t('units')}
-                      </p>
-                      <p className="font-bold text-gray-900 dark:text-white">
-                        {formatCurrency(result.profit * 100)}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-gray-600 dark:text-slate-400">
-                        1000
-                        {t('units')}
-                      </p>
-                      <p className="font-bold text-gray-900 dark:text-white">
-                        {formatCurrency(result.profit * 1000)}
-                      </p>
-                    </div>
+                    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950/20 dark:to-indigo-950/20">
+                      <h4 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                        <DollarSign className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        {t('sales_projection_title')}
+                      </h4>
+                      <div className="grid grid-cols-3 gap-3 text-center text-sm">
+                        <div>
+                          <p className="text-gray-600 dark:text-slate-400">
+                            10
+                            {t('units')}
+                          </p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 10)}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-gray-600 dark:text-slate-400">
+                            100
+                            {t('units')}
+                          </p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 100)}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-gray-600 dark:text-slate-400">
+                            1000
+                            {t('units')}
+                          </p>
+                          <p className="font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(result.profit * 1000)}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
-                </Card>
-              </div>
-            ) : (
-              <Card className="flex h-full items-center justify-center p-12 text-center">
-                <div>
-                  <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
-                </div>
-              </Card>
-            )}
+                )
+              : (
+                  <Card className="flex h-full items-center justify-center p-12 text-center">
+                    <div>
+                      <Calculator className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                      <p className="text-gray-500 dark:text-slate-500">{t('empty_state')}</p>
+                    </div>
+                  </Card>
+                )}
           </div>
         </div>
 

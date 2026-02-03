@@ -175,7 +175,7 @@ export default function ToolsHubPage() {
               </div>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {customerTools.map((tool) => (
+              {customerTools.map(tool => (
                 <ToolCard key={tool.id} tool={tool} locale={locale} />
               ))}
             </div>
@@ -196,7 +196,7 @@ export default function ToolsHubPage() {
               </div>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {consultantTools.map((tool) => (
+              {consultantTools.map(tool => (
                 <ToolCard key={tool.id} tool={tool} locale={locale} />
               ))}
             </div>

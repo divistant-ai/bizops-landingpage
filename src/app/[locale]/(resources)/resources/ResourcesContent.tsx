@@ -97,7 +97,8 @@ export default function ResourcesContent() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-white"
           >
-            {t('hero_title_1')}{' '}
+            {t('hero_title_1')}
+            {' '}
             <span className="text-primary-600 dark:text-primary-400">{t('hero_title_2')}</span>
           </motion.h1>
           <motion.p
@@ -156,7 +157,9 @@ export default function ResourcesContent() {
             href="/blog"
             className="text-primary-600 dark:text-primary-400 hidden items-center font-bold hover:underline sm:flex"
           >
-            {t('blog_view_all')} <ArrowRight className="ml-2 h-4 w-4" />
+            {t('blog_view_all')}
+            {' '}
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
 
@@ -208,7 +211,10 @@ export default function ResourcesContent() {
                   {post.summary}
                 </p>
                 <div className="mt-auto text-xs text-slate-500 dark:text-slate-500">
-                  {post.date} • 5 {t('blog_min_read')}
+                  {post.date}
+                  {' '}
+                  • 5
+                  {t('blog_min_read')}
                 </div>
               </div>
             ))}
@@ -308,7 +314,9 @@ export default function ResourcesContent() {
                     variant="outline"
                     className="gap-2 rounded-full border-slate-300 hover:bg-slate-50 dark:border-slate-600 dark:text-white dark:hover:bg-slate-800"
                   >
-                    <Download className="h-4 w-4" /> {t('migration_cta_template')}
+                    <Download className="h-4 w-4" />
+                    {' '}
+                    {t('migration_cta_template')}
                   </Button>
                 </Link>
               </div>

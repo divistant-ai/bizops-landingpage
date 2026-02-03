@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(servicesData).map((slug) => ({
+  return Object.keys(servicesData).map(slug => ({
     slug,
   }));
 }

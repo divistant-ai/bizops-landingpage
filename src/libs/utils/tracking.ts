@@ -9,7 +9,7 @@
  */
 
 import { getEnvConfig } from './env';
-import { logger } from './logger';
+import { logger } from '@/utils/logger';
 
 type EventProperties = Record<string, string | number | boolean | null | undefined>;
 

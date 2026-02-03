@@ -53,7 +53,7 @@ export default async function LegalIndexPage() {
       <Section>
         <Container size="4xl">
           <div className="grid gap-6">
-            {docs.map((doc) => (
+            {docs.map(doc => (
               <Link key={doc.slug} href={`/legal/${doc.slug}`} className="group block">
                 <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md md:p-8 dark:border-slate-800 dark:bg-slate-900">
                   <div className="flex items-start gap-6">
@@ -68,7 +68,9 @@ export default async function LegalIndexPage() {
                         {getDocSubtitle(doc.slug, doc.subtitle)}
                       </p>
                       <div className="mt-2 text-xs text-slate-400 dark:text-slate-500">
-                        Update: {getDocUpdated(doc.slug, doc.updated)}
+                        Update:
+                        {' '}
+                        {getDocUpdated(doc.slug, doc.updated)}
                       </div>
                     </div>
                   </div>

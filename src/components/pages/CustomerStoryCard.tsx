@@ -85,7 +85,9 @@ export function CustomerStoryCard({ story, idx, locale }: CustomerStoryCardProps
               variant="h5"
               className="mb-4 leading-tight font-bold text-slate-900 dark:text-white"
             >
-              "{story.title[locale]}"
+              "
+              {story.title[locale]}
+              "
             </Typography>
 
             <div className="flex gap-4">

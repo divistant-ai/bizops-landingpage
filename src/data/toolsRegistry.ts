@@ -349,7 +349,7 @@ export const toolsRegistry: ToolMetadata[] = [
 // }
 
 export function getToolsByCategory(category: 'customer' | 'consultant'): ToolMetadata[] {
-  return toolsRegistry.filter((tool) => tool.category === category);
+  return toolsRegistry.filter(tool => tool.category === category);
 }
 
 // export function getRelatedTools(toolId: string, limit: number = 3): ToolMetadata[] {

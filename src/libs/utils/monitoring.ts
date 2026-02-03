@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { logger } from './logger';
+import { logger } from '@/utils/logger';
 
 const getEnvVar = (key: string): string => {
   if (typeof process !== 'undefined' && process.env) {

@@ -163,8 +163,8 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
   // Normalize CTA
   const ctaBtnText = typeof data.cta === 'string' ? data.cta : data.cta?.btn || t('schedule_demo');
-  const ctaHeadText =
-    typeof data.cta === 'string' ? t('ready_to_start') : data.cta?.head || t('ready_to_transform');
+  const ctaHeadText
+    = typeof data.cta === 'string' ? t('ready_to_start') : data.cta?.head || t('ready_to_transform');
 
   return (
     <div className="flex flex-col bg-slate-50 font-sans transition-colors dark:bg-slate-950">
@@ -256,7 +256,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 className="h-14 px-10 text-lg font-bold shadow-xl shadow-blue-500/30"
               >
                 <Link href="/demo">
-                  {ctaBtnText} <ArrowRight className="ml-2 h-4 w-4" />
+                  {ctaBtnText}
+                  {' '}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -592,21 +594,23 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                                 : 'bg-slate-100 dark:bg-slate-800'
                             }`}
                           >
-                            {f.icon ? (
-                              <span
-                                className={
-                                  isFirst
-                                    ? 'text-blue-600 dark:text-blue-400'
-                                    : 'text-slate-600 dark:text-slate-400'
-                                }
-                              >
-                                {f.icon}
-                              </span>
-                            ) : (
-                              <CheckCircle2
-                                className={`h-6 w-6 ${isFirst ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}`}
-                              />
-                            )}
+                            {f.icon
+                              ? (
+                                  <span
+                                    className={
+                                      isFirst
+                                        ? 'text-blue-600 dark:text-blue-400'
+                                        : 'text-slate-600 dark:text-slate-400'
+                                    }
+                                  >
+                                    {f.icon}
+                                  </span>
+                                )
+                              : (
+                                  <CheckCircle2
+                                    className={`h-6 w-6 ${isFirst ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}`}
+                                  />
+                                )}
                           </div>
                           <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
                             {f.title || f.desc}
@@ -751,7 +755,9 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                   {data.caseStudy || t('see_transformation')}
                 </p>
                 <Button variant="white" className="rounded-full">
-                  {t('read_full_case')} <ChevronRight className="ml-2 h-4 w-4" />
+                  {t('read_full_case')}
+                  {' '}
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
 
@@ -759,19 +765,23 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
                 <div className="relative rounded-3xl border border-white/10 bg-slate-50 p-8 backdrop-blur-md md:p-10 dark:bg-white/10">
                   <Quote className="text-primary-400 mb-6 h-10 w-10 opacity-50" />
                   <p className="mb-8 text-lg leading-relaxed font-medium text-slate-950 italic md:text-xl dark:text-white">
-                    "{data.testimonial.quote}"
+                    "
+                    {data.testimonial.quote}
+                    "
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="border-primary-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 bg-neutral-700 text-lg font-bold text-slate-800 dark:text-white">
-                      {data.testimonial.avatar?.includes('http') ? (
-                        <img
-                          src={data.testimonial.avatar}
-                          alt={data.testimonial.author}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        data.testimonial.author.charAt(0)
-                      )}
+                      {data.testimonial.avatar?.includes('http')
+                        ? (
+                            <img
+                              src={data.testimonial.avatar}
+                              alt={data.testimonial.author}
+                              className="h-full w-full object-cover"
+                            />
+                          )
+                        : (
+                            data.testimonial.author.charAt(0)
+                          )}
                     </div>
                     <div>
                       <div className="font-bold text-slate-800 dark:text-white">

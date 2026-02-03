@@ -70,7 +70,7 @@ export default function StartupProgramContent() {
   return (
     <div className="flex flex-col bg-slate-50 font-sans transition-colors selection:bg-purple-500/30 dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-32 text-center lg:pb-40 dark:bg-[#0F172A] dark:text-white">
+      <section className="relative overflow-hidden bg-white pt-32 pb-32 text-center lg:pb-40 dark:bg-slate-900 dark:text-white">
         {/* Modern Grid Background */}
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
@@ -85,7 +85,9 @@ export default function StartupProgramContent() {
             transition={{ duration: 0.6 }}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-300 bg-purple-100 px-3 py-1 text-xs font-bold tracking-wider text-purple-700 uppercase shadow-lg backdrop-blur-md dark:border-purple-700/50 dark:bg-purple-900/30 dark:text-purple-300 dark:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
           >
-            <Rocket className="h-3 w-3" /> {t('hero_badge')}
+            <Rocket className="h-3 w-3" />
+            {' '}
+            {t('hero_badge')}
           </motion.div>
 
           <motion.h1
@@ -94,7 +96,9 @@ export default function StartupProgramContent() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mb-8 text-5xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-7xl lg:text-8xl dark:text-white"
           >
-            {t('hero_title_1')} <br />
+            {t('hero_title_1')}
+            {' '}
+            <br />
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
               {t('hero_title_2')}
             </span>
@@ -120,7 +124,9 @@ export default function StartupProgramContent() {
                 size="lg"
                 className="h-14 w-full transform border-none bg-slate-900 px-10 text-lg font-bold text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-slate-800 hover:shadow-2xl hover:shadow-purple-500/20 sm:w-auto dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
               >
-                {t('hero_button_apply')} <ArrowRight className="ml-2 h-5 w-5" />
+                {t('hero_button_apply')}
+                {' '}
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button
@@ -128,7 +134,9 @@ export default function StartupProgramContent() {
               variant="outline"
               className="h-14 w-full border-slate-300 px-10 font-medium text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-700 dark:text-white dark:hover:bg-white/10"
             >
-              <Play className="mr-2 h-4 w-4 fill-current" /> {t('hero_button_watch')}
+              <Play className="mr-2 h-4 w-4 fill-current" />
+              {' '}
+              {t('hero_button_watch')}
             </Button>
           </motion.div>
 
@@ -144,7 +152,7 @@ export default function StartupProgramContent() {
       </section>
 
       {/* LOGO WALL (Social Proof) */}
-      <section className="border-b border-slate-200 bg-slate-100 py-16 dark:border-slate-800 dark:bg-[#0F172A]">
+      <section className="border-b border-slate-200 bg-slate-100 py-16 dark:border-slate-800 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl overflow-hidden px-4">
           <div className="flex flex-wrap items-center justify-center gap-12 opacity-40 grayscale transition-opacity duration-500 hover:opacity-70">
             {/* Placeholder Logos */}
@@ -321,7 +329,9 @@ export default function StartupProgramContent() {
           <div className="mt-12 text-center">
             <Link href={`/${locale}/partners/apply`}>
               <Button size="lg" className="bg-purple-600 text-white hover:bg-purple-700">
-                {t('apply_button')} <ArrowRight className="ml-2 h-4 w-4" />
+                {t('apply_button')}
+                {' '}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -350,11 +360,13 @@ export default function StartupProgramContent() {
                   <span className="pr-4 font-bold text-slate-900 dark:text-white">
                     {t(`faq_${num}_q` as any)}
                   </span>
-                  {openFaq === idx ? (
-                    <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
-                  ) : (
-                    <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
-                  )}
+                  {openFaq === idx
+                    ? (
+                        <Minus className="h-5 w-5 flex-shrink-0 text-purple-600 dark:text-purple-400" />
+                      )
+                    : (
+                        <Plus className="h-5 w-5 flex-shrink-0 text-slate-400" />
+                      )}
                 </button>
                 <AnimatePresence>
                   {openFaq === idx && (
@@ -391,7 +403,9 @@ export default function StartupProgramContent() {
               size="lg"
               className="bg-slate-900 font-bold text-white hover:bg-slate-800 dark:bg-white dark:text-purple-900 dark:hover:bg-slate-100"
             >
-              {t('cta_button')} <ArrowRight className="ml-2 h-4 w-4" />
+              {t('cta_button')}
+              {' '}
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </Container>

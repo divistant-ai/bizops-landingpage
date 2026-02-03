@@ -380,7 +380,9 @@ const PricingContent = () => {
                       size="lg"
                       className="w-full bg-white px-8 text-lg font-bold text-slate-900 shadow-xl shadow-blue-900/50 transition-all duration-300 hover:scale-105 hover:bg-slate-50 hover:shadow-blue-900/70 md:w-auto"
                     >
-                      {t('calculator_cta')} <ArrowRight className="ml-2 h-5 w-5" />
+                      {t('calculator_cta')}
+                      {' '}
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
                 </div>

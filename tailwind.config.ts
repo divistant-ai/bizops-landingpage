@@ -6,12 +6,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
+        'border': 'hsl(var(--border))',
+        'input': 'hsl(var(--input))',
+        'ring': 'hsl(var(--ring))',
+        'background': 'hsl(var(--background))',
+        'foreground': 'hsl(var(--foreground))',
+        'primary': {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
           // Royal Blue Palette (More Premium than Sky)
@@ -28,7 +28,7 @@ const config: Config = {
           950: '#172554',
         },
         // Re-map slate to Zinc (Neutral Gray) for cleaner look
-        slate: {
+        'slate': {
           50: '#fafafa',
           100: '#f4f4f5',
           200: '#e4e4e7',
@@ -41,19 +41,19 @@ const config: Config = {
           900: '#18181b',
           950: '#09090b',
         },
-        secondary: {
+        'secondary': {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-        destructive: {
+        'destructive': {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        muted: {
+        'muted': {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
         },
-        accent: {
+        'accent': {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
           // Keep existing palette
@@ -69,16 +69,16 @@ const config: Config = {
           900: '#701A75',
           950: '#4A044E',
         },
-        popover: {
+        'popover': {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
-        card: {
+        'card': {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
         // Keep neutral for existing code
-        neutral: {
+        'neutral': {
           50: '#FAFAFA',
           100: '#F5F5F5',
           200: '#E5E5E5',
@@ -91,6 +91,26 @@ const config: Config = {
           900: '#171717',
           950: '#0A0A0A',
         },
+        // Semantic dark mode background tokens
+        'dark-bg': {
+          DEFAULT: '#0B0F19',
+          light: '#0F1623',
+          darker: '#080B12',
+        },
+        // macOS window control colors
+        'macos': {
+          close: '#ff5f56',
+          minimize: '#ffbd2e',
+          maximize: '#27c93f',
+        },
+        // WhatsApp brand color
+        'whatsapp': {
+          DEFAULT: '#25D366',
+          hover: '#20bd5a',
+        },
+        // Social media brand colors
+        'twitter': '#1DA1F2',
+        'linkedin': '#0077b5',
       },
       borderRadius: {
         lg: 'var(--radius)',

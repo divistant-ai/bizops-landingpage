@@ -44,16 +44,16 @@ export default function HomePageContent() {
   const locale = useLocale();
 
   // Get translated data
-  const homeProblems = getHomeProblems((key) => t(key.replace('Homepage.', '') as any));
-  const homeUVP = getHomeUVP((key) => t(key.replace('Homepage.', '') as any));
-  const homeSolutions = getHomeSolutions((key) => t(key.replace('Homepage.', '') as any));
-  const homeProcess = getHomeProcess((key) => t(key.replace('Homepage.', '') as any));
-  const homeIndustriesData = getHomeIndustriesData((key) => t(key.replace('Homepage.', '') as any));
-  const homeRolesData = getHomeRolesData((key) => t(key.replace('Homepage.', '') as any));
+  const homeProblems = getHomeProblems(key => t(key.replace('Homepage.', '') as any));
+  const homeUVP = getHomeUVP(key => t(key.replace('Homepage.', '') as any));
+  const homeSolutions = getHomeSolutions(key => t(key.replace('Homepage.', '') as any));
+  const homeProcess = getHomeProcess(key => t(key.replace('Homepage.', '') as any));
+  const homeIndustriesData = getHomeIndustriesData(key => t(key.replace('Homepage.', '') as any));
+  const homeRolesData = getHomeRolesData(key => t(key.replace('Homepage.', '') as any));
 
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
-  const activeTabIndex = homeSolutions.findIndex((s) => s.id === activeTab);
-  const activeSolution = homeSolutions.find((s) => s.id === activeTab) || homeSolutions[0];
+  const activeTabIndex = homeSolutions.findIndex(s => s.id === activeTab);
+  const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   // Sample YouTube video IDs for each module (demo/explainer videos)
@@ -187,7 +187,8 @@ export default function HomePageContent() {
                         align="center"
                         className={`absolute top-3 left-3 z-30 rounded-full px-3 py-1.5 text-[10px] ${glass.strong}`}
                       >
-                        <Lock className="h-3 w-3 text-emerald-500" />{' '}
+                        <Lock className="h-3 w-3 text-emerald-500" />
+                        {' '}
                         <span className="font-mono font-medium text-slate-700 dark:text-slate-200">
                           secure://bizops.id/dashboard
                         </span>
@@ -208,7 +209,9 @@ export default function HomePageContent() {
                           {t('hero_savings_label') || 'Penghematan'}
                         </p>
                         <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
-                          85% {locale === 'id' ? 'Biaya' : 'Cost'}
+                          85%
+                          {' '}
+                          {locale === 'id' ? 'Biaya' : 'Cost'}
                         </p>
                       </div>
                     </div>
@@ -261,7 +264,7 @@ export default function HomePageContent() {
                   'Distribusi Nusantara',
                   'Konstruksi Prima',
                   'Mitra Sejahtera',
-                ].map((brand) => (
+                ].map(brand => (
                   <div
                     key={brand}
                     className="mx-3 cursor-default rounded-full border border-slate-100 bg-white px-6 py-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
@@ -299,7 +302,8 @@ export default function HomePageContent() {
                 {t('problems_badge') || 'Masalah Umum'}
               </div>
               <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-                {t('problems_title').replace(t('problems_stuck'), '')}{' '}
+                {t('problems_title').replace(t('problems_stuck'), '')}
+                {' '}
                 <span className="text-rose-600 dark:text-rose-400">{t('problems_stuck')}</span>
               </h2>
               <p className="text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400">
@@ -411,7 +415,8 @@ export default function HomePageContent() {
             className="group border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 h-11 rounded-full border-2 px-6 text-sm"
           >
             <Link href="/platform">
-              {t('solutions_cta')}{' '}
+              {t('solutions_cta')}
+              {' '}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -539,8 +544,8 @@ export default function HomePageContent() {
                     hoverBorder: 'hover:border-rose-200 dark:hover:border-rose-800',
                   },
                 ];
-                const contentColor =
-                  contentColors[activeTabIndex >= 0 ? activeTabIndex % contentColors.length : 0]!;
+                const contentColor
+                  = contentColors[activeTabIndex >= 0 ? activeTabIndex % contentColors.length : 0]!;
 
                 return (
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
@@ -643,8 +648,8 @@ export default function HomePageContent() {
                             shadow: 'shadow-rose-500/25',
                           },
                         ];
-                        const demoColor =
-                          demoColors[activeTabIndex >= 0 ? activeTabIndex % demoColors.length : 0]!;
+                        const demoColor
+                          = demoColors[activeTabIndex >= 0 ? activeTabIndex % demoColors.length : 0]!;
 
                         return (
                           <div
@@ -681,10 +686,12 @@ export default function HomePageContent() {
                                 <span className="relative flex h-2 w-2">
                                   <span
                                     className={`absolute inline-flex h-full w-full animate-ping rounded-full ${demoColor.ping} opacity-75`}
-                                  ></span>
+                                  >
+                                  </span>
                                   <span
                                     className={`relative inline-flex h-2 w-2 rounded-full ${demoColor.dot}`}
-                                  ></span>
+                                  >
+                                  </span>
                                 </span>
                                 <span className="rounded bg-black/50 px-1.5 py-0.5 text-xs font-medium text-white">
                                   DEMO
@@ -963,7 +970,10 @@ export default function HomePageContent() {
                           15jt
                         </span>
                         <span className="text-lg text-slate-500">++</span>
-                        <span className="text-sm text-slate-400">/{t('month')}</span>
+                        <span className="text-sm text-slate-400">
+                          /
+                          {t('month')}
+                        </span>
                       </div>
                     </div>
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/30">
@@ -1041,7 +1051,10 @@ export default function HomePageContent() {
                         <span className="text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
                           {t('pricing_amount' as any)}
                         </span>
-                        <span className="text-sm text-slate-500">/{t('month')}</span>
+                        <span className="text-sm text-slate-500">
+                          /
+                          {t('month')}
+                        </span>
                       </div>
                       <p className="mt-1 text-xs text-slate-500">{t('pricing_subtitle')}</p>
                     </div>
@@ -1096,11 +1109,16 @@ export default function HomePageContent() {
               </span>
             </div>
             <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-              {t('process_title').replace(t('process_days'), '')}{' '}
+              {t('process_title').replace(t('process_days'), '')}
+              {' '}
               <span className="text-blue-600 dark:text-blue-400">{t('process_days')}</span>
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-              {t('process_desc_1')} {t('process_desc_2')} {t('process_desc_3')}
+              {t('process_desc_1')}
+              {' '}
+              {t('process_desc_2')}
+              {' '}
+              {t('process_desc_3')}
             </p>
             <Button
               asChild
@@ -1606,7 +1624,8 @@ export default function HomePageContent() {
         <div className="mt-10 text-center">
           <Button asChild variant="glass" size="md" className="h-11 px-6 text-sm font-semibold">
             <Link href="/platform/technologies/integration">
-              {t('integrations_view_more')}{' '}
+              {t('integrations_view_more')}
+              {' '}
               <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -1725,7 +1744,7 @@ export default function HomePageContent() {
           {/* Modal Content */}
           <div
             className="animate-in zoom-in-95 relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl duration-300"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             {/* Close button */}
             <button

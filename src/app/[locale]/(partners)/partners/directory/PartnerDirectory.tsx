@@ -21,12 +21,12 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
 
   const filteredPartners = partnerDirectoryData.filter((partner) => {
     const description = partner.description[localeTyped] || partner.description.en;
-    const matchesSearch =
-      partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch
+      = partner.name.toLowerCase().includes(searchTerm.toLowerCase())
+        || description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || partner.type === selectedType;
-    const matchesLocation =
-      selectedLocation === 'all' || partner.location.includes(selectedLocation);
+    const matchesLocation
+      = selectedLocation === 'all' || partner.location.includes(selectedLocation);
 
     return matchesSearch && matchesType && matchesLocation;
   });
@@ -49,13 +49,13 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
                 placeholder={t('search_placeholder')}
                 className="focus:ring-primary-500 focus:border-primary-500 w-full rounded-xl border border-neutral-300 bg-white py-3 pr-4 pl-12 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
               />
             </div>
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
+              onChange={e => setSelectedType(e.target.value)}
             >
               <option value="all">{t('filter_all_types')}</option>
               <option value="implementation">{t('type_implementation')}</option>
@@ -66,7 +66,7 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
             <select
               className="focus:ring-primary-500 rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               value={selectedLocation}
-              onChange={(e) => setSelectedLocation(e.target.value)}
+              onChange={e => setSelectedLocation(e.target.value)}
             >
               <option value="all">{t('filter_all_locations')}</option>
               <option value="Indonesia">Indonesia</option>
@@ -81,7 +81,7 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
         <Container>
           <FadeInStagger>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPartners.map((partner) => (
+              {filteredPartners.map(partner => (
                 <FadeIn key={partner.id}>
                   <div className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
                     <div className="mb-6 flex items-start justify-between">
@@ -102,7 +102,9 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
                             {partner.name}
                           </h3>
                           <div className="flex items-center gap-1 text-xs text-neutral-500 dark:text-slate-400">
-                            <MapPin className="h-3 w-3" /> {partner.location}
+                            <MapPin className="h-3 w-3" />
+                            {' '}
+                            {partner.location}
                           </div>
                         </div>
                       </div>
@@ -143,7 +145,8 @@ export default function PartnerDirectoryPage({ locale }: PartnerDirectoryPagePro
                         ))}
                         {partner.industries.length > 2 && (
                           <span className="px-1 py-1 text-[10px] text-neutral-400 dark:text-slate-500">
-                            +{partner.industries.length - 2}
+                            +
+                            {partner.industries.length - 2}
                           </span>
                         )}
                       </div>

@@ -42,12 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createEntry('/product-tour', 0.7, 'monthly'),
 
     // Platform Modules
-    ...Object.keys(modulesData).map((slug) =>
+    ...Object.keys(modulesData).map(slug =>
       createEntry(`/platform/modules/${slug}`, 0.8, 'monthly'),
     ),
 
     // Platform Capabilities
-    ...Object.keys(capabilitiesData).map((slug) =>
+    ...Object.keys(capabilitiesData).map(slug =>
       createEntry(`/platform/capabilities/${slug}`, 0.7, 'monthly'),
     ),
 
@@ -57,13 +57,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createEntry('/platform/technologies/architecture', 0.7, 'monthly'),
 
     // Solutions - By Industry
-    ...(solutionsContent.industry?.items.map((item) => createEntry(item.to, 0.7, 'monthly')) || []),
+    ...(solutionsContent.industry?.items.map(item => createEntry(item.to, 0.7, 'monthly')) || []),
 
     // Solutions - By Role
-    ...(solutionsContent.role?.items.map((item) => createEntry(item.to, 0.7, 'monthly')) || []),
+    ...(solutionsContent.role?.items.map(item => createEntry(item.to, 0.7, 'monthly')) || []),
 
     // Services
-    ...servicesItems.map((item) => createEntry(item.to, 0.8, 'monthly')),
+    ...servicesItems.map(item => createEntry(item.to, 0.8, 'monthly')),
 
     // Resources
     createEntry('/blog', 0.8, 'daily'),

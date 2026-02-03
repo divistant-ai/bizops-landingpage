@@ -182,7 +182,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-[#0B0F19] dark:to-slate-950 dark:text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-dark-bg dark:to-slate-950 dark:text-white">
       {/* Ambient Background Glow */}
       <div className="bg-primary-500/5 dark:bg-primary-600/5 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5" />
