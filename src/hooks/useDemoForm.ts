@@ -55,7 +55,7 @@ export function useDemoForm() {
   const [formState, setFormState] = useState<DemoFormState>('idle');
   const schema = useDemoFormSchema();
 
-  const form = useForm<DemoFormValues>({
+  const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
       fullName: '',

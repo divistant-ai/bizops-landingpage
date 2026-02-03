@@ -841,6 +841,7 @@
     "placeholder_whatsapp": "+62...",
     "helper_whatsapp": "Kami akan mengirimkan konfirmasi jadwal via WA.",
     "label_employee_count": "Jumlah Karyawan",
+    "select_placeholder": "Pilih opsi...",
     "employee_lt50": "< 50 Karyawan",
     "employee_50_200": "50 - 200 Karyawan",
     "employee_200_1000": "200 - 1000 Karyawan",

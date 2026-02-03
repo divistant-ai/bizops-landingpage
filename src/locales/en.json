@@ -841,6 +841,7 @@
     "placeholder_whatsapp": "+62...",
     "helper_whatsapp": "We will send schedule confirmation via WA.",
     "label_employee_count": "Employee Count",
+    "select_placeholder": "Select an option...",
     "employee_lt50": "< 50 Employees",
     "employee_50_200": "50 - 200 Employees",
     "employee_200_1000": "200 - 1000 Employees",

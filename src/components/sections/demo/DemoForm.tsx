@@ -172,26 +172,38 @@ export function DemoForm({ form, formState, onSubmit }: DemoFormProps) {
                 {t('needs_title')}
               </span>
               <Grid cols={1} gap={4}>
-                {['hr', 'project', 'inv', 'crm', 'finance', 'partner'].map(key => (
-                  <FormField
-                    key={key}
-                    control={form.control}
-                    name={`features.${key}` as any}
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-center space-y-0 space-x-3">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal text-slate-700 dark:text-slate-300">
-                          {t(`feature_${key}`)}
-                        </FormLabel>
-                      </FormItem>
-                    )}
-                  />
-                ))}
+                {(
+                  [
+                    'feature_hr',
+                    'feature_project',
+                    'feature_inv',
+                    'feature_crm',
+                    'feature_finance',
+                    'feature_partner',
+                  ] as const
+                ).map(key => {
+                  const featureKey = key.replace('feature_', '');
+                  return (
+                    <FormField
+                      key={key}
+                      control={form.control}
+                      name={`features.${featureKey}` as any}
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center space-y-0 space-x-3">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal text-slate-700 dark:text-slate-300">
+                            {t(key)}
+                          </FormLabel>
+                        </FormItem>
+                      )}
+                    />
+                  );
+                })}
               </Grid>
             </div>
 
