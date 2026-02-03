@@ -1,6 +1,4 @@
 'use client';
-
-import type { ServiceAddon } from '../data/pricingData';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Activity,
@@ -29,17 +27,14 @@ import {
   HardDrive,
   HardHat,
   Headphones,
-  HelpCircle,
   Info,
   LayoutGrid,
   Lock,
   MapPin,
-  Minus,
   MoreHorizontal,
   Package,
   PieChart,
   Plug,
-  Plus,
   Printer,
   Rocket,
   Server,
@@ -59,6 +54,9 @@ import {
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { addOns, pricingPlans } from '../data/pricingData';
 import Container from './layout/Container';
+// --- Internal Components (imported from pricing module) ---
+import { AddonItem, SelectableCard, Tooltip } from './pricing/components';
+
 import Button from './ui/Button';
 
 type Step = 'assessment' | 'recommendation' | 'customize' | 'checkout' | 'thankyou';
@@ -98,160 +96,6 @@ type AssessmentData = {
   supportLevel: string;
   goLiveTimeline: string;
   trainingPreference: 'online' | 'hybrid' | 'onsite';
-};
-
-// --- Internal Components ---
-
-const Tooltip = ({ text }: { text: string }) => (
-  <div className="group relative z-50 ml-1 inline-flex items-center">
-    <HelpCircle className="hover:text-primary-600 dark:hover:text-primary-400 h-3 w-3 cursor-help text-slate-500" />
-    <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden w-48 -translate-x-1/2 rounded-lg border border-slate-300 bg-white p-2 text-[10px] text-slate-700 shadow-xl group-hover:block dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-      {text}
-      <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white dark:border-t-slate-800" />
-    </div>
-  </div>
-);
-
-const SelectableCard = ({
-  selected,
-  onClick,
-  title,
-  description,
-  icon: Icon,
-  badge,
-  tooltip,
-}: any) => (
-  <motion.div
-    whileHover={{ y: -2, scale: 1.02 }}
-    whileTap={{ scale: 0.96, y: 0 }}
-    onClick={onClick}
-    className={`group relative flex h-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border p-4 text-center transition-all duration-200 active:scale-95 ${selected ? 'border-2 border-slate-900 bg-slate-100 shadow-[0_0_0_3px_rgba(15,23,42,0.1)] dark:border-white dark:bg-slate-800 dark:shadow-[0_0_0_3px_rgba(255,255,255,0.1)]' : 'border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 hover:shadow-md dark:border-slate-600 dark:bg-slate-800/50 dark:hover:border-slate-500 dark:hover:bg-slate-800'}`}
-  >
-    {selected && (
-      <div className="absolute top-2 right-2 text-slate-800 dark:text-white">
-        <CheckCircle2 className="h-4 w-4" />
-      </div>
-    )}
-    {badge && (
-      <div className="absolute top-2 left-2 rounded border border-amber-500/20 bg-amber-500/20 px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-amber-600 uppercase dark:text-amber-400">
-        {badge}
-      </div>
-    )}
-    {tooltip && (
-      <div className="absolute top-2 right-2">
-        <Tooltip text={tooltip} />
-      </div>
-    )}
-    {Icon && (
-      <Icon
-        className={`h-6 w-6 transition-all duration-200 ${selected ? 'scale-110 text-slate-900 dark:text-white' : 'text-slate-600 group-hover:scale-105 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'}`}
-      />
-    )}
-    <div>
-      <h4
-        className={`mb-0.5 text-sm font-bold transition-colors ${selected ? 'text-slate-900 dark:text-white' : 'text-slate-800 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white'}`}
-      >
-        {title}
-      </h4>
-      {description && (
-        <p className="mx-auto max-w-[120px] text-[10px] leading-tight text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-400">
-          {description}
-        </p>
-      )}
-    </div>
-  </motion.div>
-);
-
-type AddonItemProps = {
-  addon: ServiceAddon;
-  quantity: number;
-  onToggle: (addonId: string, isSelected: boolean) => void;
-  onQuantityChange: (addonId: string, delta: number) => void;
-  formatIDR: (amount: number) => string;
-  isExclusive?: boolean;
-};
-
-const AddonItem: React.FC<AddonItemProps> = ({
-  addon,
-  quantity,
-  onToggle,
-  onQuantityChange,
-  formatIDR,
-  isExclusive,
-}) => {
-  const isSelected = quantity > 0;
-  const isConfigurable
-    = !isExclusive
-      && (addon.unit.includes('per') || addon.unit.includes('sistem') || addon.unit.includes('sesi'));
-
-  return (
-    <div
-      onClick={() => !isConfigurable && onToggle(addon.id, isSelected)}
-      className={`group flex items-center justify-between rounded-xl border p-4 transition-all ${isSelected ? 'border-primary-500 bg-primary-100 dark:border-primary-500/40 dark:bg-primary-900/10 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/10 dark:hover:bg-white/10'} ${!isConfigurable ? 'cursor-pointer' : ''}`}
-    >
-      <div className="flex flex-grow items-center gap-4">
-        <div
-          className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border transition-colors ${isSelected ? 'border-primary-600 bg-primary-600 text-slate-800 dark:text-white' : 'border-slate-400 bg-transparent dark:border-slate-600'}`}
-        >
-          {isSelected && <Check className="h-3.5 w-3.5" />}
-        </div>
-        <div>
-          <div className="flex items-center gap-2">
-            <h4
-              className={`text-sm font-bold ${isSelected ? 'text-slate-800 dark:text-white' : 'text-slate-900 dark:text-white'}`}
-            >
-              {addon.name}
-            </h4>
-            {addon.tooltip && <Tooltip text={addon.tooltip} />}
-          </div>
-          <p className="max-w-md text-[10px] text-slate-600 dark:text-slate-400">
-            {addon.description}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-shrink-0 items-center gap-6">
-        <div className="text-right">
-          <span
-            className={`block text-sm font-bold ${isSelected ? 'text-slate-800 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}
-          >
-            {formatIDR(addon.price)}
-          </span>
-          <span className="text-[9px] text-slate-500 dark:text-slate-400">{addon.unit}</span>
-        </div>
-
-        {isConfigurable
-          ? (
-              <div
-                className={`flex items-center rounded-lg border p-0.5 ${isSelected ? 'border-primary-300 bg-primary-50 dark:border-white/10 dark:bg-black/40' : 'border-slate-300 bg-slate-100 dark:border-white/10 dark:bg-black/40'}`}
-                onClick={e => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => onQuantityChange(addon.id, -1)}
-                  className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
-                  disabled={quantity === 0}
-                >
-                  <Minus className="h-3.5 w-3.5" />
-                </button>
-                <span
-                  className={`w-8 text-center text-xs font-bold ${quantity > 0 ? 'text-slate-800 dark:text-white' : 'text-slate-500'}`}
-                >
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => onQuantityChange(addon.id, 1)}
-                  className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
-                >
-                  <Plus className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            )
-          : (
-              <div className="w-8"></div>
-            )}
-      </div>
-    </div>
-  );
 };
 
 // --- Main Component ---
@@ -1739,7 +1583,7 @@ const PricingCalculator: React.FC = () => {
       </div>
 
       {/* Footer Nav (Mobile Only) */}
-      <div className="fixed right-0 bottom-0 left-0 z-20 flex items-center justify-between border-t border-white/10 bg-dark-bg/80 p-4 backdrop-blur-md lg:hidden">
+      <div className="bg-dark-bg/80 fixed right-0 bottom-0 left-0 z-20 flex items-center justify-between border-t border-white/10 p-4 backdrop-blur-md lg:hidden">
         <Button
           variant="ghost"
           onClick={() => changeStep('prev')}
@@ -1777,7 +1621,7 @@ const PricingCalculator: React.FC = () => {
 
   const renderRecommendation = () => {
     return (
-      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg">
+      <div className="dark:bg-dark-bg flex h-full flex-col overflow-hidden bg-slate-50">
         <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
           <div className="mx-auto max-w-5xl">
             <div className="mb-10 pt-4 text-center">
@@ -1903,7 +1747,7 @@ const PricingCalculator: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="z-20 flex justify-center border-t border-slate-200 bg-white/90 p-4 backdrop-blur dark:border-white/10 dark:bg-dark-bg/90">
+        <div className="dark:bg-dark-bg/90 z-20 flex justify-center border-t border-slate-200 bg-white/90 p-4 backdrop-blur dark:border-white/10">
           <Button
             variant="primary"
             onClick={() => changeStep('jump', 'customize')}
@@ -1959,7 +1803,7 @@ const PricingCalculator: React.FC = () => {
     ];
 
     return (
-      <div className="flex h-full flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg">
+      <div className="dark:bg-dark-bg flex h-full flex-col overflow-hidden bg-slate-50">
         <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 flex-grow overflow-y-auto p-6">
           <div className="mx-auto grid h-full max-w-6xl gap-8 lg:grid-cols-12">
             <div className="space-y-8 pb-12 lg:col-span-8">
@@ -2028,7 +1872,7 @@ const PricingCalculator: React.FC = () => {
 
             {/* Sticky Summary */}
             <div className="flex flex-col lg:col-span-4">
-              <div className="sticky top-6 my-6 flex max-h-[calc(100vh-3rem)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-dark-bg-light">
+              <div className="dark:bg-dark-bg-light sticky top-6 my-6 flex max-h-[calc(100vh-3rem)] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800">
                 <div className="flex-shrink-0 border-b border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 p-6 dark:border-slate-800 dark:from-slate-800 dark:to-slate-900">
                   <h3 className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-600 uppercase dark:text-slate-400">
                     <Wallet className="h-3 w-3" />
@@ -2119,7 +1963,7 @@ const PricingCalculator: React.FC = () => {
   };
 
   const renderCheckout = () => (
-    <div className="flex h-full items-center justify-center overflow-y-auto bg-dark-bg p-6">
+    <div className="bg-dark-bg flex h-full items-center justify-center overflow-y-auto p-6">
       <div className="grid w-full max-w-5xl gap-10 md:grid-cols-2">
         <div className="rounded-3xl border border-white/5 bg-slate-900 p-8 shadow-2xl">
           <div className="mb-8 flex items-center gap-3">
@@ -2296,7 +2140,7 @@ const PricingCalculator: React.FC = () => {
   );
 
   const renderThankYou = () => (
-    <div className="h-full w-full overflow-y-auto bg-dark-bg">
+    <div className="bg-dark-bg h-full w-full overflow-y-auto">
       <div className="flex min-h-full flex-col items-center justify-start p-8 pb-24 text-center">
         <motion.div
           initial={{ scale: 0 }}
@@ -2713,7 +2557,7 @@ const PricingCalculator: React.FC = () => {
   );
 
   return (
-    <div className="selection:bg-primary-500/30 flex min-h-screen flex-col overflow-hidden bg-slate-50 font-sans text-slate-900 dark:bg-dark-bg dark:text-white">
+    <div className="selection:bg-primary-500/30 dark:bg-dark-bg flex min-h-screen flex-col overflow-hidden bg-slate-50 font-sans text-slate-900 dark:text-white">
       <AnimatePresence mode="wait">
         {!isStarted
           ? (
@@ -2777,10 +2621,10 @@ const PricingCalculator: React.FC = () => {
                   >
                     <button
                       onClick={() => setIsStarted(true)}
-                      className="group relative inline-flex items-center gap-3 rounded-full bg-slate-900 px-10 py-4 text-base font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-white dark:text-dark-bg dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)]"
+                      className="group dark:text-dark-bg relative inline-flex items-center gap-3 rounded-full bg-slate-900 px-10 py-4 text-base font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-white dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)]"
                     >
                       <span>Mulai Simulasi Harga</span>
-                      <div className="rounded-full bg-white/10 p-1 transition-transform group-hover:translate-x-1 dark:bg-dark-bg/10">
+                      <div className="dark:bg-dark-bg/10 rounded-full bg-white/10 p-1 transition-transform group-hover:translate-x-1">
                         <ArrowRight className="h-4 w-4" />
                       </div>
                     </button>
@@ -2809,9 +2653,9 @@ const PricingCalculator: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="flex h-screen flex-col overflow-hidden bg-slate-50 dark:bg-dark-bg"
+                className="dark:bg-dark-bg flex h-screen flex-col overflow-hidden bg-slate-50"
               >
-                <div className="z-20 flex h-16 flex-shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-white/5 dark:bg-dark-bg/80">
+                <div className="dark:bg-dark-bg/80 z-20 flex h-16 flex-shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md dark:border-white/5">
                   <button
                     onClick={() => setIsStarted(false)}
                     className="group flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"

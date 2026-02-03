@@ -9,6 +9,7 @@ import { Providers } from '@/components/providers';
 import { PWAInit } from '@/components/PWAInit';
 import PWAInstallPrompt from '@/components/PWAInstallPrompt';
 import ScrollToTop from '@/components/ScrollToTop';
+import SkipLinks from '@/components/SkipLinks';
 import StructuredData from '@/components/StructuredData';
 import { WebVitalsReporter } from '@/components/WebVitalsReporter';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
@@ -65,12 +66,15 @@ export default async function RootLayout(props: {
       >
         <NextIntlClientProvider messages={messages}>
           <Providers>
+            <SkipLinks />
             <PWAInit />
             <ScrollToTop />
             <PWAInstallPrompt />
             <WebVitalsReporter />
             <WhatsAppFloat />
-            <PostHogProvider>{props.children}</PostHogProvider>
+            <PostHogProvider>
+              <main id="main-content">{props.children}</main>
+            </PostHogProvider>
           </Providers>
 
           {/* <DemoBadge /> */}
