@@ -5,11 +5,13 @@ import { Briefcase, Eye, EyeOff, Handshake, Lock, ShieldCheck, Users } from 'luc
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { Checkbox, Input } from '@/components/Form';
+import React, { useState } from 'react';
 import Container from '@/components/layout/Container';
 import { Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import Stack from '@/components/ui/Stack';
 
 type LoginType = 'employee' | 'admin' | 'partner';
@@ -116,47 +118,61 @@ export function LoginContent() {
 
               {/* Extra field for Employee: Company Code */}
               {loginType === 'employee' && (
-                <Input
-                  label="Company Code"
-                  placeholder="Ex: BIZOPS-ID"
-                  value={companyCode}
-                  onChange={e => setCompanyCode(e.target.value)}
-                  className="uppercase"
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="companyCode">Company Code</Label>
+                  <Input
+                    id="companyCode"
+                    placeholder="Ex: BIZOPS-ID"
+                    value={companyCode}
+                    onChange={e => setCompanyCode(e.target.value)}
+                    className="uppercase"
+                  />
+                </div>
               )}
 
-              <Input
-                label={loginType === 'employee' ? 'Employee ID / Email' : 'Work Email'}
-                type={loginType === 'employee' ? 'text' : 'email'}
-                placeholder={loginType === 'employee' ? 'EMP-001' : 'name@company.com'}
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                autoComplete="username"
-              />
-
-              <div className="relative">
+              <div className="space-y-2">
+                <Label htmlFor="email">
+                  {loginType === 'employee' ? 'Employee ID / Email' : 'Work Email'}
+                </Label>
                 <Input
-                  label="Password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  id="email"
+                  type={loginType === 'employee' ? 'text' : 'email'}
+                  placeholder={loginType === 'employee' ? 'EMP-001' : 'name@company.com'}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   required
-                  autoComplete="current-password"
+                  autoComplete="username"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-[34px] right-3 text-slate-400 transition-colors hover:text-slate-600 focus:outline-none dark:text-slate-300"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    required
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-3 flex items-center text-slate-400 transition-colors hover:text-slate-600 focus:outline-none dark:text-slate-300"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
               </div>
 
               <Stack direction="horizontal" gap={4} align="center" justify="between">
-                <Checkbox label="Remember me" name="remember" />
+                <div className="flex items-center gap-2">
+                  <Checkbox id="remember" name="remember" />
+                  <Label htmlFor="remember" className="cursor-pointer font-normal">Remember me</Label>
+                </div>
                 <Link href="/coming-soon" className="text-primary-600 hover:text-primary-700 text-sm font-semibold hover:underline">
                   Forgot password?
                 </Link>

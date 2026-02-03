@@ -1,4 +1,3 @@
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -36,12 +35,12 @@ export function useDemoFormSchema() {
     employeeCount: z.string().optional(),
     industry: z.string().optional(),
     features: z.object({
-      hr: z.boolean().default(false),
-      project: z.boolean().default(false),
-      inv: z.boolean().default(false),
-      crm: z.boolean().default(false),
-      finance: z.boolean().default(false),
-      partner: z.boolean().default(false),
+      hr: z.boolean(),
+      project: z.boolean(),
+      inv: z.boolean(),
+      crm: z.boolean(),
+      finance: z.boolean(),
+      partner: z.boolean(),
     }),
     consent: z.boolean().refine(val => val === true, t('error_consent_required')),
   });
@@ -55,7 +54,7 @@ export function useDemoForm() {
   const [formState, setFormState] = useState<DemoFormState>('idle');
   const schema = useDemoFormSchema();
 
-  const form = useForm({
+  const form = useForm<DemoFormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       fullName: '',
@@ -78,7 +77,7 @@ export function useDemoForm() {
 
   const onSubmit = async (data: DemoFormValues) => {
     setFormState('submitting');
-    
+
     // Simulate API call / business logic
     const phone = '622139702834';
     const message = `Halo BizOps, saya ${data.fullName} dari ${data.companyName}. Saya tertarik untuk demo produk (Industri: ${data.industry}). Email saya: ${data.workEmail}.`;

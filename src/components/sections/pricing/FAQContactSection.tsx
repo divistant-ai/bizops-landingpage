@@ -1,8 +1,8 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { MessageSquare, Phone } from 'lucide-react';
-import FAQAccordion from '@/components/FAQAccordion';
+import { useTranslations } from 'next-intl';
+import Accordion from '@/components/ui/Accordion';
 
 export function FAQContactSection({ faqs }: { faqs: { q: string; a: string }[] }) {
   const t = useTranslations('Pricing');
@@ -51,7 +51,11 @@ export function FAQContactSection({ faqs }: { faqs: { q: string; a: string }[] }
         </div>
       </div>
       <div className="lg:col-span-7">
-        <FAQAccordion faqs={faqs} />
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <Accordion key={index} question={faq.q} answer={faq.a} />
+          ))}
+        </div>
       </div>
     </div>
   );

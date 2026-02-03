@@ -18,11 +18,6 @@ export const InfiniteScrollLoop = dynamic(() => import('./InfiniteScrollLoop'), 
   ssr: false,
 });
 
-export const BarChart = dynamic(() => import('@/components/BarChart').then(mod => ({ default: mod.BarChart })), {
-  loading: () => <div className="h-64 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />,
-  ssr: true,
-});
-
 export const SpotlightCard = dynamic(() => import('./SpotlightCard'), {
   loading: () => <div className="h-48 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />,
   ssr: true,

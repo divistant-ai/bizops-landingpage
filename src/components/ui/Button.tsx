@@ -72,7 +72,7 @@ const Button: React.FC<ButtonProps> = memo(({
   'aria-controls': ariaControls,
   'aria-pressed': ariaPressed,
 }: ButtonProps) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed rounded-lg active:scale-[0.98]';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:scale-[1.02] hover:shadow-md active:scale-[0.98]';
 
   // Design System: Ensure proper color contrast for all variants
   const variants: Record<NonNullable<ButtonProps['variant']>, string> = {

@@ -22,7 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 
 type DemoFormProps = {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<DemoFormValues>;
   formState: DemoFormState;
   onSubmit: (data: DemoFormValues) => Promise<void>;
 };
@@ -181,7 +181,7 @@ export function DemoForm({ form, formState, onSubmit }: DemoFormProps) {
                     'feature_finance',
                     'feature_partner',
                   ] as const
-                ).map(key => {
+                ).map((key) => {
                   const featureKey = key.replace('feature_', '');
                   return (
                     <FormField
@@ -241,18 +241,16 @@ export function DemoForm({ form, formState, onSubmit }: DemoFormProps) {
             />
 
             <Button
-              size="md"
+              size="lg"
               type="submit"
               fullWidth
               variant="primary"
-              className="shadow-primary-500/20 bg-primary-600 hover:bg-primary-500 h-14 rounded-xl bg-slate-50 text-lg font-bold text-white shadow-xl dark:bg-slate-600"
+              className="h-14 rounded-xl text-lg font-bold"
               isLoading={formState === 'submitting'}
             >
-              <span className="text-slate-600 dark:text-white">
-                {formState === 'submitting'
-                  ? t('submit_loading')
-                  : t('submit_button')}
-              </span>
+              {formState === 'submitting'
+                ? t('submit_loading')
+                : t('submit_button')}
             </Button>
           </form>
         </Form>

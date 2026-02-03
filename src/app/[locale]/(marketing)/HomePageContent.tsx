@@ -15,7 +15,7 @@ import {
   PricingComparisonSection,
   SecuritySection,
 } from '@/components/sections/home';
-import TestimonialsSection from '@/components/TestimonialsSection';
+import TestimonialsSection from '@/components/sections/shared/TestimonialsSection';
 import { getHomeProblems, getHomeSolutions } from '@/data/homeContent';
 
 // Sample YouTube video IDs for each module

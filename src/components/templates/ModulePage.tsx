@@ -11,7 +11,7 @@ import { FeatureGrid } from '@/components/sections/FeatureGrid';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MetricsSection } from '@/components/sections/MetricsSection';
 import { RelatedModulesSection } from '@/components/sections/RelatedModulesSection';
-import TestimonialsSection from '@/components/TestimonialsSection'; // Keep original for now as it seems to be a global slider
+import TestimonialsSection from '@/components/sections/shared/TestimonialsSection';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
 import {
   platformCapabilitiesTranslations,

@@ -4,9 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
-import { Input, Select, TextArea } from './Form';
-import Button from './ui/Button';
-import OptimizedImage from './ui/OptimizedImage'; // Imported OptimizedImage
+import Button from '@/components/ui/Button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import OptimizedImage from '@/components/ui/OptimizedImage'; // Imported OptimizedImage
+import { Select } from '@/components/ui/select';
+import { Textarea as TextArea } from '@/components/ui/textarea';
 
 type DemoModalProps = {
   isOpen: boolean;
@@ -91,7 +94,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             </button>
 
             {/* LEFT: INFO SIDEBAR */}
-            <div className="flex hidden flex-col justify-between overflow-y-auto border-r border-slate-200 bg-slate-50 p-8 md:flex md:w-4/12 dark:border-slate-700 dark:bg-slate-800/50">
+            <div className="hidden flex-col justify-between overflow-y-auto border-r border-slate-200 bg-slate-50 p-8 md:flex md:w-4/12 dark:border-slate-700 dark:bg-slate-800/50">
               <div>
                 <div className="mb-8">
                   <span className="bg-primary/10 text-primary mb-4 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold tracking-wider uppercase">
@@ -183,90 +186,112 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Input
-                    id="modalName"
-                    name="modalName"
-                    required
-                    label={t('label_full_name')}
-                    placeholder={t('placeholder_full_name')}
-                  />
-                  <Input
-                    id="modalJobTitle"
-                    name="modalJobTitle"
-                    required
-                    label={t('label_job_title')}
-                    placeholder={t('placeholder_job_title')}
-                  />
+                  <div className="space-y-2">
+                    <Label htmlFor="modalName">{t('label_full_name')}</Label>
+                    <Input
+                      id="modalName"
+                      name="modalName"
+                      required
+                      placeholder={t('placeholder_full_name')}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="modalJobTitle">{t('label_job_title')}</Label>
+                    <Input
+                      id="modalJobTitle"
+                      name="modalJobTitle"
+                      required
+                      placeholder={t('placeholder_job_title')}
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Input
-                    id="modalEmail"
-                    name="modalEmail"
-                    type="email"
-                    required
-                    label={t('label_work_email')}
-                    placeholder={t('placeholder_work_email')}
-                  />
-                  <Input
-                    id="modalPhone"
-                    name="modalPhone"
-                    type="tel"
-                    required
-                    label={t('label_phone')}
-                    placeholder={t('placeholder_phone')}
-                  />
+                  <div className="space-y-2">
+                    <Label htmlFor="modalEmail">{t('label_work_email')}</Label>
+                    <Input
+                      id="modalEmail"
+                      name="modalEmail"
+                      type="email"
+                      required
+                      placeholder={t('placeholder_work_email')}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="modalPhone">{t('label_phone')}</Label>
+                    <Input
+                      id="modalPhone"
+                      name="modalPhone"
+                      type="tel"
+                      required
+                      placeholder={t('placeholder_phone')}
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Input
-                    id="modalCompany"
-                    name="modalCompany"
-                    required
-                    label={t('label_company_name')}
-                    placeholder={t('placeholder_company_name')}
-                    icon={<Building2 className="h-5 w-5" />}
-                  />
+                  <div className="space-y-2">
+                    <Label htmlFor="modalCompany">{t('label_company_name')}</Label>
+                    <Input
+                      id="modalCompany"
+                      name="modalCompany"
+                      required
+                      placeholder={t('placeholder_company_name')}
+                      icon={<Building2 />}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="modalEmployees">{t('label_company_size')}</Label>
+                    <Select
+                      id="modalEmployees"
+                      name="modalEmployees"
+                      required
+                      icon={<Users />}
+                    >
+                      {[
+                        { value: '1-10', label: t('size_1_10') },
+                        { value: '11-50', label: t('size_11_50') },
+                        { value: '51-200', label: t('size_51_200') },
+                        { value: '201-500', label: t('size_201_500') },
+                        { value: '501-1000', label: t('size_501_1000') },
+                        { value: '1000+', label: t('size_1000_plus') },
+                      ].map(opt => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="modalInterest">{t('label_interest')}</Label>
                   <Select
-                    id="modalEmployees"
-                    name="modalEmployees"
-                    label={t('label_company_size')}
+                    id="modalInterest"
+                    name="modalInterest"
                     required
-                    icon={<Users className="h-5 w-5" />}
-                    options={[
-                      { value: '1-10', label: t('size_1_10') },
-                      { value: '11-50', label: t('size_11_50') },
-                      { value: '51-200', label: t('size_51_200') },
-                      { value: '201-500', label: t('size_201_500') },
-                      { value: '501-1000', label: t('size_501_1000') },
-                      { value: '1000+', label: t('size_1000_plus') },
-                    ]}
-                  />
+                  >
+                    {[
+                      { value: 'General Overview', label: t('interest_general') },
+                      { value: 'HR & Payroll', label: t('interest_hr') },
+                      { value: 'Finance & Accounting', label: t('interest_finance') },
+                      { value: 'Supply Chain', label: t('interest_supply') },
+                      { value: 'CRM & Sales', label: t('interest_crm') },
+                      { value: 'Custom Solution', label: t('interest_custom') },
+                    ].map(opt => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                  </Select>
                 </div>
 
-                <Select
-                  id="modalInterest"
-                  name="modalInterest"
-                  label={t('label_interest')}
-                  required
-                  options={[
-                    { value: 'General Overview', label: t('interest_general') },
-                    { value: 'HR & Payroll', label: t('interest_hr') },
-                    { value: 'Finance & Accounting', label: t('interest_finance') },
-                    { value: 'Supply Chain', label: t('interest_supply') },
-                    { value: 'CRM & Sales', label: t('interest_crm') },
-                    { value: 'Custom Solution', label: t('interest_custom') },
-                  ]}
-                />
-
-                <TextArea
-                  id="modalMessage"
-                  name="modalMessage"
-                  label={t('label_message')}
-                  placeholder={t('placeholder_message')}
-                  rows={2}
-                  className="resize-none"
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="modalMessage">{t('label_message')}</Label>
+                  <TextArea
+                    id="modalMessage"
+                    name="modalMessage"
+                    placeholder={t('placeholder_message')}
+                    rows={2}
+                    className="resize-none"
+                  />
+                </div>
 
                 <div className="pt-2">
                   <Button
