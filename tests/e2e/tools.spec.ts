@@ -40,6 +40,7 @@ test.describe('Tools Functionality', () => {
 
     // Intro
     await expect(page).toHaveTitle(/Assessment/i);
+
     await page.click('text=Mulai Assessment Sekarang');
 
     // Fill Form (using name attribute where possible or label)
@@ -53,7 +54,7 @@ test.describe('Tools Functionality', () => {
 
     // Verify transition to Assessment View (Look for first question indicator or progress)
     // We check that the lead form is gone and "Pertanyaan" is visible
-    await expect(page.locator('input[name="name"]')).not.toBeVisible();
+    await expect(page.locator('input[name="name"]')).toBeHidden();
     await expect(page.locator('text=/Pertanyaan/i')).toBeVisible();
   });
 });
