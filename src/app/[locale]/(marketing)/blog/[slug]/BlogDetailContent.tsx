@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Badge, OptimizedImage } from '@/components/ui';
 import Button from '@/components/ui/Button';
 
@@ -334,28 +335,18 @@ export default function BlogDetailContent({ post, relatedPosts }: BlogDetailCont
       )}
 
       {/* CTA Section */}
-      <section className="bg-slate-900 px-4 py-16 sm:px-6 lg:px-8 dark:bg-slate-950">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white">
-            Siap Menerapkan Strategi Ini?
-          </h2>
-          <p className="mb-8 text-lg text-slate-300">
-            Diskusikan kebutuhan spesifik perusahaan Anda dengan tim konsultan kami.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/contact">
-              <Button size="lg" className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto">
-                Jadwalkan Konsultasi Gratis
-              </Button>
-            </Link>
-            <Link href="/demo">
-              <Button size="lg" variant="outline" className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto">
-                Lihat Demo Platform
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* CTA Section */}
+      <CTABannerSection
+        badgeText="Next Steps"
+        title="Siap Menerapkan Strategi Ini?"
+        subtitle="Diskusikan kebutuhan spesifik perusahaan Anda dengan tim konsultan kami."
+        demoBtnText="Jadwalkan Konsultasi Gratis"
+        demoBtnLink="/contact"
+        pricingBtnText="Lihat Demo Platform"
+        pricingBtnLink="/demo"
+        trustText1="Expert Team"
+        trustText2="Proven Strategy"
+      />
     </div>
   );
 }

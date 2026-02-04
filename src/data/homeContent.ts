@@ -122,7 +122,7 @@ export const homeUVP = [
   {
     title: 'Hybrid Cloud Freedom',
     subtitle: 'Kendali Penuh Infrastruktur',
-    desc: 'Satu-satunya solusi yang menawarkan fleksibilitas penuh: Cloud untuk kecepatan, atau On-Premise untuk kedaulatan data total. Migrasi kapan saja tanpa lock-in.',
+    desc: 'Solusi yang menawarkan fleksibilitas penuh: Cloud untuk kecepatan, atau On-Premise untuk kedaulatan data total. Migrasi kapan saja tanpa lock-in.',
     icon: Database,
   },
   {

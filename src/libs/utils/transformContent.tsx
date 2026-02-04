@@ -9,7 +9,7 @@ export function transformContent(data: any) {
   const transformed = { ...data };
 
   // Helper to serialize icon
-  const serializeIcon = (icon: any, className: string) => {
+  const serializeIcon = (icon: any, _className: string) => {
     if (!icon) {
       return null;
     }
@@ -21,11 +21,14 @@ export function transformContent(data: any) {
     } // Already JSX
 
     // Assume Component (Function or ForwardRef Object)
-    try {
-      return React.createElement(icon, { className });
-    } catch (e) {
-      return null;
+    // Extract name for DynamicIcon lookup
+    if (typeof icon === 'function' || (typeof icon === 'object' && icon !== null)) {
+      // lucide-react icons usually have displayName. Fallback to name.
+      const name = (icon as any).displayName || (icon as any).name;
+      if (name) { return name; }
     }
+
+    return null;
   };
 
   // 1. Hero Icon
@@ -93,6 +96,11 @@ export function transformContent(data: any) {
 
   // Keep CTA as-is (string or object)
   // GenericLandingPage will handle translation fallbacks
+
+  // 5. Apps Modules (New)
+  if (transformed.apps) {
+    transformed.apps = processList(transformed.apps, 'w-7 h-7');
+  }
 
   return transformed;
 }

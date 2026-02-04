@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Grid, Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from '@/components/ui/Checkbox';
 import {
   Form,
   FormControl,
@@ -17,9 +17,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
+} from '@/components/ui/Form';
+import { Input } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
 
 type DemoFormProps = {
   form: UseFormReturn<DemoFormValues>;
@@ -166,7 +166,7 @@ export function DemoForm({ form, formState, onSubmit }: DemoFormProps) {
             />
 
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
-              <span className="mb-4 block flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
+              <span className="mb-4 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
                 <Zap className="h-4 w-4 text-amber-500 dark:text-amber-400" />
                 {' '}
                 {t('needs_title')}

@@ -4,16 +4,12 @@
 
 import {
   ArrowUpRight,
-  Bug,
   CheckCircle,
   ChevronRight,
   Instagram,
   Linkedin,
-  Lock,
-  Mail,
   MapPin,
   Moon,
-  Phone,
   ShieldCheck,
   Signal,
   Sun,
@@ -26,6 +22,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react';
+
 import { subscribeToNewsletter } from '@/app/actions/newsletter';
 import { usePathname } from '@/libs/I18nNavigation';
 import { routing } from '@/libs/I18nRouting';
@@ -70,11 +67,11 @@ const FooterLink: React.FC<FooterLinkProps> = ({
         href={href}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        className={`group flex items-center gap-2 py-1 text-[14px] transition-colors ${isActive ? 'font-medium text-slate-900 dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
+        className={`group flex items-center gap-2 py-1 text-[14px] transition-colors ${isActive ? 'font-medium text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-blue-400'}`}
       >
         {Icon && (
           <Icon
-            className={`h-3.5 w-3.5 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'group-hover:text-primary-600 dark:group-hover:text-primary-400 text-slate-500 dark:text-slate-500'} transition-colors`}
+            className={`h-3.5 w-3.5 ${isActive ? 'text-primary-600 dark:text-blue-400' : 'group-hover:text-primary-600 text-slate-400 dark:text-slate-500 dark:group-hover:text-blue-400'} transition-colors`}
           />
         )}
         <span className="inline-block truncate transition-transform duration-200 group-hover:translate-x-1">
@@ -100,9 +97,9 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon: Icon, label }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="hover:border-primary-500 hover:bg-primary-500 flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-white dark:hover:bg-white dark:hover:text-slate-950 dark:hover:text-white"
+    className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-50 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-blue-500/50 dark:hover:bg-slate-800 dark:hover:text-blue-400"
   >
-    <Icon className="h-5 w-5" />
+    <Icon className="h-4 w-4" />
   </a>
 );
 
@@ -115,16 +112,16 @@ const FooterLinkGroup: React.FC<FooterLinkGroupProps> = ({ title, children }) =>
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="space-y-6 border-b border-slate-200 pb-6 md:border-none md:pb-0 dark:border-white/5">
+    <div className="space-y-6 border-b border-slate-200 pb-6 md:border-none md:pb-0 dark:border-slate-800">
       <div
         className="group flex cursor-pointer items-center justify-between select-none md:cursor-default"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-xs font-bold tracking-widest text-slate-500 uppercase transition-colors group-hover:text-slate-700 md:group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-white dark:md:group-hover:text-slate-500">
+        <h3 className="text-xs font-bold tracking-widest text-slate-900 uppercase transition-colors md:group-hover:text-slate-900 dark:text-white dark:group-hover:text-white dark:md:group-hover:text-white">
           {title}
         </h3>
         <ChevronRight
-          className={`h-4 w-4 text-slate-500 transition-transform duration-300 md:hidden ${isOpen ? 'text-primary-600 dark:text-primary-400 rotate-90' : ''}`}
+          className={`h-4 w-4 text-slate-400 transition-transform duration-300 md:hidden ${isOpen ? 'rotate-90 text-blue-600 dark:text-blue-400' : ''}`}
         />
       </div>
 
@@ -182,16 +179,16 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-linear-to-b from-slate-50 to-white font-sans text-slate-900 dark:border-slate-900/50 dark:from-dark-bg dark:to-slate-950 dark:text-white">
-      {/* Ambient Background Glow */}
-      <div className="bg-primary-500/5 dark:bg-primary-600/5 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5" />
+    <footer className="relative z-10 overflow-hidden border-t border-slate-200 bg-slate-50 font-sans text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-white">
+      {/* Ambient Background Glow - Subtler in dark mode */}
+      <div className="pointer-events-none absolute top-0 -left-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[120px] dark:bg-blue-500/5" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-indigo-500/5 blur-[100px] dark:bg-indigo-500/5" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-8 sm:px-6 md:pt-16 md:pb-10 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-16 pb-8 sm:px-6 lg:px-8">
         {/* MAIN GRID */}
-        <div className="mb-12 grid grid-cols-1 gap-10 md:mb-20 md:grid-cols-12 md:gap-12 xl:gap-12">
+        <div className="mb-12 grid grid-cols-1 gap-10 md:mb-16 md:grid-cols-12 md:gap-12 xl:gap-12">
           {/* BRAND COLUMN (Left) */}
-          <div className="flex flex-col items-start space-y-6 md:col-span-12 md:space-y-8 lg:col-span-4">
+          <div className="flex flex-col items-start space-y-8 md:col-span-12 lg:col-span-4">
             <Link
               href="/"
               className="group flex items-center focus:outline-none"
@@ -206,7 +203,7 @@ export const Footer: React.FC = () => {
                 alt="BizOps Logo"
                 width={120}
                 height={40}
-                className="transition-all duration-200 group-hover:scale-105"
+                className="transition-all duration-200 group-hover:opacity-90"
                 style={{ width: 'auto', height: 'auto' }}
               />
             </Link>
@@ -215,70 +212,46 @@ export const Footer: React.FC = () => {
               {t('description')}
             </p>
 
-            <div className="space-y-5 pt-2">
+            <div className="space-y-4 pt-2">
               <div className="flex items-start gap-4">
-                <div className="bg-primary-100 text-primary-600 dark:text-primary-400 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg dark:bg-white/5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 dark:bg-slate-900 dark:text-slate-500">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
-                  <p className="mb-1.5 text-xs font-bold tracking-wider text-slate-500 uppercase">
+                  <p className="mb-1 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
                     {t('headquarters')}
                   </p>
-                  <span className="block text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  <span className="block text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     {t('company_name')}
                     <br />
                     {t('address_line1')}
                     <br />
                     {t('address_line2')}
-                    <br />
-                    {t('address_line3')}
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <a
-                  href="mailto:hello@bizops.id"
-                  className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
-                >
-                  hello@bizops.id
-                </a>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-primary-100 text-primary-600 group-hover:bg-primary-500 dark:text-primary-400 dark:group-hover:bg-primary-500 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors group-hover:text-white dark:bg-white/5 dark:group-hover:text-white">
-                  <Phone className="h-4 w-4" />
-                </div>
-                <a
-                  href="tel:+622139702834"
-                  className="text-sm text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
-                >
-                  +62 21 3970 2834
-                </a>
-              </div>
-            </div>
 
-            <div className="flex gap-3 pt-4">
-              <SocialLink
-                href="https://linkedin.com/company/bizops"
-                icon={Linkedin}
-                label="LinkedIn"
-              />
-              <SocialLink href="https://twitter.com/bizops" icon={Twitter} label="Twitter" />
-              <SocialLink href="https://youtube.com/@bizops" icon={Youtube} label="YouTube" />
-              <SocialLink
-                href="https://instagram.com/bizops.id"
-                icon={Instagram}
-                label="Instagram"
-              />
+              <div className="flex gap-3 pt-6">
+                <SocialLink
+                  href="https://linkedin.com/company/bizops"
+                  icon={Linkedin}
+                  label="LinkedIn"
+                />
+                <SocialLink href="https://twitter.com/bizops" icon={Twitter} label="Twitter" />
+                <SocialLink href="https://youtube.com/@bizops" icon={Youtube} label="YouTube" />
+                <SocialLink
+                  href="https://instagram.com/bizops.id"
+                  icon={Instagram}
+                  label="Instagram"
+                />
+              </div>
             </div>
           </div>
 
           {/* LINKS COLUMNS (Middle) */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-7 lg:col-span-5 lg:gap-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-12 lg:col-span-5 lg:gap-8">
             <FooterLinkGroup title={t('platform')}>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 <FooterLink href="/platform">{t('overview')}</FooterLink>
                 <FooterLink href="/platform/modules/hr">{t('hr_system')}</FooterLink>
                 <FooterLink href="/platform/modules/finance">{t('finance')}</FooterLink>
@@ -287,30 +260,29 @@ export const Footer: React.FC = () => {
                   {t('integrations')}
                 </FooterLink>
                 <FooterLink href="/pricing">{t('pricing')}</FooterLink>
-                <FooterLink href="/roadmap">{t('roadmap')}</FooterLink>
               </ul>
             </FooterLinkGroup>
 
             <FooterLinkGroup title={t('company')}>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 <FooterLink href="/about">{t('about_us')}</FooterLink>
                 <FooterLink href="/customers">{t('customers')}</FooterLink>
                 <FooterLink href="/partners">{t('partners')}</FooterLink>
                 <FooterLink href="/careers">{t('careers')}</FooterLink>
                 <FooterLink href="/media-kit">{t('media_kit')}</FooterLink>
                 <FooterLink href="/contact">{t('contact')}</FooterLink>
-                <FooterLink href="/trust" icon={ShieldCheck}>
-                  {t('trust_center')}
-                </FooterLink>
               </ul>
             </FooterLinkGroup>
 
             <FooterLinkGroup title={t('resources')}>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 <FooterLink href="/blog">{t('blog')}</FooterLink>
                 <FooterLink href="/docs">{t('docs')}</FooterLink>
                 <FooterLink href="/tools/roi-calculator">{t('roi_calc')}</FooterLink>
                 <FooterLink href="/tools/assessment">{t('assessment')}</FooterLink>
+                <FooterLink href="/trust" icon={ShieldCheck}>
+                  {t('trust_center')}
+                </FooterLink>
                 <FooterLink href="/status" icon={Signal}>
                   {t('status')}
                 </FooterLink>
@@ -318,17 +290,16 @@ export const Footer: React.FC = () => {
             </FooterLinkGroup>
           </div>
 
-          {/* NEWSLETTER & APP (Right) */}
-          <div className="space-y-8 md:col-span-5 lg:col-span-3">
-            {/* Newsletter */}
-            <div className="relative space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-white/10 dark:bg-white/5 dark:backdrop-blur-sm">
+          {/* NEWSLETTER (Right) */}
+          <div className="space-y-8 md:col-span-12 lg:col-span-3">
+            <div className="relative space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/50">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                 {t('stay_updated')}
               </h3>
 
               {subscribed
                 ? (
-                    <div className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-50 p-4 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+                    <div className="flex items-center gap-3 rounded-xl bg-green-50 p-4 text-green-700 dark:bg-green-500/10 dark:text-green-400">
                       <CheckCircle className="h-5 w-5 shrink-0" />
                       <span className="text-sm font-medium">{t('subscribed_success')}</span>
                     </div>
@@ -344,7 +315,7 @@ export const Footer: React.FC = () => {
                             setError(null);
                           }}
                           placeholder={t('email_placeholder')}
-                          className="focus:border-primary-500 focus:ring-primary-500/50 w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 transition-all placeholder:text-slate-400 focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950/50 dark:text-white dark:placeholder:text-slate-500"
+                          className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-500"
                           required
                           disabled={isPending}
                         />
@@ -352,13 +323,13 @@ export const Footer: React.FC = () => {
                           type="submit"
                           aria-label="Subscribe"
                           disabled={isPending}
-                          className="bg-primary-600 hover:bg-primary-500 disabled:hover:bg-primary-600 absolute right-1.5 rounded-lg p-1.5 text-white transition-all disabled:opacity-50"
+                          className="absolute right-1.5 rounded-lg bg-slate-900 p-1.5 text-white transition-all hover:bg-slate-800 disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-500"
                         >
                           <ChevronRight className="h-4 w-4" />
                         </button>
                       </div>
                       {error && (
-                        <p className="animate-fade-in mt-2 text-xs text-red-500 dark:text-red-400">
+                        <p className="mt-2 text-xs text-red-500 dark:text-red-400">
                           {error}
                         </p>
                       )}
@@ -366,25 +337,25 @@ export const Footer: React.FC = () => {
                   )}
             </div>
 
-            {/* Mobile Apps - Compact */}
+            {/* Mobile Apps */}
             <div className="space-y-4">
-              <h3 className="text-[11px] font-bold tracking-widest text-slate-500 uppercase">
+              <h3 className="text-[11px] font-bold tracking-widest text-slate-500 uppercase dark:text-slate-400">
                 {t('mobile_app')}
               </h3>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-3">
                 <Link
                   href="https://apps.apple.com/id/app/bizops/id6733236612?l=id"
                   target="_blank"
-                  className="group flex items-center gap-3 rounded-lg border border-slate-300 bg-white p-2.5 pr-4 shadow-sm transition-all hover:border-slate-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800"
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded bg-black text-white transition-transform group-hover:scale-105">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900">
                     <AppleIcon />
                   </div>
-                  <div className="text-left">
-                    <div className="text-[9px] font-bold text-slate-500 uppercase">
+                  <div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase dark:text-slate-500">
                       {t('download_on')}
                     </div>
-                    <div className="text-xs leading-tight font-bold text-slate-900 dark:text-white">
+                    <div className="text-sm font-bold text-slate-900 dark:text-white">
                       {t('app_store')}
                     </div>
                   </div>
@@ -392,16 +363,16 @@ export const Footer: React.FC = () => {
                 <Link
                   href="https://play.google.com/store/apps/details?id=com.divistant.ex_mobile.ex_mobile"
                   target="_blank"
-                  className="group flex items-center gap-3 rounded-lg border border-slate-300 bg-white p-2.5 pr-4 shadow-sm transition-all hover:border-slate-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800"
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded border border-slate-300 bg-slate-100 text-slate-900 transition-transform group-hover:scale-105 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-white">
                     <PlayStoreIcon />
                   </div>
-                  <div className="text-left">
-                    <div className="text-[9px] font-bold text-slate-500 uppercase">
+                  <div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase dark:text-slate-500">
                       {t('get_it_on')}
                     </div>
-                    <div className="text-xs leading-tight font-bold text-slate-900 dark:text-white">
+                    <div className="text-sm font-bold text-slate-900 dark:text-white">
                       {t('google_play')}
                     </div>
                   </div>
@@ -412,136 +383,48 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-6 md:flex-row dark:border-slate-800">
-          {/* Copyright & Language Switcher */}
-          <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row">
-            <p className="text-xs text-slate-500">
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-8 md:flex-row dark:border-slate-800">
+          <div className="flex flex-col text-center md:text-left">
+            <p className="text-sm text-slate-500 dark:text-slate-500">
               ©
               {' '}
               {new Date().getFullYear()}
               {' '}
-              {t('copyright')}
+              BizOps. All rights reserved.
             </p>
-
-            {/* Language & Theme Switcher Pill - Mobile */}
-            <div className="flex items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:hidden dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map(loc => (
-                <button
-                  key={loc}
-                  onClick={() => {
-                    router.push(`/${loc}${pathname}`);
-                    router.refresh();
-                  }}
-                  className={`rounded-full px-2 py-1 text-[10px] font-bold transition-all ${
-                    locale === loc
-                      ? 'bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
-                  }`}
-                  aria-label={`Switch to ${loc.toUpperCase()}`}
-                >
-                  {loc.toUpperCase()}
-                </button>
-              ))}
-              <div className="h-2.5 w-px bg-slate-300 dark:bg-slate-800" />
-              <button
-                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
-                aria-label="Toggle Theme"
-              >
-                {mounted
-                  ? (
-                      resolvedTheme === 'dark'
-                        ? (
-                            <Sun className="h-3 w-3" />
-                          )
-                        : (
-                            <Moon className="h-3 w-3" />
-                          )
-                    )
-                  : (
-                      <div className="h-3 w-3" />
-                    )}
-              </button>
-            </div>
-
-            {/* Language & Theme Switcher Pill - Desktop */}
-            <div className="hidden items-center gap-0.5 rounded-full border border-slate-300 bg-white p-0.5 md:flex dark:border-slate-800 dark:bg-slate-900/80">
-              {routing.locales.map(loc => (
-                <button
-                  key={loc}
-                  onClick={() => {
-                    router.push(`/${loc}${pathname}`);
-                    router.refresh();
-                  }}
-                  className={`rounded-full px-2 py-1 text-[10px] font-bold transition-all ${
-                    locale === loc
-                      ? 'bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-white'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
-                  }`}
-                  aria-label={`Switch to ${loc.toUpperCase()}`}
-                >
-                  {loc.toUpperCase()}
-                </button>
-              ))}
-              <div className="h-2.5 w-px bg-slate-300 dark:bg-slate-800" />
-              <button
-                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                className="rounded-full p-1 text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
-                aria-label="Toggle Theme"
-              >
-                {mounted
-                  ? (
-                      resolvedTheme === 'dark'
-                        ? (
-                            <Sun className="h-3 w-3" />
-                          )
-                        : (
-                            <Moon className="h-3 w-3" />
-                          )
-                    )
-                  : (
-                      <div className="h-3 w-3" />
-                    )}
-              </button>
-            </div>
           </div>
 
-          {/* Legal Links - Compact */}
-          <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-500 md:gap-6">
-            <Link
-              href="/legal/privacy"
-              className="transition-colors hover:text-slate-900 dark:hover:text-white"
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white p-1 dark:border-slate-800 dark:bg-slate-900">
+            {routing.locales.map(loc => (
+              <button
+                key={loc}
+                onClick={() => {
+                  router.push(`/${loc}${pathname}`);
+                  router.refresh();
+                }}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition-all ${
+                  locale === loc
+                    ? 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-white'
+                    : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                }`}
+              >
+                {loc.toUpperCase()}
+              </button>
+            ))}
+            <div className="mx-1 h-4 w-px bg-slate-200 dark:bg-slate-800" />
+            <button
+              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+              className="group flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
             >
-              {t('privacy')}
-            </Link>
-            <Link
-              href="/legal/terms"
-              className="transition-colors hover:text-slate-900 dark:hover:text-white"
-            >
-              {t('terms')}
-            </Link>
-            <Link
-              href="/legal/dpa"
-              className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
-            >
-              <Lock className="h-3 w-3" />
-              {' '}
-              {t('dpa')}
-            </Link>
-            <Link
-              href="/security/report"
-              className="flex items-center gap-1 transition-colors hover:text-slate-900 dark:hover:text-white"
-            >
-              <Bug className="h-3 w-3" />
-              {' '}
-              {t('report_bug')}
-            </Link>
-            <Link
-              href="/sitemap"
-              className="transition-colors hover:text-slate-900 dark:hover:text-white"
-            >
-              {t('sitemap')}
-            </Link>
+              <Sun className="h-3.5 w-3.5 dark:hidden" />
+              <Moon className="hidden h-3.5 w-3.5 dark:block" />
+              <span>{mounted ? (resolvedTheme === 'dark' ? 'Dark' : 'Light') : 'Theme'}</span>
+            </button>
+          </div>
+
+          <div className="flex gap-6 text-sm">
+            <Link href="/legal/privacy" className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white">{t('privacy')}</Link>
+            <Link href="/legal/terms" className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white">{t('terms')}</Link>
           </div>
         </div>
       </div>

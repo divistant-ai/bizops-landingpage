@@ -20,14 +20,13 @@ import {
   Headphones,
   HelpCircle,
   Layers,
-  Layout,
+
   LayoutGrid,
   LifeBuoy,
-  MessageSquare,
+
   Newspaper,
-  Package,
   PieChart,
-  Plug,
+  Plane,
   Presentation,
   Rocket,
   Search,
@@ -36,8 +35,9 @@ import {
   ShieldCheck,
   ShoppingCart,
   Signal,
-  Smartphone,
+
   Smile,
+
   Star,
   Target,
   TrendingUp,
@@ -47,6 +47,8 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react';
+
+import { getCapabilityNavItems, getModuleNavItems, getTechnologyNavItems } from './navHelpers';
 
 type MenuItem = {
   to: string;
@@ -79,116 +81,17 @@ export const platformContent: Record<string, MenuContent> = {
   modules: {
     title: 'Core Business Modules',
     description: 'Integrated applications to run your entire enterprise.',
-    items: [
-      {
-        to: '/platform/modules/hr',
-        label: 'Human Capital',
-        desc: 'Payroll, Attendance, LMS',
-        icon: Users,
-      },
-      {
-        to: '/platform/modules/finance',
-        label: 'Finance & Control',
-        desc: 'Accounting, Expense, Asset',
-        icon: DollarSign,
-      },
-      {
-        to: '/platform/modules/operations',
-        label: 'Operations',
-        desc: 'Timesheet, Project, S-Curve',
-        icon: Briefcase,
-      },
-      {
-        to: '/platform/modules/sales',
-        label: 'Sales & CRM',
-        desc: 'CRM, Quotation, POS',
-        icon: TrendingUp,
-      },
-      {
-        to: '/platform/modules/supply-chain',
-        label: 'Supply Chain',
-        desc: 'Inventory, Warehouse, BOM',
-        icon: Package,
-      },
-      {
-        to: '/platform/modules/governance',
-        label: 'Governance',
-        desc: 'BI Dashboard, Audit Trail',
-        icon: BarChart,
-      },
-    ],
+    items: getModuleNavItems(),
   },
   capabilities: {
     title: 'Platform Capabilities',
     description: 'Powerful features shared across all modules.',
-    items: [
-      {
-        to: '/platform/capabilities/automation-ai',
-        label: 'Automation & AI',
-        desc: 'Workflow builder & predictive AI',
-        icon: Zap,
-      },
-      {
-        to: '/platform/capabilities/multi-company',
-        label: 'Multi-Company',
-        desc: 'Manage holding structures',
-        icon: Globe,
-      },
-      {
-        to: '/platform/capabilities/portals',
-        label: 'Self-Service Portals',
-        desc: 'Customer & Vendor access',
-        icon: Layout,
-      },
-      {
-        to: '/platform/capabilities/analytics',
-        label: 'Analytics Builder',
-        desc: 'Custom reports & dashboards',
-        icon: PieChart,
-      },
-      {
-        to: '/platform/capabilities/mobile',
-        label: 'Native Mobile App',
-        desc: 'iOS & Android for field work',
-        icon: Smartphone,
-      },
-      {
-        to: '/platform/capabilities/low-code',
-        label: 'Low-Code Platform',
-        desc: 'Build apps without coding',
-        icon: Code,
-      },
-      {
-        to: '/platform/capabilities/collaboration',
-        label: 'Contextual Chat',
-        desc: 'Discuss on documents',
-        icon: MessageSquare,
-      },
-    ],
+    items: getCapabilityNavItems(),
   },
   technology: {
     title: 'Underlying Technology',
     description: 'Enterprise-grade architecture built for scale.',
-    items: [
-      {
-        to: '/platform/technologies/integration',
-        label: 'Integrations Library',
-        desc: 'Connect with banks, e-commerce, & IoT',
-        icon: Plug,
-      },
-      {
-        to: '/platform/technologies/self-hosted',
-        label: 'Self-Hosted Deploy',
-        desc: 'On-premise & private cloud options',
-        icon: Server,
-      },
-      {
-        to: '/platform/technologies/architecture',
-        label: 'System Architecture',
-        desc: 'Full stack overview & specifications',
-        icon: Layers,
-      },
-    ],
+    items: getTechnologyNavItems(),
   },
 };
 
@@ -237,6 +140,12 @@ export const solutionsContent: Record<string, MenuContent> = {
         label: 'Enterprise & Holding',
         desc: 'Consolidation & control',
         icon: Building,
+      },
+      {
+        to: '/solutions/travel',
+        label: 'Travel & Hospitality',
+        desc: 'Tour & Umrah management',
+        icon: Plane,
       },
     ],
   },

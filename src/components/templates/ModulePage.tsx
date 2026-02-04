@@ -110,10 +110,12 @@ export default function ModulePage({ moduleId, relatedModuleIds = [] }: ModulePa
         icon={<Icon className="h-10 w-10 text-white" />}
         breadcrumbs={heroBreadcrumbs}
         ctaBtnText={data.cta?.buttonLabel || t('cta_demo')}
+        layout="split"
+        image="/images/platform/dashboard-hero.png"
       />
 
       {/* 2. METRICS */}
-      {data.metrics && data.metrics.length > 0 && <MetricsSection metrics={data.metrics} />}
+      {data.metrics && data.metrics.length > 0 && <MetricsSection metrics={data.metrics} blended />}
 
       {/* 3. FEATURES */}
       <FeatureGrid features={data.features || []} />

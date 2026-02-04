@@ -3,7 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Container, Section } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
+// import { Button } from '@/components/ui';
 import { comparisonsData } from '@/data/comparisonData';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
 import { transformContent } from '@/libs/utils/transformContent';
@@ -191,28 +192,20 @@ export default async function ComparisonDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="mt-16 text-center">
-            <h3 className="mb-6 text-2xl font-bold text-neutral-900 dark:text-white">
-              {t('still_unsure')}
-            </h3>
-            <div className="flex justify-center gap-4">
-              <Link href="/demo">
-                <Button
-                  size="lg"
-                  className="bg-primary-600 hover:bg-primary-700 rounded-full px-8 text-slate-800 dark:text-white"
-                >
-                  {t('schedule_demo')}
-                </Button>
-              </Link>
-              <Link href="/pricing">
-                <Button size="lg" variant="outline" className="rounded-full px-8">
-                  {t('view_pricing')}
-                </Button>
-              </Link>
-            </div>
-          </div>
         </Container>
       </Section>
+
+      <CTABannerSection
+        title={t('still_unsure')}
+        subtitle={t('cta_detail_subtitle')}
+        badgeText="Get Clarity"
+        demoBtnText={t('schedule_demo')}
+        demoBtnLink="/demo"
+        pricingBtnText={t('view_pricing')}
+        pricingBtnLink="/pricing"
+        trustText1="Free Consultation"
+        trustText2="No Obligation"
+      />
     </div>
   );
 }

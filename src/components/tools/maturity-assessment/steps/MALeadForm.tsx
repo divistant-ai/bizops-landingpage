@@ -1,9 +1,11 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { AlertCircle, ArrowRight, Mail, Phone, Users } from 'lucide-react';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
 import { useMaturityAssessment } from '../context/MaturityAssessmentContext';
 
 export const MALeadForm: React.FC = () => {
@@ -36,30 +38,30 @@ export const MALeadForm: React.FC = () => {
 
           <form onSubmit={handleLeadSubmit} className="space-y-6">
             <div className="grid gap-5 md:grid-cols-2">
-              <div>
-                <label htmlFor="ma-name" className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
+              <div className="space-y-2">
+                <Label htmlFor="ma-name" className="ml-1 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                   Nama Lengkap
-                </label>
-                <input
+                </Label>
+                <Input
                   id="ma-name"
+                  name="name"
                   type="text"
                   required
-                  className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                   value={leadForm.name}
                   onChange={e => setLeadForm({ ...leadForm, name: e.target.value })}
                   placeholder="Nama Anda"
                   autoFocus
                 />
               </div>
-              <div>
-                <label htmlFor="ma-company" className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
+              <div className="space-y-2">
+                <Label htmlFor="ma-company" className="ml-1 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                   Perusahaan
-                </label>
-                <input
+                </Label>
+                <Input
                   id="ma-company"
+                  name="company"
                   type="text"
                   required
-                  className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                   value={leadForm.company}
                   onChange={e => setLeadForm({ ...leadForm, company: e.target.value })}
                   placeholder="Nama PT"
@@ -68,21 +70,22 @@ export const MALeadForm: React.FC = () => {
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
-              <div>
-                <label htmlFor="ma-email" className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
+              <div className="space-y-2">
+                <Label htmlFor="ma-email" className="ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                   <Mail className="size-3" aria-hidden="true" />
                   {' '}
                   Email Bisnis
-                </label>
-                <input
+                </Label>
+                <Input
                   id="ma-email"
+                  name="email"
                   type="email"
                   required
-                  className={`[&:-webkit-autofill]:dark:[&:-webkit-autofill]:-webkit-text-fill-color-white w-full rounded-xl border px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:text-white dark:placeholder-slate-600 [&:-webkit-autofill]:dark:[&:-webkit-autofill]:shadow-[0_0_0_100px_#0f172a_inset] ${
+                  className={
                     emailError
-                      ? 'border-red-500 bg-red-50 focus:ring-red-500 dark:border-red-500 dark:bg-slate-950'
-                      : 'focus:border-primary-500 focus:ring-primary-500 border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950'
-                  }`}
+                      ? 'border-red-500 bg-red-50 focus-visible:ring-red-500 dark:border-red-500 dark:bg-slate-950'
+                      : ''
+                  }
                   value={leadForm.email}
                   onChange={(e) => {
                     setLeadForm({ ...leadForm, email: e.target.value });
@@ -92,7 +95,7 @@ export const MALeadForm: React.FC = () => {
                   }}
                   placeholder="name@company.com"
                   aria-invalid={!!emailError}
-                  aria-describedby={emailError ? "email-error" : undefined}
+                  aria-describedby={emailError ? 'email-error' : undefined}
                 />
                 {emailError && (
                   <p id="email-error" className="mt-1 ml-1 flex items-center text-xs text-red-400 dark:text-red-400">
@@ -102,16 +105,16 @@ export const MALeadForm: React.FC = () => {
                   </p>
                 )}
               </div>
-              <div>
-                <label htmlFor="ma-phone" className="mb-2 ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
+              <div className="space-y-2">
+                <Label htmlFor="ma-phone" className="ml-1 flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                   <Phone className="size-3" aria-hidden="true" />
                   {' '}
                   WhatsApp (Opsional)
-                </label>
-                <input
+                </Label>
+                <Input
                   id="ma-phone"
+                  name="phone"
                   type="tel"
-                  className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                   value={leadForm.phone}
                   onChange={e => setLeadForm({ ...leadForm, phone: e.target.value })}
                   placeholder="0812..."
@@ -119,13 +122,13 @@ export const MALeadForm: React.FC = () => {
               </div>
             </div>
 
-            <div>
-              <label className="mb-2 ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
+            <div className="space-y-2">
+              <Label className="ml-1 block text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
                 Posisi / Jabatan
-              </label>
-              <input
+              </Label>
+              <Input
+                name="role"
                 type="text"
-                className="focus:border-primary-500 focus:ring-primary-500 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-all focus:ring-1 focus:outline-none dark:border-white/10 dark:bg-slate-950 dark:text-white dark:placeholder-slate-600"
                 value={leadForm.role}
                 onChange={e => setLeadForm({ ...leadForm, role: e.target.value })}
                 placeholder="Manager IT / Ops"

@@ -32,88 +32,61 @@ export const ChallengesSection: React.FC<ChallengesSectionProps> = ({ challenges
 
   return (
     <Section
-      className="relative overflow-hidden bg-linear-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+      className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
       noPadding
       containerClassName={sectionPaddingHybrid.default}
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-red-500/5 blur-3xl dark:bg-red-500/10" />
-        <div className="absolute -right-24 -bottom-24 h-96 w-96 rounded-full bg-orange-500/5 blur-3xl dark:bg-orange-500/10" />
+      {/* Cautionary Background Decor */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
+        <div className="absolute top-0 right-0 h-96 w-96 translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/10 blur-[80px]" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 -translate-x-1/2 translate-y-1/2 rounded-full bg-orange-500/10 blur-[80px]" />
       </div>
 
-      <Container size="7xl" className="relative z-10">
+      <Container size="5xl" className="relative z-10">
         <SectionHeader
-          title={t('why_old_way_fails')}
+          title="Mengapa Cara Lama Tidak Cukup?"
           description={t('challenges_description')}
-          className="mb-12"
+          align="center"
+          className="mb-16"
         />
 
         <FadeInStagger faster>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
-            {challenges.map((c, idx) => (
+          <div className={`grid gap-8 ${
+            challenges.length % 3 === 0 ? 'md:grid-cols-3'
+              : challenges.length % 2 === 0 ? 'md:grid-cols-2 lg:grid-cols-4'
+                : 'md:grid-cols-3'
+          }`}
+          >
+            {challenges.map((c: any, idx) => (
               <FadeIn key={idx}>
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                  {/* Number badge */}
-                  <div className="absolute top-4 right-4 text-6xl font-black text-slate-100 dark:text-slate-800">
-                    {String(idx + 1).padStart(2, '0')}
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-rose-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rose-500/10 dark:border-rose-900/30 dark:bg-slate-900">
+                  {/* Warning Strip Gradient */}
+                  <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-rose-500 via-orange-500 to-rose-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  {/* Subtle Background Pattern */}
+                  <div className="absolute inset-0 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] bg-size-[16px_16px] opacity-0 transition-opacity duration-300 group-hover:opacity-5" />
+
+                  {/* Icon Area */}
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 ring-1 ring-rose-100 transition-colors group-hover:bg-rose-600 group-hover:text-white group-hover:ring-rose-600 dark:bg-rose-900/20 dark:text-rose-400 dark:ring-rose-900/40 dark:group-hover:bg-rose-600 dark:group-hover:text-white">
+                      {React.isValidElement(c.icon)
+                        ? React.cloneElement(c.icon as React.ReactElement<{ className?: string }>, { className: 'h-6 w-6' })
+                        : c.icon && React.createElement(c.icon, { className: 'h-6 w-6' })}
+                    </div>
+                    <span className="font-mono text-5xl font-bold text-slate-100 transition-colors group-hover:text-rose-50 dark:text-slate-800 dark:group-hover:text-rose-900/20">
+                      0
+                      {idx + 1}
+                    </span>
                   </div>
 
-                  <div className="relative z-10">
-                    {/* Industry Style Challenge */}
-                    {c.title && (
-                      <>
-                        {c.icon && (
-                          <div className="mb-6 inline-flex rounded-2xl bg-slate-50 p-4 dark:bg-slate-800">
-                            {/* Render icon if it's a component or node */}
-                            {typeof c.icon === 'function'
-                              ? React.createElement(c.icon, {
-                                  className: 'h-8 w-8 text-slate-600 dark:text-slate-400',
-                                })
-                              : c.icon}
-                          </div>
-                        )}
-                        <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                          {c.title}
-                        </h3>
-                        {c.subtitle && (
-                          <span className="mb-4 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                            {c.subtitle}
-                          </span>
-                        )}
-                        <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                          {c.desc}
-                        </p>
-                      </>
-                    )}
+                  {/* Content */}
+                  <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                    {c.title}
+                  </h3>
 
-                    {/* Role Style Challenge (Pain vs Gain) */}
-                    {c.pain && (
-                      <>
-                        <div className="mb-6">
-                          <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-xs font-bold tracking-wider text-red-600 uppercase dark:bg-red-500/20 dark:text-red-400">
-                            {t('pain_point')}
-                          </div>
-                          <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                            {c.pain}
-                          </h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                            {c.context}
-                          </p>
-                        </div>
-                        <div className="border-t border-slate-200 pt-6 dark:border-slate-700">
-                          <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold tracking-wider text-emerald-600 uppercase dark:bg-emerald-500/20 dark:text-emerald-400">
-                            {t('the_bizops_way')}
-                          </div>
-                          <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                            {c.gain}
-                          </h3>
-                          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                            {c.gainDesc}
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                    {c.desc}
+                  </p>
                 </div>
               </FadeIn>
             ))}

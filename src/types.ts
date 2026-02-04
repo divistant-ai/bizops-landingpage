@@ -40,15 +40,24 @@ export type Solution = {
   icon?: LucideIcon;
 };
 
+export type AppModule = {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: LucideIcon | string; // Support string for transformContent
+  features?: string[]; // New field for feature list
+};
+
 export type IndustryData = {
   title: string;
   subtitle: string;
   description: string;
   metaTitle: string;
   metaDesc: string;
-  icon: LucideIcon;
+  icon: LucideIcon | string;
   challenges: Array<Challenge>;
   solutions: Array<Solution>;
+  apps?: Array<AppModule>; // New field for Apps Overview
   metrics?: Array<{ value: string; label: string }>;
   faqs?: Array<{ question: string; answer: string }>;
   caseStudyTitle: string;
@@ -70,6 +79,10 @@ export type ServiceData = {
   benefits: Array<{ title: string; desc: string }>;
   deliverables: Array<string>;
   cta: string;
+  ctaHeadline?: string; // Enhanced CTA copy
+  metrics?: Array<{ value: string; label: string }>;
+  testimonials?: Array<TestimonialData>;
+  faq?: Array<{ question: string; answer: string }>;
 };
 
 export type RoleChallenge = {
@@ -91,9 +104,23 @@ export type RoleData = {
     btn: string;
     head: string;
   };
-  dashboardInsight: string;
-  dashboardFeatures: Array<string>;
-  challenges?: Array<RoleChallenge>;
+  dashboardInsight?: string;
+  dashboardFeatures?: Array<string>;
+
+  // Enhanced fields for Premium Role Page
+  metrics?: Array<{ value: string; label: string }>;
+  apps?: Array<string>; // IDs of apps relevant to this role
+
+  challenges?: Array<{
+    // Union to support both old and new structure
+    pain?: string;
+    context?: string;
+    gain?: string;
+    gainDesc?: string;
+    // New standard structure
+    title?: string;
+    desc?: string;
+  }>;
 };
 
 export type ModuleFeature = {

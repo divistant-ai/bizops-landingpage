@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { RoleData } from '@/types';
 import { notFound } from 'next/navigation';
 
-import GenericLandingPage from '@/components/templates/GenericLandingPage';
+import RolePageTemplate from '@/components/templates/RolePage';
 import { rolesData } from '@/data/solutionsContent';
 import { rolesTranslations } from '@/data/solutionsContentTranslations';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
@@ -35,7 +35,7 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function RolePage(props: {
+export default async function RolePageRoute(props: {
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await props.params;
@@ -54,5 +54,6 @@ export default async function RolePage(props: {
   // Transform data on server
   const data = transformContent(rawData);
 
-  return <GenericLandingPage data={data as any} />;
+  // Use the new RolePage template
+  return <RolePageTemplate data={data as any} />;
 }

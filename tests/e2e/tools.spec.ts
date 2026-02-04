@@ -34,4 +34,26 @@ test.describe('Tools Functionality', () => {
     // Verify result
     await expect(page.locator('text=/PPh 21/i')).toBeVisible();
   });
+
+  test('Maturity Assessment should complete lead form', async ({ page }) => {
+    await page.goto('/tools/assessment');
+
+    // Intro
+    await expect(page).toHaveTitle(/Assessment/i);
+    await page.click('text=Mulai Assessment Sekarang');
+
+    // Fill Form (using name attribute where possible or label)
+    await page.fill('input[name="name"]', 'Test User');
+    await page.fill('input[name="company"]', 'Test Corp');
+    await page.fill('input[name="email"]', 'test@example.com');
+    await page.fill('input[name="role"]', 'QA Engineer');
+
+    // Submit
+    await page.click('button[type="submit"]');
+
+    // Verify transition to Assessment View (Look for first question indicator or progress)
+    // We check that the lead form is gone and "Pertanyaan" is visible
+    await expect(page.locator('input[name="name"]')).not.toBeVisible();
+    await expect(page.locator('text=/Pertanyaan/i')).toBeVisible();
+  });
 });

@@ -8,18 +8,18 @@ export { BackgroundDecoration, HeroBackground, SectionBackground } from './Backg
 export { default as Badge } from './Badge';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
-export * from './checkbox';
+export * from './Checkbox';
 // Hybrid design components
 export { ClayBadge, ClayIcon, ClayIconNeutral } from './ClayIcon';
 export { CTAGroup, FinalCTAGroup } from './CTAGroup';
 export { default as Dropdown } from './Dropdown';
 export { default as EmptyState } from './EmptyState';
 export { default as FeatureCard } from './FeatureCard';
-export * from './form';
+export * from './Form';
 export { GlassCard, GlassOverlay, GlassPanel } from './GlassCard';
 export { default as Grid } from './Grid';
-export * from './input';
-export * from './label';
+export * from './Input';
+export * from './Label';
 // Lazy-loaded heavy components (code splitting)
 export { CardSlider, InfiniteScrollLoop, SpotlightCard } from './LazyComponents';
 export { default as Loading } from './Loading';
@@ -27,9 +27,9 @@ export { default as Modal } from './Modal';
 export { default as OptimizedImage } from './OptimizedImage';
 export { default as SectionHeader } from './SectionHeader';
 
-export * from './select';
+export * from './Select';
 export { Skeleton, SkeletonCard, SkeletonText } from './Skeleton';
 export { default as Stack } from './Stack';
 export { default as Tabs } from './Tabs';
-export * from './textarea';
+export * from './Textarea';
 export { default as Typography } from './Typography';

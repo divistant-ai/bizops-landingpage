@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
@@ -17,16 +17,11 @@ import { routing } from '@/libs/I18nRouting';
 import { getOrganizationSchema, getWebSiteSchema } from '@/libs/utils/structured-data';
 import '@/styles/global.css';
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
@@ -61,7 +56,7 @@ export default async function RootLayout(props: {
         <StructuredData data={[getOrganizationSchema(), getWebSiteSchema()]} />
       </head>
       <body
-        className={`${inter.variable} ${plusJakartaSans.variable} bg-white font-sans text-slate-900 antialiased transition-colors duration-200 dark:bg-slate-950 dark:text-white`}
+        className={`${plusJakartaSans.variable} bg-white font-sans text-slate-900 antialiased transition-colors duration-200 dark:bg-slate-950 dark:text-white`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>

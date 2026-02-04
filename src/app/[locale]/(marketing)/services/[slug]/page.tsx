@@ -1,58 +1,65 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import GenericLandingPage from '@/components/templates/GenericLandingPage';
+import ServicePage from '@/components/templates/ServicePage';
 import { servicesData } from '@/data/servicesContent';
 import { getTranslatedServiceData } from '@/libs/utils/getTranslatedServiceData';
-import { generateMetadata as genMeta } from '@/libs/utils/metadata';
-import { transformContent } from '@/libs/utils/transformContent';
 
 type Props = {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{
+    slug: string;
+    locale: string;
+  }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, locale } = await params;
-
-  // Get translated service data for metadata
-  const data = await getTranslatedServiceData(slug, locale);
-
-  if (!data) {
-    return {};
-  }
-
-  // English metadata
-  if (locale === 'en') {
-    return genMeta({
-      title: `${data.title} | BizOps Services`,
-      description: data.subtitle || data.description,
-    });
-  }
-
-  // Indonesian metadata (default)
-  return genMeta({
-    title: `${data.title} | Layanan BizOps`,
-    description: data.subtitle || data.description,
-  });
-}
-
-export async function generateStaticParams() {
+// Generate static params for all defined services
+export function generateStaticParams() {
   return Object.keys(servicesData).map(slug => ({
     slug,
   }));
 }
 
-export default async function ServicePage({ params }: Props) {
+// Generate metadata for the service page
+export async function generateMetadata({ params }: Props) {
+  const { slug, locale } = await params;
+  const serviceData = await getTranslatedServiceData(slug, locale);
+
+  if (!serviceData) {
+    return {
+      title: 'Service Not Found',
+    };
+  }
+
+  // Fallback description if subtitle is missing
+  const description = serviceData.subtitle || serviceData.description.slice(0, 160);
+
+  return {
+    title: `${serviceData.title} | BizOps Services`,
+    description,
+    openGraph: {
+      title: serviceData.title,
+      description,
+      type: 'website',
+      // images: serviceData.image ? [{ url: serviceData.image }] : undefined, // Potential future enhancement
+    },
+  };
+}
+
+export default async function ServiceRoute({ params }: Props) {
   const { slug, locale } = await params;
 
-  // Get translated service data
-  const rawData = await getTranslatedServiceData(slug, locale);
-
-  if (!rawData) {
+  // Validate slug existence
+  if (!servicesData[slug]) {
     notFound();
   }
 
-  // Transform data on server
-  const data = transformContent(rawData);
+  const serviceData = await getTranslatedServiceData(slug, locale);
 
-  return <GenericLandingPage data={data as any} />;
+  if (!serviceData) {
+    notFound();
+  }
+
+  return (
+    <ServicePage
+      data={serviceData}
+    />
+  );
 }

@@ -4,12 +4,13 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
 import PricingFeatureTable from '@/components/PricingFeatureTable';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import {
-  PricingHero,
-  PricingCards,
   CalculatorBanner,
-  SecuritySignals,
   FAQContactSection,
+  PricingCards,
+  PricingHero,
+  SecuritySignals,
 } from '@/components/sections/pricing';
 
 const PricingContent = () => {
@@ -48,6 +49,21 @@ const PricingContent = () => {
 
           {/* --- FAQ & CONTACT --- */}
           <FAQContactSection faqs={translatedFaqs} />
+
+          {/* --- FINAL CTA --- */}
+          <div className="pt-24 pb-24">
+            <CTABannerSection
+              badgeText={t('cta_badge' as any)}
+              title={t('cta_title' as any)}
+              subtitle={t('cta_desc' as any)}
+              demoBtnText={t('cta_trial' as any)}
+              demoBtnLink="/register"
+              pricingBtnText={t('cta_contact' as any)}
+              pricingBtnLink="/contact"
+              trustText1="Free Trial"
+              trustText2="No Credit Card"
+            />
+          </div>
         </Container>
       </Section>
     </div>

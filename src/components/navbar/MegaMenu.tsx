@@ -172,6 +172,9 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     if (url.includes('/architecture')) {
       return 'architecture';
     }
+    if (url.includes('/security')) {
+      return 'security';
+    }
 
     // Solutions - industry
     if (url.includes('/construction')) {
@@ -191,6 +194,9 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     }
     if (url.includes('/enterprise')) {
       return 'enterprise';
+    }
+    if (url.includes('/travel')) {
+      return 'travel';
     }
 
     // Solutions - role

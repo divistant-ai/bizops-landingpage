@@ -1,11 +1,13 @@
 'use client';
 
 import { ArrowRight, HelpCircle } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
+import React from 'react';
 import { Container, Section } from '@/components/layout';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
+
 import { sectionPaddingHybrid } from '@/design-tokens';
 
 type RelatedModule = {
@@ -14,6 +16,7 @@ type RelatedModule = {
   subtitle?: string;
   icon?: any;
   href: string;
+  image?: string; // New Optional Image
 };
 
 type RelatedModulesSectionProps = {
@@ -35,6 +38,27 @@ export const RelatedModulesSection: React.FC<RelatedModulesSectionProps> = ({
     return null;
   }
 
+  // Helper function to render icon
+  const renderIcon = (icon: any, className: string) => {
+    if (!icon) {
+      return <HelpCircle className={className} />;
+    }
+
+    // If it's a valid React Element (e.g. <Icon />), render it
+    if (React.isValidElement(icon)) {
+      return <span className={className}>{icon}</span>;
+    }
+
+    // Check if icon is a LucideIcon (function/object component)
+    if (typeof icon === 'function' || (typeof icon === 'object' && icon.render)) {
+      const IconComponent = icon;
+      return <IconComponent className={className} />;
+    }
+
+    // Fallback for other node types
+    return <span className={className}>{icon}</span>;
+  };
+
   return (
     <Section
       className="relative overflow-hidden bg-white dark:bg-slate-950"
@@ -54,54 +78,54 @@ export const RelatedModulesSection: React.FC<RelatedModulesSectionProps> = ({
             </div>
           )}
           <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
-            {subtitle} {title}
+            {subtitle}
+            {' '}
+            {title}
           </h2>
         </div>
 
         <FadeInStagger>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {modules.map((module, idx) => {
-              const ModuleIcon = module.icon || HelpCircle;
-              const cardColors = [
-                {
-                  bg: 'from-blue-500 to-blue-600',
-                  light: 'bg-blue-50 dark:bg-blue-900/20',
-                  text: 'text-blue-600 dark:text-blue-400',
-                },
-                {
-                  bg: 'from-emerald-500 to-emerald-600',
-                  light: 'bg-emerald-50 dark:bg-emerald-900/20',
-                  text: 'text-emerald-600 dark:text-emerald-400',
-                },
-                {
-                  bg: 'from-purple-500 to-purple-600',
-                  light: 'bg-purple-50 dark:bg-purple-900/20',
-                  text: 'text-purple-600 dark:text-purple-400',
-                },
-              ];
-              const color = cardColors[idx % cardColors.length]!;
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {modules.map((module) => {
+              // Default image if not provided
+              const cardImage = module.image || '/images/platform/module-preview-card.png';
 
               return (
                 <FadeIn key={module.id} className="h-full">
                   <Link href={module.href} className="group block h-full">
-                    <div className="relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
-                      <div
-                        className={`absolute top-0 right-0 left-0 h-1 bg-linear-to-r ${color.bg}`}
-                      />
-                      <div className={`mb-4 inline-flex rounded-xl p-3 ${color.light}`}>
-                        <ModuleIcon className={`h-6 w-6 ${color.text}`} />
+                    <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/10 dark:border-slate-800 dark:bg-slate-900">
+
+                      {/* Card Image / Preview */}
+                      <div className="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <Image
+                          src={cardImage}
+                          alt={module.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-slate-900/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                       </div>
-                      <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-                        {module.title}
-                      </h3>
-                      {module.subtitle && (
-                        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                          {module.subtitle}
-                        </p>
-                      )}
-                      <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400">
-                        {learnMoreText}
-                        <ArrowRight className="h-4 w-4" />
+
+                      {/* Card Content */}
+                      <div className="flex flex-1 flex-col p-8">
+                        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+                          {renderIcon(module.icon, 'h-6 w-6')}
+                        </div>
+
+                        <h3 className="mb-3 text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                          {module.title}
+                        </h3>
+
+                        {module.subtitle && (
+                          <p className="flex-1 text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                            {module.subtitle}
+                          </p>
+                        )}
+
+                        <div className="mt-6 flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400">
+                          {learnMoreText}
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </div>
                       </div>
                     </div>
                   </Link>

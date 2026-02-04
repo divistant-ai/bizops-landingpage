@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { IndustryData } from '@/types';
 import { notFound } from 'next/navigation';
 
-import GenericLandingPage from '@/components/templates/GenericLandingPage';
+import IndustryPage from '@/components/templates/IndustryPage';
 import { industriesData } from '@/data/solutionsContent';
 import { industriesTranslations } from '@/data/solutionsContentTranslations';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
@@ -35,7 +35,7 @@ export async function generateMetadata(props: {
   });
 }
 
-export default async function IndustryPage(props: {
+export default async function IndustryPageRoute(props: {
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await props.params;
@@ -49,10 +49,17 @@ export default async function IndustryPage(props: {
 
   // Merge base data with translations
   const translationData = industriesTranslations[currentLocale]?.[slug];
-  const rawData = { ...baseData, ...translationData } as IndustryData;
 
-  // Transform data on server
+  // Ensure we preserve icons from baseData if they are missing in translation
+  const rawData = {
+    ...baseData,
+    ...translationData,
+    icon: baseData.icon, // Enforce base icon
+  } as IndustryData;
+
+  // Transform content to be serializable (converts icons to strings/nulls if needed)
+  // This is critical because we can't pass functions (icons) from Server to Client components directly
   const data = transformContent(rawData);
 
-  return <GenericLandingPage data={data as any} />;
+  return <IndustryPage data={data} />;
 }

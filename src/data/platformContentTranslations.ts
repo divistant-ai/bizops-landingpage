@@ -633,7 +633,7 @@ export const platformModulesTranslations = {
         'Hilangkan kebocoran anggaran (Budget Leakage) dengan sistem persetujuan bertingkat. Integrasikan pembelian, aset, dan akuntansi dalam satu aliran data real-time.',
     },
     'operations': {
-      title: 'Operations & Projects',
+      title: 'Operations & Project Management',
       subtitle: 'Eksekusi Proyek Tepat Waktu dan Sesuai Budget.',
       description:
         'Stop kelola proyek via grup WhatsApp. Lacak biaya, material, dan progress tim secara real-time dengan sistem terintegrasi.',
@@ -1409,10 +1409,10 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'automation-ai': {
-      title: 'Automation & AI',
-      subtitle: 'Intelligent automation to reduce manual work.',
+      title: 'BizOps Copilot (Agentic AI)',
+      subtitle: 'Not Just a Chatbot. Your Digital Coworker.',
       description:
-        'Automate repetitive business processes and eliminate human error. BizOps Automation & AI enables your team to focus on high-value work, not manual data entry.',
+        'Forget complex dashboards. Just command BizOps Copilot in natural language to perform operational tasks, from data analysis to cross-app workflow execution. Powered by Agentic AI that thinks and acts autonomously.',
       features: [
         {
           title: 'Workflow Automation',
@@ -1777,6 +1777,88 @@ export const platformCapabilitiesTranslations = {
           question: 'How is data security ensured?',
           answer:
             'Role-based permissions at row level, encrypted connections (TLS), audit logs for all data changes, and regular security patches.',
+        },
+      ],
+    },
+    'security': {
+      title: 'Enterprise Security Shield',
+      subtitle: 'Uncompromising Data Protection.',
+      description:
+        'Built with a "Security-First" architecture. From encryption at rest/transit to granular role-based access control (RBAC), BizOps ensures your data remains yours.',
+      features: [
+        {
+          title: 'Bank-Grade Encryption',
+          desc: 'All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Your sensitive business information is mathematically unreadable to unauthorized parties.',
+        },
+        {
+          title: 'Single Sign-On (SSO)',
+          desc: 'Integrate with your corporate Identity Provider (Google Workspace, Azure AD, Okta) via SAML 2.0 or OAuth for secure, centralized access management.',
+        },
+        {
+          title: 'Immutable Audit Logs',
+          desc: 'Every action (View, Create, Edit, Delete) is logged with a cryptographic hash. Perfect for forensic analysis and compliance audits.',
+        },
+        {
+          title: 'Role-Based Access (RBAC)',
+          desc: 'Granular permission settings down to the field level. Defy "Least Privilege Access" policies to ensure users only see what they need.',
+        },
+      ],
+      metrics: [
+        { value: 'AES-256', label: 'Encryption Standard' },
+        { value: 'SOC 2', label: 'Compliance Ready' },
+        { value: '100%', label: 'Audit Trail' },
+      ],
+      problems: [
+        {
+          title: 'Data Breaches',
+          desc: 'Weak passwords and unencrypted databases leave your company vulnerable to ransomware and data theft.',
+        },
+        {
+          title: 'Compliance Nightmares',
+          desc: 'Managing user access manually across multiple systems creates audit findings and security gaps.',
+        },
+        {
+          title: 'Insider Threats',
+          desc: 'Without detailed logs, it\'s impossible to trace who leaked sensitive customer lists or manipulated financial records.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Biometric Security',
+        desc: 'Mobile app supports native FaceID and Fingerprint authentication, adding an extra layer of physical security for field staff.',
+      },
+      connections: [
+        {
+          target: 'HR',
+          desc: 'Employee offboarding in HR automatically revokes system access instantly.',
+        },
+        {
+          target: 'IT Dept',
+          desc: 'Centralized admin panel for IT Security team to monitor active sessions and suspicious activities.',
+        },
+        {
+          target: 'Compliance',
+          desc: 'One-click export of audit logs for external auditors.',
+        },
+      ],
+      cta: {
+        text: 'Secure your enterprise data today.',
+        buttonLabel: 'Download Security Whitepaper',
+      },
+      faqs: [
+        {
+          question: 'Is it compliant with GDPR/PDPA?',
+          answer:
+            'Yes. We provide tools for "Right to be Forgotten" (Data Anonymization) and Consent Management to help you meet privacy regulations.',
+        },
+        {
+          question: 'Can we use 2FA?',
+          answer:
+            'Absolutely. Two-Factor Authentication (OTP via Email/Authenticator App) can be enforced for all users or specific roles.',
+        },
+        {
+          question: 'Do you have penetration testing reports?',
+          answer:
+            'Yes. We perform regular 3rd-party pentests. Reports are available upon request under NDA for enterprise clients.',
         },
       ],
     },
@@ -2243,14 +2325,14 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'automation-ai': {
-      title: 'Automation & AI',
-      subtitle: 'Otomasi cerdas untuk kurangi pekerjaan manual.',
+      title: 'BizOps Copilot (Agentic AI)',
+      subtitle: 'Bukan Sekadar Chatbot. Rekan Kerja Digital Anda.',
       description:
-        'Otomatiskan proses bisnis berulang dan hilangkan human error. BizOps Automation & AI memungkinkan tim Anda fokus pada pekerjaan bernilai tinggi, bukan input data manual.',
+        'Lupakan dashboard rumit. Cukup perintahkan BizOps Copilot dengan bahasa manusia untuk melakukan tugas operasional, dari analisis data hingga eksekusi workflow lintas aplikasi. Ditenagai oleh Agentic AI yang berpikir dan bertindak otonom.',
       features: [
         {
-          title: 'Workflow Automation',
-          desc: 'Otomasi proses bisnis multi-step (approval, notifikasi, eskalasi) dengan visual workflow builder.',
+          title: 'Natural Language Action',
+          desc: 'Perintahkan sistem dengan bahasa sehari-hari. "Tampilkan penjualan bulan lalu" atau "Buat Invoice untuk PT Maju Jaya". Copilot yang akan mengeksekusinya.',
         },
         {
           title: 'Robotic Process Automation (RPA)',
@@ -2614,6 +2696,326 @@ export const platformCapabilitiesTranslations = {
             'Role-based permission di row level, encrypted connection (TLS), audit log untuk semua perubahan data, dan regular security patch.',
         },
       ],
+    },
+    'security': {
+      title: 'Perisai Keamanan Enterprise',
+      subtitle: 'Proteksi Data Tanpa Kompromi.',
+      description:
+        'Dibangun dengan arsitektur "Security-First". Mulai dari enkripsi database hingga kontrol akses berbasis peran (RBAC), BizOps memastikan data Anda tetap menjadi milik Anda.',
+      features: [
+        {
+          title: 'Bank-Grade Encryption',
+          desc: 'Seluruh data dienkripsi saat disimpan (AES-256) dan saat transfer (TLS 1.3). Informasi sensitif tidak terbaca oleh pihak yang tidak berwenang.',
+        },
+        {
+          title: 'Single Sign-On (SSO)',
+          desc: 'Integrasi dengan Identity Provider korporat (Google, Azure AD, Okta) untuk manajemen akses terpusat yang aman.',
+        },
+        {
+          title: 'Immutable Audit Logs',
+          desc: 'Setiap aksi (View, Create, Edit, Delete) dicatat dengan cryptographic hash. Ideal untuk audit forensik dan kepatuhan.',
+        },
+        {
+          title: 'Role-Based Access (RBAC)',
+          desc: 'Pengaturan hak akses granular hingga level field. Terapkan kebijakan "Least Privilege" agar user hanya melihat apa yang mereka butuhkan.',
+        },
+      ],
+      metrics: [
+        { value: 'AES-256', label: 'Standar Enkripsi' },
+        { value: 'SOC 2', label: 'Siap Compliance' },
+        { value: '100%', label: 'Jejak Audit' },
+      ],
+      problems: [
+        {
+          title: 'Kebocoran Data',
+          desc: 'Password lemah dan database tanpa enkripsi membuat perusahaan rentan terhadap ransomware dan pencurian data.',
+        },
+        {
+          title: 'Masalah Kepatuhan',
+          desc: 'Manajemen akses manual di berbagai sistem menyebabkan temuan audit dan celah keamanan.',
+        },
+        {
+          title: 'Ancaman Internal',
+          desc: 'Tanpa log detail, mustahil melacak siapa yang membocorkan data pelanggan atau memanipulasi laporan keuangan.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Keamanan Biometrik',
+        desc: 'Aplikasi mobile mendukung FaceID dan Fingerprint native, menambah lapisan keamanan fisik untuk staf lapangan.',
+      },
+      connections: [
+        {
+          target: 'HR',
+          desc: 'Resign karyawan di modul HR otomatis mencabut akses sistem secara instan.',
+        },
+        {
+          target: 'IT Dept',
+          desc: 'Panel admin terpusat untuk tim IT Security memantau sesi aktif dan aktivitas mencurigakan.',
+        },
+        {
+          target: 'Compliance',
+          desc: 'Ekspor log audit dengan satu klik untuk auditor eksternal.',
+        },
+      ],
+      cta: {
+        text: 'Amankan data perusahaan Anda hari ini.',
+        buttonLabel: 'Download Whitepaper Keamanan',
+      },
+      faqs: [
+        {
+          question: 'Apakah sesuai dengan UU PDP?',
+          answer:
+            'Ya. Kami menyediakan fitur "Right to be Forgotten" (Anonimisasi Data) dan Manajemen Persetujuan untuk membantu kepatuhan regulasi privasi.',
+        },
+        {
+          question: 'Bisakah menggunakan 2FA?',
+          answer:
+            'Sangat bisa. Two-Factor Authentication (OTP via Email/GAuth) dapat diwajibkan untuk semua user atau role tertentu.',
+        },
+        {
+          question: 'Apakah ada laporan penetration testing?',
+          answer:
+            'Ya. Kami melakukan pentest rutin oleh pihak ketiga. Laporan tersedia by request dengan NDA untuk klien enterprise.',
+        },
+      ],
+    },
+  },
+};
+
+// --- FEATURE PAGES TRANSLATIONS (for PlatformPage template) ---
+export const featuresPagesTranslations = {
+  en: {
+    // English content is in the base featuresData in platformContent.ts
+  },
+  id: {
+    'analytics': {
+      title: 'Laporan Anda, Cara Anda.',
+      titleHighlight: 'Tanpa Coding.',
+      subtitle: 'Analytics & Reports',
+      description: 'Setiap bisnis punya cara unik melihat data. Jangan terpaku pada laporan standar yang kaku. Dengan Report Builder, Anda menjadi analis data bagi perusahaan Anda sendiri.',
+
+      featuresBadge: 'Fitur Utama',
+      featuresTitle: 'Bangun Laporan Sesuai Kebutuhan',
+      featuresSubtitle: 'Tools analitik yang fleksibel untuk setiap skenario bisnis.',
+      features: [
+        {
+          title: 'Real-time Dashboard',
+          desc: 'Widget visual yang dapat dikustomisasi dan diperbarui detik demi detik. Grafik Batang, Pie Chart, KPI Card, Heatmap.',
+        },
+        {
+          title: 'Drag-and-Drop Builder',
+          desc: 'Antarmuka intuitif untuk membuat laporan tabular. Pilih kolom, tarik ke kanvas, terapkan filter kompleks tanpa coding.',
+        },
+        {
+          title: 'Auto-Schedule Email',
+          desc: 'Buat laporan sekali, jadwalkan pengiriman otomatis. Sistem akan menjalankannya secara disiplin setiap hari/minggu/bulan.',
+        },
+      ],
+
+      useCasesBadge: 'Laporan Populer',
+      useCasesTitle: 'Contoh Laporan yang Sering Dipakai',
+      useCasesSubtitle: 'Template siap pakai yang bisa Anda sesuaikan dengan kebutuhan bisnis.',
+      useCases: [
+        {
+          title: 'Sales Performance Report',
+          desc: 'Analisis performa sales per wilayah, per produk, per periode. Bandingkan target vs realisasi, identifikasi top performer dan underperformer.',
+        },
+        {
+          title: 'Inventory Movement Report',
+          desc: 'Track pergerakan stok: barang masuk, keluar, transfer antar gudang. Identifikasi slow-moving items dan fast-moving items untuk optimasi inventory.',
+        },
+        {
+          title: 'Financial Summary Report',
+          desc: 'Laporan keuangan komprehensif: Profit & Loss, Cash Flow, Balance Sheet. Export ke Excel atau PDF untuk presentasi ke stakeholder.',
+        },
+      ],
+
+      cta: {
+        title: 'Ubah Data Menjadi Insight',
+        subtitle: 'Lihat betapa mudahnya membuat laporan custom tanpa perlu bantuan IT atau konsultan.',
+        badge: 'Analytics & Reports',
+        demoBtn: 'Jadwalkan Demo Analytics',
+        pricingBtn: 'Lihat Pricing',
+        trustText1: 'Gratis 14 Hari',
+        trustText2: 'Tanpa Kartu Kredit',
+      },
+    },
+
+    'automation-ai': {
+      title: 'Biarkan Agen AI yang Bekerja,',
+      titleHighlight: 'Bukan Anda.',
+      subtitle: 'BizOps Copilot',
+      description: 'Delegasikan pekerjaan operasional yang membosankan kepada Autonomous Agents. BizOps Copilot bukan sekadar menjawab pertanyaan, tapi melakukan tindakan nyata.',
+
+      featuresBadge: 'Agentic AI',
+      featuresTitle: 'Rekan Kerja Digital Otonom',
+      featuresSubtitle: 'AI yang bisa bertindak, bukan cuma ngobrol.',
+      features: [
+        {
+          title: 'Autonomous Agents',
+          desc: 'Agen cerdas yang bekerja di latar belakang. Mereka memantau stok, mengejar pembayaran, dan menjadwalkan meeting tanpa perlu disuruh.',
+        },
+        {
+          title: 'Contoh Skenario',
+          desc: '"Jika Stok Barang < 10 unit, otomatis buat Purchase Request ke Vendor A, kirim email PO, dan notifikasi WA ke Manajer Gudang."',
+        },
+        {
+          title: 'Auto-Assignment',
+          desc: 'Distribusi tugas otomatis. Misal: "Setiap Lead baru dari Jakarta Selatan otomatis di-assign ke Salesman Budi."',
+        },
+      ],
+
+      useCasesBadge: 'Applied AI',
+      useCasesTitle: 'Kecerdasan Buatan yang Praktis',
+      useCasesSubtitle: 'Bukan sekadar buzzword, tapi fitur AI yang benar-benar menghemat waktu.',
+      useCases: [
+        {
+          title: 'Invoice OCR',
+          desc: 'Foto invoice supplier, AI baca nama vendor, nominal, hingga line item. Langsung jadi draft Purchase Invoice yang tinggal diverifikasi.',
+          result: 'Kurangi input invoice dari 5 menit jadi 30 detik',
+        },
+        {
+          title: 'Anomaly Detection',
+          desc: 'Sistem belajar pola pengeluaran. Otomatis flag jika biaya Marketing naik 200% dalam satu bulan.',
+          result: 'Deteksi kecurangan otomatis sebelum eskalasi',
+        },
+        {
+          title: 'AI Copilot',
+          desc: 'Tanya: "Customer mana yang tunggakannya di atas 30 hari?" Dapat jawaban dalam detik tanpa perlu bikin laporan custom.',
+          result: 'Query bahasa natural untuk insight instan',
+        },
+      ],
+
+      cta: {
+        title: 'Siap Punya Karyawan Digital Baru?',
+        subtitle: 'Lihat bagaimana BizOps Copilot menyelesaikan pekerjaan administrasi Anda secara real-time.',
+        badge: 'BizOps Copilot',
+        demoBtn: 'Jadwalkan Demo Sekarang',
+        pricingBtn: 'Lihat Pricing',
+        trustText1: 'Gratis 14 Hari',
+        trustText2: 'Tanpa Kartu Kredit',
+      },
+    },
+
+    'multi-company': {
+      title: 'Satu Platform untuk',
+      titleHighlight: 'Seluruh Grup Bisnis Anda.',
+      subtitle: 'Multi-Company',
+      description: 'Punya banyak PT, CV, atau unit bisnis berbeda? Satukan manajemen grup perusahaan Anda dengan struktur Multi-Company yang native.',
+
+      featuresBadge: 'Fitur Inti',
+      featuresTitle: 'Manajemen Holding Company',
+      featuresSubtitle: 'Fitur enterprise-grade untuk grup bisnis.',
+      features: [
+        {
+          title: 'Unified Login & Access',
+          desc: 'Cukup satu username untuk mengakses data PT A, PT B, dan CV C. Pindah antar perusahaan semudah ganti saluran TV, namun hak akses data tetap terpisah secara ketat.',
+        },
+        {
+          title: 'Financial Consolidation',
+          desc: 'Lupakan proses VLOOKUP Excel yang memusingkan. BizOps menarik data Neraca dan Laba Rugi dari seluruh anak perusahaan dan menyajikannya dalam satu Laporan Konsolidasi Grup secara real-time.',
+        },
+        {
+          title: 'Inter-Company Transactions',
+          desc: 'Otomatisasi transaksi internal. Saat PT A menjual barang ke PT B, sistem otomatis membuat Sales Invoice di pembukuan PT A dan Purchase Invoice di PT B secara bersamaan.',
+        },
+      ],
+
+      cta: {
+        title: 'Kelola Grup Bisnis dengan Efisien',
+        subtitle: 'Jadwalkan demo untuk melihat bagaimana multi-company management bekerja untuk bisnis Anda.',
+        badge: 'Multi-Company',
+        demoBtn: 'Request Demo Enterprise',
+        pricingBtn: 'Lihat Pricing',
+        trustText1: 'Gratis 14 Hari',
+        trustText2: 'Tanpa Kartu Kredit',
+      },
+    },
+
+    'portals': {
+      title: 'Berhenti Menjadi Admin',
+      titleHighlight: 'untuk Klien Anda.',
+      subtitle: 'B2B Portals',
+      description: 'Bebaskan tim CS, Sales Admin, dan Purchasing Anda dari pertanyaan berulang. Berikan akses portal mandiri 24/7 kepada mitra bisnis Anda.',
+
+      featuresBadge: 'Jenis Portal',
+      featuresTitle: 'Self-Service untuk Mitra Bisnis',
+      featuresSubtitle: 'Berdayakan pelanggan dan vendor Anda dengan akses 24/7.',
+      features: [
+        {
+          title: 'B2B Customer Portal',
+          desc: 'Memberikan pengalaman layaknya e-commerce B2B kepada klien Anda. Melihat katalog produk dengan harga khusus kontrak, menginput order pembelian mandiri, download invoice PDF & lacak status pengiriman.',
+        },
+        {
+          title: 'Supplier/Vendor Portal',
+          desc: 'Mendigitalisasi interaksi dengan supplier untuk transparansi pengadaan. Melihat daftar RFQ terbuka, mengunggah penawaran harga secara kompetitif, cek status pembayaran tagihan tanpa menelepon Finance.',
+        },
+      ],
+
+      cta: {
+        title: 'Tingkatkan Kolaborasi Bisnis',
+        subtitle: 'Lihat bagaimana portal B2B dapat meningkatkan efisiensi tim dan kepuasan mitra bisnis Anda.',
+        badge: 'B2B Portals',
+        demoBtn: 'Request Demo Portal',
+        pricingBtn: 'Lihat Pricing',
+        trustText1: 'Gratis 14 Hari',
+        trustText2: 'Tanpa Kartu Kredit',
+      },
+    },
+    'security': {
+      title: 'Keamanan Kelas Bank',
+      titleHighlight: 'untuk Enterprise Anda.',
+      subtitle: 'Enterprise Security Shield',
+      description: 'Kami menganggap keamanan sebagai fitur utama, bukan pelengkap. Lindungi bisnis Anda dengan standar yang sama digunakan oleh institusi keuangan.',
+
+      featuresBadge: 'Fitur Keamanan',
+      featuresTitle: 'Perlindungan Menyeluruh',
+      featuresSubtitle: 'Lapisan keamanan komprehensif untuk ketenangan pikiran.',
+      features: [
+        {
+          title: 'Single Sign-On (SSO)',
+          desc: 'Login mulus dengan Google, Microsoft 365, atau Okta. Tegakkan kebijakan password korporat dan cabut akses instan saat karyawan resign.',
+        },
+        {
+          title: 'Field-Level Encryption',
+          desc: 'Enkripsi kolom sensitif (seperti Gaji atau NIK) di database. Bahkan admin DB tidak bisa membaca data mentah tanpa kunci dekripsi.',
+        },
+        {
+          title: 'Brute Force Protection',
+          desc: 'Penguncian akun otomatis setelah gagal login berkali-kali. Rate limiting IP untuk mencegah serangan otomatis.',
+        },
+      ],
+
+      useCasesBadge: 'Kepatuhan',
+      useCasesTitle: 'Siap Audit & Compliance',
+      useCasesSubtitle: 'Tools untuk membantu Anda lolos audit ISO 27001 dan keuangan.',
+      useCases: [
+        {
+          title: 'Jejak Audit Forensik',
+          desc: 'Lacak setiap perubahan data. "Siapa mengubah Price List dari 100 ke 90 jam 2 pagi?" Sistem tahu jawabannya.',
+          result: '100% Traceability perubahan data',
+        },
+        {
+          title: 'Manajemen Sesi',
+          desc: 'Pantau sesi aktif secara real-time. Cabut akses perangkat hilang atau IP mencurigakan dari jarak jauh.',
+          result: 'Penahanan ancaman seketika',
+        },
+        {
+          title: 'Kedaulatan Data',
+          desc: 'Pilih di mana data Anda tinggal. On-Premise, Private Cloud (Region Jakarta), atau Dedicated Instance.',
+          result: 'Kepatuhan penuh hukum residensi data',
+        },
+      ],
+
+      cta: {
+        title: 'Percaya itu Baik, Kontrol itu Lebih Baik.',
+        subtitle: 'Lihat fitur keamanan kami beraksi dengan demo teknis.',
+        badge: 'Security Shield',
+        demoBtn: 'Jadwalkan Demo Security',
+        pricingBtn: 'Lihat Pricing',
+        trustText1: 'Sesuai UU PDP',
+        trustText2: 'ISO 27001 Ready',
+      },
     },
   },
 };

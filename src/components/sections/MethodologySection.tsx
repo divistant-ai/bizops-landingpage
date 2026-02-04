@@ -24,23 +24,35 @@ export const MethodologySection: React.FC<MethodologySectionProps> = ({ methodol
 
   return (
     <Section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950">
-      <Container size="6xl">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-            {t('our_methodology')}
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            {t('structured_approach')}
-          </p>
+      <Container size="7xl">
+        <div className="mb-20 text-center">
+          <FadeIn>
+            <span className="mb-2 block text-sm font-semibold tracking-wider text-blue-600 uppercase dark:text-blue-400">
+              Our Process
+            </span>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+              {t('our_methodology')}
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+              {t('structured_approach')}
+            </p>
+          </FadeIn>
         </div>
-        <div className="grid gap-6 md:grid-cols-4">
+
+        <div className="relative grid gap-8 md:grid-cols-4">
+          {/* Connecting Line Background (Desktop) */}
+          <div className="absolute top-1/2 left-0 hidden h-0.5 w-full -translate-y-1/2 bg-slate-200 md:block dark:bg-slate-800" />
+
           {methodology.map((m, i) => (
-            <FadeIn key={i} delay={i * 0.1} className="relative">
-              <div className="relative z-10 h-full rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800">
-                <div className="absolute top-4 right-4 z-0 text-4xl font-black text-neutral-100">
-                  {i + 1}
+            <FadeIn key={i} delay={i * 0.1}>
+              <div className="group relative z-10 h-full">
+                {/* Step Circle Indicator */}
+                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border-4 border-slate-50 bg-white shadow-lg transition-transform duration-300 group-hover:scale-110 dark:border-slate-950 dark:bg-slate-900">
+                  <span className="text-xl font-bold text-blue-600 dark:text-blue-400">{i + 1}</span>
                 </div>
-                <div className="relative z-10">
+
+                {/* Content Card */}
+                <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/50">
                   <h3 className="mb-3 text-lg font-bold text-slate-900 dark:text-white">
                     {m.title}
                   </h3>
@@ -49,10 +61,6 @@ export const MethodologySection: React.FC<MethodologySectionProps> = ({ methodol
                   </p>
                 </div>
               </div>
-              {/* Connector Line (Desktop) */}
-              {i < methodology.length - 1 && (
-                <div className="absolute top-1/2 -right-4 z-0 hidden h-0.5 w-8 -translate-y-1/2 transform bg-neutral-300 md:block"></div>
-              )}
             </FadeIn>
           ))}
         </div>

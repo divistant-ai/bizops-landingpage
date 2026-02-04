@@ -7,6 +7,7 @@ import React from 'react';
 import { BenefitsSection } from '@/components/sections/BenefitsSection';
 import { ChallengesSection } from '@/components/sections/ChallengesSection';
 import { ConnectionsSection } from '@/components/sections/ConnectionsSection';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { DashboardPreview } from '@/components/sections/DashboardPreview';
 import { DeliverablesSection } from '@/components/sections/DeliverablesSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -182,6 +183,17 @@ const GenericLandingPage: React.FC<{ data: GenericLandingPageProps }> = ({ data 
 
       {/* FAQ Section */}
       {data.faqs && <FAQSection faqs={data.faqs} />}
+
+      {/* Standard CTA */}
+      <CTABannerSection
+        title={t('cta_title')} // Ensure this translation key exists in GenericLandingPage json or use logic
+        subtitle={t('cta_subtitle')}
+        badgeText="Get Started"
+        demoBtnText={ctaBtnText}
+        demoBtnLink="/demo"
+        pricingBtnText={t('view_pricing')}
+        pricingBtnLink="/pricing"
+      />
     </div>
   );
 };

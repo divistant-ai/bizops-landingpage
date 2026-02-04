@@ -34,8 +34,9 @@ function getRelatedItems(slug: string) {
 
   const recommendations: Record<string, string[]> = {
     'integration': ['automation-ai', 'self-hosted', 'analytics'],
-    'self-hosted': ['integration', 'multi-company', 'architecture'],
-    'architecture': ['self-hosted', 'integration', 'governance'],
+    'self-hosted': ['security', 'architecture', 'multi-company'],
+    'architecture': ['security', 'self-hosted', 'governance'],
+    'security': ['governance', 'architecture', 'self-hosted'],
   };
 
   const recommended = recommendations[slug] || [];

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
   Building2,
   Code,
   ExternalLink,
@@ -11,15 +10,14 @@ import {
   MapPin,
   Rocket,
   ShieldCheck,
-  Sparkles,
   Users,
   Zap,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { TeamSection, ValuesGrid } from '@/components/sections/about';
-import { CTASection, PageHero, StatCard } from '@/components/sections/shared';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
+import { PageHero, StatCard } from '@/components/sections/shared';
 import { Button } from '@/components/ui';
 import { aboutContent } from '@/data/companyContent';
 
@@ -107,7 +105,7 @@ export default function AboutContent() {
       </PageHero>
 
       {/* Stats Section */}
-      <Section className="pointer-events-none relative z-10 -mt-24 !bg-transparent">
+      <Section className="pointer-events-none relative z-10 -mt-24 bg-transparent!">
         <Container size="7xl">
           <div className="pointer-events-auto grid grid-cols-2 gap-6 md:grid-cols-4">
             {stats.map((stat, idx) => (
@@ -124,7 +122,7 @@ export default function AboutContent() {
       </Section>
 
       {/* Origin Story Timeline */}
-      <section className="border-b border-slate-200 !bg-white py-24 dark:border-slate-800 dark:!bg-slate-950">
+      <section className="border-b border-slate-200 bg-white! py-24 dark:border-slate-800 dark:bg-slate-950!">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center md:mb-24">
             <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
@@ -192,7 +190,7 @@ export default function AboutContent() {
       />
 
       {/* Entity Section */}
-      <Section className="border-t border-slate-200 !bg-white dark:border-slate-800 dark:!bg-slate-950">
+      <Section className="border-t border-slate-200 bg-white! dark:border-slate-800 dark:bg-slate-950!">
         <Container size="4xl">
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-12 dark:border-slate-800 dark:bg-slate-900">
             <div className="mb-10 text-center">
@@ -255,31 +253,18 @@ export default function AboutContent() {
       </Section>
 
       {/* CTA Section */}
-      <CTASection
-        badge={{ icon: Sparkles, text: t('cta_badge') }}
+      {/* CTA Section */}
+      <CTABannerSection
+        badgeText={t('cta_badge')}
         title={t('cta_title')}
         subtitle={t('cta_subtitle')}
-      >
-        <Link href="/careers">
-          <Button
-            size="lg"
-            className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
-          >
-            {t('cta_careers')}
-            {' '}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-        <Link href="/partners">
-          <Button
-            size="lg"
-            variant="outline"
-            className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
-          >
-            {t('cta_partners')}
-          </Button>
-        </Link>
-      </CTASection>
+        demoBtnText={t('cta_careers')}
+        demoBtnLink="/careers"
+        pricingBtnText={t('cta_partners')}
+        pricingBtnLink="/partners"
+        trustText1="Great Culture"
+        trustText2="Remote Friendly"
+      />
     </div>
   );
 }

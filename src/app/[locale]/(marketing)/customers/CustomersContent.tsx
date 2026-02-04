@@ -3,13 +3,11 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { Section } from '@/components/layout';
 import Container from '@/components/layout/Container';
 import { CustomerStoryCard } from '@/components/pages/CustomerStoryCard';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { CardSlider, Typography } from '@/components/ui';
-import Button from '@/components/ui/Button';
-import Stack from '@/components/ui/Stack';
 import { customerStories } from '@/data/companyContent';
 
 export default function CustomersContent() {
@@ -76,7 +74,7 @@ export default function CustomersContent() {
       </Section>
 
       {/* LOGOS SECTION */}
-      <Section className="border-y border-slate-200 !bg-slate-50 py-12 dark:border-slate-700 dark:!bg-slate-950">
+      <Section className="border-y border-slate-200 bg-slate-50! py-12 dark:border-slate-700 dark:bg-slate-950!">
         <Container size="7xl">
           <Typography
             variant="body"
@@ -99,40 +97,16 @@ export default function CustomersContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-slate-50 py-16 md:py-24 dark:bg-slate-900">
-        <Container size="4xl" className="text-center">
-          <Typography
-            variant="h2"
-            className="mb-6 text-3xl font-extrabold text-slate-900 md:text-4xl dark:text-white"
-          >
-            {t('cta_title')}
-          </Typography>
-          <Typography
-            variant="body"
-            className="mb-10 text-lg text-slate-600 md:text-xl dark:text-slate-400"
-          >
-            {t('cta_desc')}
-          </Typography>
-
-          <Stack direction="horizontal" gap={4} justify="center" className="flex-col sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-slate-700 dark:text-white"
-            >
-              <Link href={`/${locale}/demo`}>{t('cta_button_demo')}</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
-            >
-              <Link href={`/${locale}/contact`}>{t('cta_button_contact')}</Link>
-            </Button>
-          </Stack>
-        </Container>
-      </Section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_desc')}
+        badgeText="Join Them"
+        demoBtnText={t('cta_button_demo')}
+        demoBtnLink={`/${locale}/demo`}
+        pricingBtnText={t('cta_button_contact')}
+        pricingBtnLink={`/${locale}/contact`}
+        trustText1="Trusted by 500+"
+      />
     </div>
   );
 }

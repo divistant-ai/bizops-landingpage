@@ -40,51 +40,51 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
       noPadding
       containerClassName={sectionPaddingHybrid.default}
     >
-      <Container size="5xl" className="relative z-10">
+      <Container size="7xl" className="relative z-10">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-8 shadow-2xl shadow-slate-900/50 sm:p-12 lg:p-16 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
+          <div className="relative flex flex-col justify-center overflow-hidden rounded-[2.5rem] bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-6 py-12 shadow-2xl shadow-slate-900/50 sm:px-12 sm:py-16 lg:px-20 lg:py-20 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
             {/* Decorative elements */}
-            <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full bg-indigo-500/30 blur-3xl" />
-            <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-blue-500/20 blur-2xl" />
-            <div className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-cyan-500/20 blur-2xl" />
+            <div className="bg-primary-500/20 absolute top-0 right-0 h-96 w-96 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full bg-amber-500/10 blur-3xl" />
 
             {/* Dot pattern */}
             <div
-              className="absolute inset-0 opacity-[0.08]"
+              className="absolute inset-0 opacity-[0.05]"
               style={{
                 backgroundImage:
                   'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
+                backgroundSize: '32px 32px',
               }}
             />
 
             {/* Inner glow border */}
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10 ring-inset" />
+            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-white/10 ring-inset" />
 
-            <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="relative z-10 mx-auto max-w-4xl text-center">
               {/* Badge */}
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 shadow-lg backdrop-blur-sm">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 shadow-lg backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
                 </span>
-                <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">
+                <span className="text-xs font-semibold tracking-wider text-amber-100 uppercase">
                   {badgeText}
                 </span>
               </div>
 
-              <h2 className="mb-6 text-3xl leading-tight font-bold text-white sm:text-4xl lg:text-5xl">
+              <h2 className="mb-8 text-4xl leading-tight font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {title}
               </h2>
-              <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+              <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
                 {subtitle}
               </p>
 
-              <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                 <Button
                   asChild
+                  variant="accent"
                   size="lg"
-                  className="h-14 bg-white px-10 text-lg font-bold text-slate-900 shadow-xl shadow-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-2xl"
+                  className="h-16 min-w-[200px] rounded-full px-8 text-lg font-bold shadow-xl shadow-amber-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-amber-500/30"
                 >
                   <Link href={demoBtnLink}>
                     {demoBtnText}
@@ -93,27 +93,27 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
                 </Button>
                 <Button
                   asChild
-                  variant="ghost"
+                  variant="outline-white"
                   size="lg"
-                  className="h-14 border-2 border-white/30 px-10 text-lg font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/10"
+                  className="h-16 min-w-[200px] rounded-full border-2 px-8 text-lg font-semibold backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
                 >
                   <Link href={pricingBtnLink}>{pricingBtnText}</Link>
                 </Button>
               </div>
 
               {/* Trust indicators */}
-              <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+              <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium opacity-80">
                 <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                   <span>{trustText1}</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                   <span>{trustText2}</span>
                 </div>
                 {trustText3 && (
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                     <span>{trustText3}</span>
                   </div>
                 )}

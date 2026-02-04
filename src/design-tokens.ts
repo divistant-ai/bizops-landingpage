@@ -179,18 +179,18 @@ export const cardStyles = {
 
 // Gradient patterns
 export const gradients = {
-  primary: 'bg-gradient-to-r from-primary-600 to-primary-500',
-  primaryIndigo: 'bg-gradient-to-r from-primary-600 to-indigo-600',
-  primaryVertical: 'bg-gradient-to-b from-primary-600 to-primary-700',
-  accent: 'bg-gradient-to-r from-amber-500 to-orange-500',
-  success: 'bg-gradient-to-r from-green-500 to-emerald-500',
-  danger: 'bg-gradient-to-r from-red-500 to-rose-500',
-  dark: 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900',
-  darkBlue: 'bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900',
-  glow: 'bg-gradient-to-tr from-primary-500/20 to-blue-500/20',
-  glowAccent: 'bg-gradient-to-tr from-amber-500/20 to-orange-500/20',
-  subtle: 'bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950',
-  hero: 'bg-gradient-to-br from-primary-600 via-primary-500 to-blue-500',
+  primary: 'bg-linear-to-r from-primary-600 to-primary-500',
+  primaryIndigo: 'bg-linear-to-r from-primary-600 to-indigo-600',
+  primaryVertical: 'bg-linear-to-b from-primary-600 to-primary-700',
+  accent: 'bg-linear-to-r from-amber-500 to-orange-500',
+  success: 'bg-linear-to-r from-green-500 to-emerald-500',
+  danger: 'bg-linear-to-r from-red-500 to-rose-500',
+  dark: 'bg-linear-to-br from-slate-900 via-slate-800 to-slate-900',
+  darkBlue: 'bg-linear-to-br from-slate-900 via-primary-900 to-slate-900',
+  glow: 'bg-linear-to-tr from-primary-500/20 to-blue-500/20',
+  glowAccent: 'bg-linear-to-tr from-amber-500/20 to-orange-500/20',
+  subtle: 'bg-linear-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950',
+  hero: 'bg-linear-to-br from-primary-600 via-primary-500 to-blue-500',
   // Solid text colors - vibrant and high contrast
   textPrimary: 'text-blue-600 dark:text-blue-400',
   textSuccess: 'text-emerald-600 dark:text-emerald-400',
@@ -263,7 +263,7 @@ export const neumorph = {
   pressed: 'bg-slate-50 shadow-[inset_2px_2px_5px_#e2e8f0,inset_-2px_-2px_5px_#ffffff] dark:bg-slate-800 dark:shadow-[inset_2px_2px_5px_#0f172a,inset_-4px_-4px_8px_#334155]',
   flat: 'bg-slate-50 shadow-[2px_2px_5px_#e2e8f0,-2px_-2px_5px_#ffffff] dark:bg-slate-800 dark:shadow-[2px_2px_5px_#0f172a,-2px_-2px_5px_#334155]',
   // Button specific
-  button: 'bg-gradient-to-br from-slate-50 to-slate-100 shadow-[3px_3px_8px_#cbd5e1,-3px_-3px_8px_#ffffff] hover:shadow-[1px_1px_3px_#cbd5e1,-1px_-1px_3px_#ffffff] active:shadow-[inset_2px_2px_5px_#cbd5e1,inset_-2px_-2px_5px_#ffffff] dark:from-slate-800 dark:to-slate-900',
+  button: 'bg-linear-to-br from-slate-50 to-slate-100 shadow-[3px_3px_8px_#cbd5e1,-3px_-3px_8px_#ffffff] hover:shadow-[1px_1px_3px_#cbd5e1,-1px_-1px_3px_#ffffff] active:shadow-[inset_2px_2px_5px_#cbd5e1,inset_-2px_-2px_5px_#ffffff] dark:from-slate-800 dark:to-slate-900',
   // Card variants
   card: 'bg-slate-50 rounded-xl shadow-[6px_6px_12px_#e2e8f0,-6px_-6px_12px_#ffffff] dark:bg-slate-800 dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155]',
   cardSubtle: 'bg-slate-50 rounded-lg shadow-[3px_3px_6px_#e2e8f0,-3px_-3px_6px_#ffffff] dark:bg-slate-800 dark:shadow-[3px_3px_6px_#0f172a,-3px_-3px_6px_#334155]',
@@ -275,15 +275,15 @@ export const clay = {
   card: 'bg-white rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.05),inset_0_-2px_4px_rgba(0,0,0,0.02),inset_0_2px_4px_rgba(255,255,255,0.6)] dark:bg-slate-900',
   cardSubtle: 'bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.04),inset_0_-1px_2px_rgba(0,0,0,0.02),inset_0_1px_2px_rgba(255,255,255,0.5)] dark:bg-slate-900',
   // Icon containers - cleaner gradient
-  icon: 'bg-gradient-to-br from-white to-slate-50 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_2px_rgba(255,255,255,0.8)]',
+  icon: 'bg-linear-to-br from-white to-slate-50 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_2px_rgba(255,255,255,0.8)]',
   // Colored icons - stronger, more visible
-  primaryIcon: 'bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-[0_6px_16px_rgba(37,99,235,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
-  dangerIcon: 'bg-gradient-to-br from-red-500 to-red-700 rounded-xl shadow-[0_6px_16px_rgba(239,68,68,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
-  successIcon: 'bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl shadow-[0_6px_16px_rgba(16,185,129,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
-  warningIcon: 'bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl shadow-[0_6px_16px_rgba(245,158,11,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
-  neutralIcon: 'bg-gradient-to-br from-slate-400 to-slate-600 rounded-xl shadow-[0_6px_16px_rgba(100,116,139,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
+  primaryIcon: 'bg-linear-to-br from-primary-500 to-primary-700 rounded-xl shadow-[0_6px_16px_rgba(37,99,235,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
+  dangerIcon: 'bg-linear-to-br from-red-500 to-red-700 rounded-xl shadow-[0_6px_16px_rgba(239,68,68,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
+  successIcon: 'bg-linear-to-br from-emerald-500 to-emerald-700 rounded-xl shadow-[0_6px_16px_rgba(16,185,129,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
+  warningIcon: 'bg-linear-to-br from-amber-500 to-amber-700 rounded-xl shadow-[0_6px_16px_rgba(245,158,11,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
+  neutralIcon: 'bg-linear-to-br from-slate-400 to-slate-600 rounded-xl shadow-[0_6px_16px_rgba(100,116,139,0.45),inset_0_1px_2px_rgba(255,255,255,0.3)]',
   // Button - less bulky
-  button: 'bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl shadow-[0_4px_12px_rgba(37,99,235,0.3),inset_0_1px_2px_rgba(255,255,255,0.25)] hover:shadow-[0_6px_16px_rgba(37,99,235,0.4),inset_0_1px_2px_rgba(255,255,255,0.3)] active:scale-[0.98]',
+  button: 'bg-linear-to-br from-primary-500 to-primary-600 rounded-xl shadow-[0_4px_12px_rgba(37,99,235,0.3),inset_0_1px_2px_rgba(255,255,255,0.25)] hover:shadow-[0_6px_16px_rgba(37,99,235,0.4),inset_0_1px_2px_rgba(255,255,255,0.3)] active:scale-[0.98]',
 } as const;
 
 // Updated section padding - Mobile-optimized, compact

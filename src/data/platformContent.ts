@@ -1,14 +1,18 @@
-import type { ModuleData } from '../types';
+import type { FeaturePageData, ModuleData } from '../types/platform';
 
 import {
   Activity,
   AlertOctagon,
   AlertTriangle,
+  ArrowRight,
   BarChart,
   BarChart2,
+  Bot,
+  BrainCircuit,
   Briefcase,
   Building,
   Calculator,
+  Calendar,
   CalendarRange,
   ClipboardCheck,
   Clock,
@@ -17,55 +21,67 @@ import {
   Database,
   DollarSign,
   EyeOff,
+  Factory,
+  FileBarChart,
   FileCheck,
   FileSpreadsheet,
   FileText,
   FileWarning,
+  Filter,
   GitMerge,
   Globe,
   GraduationCap,
   Headphones,
-  Heart, // Added HR icons
+  Heart,
   History,
   Hourglass,
   Key,
-  Landmark, // Added Finance/Ops icons
+  Landmark,
   Layers,
   Layout,
-  Lock, // Added icons for Governance
+  Lock,
   Mail,
   MapPin,
+  Megaphone,
   MessageCircle,
   MessageSquare,
+  Microscope,
+  Network,
   Package,
   Phone,
   PieChart,
   Radio,
   Receipt,
   RefreshCw,
+  ScanLine,
   Search,
   Server,
   Share2,
+  ShieldAlert,
   ShieldCheck,
+  ShoppingBag,
   ShoppingCart,
   Smartphone,
-  Sparkles,
+
   Tag,
   Target,
   Terminal,
   TrendingDown,
   TrendingUp,
-  Truck, // Added icons for Tech
+  Truck,
   UserCheck,
   UserPlus,
   Users,
   WifiOff,
+  Wrench,
   Zap,
 } from 'lucide-react';
 
 // --- MODULES DATA ---
 export const modulesData: Record<string, ModuleData> = {
   'hr': {
+    navLabel: 'Human Capital Management (HRIS)',
+    navDesc: 'Payroll, Attendance, LMS',
     title: 'Human Capital Management (HRIS)',
     subtitle: 'Otomatisasi Admin HR. Fokus pada Manusia, Bukan Kertas.',
     description:
@@ -181,6 +197,8 @@ export const modulesData: Record<string, ModuleData> = {
     ],
   },
   'finance': {
+    navLabel: 'Finance & Procurement',
+    navDesc: 'Accounting, Expense, Asset',
     title: 'Finance & Procurement',
     subtitle: 'Kendali Penuh Atas Setiap Rupiah.',
     description:
@@ -296,6 +314,8 @@ export const modulesData: Record<string, ModuleData> = {
     },
   },
   'operations': {
+    navLabel: 'Operations & Project Management',
+    navDesc: 'Timesheet, Project, S-Curve',
     title: 'Operations & Project Management',
     subtitle: 'Deliver Projects On Time, On Budget.',
     description:
@@ -331,9 +351,9 @@ export const modulesData: Record<string, ModuleData> = {
         icon: FileText,
       },
       {
-        title: 'Contextual Chat',
-        desc: 'Diskusikan kendala teknis langsung pada Task terkait. Hentikan miskomunikasi di grup WhatsApp yang berantakan.',
-        icon: MessageCircle,
+        title: 'Asset & Equipment Maintenance',
+        desc: 'Jadwalkan perawatan rutin (Preventive) alat berat dan mesin proyek. Catat riwayat servis dan biaya sparepart untuk analisa umur aset.',
+        icon: Wrench,
       },
     ],
     metrics: [
@@ -411,6 +431,8 @@ export const modulesData: Record<string, ModuleData> = {
     ],
   },
   'sales': {
+    navLabel: 'Sales & CRM',
+    navDesc: 'CRM, Quotation, POS',
     title: 'Sales & CRM',
     subtitle: 'Tutup Deal Lebih Cepat, Di Mana Saja.',
     description:
@@ -446,9 +468,9 @@ export const modulesData: Record<string, ModuleData> = {
         icon: MapPin,
       },
       {
-        title: 'Omnichannel Helpdesk',
-        desc: 'Pusatkan komplain pelanggan dari WhatsApp, Email, dan Sosmed ke satu tiket sistem. CS bisa melihat riwayat pembelian pelanggan saat menjawab.',
-        icon: MessageCircle,
+        title: 'Marketing Automation',
+        desc: 'Broadcast promo via WhatsApp/Email ke database pelanggan. Fitur segmentasi otomatis (misal: "Pelanggan Tidak Aktif 3 Bulan") untuk retensi efektif.',
+        icon: Megaphone,
       },
     ],
     metrics: [
@@ -526,6 +548,8 @@ export const modulesData: Record<string, ModuleData> = {
     ],
   },
   'supply-chain': {
+    navLabel: 'Supply Chain & Inventory',
+    navDesc: 'Inventory, Warehouse, BOM',
     title: 'Supply Chain & Inventory',
     subtitle: 'Akurasi Stok Mutlak. Minimalkan Dead Stock.',
     description:
@@ -556,14 +580,14 @@ export const modulesData: Record<string, ModuleData> = {
         icon: RefreshCw, // Need to ensure this exists or use suitable alternative
       },
       {
-        title: 'Serial Number Tracking',
-        desc: 'Wajib untuk elektronik. Catat nomor seri unik setiap unit barang masuk dan keluar untuk keperluan garansi dan layanan purna jual.',
-        icon: Tag,
+        title: 'Production & Assembly (BOM)',
+        desc: 'Kelola Bill of Materials (BOM) untuk perakitan/bundling produk. Potong stok bahan baku otomatis saat barang jadi diproduksi (Backflush).',
+        icon: Factory,
       },
       {
-        title: 'Landed Cost Calculation',
-        desc: 'Hitung HPP akurat dengan membebankan biaya impor/pengiriman (Freight, Bea Masuk) ke harga modal barang secara proporsional.',
-        icon: Calculator,
+        title: 'Quality Control (QC)',
+        desc: 'Wajibkan inspeksi kualitas saat barang masuk (Inbound) atau selesai produksi. Barang reject otomatis terpisahkan ke gudang karantina.',
+        icon: Microscope,
       },
     ],
     metrics: [
@@ -641,6 +665,8 @@ export const modulesData: Record<string, ModuleData> = {
     ],
   },
   'governance': {
+    navLabel: 'Governance & Insight',
+    navDesc: 'BI Dashboard, Audit Trail',
     title: 'Governance & Insight',
     subtitle: 'Kontrol Penuh, Tanpa Kompromi.',
     description:
@@ -761,6 +787,8 @@ export const modulesData: Record<string, ModuleData> = {
 // --- CAPABILITIES DATA ---
 export const capabilitiesData: Record<string, any> = {
   'mobile': {
+    navLabel: 'Native Mobile Experience',
+    navDesc: 'iOS & Android for field work',
     title: 'Native Mobile Experience',
     subtitle: 'Bukan Sekadar Web yang Dikecilkan. Ini Mobile Native Sesungguhnya.',
     description:
@@ -851,6 +879,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'self-hosted': {
+    navLabel: 'Self-Hosted Deployment',
+    navDesc: 'On-premise & private cloud',
     title: 'Self-Hosted Deployment',
     subtitle: 'Infrastruktur Anda, Kendali Penuh Anda.',
     description:
@@ -951,6 +981,8 @@ export const capabilitiesData: Record<string, any> = {
     },
   },
   'integration': {
+    navLabel: 'Integration Architecture',
+    navDesc: 'Connect with banks, e-commerce, & IoT',
     title: 'Integration Architecture',
     subtitle: 'API-First: Terhubung Secara Native dengan Dunia Luar.',
     description:
@@ -1046,6 +1078,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'collaboration': {
+    navLabel: 'Contextual Collaboration',
+    navDesc: 'Discuss on documents',
     title: 'Contextual Collaboration',
     subtitle: 'Hentikan \'Ping-Pong\' Chat di WhatsApp yang Membingungkan.',
     description:
@@ -1136,6 +1170,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'whitelabel': {
+    navLabel: 'Whitelabel Platform',
+    navDesc: 'Your brand, our engine',
     title: 'Whitelabel Platform',
     subtitle: 'Sistem Kami, Identitas Brand Anda.',
     description:
@@ -1222,6 +1258,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'low-code': {
+    navLabel: 'Low-Code Application Platform',
+    navDesc: 'Build apps without coding',
     title: 'Low-Code Application Platform',
     subtitle: 'Ubah Ide Menjadi Aplikasi Enterprise dalam Hitungan Jam.',
     description:
@@ -1306,27 +1344,27 @@ export const capabilitiesData: Record<string, any> = {
       },
       {
         question: 'Apakah bisa integrasi dengan sistem lain?',
-        answer:
-          'Bisa. Anda bisa membuat \'Virtual DocType\' yang mengambil data dari API eksternal dan menampilkannya seolah-olah data lokal.',
       },
     ],
   },
   'automation-ai': {
-    title: 'Automation & AI',
-    subtitle: 'Bekerja Lebih Cerdas, Bukan Lebih Keras.',
+    navLabel: 'BizOps Copilot (Agentic AI)',
+    navDesc: 'Autonomous Agents & Workflow',
+    title: 'BizOps Copilot (Agentic AI)',
+    subtitle: 'Bukan Sekadar Chatbot. Ini Rekan Kerja Digital Anda.',
     description:
-      'Hilangkan tugas repetitif dengan engine otomatisasi tanpa kode (No-Code Automation). Biarkan AI membantu analisis tren dan prediksi bisnis Anda.',
-    icon: Sparkles,
+      'Lupakan dashboard yang rumit. Cukup perintahkan BizOps Copilot dalam bahasa manusia untuk mengerjakan tugas operasional, mulai dari analisa data hingga eksekusi workflow lintas aplikasi. Didukung teknologi Agentic AI yang bisa berfikir & bertindak mandiri.',
+    icon: Bot,
     features: [
       {
-        title: 'Workflow Builder',
-        desc: 'Buat alur kerja otomatis (If-This-Then-That) untuk notifikasi, persetujuan, atau update status tanpa coding.',
-        icon: GitMerge,
+        title: 'Natural Language Action',
+        desc: 'Ketik "Buatkan Invoice untuk PT Maju Mundur senilai 50 Juta", dan Copilot akan mengisi form, melampirkan produk, dan menyiapkannya untuk Anda review.',
+        icon: MessageSquare,
       },
       {
-        title: 'AI Forecasting',
-        desc: 'Prediksi penjualan dan kebutuhan stok menggunakan algoritma machine learning berdasarkan data historis.',
-        icon: TrendingUp,
+        title: 'Autonomous Agents',
+        desc: 'Delegasikan tugas kompleks seperti "Monitor stok gudang A, jika < 100 otomatis buat PO ke Vendor Termurah". Agen akan bekerja 24/7 untuk Anda.',
+        icon: Bot,
       },
       {
         title: 'Smart OCR',
@@ -1402,6 +1440,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'multi-company': {
+    navLabel: 'Multi-Company Structure',
+    navDesc: 'Manage holding structures',
     title: 'Multi-Company Structure',
     subtitle: 'Satu Sistem untuk Banyak Entitas.',
     description:
@@ -1488,6 +1528,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'portals': {
+    navLabel: 'Self-Service Portals',
+    navDesc: 'Customer & Vendor access',
     title: 'Self-Service Portals',
     subtitle: 'Libatkan Pelanggan & Vendor Secara Langsung.',
     description:
@@ -1582,6 +1624,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'analytics': {
+    navLabel: 'Analytics & Report Builder',
+    navDesc: 'Custom reports & dashboards',
     title: 'Analytics & Report Builder',
     subtitle: 'Data Anda, Cara Anda.',
     description:
@@ -1672,6 +1716,8 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'architecture': {
+    navLabel: 'Enterprise Architecture',
+    navDesc: 'Full stack overview & specifications',
     title: 'Enterprise Architecture',
     subtitle: 'Arsitektur Enterprise Tanpa Kompromi.',
     description:
@@ -1761,6 +1807,98 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
+  'security': {
+    navLabel: 'Enterprise Security Shield',
+    navDesc: 'Bank-grade protection & compliance',
+    title: 'Enterprise Security Shield',
+    subtitle: 'Uncompromising Data Protection.',
+    description:
+      'Built with a "Security-First" architecture. From encryption at rest/transit to granular role-based access control (RBAC), BizOps ensures your data remains yours.',
+    icon: ShieldCheck,
+    features: [
+      {
+        title: 'Bank-Grade Encryption',
+        desc: 'All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Your sensitive business information is mathematically unreadable to unauthorized parties.',
+        icon: Lock,
+      },
+      {
+        title: 'Single Sign-On (SSO)',
+        desc: 'Integrate with your corporate Identity Provider (Google Workspace, Azure AD, Okta) via SAML 2.0 or OAuth for secure, centralized access management.',
+        icon: Key,
+      },
+      {
+        title: 'Immutable Audit Logs',
+        desc: 'Every action (View, Create, Edit, Delete) is logged with a cryptographic hash. Perfect for forensic analysis and compliance audits.',
+        icon: FileCheck,
+      },
+      {
+        title: 'Role-Based Access (RBAC)',
+        desc: 'Granular permission settings down to the field level. Apply "Least Privilege Access" policies to ensure users only see what they need.',
+        icon: ShieldCheck,
+      },
+    ],
+    metrics: [
+      { value: 'AES-256', label: 'Encryption Standard' },
+      { value: 'SOC 2', label: 'Compliance Ready' },
+      { value: '100%', label: 'Audit Trail' },
+    ],
+    problems: [
+      {
+        title: 'Data Breaches',
+        desc: 'Weak passwords and unencrypted databases leave your company vulnerable to ransomware and data theft.',
+        icon: AlertTriangle,
+      },
+      {
+        title: 'Compliance Nightmares',
+        desc: 'Managing user access manually across multiple systems creates audit findings and security gaps.',
+        icon: FileWarning,
+      },
+      {
+        title: 'Insider Threats',
+        desc: 'Without detailed logs, it\'s impossible to trace who leaked sensitive customer lists or manipulated financial records.',
+        icon: EyeOff,
+      },
+    ],
+    mobileAdvantage: {
+      title: 'Biometric Security',
+      desc: 'Mobile app supports native FaceID and Fingerprint authentication, adding an extra layer of physical security for field staff.',
+    },
+    connections: [
+      {
+        target: 'HR',
+        desc: 'Employee offboarding in HR automatically revokes system access instantly.',
+      },
+      {
+        target: 'IT Dept',
+        desc: 'Centralized admin panel for IT Security team to monitor active sessions and suspicious activities.',
+      },
+      {
+        target: 'Compliance',
+        desc: 'One-click export of audit logs for external auditors.',
+      },
+    ],
+    cta: {
+      text: 'Secure your enterprise data today.',
+      buttonLabel: 'Download Security Whitepaper',
+    },
+    faqs: [
+      {
+        question: 'Is it compliant with GDPR/PDPA?',
+        answer:
+          'Yes. We provide tools for "Right to be Forgotten" (Data Anonymization) and Consent Management to help you meet privacy regulations.',
+      },
+      {
+        question: 'Can we use 2FA?',
+        answer:
+          'Absolutely. Two-Factor Authentication (OTP via Email/Authenticator App) can be enforced for all users or specific roles.',
+      },
+      {
+        question: 'Do you have penetration testing reports?',
+        answer:
+          'Yes. We perform regular 3rd-party pentests. Reports are available upon request under NDA for enterprise clients.',
+      },
+    ],
+  },
 };
 
 // --- INTEGRATION LIBRARY ---
@@ -1825,4 +1963,319 @@ export const integrationsData = [
       { name: 'Jembatan Timbang', desc: 'Baca berat truk langsung ke form Goods Receipt.' },
     ],
   },
+];
+
+// --- FEATURE PAGES DATA (Analytics, AutomationAI, MultiCompany, Portals) ---
+export const featuresData: Record<string, FeaturePageData> = {
+  'analytics': {
+    id: 'analytics',
+    title: 'Your Reports, Your Way.',
+    titleHighlight: 'No Coding.',
+    subtitle: 'Analytics & Reports',
+    description: 'Every business has a unique way of viewing data. Don\'t be stuck with rigid standard reports. With Report Builder, you become the data analyst for your own company.',
+    icon: BarChart2,
+    heroVariant: 'dark',
+    metaTitle: 'Real-time Dashboard & Custom Report Builder | BizOps',
+    metaDesc: 'Create custom reports without coding. Real-time dashboards, drag-and-drop builder, and automated scheduled reports.',
+
+    featuresBadge: 'Key Features',
+    featuresTitle: 'Build Reports Your Way',
+    featuresSubtitle: 'Flexible analytics tools for every business scenario.',
+    features: [
+      {
+        title: 'Real-time Dashboard',
+        desc: 'Customizable visual widgets updated second by second. Bar Charts, Pie Charts, KPI Cards, Heatmaps.',
+        icon: PieChart,
+        color: 'blue',
+      },
+      {
+        title: 'Drag-and-Drop Builder',
+        desc: 'Intuitive interface for creating tabular reports. Select columns, drag to canvas, apply complex filters without coding.',
+        icon: Filter,
+        color: 'amber',
+      },
+      {
+        title: 'Auto-Schedule Email',
+        desc: 'Create report once, schedule automatic delivery. System runs it consistently every day/week/month.',
+        icon: Calendar,
+        color: 'green',
+      },
+    ],
+
+    useCasesBadge: 'Popular Reports',
+    useCasesTitle: 'Commonly Used Report Examples',
+    useCasesSubtitle: 'Ready-to-use templates you can customize for your business needs.',
+    useCases: [
+      {
+        title: 'Sales Performance Report',
+        desc: 'Analyze sales performance by region, product, and period. Compare target vs actual, identify top and underperformers.',
+        icon: TrendingUp,
+        tags: ['Filter by Region', 'Group by Product', 'Time Comparison'],
+      },
+      {
+        title: 'Inventory Movement Report',
+        desc: 'Track stock movements: incoming, outgoing, inter-warehouse transfers. Identify slow-moving and fast-moving items for inventory optimization.',
+        icon: FileBarChart,
+        tags: ['Stock Aging', 'Turnover Ratio', 'Reorder Alert'],
+      },
+      {
+        title: 'Financial Summary Report',
+        desc: 'Comprehensive financial reports: Profit & Loss, Cash Flow, Balance Sheet. Export to Excel or PDF for stakeholder presentations.',
+        icon: BarChart2,
+        tags: ['Multi-Currency', 'Budget vs Actual', 'Drill-down'],
+      },
+    ],
+
+    cta: {
+      title: 'Transform Data Into Insights',
+      subtitle: 'See how easy it is to create custom reports without IT or consultant help.',
+      badge: 'Analytics & Reports',
+      demoBtn: 'Schedule Analytics Demo',
+      pricingBtn: 'View Pricing',
+      trustText1: '14 Days Free',
+      trustText2: 'No Credit Card',
+    },
+  },
+
+  'automation-ai': {
+    id: 'automation-ai',
+    title: 'Let the System Work,',
+    titleHighlight: 'Not You.',
+    subtitle: 'Automation & AI',
+    description: 'Reduce repetitive manual work by up to 80%. BizOps comes with Workflow Builder and practical Applied AI.',
+    icon: Zap,
+    heroVariant: 'dark',
+    metaTitle: 'Workflow Automation & Applied AI | BizOps',
+    metaDesc: 'Automate business processes with no-code workflow builder. OCR for invoices, auto-assignment, and intelligent automation.',
+
+    featuresBadge: 'Workflow Automation',
+    featuresTitle: 'No-Code Business Logic',
+    featuresSubtitle: 'Create "If X then Y" rules without any coding.',
+    features: [
+      {
+        title: 'Visual Builder',
+        desc: 'Intuitive drag-and-drop interface for creating "If X then Y" logic rules without coding.',
+        icon: GitMerge,
+        color: 'blue',
+      },
+      {
+        title: 'Scenario Examples',
+        desc: '"If Stock < 10 units, auto-create Purchase Request to Vendor A, send PO email, and WA notification to Warehouse Manager."',
+        icon: ArrowRight,
+        color: 'purple',
+      },
+      {
+        title: 'Auto-Assignment',
+        desc: 'Automatic task distribution. Example: "Every new Lead from South Jakarta auto-assigned to Salesman Budi."',
+        icon: Zap,
+        color: 'green',
+      },
+    ],
+
+    useCasesBadge: 'Applied AI',
+    useCasesTitle: 'Practical Artificial Intelligence',
+    useCasesSubtitle: 'Not just buzzwords, but real time-saving AI features.',
+    useCases: [
+      {
+        title: 'Invoice OCR',
+        desc: 'Snap supplier invoice photo, AI reads vendor name, total amount, and line items. Directly creates Purchase Invoice draft you just need to verify.',
+        icon: ScanLine,
+        result: 'Reduce invoice entry from 5 mins to 30 secs',
+      },
+      {
+        title: 'Anomaly Detection',
+        desc: 'System learns expense patterns. Auto-flag if Marketing cost spikes 200% in one month.',
+        icon: ShieldAlert,
+        result: 'Auto-detect fraud before escalation',
+      },
+      {
+        title: 'AI Copilot',
+        desc: 'Ask: "Which customers have outstanding payments over 30 days?" Get answers in seconds without creating custom reports.',
+        icon: BrainCircuit,
+        result: 'Natural language queries for instant insights',
+      },
+    ],
+
+    cta: {
+      title: 'Ready for Autopilot Operations?',
+      subtitle: 'Schedule a 30-minute demo to see automation and AI work in real-time.',
+      badge: 'Automation & AI',
+      demoBtn: 'Schedule Demo Now',
+      pricingBtn: 'View Pricing',
+      trustText1: '14 Days Free',
+      trustText2: 'No Credit Card',
+    },
+  },
+
+  'multi-company': {
+    id: 'multi-company',
+    title: 'One Platform for',
+    titleHighlight: 'Your Entire Business Group.',
+    subtitle: 'Multi-Company',
+    description: 'Have multiple PTs, CVs, or different business units? Unify your group company management with native Multi-Company structure.',
+    icon: Network,
+    heroVariant: 'dark',
+    metaTitle: 'Multi-Company Management & Financial Consolidation | BizOps',
+    metaDesc: 'Manage multiple companies in one platform. Unified login, financial consolidation, and automatic inter-company transactions.',
+
+    featuresBadge: 'Core Features',
+    featuresTitle: 'Holding Company Management',
+    featuresSubtitle: 'Enterprise-grade features for business groups.',
+    features: [
+      {
+        title: 'Unified Login & Access',
+        desc: 'One username to access PT A, PT B, and CV C data. Switch between companies as easy as changing TV channels, but data access rights remain strictly separated.',
+        icon: Key,
+        color: 'blue',
+      },
+      {
+        title: 'Financial Consolidation',
+        desc: 'Forget headache-inducing Excel VLOOKUP. BizOps pulls Balance Sheet and P&L from all subsidiaries and presents them in one real-time Group Consolidated Report.',
+        icon: FileText,
+        color: 'green',
+      },
+      {
+        title: 'Inter-Company Transactions',
+        desc: 'Internal transaction automation. When PT A sells goods to PT B, system auto-creates Sales Invoice in PT A and Purchase Invoice in PT B simultaneously.',
+        icon: RefreshCw,
+        color: 'purple',
+      },
+    ],
+
+    cta: {
+      title: 'Manage Business Group Efficiently',
+      subtitle: 'Schedule a demo to see how multi-company management works for your business.',
+      badge: 'Multi-Company',
+      demoBtn: 'Request Enterprise Demo',
+      pricingBtn: 'View Pricing',
+      demoLink: '/demo?plan=enterprise',
+      trustText1: '14 Days Free',
+      trustText2: 'No Credit Card',
+    },
+  },
+
+  'portals': {
+    id: 'portals',
+    title: 'Stop Being Admin',
+    titleHighlight: 'for Your Clients.',
+    subtitle: 'B2B Portals',
+    description: 'Free your CS, Sales Admin, and Purchasing teams from repetitive questions. Give your business partners 24/7 self-service portal access.',
+    icon: Globe,
+    heroVariant: 'dark',
+    metaTitle: 'B2B Customer & Vendor Portal | BizOps',
+    metaDesc: 'Self-service portals for customers and vendors. B2B e-commerce experience, invoice downloads, and payment status tracking.',
+
+    featuresBadge: 'Portal Types',
+    featuresTitle: 'Self-Service for Business Partners',
+    featuresSubtitle: 'Empower your customers and vendors with 24/7 access.',
+    features: [
+      {
+        title: 'B2B Customer Portal',
+        desc: 'Give your clients a B2B e-commerce experience. View product catalog with contract-specific pricing, self-input Sales Orders, download Invoice PDFs & track delivery.',
+        icon: ShoppingBag,
+        color: 'blue',
+      },
+      {
+        title: 'Supplier/Vendor Portal',
+        desc: 'Digitize supplier interactions for procurement transparency. View open RFQs, submit competitive bids, check payment status without calling Finance.',
+        icon: Truck,
+        color: 'amber',
+      },
+    ],
+
+    cta: {
+      title: 'Enhance Business Collaboration',
+      subtitle: 'See how B2B portals can increase team efficiency and business partner satisfaction.',
+      badge: 'B2B Portals',
+      demoBtn: 'Request Portal Demo',
+      pricingBtn: 'View Pricing',
+      trustText1: '14 Days Free',
+      trustText2: 'No Credit Card',
+    },
+  },
+
+  'security': {
+    id: 'security',
+    title: 'Bank-Grade Security',
+    titleHighlight: 'for Your Enterprise.',
+    subtitle: 'Enterprise Security Shield',
+    description: 'We treat security as a feature, not an afterthought. Protect your business with the same standards used by financial institutions.',
+    icon: ShieldCheck,
+    heroVariant: 'dark',
+    metaTitle: 'Enterprise ERP Security: SSO, Encryption & Audit Logs | BizOps',
+    metaDesc: 'Enterprise-grade security features including Single Sign-On (SSO), AES-256 Encryption, Immutable Audit Logs, and Role-Based Access Control.',
+
+    featuresBadge: 'Security Features',
+    featuresTitle: 'Uncompromising Protection',
+    featuresSubtitle: 'Comprehensive security layers for peace of mind.',
+    features: [
+      {
+        title: 'Single Sign-On (SSO)',
+        desc: 'Seamless login with Google, Microsoft 365, or Okta. Enforce corporate password policies and kill access instantly when employees leave.',
+        icon: Key,
+        color: 'blue',
+      },
+      {
+        title: 'Field-Level Encryption',
+        desc: 'Encrypt sensitive columns (like Salary or NIK) in the database. Even DB admins cannot read the raw data without the decryption key.',
+        icon: Lock,
+        color: 'green',
+      },
+      {
+        title: 'Brute Force Protection',
+        desc: 'Automatic account locking after failed login attempts. IP rate limiting to prevent automated attacks.',
+        icon: ShieldAlert,
+        color: 'amber',
+      },
+    ],
+
+    useCasesBadge: 'Compliance',
+    useCasesTitle: 'Audit & Compliance Ready',
+    useCasesSubtitle: 'Tools to help you pass ISO 27001 and financial audits.',
+    useCases: [
+      {
+        title: 'Forensic Audit Trail',
+        desc: 'Track every single change to data. "Who changed the Price List from 100 to 90 at 2 AM?" The system knows.',
+        icon: FileCheck,
+        result: '100% Traceability of data changes',
+      },
+      {
+        title: 'Session Management',
+        desc: 'Monitor active sessions in real-time. Remotely revoke access for lost devices or suspicious IPs.',
+        icon: Activity,
+        result: 'Immediate threat containment',
+      },
+      {
+        title: 'Data Sovereignty',
+        desc: 'Choose where your data lives. On-Premise, Private Cloud (Jakarta Region), or Dedicated Instance.',
+        icon: Server,
+        result: 'Full compliance with data residency laws',
+      },
+    ],
+
+    cta: {
+      title: 'Trust is Good, Control is Better.',
+      subtitle: 'See our security features in action with a technical demo.',
+      badge: 'Security Shield',
+      demoBtn: 'Schedule Security Demo',
+      pricingBtn: 'View Pricing',
+      trustText1: 'GDPR Compliant',
+      trustText2: 'ISO 27001 Ready',
+    },
+  },
+};
+// --- ECOSYSTEM DATA ---
+export const ecosystemData = [
+  { target: 'Banks', descKey: 'ecosystem_banks' },
+  { target: 'Tax', descKey: 'ecosystem_tax' },
+  { target: 'E-Commerce', descKey: 'ecosystem_ecommerce' },
+  { target: 'POS', descKey: 'ecosystem_pos' },
+];
+
+// --- METHODOLOGY DATA ---
+export const methodologyData = [
+  { titleKey: 'method_1_title', descKey: 'method_1_desc' },
+  { titleKey: 'method_2_title', descKey: 'method_2_desc' },
+  { titleKey: 'method_3_title', descKey: 'method_3_desc' },
+  { titleKey: 'method_4_title', descKey: 'method_4_desc' },
 ];

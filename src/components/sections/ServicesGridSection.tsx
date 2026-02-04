@@ -1,18 +1,21 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-
 
 import { Container, Section } from '@/components/layout';
 import { Badge } from '@/components/ui';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import { servicesData } from '@/data/servicesContent';
+import { servicesTranslations } from '@/data/servicesContentTranslations';
 
 export const ServicesGridSection = () => {
   const t = useTranslations('Services');
+  const locale = useLocale();
+  const safeLocale = (locale === 'en' || locale === 'id') ? locale : 'id';
+  const textData = servicesTranslations[safeLocale];
 
   const serviceOrder = [
     'consulting',
@@ -36,11 +39,14 @@ export const ServicesGridSection = () => {
     return keyMap[serviceId as keyof typeof keyMap] || keyMap.consulting;
   };
 
+  // services array mapping starts here
+
   const services = serviceOrder
     .filter(key => servicesData[key])
     .map(key => ({
       id: key,
-      ...servicesData[key],
+      ...servicesData[key], // Contains icon
+      ...textData[key as keyof typeof textData], // Contains title, desc
     }));
 
   return (

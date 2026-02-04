@@ -1,13 +1,15 @@
+import { useTranslations } from 'next-intl';
 import { Section } from '@/components/layout';
 import Container from '@/components/layout/Container';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import {
   ComplianceBadges,
   SecurityArchitecture,
   SubprocessorsTable,
-  TrustCTA,
   TrustHero,
   TrustLiveStatus,
 } from '@/components/sections/trust';
+
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
 
 export const metadata = genMeta({
@@ -18,6 +20,7 @@ export const metadata = genMeta({
 });
 
 function TrustContent() {
+  const t = useTranslations('Trust');
   return (
     <div className="bg-slate-50 font-sans transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
@@ -45,7 +48,17 @@ function TrustContent() {
         <SubprocessorsTable />
 
         {/* CTA: ACCESS REPORTS */}
-        <TrustCTA />
+        <CTABannerSection
+          title={t('cta_title')}
+          subtitle={t('cta_subtitle')}
+          badgeText="Transparency"
+          demoBtnText={t('cta_button')}
+          demoBtnLink="/contact"
+          pricingBtnText="View Reports"
+          pricingBtnLink="/trust/reports"
+          trustText1="ISO 27001 Certified"
+          trustText2="GDPR Compliant"
+        />
       </Container>
     </div>
   );

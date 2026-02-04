@@ -16,6 +16,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { ScrollToSectionButton } from '@/components/ScrollToSectionButton';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Badge, Button, CardSlider, OptimizedImage } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import {
@@ -124,7 +125,7 @@ export default function CareersContent() {
       </div>
 
       {/* PHOTO GRID (CULTURE SNAPSHOT) */}
-      <div className="overflow-hidden !bg-white pt-24 pb-24 dark:bg-slate-900">
+      <div className="overflow-hidden bg-white! pt-24 pb-24 dark:bg-slate-900">
         <div className="mb-12 text-center">
           <h1 className="text-3xl font-bold">{t('culture_snapshot_title')}</h1>
         </div>
@@ -172,7 +173,7 @@ export default function CareersContent() {
       </div>
 
       {/* ENGINEERING CULTURE */}
-      <Section className="border-b border-slate-200 !bg-white py-24 dark:border-slate-800 dark:!bg-slate-900">
+      <Section className="border-b border-slate-200 bg-white! py-24 dark:border-slate-800 dark:bg-slate-900!">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
@@ -242,7 +243,7 @@ export default function CareersContent() {
       </Section>
 
       {/* CULTURE VALUES (Original) */}
-      <Section className="!bg-slate-50 dark:!bg-slate-950">
+      <Section className="bg-slate-50! dark:bg-slate-950!">
         <Container>
           <div className="grid gap-8 md:grid-cols-3">
             {culture.map((item, i) => {
@@ -379,36 +380,17 @@ export default function CareersContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-white dark:bg-linear-to-br dark:from-indigo-900 dark:to-purple-900">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-600 dark:text-indigo-200">
-            {t('cta_subtitle')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <ScrollToSectionButton
-              sectionId="openings"
-              size="lg"
-              className="w-full bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-indigo-900 dark:hover:bg-slate-100"
-            >
-              {t('cta_view_positions')}
-              {' '}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </ScrollToSectionButton>
-            <a href="https://divistant.com/career" target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-white/30 dark:text-white dark:hover:bg-white/10"
-              >
-                {t('cta_learn_divistant')}
-              </Button>
-            </a>
-          </div>
-        </Container>
-      </Section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+        badgeText="Join the Team"
+        demoBtnText={t('cta_view_positions')}
+        demoBtnLink="#openings"
+        pricingBtnText={t('cta_learn_divistant')}
+        pricingBtnLink="https://divistant.com/career"
+        trustText1="Great Culture"
+        trustText2="Remote Friendly"
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, CheckCircle2, PlayCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -107,18 +107,14 @@ const DEMO_COLORS = [
   },
 ];
 
-interface HomeSolutionsSectionProps {
-  onOpenVideoModal?: () => void;
-}
-
-export function HomeSolutionsSection({ onOpenVideoModal }: HomeSolutionsSectionProps) {
+export function HomeSolutionsSection() {
   const t = useTranslations('Homepage');
   const homeSolutions = getHomeSolutions(key => t(key.replace('Homepage.', '') as any));
   const [activeTab, setActiveTab] = useState(homeSolutions[0]?.id || '');
   const activeTabIndex = homeSolutions.findIndex(s => s.id === activeTab);
   const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
 
-  if (!activeSolution) return null;
+  if (!activeSolution) { return null; }
 
   const contentColor = CONTENT_COLORS[activeTabIndex >= 0 ? activeTabIndex % CONTENT_COLORS.length : 0]!;
   const demoColor = DEMO_COLORS[activeTabIndex >= 0 ? activeTabIndex % DEMO_COLORS.length : 0]!;
@@ -158,7 +154,8 @@ export function HomeSolutionsSection({ onOpenVideoModal }: HomeSolutionsSectionP
           className="group border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 h-11 rounded-full border-2 px-6 text-sm"
         >
           <Link href="/platform">
-            {t('solutions_cta')}{' '}
+            {t('solutions_cta')}
+            {' '}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Button>
@@ -284,59 +281,16 @@ export function HomeSolutionsSection({ onOpenVideoModal }: HomeSolutionsSectionP
               {/* Right side - Demo CTA */}
               <div className="lg:col-span-2">
                 <div
-                  className={`flex h-full flex-col rounded-2xl border bg-linear-to-br p-5 ${demoColor.bg} ${demoColor.border}`}
+                  className={`flex h-full flex-col rounded-2xl border bg-linear-to-br p-2 ${demoColor.bg} ${demoColor.border}`}
                 >
-                  {/* Video thumbnail placeholder */}
-                  <button
-                    onClick={onOpenVideoModal}
-                    className="group relative mb-4 aspect-video w-full overflow-hidden rounded-xl bg-slate-900"
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div
-                        className={`flex h-14 w-14 items-center justify-center rounded-full ${demoColor.button} shadow-lg ${demoColor.shadow} transition-transform duration-300 group-hover:scale-110`}
-                      >
-                        <PlayCircle className="h-7 w-7 text-white" />
-                      </div>
-                    </div>
-                    <div className="absolute top-3 left-3 flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span
-                          className={`absolute inline-flex h-full w-full animate-ping rounded-full ${demoColor.ping} opacity-75`}
-                        />
-                        <span
-                          className={`relative inline-flex h-2 w-2 rounded-full ${demoColor.dot}`}
-                        />
-                      </span>
-                      <span className="rounded bg-black/50 px-1.5 py-0.5 text-xs font-medium text-white">
-                        DEMO
-                      </span>
-                    </div>
-                  </button>
-
-                  {/* Text content */}
-                  <div className="flex flex-1 flex-col justify-center text-center">
-                    <h5 className="mb-1 text-base font-bold text-slate-900 dark:text-white">
-                      {t('solutions_demo_title')}
-                    </h5>
-                    <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
-                      {t('solutions_demo_desc')}
-                    </p>
-                    <Button
-                      onClick={onOpenVideoModal}
-                      size="md"
-                      variant="primary"
-                      className={`h-11 w-full rounded-xl text-sm font-semibold ${demoColor.button} text-white shadow-lg ${demoColor.shadow} border-0`}
-                    >
-                      <PlayCircle className="mr-2 h-4 w-4" />
-                      {t('solutions_demo_cta')}
-                    </Button>
-                    <Link
-                      href="/platform"
-                      className={`mt-3 text-sm font-medium ${demoColor.text} inline-flex items-center justify-center gap-1 hover:underline`}
-                    >
-                      {t('view_pricing_link' as any)}
-                      <ArrowRight className="h-3 w-3" />
-                    </Link>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-slate-900 shadow-2xl">
+                    <img
+                      src="/images/dashboard-mockup.png"
+                      alt={`${activeSolution.label} Dashboard Interface`}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    {/* Glass Overlay Effect */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
                   </div>
                 </div>
               </div>

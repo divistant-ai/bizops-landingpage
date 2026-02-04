@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import Button from '@/components/ui/Button';
 import { useCasesData } from '@/data/useCasesContent';
 
@@ -135,7 +136,7 @@ export default function UseCasesContent() {
     <div className="min-h-screen bg-slate-50 transition-colors dark:bg-slate-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8 dark:border-slate-800 dark:bg-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
         <div className="bg-primary-500/10 pointer-events-none absolute top-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full blur-[100px]"></div>
 
         <div className="relative z-10 mx-auto max-w-7xl text-center">
@@ -399,33 +400,17 @@ export default function UseCasesContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8 dark:border-t dark:border-slate-800 dark:bg-slate-900 dark:bg-slate-950">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mb-8 text-lg text-slate-600 dark:text-slate-300">{t('cta_desc')}</p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-primary-600 hover:bg-primary-700 w-full text-white sm:w-auto"
-              >
-                <span className="text-slate-900 dark:text-white">{t('cta_button_left')}</span>
-              </Button>
-            </Link>
-            <Link href="/demo">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-600 text-white hover:bg-white/10 sm:w-auto"
-              >
-                <span className="text-slate-900 dark:text-white">{t('cta_button_right')}</span>
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_desc')}
+        badgeText={t('customer_success')}
+        demoBtnText={t('cta_button_left')}
+        demoBtnLink="/contact"
+        pricingBtnText={t('cta_button_right')}
+        pricingBtnLink="/demo"
+        trustText1="Proven Results"
+        trustText2="Industry Leaders"
+      />
     </div>
   );
 }

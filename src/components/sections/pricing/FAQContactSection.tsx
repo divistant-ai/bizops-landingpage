@@ -20,31 +20,37 @@ export function FAQContactSection({ faqs }: { faqs: { q: string; a: string }[] }
             </p>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-900">
-            <h4 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
+          <div className="rounded-3xl border border-slate-200 bg-white/50 p-8 backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
+            <h4 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
               {t('faq_contact_heading')}
             </h4>
-            <p className="mb-6 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mb-8 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               {t('faq_contact_description')}
             </p>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <a
                 href="mailto:sales@bizops.id"
-                className="flex items-center gap-3 text-slate-700 transition-colors hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                className="group flex items-center gap-4 rounded-xl border border-transparent bg-white/50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50/50 hover:shadow-sm dark:bg-white/5 dark:hover:border-blue-500/30 dark:hover:bg-blue-500/10"
               >
-                <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-slate-800">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
                   <MessageSquare className="h-5 w-5" />
                 </div>
-                <span className="font-medium">sales@bizops.id</span>
+                <div>
+                  <div className="text-xs font-medium text-slate-500 dark:text-slate-400">Email Us</div>
+                  <div className="font-semibold text-slate-900 dark:text-white">sales@bizops.id</div>
+                </div>
               </a>
               <a
                 href="tel:+622139702834"
-                className="flex items-center gap-3 text-slate-700 transition-colors hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                className="group flex items-center gap-4 rounded-xl border border-transparent bg-white/50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50/50 hover:shadow-sm dark:bg-white/5 dark:hover:border-blue-500/30 dark:hover:bg-blue-500/10"
               >
-                <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-slate-800">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
                   <Phone className="h-5 w-5" />
                 </div>
-                <span className="font-medium">+62 21 39702834</span>
+                <div>
+                  <div className="text-xs font-medium text-slate-500 dark:text-slate-400">Call Us</div>
+                  <div className="font-semibold text-slate-900 dark:text-white">+62 21 3970 2834</div>
+                </div>
               </a>
             </div>
           </div>

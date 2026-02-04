@@ -4,9 +4,17 @@ import { ArrowRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
+import { ConnectionsSection } from '@/components/sections/ConnectionsSection';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
+import { ModulesBentoGrid } from '@/components/sections/platform/ModulesBentoGrid';
+import { PlatformHero } from '@/components/sections/platform/PlatformHero';
+import { UnifiedArchitectureSection } from '@/components/sections/platform/UnifiedArchitectureSection';
 import { Button } from '@/components/ui';
-import { BouncyLink } from '@/components/ui/BouncyLink';
-import { capabilitiesData, modulesData } from '@/data/platformContent';
+import {
+  capabilitiesData,
+  ecosystemData,
+  modulesData,
+} from '@/data/platformContent';
 import {
   platformCapabilitiesTranslations,
   platformModulesTranslations,
@@ -15,183 +23,135 @@ import {
 export default function PlatformContent() {
   const t = useTranslations('Platform');
   const locale = useLocale() as 'en' | 'id';
+
+  // --- DATA PREPARATION ---
   const modules = Object.entries(modulesData).map(([key, val]) => ({
     id: key,
     ...val,
-    // Override dengan translation
-    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en]
-      || {}),
+    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en] || {}),
   }));
+
   const capabilities = Object.entries(capabilitiesData).map(([key, val]) => ({
     id: key,
     ...val,
-    // Override dengan translation
-    ...(platformCapabilitiesTranslations[locale][
-      key as keyof typeof platformCapabilitiesTranslations.en
-    ] || {}),
+    ...(platformCapabilitiesTranslations[locale][key as keyof typeof platformCapabilitiesTranslations.en] || {}),
   }));
 
-  // Color mapping for modules
-  const getModuleColor = (id: string) => {
-    const colorMap: Record<string, { bg: string; text: string; hover: string }> = {
-      'hr': { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100' },
-      'finance': {
-        bg: 'bg-emerald-50',
-        text: 'text-emerald-600',
-        hover: 'hover:bg-emerald-100',
-      },
-      'operations': { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100' },
-      'sales': { bg: 'bg-amber-50', text: 'text-amber-600', hover: 'hover:bg-amber-100' },
-      'supply-chain': {
-        bg: 'bg-indigo-50',
-        text: 'text-indigo-600',
-        hover: 'hover:bg-indigo-100',
-      },
-      'governance': {
-        bg: 'bg-slate-100',
-        text: 'text-slate-700',
-        hover: 'hover:bg-slate-200',
-      },
-    };
-    return (
-      colorMap[id] || {
-        bg: 'bg-slate-50',
-        text: 'text-slate-600',
-        hover: 'hover:bg-slate-100',
-      }
-    );
-  };
+  // Split capabilities to match mega menu structure (navHelpers.ts)
+  // Capabilities Tab: automation-ai, multi-company, portals, analytics, mobile, low-code, collaboration
+  const capabilitiesItems = capabilities.filter(cap =>
+    ['automation-ai', 'multi-company', 'portals', 'analytics', 'mobile', 'low-code', 'collaboration'].includes(cap.id),
+  );
+  // Technology Tab: security, integration, self-hosted, architecture
+  const technologyItems = capabilities.filter(cap =>
+    ['security', 'integration', 'self-hosted', 'architecture'].includes(cap.id),
+  );
 
+  // Ecosystem integrations
+  const ecosystem = ecosystemData.map(item => ({
+    target: item.target,
+    desc: t(item.descKey as any),
+  }));
+
+  // --- RENDER ---
   return (
-    <div className="flex flex-col bg-slate-50 dark:bg-slate-950">
-      {/* 1. HERO SECTION - Clean & Balanced */}
-      <div className="relative overflow-hidden bg-white pt-24 pb-16 lg:pt-32 lg:pb-24 dark:bg-slate-950">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute top-0 right-0 left-0 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-slate-800"></div>
+    <div className="flex flex-col">
+      {/* 1. HERO SECTION */}
+      <PlatformHero />
 
-        <Container size="7xl" className="relative z-10">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 flex justify-center">
-              <span className="rounded-full border border-blue-100 bg-blue-50/50 px-3 py-1 text-xs font-medium text-blue-600 ring-4 ring-blue-50/20 dark:border-blue-900/30 dark:bg-blue-900/10 dark:text-blue-400 dark:ring-blue-900/10">
-                {t('badge')}
-              </span>
+      {/* 2. UNIFIED ARCHITECTURE (The "Why") */}
+      <UnifiedArchitectureSection />
+
+      {/* STORY BRIDGE 1: ARCHITECTURE -> MODULES */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 py-16 dark:from-slate-900 dark:to-slate-950">
+        <Container size="4xl">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-6 h-16 w-px bg-gradient-to-b from-blue-500/50 to-blue-500 dark:from-blue-400/30 dark:to-blue-400" />
+            <div className="rounded-2xl border border-blue-100 bg-blue-50/50 px-8 py-6 backdrop-blur-sm dark:border-blue-900/30 dark:bg-blue-950/30">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                {t('story_bridge_1_title')}
+              </h3>
+              <p className="mt-2 text-slate-600 dark:text-slate-400">
+                {t('story_bridge_1_desc')}
+              </p>
             </div>
-
-            <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl dark:text-white">
-              {t('hero_title_1')}
-              {' '}
-              <br className="hidden md:block" />
-              <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                {t('hero_title_2')}
-              </span>
-            </h1>
-
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 md:text-xl dark:text-slate-400">
-              {t('hero_description')}
-            </p>
-
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <BouncyLink
-                href="/demo"
-                className="flex h-12 w-full items-center justify-center rounded-xl bg-blue-600 px-8 font-semibold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-700 hover:shadow-blue-600/30 sm:w-auto"
-              >
-                {t('cta_demo')}
-              </BouncyLink>
-              <BouncyLink
-                href="/pricing"
-                className="flex h-12 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-8 font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 sm:w-auto dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-              >
-                <span className="text-slate-900 dark:text-white">{t('cta_pricing')}</span>
-              </BouncyLink>
-            </div>
+            <div className="mt-6 h-16 w-px bg-gradient-to-b from-blue-500 to-transparent dark:from-blue-400 dark:to-transparent" />
           </div>
         </Container>
       </div>
 
-      {/* 2. MODULES GRID - Clean Layout */}
-      <Section className="border-y border-slate-200 bg-slate-50/50 py-20 dark:border-slate-800 dark:bg-slate-950/50">
+      {/* 3. MODULES BENTO GRID (The "What") */}
+      <ModulesBentoGrid modules={modules} />
+
+      {/* STORY BRIDGE 2: MODULES -> CAPABILITIES */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-16 dark:from-slate-950 dark:to-slate-900">
+        <Container size="4xl">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-6 h-16 w-px bg-gradient-to-b from-transparent via-emerald-500 to-emerald-500 dark:via-emerald-400 dark:to-emerald-400" />
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 px-8 py-6 backdrop-blur-sm dark:border-emerald-900/30 dark:bg-emerald-950/30">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                {t('story_bridge_2_title')}
+              </h3>
+              <p className="mt-2 text-slate-600 dark:text-slate-400">
+                {t('story_bridge_2_desc')}
+              </p>
+            </div>
+            <div className="mt-6 h-16 w-px bg-gradient-to-b from-emerald-500 to-transparent dark:from-emerald-400 dark:to-transparent" />
+          </div>
+        </Container>
+      </div>
+
+      {/* 4. PLATFORM CAPABILITIES - Premium Card Grid */}
+      <Section className="bg-white py-20 dark:bg-slate-900">
         <Container size="7xl">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-              {t('modules_title')}
+          <div className="mb-14 text-center">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 px-4 py-2 text-sm font-semibold text-blue-600 ring-1 ring-blue-500/20 dark:from-blue-500/20 dark:to-cyan-500/20 dark:text-blue-400 dark:ring-blue-400/30">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
+              Platform Capabilities
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
+              {t('capabilities_title')}
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-              {t('modules_subtitle')}
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+              {t('capabilities_subtitle')}
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {modules.map((module) => {
-              const Icon = module.icon;
-              const colors = getModuleColor(module.id);
-              return (
-                <Link
-                  key={module.id}
-                  href={`/platform/modules/${module.id}`}
-                  className="group flex h-full flex-col"
-                >
-                  <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-slate-900/50">
-                    <div
-                      className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.bg} dark:bg-opacity-10 transition-transform group-hover:scale-110`}
-                    >
-                      <Icon className={`h-7 w-7 ${colors.text}`} />
-                    </div>
-
-                    <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
-                      {module.title}
-                    </h3>
-                    <p className="mb-6 grow text-base leading-relaxed text-slate-600 dark:text-slate-400">
-                      {module.subtitle}
-                    </p>
-
-                    <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
-                      <span>{t('view_detail')}</span>
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </Container>
-      </Section>
-
-      {/* 3. CAPABILITIES - Compact Grid */}
-      <Section className="bg-white py-20 dark:bg-slate-950">
-        <Container size="7xl">
-          <div className="mb-16 flex flex-col items-center justify-between gap-4 border-b border-slate-100 pb-8 text-center md:flex-row md:text-left dark:border-slate-800">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                {t('capabilities_title')}
-              </h2>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">
-                {t('capabilities_subtitle')}
-              </p>
-            </div>
-            <Button variant="outline" asChild>
-              <Link href="/platform/technology">{t('learn_more')}</Link>
-            </Button>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {capabilities.map((capability) => {
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {capabilitiesItems.map((capability, index) => {
               const Icon = capability.icon;
+              const colors = [
+                { bg: 'from-blue-500 to-cyan-500', ring: 'ring-blue-500/20', hover: 'group-hover:from-blue-600 group-hover:to-cyan-600' },
+                { bg: 'from-violet-500 to-purple-500', ring: 'ring-violet-500/20', hover: 'group-hover:from-violet-600 group-hover:to-purple-600' },
+                { bg: 'from-emerald-500 to-teal-500', ring: 'ring-emerald-500/20', hover: 'group-hover:from-emerald-600 group-hover:to-teal-600' },
+                { bg: 'from-orange-500 to-amber-500', ring: 'ring-orange-500/20', hover: 'group-hover:from-orange-600 group-hover:to-amber-600' },
+                { bg: 'from-pink-500 to-rose-500', ring: 'ring-pink-500/20', hover: 'group-hover:from-pink-600 group-hover:to-rose-600' },
+                { bg: 'from-indigo-500 to-blue-500', ring: 'ring-indigo-500/20', hover: 'group-hover:from-indigo-600 group-hover:to-blue-600' },
+                { bg: 'from-cyan-500 to-blue-500', ring: 'ring-cyan-500/20', hover: 'group-hover:from-cyan-600 group-hover:to-blue-600' },
+              ];
+              const colorScheme = colors[index % colors.length];
+
               return (
                 <Link
                   key={capability.id}
                   href={`/platform/capabilities/${capability.id}`}
-                  className="group"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:shadow-2xl dark:hover:shadow-slate-900/50"
                 >
-                  <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50 p-6 transition-all hover:border-blue-200 hover:bg-white hover:shadow-lg hover:shadow-blue-100/50 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-900 dark:hover:bg-slate-900 dark:hover:shadow-none">
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">
-                      <Icon className="h-5 w-5 text-slate-700 dark:text-slate-300" />
-                    </div>
-                    <h3 className="mb-2 text-base font-bold text-slate-900 dark:text-white">
-                      {capability.title}
-                    </h3>
-                    <p className="line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                      {capability.subtitle}
-                    </p>
+                  {/* Gradient accent line */}
+                  <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${colorScheme?.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+
+                  <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorScheme?.bg} ${colorScheme?.hover} shadow-lg ring-4 ${colorScheme?.ring} transition-all duration-300`}>
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors group-hover:text-slate-700 dark:text-white dark:group-hover:text-slate-100">
+                    {capability.title}
+                  </h3>
+                  <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                    {capability.subtitle}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-blue-600 opacity-0 transition-all duration-300 group-hover:opacity-100 dark:text-blue-400">
+                    {locale === 'id' ? 'Pelajari' : 'Learn more'}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
               );
@@ -200,42 +160,94 @@ export default function PlatformContent() {
         </Container>
       </Section>
 
-      {/* 4. CTA SECTION - Clean Finish */}
-      <Section className="bg-white py-20 dark:bg-slate-950">
-        <Container size="5xl" className="text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-300">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
-            </span>
-            <span className="text-blue-800 dark:text-blue-500">{t('trusted_badge')}</span>
+      {/* 5. TECHNOLOGY STACK - Dark Premium Section */}
+      <Section className="relative overflow-hidden bg-slate-900 py-24 dark:bg-slate-950">
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
+
+        <Container size="6xl" className="relative">
+          <div className="mb-16 flex flex-col items-center justify-between gap-8 md:flex-row">
+            <div className="text-center md:text-left">
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-400 ring-1 ring-indigo-500/30">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500" />
+                </span>
+                Technology Stack
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                {t('technology_title')}
+              </h2>
+              <p className="mt-4 max-w-xl text-lg text-slate-400">
+                {t('technology_subtitle')}
+              </p>
+            </div>
+            <Button variant="outline" size="lg" className="border-slate-700 bg-transparent text-white hover:bg-slate-800" asChild>
+              <Link href="/platform/technology">
+                {t('learn_more')}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
-          <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-            {t('cta_title')}
-          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {technologyItems.map((capability, index) => {
+              const Icon = capability.icon;
+              const gradients = [
+                'from-violet-500 to-purple-600',
+                'from-emerald-500 to-teal-600',
+                'from-blue-500 to-indigo-600',
+                'from-amber-500 to-orange-600',
+              ];
+              const gradient = gradients[index % gradients.length];
 
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 dark:text-white">
-            {t('cta_description')}
-          </p>
+              return (
+                <Link
+                  key={capability.id}
+                  href={`/platform/technologies/${capability.id}`}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 hover:bg-slate-800/80 hover:shadow-2xl hover:shadow-indigo-900/20"
+                >
+                  {/* Glow effect */}
+                  <div className={`absolute -inset-px rounded-2xl bg-gradient-to-r ${gradient} opacity-0 blur transition-opacity duration-300 group-hover:opacity-20`} />
 
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button
-              asChild
-              className="h-12 rounded-xl bg-white px-8 font-semibold text-slate-900 shadow-lg hover:bg-slate-50"
-            >
-              <Link href="/demo">{t('cta_request_demo')}</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="h-12 rounded-xl bg-blue-600 px-8 font-medium text-white hover:bg-blue-500 hover:text-white dark:bg-blue-500 dark:text-white dark:hover:bg-blue-500"
-            >
-              <Link href="/contact">{t('cta_contact_sales')}</Link>
-            </Button>
+                  <div className="relative">
+                    <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-lg shadow-slate-900/50`}>
+                      <Icon className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="mb-3 text-xl font-bold text-white transition-colors">
+                      {capability.title}
+                    </h3>
+                    <p className="line-clamp-3 text-sm leading-relaxed text-slate-400">
+                      {capability.subtitle || capability.description}
+                    </p>
+                    <div className="mt-5 flex items-center gap-1 text-sm font-medium text-indigo-400 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                      {locale === 'id' ? 'Selengkapnya' : 'Explore'}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </Container>
       </Section>
+
+      {/* 6. ECOSYSTEM INTEGRATIONS */}
+      <ConnectionsSection connections={ecosystem} />
+
+      {/* 7. CTA SECTION */}
+      <CTABannerSection
+        badgeText={t('trusted_badge')}
+        title={t('cta_title')}
+        subtitle={t('cta_description')}
+        demoBtnText={t('cta_request_demo')}
+        demoBtnLink="/demo"
+        pricingBtnText={t('cta_contact_sales')}
+        pricingBtnLink="/contact"
+        trustText1="Enterprise Support"
+        trustText2="SLA Guarantee"
+      />
     </div>
   );
 }

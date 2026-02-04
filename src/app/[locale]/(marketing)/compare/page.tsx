@@ -3,6 +3,7 @@ import { ArrowRight, Info, X } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Button } from '@/components/ui';
 import { comparisonsData } from '@/data/comparisonData';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
@@ -109,6 +110,18 @@ export default async function ComparisonIndexPage({ params }: Props) {
           </div>
         </Container>
       </Section>
+
+      <CTABannerSection
+        title={t('hero_title')} // Reusing hero title or better "Still deciding?"
+        subtitle={t('hero_subtitle')} // Reusing subtitle
+        badgeText="Compare"
+        demoBtnText={t('view_comparison')} // Or generic "Get Started"
+        demoBtnLink="/demo"
+        pricingBtnText="View Pricing"
+        pricingBtnLink="/pricing"
+        trustText1="Objective Analysis"
+        trustText2="Transparent Pricing"
+      />
     </div>
   );
 }

@@ -21,6 +21,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Container, Section } from '@/components/layout';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Button, CardSlider } from '@/components/ui';
 
 export default function StartupProgramContent() {
@@ -73,7 +74,7 @@ export default function StartupProgramContent() {
       <section className="relative overflow-hidden bg-white pt-32 pb-32 text-center lg:pb-40 dark:bg-slate-900 dark:text-white">
         {/* Modern Grid Background */}
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-size-[24px_24px]"></div>
 
         {/* Glow Effects */}
         <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-[1000px] -translate-x-1/2 rounded-full bg-purple-600/20 blur-[120px]"></div>
@@ -187,7 +188,7 @@ export default function StartupProgramContent() {
                 return (
                   <div
                     key={idx}
-                    className="group flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+                    className="group flex h-full flex-col rounded-4xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
                   >
                     <div
                       className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}
@@ -217,7 +218,7 @@ export default function StartupProgramContent() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+                  className="group flex h-full flex-col rounded-4xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
                 >
                   <div
                     className={`h-14 w-14 ${perk.color} mb-8 flex items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110`}
@@ -390,26 +391,17 @@ export default function StartupProgramContent() {
       </Section>
 
       {/* FINAL CTA */}
-      <Section className="bg-white dark:bg-linear-to-br dark:from-purple-900 dark:to-indigo-900">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-600 dark:text-purple-200">
-            {t('cta_subtitle')}
-          </p>
-          <Link href={`/${locale}/partners/apply`}>
-            <Button
-              size="lg"
-              className="bg-slate-900 font-bold text-white hover:bg-slate-800 dark:bg-white dark:text-purple-900 dark:hover:bg-slate-100"
-            >
-              {t('cta_button')}
-              {' '}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </Container>
-      </Section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+        badgeText="Apply Now"
+        demoBtnText={t('cta_button')}
+        demoBtnLink={`/${locale}/partners/apply`}
+        pricingBtnText="Contact Support"
+        pricingBtnLink={`/${locale}/contact`}
+        trustText1="Fast Review"
+        trustText2="High Approval Rate"
+      />
     </div>
   );
 }

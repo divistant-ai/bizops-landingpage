@@ -17,12 +17,14 @@ import {
   Monitor,
   Package,
   PieChart,
+  Plane,
   RefreshCw,
   Scan,
   Server,
   ShieldCheck,
   ShoppingCart,
   Smartphone,
+  Ticket,
   TrendingUp,
   UserCheck,
   Users,
@@ -136,6 +138,43 @@ export const industriesData: Record<string, IndustryData> = {
       author: 'Bambang Pamungkas',
       role: 'Direktur Utama',
       avatar: 'https://ui-avatars.com/api/?name=Bambang+Pamungkas&background=3B82F6&color=fff',
+    },
+  },
+
+  travel: {
+    title: 'Tour & Travel',
+    subtitle: 'Atur Ribuan Jamaah & Wisatawan Tanpa Excel Error.',
+    description: 'Sistem manajemen Biro Perjalanan Umrah & Wisata. Kelola seat airlines, validitas paspor jamaah, manifest otomatis, dan hitung profit per keberangkatan (Group) secara real-time.',
+    metaTitle: 'Software ERP Tour & Travel (Umrah & Wisata)',
+    metaDesc: 'Aplikasi pembukuan dan manajemen travel agent. Inventory Seat, Expiry Dokumen, Auto-Manifest, dan Laporan Laba Rugi per Group.',
+    icon: Plane,
+    metrics: [
+      { value: '100%', label: 'Seat Utilization' },
+      { value: '0', label: 'Dokumen Expired' },
+      { value: 'Real-time', label: 'Profit per Group' },
+    ],
+    challenges: [
+      { title: 'Double Booking', desc: 'Seat di maskapai atau kamar hotel bentrok karena pencatatan manual di Excel yang tidak terupdate.' },
+      { title: 'Dokumen Expired', desc: 'Jamaah gagal berangkat karena admin lupa cek masa berlaku paspor atau visa yang habis.' },
+      { title: 'Keuangan Berantakan', desc: 'Sulit menghitung HPP per pax (Komponen Visa, Handling, Perlengkapan) sehingga margin keuntungan tidak jelas.' },
+    ],
+    solutions: [
+      { title: 'Inventory Seat Live', desc: 'Monitor sisa seat setiap paket/tanggal keberangkatan secara real-time. Cegah overselling.', icon: Ticket },
+      { title: 'Document Alert', desc: 'Notifikasi otomatis jika paspor atau visa jamaah mendekati expired date sebelum keberangkatan.', icon: Clipboard },
+      { title: 'Profit per Group', desc: 'Laba rugi dihitung otomatis per keberangkatan (Revenue dari Jamaah - Cost Vendor) secara akurat.', icon: PieChart },
+    ],
+    faqs: [
+      { question: 'Bisa cetak Manifest otomatis?', answer: 'Bisa. Manifest penerbangan dan rooming list hotel ter-generate otomatis dari data jamaah.' },
+      { question: 'Apakah support pembayaran bertahap?', answer: 'Ya, sistem mencatat DP, cicilan, dan pelunasan jamaah serta mengirim notifikasi jatuh tempo.' },
+      { question: 'Bagaimana dengan inventory perlengkapan?', answer: 'Stok koper, kain ihram, dan perlengkapan lainnya terpantau otomatis saat diserahkan ke jamaah.' },
+    ],
+    caseStudyTitle: 'Zero Gagal Berangkat',
+    caseStudy: 'Travel Al-Mabrur menghilangkan insiden gagal berangkat akibat dokumen expired dan meningkatkan margin 15% berkat kontrol HPP yang ketat.',
+    testimonial: {
+      quote: 'Mengurus 500 jamaah umrah per bulan dulu sangat stress. Sekarang semua data paspor, visa, dan pembayaran terpantau rapi di satu layar.',
+      author: 'Hj. Siti Aminah',
+      role: 'Owner Travel',
+      avatar: 'https://ui-avatars.com/api/?name=Siti+Aminah&background=D946EF&color=fff',
     },
   },
   consulting: {
@@ -265,6 +304,12 @@ export const rolesData: Record<string, RoleData> = {
       { pain: 'Keputusan Buta', context: 'Membuat keputusan strategis hanya berdasarkan intuisi atau data basi bulan lalu.', gain: 'Data-Driven Confidence', gainDesc: 'Akses metrik kunci kapan saja dari HP. Putuskan ekspansi atau efisiensi dengan data valid detik ini juga.' },
       { pain: 'Operasional Gelap', context: 'Tidak tahu apa yang sebenarnya terjadi di lapangan, cabang, atau gudang.', gain: 'Total Transparency', gainDesc: 'Drill-down dari laporan global hingga ke level transaksi tunggal untuk audit instan.' },
     ],
+    metrics: [
+      { value: 'Real-time', label: 'Cashflow Visibility' },
+      { value: '360°', label: 'Business Overview' },
+      { value: 'Auto', label: 'Performance Alert' },
+    ],
+    apps: ['finance', 'operations', 'sales'],
   },
   finance: {
     title: 'Finance (CFO)',
@@ -281,6 +326,12 @@ export const rolesData: Record<string, RoleData> = {
       { pain: 'Closing Neraka', context: 'Tim lembur berhari-hari setiap akhir bulan hanya untuk rekap data dari divisi lain yang berantakan.', gain: 'Continuous Closing', gainDesc: 'Jurnal terbentuk otomatis saat transaksi operasional terjadi. Closing akhir bulan tinggal validasi satu klik.' },
       { pain: 'Kebocoran Budget', context: 'Pengeluaran operasional sering over-budget tanpa peringatan dini, menggerus laba.', gain: 'Hard Budget Control', gainDesc: 'Sistem memblokir PO/PR secara otomatis jika budget pos tersebut sudah habis. Zero leakage.' },
     ],
+    metrics: [
+      { value: '100%', label: 'Budget Accuracy' },
+      { value: 'H+1', label: 'Month-End Closing' },
+      { value: '0', label: 'Unreconciled items' },
+    ],
+    apps: ['finance', 'governance', 'collaboration'],
   },
   hr: {
     title: 'HR Leaders',
@@ -297,6 +348,12 @@ export const rolesData: Record<string, RoleData> = {
       { pain: 'Drama Payroll', context: 'Stres tinggi setiap tanggal cut-off gaji karena data absensi, lembur, dan pinjaman karyawan berantakan.', gain: '1-Click Payroll', gainDesc: 'Tarik data absensi, hitung PPh 21 (TER), BPJS, dan generate file transfer bank dalam hitungan menit.' },
       { pain: 'Risiko Kepatuhan', context: 'Takut salah hitung pajak atau denda keterlambatan BPJS yang bisa merugikan perusahaan.', gain: 'Auto Compliance', gainDesc: 'Sistem selalu diperbarui mengikuti regulasi tarif pajak PPh 21 dan BPJS Ketenagakerjaan terbaru.' },
     ],
+    metrics: [
+      { value: '0', label: 'Payroll Errors' },
+      { value: '50%', label: 'Admin Time Saved' },
+      { value: 'Top', label: 'Talent Retention' },
+    ],
+    apps: ['hr', 'mobile', 'governance'],
   },
   it: {
     title: 'IT Managers (CTO)',
@@ -313,6 +370,12 @@ export const rolesData: Record<string, RoleData> = {
       { pain: 'Shadow IT', context: 'User menggunakan aplikasi liar (SaaS tak dikenal) karena sistem kantor sulit digunakan.', gain: 'Unified Ecosystem', gainDesc: 'Satu platform modern dengan UX setara aplikasi konsumen yang disukai user, mengurangi kebutuhan aplikasi pihak ketiga.' },
       { pain: 'Maintenance Hell', context: 'Tim IT habis waktu hanya untuk patching server manual dan fix bug sistem legacy tua.', gain: 'Low Maintenance', gainDesc: 'Arsitektur Docker yang stabil, CI/CD ready, dan update OTA (Over-The-Air) yang mulus.' },
     ],
+    metrics: [
+      { value: '99.9%', label: 'System Uptime' },
+      { value: '<50ms', label: 'API Latency' },
+      { value: '100%', label: 'Data Security' },
+    ],
+    apps: ['integration', 'self-hosted', 'mobile'],
   },
   ops: {
     title: 'Ops Managers',
@@ -329,5 +392,11 @@ export const rolesData: Record<string, RoleData> = {
       { pain: 'Proyek Molor', context: 'Proyek sering terlambat karena tidak ada visibilitas real-time terhadap progres dan kendala lapangan.', gain: 'Real-time Visibility', gainDesc: 'Pantau kurva-S proyek dan terima laporan harian langsung dari lapangan via mobile app. Deteksi masalah sebelum jadi krisis.' },
       { pain: 'Stok Berantakan', context: 'Sering kehilangan penjualan karena stok kosong, atau sebaliknya modal mati di barang tidak laku.', gain: 'Smart Inventory Control', gainDesc: 'Sistem menghitung re-order point otomatis berdasarkan tren penjualan historis. Cegah stockout tanpa overstock.' },
     ],
+    metrics: [
+      { value: '100%', label: 'On-Time Delivery' },
+      { value: 'Minimal', label: 'Inventory Waste' },
+      { value: 'Auto', label: 'Stock Replenish' },
+    ],
+    apps: ['operations', 'supply-chain', 'mobile'],
   },
 };

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
   CheckCircle,
   Code,
   Layers,
@@ -13,9 +12,9 @@ import {
   Zap,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
-import { Button, CardSlider } from '@/components/ui';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
+import { CardSlider } from '@/components/ui';
 
 export default function WhyBizOpsContent() {
   const t = useTranslations('WhyBizOps');
@@ -72,7 +71,7 @@ export default function WhyBizOpsContent() {
   return (
     <div className="flex flex-col bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pb-32 dark:bg-dark-bg">
+      <section className="dark:bg-dark-bg relative overflow-hidden bg-slate-100 pt-32 pb-20 lg:pb-32">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="animate-pulse-slow pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20"></div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-600/10"></div>
@@ -370,37 +369,17 @@ export default function WhyBizOpsContent() {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-slate-100 dark:bg-slate-950">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-700 dark:text-slate-300">
-            {t('cta_subtitle')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/demo">
-              <Button
-                size="lg"
-                className="w-full border-none bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700"
-              >
-                {t('cta_demo')}
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/compare">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-slate-600 dark:text-white dark:hover:bg-white/10"
-              >
-                {t('cta_compare')}
-              </Button>
-            </Link>
-          </div>
-        </Container>
-      </Section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+        badgeText={t('hero_badge')}
+        demoBtnText={t('cta_demo')}
+        demoBtnLink="/demo"
+        pricingBtnText={t('cta_compare')}
+        pricingBtnLink="/compare"
+        trustText1="Unified Platform"
+        trustText2="Indonesia First"
+      />
     </div>
   );
 }

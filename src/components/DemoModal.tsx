@@ -5,11 +5,11 @@ import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } 
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/Input';
+import { Label } from '@/components/ui/Label';
 import OptimizedImage from '@/components/ui/OptimizedImage'; // Imported OptimizedImage
-import { Select } from '@/components/ui/select';
-import { Textarea as TextArea } from '@/components/ui/textarea';
+import { Select } from '@/components/ui/Select';
+import { Textarea as TextArea } from '@/components/ui/Textarea';
 
 type DemoModalProps = {
   isOpen: boolean;
@@ -69,7 +69,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

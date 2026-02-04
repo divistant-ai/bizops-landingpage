@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Badge, CardSlider, SpotlightCard, Stack } from '@/components/ui';
 import { BouncyLink } from '@/components/ui/BouncyLink';
 import { FadeIn } from '@/components/ui/FadeIn';
@@ -59,7 +60,7 @@ export default function SolutionsContent() {
       {/* 1. HERO */}
       <div className="relative overflow-hidden border-b border-slate-200 bg-slate-50 pt-24 pb-16 lg:pt-48 lg:pb-32 dark:border-slate-900 dark:bg-slate-950">
         {/* Abstract Background */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
         <div className="bg-primary-900/20 pointer-events-none absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full blur-[120px]"></div>
 
         <Container size="7xl" className="relative z-10 text-center">
@@ -201,50 +202,17 @@ export default function SolutionsContent() {
       </Section>
 
       {/* 3. FINAL CTA */}
-      <Section className="relative overflow-hidden bg-slate-50 py-20 md:py-32 dark:bg-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-        <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-500/10 blur-[120px]"></div>
-
-        <Container size="4xl" className="relative z-10 text-center">
-          <Badge
-            variant="outline-white"
-            className="mb-6 border-slate-300 text-slate-700 dark:border-white/20 dark:text-white"
-          >
-            {t('final_cta.badge')}
-          </Badge>
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('final_cta.title_part1')}
-            {' '}
-            <span className="text-primary-600 dark:text-primary-400">
-              {t('final_cta.title_highlight')}
-            </span>
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-xl text-slate-600 dark:text-slate-300">
-            {t('final_cta.subtitle')}
-          </p>
-          <Stack direction="vertical" gap={4} className="justify-center sm:flex-row">
-            <BouncyLink
-              href="/demo"
-              className="bg-primary-600 hover:bg-primary-700 dark:text-primary-700 h-16 w-full px-10 text-xl font-bold text-white sm:w-auto dark:bg-white dark:hover:bg-slate-100"
-            >
-              <span className="text-white dark:text-slate-900">
-                {t('final_cta.button_primary')}
-              </span>
-            </BouncyLink>
-            <BouncyLink
-              href="/tools/pricing-calculator"
-              className="h-16 w-full border-2 border-slate-300 bg-white px-10 text-xl text-slate-900 hover:bg-slate-100 sm:w-auto dark:border-white dark:bg-transparent dark:text-white dark:hover:bg-white/10"
-            >
-              <span className="text-slate-900 dark:text-white">
-                {t('final_cta.button_secondary')}
-              </span>
-            </BouncyLink>
-          </Stack>
-          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
-            {t('final_cta.fine_print')}
-          </p>
-        </Container>
-      </Section>
+      <CTABannerSection
+        badgeText={t('final_cta.badge')}
+        title={`${t('final_cta.title_part1')} ${t('final_cta.title_highlight')}`}
+        subtitle={t('final_cta.subtitle')}
+        demoBtnText={t('final_cta.button_primary')}
+        demoBtnLink="/demo"
+        pricingBtnText={t('final_cta.button_secondary')}
+        pricingBtnLink="/tools/pricing-calculator"
+        trustText1={t('final_cta.fine_print')}
+        trustText2=""
+      />
     </div>
   );
 }

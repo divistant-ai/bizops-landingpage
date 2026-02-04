@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Container, Section } from '@/components/layout';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Button, CardSlider } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { partnerContent } from '@/data/companyContent';
@@ -67,7 +68,7 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
   return (
     <div className="min-h-screen bg-slate-50 transition-colors dark:bg-slate-950">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32 dark:bg-dark-bg dark:text-white">
+      <section className="dark:bg-dark-bg relative overflow-hidden bg-white pt-32 pb-24 lg:pt-48 lg:pb-32 dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="pointer-events-none absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-blue-600/20 blur-[120px]"></div>
         <div className="bg-primary-900/30 pointer-events-none absolute bottom-0 left-0 h-[800px] w-[800px] rounded-full blur-[100px]"></div>
@@ -487,37 +488,17 @@ export default function PartnersContent({ locale }: PartnersContentProps) {
       </Section>
 
       {/* CTA SECTION */}
-      <Section className="bg-white dark:bg-slate-900">
-        <Container size="4xl" className="text-center">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            {t('cta_title')}
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light text-slate-600 dark:text-indigo-200">
-            {t('cta_subtitle')}
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href={`/${locale}/partners/apply`}>
-              <Button
-                size="lg"
-                className="w-full bg-slate-900 text-white hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-indigo-900 dark:hover:bg-slate-100"
-              >
-                {t('cta_button_apply')}
-                {' '}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href={`/${locale}/contact`}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-300 text-slate-900 hover:bg-slate-200 sm:w-auto dark:border-white/30 dark:text-white dark:hover:bg-white/10"
-              >
-                {t('cta_button_contact')}
-              </Button>
-            </Link>
-          </div>
-        </Container>
-      </Section>
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+        badgeText="Become a Partner"
+        demoBtnText={t('cta_button_apply')}
+        demoBtnLink={`/${locale}/partners/apply`}
+        pricingBtnText={t('cta_button_contact')}
+        pricingBtnLink={`/${locale}/contact`}
+        trustText1="High Revenue Share"
+        trustText2="Dedicated Support"
+      />
     </div>
   );
 }

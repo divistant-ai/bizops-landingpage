@@ -1,13 +1,13 @@
 'use client';
 
-import { ArrowRight, Clock, Crosshair, FileText, Info, LayoutDashboard, ShieldCheck } from 'lucide-react';
-import React, { useState } from 'react';
+import type { CategoryKey } from '../context/types';
 import { motion } from 'framer-motion';
+import { ArrowRight, Clock, Cpu, Crosshair, FileText, Heart, Info, LayoutDashboard, Lightbulb, Settings, ShieldCheck, Users } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { useMaturityAssessment } from '../context/MaturityAssessmentContext';
 import { MethodologyReference } from '../components/MethodologyReference';
-import { CategoryKey } from '../context/types';
-import { Cpu, Heart, Lightbulb, Settings, Users } from 'lucide-react';
+import { useMaturityAssessment } from '../context/MaturityAssessmentContext';
 
 const categoryIcons: Record<CategoryKey, React.ReactElement> = {
   strategy: <Lightbulb className="size-5" />,
@@ -26,6 +26,7 @@ const categoryLabels: Record<CategoryKey, string> = {
 };
 
 export const MAIntro: React.FC = () => {
+  const t = useTranslations('MaturityAssessment');
   const { handleStartIntro } = useMaturityAssessment();
   const [showMethodology, setShowMethodology] = useState(false);
 
@@ -45,27 +46,26 @@ export const MAIntro: React.FC = () => {
         >
           <div className="text-primary-400 mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-800 px-4 py-1.5 text-sm font-medium backdrop-blur-md dark:bg-slate-900/50">
             <LayoutDashboard className="size-4 text-white dark:text-slate-50" />
-            <span className="text-white dark:text-slate-50">Executive Assessment Tool</span>
+            <span className="text-white dark:text-slate-50">{t('intro.badge')}</span>
           </div>
 
           <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-slate-800 lg:text-6xl dark:text-white">
-            Unlock Your
+            {t('intro.title_1')}
             {' '}
             <br />
-            Digital Potential
+            {t('intro.title_2')}
           </h1>
 
           <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-400">
-            Evaluasi tingkat kematangan digital perusahaan Anda secara komprehensif. Dapatkan
-            roadmap strategis yang dipersonalisasi dalam hitungan menit.
+            {t('intro.description')}
           </p>
 
           <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
-              { icon: Clock, text: '5-7 Menit', desc: 'Waktu pengerjaan' },
-              { icon: Crosshair, text: '5 Dimensi', desc: 'Analisis Holistik' },
-              { icon: FileText, text: 'Laporan PDF', desc: 'Langsung diunduh' },
-              { icon: ShieldCheck, text: 'Data Aman', desc: 'Enkripsi Enterprise' },
+              { icon: Clock, key: 'time' },
+              { icon: Crosshair, key: 'dimensions' },
+              { icon: FileText, key: 'report' },
+              { icon: ShieldCheck, key: 'security' },
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -75,8 +75,8 @@ export const MAIntro: React.FC = () => {
                   <item.icon className="size-5" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-600 dark:text-white">{item.text}</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-50">{item.desc}</div>
+                  <div className="font-semibold text-slate-600 dark:text-white">{t(`intro.benefits.${item.key}_text` as any)}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-50">{t(`intro.benefits.${item.key}_desc` as any)}</div>
                 </div>
               </div>
             ))}
@@ -87,7 +87,7 @@ export const MAIntro: React.FC = () => {
             size="lg"
             className="group w-fit bg-slate-50 px-8 text-lg font-bold text-slate-900 shadow-lg hover:bg-slate-100 sm:px-10 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
           >
-            <span className="text-slate-600 dark:text-white">Mulai Assessment Sekarang</span>
+            <span className="text-slate-600 dark:text-white">{t('intro.cta_start')}</span>
             {' '}
             <ArrowRight className="ml-2 size-5" />
           </Button>
@@ -98,7 +98,7 @@ export const MAIntro: React.FC = () => {
           >
             <Info className="size-4" />
             {' '}
-            Pelajari Metodologi & Leveling
+            {t('intro.cta_methodology')}
           </button>
         </motion.div>
 
@@ -127,7 +127,7 @@ export const MAIntro: React.FC = () => {
             : (
                 <div className="relative z-10 rounded-3xl border border-white/10 bg-slate-600 p-8 shadow-2xl backdrop-blur-xl dark:bg-slate-900/80">
                   <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
-                    <h3 className="text-xl font-bold text-white">Assessment Preview</h3>
+                    <h3 className="text-xl font-bold text-white">{t('intro.preview.title')}</h3>
                     <div className="flex gap-2">
                       <div className="size-3 rounded-full bg-red-500/50" />
                       <div className="size-3 rounded-full bg-yellow-500/50" />

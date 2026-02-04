@@ -17,12 +17,14 @@ import {
   Monitor,
   Package,
   PieChart,
+  Plane,
   RefreshCw,
   Scan,
   Server,
   ShieldCheck,
   ShoppingCart,
   Smartphone,
+  Ticket,
   TrendingUp,
   UserCheck,
   Users,
@@ -251,6 +253,80 @@ export const industriesTranslations: {
         author: 'Bambang Pamungkas',
         role: 'CEO',
         avatar: 'https://ui-avatars.com/api/?name=Bambang+Pamungkas&background=3B82F6&color=fff',
+      },
+    },
+
+    travel: {
+      title: 'Tour & Travel',
+      subtitle: 'Manage Thousands of Pilgrims & Travelers Without Excel Errors.',
+      description:
+        'Management system for Umrah & Tour Travel Agencies. Manage airline seats, pilgrim passport validity, automated manifests, and calculate profit per departure (Group) in real-time.',
+      metaTitle: 'Tour & Travel ERP Software (Umrah & Tourism)',
+      metaDesc:
+        'Booking and management application for travel agents. Seat Inventory, Document Expiry, Auto-Manifest, and Profit & Loss Report per Group.',
+      icon: Plane,
+      metrics: [
+        { value: '100%', label: 'Seat Utilization' },
+        { value: '0', label: 'Document Expired' },
+        { value: 'Real-time', label: 'Profit per Group' },
+      ],
+      challenges: [
+        {
+          title: 'Double Booking',
+          desc: 'Airline seats or hotel rooms conflict due to manual Excel recording that is not updated.',
+        },
+        {
+          title: 'Expired Documents',
+          desc: 'Pilgrims fail to depart because admins forgot to check passport validity or visas that ran out.',
+        },
+        {
+          title: 'Messy Finances',
+          desc: 'Difficult to calculate COGS per pax (Visa components, Handling, Equipment) so profit margins are unclear.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Live Seat Inventory',
+          desc: 'Monitor remaining seats for each package/departure date in real-time. Prevent overselling.',
+          icon: Ticket,
+        },
+        {
+          title: 'Document Alert',
+          desc: 'Automatic notifications if a pilgrim\'s passport or visa is approaching expiry date before departure.',
+          icon: Clipboard,
+        },
+        {
+          title: 'Profit per Group',
+          desc: 'Profit and loss calculated automatically per departure (Revenue from Pilgrims - Vendor Cost) accurately.',
+          icon: PieChart,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Can it print Manifests automatically?',
+          answer:
+            'Yes. Flight manifests and hotel rooming lists are generated automatically from pilgrim data.',
+        },
+        {
+          question: 'Does it support installment payments?',
+          answer:
+            'Yes, the system records DP, installments, and full payments from pilgrims and sends due date notifications.',
+        },
+        {
+          question: 'What about equipment inventory?',
+          answer:
+            'Stock of suitcases, ihram cloth, and other equipment is monitored automatically when handed over to pilgrims.',
+        },
+      ],
+      caseStudyTitle: 'Zero Failed Departures',
+      caseStudy:
+        'Al-Mabrur Travel eliminates failed departure incidents due to expired documents and increased margins by 15% thanks to strict COGS control.',
+      testimonial: {
+        quote:
+          'Managing 500 Umrah pilgrims per month used to be very stressful. Now all passport, visa, and payment data is neatly monitored on one screen.',
+        author: 'Hj. Siti Aminah',
+        role: 'Travel Owner',
+        avatar: 'https://ui-avatars.com/api/?name=Siti+Aminah&background=D946EF&color=fff',
       },
     },
     consulting: {
@@ -518,6 +594,36 @@ export const industriesTranslations: {
           icon: Users,
         },
       ],
+      apps: [
+        {
+          id: 'project-mgmt',
+          title: 'Project Management',
+          subtitle: 'Kunci budget & pantau progress fisik real-time.',
+          icon: 'HardHat',
+          features: ['RAB & Budgeting', 'S-Curve Monitoring', 'Opname Mobile'],
+        },
+        {
+          id: 'procurement',
+          title: 'Procurement',
+          subtitle: 'Kontrol pembelian material agar tidak melebihi RAB.',
+          icon: 'ShoppingCart',
+          features: ['Vendor Portal', 'PR/PO Approval', 'Material Receipt'],
+        },
+        {
+          id: 'site-ops',
+          title: 'Site Operations',
+          subtitle: 'Laporan harian & manajemen tenaga kerja lapangan.',
+          icon: 'Clipboard',
+          features: ['Daily Report', 'Manpower Tracking', 'Equipment Usage'],
+        },
+        {
+          id: 'finance-constr',
+          title: 'Finance & Accounting',
+          subtitle: 'Kelola termin penagihan & retensi subkon akurat.',
+          icon: 'DollarSign',
+          features: ['Project Costing', 'Progress Billing', 'Retention Management'],
+        },
+      ],
       faqs: [
         {
           question: 'Apakah support perhitungan PPh Final?',
@@ -533,6 +639,21 @@ export const industriesTranslations: {
           question: 'Bagaimana jika material sisa?',
           answer:
             'Tersedia fitur Material Transfer untuk memindahkan sisa stok ke proyek lain atau dikembalikan ke Gudang Utama.',
+        },
+        {
+          question: 'Apakah bisa diakses di HP?',
+          answer:
+            'Tentu. Mandor dan pelaksana lapangan bisa input laporan harian dan opname via aplikasi mobile Android/iOS.',
+        },
+        {
+          question: 'Butuh server khusus?',
+          answer:
+            'Tidak perlu. BizOps berbasis Cloud, jadi Anda tidak perlu beli server mahal. Cukup koneksi internet yang stabil.',
+        },
+        {
+          question: 'Berapa lama implementasi?',
+          answer:
+            'Rata-rata 2-4 minggu. Tim kami akan membantu setup master data, training user, hingga pendampingan go-live.',
         },
       ],
       caseStudyTitle: 'Selamatkan Margin 12%',
@@ -591,6 +712,36 @@ export const industriesTranslations: {
           icon: RefreshCw,
         },
       ],
+      apps: [
+        {
+          id: 'pos-frontend',
+          title: 'POS System',
+          subtitle: 'Kasir cepat, anti-fraud, & bisa offline mode.',
+          icon: 'Monitor',
+          features: ['Anti-Fraud Lock', 'Shift Management', 'Offline Mode'],
+        },
+        {
+          id: 'inv-backend',
+          title: 'Inventory Backend',
+          subtitle: 'Kelola stok banyak gudang & transfer barang.',
+          icon: 'Package',
+          features: ['Multi-Warehouse', 'Stock Transfer', 'Opname Partial'],
+        },
+        {
+          id: 'loyalty',
+          title: 'Loyalty Program',
+          subtitle: 'Tingkatkan retensi pelanggan dengan poin & tier.',
+          icon: 'Users',
+          features: ['Point System', 'Member Tiering', 'Voucher Redeem'],
+        },
+        {
+          id: 'promo-engine',
+          title: 'Promotion Engine',
+          subtitle: 'Atur diskon & promo bundle otomatis.',
+          icon: 'Ticket',
+          features: ['Bundle Promo', 'Flash Sale', 'Discount Rules'],
+        },
+      ],
       faqs: [
         {
           question: 'Bisa scan barcode barang?',
@@ -606,6 +757,21 @@ export const industriesTranslations: {
           question: 'Apakah support banyak cabang?',
           answer:
             'Ya, Anda bisa pantau omzet dan stok ribuan cabang secara real-time dari satu dashboard pusat.',
+        },
+        {
+          question: 'Bisa integrasi pembayaran?',
+          answer:
+            'Ya, sudah terintegrasi dengan EDC bank dan QRIS dinamis. Nominal otomatis muncul di mesin EDC.',
+        },
+        {
+          question: 'Bagaimana jika ada retur?',
+          answer:
+            'Retur barang bisa diproses di kasir dengan otorisasi supervisor. Stok otomatis kembali ke gudang.',
+        },
+        {
+          question: 'Apakah ada fitur membership?',
+          answer:
+            'Ada. Pel pelanggan bisa kumpulkan poin, tukar voucher, dan Anda bisa broadcast promo via WhatsApp.',
         },
       ],
       caseStudyTitle: 'Omzet Naik 30%',
@@ -664,6 +830,36 @@ export const industriesTranslations: {
           icon: Smartphone,
         },
       ],
+      apps: [
+        {
+          id: 'recruit-crm',
+          title: 'Recruitment CRM',
+          subtitle: 'Kelola database pelamar & jadwal interview.',
+          icon: 'Users',
+          features: ['CV Parsing', 'Interview Schedule', 'Offer Letter'],
+        },
+        {
+          id: 'core-hris',
+          title: 'Core HRIS',
+          subtitle: 'Database karyawan & manajemen kontrak kerja.',
+          icon: 'Briefcase',
+          features: ['Employee Database', 'Contract Alert', 'BPJS Calc'],
+        },
+        {
+          id: 'mobile-att',
+          title: 'Attendance Mobile',
+          subtitle: 'Absensi selfie & GPS untuk tim lapangan.',
+          icon: 'Smartphone',
+          features: ['Face ID', 'Geofencing', 'Shift Roster'],
+        },
+        {
+          id: 'billing-sys',
+          title: 'Billing System',
+          subtitle: 'Tagih klien otomatis sesuai absensi.',
+          icon: 'FileText',
+          features: ['Auto-Invoice', 'Client Rate', 'PPH 23'],
+        },
+      ],
       faqs: [
         {
           question: 'Apakah support pola shift rumit?',
@@ -680,6 +876,21 @@ export const industriesTranslations: {
           answer:
             'Bisa. Tersedia Client Portal agar klien Anda bisa cek kehadiran tim outsourcing secara transparan.',
         },
+        {
+          question: 'Bisa untuk karyawan harian?',
+          answer:
+            'Bisa. Sistem mendukung perhitungan gaji harian, mingguan, atau borongan sesuai kebutuhan proyek.',
+        },
+        {
+          question: 'Apakah data aman?',
+          answer:
+            'Sangat aman. Data dienkripsi standar bank (AES-256) dan server kami memiliki sertifikasi ISO 27001.',
+        },
+        {
+          question: 'Bisa cetak slip gaji?',
+          answer:
+            'Karyawan bisa download slip gaji digital (PDF) langsung dari aplikasi HP mereka masing-masing.',
+        },
       ],
       caseStudyTitle: 'Payroll Selesai 1 Hari',
       caseStudy:
@@ -690,6 +901,124 @@ export const industriesTranslations: {
         author: 'Bambang Pamungkas',
         role: 'Direktur Utama',
         avatar: 'https://ui-avatars.com/api/?name=Bambang+Pamungkas&background=3B82F6&color=fff',
+      },
+    },
+    travel: {
+      title: 'Tour & Travel',
+      subtitle: 'Atur Ribuan Jamaah & Wisatawan Tanpa Excel Error.',
+      description:
+        'Sistem manajemen Biro Perjalanan Umrah & Wisata. Kelola seat airlines, validitas paspor jamaah, manifest otomatis, dan hitung profit per keberangkatan (Group) secara real-time.',
+      metaTitle: 'Software ERP Tour & Travel (Umrah & Wisata)',
+      metaDesc:
+        'Aplikasi pembukuan dan manajemen travel agent. Inventory Seat, Expiry Dokumen, Auto-Manifest, dan Laporan Laba Rugi per Group.',
+      icon: 'Plane',
+      metrics: [
+        { value: '100%', label: 'Seat Utilization' },
+        { value: '0', label: 'Dokumen Expired' },
+        { value: 'Real-time', label: 'Profit per Group' },
+      ],
+      challenges: [
+        {
+          title: 'Double Booking',
+          desc: 'Seat di maskapai atau kamar hotel bentrok karena pencatatan manual di Excel yang tidak terupdate.',
+        },
+        {
+          title: 'Dokumen Expired',
+          desc: 'Jamaah gagal berangkat karena admin lupa cek masa berlaku paspor atau visa yang habis.',
+        },
+        {
+          title: 'Keuangan Berantakan',
+          desc: 'Sulit menghitung HPP per pax (Komponen Visa, Handling, Perlengkapan) sehingga margin keuntungan tidak jelas.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Inventory Seat Live',
+          desc: 'Monitor sisa seat setiap paket/tanggal keberangkatan secara real-time. Cegah overselling.',
+          icon: Ticket,
+        },
+        {
+          title: 'Document Alert',
+          desc: 'Notifikasi otomatis jika paspor atau visa jamaah mendekati expired date sebelum keberangkatan.',
+          icon: Clipboard,
+        },
+        {
+          title: 'Profit per Group',
+          desc: 'Laba rugi dihitung otomatis per keberangkatan (Revenue dari Jamaah - Cost Vendor) secara akurat.',
+          icon: TrendingUp,
+        },
+      ],
+      apps: [
+        {
+          id: 'crm-leads',
+          title: 'Leads & CRM',
+          subtitle: 'Pantau potensi jamaah dari tanya-tanya hingga closing. Follow-up otomatis via WhatsApp.',
+          icon: Users,
+          features: ['Pipeline Monitoring', 'Auto-Followup WA', 'Database Jamaah'],
+        },
+        {
+          id: 'inventory',
+          title: 'Inventory Management',
+          subtitle: 'Kontrol stok seat maskapai & hotel real-time. Cegah double booking & overselling.',
+          icon: 'Ticket',
+          features: ['Seat & Room quota', 'Real-time Availability', 'Overselling Protection'],
+        },
+        {
+          id: 'invoicing',
+          title: 'Smart Invoicing',
+          subtitle: 'Terbitkan tagihan & catat pembayaran bertahap (DP, Cicilan, Pelunasan) otomatis.',
+          icon: 'FileText',
+          features: ['Automated Billing', 'Cicilan Tracking', 'Payment Gateway'],
+        },
+        {
+          id: 'documents',
+          title: 'Document & Manifest',
+          subtitle: 'Pantau expiry paspor & generate manifest penerbangan sekali klik.',
+          icon: 'Clipboard',
+          features: ['Passport Scanning', 'Visa Expiry Alert', 'Siskopatuh Sync'],
+        },
+      ],
+      faqs: [
+        {
+          question: 'Bisa cetak Manifest otomatis?',
+          answer:
+            'Bisa. Manifest penerbangan dan rooming list hotel ter-generate otomatis dari data jamaah.',
+        },
+        {
+          question: 'Apakah support pembayaran bertahap?',
+          answer:
+            'Ya, sistem mencatat DP, cicilan, dan pelunasan jamaah serta mengirim notifikasi jatuh tempo.',
+        },
+        {
+          question: 'Bagaimana dengan inventory perlengkapan?',
+          answer:
+            'Stok koper, kain ihram, dan perlengkapan lainnya terpantau otomatis saat diserahkan ke jamaah.',
+        },
+        {
+          question: 'Bisa untuk travel wisata umum?',
+          answer:
+            'Bisa. Selain Umrah/Haji, sistem juga mendukung paket wisata domestik dan internasional (Open Trip).',
+        },
+        {
+          question: 'Apakah bisa akses agen?',
+          answer:
+            'Ya, agen/cabang bisa memiliki login sendiri untuk mendaftarkan jamaah dan melihat komisi mereka.',
+        },
+        {
+          question: 'Bagaimana jika ada refund?',
+          answer:
+            'Proses refund tiket atau pembatalan jamaah tercatat rapi dengan perhitungan potongan biaya otomatis.',
+        },
+      ],
+      caseStudyTitle: 'Zero Gagal Berangkat',
+      caseStudy:
+        'Travel Al-Mabrur menghilangkan insiden gagal berangkat akibat dokumen expired dan meningkatkan margin 15% berkat kontrol HPP yang ketat.',
+      testimonial: {
+        quote:
+          'Mengurus 500 jamaah umrah per bulan dulu sangat stress. Sekarang semua data paspor, visa, dan pembayaran terpantau rapi di satu layar.',
+        author: 'Hj. Siti Aminah',
+        role: 'Owner Travel',
+        avatar: 'https://ui-avatars.com/api/?name=Siti+Aminah&background=D946EF&color=fff',
       },
     },
     consulting: {
@@ -737,6 +1066,36 @@ export const industriesTranslations: {
           icon: Users,
         },
       ],
+      apps: [
+        {
+          id: 'proj-portfolio',
+          title: 'Project Portfolio',
+          subtitle: 'Pantau kesehatan semua proyek dalam satu view.',
+          icon: 'Briefcase',
+          features: ['Gantt Chart', 'Project Baseline', 'Milestone Tracking'],
+        },
+        {
+          id: 'res-planning',
+          title: 'Resource Planning',
+          subtitle: 'Optimalkan utilitas tim & cegah burnout.',
+          icon: 'Users',
+          features: ['Skill Matrix', 'Utilization Heatmap', 'Capacity Planning'],
+        },
+        {
+          id: 'timesheet',
+          title: 'Timesheet Mobile',
+          subtitle: 'Catat jam kerja billing semudah update status.',
+          icon: 'Clock',
+          features: ['Timer Mode', 'Approval Flow', 'GPS Tagging'],
+        },
+        {
+          id: 'client-bill',
+          title: 'Client Billing',
+          subtitle: 'Pastikan setiap jam kerja & expense tertagih.',
+          icon: 'FileText',
+          features: ['T&M Invoice', 'Fixed Price', 'Reimbursement'],
+        },
+      ],
       faqs: [
         {
           question: 'Bisa beda rate per level?',
@@ -751,6 +1110,21 @@ export const industriesTranslations: {
         {
           question: 'Integrasi Kalender?',
           answer: 'Ya, task dan deadline bisa sync dengan Google Calendar atau Outlook.',
+        },
+        {
+          question: 'Support multi-mata uang?',
+          answer:
+            'Ya, Anda bisa tagih klien dalam USD sementara biaya operasional dalam IDR. Sistem hitung gain/loss.',
+        },
+        {
+          question: 'Apakah ada portal klien?',
+          answer:
+            'Ada. Klien bisa login untuk melihat progress proyek, download invoice, dan approve dokumen.',
+        },
+        {
+          question: 'Bagaimana approval expense?',
+          answer:
+            'Multi-layer approval. Staff submit -> PM review -> Finance approve -> Reimbursement cair.',
         },
       ],
       caseStudyTitle: 'Profit Margin Naik 25%',
@@ -809,6 +1183,36 @@ export const industriesTranslations: {
           icon: Clipboard,
         },
       ],
+      apps: [
+        {
+          id: 'prod-plan',
+          title: 'Production Planning',
+          subtitle: 'Jadwalkan produksi & kebutuhan material (MRP).',
+          icon: 'Factory',
+          features: ['MPS & MRP', 'Capacity Planning', 'BOM Management'],
+        },
+        {
+          id: 'shop-floor',
+          title: 'Shop Floor Mobile',
+          subtitle: 'Tracking progres produksi di lantai pabrik.',
+          icon: 'Smartphone',
+          features: ['Digital Work Order', 'OEE Monitoring', 'Downtime Log'],
+        },
+        {
+          id: 'inv-warehouse',
+          title: 'Inventory & Warehouse',
+          subtitle: 'Kontrol stok bahan baku & barang jadi.',
+          icon: 'Package',
+          features: ['Batch/Serial No', 'Expiry Date', 'Stock Aging'],
+        },
+        {
+          id: 'qc',
+          title: 'Quality Control',
+          subtitle: 'Jaga standar kualitas di setiap tahap.',
+          icon: 'ShieldCheck',
+          features: ['Incoming QC', 'In-Process QC', 'Final Inspection'],
+        },
+      ],
       faqs: [
         {
           question: 'Support Multi-Level BOM?',
@@ -824,6 +1228,21 @@ export const industriesTranslations: {
           question: 'Cocok untuk Job Order?',
           answer:
             'Sangat cocok untuk pabrik Make-to-Order (Custom) maupun Make-to-Stock (Mass Production).',
+        },
+        {
+          question: 'Apakah ada manajemen maintenance?',
+          answer:
+            'Ya, modul Preventive Maintenance membantu menjadwalkan servis mesin agar tidak mengganggu produksi.',
+        },
+        {
+          question: 'Metode costing apa yang dipakai?',
+          answer:
+            'Mendukung Standard Costing, Moving Average, dan FIFO. Bisa dipilih sesuai kebijakan akuntansi.',
+        },
+        {
+          question: 'Bisa lacak nomor seri?',
+          answer:
+            'Bisa. Fitur Batch & Serial Number Tracking memastikan setiap produk bisa dilacak riwayat produksinya.',
         },
       ],
       caseStudyTitle: 'Hemat 500 Juta/Bulan',
@@ -882,6 +1301,36 @@ export const industriesTranslations: {
           icon: Database,
         },
       ],
+      apps: [
+        {
+          id: 'consolidation',
+          title: 'Financial Consolidation',
+          subtitle: 'Laporan gabungan seluruh anak usaha instant.',
+          icon: 'Globe',
+          features: ['Elimination Entries', 'Multi-Currency', 'Consolidated Reports'],
+        },
+        {
+          id: 'interco',
+          title: 'Intercompany',
+          subtitle: 'Otomatisasi transaksi antar perusahaan.',
+          icon: 'ArrowLeftRight',
+          features: ['Auto-Recharge', 'Cross-Entity Bill', 'Transfer Pricing'],
+        },
+        {
+          id: 'treasury',
+          title: 'Treasury Management',
+          subtitle: 'Kelola cashflow & likuiditas grup.',
+          icon: 'DollarSign',
+          features: ['Cash Positioning', 'Bank Reconciliation', 'Payment Factory'],
+        },
+        {
+          id: 'audit',
+          title: 'Audit & Compliance',
+          subtitle: 'Pastikan kepatuhan & jejak audit terjaga.',
+          icon: 'ShieldCheck',
+          features: ['Audit Trail', 'Role Access', 'Approval Matrix'],
+        },
+      ],
       faqs: [
         {
           question: 'Beda mata uang?',
@@ -897,6 +1346,21 @@ export const industriesTranslations: {
           question: 'Batas jumlah entity?',
           answer:
             'Unlimited. Sistem kami mampu menangani struktur holding bertingkat (Holding -> Sub-Holding -> OpCo).',
+        },
+        {
+          question: 'Bagaimana audit sistem?',
+          answer:
+            'Audit Trail lengkap mencatat siapa melakukan apa dan kapan. Memudahkan proses audit eksternal.',
+        },
+        {
+          question: 'Apakah bisa On-Premise?',
+          answer:
+            'Untuk Enterprise, kami menyediakan opsi Private Cloud atau On-Premise installation di server Anda.',
+        },
+        {
+          question: 'Berapa lama setup holding?',
+          answer:
+            'Implementasi bisa dilakukan bertahap. Rollout per anak usaha atau Big Bang, tergantung kesiapan tim.',
         },
       ],
       caseStudyTitle: 'Closing H+3 (Dulu H+20)',

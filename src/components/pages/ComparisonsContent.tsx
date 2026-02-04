@@ -2,21 +2,24 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { LayoutGrid } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 // import { useLocale } from 'next-intl';
 import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import {
   ComparisonHero,
   ComparisonList,
-  ComparisonMobileCTA,
   ComparisonsSidebar,
   StrategicMetrics,
   WhyUpgradeCard,
 } from '@/components/sections/comparisons';
+import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Grid, Typography } from '@/components/ui';
+
 import { comparisonsData } from '@/data/comparisonData';
 
 export default function ComparisonsContent() {
+  const t = useTranslations('Compare');
   // const locale = useLocale() as 'en' | 'id';
   const [selectedId, setSelectedId] = useState<string>('manual');
 
@@ -119,13 +122,25 @@ export default function ComparisonsContent() {
                 {/* 4. WHY UPGRADE CARD */}
                 <WhyUpgradeCard isBizOps={isBizOps} selectedData={selectedData} />
 
-                {/* MOBILE CTA */}
-                <ComparisonMobileCTA />
+                {/* 4. WHY UPGRADE CARD */}
+                <WhyUpgradeCard isBizOps={isBizOps} selectedData={selectedData} />
               </motion.div>
             </AnimatePresence>
           </div>
         </Grid>
       </Container>
+
+      <CTABannerSection
+        title={t('cta_title')}
+        subtitle={t('cta_subtitle')}
+        badgeText="Comparison Verdict"
+        demoBtnText={t('schedule_demo')}
+        demoBtnLink="/demo"
+        pricingBtnText={t('view_pricing')}
+        pricingBtnLink="/tools/roi-calculator"
+        trustText1="Seamless Migration"
+        trustText2="Data Integrity Guaranteed"
+      />
     </div>
   );
 }
