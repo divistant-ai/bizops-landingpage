@@ -60,3 +60,6 @@ build-archive.log
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# temp files
+tmp_npm_cache/
