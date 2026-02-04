@@ -1,4 +1,3 @@
-
 import { CheckCircle, TrendingUp, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { Grid, Typography } from '@/components/ui';

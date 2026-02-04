@@ -1,10 +1,10 @@
 'use client';
 
-import { assessmentQuestions, maturityLevels } from '@/data/assessmentQuestions';
-import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { AssessmentResult, CategoryKey, LeadForm, ViewState } from './types';
+import React, { createContext, use, useEffect, useState } from 'react';
+import { assessmentQuestions, maturityLevels } from '@/data/assessmentQuestions';
 
-interface MaturityAssessmentContextProps {
+type MaturityAssessmentContextProps = {
   viewState: ViewState;
   setViewState: (state: ViewState) => void;
   currentStep: number;
@@ -15,7 +15,7 @@ interface MaturityAssessmentContextProps {
   setLeadForm: (form: LeadForm) => void;
   assessmentDate: string;
   setAssessmentDate: (date: string) => void;
-  
+
   // Computed
   progress: number;
   results: AssessmentResult | null;
@@ -26,7 +26,7 @@ interface MaturityAssessmentContextProps {
   handleAnswer: (score: number) => void;
   handleReset: () => void;
   calculateResults: () => AssessmentResult;
-}
+};
 
 const MaturityAssessmentContext = createContext<MaturityAssessmentContextProps | undefined>(undefined);
 
@@ -127,7 +127,7 @@ export const MaturityAssessmentProvider: React.FC<{ children: React.ReactNode }>
 
   const handleAnswer = (score: number) => {
     const currentQuestion = assessmentQuestions[currentStep];
-    if (!currentQuestion) return;
+    if (!currentQuestion) { return; }
 
     const newAnswers = { ...answers, [currentQuestion.id]: score };
     setAnswers(newAnswers);
@@ -183,7 +183,7 @@ export const MaturityAssessmentProvider: React.FC<{ children: React.ReactNode }>
   const results = viewState === 'results' ? calculateResults() : null;
 
   return (
-    <MaturityAssessmentContext.Provider
+    <MaturityAssessmentContext
       value={{
         viewState,
         setViewState,
@@ -205,12 +205,12 @@ export const MaturityAssessmentProvider: React.FC<{ children: React.ReactNode }>
       }}
     >
       {children}
-    </MaturityAssessmentContext.Provider>
+    </MaturityAssessmentContext>
   );
 };
 
 export const useMaturityAssessment = () => {
-  const context = useContext(MaturityAssessmentContext);
+  const context = use(MaturityAssessmentContext);
   if (!context) {
     throw new Error('useMaturityAssessment must be used within a MaturityAssessmentProvider');
   }

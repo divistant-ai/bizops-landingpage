@@ -76,11 +76,16 @@ export function HomeProcessSection() {
             </span>
           </div>
           <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-            {t('process_title').replace(t('process_days'), '')}{' '}
+            {t('process_title').replace(t('process_days'), '')}
+            {' '}
             <span className="text-blue-600 dark:text-blue-400">{t('process_days')}</span>
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-            {t('process_desc_1')} {t('process_desc_2')} {t('process_desc_3')}
+            {t('process_desc_1')}
+            {' '}
+            {t('process_desc_2')}
+            {' '}
+            {t('process_desc_3')}
           </p>
           <Button
             asChild

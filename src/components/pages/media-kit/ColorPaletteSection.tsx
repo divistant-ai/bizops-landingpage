@@ -95,7 +95,7 @@ export function ColorPaletteSection({ copied, onCopy }: ColorPaletteSectionProps
 
   return (
     <Grid cols={4} gap={8} className="hidden md:grid">
-      {colors.map((color) => (
+      {colors.map(color => (
         <ColorSwatch
           key={color.id}
           colorId={color.id}

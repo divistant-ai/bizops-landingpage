@@ -3,8 +3,8 @@
 import { Clock, Wallet } from 'lucide-react';
 import React from 'react';
 import { budgets, timelines } from '@/data/needsAnalysisData';
-import { useNeedsAnalysis } from '../context/NeedsAnalysisContext';
 import { NAStepLayout } from '../components/NAStepLayout';
+import { useNeedsAnalysis } from '../context/NeedsAnalysisContext';
 
 export const NAExpectations: React.FC<{
   displayStep: number;

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function MaintenancePage() {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-dark-bg px-4 text-center font-sans text-white">
+    <div className="bg-dark-bg relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 text-center font-sans text-white">
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="animate-pulse-slow absolute -top-[20%] left-1/2 size-[800px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-[150px]" />
@@ -46,13 +46,13 @@ export default function MaintenancePage() {
               <span className="text-xs text-slate-400">Email</span>
             </a>
             <a href="#" className="group flex flex-col items-center gap-2">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-white/10 transition-all group-hover:bg-twitter group-hover:text-white">
+              <div className="group-hover:bg-twitter flex size-12 items-center justify-center rounded-xl bg-white/10 transition-all group-hover:text-white">
                 <Twitter className="size-5" />
               </div>
               <span className="text-xs text-slate-400">Twitter</span>
             </a>
             <a href="#" className="group flex flex-col items-center gap-2">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-white/10 transition-all group-hover:bg-linkedin group-hover:text-white">
+              <div className="group-hover:bg-linkedin flex size-12 items-center justify-center rounded-xl bg-white/10 transition-all group-hover:text-white">
                 <Linkedin className="size-5" />
               </div>
               <span className="text-xs text-slate-400">LinkedIn</span>

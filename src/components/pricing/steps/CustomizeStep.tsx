@@ -171,8 +171,8 @@ const CustomizeStep: React.FC = () => {
                     }
                     const price
                       = item.unit.includes('one-time') || item.unit.includes('per')
-                        ? item.price * qty
-                        : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
+                        ? item!.price * qty
+                        : item!.price * qty * (billingCycle === 'yearly' ? 12 : 1);
                     return (
                       <div key={id} className="flex justify-between text-[10px] text-slate-500">
                         <span>

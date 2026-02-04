@@ -1,2 +1,2 @@
-export * from './DemoHero';
 export * from './DemoForm';
+export * from './DemoHero';

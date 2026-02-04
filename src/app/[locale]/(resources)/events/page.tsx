@@ -28,7 +28,7 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans dark:bg-slate-950">
-      <div className="relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-32 lg:pb-48 dark:bg-dark-bg dark:text-white">
+      <div className="dark:bg-dark-bg relative overflow-hidden bg-slate-50 pt-32 pb-24 lg:pt-32 lg:pb-48 dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         <div className="bg-primary-600/20 pointer-events-none absolute top-0 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full blur-[120px]"></div>
         <div className="pointer-events-none absolute right-0 bottom-0 h-[600px] w-[600px] rounded-full bg-indigo-600/10 blur-[100px]"></div>

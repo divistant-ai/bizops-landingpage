@@ -1,7 +1,8 @@
 'use client';
 
+import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, type LucideIcon } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
 type SelectableCardProps = {

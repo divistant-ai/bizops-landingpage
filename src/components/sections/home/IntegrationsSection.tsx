@@ -46,7 +46,8 @@ export function IntegrationsSection() {
       <div className="mt-10 text-center">
         <Button asChild variant="glass" size="md" className="h-11 px-6 text-sm font-semibold">
           <Link href="/platform/technologies/integration">
-            {t('integrations_view_more')}{' '}
+            {t('integrations_view_more')}
+            {' '}
             <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
           </Link>
         </Button>

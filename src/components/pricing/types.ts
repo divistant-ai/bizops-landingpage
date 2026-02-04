@@ -1,6 +1,6 @@
 'use client';
 
-import type { ServiceAddon, PricingPlan } from '@/data/pricingData';
+import type { PricingPlan, ServiceAddon } from '@/data/pricingData';
 
 // Step type
 export type Step = 'assessment' | 'recommendation' | 'customize' | 'checkout' | 'thankyou';
@@ -108,4 +108,4 @@ export const defaultContactInfo: ContactInfo = {
 };
 
 // Re-export for convenience
-export type { ServiceAddon, PricingPlan };
+export type { PricingPlan, ServiceAddon };

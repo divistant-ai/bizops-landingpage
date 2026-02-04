@@ -1,7 +1,5 @@
 'use client';
 
-
-
 import { Clock, Globe, Layers, Trophy, Users, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { CTABannerSection } from '@/components/sections/CTABannerSection';

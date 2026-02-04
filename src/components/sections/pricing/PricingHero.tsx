@@ -2,19 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { Container } from '@/components/layout';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { StaggeredText } from '@/components/ui/motion-text';
-import { Container } from '@/components/layout';
 
 const FADE_UP_VARIANTS = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
-interface PricingHeroProps {
+type PricingHeroProps = {
   annual: boolean;
   setAnnual: (value: boolean) => void;
-}
+};
 
 export function PricingHero({ annual, setAnnual }: PricingHeroProps) {
   const t = useTranslations('Pricing');

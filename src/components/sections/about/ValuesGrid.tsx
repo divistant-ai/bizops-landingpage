@@ -49,7 +49,9 @@ export function ValuesGrid({ className = '' }: ValuesGridProps) {
                     {t(`value_${idx}_title` as any)}
                   </h3>
                   <p className="mb-6 leading-relaxed text-slate-700 italic dark:text-slate-300">
-                    "{t(`value_${idx}_manifesto` as any)}"
+                    "
+                    {t(`value_${idx}_manifesto` as any)}
+                    "
                   </p>
                   <div className="border-t border-slate-200 pt-6 dark:border-white/10">
                     <p className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">

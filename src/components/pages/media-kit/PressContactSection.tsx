@@ -34,7 +34,9 @@ export function PressContactSection() {
               href="mailto:pr@divistant.com"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-bold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
             >
-              <Mail className="h-4 w-4" /> {t('press_contact_button')}
+              <Mail className="h-4 w-4" />
+              {' '}
+              {t('press_contact_button')}
             </a>
             <a
               href="https://wa.me/6281234567890"
@@ -63,10 +65,13 @@ export function PressContactSection() {
           </div>
           <Stack direction="vertical" gap={3} className="text-sm text-slate-600 dark:text-slate-300">
             <div className="flex items-center gap-3">
-              <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" /> pr@divistant.com
+              <Mail className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+              {' '}
+              pr@divistant.com
             </div>
             <div className="flex items-center gap-3">
-              <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />{' '}
+              <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+              {' '}
               {t('press_contact_location')}
             </div>
           </Stack>

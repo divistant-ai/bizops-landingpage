@@ -25,7 +25,9 @@ export function transformContent(data: any) {
     if (typeof icon === 'function' || (typeof icon === 'object' && icon !== null)) {
       // lucide-react icons usually have displayName. Fallback to name.
       const name = (icon as any).displayName || (icon as any).name;
-      if (name) { return name; }
+      if (name) {
+        return name;
+      }
     }
 
     return null;

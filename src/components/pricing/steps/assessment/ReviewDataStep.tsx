@@ -1,5 +1,7 @@
 'use client';
 
+import type { AssessmentData } from '../../types';
+
 import {
   Building2,
   Calendar,
@@ -7,8 +9,6 @@ import {
   LayoutGrid,
   Server,
 } from 'lucide-react';
-
-import type { AssessmentData } from '../../types';
 import { usePricingContext } from '../../PricingContext';
 
 export function ReviewDataStep() {
@@ -54,13 +54,17 @@ export function ReviewDataStep() {
             <div className="flex justify-between">
               <span className="text-slate-400">Estimated Users</span>
               <span className="font-bold text-slate-800 dark:text-white">
-                {assessment.userCount} Accounts
+                {assessment.userCount}
+                {' '}
+                Accounts
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-400">Branches</span>
               <span className="font-bold text-slate-800 dark:text-white">
-                {assessment.branchCount} Locations
+                {assessment.branchCount}
+                {' '}
+                Locations
               </span>
             </div>
           </div>
@@ -136,13 +140,17 @@ export function ReviewDataStep() {
             <div className="flex justify-between">
               <span className="text-slate-500 dark:text-slate-400">Data Migration</span>
               <span className="font-medium text-slate-900 capitalize dark:text-white">
-                {assessment.dataVolume} Volume
+                {assessment.dataVolume}
+                {' '}
+                Volume
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500 dark:text-slate-400">API Integrations</span>
               <span className="font-bold text-slate-900 dark:text-white">
-                {assessment.apiIntegrations} Endpoints
+                {assessment.apiIntegrations}
+                {' '}
+                Endpoints
               </span>
             </div>
             <div className="flex justify-between">
@@ -182,7 +190,9 @@ export function ReviewDataStep() {
             <div className="flex justify-between">
               <span className="text-slate-500 dark:text-slate-400">Support Level</span>
               <span className="font-medium text-slate-900 capitalize dark:text-white">
-                {assessment.supportLevel} SLA
+                {assessment.supportLevel}
+                {' '}
+                SLA
               </span>
             </div>
           </div>

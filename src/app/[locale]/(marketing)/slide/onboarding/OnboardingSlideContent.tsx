@@ -1,5 +1,6 @@
 'use client';
 
+import type { SlideData } from '@/components/presentation';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -25,15 +26,14 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import React from 'react';
 
+import React from 'react';
 import {
   AnimatedSlide,
   itemVariants,
   SlideBg,
   SlideDeck,
 } from '@/components/presentation';
-import type { SlideData } from '@/components/presentation';
 import { Badge, Button } from '@/components/ui';
 
 // Local FeatureCard with different styling than shared one

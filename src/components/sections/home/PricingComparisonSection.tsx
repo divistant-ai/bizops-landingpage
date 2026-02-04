@@ -96,7 +96,8 @@ export function PricingComparisonSection() {
                       </span>
                       <span className="text-lg text-slate-500">++</span>
                       <span className="text-sm text-slate-400">
-                        /{t('month')}
+                        /
+                        {t('month')}
                       </span>
                     </div>
                   </div>
@@ -176,7 +177,8 @@ export function PricingComparisonSection() {
                         {t('pricing_amount' as any)}
                       </span>
                       <span className="text-sm text-slate-500">
-                        /{t('month')}
+                        /
+                        {t('month')}
                       </span>
                     </div>
                     <p className="mt-1 text-xs text-slate-500">{t('pricing_subtitle')}</p>

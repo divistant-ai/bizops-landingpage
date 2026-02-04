@@ -25,8 +25,7 @@ export function ModuleSelector({ modules }: ModuleSelectorProps) {
         <div
           key={m.key}
           onClick={() =>
-            updateAssessment(m.key, !assessment[m.key])
-          }
+            updateAssessment(m.key, !assessment[m.key])}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();

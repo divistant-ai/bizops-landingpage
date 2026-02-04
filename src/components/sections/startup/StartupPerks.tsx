@@ -1,4 +1,3 @@
-
 import { Code, DollarSign, Users } from 'lucide-react';
 import { Grid, Typography } from '@/components/ui';
 

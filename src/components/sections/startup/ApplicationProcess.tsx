@@ -1,4 +1,3 @@
-
 import { CheckCircle } from 'lucide-react';
 import { Grid, Typography } from '@/components/ui';
 

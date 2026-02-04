@@ -89,7 +89,7 @@ export const UnifiedArchitectureSection = () => {
 
             {/* Orbiting Modules */}
             {['HR', 'Finance', 'Sales', 'Ops'].map((label, i) => {
-              { /* const rotation = [0, 90, 180, 270]; */ }
+              /* const rotation = [0, 90, 180, 270]; */
               return (
                 <motion.div
                   key={label}

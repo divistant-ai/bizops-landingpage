@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { industries } from '@/data/needsAnalysisData';
-import { useNeedsAnalysis } from '../context/NeedsAnalysisContext';
 import { NAStepLayout } from '../components/NAStepLayout';
+import { useNeedsAnalysis } from '../context/NeedsAnalysisContext';
 
 export const NAContext: React.FC<{
   displayStep: number;

@@ -84,7 +84,9 @@ export function IntegrationStep() {
             <Tooltip text="Koneksi ke sistem lain seperti Marketplace (Tokopedia/Shopee), Bank, Payment Gateway, atau Logistics." />
           </label>
           <span className="rounded bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-900 dark:bg-slate-700 dark:text-white">
-            {assessment.apiIntegrations} connections
+            {assessment.apiIntegrations}
+            {' '}
+            connections
           </span>
         </div>
         <input
@@ -108,7 +110,9 @@ export function IntegrationStep() {
             <Tooltip text="Pembuatan laporan format khusus yang tidak tersedia di standar (misal: Laporan Pajak format spesifik)." />
           </label>
           <span className="rounded bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-900 dark:bg-slate-700 dark:text-white">
-            {assessment.customReports} reports
+            {assessment.customReports}
+            {' '}
+            reports
           </span>
         </div>
         <input

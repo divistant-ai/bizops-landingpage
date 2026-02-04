@@ -28,7 +28,7 @@ const Input = ({ className, type, icon, ref, ...props }: InputProps & { ref?: Re
     </div>
   );
 };
- 
+
 Input.displayName = 'Input';
 
 export { Input };

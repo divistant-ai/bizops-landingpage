@@ -4,9 +4,9 @@ import { Clock, DollarSign, Settings, Wrench } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { Grid } from '@/components/ui';
 
-interface StrategicMetricsProps {
+type StrategicMetricsProps = {
   selectedData: any;
-}
+};
 
 export function StrategicMetrics({ selectedData }: StrategicMetricsProps) {
   const locale = useLocale() as 'en' | 'id';

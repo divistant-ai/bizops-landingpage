@@ -41,7 +41,11 @@ export function TeamMemberCard({ member, width = 360, height = 256 }: TeamMember
         <p className="text-primary-600 dark:text-primary-400 mb-4 text-sm font-medium">
           {member.role}
         </p>
-        <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">"{member.quote}"</p>
+        <p className="mb-4 text-sm text-slate-600 italic dark:text-slate-400">
+          "
+          {member.quote}
+          "
+        </p>
         <a
           href={member.linkedin}
           target="_blank"

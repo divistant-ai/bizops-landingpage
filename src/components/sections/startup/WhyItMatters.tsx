@@ -1,4 +1,3 @@
-
 import { Layout, ShieldCheck, TrendingUp } from 'lucide-react';
 import { Grid, Typography } from '@/components/ui';
 import Stack from '@/components/ui/Stack';

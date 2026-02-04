@@ -3,11 +3,11 @@
 import { useLocale } from 'next-intl';
 import { Stack, Typography } from '@/components/ui';
 
-interface ComparisonHeroProps {
+type ComparisonHeroProps = {
   selectedData: any;
   getScoreBg: (score: number) => string;
   getScoreColor: (score: number) => string;
-}
+};
 
 export function ComparisonHero({
   selectedData,

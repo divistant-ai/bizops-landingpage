@@ -1,14 +1,14 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import type { ContextData, NeedsAnalysisState, RecommendedModule, RecommendedService, StepType } from './types';
+import React, { createContext, use, useEffect, useState } from 'react';
 import {
   modules,
   serviceSolutions,
 } from '@/data/needsAnalysisData';
 import { logger } from '@/utils/logger';
-import { ContextData, NeedsAnalysisState, RecommendedModule, RecommendedService, StepType } from './types';
 
-interface NeedsAnalysisContextType extends NeedsAnalysisState {
+type NeedsAnalysisContextType = {
   setStep: (step: StepType) => void;
   setContextData: (data: ContextData) => void;
   toggleSelection: (
@@ -26,7 +26,7 @@ interface NeedsAnalysisContextType extends NeedsAnalysisState {
   handleReset: () => void;
   getRecommendedModules: () => RecommendedModule[];
   getRecommendedServices: () => RecommendedService[];
-}
+} & NeedsAnalysisState;
 
 const NeedsAnalysisContext = createContext<NeedsAnalysisContextType | undefined>(undefined);
 
@@ -58,12 +58,12 @@ export const NeedsAnalysisProvider: React.FC<{ children: React.ReactNode }> = ({
         if (parsed.step && parsed.step !== 'analyzing' && parsed.step !== 'result') {
           setStep(parsed.step);
         }
-        if (parsed.contextData) setContextData(parsed.contextData);
-        if (parsed.selectedPainPoints) setSelectedPainPoints(parsed.selectedPainPoints);
-        if (parsed.selectedGoals) setSelectedGoals(parsed.selectedGoals);
-        if (parsed.selectedHolisticIssues) setSelectedHolisticIssues(parsed.selectedHolisticIssues);
-        if (parsed.selectedTimeline) setSelectedTimeline(parsed.selectedTimeline);
-        if (parsed.selectedBudget) setSelectedBudget(parsed.selectedBudget);
+        if (parsed.contextData) { setContextData(parsed.contextData); }
+        if (parsed.selectedPainPoints) { setSelectedPainPoints(parsed.selectedPainPoints); }
+        if (parsed.selectedGoals) { setSelectedGoals(parsed.selectedGoals); }
+        if (parsed.selectedHolisticIssues) { setSelectedHolisticIssues(parsed.selectedHolisticIssues); }
+        if (parsed.selectedTimeline) { setSelectedTimeline(parsed.selectedTimeline); }
+        if (parsed.selectedBudget) { setSelectedBudget(parsed.selectedBudget); }
       } catch (e) {
         console.error('Failed to load state', e);
       }
@@ -162,7 +162,7 @@ export const NeedsAnalysisProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <NeedsAnalysisContext.Provider
+    <NeedsAnalysisContext
       value={{
         step,
         setStep,
@@ -186,12 +186,12 @@ export const NeedsAnalysisProvider: React.FC<{ children: React.ReactNode }> = ({
       }}
     >
       {children}
-    </NeedsAnalysisContext.Provider>
+    </NeedsAnalysisContext>
   );
 };
 
 export const useNeedsAnalysis = () => {
-  const context = useContext(NeedsAnalysisContext);
+  const context = use(NeedsAnalysisContext);
   if (context === undefined) {
     throw new Error('useNeedsAnalysis must be used within a NeedsAnalysisProvider');
   }

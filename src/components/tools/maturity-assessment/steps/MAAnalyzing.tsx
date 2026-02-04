@@ -1,8 +1,8 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { CheckCircle, Cpu } from 'lucide-react';
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const MAAnalyzing: React.FC = () => {
   return (

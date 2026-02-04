@@ -5,10 +5,10 @@ import { CheckCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import Container from '@/components/layout/Container';
+import { DemoForm, DemoHero } from '@/components/sections/demo';
 import { Grid, Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
 import Stack from '@/components/ui/Stack';
-import { DemoForm, DemoHero } from '@/components/sections/demo';
 import { useDemoForm } from '@/hooks/useDemoForm';
 
 export function DemoContent() {
@@ -23,7 +23,7 @@ export function DemoContent() {
         gap={4}
         align="center"
         justify="center"
-        className="min-h-screen bg-slate-50 px-4 text-center dark:bg-dark-bg"
+        className="dark:bg-dark-bg min-h-screen bg-slate-50 px-4 text-center"
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -46,7 +46,7 @@ export function DemoContent() {
   }
 
   return (
-    <div className="selection:bg-primary-500/30 min-h-screen bg-slate-50 font-sans text-slate-900 dark:bg-dark-bg dark:text-slate-200">
+    <div className="selection:bg-primary-500/30 dark:bg-dark-bg min-h-screen bg-slate-50 font-sans text-slate-900 dark:text-slate-200">
       <div className="relative overflow-hidden pt-28 pb-24">
         <div className="bg-primary-600/20 pointer-events-none absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-30 blur-[120px] dark:opacity-60"></div>
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-white/10"></div>

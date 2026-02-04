@@ -5,8 +5,8 @@
  * All tools are configured via environment variables
  */
 
-import { getEnvConfig } from './env';
 import { logger } from '@/utils/logger';
+import { getEnvConfig } from './env';
 
 // Type declarations for third-party integrations
 declare global {

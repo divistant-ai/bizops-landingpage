@@ -232,8 +232,9 @@ export const MAResults: React.FC = () => {
               </h3>
 
               <div className="space-y-6">
-                {Object.entries(results.categoryScores).map(([key, scoreData]) => {
+                {Object.entries(results.categoryScores).map(([key, rawScoreData]) => {
                   const catKey = key as CategoryKey;
+                  const scoreData = rawScoreData as { total: number; count: number };
                   const avgCatScore = scoreData.total / scoreData.count || 0;
                   const recLevel = getRecommendationLevel(avgCatScore);
                   const rec = recommendations[catKey][recLevel];

@@ -149,8 +149,8 @@ const ThankYouStep: React.FC = () => {
                 }
                 const price
                   = item.unit.includes('one-time') || item.unit.includes('per')
-                    ? item.price * qty
-                    : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
+                    ? item!.price * qty
+                    : item!.price * qty * (billingCycle === 'yearly' ? 12 : 1);
                 return (
                   <tr key={id}>
                     <td className="py-4">
@@ -362,8 +362,8 @@ const ThankYouStep: React.FC = () => {
               }
               const price
                 = item.unit.includes('one-time') || item.unit.includes('per')
-                  ? item.price * qty
-                  : item.price * qty * (billingCycle === 'yearly' ? 12 : 1);
+                  ? item!.price * qty
+                  : item!.price * qty * (billingCycle === 'yearly' ? 12 : 1);
               return (
                 <tr key={id}>
                   <td className="py-4">

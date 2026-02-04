@@ -1,9 +1,10 @@
 'use client';
 
-import React, { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { AssessmentData, Calculations, ContactInfo, Step } from './types';
-import { defaultAssessment, defaultContactInfo } from './types';
+import React, { createContext, use, useMemo, useState } from 'react';
 import { addOns, pricingPlans } from '@/data/pricingData';
+import { defaultAssessment, defaultContactInfo } from './types';
 
 type PricingContextType = {
   // Navigation state
@@ -64,7 +65,7 @@ type PricingContextType = {
 const PricingContext = createContext<PricingContextType | null>(null);
 
 export function usePricingContext() {
-  const context = useContext(PricingContext);
+  const context = use(PricingContext);
   if (!context) {
     throw new Error('usePricingContext must be used within PricingProvider');
   }
@@ -177,10 +178,10 @@ export function PricingProvider({ children }: { children: ReactNode }) {
 
   const validateCheckout = () => {
     const errors: { [key: string]: string } = {};
-    if (!contactInfo.firstName) errors.firstName = 'Required';
-    if (!contactInfo.email) errors.email = 'Required';
-    if (!contactInfo.company) errors.company = 'Required';
-    if (!contactInfo.phone) errors.phone = 'Required';
+    if (!contactInfo.firstName) { errors.firstName = 'Required'; }
+    if (!contactInfo.email) { errors.email = 'Required'; }
+    if (!contactInfo.company) { errors.company = 'Required'; }
+    if (!contactInfo.phone) { errors.phone = 'Required'; }
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -199,36 +200,36 @@ export function PricingProvider({ children }: { children: ReactNode }) {
     let score = 0;
     score += assessment.userCount * 0.5;
     score += assessment.branchCount * 5;
-    if (assessment.hasMultiCompany) score += 30;
-    if (assessment.needsManufacturing) score += 20;
-    if (assessment.needsEcommerce) score += 15;
-    if (assessment.needsAccounting) score += 5;
-    if (assessment.needsHRM) score += 5;
-    if (assessment.needsPOS) score += 10;
-    if (assessment.needsBI) score += 15;
-    if (assessment.hasLegacySystem) score += 15;
-    if (assessment.dataVolume === 'high') score += 10;
-    if (assessment.apiIntegrations > 0) score += assessment.apiIntegrations * 5;
-    if (assessment.deployment === 'onprem') score += 25;
+    if (assessment.hasMultiCompany) { score += 30; }
+    if (assessment.needsManufacturing) { score += 20; }
+    if (assessment.needsEcommerce) { score += 15; }
+    if (assessment.needsAccounting) { score += 5; }
+    if (assessment.needsHRM) { score += 5; }
+    if (assessment.needsPOS) { score += 10; }
+    if (assessment.needsBI) { score += 15; }
+    if (assessment.hasLegacySystem) { score += 15; }
+    if (assessment.dataVolume === 'high') { score += 10; }
+    if (assessment.apiIntegrations > 0) { score += assessment.apiIntegrations * 5; }
+    if (assessment.deployment === 'onprem') { score += 25; }
     return score;
   }, [assessment]);
 
   const recommendedPlanId = useMemo(() => {
     let score = 0;
-    if (assessment.userCount > 300) score += 40;
-    else if (assessment.userCount > 50) score += 15;
-    if (assessment.hasMultiCompany) score += 40;
-    if (assessment.branchCount > 5) score += 20;
-    if (assessment.industry === 'manufacturing') score += 25;
-    if (assessment.industry === 'healthcare') score += 15;
-    if (assessment.deployment === 'onprem') score += 50;
-    else if (assessment.deployment === 'dedicated') score += 25;
-    if (complexityScore > 80) score += 30;
-    else if (complexityScore > 40) score += 15;
-    if (assessment.needsCustomModule) score += 35;
+    if (assessment.userCount > 300) { score += 40; }
+    else if (assessment.userCount > 50) { score += 15; }
+    if (assessment.hasMultiCompany) { score += 40; }
+    if (assessment.branchCount > 5) { score += 20; }
+    if (assessment.industry === 'manufacturing') { score += 25; }
+    if (assessment.industry === 'healthcare') { score += 15; }
+    if (assessment.deployment === 'onprem') { score += 50; }
+    else if (assessment.deployment === 'dedicated') { score += 25; }
+    if (complexityScore > 80) { score += 30; }
+    else if (complexityScore > 40) { score += 15; }
+    if (assessment.needsCustomModule) { score += 35; }
 
-    if (score >= 60) return 'enterprise';
-    if (score >= 25) return 'growth';
+    if (score >= 60) { return 'enterprise'; }
+    if (score >= 25) { return 'growth'; }
     return 'business';
   }, [assessment, complexityScore]);
 
@@ -249,7 +250,7 @@ export function PricingProvider({ children }: { children: ReactNode }) {
     const recurringAddOnsTotal = Object.entries(selectedAddOns).reduce(
       (sum, [addOnId, quantity]) => {
         const addOn = addOns.find(a => a.id === addOnId);
-        if (!addOn || addOn.unit.includes('one-time') || addOn.unit.includes('per')) return sum;
+        if (!addOn || addOn.unit.includes('one-time') || addOn.unit.includes('per')) { return sum; }
         return sum + addOn.price * quantity;
       },
       0,
@@ -311,5 +312,5 @@ export function PricingProvider({ children }: { children: ReactNode }) {
     handlePrint,
   };
 
-  return <PricingContext.Provider value={value}>{children}</PricingContext.Provider>;
+  return <PricingContext value={value}>{children}</PricingContext>;
 }

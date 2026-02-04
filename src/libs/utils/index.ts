@@ -6,7 +6,7 @@
 
 export { cn } from './cn';
 export * from './env';
-export * from '@/utils/logger';
 export * from './metadata';
 export * from './pwa';
 export * from './tracking';
+export * from '@/utils/logger';

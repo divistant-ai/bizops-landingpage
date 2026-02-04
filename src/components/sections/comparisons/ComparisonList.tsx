@@ -11,10 +11,10 @@ import {
 import { useLocale } from 'next-intl';
 import { Grid, Stack, Typography } from '@/components/ui';
 
-interface ComparisonListProps {
+type ComparisonListProps = {
   selectedData: any;
   isBizOps: boolean;
-}
+};
 
 export function ComparisonList({ selectedData, isBizOps }: ComparisonListProps) {
   const locale = useLocale() as 'en' | 'id';

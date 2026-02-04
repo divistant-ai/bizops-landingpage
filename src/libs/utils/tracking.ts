@@ -8,8 +8,8 @@
  * - Custom business events
  */
 
-import { getEnvConfig } from './env';
 import { logger } from '@/utils/logger';
+import { getEnvConfig } from './env';
 
 type EventProperties = Record<string, string | number | boolean | null | undefined>;
 
