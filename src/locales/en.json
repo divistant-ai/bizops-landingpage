@@ -47,7 +47,12 @@
     "metric_total_cost": "Total Cost (3 Years)",
     "cta_title": "Ready for the Upgrade?",
     "cta_subtitle": "Experience the difference of a modern Business Operating System.",
-    "cta_detail_subtitle": "Schedule a personalized demo to see how BizOps fits your specific needs."
+    "cta_detail_subtitle": "Schedule a personalized demo to see how BizOps fits your specific needs.",
+    "objective_analysis": "Objective Analysis",
+    "transparent_pricing": "Transparent Pricing",
+    "get_clarity": "Get Clarity",
+    "free_consultation": "Free Consultation",
+    "no_obligation": "No Obligation"
   },
   "SecurityReport": {
     "badge": "VULNERABILITY DISCLOSURE PROGRAM",
@@ -170,6 +175,56 @@
     "trusted_by": "Trusted by Industry Leaders",
     "hero_savings_label": "Savings",
     "hero_companies_count": "500+ Companies",
+    "hero_slides": {
+      "general": {
+        "badge": "The Adaptive Business Operating System",
+        "title_prefix": "One Platform.",
+        "title_highlight": "All Operations.",
+        "desc": "BizOps connects HR, Finance, and Supply Chain in one integrated ecosystem. Flexible to follow your business workflow — not the other way around.",
+        "cta_primary": "Start Now",
+        "cta_secondary": "View Demo"
+      },
+      "manufacturing": {
+        "badge": "Manufacturing & Fabrication",
+        "title_prefix": "Calculate COGS.",
+        "title_highlight": "Down to the Decimal.",
+        "desc": "Monitor Work-in-Progress, manage multi-level BOMs, and prevent raw material leakage with real-time tracking on the production floor.",
+        "cta_primary": "Manufacturing Solution",
+        "cta_secondary": "Learn More"
+      },
+      "healthcare": {
+        "badge": "Healthcare & Pharmaceuticals",
+        "title_prefix": "Manage Drug Stocks.",
+        "title_highlight": "Compliance Ready.",
+        "desc": "Track batch numbers, auto-expiry dates, and audit-ready reports. Integrated with insurance and regulatory systems.",
+        "cta_primary": "Healthcare Solution",
+        "cta_secondary": "Learn More"
+      },
+      "logistics": {
+        "badge": "Logistics & Distribution",
+        "title_prefix": "Distribute Millions of SKUs.",
+        "title_highlight": "99% Stock Accuracy.",
+        "desc": "Automate reorder points, strict credit limit controls, and monitor fleet & field sales via a single dashboard.",
+        "cta_primary": "Distribution Solution",
+        "cta_secondary": "Learn More"
+      },
+      "agribusiness": {
+        "badge": "Agribusiness & Food",
+        "title_prefix": "From Farm to Factory.",
+        "title_highlight": "Full Traceability.",
+        "desc": "Manage harvest seasons, yield grading, and cold chain with temperature & batch logging. Ready for food safety audits.",
+        "cta_primary": "Agribusiness Solution",
+        "cta_secondary": "Learn More"
+      },
+      "services": {
+        "badge": "Professional Services",
+        "title_prefix": "Manage Projects.",
+        "title_highlight": "Protect Margins.",
+        "desc": "Track billable hours, real-time budget vs actuals, and automated milestone billing. Maximize team utilization.",
+        "cta_primary": "Project Solution",
+        "cta_secondary": "Learn More"
+      }
+    },
     "problems_badge": "Common Problems",
     "problems_title": "3 Operational Diseases",
     "problems_stuck": "Eating Your Profits",
@@ -1261,7 +1316,12 @@
     "feature_table_popular": "POPULAR",
     "feature_table_legend_included": "Included",
     "feature_table_legend_not_available": "Not Available",
-    "feature_table_legend_custom": "Custom text indicates feature level or limit"
+    "feature_table_legend_custom": "Custom text indicates feature level or limit",
+    "cta_badge": "Ready to Start?",
+    "cta_title": "Transform Your Business Operations Today",
+    "cta_desc": "Join 500+ companies that have modernized their operations with BizOps. Start your free trial now.",
+    "cta_trial": "Start Free Trial",
+    "cta_contact": "Contact Sales"
   },
   "Resources": {
     "hero_title_1": "Resource",
@@ -1406,7 +1466,9 @@
     "cta_title": "Interested in Joining?",
     "cta_subtitle": "We are always looking for the best talents to build the future of enterprise software in Indonesia.",
     "cta_careers": "View Open Positions",
-    "cta_partners": "Become a Partner"
+    "cta_partners": "Become a Partner",
+    "great_culture": "Great Culture",
+    "remote_friendly": "Remote Friendly"
   },
   "WhyBizOps": {
     "hero_badge": "The Unified Layer",
@@ -1459,7 +1521,9 @@
     "cta_title": "Ready for Transformation?",
     "cta_subtitle": "See for yourself how BizOps can transform your business operations.",
     "cta_demo": "Schedule Demo",
-    "cta_compare": "Compare Competitors"
+    "cta_compare": "Compare Competitors",
+    "unified_platform": "Unified Platform",
+    "indonesia_first": "Indonesia First"
   },
   "Trust": {
     "hero_badge": "BizOps Trust Center",
@@ -1514,7 +1578,11 @@
     "location_sentry": "USA",
     "cta_title": "Need Audit Documentation?",
     "cta_subtitle": "Access our complete security audit reports (Penetration Test Results & Compliance Certifications) through our dedicated Enterprise client portal.",
-    "cta_button": "Request Access to Trust Portal"
+    "cta_button": "Request Access to Trust Portal",
+    "transparency": "Transparency",
+    "view_reports": "View Reports",
+    "iso_certified": "ISO 27001 Certified",
+    "gdpr_compliant": "GDPR Compliant"
   },
   "MediaKit": {
     "hero_badge": "Official Press Resources",
