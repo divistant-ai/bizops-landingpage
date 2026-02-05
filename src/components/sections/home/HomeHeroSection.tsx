@@ -182,7 +182,7 @@ export function HomeHeroSection() {
             {activeSlide.layout === 'centered' && (
               <div className="flex flex-col items-center text-center">
                 <FadeIn delay={0.1}>
-                  <div className={`mb-8 inline-flex items-center gap-3 rounded-full border border-white/20 px-5 py-2 ${glass.light}`}>
+                  <div className={`mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 px-5 py-2 ${glass.light}`}>
                     <span className={`text-sm font-bold tracking-wide uppercase ${activeSlide.theme}`}>
                       {t(`hero_slides.${activeSlide.id}.badge` as any)}
                     </span>
@@ -190,7 +190,7 @@ export function HomeHeroSection() {
                 </FadeIn>
 
                 <FadeIn delay={0.2} className="max-w-4xl">
-                  <h1 className={`${modularTypography.hero} mb-8 leading-tight text-slate-900 dark:text-white`}>
+                  <h1 className={`${modularTypography.hero} mb-6 leading-tight text-slate-900 dark:text-white`}>
                     <span className="block">{t(`hero_slides.${activeSlide.id}.title_prefix` as any)}</span>
                     <span className={`block ${activeSlide.theme}`}>
                       {t(`hero_slides.${activeSlide.id}.title_highlight` as any)}
@@ -199,7 +199,7 @@ export function HomeHeroSection() {
                 </FadeIn>
 
                 <FadeIn delay={0.3} className="max-w-2xl">
-                  <p className={`${modularTypography.body} mb-10 text-lg text-slate-600 dark:text-slate-300`}>
+                  <p className={`${modularTypography.body} mb-8 text-lg text-slate-600 dark:text-slate-300`}>
                     {t(`hero_slides.${activeSlide.id}.desc` as any)}
                   </p>
                 </FadeIn>
@@ -230,7 +230,7 @@ export function HomeHeroSection() {
                 </FadeIn>
 
                 {/* 3D Dashboard Preview (Centered Bottom) */}
-                <FadeIn delay={0.6} className="mt-10 w-full max-w-5xl px-4">
+                <FadeIn delay={0.6} className="mt-8 w-full max-w-5xl px-4">
                   <motion.div
                     style={{ rotateX, rotateY, perspective: 1000 }}
                     className="relative mx-auto max-h-[400px] w-full max-w-4xl rounded-2xl border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur-md lg:max-h-[450px]"
@@ -263,7 +263,7 @@ export function HomeHeroSection() {
                     : 'order-2 lg:col-span-6 lg:order-2', // Left Split: Text Right (2nd), Image Top (1st)
                 )}
                 >
-                  <FadeIn delay={0.1} className="mb-6">
+                  <FadeIn delay={0.1} className="mb-4">
                     <div className={`inline-flex w-fit items-center gap-2 rounded-lg px-3 py-1 ${glass.light}`}>
                       <activeSlide.icon className={cn('h-4 w-4', activeSlide.theme)} />
                       <span className={cn('text-xs font-bold uppercase tracking-wider', activeSlide.theme)}>
@@ -273,7 +273,7 @@ export function HomeHeroSection() {
                   </FadeIn>
 
                   <FadeIn delay={0.2}>
-                    <h1 className="mb-6 text-4xl leading-tight font-bold text-slate-900 lg:text-5xl dark:text-white">
+                    <h1 className="mb-4 text-4xl leading-tight font-bold text-slate-900 lg:text-5xl dark:text-white">
                       <span className="mb-2 block">{t(`hero_slides.${activeSlide.id}.title_prefix` as any)}</span>
                       <span className={cn('block', activeSlide.theme)}>
                         {t(`hero_slides.${activeSlide.id}.title_highlight` as any)}
@@ -282,7 +282,7 @@ export function HomeHeroSection() {
                   </FadeIn>
 
                   <FadeIn delay={0.3}>
-                    <p className="mb-8 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+                    <p className="mb-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
                       {t(`hero_slides.${activeSlide.id}.desc` as any)}
                     </p>
                   </FadeIn>
