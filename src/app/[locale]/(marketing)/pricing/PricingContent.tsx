@@ -53,12 +53,12 @@ const PricingContent = () => {
           {/* --- FINAL CTA --- */}
           <div className="pt-24 pb-24">
             <CTABannerSection
-              badgeText={t('cta_badge' as any)}
-              title={t('cta_title' as any)}
-              subtitle={t('cta_desc' as any)}
-              demoBtnText={t('cta_trial' as any)}
+              badgeText={t('cta_badge')}
+              title={t('cta_title')}
+              subtitle={t('cta_desc')}
+              demoBtnText={t('cta_trial')}
               demoBtnLink="/register"
-              pricingBtnText={t('cta_contact' as any)}
+              pricingBtnText={t('cta_contact')}
               pricingBtnLink="/contact"
               trustText1="Free Trial"
               trustText2="No Credit Card"

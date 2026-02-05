@@ -262,8 +262,8 @@ export default function AboutContent() {
         demoBtnLink="/careers"
         pricingBtnText={t('cta_partners')}
         pricingBtnLink="/partners"
-        trustText1="Great Culture"
-        trustText2="Remote Friendly"
+        trustText1={t('great_culture')}
+        trustText2={t('remote_friendly')}
       />
     </div>
   );

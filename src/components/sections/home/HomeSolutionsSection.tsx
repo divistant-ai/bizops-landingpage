@@ -114,7 +114,9 @@ export function HomeSolutionsSection() {
   const activeTabIndex = homeSolutions.findIndex(s => s.id === activeTab);
   const activeSolution = homeSolutions.find(s => s.id === activeTab) || homeSolutions[0];
 
-  if (!activeSolution) { return null; }
+  if (!activeSolution) {
+    return null;
+  }
 
   const contentColor = CONTENT_COLORS[activeTabIndex >= 0 ? activeTabIndex % CONTENT_COLORS.length : 0]!;
   const demoColor = DEMO_COLORS[activeTabIndex >= 0 ? activeTabIndex % DEMO_COLORS.length : 0]!;

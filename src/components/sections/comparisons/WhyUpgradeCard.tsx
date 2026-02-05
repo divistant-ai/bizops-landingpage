@@ -13,7 +13,9 @@ type WhyUpgradeCardProps = {
 export function WhyUpgradeCard({ isBizOps, selectedData }: WhyUpgradeCardProps) {
   const locale = useLocale() as 'en' | 'id';
 
-  if (isBizOps) { return null; }
+  if (isBizOps) {
+    return null;
+  }
 
   return (
     <div className="relative mt-12 overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 text-white shadow-2xl md:p-12">

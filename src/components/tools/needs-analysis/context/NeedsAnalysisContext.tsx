@@ -58,12 +58,24 @@ export const NeedsAnalysisProvider: React.FC<{ children: React.ReactNode }> = ({
         if (parsed.step && parsed.step !== 'analyzing' && parsed.step !== 'result') {
           setStep(parsed.step);
         }
-        if (parsed.contextData) { setContextData(parsed.contextData); }
-        if (parsed.selectedPainPoints) { setSelectedPainPoints(parsed.selectedPainPoints); }
-        if (parsed.selectedGoals) { setSelectedGoals(parsed.selectedGoals); }
-        if (parsed.selectedHolisticIssues) { setSelectedHolisticIssues(parsed.selectedHolisticIssues); }
-        if (parsed.selectedTimeline) { setSelectedTimeline(parsed.selectedTimeline); }
-        if (parsed.selectedBudget) { setSelectedBudget(parsed.selectedBudget); }
+        if (parsed.contextData) {
+          setContextData(parsed.contextData);
+        }
+        if (parsed.selectedPainPoints) {
+          setSelectedPainPoints(parsed.selectedPainPoints);
+        }
+        if (parsed.selectedGoals) {
+          setSelectedGoals(parsed.selectedGoals);
+        }
+        if (parsed.selectedHolisticIssues) {
+          setSelectedHolisticIssues(parsed.selectedHolisticIssues);
+        }
+        if (parsed.selectedTimeline) {
+          setSelectedTimeline(parsed.selectedTimeline);
+        }
+        if (parsed.selectedBudget) {
+          setSelectedBudget(parsed.selectedBudget);
+        }
       } catch (e) {
         console.error('Failed to load state', e);
       }

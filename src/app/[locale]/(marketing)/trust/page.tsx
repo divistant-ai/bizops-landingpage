@@ -51,13 +51,13 @@ function TrustContent() {
         <CTABannerSection
           title={t('cta_title')}
           subtitle={t('cta_subtitle')}
-          badgeText="Transparency"
+          badgeText={t('transparency')}
           demoBtnText={t('cta_button')}
           demoBtnLink="/contact"
-          pricingBtnText="View Reports"
+          pricingBtnText={t('view_reports')}
           pricingBtnLink="/trust/reports"
-          trustText1="ISO 27001 Certified"
-          trustText2="GDPR Compliant"
+          trustText1={t('iso_certified')}
+          trustText2={t('gdpr_compliant')}
         />
       </Container>
     </div>

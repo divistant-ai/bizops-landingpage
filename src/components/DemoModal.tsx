@@ -5,11 +5,11 @@ import { Building2, CheckCircle, MessageSquare, Send, Shield, Users, Video, X } 
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import OptimizedImage from '@/components/ui/OptimizedImage'; // Imported OptimizedImage
-import { Select } from '@/components/ui/Select';
-import { Textarea as TextArea } from '@/components/ui/Textarea';
+import { Select } from '@/components/ui/select';
+import { Textarea as TextArea } from '@/components/ui/textarea';
 
 type DemoModalProps = {
   isOpen: boolean;

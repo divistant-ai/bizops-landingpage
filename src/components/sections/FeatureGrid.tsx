@@ -104,10 +104,16 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
               gridClass += ' sm:grid-cols-2 lg:grid-cols-3';
             } else {
               // Standard Grid Logic
-              if (count === 1) { gridClass += ' max-w-2xl mx-auto'; }
-              else if (count === 2) { gridClass += ' sm:grid-cols-2 max-w-4xl mx-auto'; }
-              else if (count === 4) { gridClass += ' sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto'; } // 2x2 Balanced
-              else { gridClass += ' sm:grid-cols-2 lg:grid-cols-3'; } // Default 3-col
+              if (count === 1) {
+                gridClass += ' max-w-2xl mx-auto';
+              } else if (count === 2) {
+                gridClass += ' sm:grid-cols-2 max-w-4xl mx-auto';
+              } else if (count === 4) {
+                gridClass += ' sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto';
+              } // 2x2 Balanced
+              else {
+                gridClass += ' sm:grid-cols-2 lg:grid-cols-3';
+              } // Default 3-col
             }
 
             return (

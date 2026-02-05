@@ -44,7 +44,9 @@ export const MAResults: React.FC = () => {
   const { results, leadForm, assessmentDate, handleReset } = useMaturityAssessment();
   const [showMethodology, setShowMethodology] = useState(false);
 
-  if (!results) { return null; }
+  if (!results) {
+    return null;
+  }
 
   const getRecommendationLevel = (avgCategoryScore: number) => {
     if (avgCategoryScore <= 2.5) {
@@ -232,9 +234,8 @@ export const MAResults: React.FC = () => {
               </h3>
 
               <div className="space-y-6">
-                {Object.entries(results.categoryScores).map(([key, rawScoreData]) => {
+                {(Object.entries(results.categoryScores) as [CategoryKey, { total: number; count: number }][]).map(([key, scoreData]) => {
                   const catKey = key as CategoryKey;
-                  const scoreData = rawScoreData as { total: number; count: number };
                   const avgCatScore = scoreData.total / scoreData.count || 0;
                   const recLevel = getRecommendationLevel(avgCatScore);
                   const rec = recommendations[catKey][recLevel];

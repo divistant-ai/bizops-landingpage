@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
  * Section component for page sections
  * Server Component - no client-side interactivity needed
  */
-type SectionProps = {
+type SectionProps = React.HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   className?: string;
   id?: string;
@@ -21,6 +21,7 @@ const Section: React.FC<SectionProps> = ({
   containerClassName = '',
   noPadding = false,
   dark = false,
+  ...props
 }) => {
   // Design System: Ensure proper color contrast for light & dark mode
   // Dark prop sections: bg-slate-900 with text-white
@@ -31,7 +32,11 @@ const Section: React.FC<SectionProps> = ({
   const paddingClass = noPadding ? '' : 'py-16 md:py-20 lg:py-24';
 
   return (
-    <section id={id} className={twMerge(bgClass, paddingClass, className, 'transition-colors duration-300')}>
+    <section
+      id={id}
+      className={twMerge(bgClass, paddingClass, className, 'transition-colors duration-300')}
+      {...props}
+    >
       <div className={twMerge('max-w-7xl mx-auto px-4 sm:px-6 lg:px-8', containerClassName)}>
         {children}
       </div>

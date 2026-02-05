@@ -377,8 +377,8 @@ export default function WhyBizOpsContent() {
         demoBtnLink="/demo"
         pricingBtnText={t('cta_compare')}
         pricingBtnLink="/compare"
-        trustText1="Unified Platform"
-        trustText2="Indonesia First"
+        trustText1={t('unified_platform')}
+        trustText2={t('indonesia_first')}
       />
     </div>
   );

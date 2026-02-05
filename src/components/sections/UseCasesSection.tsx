@@ -29,12 +29,18 @@ export function UseCasesSection({
   title = 'Real-World Applications',
   subtitle = 'See how businesses like yours use this feature.',
 }: UseCasesSectionProps) {
-  if (!useCases || useCases.length === 0) { return null; }
+  if (!useCases || useCases.length === 0) {
+    return null;
+  }
 
   // Helper function to render icon
   const renderIcon = (icon: any, className: string) => {
-    if (!icon) { return null; }
-    if (React.isValidElement(icon)) { return <span className={className}>{icon}</span>; }
+    if (!icon) {
+      return null;
+    }
+    if (React.isValidElement(icon)) {
+      return <span className={className}>{icon}</span>;
+    }
     if (typeof icon === 'function' || (typeof icon === 'object' && icon.render)) {
       const IconComponent = icon;
       return <IconComponent className={className} />;

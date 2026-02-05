@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Grid, Typography } from '@/components/ui';
 import Button from '@/components/ui/Button';
-import { Checkbox } from '@/components/ui/Checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -18,8 +18,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/Form';
-import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
+import { Input } from '@/components/ui/input';
+import { Select } from '@/components/ui/select';
 
 type DemoFormProps = {
   form: UseFormReturn<DemoFormValues>;

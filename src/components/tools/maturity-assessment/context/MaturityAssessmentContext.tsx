@@ -127,7 +127,9 @@ export const MaturityAssessmentProvider: React.FC<{ children: React.ReactNode }>
 
   const handleAnswer = (score: number) => {
     const currentQuestion = assessmentQuestions[currentStep];
-    if (!currentQuestion) { return; }
+    if (!currentQuestion) {
+      return;
+    }
 
     const newAnswers = { ...answers, [currentQuestion.id]: score };
     setAnswers(newAnswers);

@@ -28,7 +28,7 @@ export default antfu(
     },
 
     // Ignored paths
-    ignores: ['migrations/**/*', 'src/locales/**/*.json', 'scripts/**/*', 'docs/**/*', 'public/**/*.js', '**/*.md'],
+    ignores: ['migrations/**/*', '**/*.md', 'scripts/archive/**/*', 'src/locales/*.json'],
   },
   // --- Accessibility Rules ---
   jsxA11y.flatConfigs.recommended,
@@ -104,7 +104,6 @@ export default antfu(
       'react-hooks/exhaustive-deps': 'off',
       'react-dom/no-missing-iframe-sandbox': 'off',
       'no-cond-assign': 'off',
-      'style/max-statements-per-line': 'off',
     },
     linterOptions: {
       reportUnusedDisableDirectives: false,

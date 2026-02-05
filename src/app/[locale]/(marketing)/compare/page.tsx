@@ -114,13 +114,13 @@ export default async function ComparisonIndexPage({ params }: Props) {
       <CTABannerSection
         title={t('hero_title')} // Reusing hero title or better "Still deciding?"
         subtitle={t('hero_subtitle')} // Reusing subtitle
-        badgeText="Compare"
-        demoBtnText={t('view_comparison')} // Or generic "Get Started"
+        badgeText={t('hero_title')}
+        demoBtnText={t('view_comparison')}
         demoBtnLink="/demo"
-        pricingBtnText="View Pricing"
+        pricingBtnText={t('view_pricing') || 'View Pricing'}
         pricingBtnLink="/pricing"
-        trustText1="Objective Analysis"
-        trustText2="Transparent Pricing"
+        trustText1={t('objective_analysis')}
+        trustText2={t('transparent_pricing')}
       />
     </div>
   );

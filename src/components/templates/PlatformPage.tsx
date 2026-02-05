@@ -43,8 +43,12 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
     baseArray: T[] | undefined,
     translatedArray: Partial<T>[] | undefined,
   ): T[] => {
-    if (!baseArray) { return []; }
-    if (!translatedArray) { return baseArray; }
+    if (!baseArray) {
+      return [];
+    }
+    if (!translatedArray) {
+      return baseArray;
+    }
 
     return baseArray.map((item, index) => ({
       ...item,
@@ -86,13 +90,19 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
         || modulesData[item.id]
         || capabilitiesData[item.id];
 
-      if (!sourceData) { return null; }
+      if (!sourceData) {
+        return null;
+      }
 
       // Determine href based on type
       let href = '#';
-      if (item.type === 'feature') { href = `/platform/${item.id}`; }
-      else if (item.type === 'module') { href = `/platform/modules/${item.id}`; }
-      else if (item.type === 'capability') { href = `/platform/capabilities/${item.id}`; }
+      if (item.type === 'feature') {
+        href = `/platform/${item.id}`;
+      } else if (item.type === 'module') {
+        href = `/platform/modules/${item.id}`;
+      } else if (item.type === 'capability') {
+        href = `/platform/capabilities/${item.id}`;
+      }
 
       return {
         id: sourceData.title, // using title as ID for key if needed, or keeping unique string

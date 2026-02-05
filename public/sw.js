@@ -231,7 +231,7 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch((error) => {
-            swLog('Stale-while-revalidate fetch failed', { url: url.pathname });
+            swLog('Stale-while-revalidate fetch failed', { url: url.pathname, error: error.message });
             // Ignore fetch errors, return cached if available
             return null;
           });

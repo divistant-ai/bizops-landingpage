@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { AlertCircle, ArrowRight, Mail, Phone, Users } from 'lucide-react';
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useMaturityAssessment } from '../context/MaturityAssessmentContext';
 
 export const MALeadForm: React.FC = () => {
