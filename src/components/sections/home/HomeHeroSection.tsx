@@ -163,7 +163,7 @@ export function HomeHeroSection() {
         className={`pointer-events-none absolute inset-0 bg-linear-to-br transition-colors duration-1000 ${activeSlide.bgGradient}`}
       />
 
-      <Container size="7xl" className="relative z-10 flex h-[950px] flex-col justify-center">
+      <Container size="6xl" className="relative z-10 flex h-[950px] flex-col justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSlide.id}
@@ -254,7 +254,7 @@ export function HomeHeroSection() {
 
             {/* SPLIT LAYOUTS (Left or Right) */}
             {activeSlide.layout !== 'centered' && (
-              <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+              <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
                 {/* TEXT COLUMN */}
                 <div className={cn(
                   'flex flex-col justify-center',
