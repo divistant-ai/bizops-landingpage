@@ -913,7 +913,12 @@ export const capabilitiesData: Record<string, any> = {
         title: 'Boros Kuota & Baterai',
         desc: 'Me-load halaman web berulang kali memakan kuota data dan menguras baterai HP karyawan lapangan.',
         icon: Zap,
-      }, // Need BatteryWarning or BatteryLow icon
+      },
+      {
+        title: 'Absensi Palsu dengan Fake GPS',
+        desc: 'Karyawan lapangan bisa memanipulasi lokasi absensi menggunakan aplikasi Fake GPS, merugikan perusahaan.',
+        icon: MapPin,
+      },
     ],
     mobileAdvantage: {
       title: 'Desain Intuitif Kelas Konsumen',
@@ -1200,6 +1205,11 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Staff bertanya \'Ini gimana?\', Manager tanya balik \'Ini yang mana?\'. Waktu terbuang menjelaskan konteks.',
         icon: AlertTriangle,
       },
+      {
+        title: 'Tidak Ada Jejak Keputusan',
+        desc: 'Keputusan penting dibuat via chat personal tanpa dokumentasi, menyebabkan konflik siapa yang berwenang.',
+        icon: Lock,
+      },
     ],
     mobileAdvantage: {
       title: 'Diskusi Tanpa Putus',
@@ -1379,6 +1389,11 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Membayar vendor software mahal hanya untuk membuat satu form digital sederhana.',
         icon: DollarSign,
       },
+      {
+        title: 'Data Tercecer di File Pribadi',
+        desc: 'Data bisnis tersimpan di laptop/file karyawan yang resign, menyebabkan hilangnya informasi penting perusahaan.',
+        icon: FileWarning,
+      },
     ],
     mobileAdvantage: {
       title: 'Build Once, Run Everywhere',
@@ -1468,6 +1483,11 @@ export const capabilitiesData: Record<string, any> = {
         title: 'Human Error',
         desc: 'Salah ketik nominal atau salah input kode barang yang menyebabkan kerugian finansial.',
         icon: FileWarning,
+      },
+      {
+        title: 'Respons Lambat',
+        desc: 'Customer inquiry atau vendor request tidak ditangani cepat karena staff sibuk dengan tugas manual berulang.',
+        icon: Clock,
       },
     ],
     mobileAdvantage: {
@@ -1561,6 +1581,11 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Kode barang di PT A beda dengan PT B, membuat analisis inventory grup jadi mustahil.',
         icon: AlertTriangle,
       },
+      {
+        title: 'Audit Bertele-tele',
+        desc: 'Auditor external sulit melacak transaksi antar entitas karena sistem terpisah-pisah dan tidak terintegrasi.',
+        icon: Search,
+      },
     ],
     connections: [
       {
@@ -1648,6 +1673,11 @@ export const capabilitiesData: Record<string, any> = {
         title: 'CV Lamaran Numplek',
         desc: 'HRD pusing merekap ribuan CV dari email. Candidate Portal merapikan database pelamar otomatis.',
         icon: Users,
+      },
+      {
+        title: 'Komunikasi Tidak Terstruktur',
+        desc: 'Pesan penting dari customer atau vendor hilang di tumpukan chat WhatsApp grup yang tidak terorganisir.',
+        icon: MessageCircle,
       },
     ],
     mobileAdvantage: {
@@ -1744,6 +1774,11 @@ export const capabilitiesData: Record<string, any> = {
         title: 'Data Basi',
         desc: 'Laporan baru tersedia di akhir bulan. Saat laporan jadi, momentum pengambilan keputusan sudah lewat.',
         icon: History,
+      },
+      {
+        title: 'Sulitnya Cross-Module Report',
+        desc: 'Data terpecah di berbagai sistem membuat laporan gabungan (misal: sales vs inventory) menjadi sangat sulit.',
+        icon: FileWarning,
       },
     ],
     mobileAdvantage: {

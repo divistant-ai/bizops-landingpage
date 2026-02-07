@@ -205,13 +205,60 @@ export const navDataTranslations = {
 
     // Services
     services: {
-      consulting: 'Strategic Consulting',
-      managed: 'Enterprise Managed Services',
-      managedDesc: 'Virtual Head Office',
-      implementation: 'Implementation',
-      customDev: 'Custom Development',
-      training: 'Training & Academy',
-      support: 'Support & Maintenance',
+      business: {
+        title: 'Business Services',
+        description: 'Strategic and operational services to optimize your business processes.',
+        items: {
+          consulting: {
+            label: 'Strategic Consulting',
+            desc: 'Technology & process audit',
+          },
+          implementation: {
+            label: 'Implementation',
+            desc: 'ERP deployment & migration',
+          },
+          managedServices: {
+            label: 'Managed Services',
+            desc: 'Virtual Head Office',
+          },
+          training: {
+            label: 'Training & Change Management',
+            desc: 'User adoption & enablement',
+          },
+          support: {
+            label: 'Support & Maintenance',
+            desc: '24/7 technical support',
+          },
+        },
+      },
+      technical: {
+        title: 'Technical Services',
+        description: 'Specialized technical solutions for system customization and integration.',
+        items: {
+          customDevelopment: {
+            label: 'Custom Development',
+            desc: 'Tailored features & apps',
+          },
+          dataMigration: {
+            label: 'Data Migration',
+            desc: 'Safe data transfer',
+          },
+          integration: {
+            label: 'System Integration',
+            desc: 'API & connector solutions',
+          },
+          securityAudit: {
+            label: 'Security Audit',
+            desc: 'Vulnerability assessment',
+          },
+        },
+      },
+      tabs: {
+        business: 'Business Services',
+        technical: 'Technical Services',
+      },
+      sectionTitle: 'Professional Services',
+      viewAll: 'View all services',
     },
   },
 
@@ -418,13 +465,60 @@ export const navDataTranslations = {
 
     // Services (Indonesian)
     services: {
-      consulting: 'Strategic Consulting',
-      managed: 'Enterprise Managed Services',
-      managedDesc: 'Virtual Head Office',
-      implementation: 'Implementation',
-      customDev: 'Custom Development',
-      training: 'Training & Academy',
-      support: 'Support & Maintenance',
+      business: {
+        title: 'Layanan Bisnis',
+        description: 'Layanan strategis dan operasional untuk mengoptimalkan proses bisnis Anda.',
+        items: {
+          consulting: {
+            label: 'Strategic Consulting',
+            desc: 'Audit teknologi & proses',
+          },
+          implementation: {
+            label: 'Implementation',
+            desc: 'Deployment & migrasi ERP',
+          },
+          managedServices: {
+            label: 'Managed Services',
+            desc: 'Virtual Head Office',
+          },
+          training: {
+            label: 'Training & Change Management',
+            desc: 'Adopsi & enablement pengguna',
+          },
+          support: {
+            label: 'Support & Maintenance',
+            desc: 'Dukungan teknis 24/7',
+          },
+        },
+      },
+      technical: {
+        title: 'Layanan Teknis',
+        description: 'Solusi teknis khusus untuk kustomisasi dan integrasi sistem.',
+        items: {
+          customDevelopment: {
+            label: 'Custom Development',
+            desc: 'Fitur & aplikasi kustom',
+          },
+          dataMigration: {
+            label: 'Data Migration',
+            desc: 'Transfer data yang aman',
+          },
+          integration: {
+            label: 'System Integration',
+            desc: 'Solusi API & connector',
+          },
+          securityAudit: {
+            label: 'Security Audit',
+            desc: 'Penilaian kerentanan',
+          },
+        },
+      },
+      tabs: {
+        business: 'Layanan Bisnis',
+        technical: 'Layanan Teknis',
+      },
+      sectionTitle: 'Professional Services',
+      viewAll: 'Lihat semua layanan',
     },
   },
 };

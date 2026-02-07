@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { servicesItems, solutionsContent } from '@/data/navData';
+import { servicesContent, solutionsContent } from '@/data/navData';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
 import { getBaseUrl } from '@/libs/utils/helpers';
 
@@ -63,7 +63,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(solutionsContent.role?.items.map(item => createEntry(item.to, 0.7, 'monthly')) || []),
 
     // Services
-    ...servicesItems.map(item => createEntry(item.to, 0.8, 'monthly')),
+    ...(servicesContent.business?.items.map(item => createEntry(item.to, 0.8, 'monthly')) || []),
+    ...(servicesContent.technical?.items.map(item => createEntry(item.to, 0.8, 'monthly')) || []),
 
     // Resources
     createEntry('/blog', 0.8, 'daily'),

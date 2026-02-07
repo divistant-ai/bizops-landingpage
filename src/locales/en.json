@@ -120,7 +120,9 @@
     "services_support": "Support & Maintenance",
     "services_data_migration": "Data Migration",
     "services_integration": "System Integration",
-    "services_security_audit": "Security Audit"
+    "services_security_audit": "Security Audit",
+    "business_services": "Business Services",
+    "technical_services": "Technical Services"
   },
   "Footer": {
     "description": "All-in-one business operating system. Manage People, Money, Supply, Growth, Work, Care, and Hub in one integrated platform.",

@@ -2,6 +2,7 @@
 
 import { HelpCircle } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 import { ChallengesSection } from '@/components/sections/ChallengesSection';
 import { ConnectionsSection } from '@/components/sections/ConnectionsSection';
 import { CTABannerSection } from '@/components/sections/CTABannerSection';
@@ -27,16 +28,30 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
   const t = useTranslations('ModulePage');
   const locale = useLocale() as 'en' | 'id';
 
-  // Get base data
-  const baseData = featuresData[featureId];
+  // Get base data from featuresData or fall back to capabilitiesData
+  const baseData = useMemo(() => {
+    // First try featuresData (main source)
+    if (featuresData[featureId]) {
+      return featuresData[featureId];
+    }
+    // Then try capabilitiesData for capabilities like team-collaboration, custom-apps
+    if (capabilitiesData[featureId]) {
+      return capabilitiesData[featureId];
+    }
+    return null;
+  }, [featureId]);
+
   if (!baseData) {
     return null;
   }
 
   // Get translation
-  const translation = locale === 'id'
-    ? (featuresPagesTranslations.id?.[featureId as keyof typeof featuresPagesTranslations.id] as any)
-    : null;
+  const translation
+    = locale === 'id'
+      ? (featuresPagesTranslations.id?.[
+          featureId as keyof typeof featuresPagesTranslations.id
+        ] as any)
+      : null;
 
   // Helper to merge arrays with translations while preserving icons
   const mergeArrayWithTranslations = <T extends { icon?: any }>(
@@ -57,22 +72,36 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
     }));
   };
 
+  // Get capability data as fallback for problems, connections, metrics, etc.
+  const capabilityData = capabilitiesData[featureId];
+
   // Build merged data - prioritize translations for text, keep base for components
+  // Also merge capability data (problems, connections, metrics) if available
   const data = {
     ...baseData,
-    ...(translation ? {
-      title: translation.title || baseData.title,
-      titleHighlight: translation.titleHighlight || baseData.titleHighlight,
-      subtitle: translation.subtitle || baseData.subtitle,
-      description: translation.description || baseData.description,
-      featuresBadge: translation.featuresBadge || baseData.featuresBadge,
-      featuresTitle: translation.featuresTitle || baseData.featuresTitle,
-      featuresSubtitle: translation.featuresSubtitle || baseData.featuresSubtitle,
-      useCasesBadge: translation.useCasesBadge || baseData.useCasesBadge,
-      useCasesTitle: translation.useCasesTitle || baseData.useCasesTitle,
-      useCasesSubtitle: translation.useCasesSubtitle || baseData.useCasesSubtitle,
-      cta: translation.cta ? { ...baseData.cta, ...translation.cta } : baseData.cta,
-    } : {}),
+    ...(capabilityData
+      ? {
+          problems: capabilityData.problems,
+          connections: capabilityData.connections,
+          metrics: capabilityData.metrics,
+          mobileAdvantage: capabilityData.mobileAdvantage,
+        }
+      : {}),
+    ...(translation
+      ? {
+          title: translation.title || baseData.title,
+          titleHighlight: translation.titleHighlight || baseData.titleHighlight,
+          subtitle: translation.subtitle || baseData.subtitle,
+          description: translation.description || baseData.description,
+          featuresBadge: translation.featuresBadge || baseData.featuresBadge,
+          featuresTitle: translation.featuresTitle || baseData.featuresTitle,
+          featuresSubtitle: translation.featuresSubtitle || baseData.featuresSubtitle,
+          useCasesBadge: translation.useCasesBadge || baseData.useCasesBadge,
+          useCasesTitle: translation.useCasesTitle || baseData.useCasesTitle,
+          useCasesSubtitle: translation.useCasesSubtitle || baseData.useCasesSubtitle,
+          cta: translation.cta ? { ...baseData.cta, ...translation.cta } : baseData.cta,
+        }
+      : {}),
     // Properly merge arrays preserving icons
     features: mergeArrayWithTranslations(baseData.features, translation?.features as any),
     useCases: mergeArrayWithTranslations(baseData.useCases, translation?.useCases as any),
@@ -85,10 +114,7 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
     .map((item) => {
       // Try to find data in all data sources
       // Note: modulesData and capabilitiesData keys might need adjustment if they don't match IDs exactly
-      const sourceData
-        = featuresData[item.id]
-        || modulesData[item.id]
-        || capabilitiesData[item.id];
+      const sourceData = featuresData[item.id] || modulesData[item.id] || capabilitiesData[item.id];
 
       if (!sourceData) {
         return null;
@@ -121,9 +147,7 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
   ];
 
   // Build hero headline with highlight
-  const heroHeadline = data.titleHighlight
-    ? `${data.title} ${data.titleHighlight}`
-    : data.title;
+  const heroHeadline = data.titleHighlight ? `${data.title} ${data.titleHighlight}` : data.title;
 
   return (
     <div className="flex flex-col">
@@ -163,7 +187,7 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
       {/* 5. PROBLEMS / CHALLENGES */}
       {data.problems && data.problems.length > 0 && (
         <ChallengesSection
-          challenges={data.problems.map(p => ({
+          challenges={data.problems.map((p: { title: string; desc: string }) => ({
             title: p.title,
             desc: p.desc,
           }))}
@@ -173,7 +197,7 @@ export default function PlatformPage({ featureId, relatedModuleIds = [] }: Platf
       {/* 6. CONNECTIONS */}
       {data.connections && data.connections.length > 0 && (
         <ConnectionsSection
-          connections={data.connections.map(c => ({
+          connections={data.connections.map((c: { target: string; desc: string }) => ({
             target: c.target,
             desc: c.desc,
           }))}

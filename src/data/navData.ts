@@ -466,24 +466,76 @@ export const companyContent: Record<string, MenuContent> = {
   },
 };
 
-export const servicesItems: Array<MenuItem> = [
-  { to: '/services/consulting', label: 'Strategic Consulting', desc: '', icon: Compass },
-  { to: '/services/implementation', label: 'Implementation', desc: '', icon: Wrench },
-  { to: '/services/custom-development', label: 'Custom Development', desc: '', icon: Code },
-  { to: '/services/data-migration', label: 'Data Migration', desc: '', icon: Database },
-  { to: '/services/integration', label: 'System Integration', desc: '', icon: Network },
-  { to: '/services/security-audit', label: 'Security Audit', desc: '', icon: Shield },
-  {
-    to: '/services/managed-services',
-    label: 'Managed Services',
-    desc: 'Virtual Head Office',
-    icon: Building,
-  },
-  {
-    to: '/services/training',
-    label: 'Training & Change Management',
-    desc: '',
-    icon: GraduationCap,
-  },
-  { to: '/services/support', label: 'Support & Managed Services', desc: '', icon: Headphones },
+export const servicesTabs: Array<MenuTab> = [
+  { id: 'business', label: 'Business Services', icon: Briefcase },
+  { id: 'technical', label: 'Technical Services', icon: Code },
 ];
+
+export const servicesContent: Record<string, MenuContent> = {
+  business: {
+    title: 'Business Services',
+    description: 'Strategic and operational services to optimize your business processes.',
+    items: [
+      {
+        to: '/services/consulting',
+        label: 'Strategic Consulting',
+        desc: 'Technology & process audit',
+        icon: Compass,
+      },
+      {
+        to: '/services/implementation',
+        label: 'Implementation',
+        desc: 'ERP deployment & migration',
+        icon: Wrench,
+      },
+      {
+        to: '/services/managed-services',
+        label: 'Managed Services',
+        desc: 'Virtual Head Office',
+        icon: Building,
+      },
+      {
+        to: '/services/training',
+        label: 'Training & Change Management',
+        desc: 'User adoption & enablement',
+        icon: GraduationCap,
+      },
+      {
+        to: '/services/support',
+        label: 'Support & Maintenance',
+        desc: '24/7 technical support',
+        icon: Headphones,
+      },
+    ],
+  },
+  technical: {
+    title: 'Technical Services',
+    description: 'Specialized technical solutions for system customization and integration.',
+    items: [
+      {
+        to: '/services/custom-development',
+        label: 'Custom Development',
+        desc: 'Tailored features & apps',
+        icon: Code,
+      },
+      {
+        to: '/services/data-migration',
+        label: 'Data Migration',
+        desc: 'Safe data transfer',
+        icon: Database,
+      },
+      {
+        to: '/services/integration',
+        label: 'System Integration',
+        desc: 'API & connector solutions',
+        icon: Network,
+      },
+      {
+        to: '/services/security-audit',
+        label: 'Security Audit',
+        desc: 'Vulnerability assessment',
+        icon: Shield,
+      },
+    ],
+  },
+};

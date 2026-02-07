@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import { Badge, CardSlider, SpotlightCard, Stack } from '@/components/ui';
-import { BouncyLink } from '@/components/ui/BouncyLink';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { StaggeredText } from '@/components/ui/motion-text';
 import { industriesData, rolesData } from '@/data/solutionsContent';
@@ -94,18 +93,18 @@ export default function SolutionsContent() {
 
           <FadeIn delay={0.5}>
             <Stack direction="vertical" gap={4} className="mb-0 justify-center sm:flex-row">
-              <BouncyLink
+              <Link
                 href="/contact"
-                className="bg-primary-600 hover:bg-primary-500 h-14 w-full border-none px-8 text-lg text-white shadow-[0_0_30px_rgba(14,165,233,0.3)] sm:w-auto"
+                className="bg-primary-600 hover:bg-primary-500 inline-flex h-14 w-full items-center justify-center rounded-xl px-8 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-xl sm:w-auto"
               >
                 {t('cta_primary')}
-              </BouncyLink>
-              <BouncyLink
+              </Link>
+              <Link
                 href="/demo"
-                className="h-14 w-full bg-white px-8 text-lg text-slate-900 hover:bg-slate-100 sm:w-auto dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+                className="inline-flex h-14 w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-8 text-lg font-medium text-slate-900 transition-colors hover:bg-slate-50 sm:w-auto dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
               >
-                <span className="text-slate-900 dark:text-white">{t('cta_secondary')}</span>
-              </BouncyLink>
+                {t('cta_secondary')}
+              </Link>
             </Stack>
           </FadeIn>
         </Container>
@@ -174,27 +173,28 @@ export default function SolutionsContent() {
             desktopClassName="md:grid md:grid-cols-3 lg:grid-cols-5 gap-6"
             mobileItemWidth="w-[75vw] sm:w-[280px]"
           >
-            {roles.map((role) => {
+            {roles.map((role, idx) => {
               const Icon = role.icon;
               return (
-                <Link key={role.id} href={`/role/${role.id}`} className="group block h-full">
-                  <div className="hover:border-primary-300 dark:hover:border-primary-700 relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-                    <div className="bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 ring-primary-100 dark:ring-primary-800 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ring-1 transition-all group-hover:scale-110">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-                      {role.title}
-                    </h3>
-                    <p className="mb-3 text-xs text-slate-500 dark:text-slate-400">
-                      {role.subtitle}
-                    </p>
-                    <div className="text-primary-600 flex items-center justify-center text-sm font-medium">
-                      <span className="dark:text-white">{t('explore_role')}</span>
-                      {' '}
-                      <ArrowRight className="ml-1 h-3 w-3" />
-                    </div>
-                  </div>
-                </Link>
+                <FadeIn key={role.id} delay={idx * 0.05} className="h-full">
+                  <Link href={`/role/${role.id}`} className="group block h-full">
+                    <SpotlightCard className="hover:shadow-primary-500/10 relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                      <div className="bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 ring-primary-100 dark:ring-primary-800 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl ring-1 transition-all group-hover:scale-110">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 text-lg font-bold text-slate-900 transition-colors dark:text-white">
+                        {role.title}
+                      </h3>
+                      <p className="mb-3 text-xs text-slate-500 dark:text-slate-400">
+                        {role.subtitle}
+                      </p>
+                      <div className="text-primary-600 dark:text-primary-400 flex items-center justify-center text-sm font-semibold transition-transform group-hover:translate-x-1">
+                        {t('explore_role')}
+                        <ArrowRight className="ml-1 h-3 w-3" />
+                      </div>
+                    </SpotlightCard>
+                  </Link>
+                </FadeIn>
               );
             })}
           </CardSlider>

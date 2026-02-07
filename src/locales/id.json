@@ -120,7 +120,9 @@
     "services_support": "Dukungan & Maintenance",
     "services_data_migration": "Migrasi Data",
     "services_integration": "Integrasi Sistem",
-    "services_security_audit": "Audit Keamanan"
+    "services_security_audit": "Audit Keamanan",
+    "business_services": "Layanan Bisnis",
+    "technical_services": "Layanan Teknis"
   },
   "Footer": {
     "description": "Sistem operasi bisnis terpadu. Kelola People, Money, Supply, Growth, Work, Care, dan Hub dalam satu platform.",

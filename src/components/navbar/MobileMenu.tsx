@@ -10,7 +10,7 @@ import {
   companyContent,
   platformContent,
   resourcesContent,
-  servicesItems,
+  servicesContent,
   solutionsContent,
 } from '../../data/navData';
 import Button from '../ui/Button';
@@ -293,26 +293,59 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                 isOpen={mobileServicesOpen}
                 onToggle={() => setMobileServicesOpen(!mobileServicesOpen)}
               >
-                <div className="p-4">
-                  <div className="space-y-2">
-                    {servicesItems.map(item => (
-                      <Link
-                        key={item.to}
-                        href={item.to}
-                        onClick={onClose}
-                        className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-3 rounded-lg p-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800"
-                      >
-                        <item.icon className="h-4 w-4 text-slate-400" />
-                        <div className="flex flex-col">
-                          <span>{item.label}</span>
-                          {item.desc && (
-                            <span className="text-xs text-slate-400 dark:text-slate-500">
-                              {item.desc}
-                            </span>
-                          )}
-                        </div>
-                      </Link>
-                    ))}
+                <div className="space-y-6 p-4">
+                  {/* Business Services */}
+                  <div>
+                    <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
+                      {t('business_services')}
+                    </div>
+                    <div className="space-y-2">
+                      {servicesContent.business?.items.map(item => (
+                        <Link
+                          key={item.to}
+                          href={item.to}
+                          onClick={onClose}
+                          className="hover:text-primary-600 dark:hover:text-primary-400 focus-visible:ring-primary-500 flex items-center gap-3 rounded-lg p-3 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-50 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] dark:text-slate-300 dark:hover:bg-slate-800"
+                        >
+                          <item.icon className="h-5 w-5 text-slate-400" />
+                          <div className="flex flex-col">
+                            <span>{item.label}</span>
+                            {item.desc && (
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Technical Services */}
+                  <div>
+                    <div className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
+                      {t('technical_services')}
+                    </div>
+                    <div className="space-y-2">
+                      {servicesContent.technical?.items.map(item => (
+                        <Link
+                          key={item.to}
+                          href={item.to}
+                          onClick={onClose}
+                          className="hover:text-primary-600 dark:hover:text-primary-400 focus-visible:ring-primary-500 flex items-center gap-3 rounded-lg p-3 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-50 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] dark:text-slate-300 dark:hover:bg-slate-800"
+                        >
+                          <item.icon className="h-5 w-5 text-slate-400" />
+                          <div className="flex flex-col">
+                            <span>{item.label}</span>
+                            {item.desc && (
+                              <span className="text-xs text-slate-400 dark:text-slate-500">
+                                {item.desc}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </AccordionItem>

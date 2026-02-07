@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { servicesItems } from '../../data/navData';
 import { LanguageSwitch } from '../LanguageSwitch';
 import { ThemeToggle } from '../ThemeToggle';
 import MegaMenu from './MegaMenu';
@@ -27,22 +26,6 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   const t = useTranslations('Navbar');
   const [activeMenu, setActiveMenu] = useState<MenuType>(null);
   const navRef = useRef<HTMLDivElement>(null);
-
-  // Get translated service label
-  const getServiceLabel = (item: (typeof servicesItems)[0]) => {
-    const labelMap: Record<string, string> = {
-      '/services/consulting': t('services_consulting'),
-      '/services/implementation': t('services_implementation'),
-      '/services/custom-development': t('services_custom_dev'),
-      '/services/data-migration': t('services_data_migration'),
-      '/services/integration': t('services_integration'),
-      '/services/security-audit': t('services_security_audit'),
-      '/services/managed-services': t('services_managed'),
-      '/services/training': t('services_training'),
-      '/services/support': t('services_support'),
-    };
-    return labelMap[item.to] || item.label;
-  };
 
   // Handle click outside to close menu
   useEffect(() => {
@@ -131,27 +114,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
               className={`${navbarStyles.iconSize.chevron} opacity-60 transition-transform duration-200 ${isMenuOpen('services') ? 'rotate-180' : ''}`}
             />
           </button>
-          <div
-            className={`absolute top-full left-1/2 z-50 mt-2 w-[40rem] -translate-x-1/2 transform rounded-xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-xl transition-all duration-200 dark:border-slate-700/50 dark:bg-slate-900/95 ${
-              isMenuOpen('services')
-                ? 'visible translate-y-0 opacity-100'
-                : 'invisible translate-y-1 opacity-0'
-            }`}
-          >
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-              {servicesItems.map(item => (
-                <Link
-                  key={item.to}
-                  href={item.to}
-                  className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-all hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50"
-                  onClick={handleCloseMenu}
-                >
-                  <item.icon className="h-4 w-4 shrink-0 opacity-70" />
-                  <span className="truncate">{getServiceLabel(item)}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
+          <MegaMenu type="services" isOpen={isMenuOpen('services')} onClose={handleCloseMenu} />
         </div>
 
         <Link

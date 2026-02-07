@@ -2,8 +2,8 @@
 
 import { ArrowRight, CheckCircle2, Play, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { Container } from '@/components/layout';
-import { BouncyLink } from '@/components/ui/BouncyLink';
 
 export const PlatformHero = () => {
   const t = useTranslations('Platform');
@@ -12,9 +12,18 @@ export const PlatformHero = () => {
     <div className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950">
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-gradient-to-br from-blue-600/30 to-transparent blur-3xl" style={{ animationDuration: '4s' }} />
-        <div className="absolute -right-1/4 -bottom-1/2 h-[600px] w-[600px] animate-pulse rounded-full bg-gradient-to-br from-indigo-600/20 to-transparent blur-3xl" style={{ animationDuration: '5s', animationDelay: '1s' }} />
-        <div className="absolute top-1/4 right-1/3 h-[400px] w-[400px] animate-pulse rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent blur-3xl" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+        <div
+          className="absolute -top-1/2 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-gradient-to-br from-blue-600/30 to-transparent blur-3xl"
+          style={{ animationDuration: '4s' }}
+        />
+        <div
+          className="absolute -right-1/4 -bottom-1/2 h-[600px] w-[600px] animate-pulse rounded-full bg-gradient-to-br from-indigo-600/20 to-transparent blur-3xl"
+          style={{ animationDuration: '5s', animationDelay: '1s' }}
+        />
+        <div
+          className="absolute top-1/4 right-1/3 h-[400px] w-[400px] animate-pulse rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent blur-3xl"
+          style={{ animationDuration: '6s', animationDelay: '2s' }}
+        />
       </div>
 
       {/* Grid pattern overlay */}
@@ -42,7 +51,12 @@ export const PlatformHero = () => {
                   {t('hero_title_2')}
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
-                  <path d="M2 10C50 2 100 2 150 6C200 10 250 6 298 2" stroke="url(#gradient)" strokeWidth="3" strokeLinecap="round" />
+                  <path
+                    d="M2 10C50 2 100 2 150 6C200 10 250 6 298 2"
+                    stroke="url(#gradient)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
                   <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#60A5FA" />
@@ -61,20 +75,20 @@ export const PlatformHero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <BouncyLink
+              <Link
                 href="/demo"
                 className="group flex h-14 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:shadow-xl hover:shadow-blue-600/30"
               >
                 {t('cta_demo')}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </BouncyLink>
-              <BouncyLink
+              </Link>
+              <Link
                 href="/product-tour"
                 className="flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-8 font-medium text-slate-300 backdrop-blur-sm transition-all hover:border-slate-600 hover:bg-slate-800"
               >
                 <Play className="h-4 w-4" />
                 {t('cta_pricing')}
-              </BouncyLink>
+              </Link>
             </div>
 
             {/* Trust badges */}

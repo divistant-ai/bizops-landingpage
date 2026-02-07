@@ -11,13 +11,15 @@ import {
   platformTabs,
   resourcesContent,
   resourcesTabs,
+  servicesContent,
+  servicesTabs,
   solutionsContent,
   solutionsTabs,
 } from '../../data/navData';
 import { navDataTranslations } from '../../data/navDataTranslations';
 
 type MegaMenuProps = {
-  type: 'platform' | 'solutions' | 'resources' | 'company';
+  type: 'platform' | 'solutions' | 'services' | 'resources' | 'company';
   isOpen?: boolean;
   onClose?: () => void;
 };
@@ -32,6 +34,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
         return platformTabs;
       case 'solutions':
         return solutionsTabs;
+      case 'services':
+        return servicesTabs;
       case 'resources':
         return resourcesTabs;
       case 'company':
@@ -47,6 +51,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
         return platformContent;
       case 'solutions':
         return solutionsContent;
+      case 'services':
+        return servicesContent;
       case 'resources':
         return resourcesContent;
       case 'company':
@@ -62,6 +68,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
         return 'modules';
       case 'solutions':
         return 'industry';
+      case 'services':
+        return 'business';
       case 'resources':
         return 'insights';
       case 'company':
@@ -112,6 +120,13 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
       }
       if (tabId === 'ecosystem') {
         return t.company.ecosystem;
+      }
+    } else if (type === 'services') {
+      if (tabId === 'business') {
+        return t.services.business;
+      }
+      if (tabId === 'technical') {
+        return t.services.technical;
       }
     }
     return null;
@@ -350,6 +365,37 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
       return 'careers';
     }
 
+    // Services - business
+    if (url.includes('/services/consulting')) {
+      return 'consulting';
+    }
+    if (url.includes('/services/implementation')) {
+      return 'implementation';
+    }
+    if (url.includes('/services/managed-services')) {
+      return 'managedServices';
+    }
+    if (url.includes('/services/training')) {
+      return 'training';
+    }
+    if (url.includes('/services/support')) {
+      return 'support';
+    }
+
+    // Services - technical
+    if (url.includes('/services/custom-development')) {
+      return 'customDevelopment';
+    }
+    if (url.includes('/services/data-migration')) {
+      return 'dataMigration';
+    }
+    if (url.includes('/services/integration')) {
+      return 'integration';
+    }
+    if (url.includes('/services/security-audit')) {
+      return 'securityAudit';
+    }
+
     return null;
   };
 
@@ -368,6 +414,9 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     }
     if (type === 'solutions') {
       return t.solutions.tabs[tabKey as keyof typeof t.solutions.tabs];
+    }
+    if (type === 'services') {
+      return t.services.tabs[tabKey as keyof typeof t.services.tabs];
     }
     if (type === 'resources') {
       return t.resources.tabs[tabKey as keyof typeof t.resources.tabs];
@@ -421,6 +470,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
               <div className="mb-3 px-4 text-xs font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
                 {type === 'platform' && t.platform.sectionTitle}
                 {type === 'solutions' && t.solutions.sectionTitle}
+                {type === 'services' && t.services.sectionTitle}
                 {type === 'resources' && t.resources.sectionTitle}
                 {type === 'company' && t.company.sectionTitle}
               </div>
@@ -551,17 +601,20 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                           ? '/platform'
                           : type === 'solutions'
                             ? '/solutions'
-                            : type === 'resources'
-                              ? '/resources'
-                              : type === 'company'
-                                ? '/about'
-                                : '#'
+                            : type === 'services'
+                              ? '/services'
+                              : type === 'resources'
+                                ? '/resources'
+                                : type === 'company'
+                                  ? '/about'
+                                  : '#'
                       }
                       onClick={onClose}
                       className="text-primary-600 hover:text-primary-700 flex items-center gap-1 text-sm font-semibold dark:text-slate-50"
                     >
                       {type === 'platform' && t.platform.viewAll}
                       {type === 'solutions' && t.solutions.viewAll}
+                      {type === 'services' && t.services.viewAll}
                       {type === 'resources' && t.resources.viewAll}
                       {type === 'company' && t.company.viewAll}
                       <ChevronRight className="h-4 w-4" />
