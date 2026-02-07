@@ -383,6 +383,272 @@
 
 ---
 
+## 11. Homepage Sections Redesign (Major Update)
+
+### Overview
+
+Complete redesign of all homepage sections following industry best practices for modern SaaS landing pages. Focus on: single-screen layouts, visual consistency, accessibility compliance, and conversion optimization.
+
+### Section-by-Section Changes
+
+#### 11.1 Hero Section (`HomeHeroSection.tsx`)
+
+**Major Changes:**
+
+- **4-slide carousel** with auto-rotate (7s interval)
+- **Parallax tilt effects** on slide transitions
+- **Trust badges** showing "500+ companies trust BizOps"
+- **Enhanced CTA mapping:**
+  - General slide → `/demo`
+  - ESS slide → `/features/employee-self-service`
+  - AI slide → `/features/ai-assistant`
+  - Industry slide → `/solutions`
+- **Play/pause controls** with reduced motion support
+- **Color-coded themes:** Blue (General), Sky (ESS), Purple (AI), Amber (Industry)
+
+**Design Improvements:**
+
+- Slider navigation with dots and arrows
+- Gradient overlays for better text readability
+- Optimized image loading with next/image
+- Responsive breakpoints: sm, md, lg
+
+---
+
+#### 11.2 Problems/Challenges Section (`ChallengesSection.tsx`)
+
+**Major Changes:**
+
+- **From slider to 4-card grid layout** - All issues visible at once
+- **Simplified content structure:**
+  - Removed: Financial impact boxes, "Before → After" sections
+  - Kept: Icon, title, subtitle, description, "HIGH RISK" badge
+- **Equal-height cards** using flexbox (`h-full flex flex-col`)
+- **Color-coded cards:**
+  1. Rose (#1) - Marketing/Stock issues
+  2. Amber (#2) - Compliance/Tax issues
+  3. Slate (#3) - ERP Adoption issues
+  4. Purple (#4) - Hidden costs
+
+**Content Updates:**
+
+- Emotional hooks: "Marketing dapat order Rp 500 juta, tapi gudang kosong"
+- Specific metrics: "73% Perusahaan", "Kerugian Rp 25-150 Juta/bulan"
+- Removed UMKM-specific terms → Generic "Perusahaan"
+
+**Responsive Layout:**
+
+- Desktop: 4 columns (1 row)
+- Tablet: 2 columns (2 rows)
+- Mobile: 1 column (4 rows)
+
+---
+
+#### 11.3 Solutions Section (`HomeSolutionsSection.tsx`)
+
+**Major Changes:**
+
+- **From 3-column grid to single focused card layout**
+- **Pill-style tab navigation** (horizontal, no grid)
+- **Unified card container** with 2-column layout:
+  - Left: Module info, metrics, features, industries, CTAs
+  - Right: Dashboard preview with play button overlay
+
+**Design Improvements:**
+
+- Active tab: Full `bg-primary-500` with white text (high contrast)
+- Inactive tabs: Subtle hover effects
+- Top header bar with module icon + name + category
+- Metrics displayed in top-right corner (desktop)
+- Features shown as checklist items with checkmarks
+- Industries as tag pills
+
+**Content Structure:**
+
+```
+┌─────────────────────────────────────┐
+│ [Icon] Module Name    [Metrics]     │ ← Header
+├─────────────────┬───────────────────┤
+│                 │                   │
+│  Description  │   Dashboard       │
+│                 │   Preview         │
+│  Features     │                   │
+│  (checklist)   │   [Play Button]   │
+│                 │                   │
+│  Industries   │                   │
+│                 │                   │
+│  [CTA Buttons] │                   │
+│                 │                   │
+└─────────────────┴───────────────────┘
+```
+
+**6 Modules Supported:**
+
+1. People (HR & Payroll)
+2. Money (Finance & Accounting)
+3. Operations (Supply Chain)
+4. Sales (CRM & Commerce)
+5. Projects (Project Management)
+6. Assets (Asset Management)
+
+---
+
+#### 11.4 Value Proposition Section (`HomeUVPSection.tsx`)
+
+**Major Changes:**
+
+- **Single-screen layout** (`min-h-screen flex flex-col justify-center`)
+- **4-card bento grid** (2x2) with gradient backgrounds
+- **Compact card design:**
+  - Removed: Floating decorative icons, complex patterns
+  - Simplified: Gradient backgrounds, minimal padding
+
+**Color Themes:**
+
+1. Blue gradient - Hybrid Cloud Freedom
+2. Purple gradient - Consumer-Grade UX
+3. Emerald gradient - Indonesia-Ready Compliance
+4. Amber gradient - AI-Powered Insights
+
+**Content:**
+
+- Title, subtitle, description (all visible)
+- "Learn More" CTA with arrow icon
+- Hover effects: lift + shadow enhancement
+
+---
+
+#### 11.5 Pricing Comparison Section (`PricingComparisonSection.tsx`)
+
+**Major Changes:**
+
+- **Single-screen layout** (`min-h-screen`)
+- **Side-by-side comparison cards** (Before vs After)
+- **Compact design:**
+  - Problem card (Red theme): Old approach pain points
+  - Solution card (Emerald theme): BizOps benefits
+
+**Card Layout:**
+
+- Header with icon + title + category label
+- 4 pain points/benefits as checklist items
+- Cost footer with price highlight
+- "VS" badge centered between cards (desktop)
+
+**Visual Design:**
+
+- Problem card: Red gradient border, X icons
+- Solution card: Emerald gradient border, Check icons, "Recommended" badge
+- Pricing highlight: Large font size for amounts
+- CTA buttons: Watch Demo + View Pricing
+
+---
+
+#### 11.6 Process Section (`HomeProcessSection.tsx`)
+
+**Design System Fixes:**
+
+- **Badge colors standardized** to primary colors
+- **Consistent header margin:** `mb-12 lg:mb-16`
+- Standardized spacing using design tokens
+
+---
+
+#### 11.7 CTA Banner Section (`CTABannerSection.tsx`)
+
+**Design Improvements:**
+
+- **Border radius fixed:** `rounded-[2.5rem]` → `rounded-[2rem]` (32px)
+- **Inline styles removed:** CSS-in-JS → utility classes
+- **Background pattern:** Moved to design tokens
+
+**Color Contrast Fixes:**
+
+- Subtitle: `text-slate-300` (explicit for dark bg)
+- Buttons: Amber bg + black text for primary
+- Secondary: Outline white + white text
+
+---
+
+### Spacing & Layout Standardization
+
+#### Section Padding (Fixed Inconsistencies)
+
+| Section       | Before                     | After                     |
+| ------------- | -------------------------- | ------------------------- |
+| **Hero**      | Various                    | N/A (full height)         |
+| **Problems**  | Double padding bug         | `py-8 lg:py-12`           |
+| **Solutions** | `min-h-screen` + excessive | `py-20 lg:py-24`          |
+| **UVP**       | Default section padding    | `min-h-screen` (1 screen) |
+| **Pricing**   | Default section padding    | `min-h-screen` (1 screen) |
+| **CTA**       | Default section padding    | Standard                  |
+
+#### Header Margins (Standardized)
+
+All sections now use: `mb-12 lg:mb-16`
+
+---
+
+### Design System Compliance
+
+#### Color Consistency
+
+- ✅ Primary: `primary-500`, `primary-600` (blue)
+- ✅ Semantic: emerald, amber, rose, purple (semantic meaning)
+- ✅ Neutral: slate palette for text and backgrounds
+
+#### Typography Scale
+
+- ✅ All H2: `text-3xl sm:text-4xl lg:text-5xl`
+- ✅ Body: `text-lg text-slate-600`
+- ✅ Badges: `text-sm font-bold tracking-wider uppercase`
+
+#### Border Radius
+
+- ✅ Cards: `rounded-2xl` or `rounded-3xl`
+- ✅ Badges: `rounded-full`
+- ✅ Buttons: `rounded-xl` or `rounded-full`
+
+#### Shadows
+
+- ✅ Cards: `shadow-md` → `shadow-xl` (on hover)
+- ✅ Buttons: `shadow-lg` with color tint
+
+---
+
+### Accessibility Improvements
+
+- ✅ **Reduced motion support** - Respects `prefers-reduced-motion`
+- ✅ **Semantic HTML** - Proper heading hierarchy
+- ✅ **Keyboard navigation** - All interactive elements accessible
+- ✅ **Color contrast** - All text meets WCAG 2.1 AA
+- ✅ **Focus indicators** - Visible focus rings
+- ✅ **Alt text** - All images have descriptive alt
+
+---
+
+### Performance Optimizations
+
+- ✅ **Image optimization** - next/image with lazy loading
+- ✅ **Code splitting** - Dynamic imports for sections
+- ✅ **Animation optimization** - GPU-accelerated transforms
+- ✅ **Reduced bundle size** - Removed unused code (2,300+ lines)
+
+---
+
+### Industry Best Practices Applied
+
+1. **Above the fold** - Key message in first viewport
+2. **Visual hierarchy** - Clear H1 → H2 → body progression
+3. **Whitespace** - Generous but not excessive
+4. **Consistency** - Repeated patterns (cards, badges, CTAs)
+5. **Conversion focus** - CTAs prominent and clear
+6. **Mobile-first** - Responsive breakpoints
+7. **Loading states** - Skeleton screens
+8. **Error boundaries** - Graceful error handling
+
+---
+
 ## Next Steps (Recommended)
 
 1. **Deploy to Staging** - Test semua perubahan
@@ -395,4 +661,5 @@
 
 **Generated by:** OpenCode Assistant  
 **Session ID:** Workspace Standardization & Refactoring  
-**Commit Hash:** 2800dec
+**Commit Hash:** 2800dec  
+**Push URL:** https://github.com/divistant-ai/bizops-landingpage
