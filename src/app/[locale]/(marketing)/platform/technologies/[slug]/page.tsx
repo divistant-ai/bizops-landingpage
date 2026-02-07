@@ -33,8 +33,8 @@ function getRelatedItems(slug: string) {
   const filtered = allItems.filter(item => item.id !== slug);
 
   const recommendations: Record<string, string[]> = {
-    'integration': ['automation-ai', 'self-hosted', 'analytics'],
-    'self-hosted': ['security', 'architecture', 'multi-company'],
+    'integration': ['ai-assistant', 'self-hosted', 'reports-analytics'],
+    'self-hosted': ['security', 'architecture', 'multi-company-management'],
     'architecture': ['security', 'self-hosted', 'governance'],
     'security': ['governance', 'architecture', 'self-hosted'],
   };

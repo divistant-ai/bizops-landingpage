@@ -37,14 +37,14 @@ function getRelatedItems(slug: string) {
   const filtered = allModulesAndCapabilities.filter(item => item.id !== slug);
 
   const recommendations: Record<string, string[]> = {
-    'automation-ai': ['analytics', 'low-code', 'security'],
-    'multi-company': ['governance', 'security', 'money'],
-    'portals': ['growth', 'supply', 'collaboration'],
-    'analytics': ['governance', 'automation-ai', 'money'],
+    'ai-assistant': ['reports-analytics', 'custom-apps', 'security'],
+    'multi-company-management': ['governance', 'security', 'money'],
+    'customer-portals': ['growth', 'supply', 'team-collaboration'],
+    'reports-analytics': ['governance', 'ai-assistant', 'money'],
     'mobile': ['growth', 'work', 'security'],
-    'low-code': ['automation-ai', 'analytics', 'portals'],
-    'collaboration': ['work', 'portals', 'mobile'],
-    'security': ['governance', 'multi-company', 'architecture'],
+    'custom-apps': ['ai-assistant', 'reports-analytics', 'customer-portals'],
+    'team-collaboration': ['work', 'customer-portals', 'mobile'],
+    'security': ['governance', 'multi-company-management', 'architecture'],
   };
 
   const recommended = recommendations[slug] || [];

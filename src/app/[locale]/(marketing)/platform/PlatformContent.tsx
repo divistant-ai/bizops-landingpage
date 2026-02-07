@@ -10,11 +10,7 @@ import { ModulesBentoGrid } from '@/components/sections/platform/ModulesBentoGri
 import { PlatformHero } from '@/components/sections/platform/PlatformHero';
 import { UnifiedArchitectureSection } from '@/components/sections/platform/UnifiedArchitectureSection';
 import { Button } from '@/components/ui';
-import {
-  capabilitiesData,
-  ecosystemData,
-  modulesData,
-} from '@/data/platformContent';
+import { capabilitiesData, ecosystemData, modulesData } from '@/data/platformContent';
 import {
   platformCapabilitiesTranslations,
   platformModulesTranslations,
@@ -28,19 +24,30 @@ export default function PlatformContent() {
   const modules = Object.entries(modulesData).map(([key, val]) => ({
     id: key,
     ...val,
-    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en] || {}),
+    ...(platformModulesTranslations[locale][key as keyof typeof platformModulesTranslations.en]
+      || {}),
   }));
 
   const capabilities = Object.entries(capabilitiesData).map(([key, val]) => ({
     id: key,
     ...val,
-    ...(platformCapabilitiesTranslations[locale][key as keyof typeof platformCapabilitiesTranslations.en] || {}),
+    ...(platformCapabilitiesTranslations[locale][
+      key as keyof typeof platformCapabilitiesTranslations.en
+    ] || {}),
   }));
 
   // Split capabilities to match mega menu structure (navHelpers.ts)
   // Capabilities Tab: automation-ai, multi-company, portals, analytics, mobile, low-code, collaboration
   const capabilitiesItems = capabilities.filter(cap =>
-    ['automation-ai', 'multi-company', 'portals', 'analytics', 'mobile', 'low-code', 'collaboration'].includes(cap.id),
+    [
+      'ai-assistant',
+      'multi-company-management',
+      'customer-portals',
+      'reports-analytics',
+      'mobile',
+      'custom-apps',
+      'team-collaboration',
+    ].includes(cap.id),
   );
   // Technology Tab: security, integration, self-hosted, architecture
   const technologyItems = capabilities.filter(cap =>
@@ -71,9 +78,7 @@ export default function PlatformContent() {
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                 {t('story_bridge_1_title')}
               </h3>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">
-                {t('story_bridge_1_desc')}
-              </p>
+              <p className="mt-2 text-slate-600 dark:text-slate-400">{t('story_bridge_1_desc')}</p>
             </div>
             <div className="mt-6 h-16 w-px bg-gradient-to-b from-blue-500 to-transparent dark:from-blue-400 dark:to-transparent" />
           </div>
@@ -92,9 +97,7 @@ export default function PlatformContent() {
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                 {t('story_bridge_2_title')}
               </h3>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">
-                {t('story_bridge_2_desc')}
-              </p>
+              <p className="mt-2 text-slate-600 dark:text-slate-400">{t('story_bridge_2_desc')}</p>
             </div>
             <div className="mt-6 h-16 w-px bg-gradient-to-b from-emerald-500 to-transparent dark:from-emerald-400 dark:to-transparent" />
           </div>
@@ -121,26 +124,58 @@ export default function PlatformContent() {
             {capabilitiesItems.map((capability, index) => {
               const Icon = capability.icon;
               const colors = [
-                { bg: 'from-blue-500 to-cyan-500', ring: 'ring-blue-500/20', hover: 'group-hover:from-blue-600 group-hover:to-cyan-600' },
-                { bg: 'from-violet-500 to-purple-500', ring: 'ring-violet-500/20', hover: 'group-hover:from-violet-600 group-hover:to-purple-600' },
-                { bg: 'from-emerald-500 to-teal-500', ring: 'ring-emerald-500/20', hover: 'group-hover:from-emerald-600 group-hover:to-teal-600' },
-                { bg: 'from-orange-500 to-amber-500', ring: 'ring-orange-500/20', hover: 'group-hover:from-orange-600 group-hover:to-amber-600' },
-                { bg: 'from-pink-500 to-rose-500', ring: 'ring-pink-500/20', hover: 'group-hover:from-pink-600 group-hover:to-rose-600' },
-                { bg: 'from-indigo-500 to-blue-500', ring: 'ring-indigo-500/20', hover: 'group-hover:from-indigo-600 group-hover:to-blue-600' },
-                { bg: 'from-cyan-500 to-blue-500', ring: 'ring-cyan-500/20', hover: 'group-hover:from-cyan-600 group-hover:to-blue-600' },
+                {
+                  bg: 'from-blue-500 to-cyan-500',
+                  ring: 'ring-blue-500/20',
+                  hover: 'group-hover:from-blue-600 group-hover:to-cyan-600',
+                },
+                {
+                  bg: 'from-violet-500 to-purple-500',
+                  ring: 'ring-violet-500/20',
+                  hover: 'group-hover:from-violet-600 group-hover:to-purple-600',
+                },
+                {
+                  bg: 'from-emerald-500 to-teal-500',
+                  ring: 'ring-emerald-500/20',
+                  hover: 'group-hover:from-emerald-600 group-hover:to-teal-600',
+                },
+                {
+                  bg: 'from-orange-500 to-amber-500',
+                  ring: 'ring-orange-500/20',
+                  hover: 'group-hover:from-orange-600 group-hover:to-amber-600',
+                },
+                {
+                  bg: 'from-pink-500 to-rose-500',
+                  ring: 'ring-pink-500/20',
+                  hover: 'group-hover:from-pink-600 group-hover:to-rose-600',
+                },
+                {
+                  bg: 'from-indigo-500 to-blue-500',
+                  ring: 'ring-indigo-500/20',
+                  hover: 'group-hover:from-indigo-600 group-hover:to-blue-600',
+                },
+                {
+                  bg: 'from-cyan-500 to-blue-500',
+                  ring: 'ring-cyan-500/20',
+                  hover: 'group-hover:from-cyan-600 group-hover:to-blue-600',
+                },
               ];
               const colorScheme = colors[index % colors.length];
 
               return (
                 <Link
                   key={capability.id}
-                  href={`/platform/capabilities/${capability.id}`}
+                  href={`/platform/${capability.id}`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:shadow-2xl dark:hover:shadow-slate-900/50"
                 >
                   {/* Gradient accent line */}
-                  <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${colorScheme?.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+                  <div
+                    className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${colorScheme?.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                  />
 
-                  <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorScheme?.bg} ${colorScheme?.hover} shadow-lg ring-4 ${colorScheme?.ring} transition-all duration-300`}>
+                  <div
+                    className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${colorScheme?.bg} ${colorScheme?.hover} shadow-lg ring-4 ${colorScheme?.ring} transition-all duration-300`}
+                  >
                     <Icon className="h-6 w-6 text-white" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-slate-900 transition-colors group-hover:text-slate-700 dark:text-white dark:group-hover:text-slate-100">
@@ -179,11 +214,14 @@ export default function PlatformContent() {
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
                 {t('technology_title')}
               </h2>
-              <p className="mt-4 max-w-xl text-lg text-slate-400">
-                {t('technology_subtitle')}
-              </p>
+              <p className="mt-4 max-w-xl text-lg text-slate-400">{t('technology_subtitle')}</p>
             </div>
-            <Button variant="outline" size="lg" className="border-slate-700 bg-transparent text-white hover:bg-slate-800" asChild>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-slate-700 bg-transparent text-white hover:bg-slate-800"
+              asChild
+            >
               <Link href="/platform/technology">
                 {t('learn_more')}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -209,10 +247,14 @@ export default function PlatformContent() {
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 hover:bg-slate-800/80 hover:shadow-2xl hover:shadow-indigo-900/20"
                 >
                   {/* Glow effect */}
-                  <div className={`absolute -inset-px rounded-2xl bg-gradient-to-r ${gradient} opacity-0 blur transition-opacity duration-300 group-hover:opacity-20`} />
+                  <div
+                    className={`absolute -inset-px rounded-2xl bg-gradient-to-r ${gradient} opacity-0 blur transition-opacity duration-300 group-hover:opacity-20`}
+                  />
 
                   <div className="relative">
-                    <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-lg shadow-slate-900/50`}>
+                    <div
+                      className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-lg shadow-slate-900/50`}
+                    >
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <h3 className="mb-3 text-xl font-bold text-white transition-colors">

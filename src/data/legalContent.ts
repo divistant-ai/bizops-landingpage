@@ -62,7 +62,7 @@ export const legalContent: Record<string, LegalDoc> = {
       </ul>
 
       <h2>2. Penggunaan Generative AI</h2>
-      <p>Fitur BizOps Copilot menggunakan teknologi Large Language Model (LLM). Harap diperhatikan:</p>
+      <p>Fitur AI Assistant menggunakan teknologi Large Language Model (LLM). Harap diperhatikan:</p>
       <ul>
         <li>Jangan memasukkan informasi rahasia pribadi (PII) sensitif ke dalam prompt chat AI kecuali fitur tersebut ditandai sebagai 'Secure Context'.</li>
         <li>Output dari Generative AI mungkin mengandung ketidakakuratan (halusinasi). Selalu verifikasi fakta dan angka yang dihasilkan.</li>

@@ -43,7 +43,7 @@ function getRelatedModules(slug: string) {
     supply: ['growth', 'money', 'work'],
     work: ['people', 'money', 'supply'],
     care: ['growth', 'hub', 'people'],
-    hub: ['automation-ai', 'analytics', 'multi-company'],
+    hub: ['ai-assistant', 'reports-analytics', 'multi-company-management'],
   };
 
   const recommended = recommendations[slug] || [];

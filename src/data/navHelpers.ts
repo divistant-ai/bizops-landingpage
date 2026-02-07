@@ -29,13 +29,13 @@ export function getModuleNavItems() {
 export function getCapabilityNavItems() {
   // Only include capabilities that are shown in the menu
   const menuCapabilities = [
-    'automation-ai',
-    'multi-company',
-    'portals',
-    'analytics',
+    'ai-assistant',
+    'multi-company-management',
+    'customer-portals',
+    'reports-analytics',
     'mobile',
-    'low-code',
-    'collaboration',
+    'custom-apps',
+    'team-collaboration',
   ];
 
   return menuCapabilities
@@ -43,7 +43,7 @@ export function getCapabilityNavItems() {
     .map((slug) => {
       const data = capabilitiesData[slug];
       return {
-        to: `/platform/capabilities/${slug}`,
+        to: `/platform/${slug}`,
         label: data.navLabel,
         desc: data.navDesc,
         icon: data.icon,

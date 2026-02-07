@@ -110,6 +110,68 @@ const baseConfig: NextConfig = {
         destination: '/pricing/calculator',
         permanent: true,
       },
+      // Capability URL redirects (old → new)
+      {
+        source: '/:locale/platform/automation-ai',
+        destination: '/:locale/platform/ai-assistant',
+        permanent: true,
+      },
+      {
+        source: '/:locale/platform/multi-company',
+        destination: '/:locale/platform/multi-company-management',
+        permanent: true,
+      },
+      {
+        source: '/:locale/platform/portals',
+        destination: '/:locale/platform/customer-portals',
+        permanent: true,
+      },
+      {
+        source: '/:locale/platform/analytics',
+        destination: '/:locale/platform/reports-analytics',
+        permanent: true,
+      },
+      {
+        source: '/:locale/platform/low-code',
+        destination: '/:locale/platform/custom-apps',
+        permanent: true,
+      },
+      {
+        source: '/:locale/platform/collaboration',
+        destination: '/:locale/platform/team-collaboration',
+        permanent: true,
+      },
+      // Without locale prefix
+      {
+        source: '/platform/automation-ai',
+        destination: '/platform/ai-assistant',
+        permanent: true,
+      },
+      {
+        source: '/platform/multi-company',
+        destination: '/platform/multi-company-management',
+        permanent: true,
+      },
+      {
+        source: '/platform/portals',
+        destination: '/platform/customer-portals',
+        permanent: true,
+      },
+      {
+        source: '/platform/analytics',
+        destination: '/platform/reports-analytics',
+        permanent: true,
+      },
+      {
+        source: '/platform/low-code',
+        destination: '/platform/custom-apps',
+        permanent: true,
+      },
+      {
+        source: '/platform/collaboration',
+        destination: '/platform/team-collaboration',
+        permanent: true,
+      },
     ];
   },
 };

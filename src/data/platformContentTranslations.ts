@@ -860,7 +860,7 @@ export const platformModulesTranslations = {
 export const platformCapabilitiesTranslations = {
   en: {
     'mobile': {
-      title: 'Native Mobile Experience',
+      title: 'Mobile Apps',
       subtitle: 'Not Just a Shrunk Web. This is True Mobile Native.',
       description:
         'Most ERP vendors take shortcuts by wrapping responsive websites into apps (Web Wrapper/PWA). BizOps Mobile is built from scratch as true Native (Flutter Engine) for smooth 60 FPS performance and reliable offline-first experience in the field.',
@@ -1140,7 +1140,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'collaboration': {
-      title: 'Contextual Collaboration',
+      title: 'Team Collaboration',
       subtitle: 'Stop Confusing "Ping-Pong" Chats on WhatsApp.',
       description:
         'The biggest problem with work communication is loss of context. BizOps unites conversations with data. Discuss work right where the work is (Transaction Documents).',
@@ -1230,8 +1230,8 @@ export const platformCapabilitiesTranslations = {
       title: 'Whitelabel Platform',
       subtitle: 'Our System, Your Brand Identity.',
     },
-    'low-code': {
-      title: 'Low-Code Application Platform',
+    'custom-apps': {
+      title: 'Custom Apps',
       subtitle: 'Turn Ideas into Enterprise Apps in Hours.',
       description:
         'Empower "Citizen Developers" in your company. Create digital forms, complex approval workflows, and custom reports with an intuitive Drag-and-Drop interface, without writing complex lines of code.',
@@ -1319,8 +1319,8 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    'multi-company': {
-      title: 'Multi-Company Structure',
+    'multi-company-management': {
+      title: 'Multi-Company Management',
       subtitle: 'One System for Multiple Entities.',
       description:
         'Manage holding companies with multiple subsidiaries (PT/CV) in one database. Financial consolidation becomes easy and real-time.',
@@ -1408,11 +1408,11 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    'automation-ai': {
-      title: 'BizOps Copilot (Agentic AI)',
+    'ai-assistant': {
+      title: 'AI Assistant',
       subtitle: 'Not Just a Chatbot. Your Digital Coworker.',
       description:
-        'Forget complex dashboards. Just command BizOps Copilot in natural language to perform operational tasks, from data analysis to cross-app workflow execution. Powered by Agentic AI that thinks and acts autonomously.',
+        'Forget complex dashboards. Just command AI Assistant in natural language to perform operational tasks, from data analysis to cross-app workflow execution. Powered by Agentic AI that thinks and acts autonomously.',
       features: [
         {
           title: 'Workflow Automation',
@@ -1502,7 +1502,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'portals': {
-      title: 'Self-Service Portals',
+      title: 'Customer Portals',
       subtitle: 'Engage Customers & Vendors Directly.',
       description:
         'Provide secure limited access to external parties to interact with your system. Reduce admin burden in handling status inquiries.',
@@ -1594,7 +1594,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'analytics': {
-      title: 'Analytics & Report Builder',
+      title: 'Reports & Analytics',
       subtitle: 'Your Data, Your Way.',
       description:
         'Don\'t be stuck with standard reports. Create custom reports tailored to your unique business needs with powerful Report Builder tools.',
@@ -1781,7 +1781,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'security': {
-      title: 'Enterprise Security Shield',
+      title: 'Security & Compliance',
       subtitle: 'Uncompromising Data Protection.',
       description:
         'Built with a "Security-First" architecture. From encryption at rest/transit to granular role-based access control (RBAC), BizOps ensures your data remains yours.',
@@ -1865,7 +1865,7 @@ export const platformCapabilitiesTranslations = {
   },
   id: {
     'mobile': {
-      title: 'Native Mobile Experience',
+      title: 'Mobile Apps',
       subtitle: 'Bukan Sekadar Web yang Dikecilkan. Ini Mobile Native Sesungguhnya.',
       description:
         'Banyak vendor ERP mengambil jalan pintas dengan membungkus website responsif menjadi aplikasi (Web Wrapper/PWA). BizOps Mobile dibangun dari nol secara Native (Flutter Engine) untuk performa 60 FPS yang mulus dan pengalaman offline-first yang handal di lapangan.',
@@ -2055,7 +2055,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'collaboration': {
-      title: 'Contextual Collaboration',
+      title: 'Team Collaboration',
       subtitle: 'Hentikan \'Ping-Pong\' Chat di WhatsApp yang Membingungkan.',
       description:
         'Masalah terbesar komunikasi kerja adalah hilangnya konteks. BizOps menyatukan percakapan dengan data. Diskusikan pekerjaan tepat di tempat pekerjaan itu berada (Dokumen Transaksi).',
@@ -2146,8 +2146,8 @@ export const platformCapabilitiesTranslations = {
       title: 'Whitelabel Platform',
       subtitle: 'Sistem Kami, Identitas Brand Anda.',
     },
-    'low-code': {
-      title: 'Low-Code Application Platform',
+    'custom-apps': {
+      title: 'Custom Apps',
       subtitle: 'Ubah Ide Menjadi Aplikasi Enterprise dalam Hitungan Jam.',
       description:
         'Berdayakan "Citizen Developer" di perusahaan Anda. Buat form digital, alur persetujuan kompleks, dan laporan kustom dengan antarmuka Drag-and-Drop yang intuitif, tanpa perlu menulis baris kode yang rumit.',
@@ -2235,8 +2235,8 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    'multi-company': {
-      title: 'Multi-Company Structure',
+    'multi-company-management': {
+      title: 'Multi-Company Management',
       subtitle: 'Satu Sistem untuk Banyak Entitas.',
       description:
         'Kelola holding company dengan banyak anak perusahaan (PT/CV) dalam satu database. Konsolidasi laporan keuangan menjadi mudah dan real-time.',
@@ -2324,11 +2324,11 @@ export const platformCapabilitiesTranslations = {
         },
       ],
     },
-    'automation-ai': {
-      title: 'BizOps Copilot (Agentic AI)',
+    'ai-assistant': {
+      title: 'AI Assistant',
       subtitle: 'Bukan Sekadar Chatbot. Rekan Kerja Digital Anda.',
       description:
-        'Lupakan dashboard rumit. Cukup perintahkan BizOps Copilot dengan bahasa manusia untuk melakukan tugas operasional, dari analisis data hingga eksekusi workflow lintas aplikasi. Ditenagai oleh Agentic AI yang berpikir dan bertindak otonom.',
+        'Lupakan dashboard rumit. Cukup perintahkan AI Assistant dengan bahasa manusia untuk melakukan tugas operasional, dari analisis data hingga eksekusi workflow lintas aplikasi. Ditenagai oleh Agentic AI yang berpikir dan bertindak otonom.',
       features: [
         {
           title: 'Natural Language Action',
@@ -2419,7 +2419,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'portals': {
-      title: 'Self-Service Portals',
+      title: 'Customer Portals',
       subtitle: 'Libatkan Pelanggan & Vendor Secara Langsung.',
       description:
         'Berikan akses terbatas yang aman kepada pihak eksternal untuk berinteraksi dengan sistem Anda. Kurangi beban admin dalam melayani permintaan status.',
@@ -2511,7 +2511,7 @@ export const platformCapabilitiesTranslations = {
       ],
     },
     'analytics': {
-      title: 'Analytics & Report Builder',
+      title: 'Reports & Analytics',
       subtitle: 'Data Anda, Cara Anda.',
       description:
         'Jangan terpaku pada laporan standar. Buat laporan kustom sesuai kebutuhan unik bisnis Anda dengan tool Report Builder yang powerful.',
@@ -2843,12 +2843,12 @@ export const featuresPagesTranslations = {
       },
     },
 
-    'automation-ai': {
+    'ai-assistant': {
       title: 'Biarkan Agen AI yang Bekerja,',
       titleHighlight: 'Bukan Anda.',
-      subtitle: 'BizOps Copilot',
+      subtitle: 'AI Assistant',
       description:
-        'Delegasikan pekerjaan operasional yang membosankan kepada Autonomous Agents. BizOps Copilot bukan sekadar menjawab pertanyaan, tapi melakukan tindakan nyata.',
+        'Delegasikan pekerjaan operasional yang membosankan kepada Autonomous Agents. AI Assistant bukan sekadar menjawab pertanyaan, tapi melakukan tindakan nyata.',
 
       featuresBadge: 'Agentic AI',
       featuresTitle: 'Rekan Kerja Digital Otonom',
@@ -2892,8 +2892,8 @@ export const featuresPagesTranslations = {
       cta: {
         title: 'Siap Punya Karyawan Digital Baru?',
         subtitle:
-          'Lihat bagaimana BizOps Copilot menyelesaikan pekerjaan administrasi Anda secara real-time.',
-        badge: 'BizOps Copilot',
+          'Lihat bagaimana AI Assistant menyelesaikan pekerjaan administrasi Anda secara real-time.',
+        badge: 'AI Assistant',
         demoBtn: 'Jadwalkan Demo Sekarang',
         pricingBtn: 'Lihat Pricing',
         trustText1: 'Gratis 14 Hari',
@@ -2901,7 +2901,7 @@ export const featuresPagesTranslations = {
       },
     },
 
-    'multi-company': {
+    'multi-company-management': {
       title: 'Satu Platform untuk',
       titleHighlight: 'Seluruh Grup Bisnis Anda.',
       subtitle: 'Multi-Company',
@@ -2973,7 +2973,7 @@ export const featuresPagesTranslations = {
     'security': {
       title: 'Keamanan Kelas Bank',
       titleHighlight: 'untuk Enterprise Anda.',
-      subtitle: 'Enterprise Security Shield',
+      subtitle: 'Security & Compliance',
       description:
         'Kami menganggap keamanan sebagai fitur utama, bukan pelengkap. Lindungi bisnis Anda dengan standar yang sama digunakan oleh institusi keuangan.',
 

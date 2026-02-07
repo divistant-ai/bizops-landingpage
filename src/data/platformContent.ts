@@ -829,9 +829,9 @@ export const modulesData: Record<string, ModuleData> = {
 // --- CAPABILITIES DATA ---
 export const capabilitiesData: Record<string, any> = {
   'mobile': {
-    navLabel: 'Native Mobile Experience',
+    navLabel: 'Mobile Apps',
     navDesc: 'iOS & Android for field work',
-    title: 'Native Mobile Experience',
+    title: 'Mobile Apps',
     subtitle: 'Bukan Sekadar Web yang Dikecilkan. Ini Mobile Native Sesungguhnya.',
     description:
       'Banyak vendor ERP mengambil jalan pintas dengan membungkus website responsif menjadi aplikasi (Web Wrapper/PWA). BizOps Mobile dibangun dari nol secara Native (Flutter Engine) untuk performa 60 FPS yang mulus dan pengalaman offline-first yang handal di lapangan.',
@@ -1114,10 +1114,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'collaboration': {
-    navLabel: 'Contextual Collaboration',
+  'team-collaboration': {
+    navLabel: 'Team Collaboration',
     navDesc: 'Discuss on documents',
-    title: 'Contextual Collaboration',
+    title: 'Team Collaboration',
     subtitle: 'Hentikan \'Ping-Pong\' Chat di WhatsApp yang Membingungkan.',
     description:
       'Masalah terbesar komunikasi kerja adalah hilangnya konteks. BizOps menyatukan percakapan dengan data. Diskusikan pekerjaan tepat di tempat pekerjaan itu berada (Dokumen Transaksi).',
@@ -1293,10 +1293,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'low-code': {
-    navLabel: 'Low-Code Application Platform',
-    navDesc: 'Build apps without coding',
-    title: 'Low-Code Application Platform',
+  'custom-apps': {
+    navLabel: 'Custom Apps',
+    navDesc: 'No-code app builder',
+    title: 'Custom Apps',
     subtitle: 'Ubah Ide Menjadi Aplikasi Enterprise dalam Hitungan Jam.',
     description:
       'Berdayakan \'Citizen Developer\' di perusahaan Anda. Buat form digital, alur persetujuan kompleks, dan laporan kustom dengan antarmuka Drag-and-Drop yang intuitif, tanpa perlu menulis baris kode yang rumit.',
@@ -1383,10 +1383,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'automation-ai': {
-    navLabel: 'BizOps Copilot (Agentic AI)',
-    navDesc: 'Autonomous Agents & Workflow',
-    title: 'BizOps Copilot (Agentic AI)',
+  'ai-assistant': {
+    navLabel: 'AI Assistant',
+    navDesc: 'AI-powered automation',
+    title: 'AI Assistant',
     subtitle: 'Bukan Sekadar Chatbot. Ini Rekan Kerja Digital Anda.',
     description:
       'Lupakan dashboard yang rumit. Cukup perintahkan BizOps Copilot dalam bahasa manusia untuk mengerjakan tugas operasional, mulai dari analisa data hingga eksekusi workflow lintas aplikasi. Didukung teknologi Agentic AI yang bisa berfikir & bertindak mandiri.',
@@ -1475,10 +1475,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'multi-company': {
-    navLabel: 'Multi-Company Structure',
-    navDesc: 'Manage holding structures',
-    title: 'Multi-Company Structure',
+  'multi-company-management': {
+    navLabel: 'Multi-Company Management',
+    navDesc: 'Holding company management',
+    title: 'Multi-Company Management',
     subtitle: 'Satu Sistem untuk Banyak Entitas.',
     description:
       'Kelola holding company dengan banyak anak perusahaan (PT/CV) dalam satu database. Konsolidasi laporan keuangan menjadi mudah dan real-time.',
@@ -1563,10 +1563,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'portals': {
-    navLabel: 'Self-Service Portals',
+  'customer-portals': {
+    navLabel: 'Customer Portals',
     navDesc: 'Customer & Vendor access',
-    title: 'Self-Service Portals',
+    title: 'Customer Portals',
     subtitle: 'Libatkan Pelanggan & Vendor Secara Langsung.',
     description:
       'Berikan akses terbatas yang aman kepada pihak eksternal untuk berinteraksi dengan sistem Anda. Kurangi beban admin dalam melayani permintaan status.',
@@ -1659,10 +1659,10 @@ export const capabilitiesData: Record<string, any> = {
       },
     ],
   },
-  'analytics': {
-    navLabel: 'Analytics & Report Builder',
+  'reports-analytics': {
+    navLabel: 'Reports & Analytics',
     navDesc: 'Custom reports & dashboards',
-    title: 'Analytics & Report Builder',
+    title: 'Reports & Analytics',
     subtitle: 'Data Anda, Cara Anda.',
     description:
       'Jangan terpaku pada laporan standar. Buat laporan kustom sesuai kebutuhan unik bisnis Anda dengan tool Report Builder yang powerful.',
@@ -1844,9 +1844,9 @@ export const capabilitiesData: Record<string, any> = {
     ],
   },
   'security': {
-    navLabel: 'Enterprise Security Shield',
+    navLabel: 'Security & Compliance',
     navDesc: 'Bank-grade protection & compliance',
-    title: 'Enterprise Security Shield',
+    title: 'Security & Compliance',
     subtitle: 'Uncompromising Data Protection.',
     description:
       'Built with a "Security-First" architecture. From encryption at rest/transit to granular role-based access control (RBAC), BizOps ensures your data remains yours.',
@@ -2003,8 +2003,8 @@ export const integrationsData = [
 
 // --- FEATURE PAGES DATA (Analytics, AutomationAI, MultiCompany, Portals) ---
 export const featuresData: Record<string, FeaturePageData> = {
-  'analytics': {
-    id: 'analytics',
+  'reports-analytics': {
+    id: 'reports-analytics',
     title: 'Your Reports, Your Way.',
     titleHighlight: 'No Coding.',
     subtitle: 'Analytics & Reports',
@@ -2075,8 +2075,8 @@ export const featuresData: Record<string, FeaturePageData> = {
     },
   },
 
-  'automation-ai': {
-    id: 'automation-ai',
+  'ai-assistant': {
+    id: 'ai-assistant',
     title: 'Let the System Work,',
     titleHighlight: 'Not You.',
     subtitle: 'Automation & AI',
@@ -2147,8 +2147,8 @@ export const featuresData: Record<string, FeaturePageData> = {
     },
   },
 
-  'multi-company': {
-    id: 'multi-company',
+  'multi-company-management': {
+    id: 'multi-company-management',
     title: 'One Platform for',
     titleHighlight: 'Your Entire Business Group.',
     subtitle: 'Multi-Company',
@@ -2196,8 +2196,8 @@ export const featuresData: Record<string, FeaturePageData> = {
     },
   },
 
-  'portals': {
-    id: 'portals',
+  'customer-portals': {
+    id: 'customer-portals',
     title: 'Stop Being Admin',
     titleHighlight: 'for Your Clients.',
     subtitle: 'B2B Portals',
@@ -2243,7 +2243,7 @@ export const featuresData: Record<string, FeaturePageData> = {
     id: 'security',
     title: 'Bank-Grade Security',
     titleHighlight: 'for Your Enterprise.',
-    subtitle: 'Enterprise Security Shield',
+    subtitle: 'Security & Compliance',
     description:
       'We treat security as a feature, not an afterthought. Protect your business with the same standards used by financial institutions.',
     icon: ShieldCheck,

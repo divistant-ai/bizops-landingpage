@@ -284,7 +284,7 @@ export const whyBizOpsContent = {
   },
   reasons: [
     {
-      title: 'Native Mobile Experience',
+      title: 'Mobile Apps',
       desc: 'UI/UX kelas konsumen memastikan adopsi tinggi dari karyawan lapangan. Tanpa adopsi, sistem hanyalah sampah digital.',
     },
     {

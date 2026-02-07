@@ -143,17 +143,17 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     }
 
     // Platform capabilities
-    if (url.includes('/automation-ai')) {
+    if (url.includes('/ai-assistant')) {
       return 'automation';
     }
-    if (url.includes('/multi-company')) {
+    if (url.includes('/multi-company-management')) {
       return 'multiCompany';
     }
     if (url.includes('/portals')) {
-      return 'portals';
+      return 'customer-portals';
     }
     if (url.includes('/analytics')) {
-      return 'analytics';
+      return 'reports-analytics';
     }
     if (url.includes('/mobile')) {
       return 'mobile';
@@ -162,7 +162,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
       return 'lowCode';
     }
     if (url.includes('/collaboration')) {
-      return 'collaboration';
+      return 'team-collaboration';
     }
 
     // Platform technology
@@ -201,6 +201,21 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     if (url.includes('/travel')) {
       return 'travel';
     }
+    if (url.includes('/bfsi')) {
+      return 'bfsi';
+    }
+    if (url.includes('/realestate')) {
+      return 'realestate';
+    }
+    if (url.includes('/healthcare')) {
+      return 'healthcare';
+    }
+    if (url.includes('/fnb')) {
+      return 'fnb';
+    }
+    if (url.includes('/logistics')) {
+      return 'logistics';
+    }
 
     // Solutions - role
     if (url.includes('/ceo')) {
@@ -217,6 +232,12 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
     }
     if (url.includes('/role/ops')) {
       return 'ops';
+    }
+    if (url.includes('/role/sales')) {
+      return 'sales';
+    }
+    if (url.includes('/role/procurement')) {
+      return 'procurement';
     }
 
     // Resources - insights

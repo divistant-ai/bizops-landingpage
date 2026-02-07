@@ -2,12 +2,12 @@
 
 import PlatformPage from '@/components/templates/PlatformPage';
 
-export default function AnalyticsContent() {
+export default function ReportsAnalyticsContent() {
   return (
     <PlatformPage
-      featureId="analytics"
+      featureId="reports-analytics"
       relatedModuleIds={[
-        { id: 'automation-ai', type: 'feature' },
+        { id: 'ai-assistant', type: 'feature' },
         { id: 'hr', type: 'module' },
       ]}
     />

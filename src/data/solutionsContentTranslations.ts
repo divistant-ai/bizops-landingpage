@@ -4,30 +4,42 @@ import {
   ArrowLeftRight,
   Briefcase,
   Building,
+  Calculator,
+  Calendar,
+  CheckCircle,
   Clipboard,
   Clock,
   Cpu,
+  CreditCard,
   Database,
   DollarSign,
   Factory,
   FileText,
   Globe,
   HardHat,
+  LayoutGrid,
   List,
+  Map,
   Monitor,
+  Navigation,
   Package,
   PieChart,
   Plane,
   RefreshCw,
   Scan,
   Server,
+  Shield,
   ShieldCheck,
+  ShoppingBag,
   ShoppingCart,
   Smartphone,
+  Store,
+  Target,
   Ticket,
   TrendingUp,
   UserCheck,
   Users,
+  Wrench,
 } from 'lucide-react';
 
 // --- INDUSTRIES TRANSLATIONS ---
@@ -62,6 +74,10 @@ export const industriesTranslations: {
         {
           title: 'Problematic Subcontractors',
           desc: 'Difficult to track Subcontractor DP, retention deductions, and foreman work progress that doesn\'t match payments.',
+        },
+        {
+          title: 'Document Chaos',
+          desc: 'SPK, BA, and project certificates scattered across emails, WhatsApp, and local folders. Difficult to audit and find history.',
         },
       ],
       solutions: [
@@ -136,6 +152,10 @@ export const industriesTranslations: {
           title: 'Dead Stock',
           desc: 'Capital stuck in slow-moving items due to wrong purchase predictions.',
         },
+        {
+          title: 'Data Silos',
+          desc: 'Sales data from different channels not integrated. Cannot see complete business picture for decision making.',
+        },
       ],
       solutions: [
         {
@@ -208,6 +228,10 @@ export const industriesTranslations: {
         {
           title: 'Late Invoicing',
           desc: 'Cashflow disrupted because client invoices can only be sent after manual attendance recap is complete (can take 2 weeks).',
+        },
+        {
+          title: 'Client Complaints',
+          desc: 'Clients often complain due to lack of attendance transparency. Difficult to prove personnel were on site as contracted.',
         },
       ],
       solutions: [
@@ -283,6 +307,10 @@ export const industriesTranslations: {
           title: 'Messy Finances',
           desc: 'Difficult to calculate COGS per pax (Visa components, Handling, Equipment) so profit margins are unclear.',
         },
+        {
+          title: 'Customer Service Overload',
+          desc: 'Thousands of pilgrims contact CS asking about document status, payments, and schedules. CS team overwhelmed.',
+        },
       ],
       solutions: [
         {
@@ -356,6 +384,10 @@ export const industriesTranslations: {
           title: 'Resource Fights',
           desc: 'Project Managers compete for expert staff (Seniors) without seeing their actual workload.',
         },
+        {
+          title: 'Delayed Invoicing',
+          desc: 'Invoices to clients often delayed because timesheets incomplete or approval stuck. Cashflow disrupted.',
+        },
       ],
       solutions: [
         {
@@ -427,6 +459,10 @@ export const industriesTranslations: {
         {
           title: 'High Waste',
           desc: 'Raw material usage exceeds recipe standard (BOM) but not tracked where the waste occurs.',
+        },
+        {
+          title: 'Machine Breakdown',
+          desc: 'Machines often break down mid-production because there is no preventive maintenance schedule. Major production loss.',
         },
       ],
       solutions: [
@@ -500,6 +536,10 @@ export const industriesTranslations: {
         {
           title: 'Blind to Branch Data',
           desc: 'Holding directors struggle to monitor daily subsidiary performance because reports always late.',
+        },
+        {
+          title: 'Standardization Difficult',
+          desc: 'Each subsidiary has different ways for item codes, accounts, and processes. Hard to consolidate and compare performance.',
         },
       ],
       solutions: [
@@ -575,6 +615,10 @@ export const industriesTranslations: {
         {
           title: 'Subkon Bermasalah',
           desc: 'Sulit melacak DP Subkon, potongan retensi, dan progress kerja mandor yang tidak sesuai pembayaran.',
+        },
+        {
+          title: 'Dokumen Berantakan',
+          desc: 'SPK, BA, dan sertifikat proyek tersebar di email, WhatsApp, dan folder lokal. Sulit audit dan cari history.',
         },
       ],
       solutions: [
@@ -693,6 +737,10 @@ export const industriesTranslations: {
         {
           title: 'Dead Stock',
           desc: 'Modal mandek di barang yang tidak laku (slow moving) karena salah prediksi pembelian.',
+        },
+        {
+          title: 'Data Terpecah',
+          desc: 'Penjualan online di marketplace, offline di toko, dan stok di gudang tidak terintegrasi. Sulit lihat gambaran bisnis utuh.',
         },
       ],
       solutions: [
@@ -952,21 +1000,24 @@ export const industriesTranslations: {
         {
           id: 'crm-leads',
           title: 'Leads & CRM',
-          subtitle: 'Pantau potensi jamaah dari tanya-tanya hingga closing. Follow-up otomatis via WhatsApp.',
+          subtitle:
+            'Pantau potensi jamaah dari tanya-tanya hingga closing. Follow-up otomatis via WhatsApp.',
           icon: Users,
           features: ['Pipeline Monitoring', 'Auto-Followup WA', 'Database Jamaah'],
         },
         {
           id: 'inventory',
           title: 'Inventory Management',
-          subtitle: 'Kontrol stok seat maskapai & hotel real-time. Cegah double booking & overselling.',
+          subtitle:
+            'Kontrol stok seat maskapai & hotel real-time. Cegah double booking & overselling.',
           icon: 'Ticket',
           features: ['Seat & Room quota', 'Real-time Availability', 'Overselling Protection'],
         },
         {
           id: 'invoicing',
           title: 'Smart Invoicing',
-          subtitle: 'Terbitkan tagihan & catat pembayaran bertahap (DP, Cicilan, Pelunasan) otomatis.',
+          subtitle:
+            'Terbitkan tagihan & catat pembayaran bertahap (DP, Cicilan, Pelunasan) otomatis.',
           icon: 'FileText',
           features: ['Automated Billing', 'Cicilan Tracking', 'Payment Gateway'],
         },
@@ -1047,6 +1098,10 @@ export const industriesTranslations: {
         {
           title: 'Rebutan Resource',
           desc: 'Project Manager berebut staff ahli (Senior) tanpa melihat beban kerja mereka yang sebenarnya.',
+        },
+        {
+          title: 'Invoice Tertunda',
+          desc: 'Invoice ke klien sering tertunda karena timesheet belum lengkap atau approval macet. Cashflow terganggu.',
         },
       ],
       solutions: [
@@ -1372,6 +1427,421 @@ export const industriesTranslations: {
         author: 'Lina Suherman',
         role: 'Group CFO',
         avatar: 'https://ui-avatars.com/api/?name=Lina+Suherman&background=6366F1&color=fff',
+      },
+    },
+
+    bfsi: {
+      title: 'Perbankan & Keuangan',
+      subtitle: 'Kelola Risiko, Portfolio, dan Kepatuhan dalam Satu Platform.',
+      description:
+        'ERP untuk BPR, leasing, multifinance, dan asuransi. Kelola loan, tracking angsuran, dan compliance OJK secara terintegrasi.',
+      metaTitle: 'Software ERP BFSI: Banking, Leasing & Asuransi',
+      metaDesc:
+        'Sistem manajemen untuk perbankan dan keuangan. Loan management, credit scoring, multi-currency, dan regulatory compliance OJK.',
+      icon: 'Landmark',
+      metrics: [
+        { value: '99%', label: 'Collection Rate' },
+        { value: 'Auto', label: 'Laporan OJK' },
+        { value: 'Real-time', label: 'Risk Monitoring' },
+      ],
+      challenges: [
+        {
+          title: 'Default Risk',
+          desc: 'Sulit memantau kesehatan portfolio pembiayaan dan mendeteksi nasabah bermasalah sebelum terlambat.',
+        },
+        {
+          title: 'Rekonsiliasi Manual',
+          desc: 'Rekonsiliasi transaksi bank dan laporan keuangan memakan waktu berhari-hari setiap akhir bulan.',
+        },
+        {
+          title: 'Laporan Regulasi',
+          desc: 'Laporan regulasi OJK memerlukan format khusus dan data yang akurat, seringkali memakan banyak waktu persiapan.',
+        },
+        {
+          title: 'Fraud & NPL',
+          desc: 'Sulit mendeteksi aplikasi kredit palsu dan nasabah dengan riwayat kredit buruk sebelum approve. NPL sulit diprediksi.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Loan Management',
+          desc: 'Pantau seluruh portfolio pembiayaan real-time. Tracking angsuran, bunga, dan denda otomatis dengan reminder via WhatsApp.',
+          icon: FileText,
+        },
+        {
+          title: 'Credit Scoring',
+          desc: 'Sistem penilaian kredit berbasis data untuk mengurangi risiko kredit macet dan mempercepat approval.',
+          icon: TrendingUp,
+        },
+        {
+          title: 'Multi-currency',
+          desc: 'Transaksi dalam berbagai mata uang dengan kurs real-time. Ideal untuk leasing impor atau joint venture.',
+          icon: Globe,
+        },
+        {
+          title: 'OJK Compliance',
+          desc: 'Laporan regulasi OJK ter-generate otomatis sesuai format standar. Siap audit kapan saja.',
+          icon: ShieldCheck,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Apakah support perhitungan bunga anuitas dan flat?',
+          answer:
+            'Ya, sistem mendukung berbagai skema perhitungan bunga termasuk anuitas, flat, dan efektif sesuai kebutuhan produk.',
+        },
+        {
+          question: 'Bagaimana dengan integrasi rekening bank?',
+          answer:
+            'Tersedia integrasi dengan berbagai bank untuk auto-reconciliation dan cek saldo real-time.',
+        },
+        {
+          question: 'Apakah bisa generate laporan ke OJK?',
+          answer:
+            'Ya, laporan regulasi seperti LHKPN, LHKPU, dan laporan perkembangan kredit tersedia dalam format standar OJK.',
+        },
+      ],
+      caseStudyTitle: 'NPL Turun 40%',
+      caseStudy:
+        'PT Multifinance Sejahtera berhasil menurunkan Non-Performing Loan sebesar 40% dengan sistem credit scoring dan monitoring otomatis.',
+      testimonial: {
+        quote:
+          'Kami bisa melihat kesehatan portfolio secara real-time. Approval kredit yang dulu butuh 3 hari sekarang hanya 2 jam dengan data yang valid.',
+        author: 'Ahmad Santoso',
+        role: 'Kepala Divisi Kredit',
+        avatar: 'https://ui-avatars.com/api/?name=Ahmad+Santoso&background=10B981&color=fff',
+      },
+    },
+
+    realestate: {
+      title: 'Real Estate & Properti',
+      subtitle: 'Dari Unit Inventory hingga Serah Terima Kunci.',
+      description:
+        'Platform untuk developer, property management, dan real estate agency. Kelola unit, booking, cicilan pembeli, dan maintenance.',
+      metaTitle: 'Software ERP Properti & Real Estate Developer',
+      metaDesc:
+        'Sistem manajemen developer dan property. Unit inventory, booking tracking, installment schedule, dan facility management.',
+      icon: 'Building2',
+      metrics: [
+        { value: '100%', label: 'Unit Visibility' },
+        { value: 'Auto', label: 'Installment Schedule' },
+        { value: 'H+0', label: 'Booking Status' },
+      ],
+      challenges: [
+        {
+          title: 'Unit Tracking Chaos',
+          desc: 'Kesulitan melacak status setiap unit (Available, Booked, Sold, Handed Over) di proyek dengan ratusan tower dan tipe unit.',
+        },
+        {
+          title: 'Cashflow Management',
+          desc: 'Pembayaran dari pembeli tersebar dalam bertahun-tahun. Sulit memprediksi cashflow dan mengatur rencana pembangunan.',
+        },
+        {
+          title: 'Commission Calculation',
+          desc: 'Menghitung komisi agen dengan berbagai skema (progressive, flat, override) sangat kompleks dan rawan salah.',
+        },
+        {
+          title: 'Marketing Tidak Efektif',
+          desc: 'Tidak tahu leads mana yang kualitas bagus. Sales follow-up semua leads tanpa prioritization. Biaya marketing tinggi tapi conversion rendah.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Unit Inventory',
+          desc: 'Visualisasi status setiap unit secara real-time. Cek available unit, booking, dan sold dengan filter berdasarkan tower dan tipe.',
+          icon: LayoutGrid,
+        },
+        {
+          title: 'Booking Tracking',
+          desc: 'Pantau progress pembayaran pembeli dari booking fee, DP, sampai pelunasan. Auto-reminder untuk jatuh tempo.',
+          icon: Clipboard,
+        },
+        {
+          title: 'Installment Schedule',
+          desc: 'Generate jadwal angsuran otomatis. Integrasi dengan KPR bank untuk tracking approval dan disbursement.',
+          icon: Calendar,
+        },
+        {
+          title: 'Facility Management',
+          desc: 'Kelola complaint penghuni, maintenance gedung, dan service charge secara terintegrasi setelah serah terima.',
+          icon: Wrench,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Apakah support multi-tower dan multi-tipe unit?',
+          answer:
+            'Ya, sistem mendukung proyek dengan banyak tower, basement, dan berbagai tipe unit (studio, 2BR, penthouse, dll).',
+        },
+        {
+          question: 'Bagaimana dengan integrasi KPR bank?',
+          answer:
+            'Sistem bisa terintegrasi dengan sistem bank untuk tracking status approval KPR pembeli dan disbursement.',
+        },
+        {
+          question: 'Bisa hitung komisi agen otomatis?',
+          answer:
+            'Ya, sistem menghitung komisi berdasarkan skema yang ditentukan (flat, progressive, override) dan generate statement.',
+        },
+      ],
+      caseStudyTitle: 'Sales Naik 35%',
+      caseStudy:
+        'PT Propertindo Development meningkatkan sales 35% dengan sistem inventory real-time yang mencegah double-booking dan meningkatkan respons time.',
+      testimonial: {
+        quote:
+          'Dulu kita sering ada masalah double-book unit. Sekarang semua sales bisa lihat status real-time, proses booking jadi lebih cepat dan akurat.',
+        author: 'Rina Wijaya',
+        role: 'Sales Director',
+        avatar: 'https://ui-avatars.com/api/?name=Rina+Wijaya&background=F59E0B&color=fff',
+      },
+    },
+
+    healthcare: {
+      title: 'Kesehatan & Medis',
+      subtitle: 'Platform Terintegrasi untuk Klinik & Praktek Modern.',
+      description:
+        'EMR, appointment scheduling, dan billing untuk klinik, rumah sakit, dan laboratorium. Kelola pasien, jadwal, dan klaim asuransi.',
+      metaTitle: 'Software EMR Klinik & Rumah Sakit',
+      metaDesc:
+        'Electronic Medical Records dan manajemen klinik. Appointment scheduling, patient billing, medicine inventory, dan BPJS integration.',
+      icon: 'HeartPulse',
+      metrics: [
+        { value: '0%', label: 'No-Show Rate' },
+        { value: '100%', label: 'EMR Compliance' },
+        { value: '5x', label: 'Faster Billing' },
+      ],
+      challenges: [
+        {
+          title: 'Patient Data Management',
+          desc: 'Rekam medis tersebar di berbagai file dan lokasi. Sulit melacak riwayat pasien, alergi, dan treatment sebelumnya.',
+        },
+        {
+          title: 'Appointment No-shows',
+          desc: 'Pasien sering tidak datang tanpa konfirmasi, menyebabkan slot waktu dokter terbuang dan revenue loss.',
+        },
+        {
+          title: 'Insurance Claims',
+          desc: 'Proses klaim asuransi dan BPJS memerlukan dokumentasi lengkap dan format khusus, sering ditolak karena kelengkapan.',
+        },
+        {
+          title: 'Resep & Obat Berantakan',
+          desc: 'Resep manual sering hilang atau salah baca. Stok obat tidak terkontrol, sering kehabisan atau expired.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Electronic Medical Records',
+          desc: 'Rekam medis digital terstruktur. Akses riwayat pasien, diagnosis, resep, dan hasil lab dalam satu klik.',
+          icon: FileText,
+        },
+        {
+          title: 'Appointment System',
+          desc: 'Booking online via web/app dengan reminder otomatis via WhatsApp/SMS. Kurangi no-show rate hingga minimal.',
+          icon: Calendar,
+        },
+        {
+          title: 'Patient Billing',
+          desc: 'Tagihan otomatis dari layanan dokter, obat, dan lab. Split billing untuk pasien dengan asuransi dan tunai.',
+          icon: CreditCard,
+        },
+        {
+          title: 'BPJS Integration',
+          desc: 'Klaim BPJS terintegrasi langsung. Cek eligibility pasien, generate SEP, dan monitoring status klaim.',
+          icon: Shield,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Apakah data pasien aman dan privat?',
+          answer:
+            'Sangat aman. Data dienkripsi dan akses terbatas sesuai role. Sesuai standar HIPAA untuk medical record privacy.',
+        },
+        {
+          question: 'Support multi-dokter dan multi-poliklinik?',
+          answer:
+            'Ya, sistem mendukung klinik dengan banyak dokter spesialisasi dan poliklinik berbeda dengan jadwal masing-masing.',
+        },
+        {
+          question: 'Bagaimana dengan inventory obat?',
+          answer:
+            'Sistem terintegrasi dengan pharmacy module. Tracking stok obat, expiry date, dan otomatis update saat resep diterbitkan.',
+        },
+      ],
+      caseStudyTitle: 'Efisiensi Naik 60%',
+      caseStudy:
+        'Klinik Medika Sehat meningkatkan efisiensi operasional 60% dengan EMR terintegrasi dan mengurangi waktu administrasi pasien drastis.',
+      testimonial: {
+        quote:
+          'Pasien tidak perlu menunggu lama lagi. Semua data tersedia instan, kami bisa fokus ke pelayanan medis bukan administrasi.',
+        author: 'dr. Sarah Amelia',
+        role: 'Direktur Klinik',
+        avatar: 'https://ui-avatars.com/api/?name=Sarah+Amelia&background=EC4899&color=fff',
+      },
+    },
+
+    fnb: {
+      title: 'Food & Beverage',
+      subtitle: 'Kontrol Recipe Cost, Inventory, dan Multi-Outlet.',
+      description:
+        'Sistem untuk restaurant, cafe, catering, dan cloud kitchen. Recipe costing, inventory bahan mudah expire, dan operasional multi-outlet.',
+      metaTitle: 'Software ERP Restaurant & F&B Management',
+      metaDesc:
+        'Sistem manajemen restaurant dan cafe. Recipe costing, perishable inventory, kitchen display, dan multi-outlet operations.',
+      icon: 'UtensilsCrossed',
+      metrics: [
+        { value: '±2%', label: 'Food Cost Variance' },
+        { value: '0', label: 'Stock Expiry Loss' },
+        { value: 'Real-time', label: 'Outlet Performance' },
+      ],
+      challenges: [
+        {
+          title: 'Food Cost Control',
+          desc: 'Sulit menghitung HPP setiap menu dengan akurat. Waste dan pencurian bahan sering tidak terdeteksi.',
+        },
+        {
+          title: 'Expiry Management',
+          desc: 'Bahan makanan mudah expire. Tanpa tracking FIFO, banyak bahan rusak dan harus dibuang.',
+        },
+        {
+          title: 'Supply Consistency',
+          desc: 'Cabang outlet seringkali tidak konsistent kualitas dan kuantitas karena tidak ada standarisasi resep dan SOP.',
+        },
+        {
+          title: 'Pencurian & Waste',
+          desc: 'Bahan baku sering hilang dicuri karyawan. Sisa makanan (waste) tidak tercatat sehingga food cost membengkak.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Recipe Costing',
+          desc: 'Hitung HPP setiap menu otomatis berdasarkan resep dan harga bahan terkini. Pantau food cost percentage.',
+          icon: Calculator,
+        },
+        {
+          title: 'Perishable Inventory',
+          desc: 'Tracking bahan dengan expiry date. Sistem otomatis reminder FIFO dan alert saat mendekati kadaluarsa.',
+          icon: Clock,
+        },
+        {
+          title: 'Multi-outlet Ops',
+          desc: 'Pantau performa semua outlet dari satu dashboard. Standarisasi menu, harga, dan SOP antar lokasi.',
+          icon: Store,
+        },
+        {
+          title: 'Kitchen Display',
+          desc: 'Integrasi dengan Kitchen Display System (KDS). Order dari POS langsung muncul di dapur tanpa print manual.',
+          icon: Monitor,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Apakah bisa tracking waste dan void?',
+          answer:
+            'Ya, sistem mencatat semua waste, void, dan comp dengan alasan. Generate laporan untuk analisis cost control.',
+        },
+        {
+          question: 'Bagaimana dengan supplier integration?',
+          answer:
+            'Sistem bisa terintegrasi dengan supplier untuk auto-reorder saat stok di bawah minimum dan tracking delivery.',
+        },
+        {
+          question: 'Bisa untuk cloud kitchen model?',
+          answer:
+            'Sangat cocok. Sistem mendukung multi-brand, multi-kitchen dalam satu lokasi dengan konsolidasi purchasing.',
+        },
+      ],
+      caseStudyTitle: 'Food Cost Turun 15%',
+      caseStudy:
+        'Restoran chain Nusantara Rasa berhasil menurunkan food cost 15% dengan recipe costing akurat dan mengurangi waste signifikan.',
+      testimonial: {
+        quote:
+          'Kami bisa lihat margin profit setiap menu real-time. Menu yang tidak profitable langsung kami adjust harga atau resepnya.',
+        author: 'Chef Budiman',
+        role: 'Executive Chef',
+        avatar: 'https://ui-avatars.com/api/?name=Budiman&background=F97316&color=fff',
+      },
+    },
+
+    logistics: {
+      title: 'Logistics & Transportation',
+      subtitle: 'Optimalkan Rute, Armada, dan Pengiriman.',
+      description:
+        'Fleet management, route optimization, dan POD tracking untuk ekspedisi, courier, dan freight forwarding.',
+      metaTitle: 'Software Fleet Management & Logistics ERP',
+      metaDesc:
+        'Sistem manajemen ekspedisi dan logistik. Route optimization, fleet management, proof of delivery, dan real-time tracking.',
+      icon: 'Truck',
+      metrics: [
+        { value: '30%', label: 'Fuel Savings' },
+        { value: '99%', label: 'On-Time Delivery' },
+        { value: 'Real-time', label: 'Fleet Tracking' },
+      ],
+      challenges: [
+        {
+          title: 'Delivery Delays',
+          desc: 'Pengiriman sering terlambat karena rute tidak optimal, macet, atau driver kesulitan menemukan alamat.',
+        },
+        {
+          title: 'Fuel Costs',
+          desc: 'Biaya bahan bakar adalah cost terbesar. Rute tidak efisien menyebabkan fuel consumption tinggi.',
+        },
+        {
+          title: 'Vehicle Maintenance',
+          desc: 'Armada sering breakdown di jalan karena maintenance tidak terjadwal. Loss revenue dan customer trust.',
+        },
+        {
+          title: 'Customer Complaint',
+          desc: 'Konsumen sering komplain karena paket telat, hilang, atau status tracking tidak update. Reputasi rusak.',
+        },
+      ],
+      solutions: [
+        {
+          title: 'Route Optimization',
+          desc: 'Algoritma pintar merencanakan rute terpendek dan tercepat. Hindari macet dan minimize fuel consumption.',
+          icon: Map,
+        },
+        {
+          title: 'Fleet Management',
+          desc: 'Pantau seluruh armada real-time. Tracking lokasi, kecepatan, dan status kendaraan dalam satu dashboard.',
+          icon: Navigation,
+        },
+        {
+          title: 'Proof of Delivery',
+          desc: 'POD digital dengan foto, tanda tangan, dan timestamp. Notifikasi otomatis ke customer saat paket diterima.',
+          icon: CheckCircle,
+        },
+        {
+          title: 'Maintenance Schedule',
+          desc: 'Jadwal maintenance otomatis berdasarkan km atau waktu. Reminder service, ganti oli, dan spare parts.',
+          icon: Wrench,
+        },
+      ],
+      faqs: [
+        {
+          question: 'Apakah ada driver mobile app?',
+          answer:
+            'Ya, driver mendapatkan aplikasi mobile untuk melihat rute, update status, dan upload POD foto.',
+        },
+        {
+          question: 'Support multi-vehicle types?',
+          answer:
+            'Ya, sistem mendukung berbagai jenis kendaraan dari motor, mobil box, truk, hingga kontainer dengan kapasitas berbeda.',
+        },
+        {
+          question: 'Bisa integrasi dengan marketplace?',
+          answer:
+            'Ya, sistem bisa terintegrasi dengan Tokopedia, Shopee, dan TikTok Shop untuk auto-pickup dan tracking.',
+        },
+      ],
+      caseStudyTitle: 'Efisiensi Rute Naik 40%',
+      caseStudy:
+        'PT Logistik Nusantara meningkatkan efisiensi rute 40% dan mengurangi fuel cost 25% dengan route optimization algorithm.',
+      testimonial: {
+        quote:
+          'Driver kami sekarang tidak pernah tersesat. Rute optimal membuat mereka bisa kirim lebih banyak paket dalam sehari.',
+        author: 'Hendra Wijaya',
+        role: 'Fleet Manager',
+        avatar: 'https://ui-avatars.com/api/?name=Hendra+Wijaya&background=3B82F6&color=fff',
       },
     },
   },
@@ -1744,6 +2214,80 @@ export const rolesTranslations: {
           gain: 'Smart Inventory Control',
           gainDesc:
             'Sistem menghitung re-order point otomatis berdasarkan tren penjualan historis. Cegah stockout tanpa overstock.',
+        },
+      ],
+    },
+    sales: {
+      title: 'Sales Leaders',
+      subtitle: 'Revenue Growth Engine',
+      icon: Target,
+      metaTitle: 'CRM & Sales Management Dashboard',
+      metaDesc:
+        'Kelola pipeline, forecast revenue, dan track performance tim sales secara real-time. Maksimalkan conversion dan minimalisasi lost deals.',
+      heroHeadline: 'Pipeline Jelas. Forecast Akurat. Closing Lebih Cepat.',
+      heroSub:
+        'Berhenti menebak target. Dapatkan visibilitas penuh terhadap setiap opportunity, prediksi revenue dengan data, dan pastikan tidak ada leads yang terlewat.',
+      cta: { btn: 'Demo CRM & Sales', head: 'Tingkatkan Performance Sales Team Anda' },
+      dashboardInsight: 'Sales Pipeline & Revenue Intelligence',
+      dashboardFeatures: [
+        'Pipeline Visibility & Forecasting',
+        'Lead Scoring & Prioritization',
+        'Automated Follow-up Reminders',
+        'Sales Team Performance Analytics',
+      ],
+      challenges: [
+        {
+          pain: 'Lost Leads',
+          context:
+            'Leads dari marketing masuk tapi tidak di-follow-up dengan baik. Banyak opportunity hilang karena tidak ada sistem tracking.',
+          gain: 'Zero Lead Leakage',
+          gainDesc:
+            'Setiap leads tercatat dan di-assign otomatis. Reminder follow-up memastikan tidak ada opportunity yang terlewat.',
+        },
+        {
+          pain: 'Forecast Inaccuracy',
+          context:
+            'Prediksi revenue sering meleset karena tidak ada visibility real-time terhadap progress deals di pipeline.',
+          gain: 'Predictive Forecasting',
+          gainDesc:
+            'AI-powered forecasting berdasarkan historical data dan pipeline velocity. Prediksi revenue akurat untuk planning bisnis.',
+        },
+      ],
+    },
+    procurement: {
+      title: 'Procurement Leaders',
+      subtitle: 'Strategic Cost Optimization',
+      icon: ShoppingBag,
+      metaTitle: 'Procurement & Vendor Management System',
+      metaDesc:
+        'Kelola purchasing, vendor relationships, dan cost optimization. Pastikan best price dan on-time delivery dari supplier.',
+      heroHeadline: 'Belanja Pintar. Biaya Minim. Supplier Terkontrol.',
+      heroSub:
+        'Transformasi purchasing dari cost center menjadi strategic advantage. Dapatkan best price, kontrol budget, dan pastikan supply chain yang reliable.',
+      cta: { btn: 'Demo Procurement', head: 'Optimalkan Purchasing & Supply Chain' },
+      dashboardInsight: 'Procurement Intelligence Dashboard',
+      dashboardFeatures: [
+        'Vendor Performance Scorecard',
+        'Purchase Order Tracking',
+        'Budget Control & Compliance',
+        'Contract & Pricing Management',
+      ],
+      challenges: [
+        {
+          pain: 'Maverick Buying',
+          context:
+            'User membeli barang tanpa melalui procurement, seringkali dengan harga lebih mahal dan tanpa approval yang benar.',
+          gain: 'Centralized Purchasing',
+          gainDesc:
+            'Sistem memastikan semua purchasing melalui approved vendor list dengan harga kontrak. Block unauthorized purchases.',
+        },
+        {
+          pain: 'Price Variance',
+          context:
+            'Harga barang yang sama berbeda-beda antar transaksi. Sulit menegosiasi best price tanpa historical data.',
+          gain: 'Price Intelligence',
+          gainDesc:
+            'Tracking harga historis per item dan vendor. Analisis trend untuk leverage negosiasi dan achieve cost savings.',
         },
       ],
     },

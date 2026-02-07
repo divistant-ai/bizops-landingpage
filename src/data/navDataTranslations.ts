@@ -20,15 +20,15 @@ export const navDataTranslations = {
         description: 'Powerful features shared across all modules.',
         items: {
           automation: {
-            label: 'BizOps Copilot (Agentic AI)',
+            label: 'AI Assistant',
             desc: 'Autonomous Agents & Workflow',
           },
           multiCompany: { label: 'Multi-Company', desc: 'Manage holding structures' },
           portals: { label: 'B2B Portals', desc: 'Customer & Vendor access' },
           analytics: { label: 'Analytics & Reports', desc: 'Custom reports & dashboards' },
-          mobile: { label: 'Native Mobile Experience', desc: 'iOS & Android for field work' },
-          lowCode: { label: 'Low-Code Platform', desc: 'Build apps without coding' },
-          collaboration: { label: 'Contextual Chat', desc: 'Discuss on documents' },
+          mobile: { label: 'Mobile Apps', desc: 'iOS & Android for field work' },
+          lowCode: { label: 'Custom Apps', desc: 'Build apps without coding' },
+          collaboration: { label: 'Team Collaboration', desc: 'Discuss on documents' },
         },
       },
       technology: {
@@ -36,7 +36,7 @@ export const navDataTranslations = {
         description: 'Enterprise-grade architecture built for scale.',
         items: {
           security: {
-            label: 'Enterprise Security Shield',
+            label: 'Security & Compliance',
             desc: 'SSO, Encryption, Audit Logs',
           },
           integration: {
@@ -235,13 +235,13 @@ export const navDataTranslations = {
         title: 'Kapabilitas Platform',
         description: 'Fitur powerful yang dibagikan ke semua modul.',
         items: {
-          automation: { label: 'BizOps Copilot (Agentic AI)', desc: 'Agen Otonom & Workflow' },
+          automation: { label: 'AI Assistant', desc: 'Agen Otonom & Workflow' },
           multiCompany: { label: 'Multi-Company', desc: 'Kelola struktur holding' },
           portals: { label: 'B2B Portals', desc: 'Akses Customer & Vendor' },
           analytics: { label: 'Analytics & Reports', desc: 'Laporan & dashboard custom' },
-          mobile: { label: 'Native Mobile Experience', desc: 'iOS & Android untuk lapangan' },
-          lowCode: { label: 'Low-Code Platform', desc: 'Bangun aplikasi tanpa coding' },
-          collaboration: { label: 'Contextual Chat', desc: 'Diskusi pada dokumen' },
+          mobile: { label: 'Mobile Apps', desc: 'iOS & Android untuk lapangan' },
+          lowCode: { label: 'Custom Apps', desc: 'Bangun aplikasi tanpa coding' },
+          collaboration: { label: 'Team Collaboration', desc: 'Diskusi pada dokumen' },
         },
       },
       technology: {
@@ -249,7 +249,7 @@ export const navDataTranslations = {
         description: 'Arsitektur enterprise-grade yang dibangun untuk skalabilitas.',
         items: {
           security: {
-            label: 'Perisai Keamanan Enterprise',
+            label: 'Security & Compliance',
             desc: 'SSO, Enkripsi, Jejak Audit',
           },
           integration: {
