@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { Container, Section } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Button, Typography } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { sectionPaddingHybrid } from '@/design-tokens';
 
@@ -42,23 +42,16 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
     >
       <Container size="7xl" className="relative z-10">
         <FadeIn>
-          <div className="relative flex flex-col justify-center overflow-hidden rounded-[2.5rem] bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-6 py-12 shadow-2xl shadow-slate-900/50 sm:px-12 sm:py-16 lg:px-20 lg:py-20 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
+          <div className="relative flex flex-col justify-center overflow-hidden rounded-[2rem] bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-6 py-12 shadow-2xl shadow-slate-900/50 sm:px-12 sm:py-16 lg:px-20 lg:py-20 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-950 dark:shadow-black/50">
             {/* Decorative elements */}
             <div className="bg-primary-500/20 absolute top-0 right-0 h-96 w-96 translate-x-1/3 -translate-y-1/3 animate-pulse rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full bg-amber-500/10 blur-3xl" />
 
             {/* Dot pattern */}
-            <div
-              className="absolute inset-0 opacity-[0.05]"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
-                backgroundSize: '32px 32px',
-              }}
-            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.8)_1px,transparent_1px)] bg-[length:32px_32px] opacity-[0.05]" />
 
             {/* Inner glow border */}
-            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-white/10 ring-inset" />
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-white/10 ring-inset" />
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
               {/* Badge */}
@@ -72,12 +65,16 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
                 </span>
               </div>
 
-              <h2 className="mb-8 text-4xl leading-tight font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <Typography variant="h2" as="h2" color="white" className="mb-8" align="center">
                 {title}
-              </h2>
-              <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+              </Typography>
+              <Typography
+                variant="body"
+                align="center"
+                className="mx-auto mb-12 max-w-2xl text-slate-300"
+              >
                 {subtitle}
-              </p>
+              </Typography>
 
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                 <Button

@@ -27,19 +27,23 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 function getRelatedItems(slug: string) {
   const allModulesAndCapabilities = [
     ...Object.entries(modulesData).map(([key, val]) => ({ id: key, ...val, type: 'module' })),
-    ...Object.entries(capabilitiesData).map(([key, val]) => ({ id: key, ...val, type: 'capability' })),
+    ...Object.entries(capabilitiesData).map(([key, val]) => ({
+      id: key,
+      ...val,
+      type: 'capability',
+    })),
   ];
 
   const filtered = allModulesAndCapabilities.filter(item => item.id !== slug);
 
   const recommendations: Record<string, string[]> = {
     'automation-ai': ['analytics', 'low-code', 'security'],
-    'multi-company': ['governance', 'security', 'finance'],
-    'portals': ['sales', 'supply-chain', 'collaboration'],
-    'analytics': ['governance', 'automation-ai', 'finance'],
-    'mobile': ['sales', 'operations', 'security'],
+    'multi-company': ['governance', 'security', 'money'],
+    'portals': ['growth', 'supply', 'collaboration'],
+    'analytics': ['governance', 'automation-ai', 'money'],
+    'mobile': ['growth', 'work', 'security'],
     'low-code': ['automation-ai', 'analytics', 'portals'],
-    'collaboration': ['operations', 'portals', 'mobile'],
+    'collaboration': ['work', 'portals', 'mobile'],
     'security': ['governance', 'multi-company', 'architecture'],
   };
 

@@ -14,6 +14,7 @@ import StructuredData from '@/components/StructuredData';
 import { WebVitalsReporter } from '@/components/WebVitalsReporter';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import { routing } from '@/libs/I18nRouting';
+import { SITE_URL } from '@/libs/utils/helpers';
 import { getOrganizationSchema, getWebSiteSchema } from '@/libs/utils/structured-data';
 import '@/styles/global.css';
 
@@ -25,7 +26,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bizops.id'),
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: { url: '/favicon.svg', type: 'image/svg+xml' },
   },

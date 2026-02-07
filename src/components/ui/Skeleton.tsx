@@ -1,20 +1,22 @@
 import React, { memo } from 'react';
 
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 export const Skeleton: React.FC<{ className?: string }> = memo(({ className = '' }) => (
-  <div className={twMerge('bg-slate-200 dark:bg-slate-800 animate-pulse rounded', className)}></div>
+  <div className={cn('animate-pulse rounded bg-slate-200 dark:bg-slate-800', className)}></div>
 ));
 
 Skeleton.displayName = 'Skeleton';
 
-export const SkeletonText: React.FC<{ lines?: number; className?: string }> = memo(({ lines = 3, className = '' }) => (
-  <div className={twMerge('space-y-3', className)}>
-    {Array.from({ length: lines }).map((_, i) => (
-      <Skeleton key={i} className={twMerge('h-4', i === lines - 1 ? 'w-2/3' : 'w-full')} />
-    ))}
-  </div>
-));
+export const SkeletonText: React.FC<{ lines?: number; className?: string }> = memo(
+  ({ lines = 3, className = '' }) => (
+    <div className={cn('space-y-3', className)}>
+      {Array.from({ length: lines }).map((_, i) => (
+        <Skeleton key={i} className={cn('h-4', i === lines - 1 ? 'w-2/3' : 'w-full')} />
+      ))}
+    </div>
+  ),
+);
 
 SkeletonText.displayName = 'SkeletonText';
 

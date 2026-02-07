@@ -4,7 +4,8 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Section } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Button, Typography } from '@/components/ui';
+import { sectionPaddingHybrid } from '@/design-tokens';
 
 export function AssessmentPromoSection() {
   const t = useTranslations('Homepage');
@@ -14,7 +15,7 @@ export function AssessmentPromoSection() {
       id="assessment-promo"
       className="relative overflow-hidden border-y border-white/10 bg-slate-900"
       noPadding
-      containerClassName="px-6 py-12 md:py-16 relative z-10"
+      containerClassName={`${sectionPaddingHybrid.compact} relative z-10`}
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -28,21 +29,16 @@ export function AssessmentPromoSection() {
             <Sparkles className="size-3" />
             <span>{t('assessment_promo_badge')}</span>
           </div>
-          <h3 className="mb-3 text-2xl font-bold text-white md:text-3xl">
+          <Typography variant="h3" as="h3" color="white" className="mb-3">
             {t('assessment_promo_title')}
-          </h3>
-          <p className="max-w-lg text-lg text-slate-400">
+          </Typography>
+          <Typography variant="body" className="max-w-lg text-slate-300">
             {t('assessment_promo_desc')}
-          </p>
+          </Typography>
         </div>
 
         <div className="flex shrink-0 flex-col gap-4 sm:flex-row">
-          <Button
-            asChild
-            variant="accent"
-            size="lg"
-            className="shadow-lg shadow-amber-500/20"
-          >
+          <Button asChild variant="accent" size="lg" className="shadow-lg shadow-amber-500/20">
             <Link href="/tools/assessment">
               {t('assessment_promo_cta')}
               {' '}

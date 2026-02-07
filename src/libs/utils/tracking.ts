@@ -24,6 +24,49 @@ let eventQueue: Array<TrackingEvent> = [];
 let isInitialized = false;
 
 /**
+ * Send events to PostHog analytics service
+ */
+const sendEventsToPostHog = async (events: TrackingEvent[]): Promise<void> => {
+  const postHogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  const postHogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com';
+
+  if (!postHogKey) {
+    logger.warn('PostHog key not configured, events will not be sent');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${postHogHost}/capture/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        api_key: postHogKey,
+        batch: events.map(event => ({
+          event: event.name,
+          properties: {
+            ...event.properties,
+            timestamp: event.timestamp,
+          },
+        })),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`PostHog API error: ${response.statusText}`);
+    }
+
+    logger.debug(`Successfully sent ${events.length} events to PostHog`);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    logger.error('Failed to send events to PostHog:', errorMessage);
+    // Re-queue events for retry
+    eventQueue.unshift(...events);
+  }
+};
+
+/**
  * Flush event queue
  */
 const flushEventQueue = (): void => {
@@ -36,7 +79,11 @@ const flushEventQueue = (): void => {
 
   logger.debug(`Tracking: Flushed ${events.length} events`);
 
-  // TODO: Send to analytics service
+  // Send events to analytics service
+  // PostHog is the primary analytics provider
+  sendEventsToPostHog(events).catch((error) => {
+    logger.error('Failed to send events to PostHog:', error);
+  });
 };
 
 /**
@@ -50,7 +97,7 @@ const sendEvent = (event: TrackingEvent): void => {
   }
 
   if (config.isProduction) {
-    // TODO: Implement actual analytics service integration
+    // Queue events for batching and send to analytics
     eventQueue.push(event);
 
     if (eventQueue.length >= 10 || event.name === 'conversion') {
@@ -62,10 +109,7 @@ const sendEvent = (event: TrackingEvent): void => {
 /**
  * Track custom event
  */
-export const trackEvent = (
-  eventName: string,
-  properties?: EventProperties,
-): void => {
+export const trackEvent = (eventName: string, properties?: EventProperties): void => {
   if (typeof window === 'undefined') {
     return;
   }
@@ -178,10 +222,7 @@ export const trackToolUsage = (
 /**
  * Track error
  */
-export const trackError = (
-  error: Error,
-  context?: EventProperties,
-): void => {
+export const trackError = (error: Error, context?: EventProperties): void => {
   trackEvent('error', {
     error_message: error.message,
     error_stack: error.stack,

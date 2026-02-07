@@ -27,18 +27,23 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 function getRelatedModules(slug: string) {
   const allModulesAndCapabilities = [
     ...Object.entries(modulesData).map(([key, val]) => ({ id: key, ...val, type: 'module' })),
-    ...Object.entries(capabilitiesData).map(([key, val]) => ({ id: key, ...val, type: 'capability' })),
+    ...Object.entries(capabilitiesData).map(([key, val]) => ({
+      id: key,
+      ...val,
+      type: 'capability',
+    })),
   ];
 
   const filtered = allModulesAndCapabilities.filter(item => item.id !== slug);
 
   const recommendations: Record<string, string[]> = {
-    'hr': ['finance', 'operations', 'sales'],
-    'finance': ['sales', 'supply-chain', 'hr'],
-    'sales': ['finance', 'supply-chain', 'operations'],
-    'supply-chain': ['sales', 'finance', 'operations'],
-    'operations': ['hr', 'finance', 'supply-chain'],
-    'governance': ['automation-ai', 'analytics', 'multi-company'],
+    people: ['money', 'work', 'growth'],
+    money: ['growth', 'supply', 'people'],
+    growth: ['money', 'supply', 'work'],
+    supply: ['growth', 'money', 'work'],
+    work: ['people', 'money', 'supply'],
+    care: ['growth', 'hub', 'people'],
+    hub: ['automation-ai', 'analytics', 'multi-company'],
   };
 
   const recommended = recommendations[slug] || [];

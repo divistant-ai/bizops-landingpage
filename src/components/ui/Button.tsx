@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import React, { memo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Button component with multiple variants and sizes
@@ -26,7 +26,18 @@ type ButtonProps = {
   /** Button content */
   'children'?: React.ReactNode;
   /** Visual style variant */
-  'variant'?: 'primary' | 'secondary' | 'accent' | 'white' | 'outline' | 'outline-white' | 'ghost' | 'link' | 'neumorph' | 'glass' | 'clay';
+  'variant'?:
+    | 'primary'
+    | 'secondary'
+    | 'accent'
+    | 'white'
+    | 'outline'
+    | 'outline-white'
+    | 'ghost'
+    | 'link'
+    | 'neumorph'
+    | 'glass'
+    | 'clay';
   /** Size of the button */
   'size'?: 'sm' | 'md' | 'lg';
   /** Make button full width */
@@ -55,94 +66,109 @@ type ButtonProps = {
   'aria-pressed'?: boolean;
 };
 
-const Button: React.FC<ButtonProps> = memo(({
-  children,
-  variant = 'primary',
-  size = 'md',
-  fullWidth = false,
-  isLoading = false,
-  className = '',
-  disabled,
-  onClick,
-  type = 'button',
-  asChild = false,
-  'aria-label': ariaLabel,
-  'aria-describedby': ariaDescribedby,
-  'aria-expanded': ariaExpanded,
-  'aria-controls': ariaControls,
-  'aria-pressed': ariaPressed,
-}: ButtonProps) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:scale-[1.02] hover:shadow-md active:scale-[0.98]';
+const Button: React.FC<ButtonProps> = memo(
+  ({
+    children,
+    variant = 'primary',
+    size = 'md',
+    fullWidth = false,
+    isLoading = false,
+    className = '',
+    disabled,
+    onClick,
+    type = 'button',
+    asChild = false,
+    'aria-label': ariaLabel,
+    'aria-describedby': ariaDescribedby,
+    'aria-expanded': ariaExpanded,
+    'aria-controls': ariaControls,
+    'aria-pressed': ariaPressed,
+  }: ButtonProps) => {
+    const baseStyles
+      = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:scale-[1.02] hover:shadow-md active:scale-[0.98]';
 
-  // Design System: Ensure proper color contrast for all variants
-  const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
-    // Primary: Dark blue background with white text (high contrast)
-    'primary': 'bg-primary-600 text-white hover:bg-primary-700 border border-transparent shadow-sm focus:ring-primary-500 dark:bg-primary-500 dark:hover:bg-primary-600',
-    // Secondary: Dark background with white text (high contrast)
-    'secondary': 'bg-slate-900 text-white hover:bg-slate-800 border border-transparent shadow-sm focus:ring-slate-900 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100',
-    // Accent: Amber background with dark text (high contrast)
-    'accent': 'bg-amber-500 text-slate-950 hover:bg-amber-400 border border-transparent shadow-sm focus:ring-amber-500',
-    // White: White background with dark text (high contrast)
-    'white': 'bg-white text-slate-900 hover:bg-slate-50 border border-transparent shadow-sm focus:ring-white dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700',
-    // Outline: Transparent with border, adapts to context
-    'outline': 'bg-transparent text-slate-900 border border-slate-300 hover:bg-slate-50 hover:border-slate-400 focus:ring-slate-500 dark:text-slate-100 dark:border-slate-600 dark:hover:bg-slate-800',
-    // Outline-white: For use on dark backgrounds only (explicit)
-    'outline-white': 'bg-transparent text-white border border-white/30 hover:bg-white/10 hover:border-white/50 focus:ring-white',
-    // Ghost: Subtle hover effect
-    'ghost': 'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
-    // Link: Text-only button
-    'link': 'text-primary-600 hover:text-primary-700 hover:underline px-0 shadow-none active:scale-100 dark:text-primary-400 dark:hover:text-primary-300',
-    // Neumorphism: Soft embossed button with pressed effect
-    'neumorph': 'bg-linear-to-br from-slate-50 to-slate-100 text-slate-700 border-none shadow-[4px_4px_10px_#d1d5db,-4px_-4px_10px_#ffffff] hover:shadow-[2px_2px_5px_#d1d5db,-2px_-2px_5px_#ffffff] active:shadow-[inset_2px_2px_5px_#d1d5db,inset_-2px_-2px_5px_#ffffff] focus:ring-slate-400 dark:from-slate-800 dark:to-slate-900 dark:text-slate-200 dark:shadow-[4px_4px_10px_#0f172a,-4px_-4px_10px_#334155] dark:hover:shadow-[2px_2px_5px_#0f172a,-2px_-2px_5px_#334155] dark:active:shadow-[inset_2px_2px_5px_#0f172a,inset_-2px_-2px_5px_#334155]',
-    // Glassmorphism: Frosted glass button
-    'glass': 'bg-white/70 backdrop-blur-xl text-slate-900 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:bg-white/80 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] focus:ring-white/50 dark:bg-slate-900/70 dark:text-white dark:border-white/10 dark:hover:bg-slate-900/80',
-    // Claymorphism: 3D clay-like button - solid blue with white text
-    'clay': 'bg-blue-600 text-white border-none shadow-lg shadow-blue-500/40 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/50 active:shadow-md active:shadow-blue-500/30 focus:ring-blue-400 rounded-2xl',
-  };
+    // Design System: Ensure proper color contrast for all variants
+    const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
+      // Primary: Dark blue background with white text (high contrast)
+      'primary':
+        'bg-primary-600 text-white hover:bg-primary-700 border border-transparent shadow-sm focus:ring-primary-500 dark:bg-primary-500 dark:hover:bg-primary-600',
+      // Secondary: Dark background with white text (high contrast)
+      'secondary':
+        'bg-slate-900 text-white hover:bg-slate-800 border border-transparent shadow-sm focus:ring-slate-900 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100',
+      // Accent: Amber background with dark text (high contrast)
+      'accent':
+        'bg-amber-500 text-slate-950 hover:bg-amber-400 border border-transparent shadow-sm focus:ring-amber-500',
+      // White: White background with dark text (high contrast)
+      'white':
+        'bg-white text-slate-900 hover:bg-slate-50 border border-transparent shadow-sm focus:ring-white dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700',
+      // Outline: Transparent with border, adapts to context
+      'outline':
+        'bg-transparent text-slate-900 border border-slate-300 hover:bg-slate-50 hover:border-slate-400 focus:ring-slate-500 dark:text-slate-100 dark:border-slate-600 dark:hover:bg-slate-800',
+      // Outline-white: For use on dark backgrounds only (explicit)
+      'outline-white':
+        'bg-transparent text-white border border-white/30 hover:bg-white/10 hover:border-white/50 focus:ring-white',
+      // Ghost: Subtle hover effect
+      'ghost':
+        'bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
+      // Link: Text-only button
+      'link': 'text-primary-600 hover:text-primary-700 hover:underline px-0 shadow-none active:scale-100 dark:text-primary-400 dark:hover:text-primary-300',
+      // Neumorphism: Soft embossed button with pressed effect
+      'neumorph':
+        'bg-linear-to-br from-slate-50 to-slate-100 text-slate-700 border-none shadow-[4px_4px_10px_#d1d5db,-4px_-4px_10px_#ffffff] hover:shadow-[2px_2px_5px_#d1d5db,-2px_-2px_5px_#ffffff] active:shadow-[inset_2px_2px_5px_#d1d5db,inset_-2px_-2px_5px_#ffffff] focus:ring-slate-400 dark:from-slate-800 dark:to-slate-900 dark:text-slate-200 dark:shadow-[4px_4px_10px_#0f172a,-4px_-4px_10px_#334155] dark:hover:shadow-[2px_2px_5px_#0f172a,-2px_-2px_5px_#334155] dark:active:shadow-[inset_2px_2px_5px_#0f172a,inset_-2px_-2px_5px_#334155]',
+      // Glassmorphism: Frosted glass button
+      'glass':
+        'bg-white/70 backdrop-blur-xl text-slate-900 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:bg-white/80 hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] focus:ring-white/50 dark:bg-slate-900/70 dark:text-white dark:border-white/10 dark:hover:bg-slate-900/80',
+      // Claymorphism: 3D clay-like button - solid blue with white text
+      'clay': 'bg-blue-600 text-white border-none shadow-lg shadow-blue-500/40 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/50 active:shadow-md active:shadow-blue-500/30 focus:ring-blue-400 rounded-2xl',
+    };
 
-  const sizes: Record<NonNullable<ButtonProps['size']>, string> = {
-    sm: 'h-11 px-3 text-sm',
-    md: 'h-11 px-5 text-base',
-    lg: 'h-14 px-8 text-lg',
-  };
+    const sizes: Record<NonNullable<ButtonProps['size']>, string> = {
+      sm: 'h-11 px-3 text-sm',
+      md: 'h-11 px-5 text-base',
+      lg: 'h-14 px-8 text-lg',
+    };
 
-  const widthClass = fullWidth ? 'w-full' : '';
-  const buttonClassName = twMerge(baseStyles, variants[variant], sizes[size], widthClass, className);
+    const widthClass = fullWidth ? 'w-full' : '';
+    const buttonClassName = cn(baseStyles, variants[variant], sizes[size], widthClass, className);
 
-  if (asChild && React.isValidElement(children)) {
-    const childProps = children.props as { className?: string };
-    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
-      'className': twMerge(buttonClassName, childProps.className),
-      'disabled': disabled || isLoading,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      'aria-expanded': ariaExpanded,
-      'aria-controls': ariaControls,
-      'aria-pressed': ariaPressed,
-      'aria-busy': isLoading,
-    } as Record<string, unknown>);
-  }
+    if (asChild && React.isValidElement(children)) {
+      const childProps = children.props as { className?: string };
+      return React.cloneElement(
+        children as React.ReactElement<Record<string, unknown>>,
+        {
+          'className': cn(buttonClassName, childProps.className),
+          'disabled': disabled || isLoading,
+          'aria-label': ariaLabel,
+          'aria-describedby': ariaDescribedby,
+          'aria-expanded': ariaExpanded,
+          'aria-controls': ariaControls,
+          'aria-pressed': ariaPressed,
+          'aria-busy': isLoading,
+        } as Record<string, unknown>,
+      );
+    }
 
-  return (
-    <motion.button
-      type={type}
-      className={buttonClassName}
-      disabled={disabled || isLoading}
-      onClick={onClick}
-      aria-label={ariaLabel}
-      aria-describedby={ariaDescribedby}
-      aria-expanded={ariaExpanded}
-      aria-controls={ariaControls}
-      aria-pressed={ariaPressed}
-      aria-busy={isLoading}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-    >
-      {isLoading && <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />}
-      {children}
-    </motion.button>
-  );
-});
+    return (
+      <motion.button
+        type={type}
+        className={buttonClassName}
+        disabled={disabled || isLoading}
+        onClick={onClick}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedby}
+        aria-expanded={ariaExpanded}
+        aria-controls={ariaControls}
+        aria-pressed={ariaPressed}
+        aria-busy={isLoading}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      >
+        {isLoading && <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />}
+        {children}
+      </motion.button>
+    );
+  },
+);
 
 Button.displayName = 'Button';
 

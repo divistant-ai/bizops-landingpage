@@ -1,39 +1,58 @@
 export const searchMockData = [
   // --- PLATFORM / PRODUCT ---
   {
-    title: 'Human Capital Management (HRIS)',
-    snippet: 'Kelola payroll, absensi, cuti, dan database karyawan dalam satu sistem terintegrasi PPh 21 terbaru.',
+    title: 'People (HRIS)',
+    snippet:
+      'Kelola payroll, absensi, cuti, dan database karyawan dalam satu sistem terintegrasi PPh 21 terbaru.',
     category: 'product',
     tag: 'Module',
-    path: '/platform/modules/hr',
+    path: '/platform/modules/people',
   },
   {
-    title: 'Finance & Accounting',
-    snippet: 'Otomatisasi pembukuan, rekonsiliasi bank, manajemen aset, dan laporan keuangan real-time.',
+    title: 'Money (Finance & Accounting)',
+    snippet:
+      'Otomatisasi pembukuan, rekonsiliasi bank, manajemen aset, dan laporan keuangan real-time.',
     category: 'product',
     tag: 'Module',
-    path: '/platform/modules/finance',
+    path: '/platform/modules/money',
   },
   {
-    title: 'Supply Chain Management',
-    snippet: 'Kontrol stok multi-gudang, manajemen vendor, procurement, dan serial number tracking.',
+    title: 'Supply (Supply Chain & Inventory)',
+    snippet:
+      'Kontrol stok multi-gudang, manajemen vendor, procurement, dan serial number tracking.',
     category: 'product',
     tag: 'Module',
-    path: '/platform/modules/supply-chain',
+    path: '/platform/modules/supply',
   },
   {
-    title: 'Sales & CRM',
+    title: 'Growth (Sales & CRM)',
     snippet: 'Pipeline manajemen, quotation builder, sales order, dan customer portal.',
     category: 'product',
     tag: 'Module',
-    path: '/platform/modules/sales',
+    path: '/platform/modules/growth',
   },
   {
-    title: 'Project Management',
+    title: 'Work (Project Management)',
     snippet: 'Tracking progres proyek, RAB vs Realisasi, Timesheet karyawan, dan kurva S.',
     category: 'product',
     tag: 'Module',
-    path: '/platform/modules/operations',
+    path: '/platform/modules/work',
+  },
+  {
+    title: 'Care (Helpdesk & CRM)',
+    snippet:
+      'Customer service ticketing, knowledge base, SLA tracking, dan customer support portal.',
+    category: 'product',
+    tag: 'Module',
+    path: '/platform/modules/care',
+  },
+  {
+    title: 'Hub (Governance & Compliance)',
+    snippet:
+      'Audit trail, compliance management, policy enforcement, dan risk management dashboard.',
+    category: 'product',
+    tag: 'Module',
+    path: '/platform/modules/hub',
   },
   {
     title: 'Automation & AI',
@@ -76,7 +95,8 @@ export const searchMockData = [
   // --- BLOG & RESOURCES ---
   {
     title: 'Panduan PPh 21 TER 2024',
-    snippet: 'Cara menghitung pajak penghasilan karyawan dengan metode tarif efektif rata-rata terbaru.',
+    snippet:
+      'Cara menghitung pajak penghasilan karyawan dengan metode tarif efektif rata-rata terbaru.',
     category: 'blog',
     tag: 'Article',
     path: '/blog/revolusi-pph-21-ter-2024',

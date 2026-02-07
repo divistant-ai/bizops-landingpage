@@ -2,7 +2,7 @@
 
 import React, { memo, useState } from 'react';
 
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Tabs component for organizing content
@@ -40,127 +40,133 @@ type TabsProps = {
   className?: string;
 };
 
-const Tabs: React.FC<TabsProps> = memo(({
-  tabs,
-  defaultTab,
-  activeTab: controlledActiveTab,
-  onChange,
-  variant = 'default',
-  className = '',
-}) => {
-  const [internalActiveTab, setInternalActiveTab] = useState(defaultTab || tabs[0]?.id);
+const Tabs: React.FC<TabsProps> = memo(
+  ({
+    tabs,
+    defaultTab,
+    activeTab: controlledActiveTab,
+    onChange,
+    variant = 'default',
+    className = '',
+  }) => {
+    const [internalActiveTab, setInternalActiveTab] = useState(defaultTab || tabs[0]?.id);
 
-  // Use controlled or uncontrolled state
-  const activeTab = controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
+    // Use controlled or uncontrolled state
+    const activeTab = controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
 
-  const handleTabClick = (tabId: string) => {
-    if (controlledActiveTab === undefined) {
-      setInternalActiveTab(tabId);
-    }
-    onChange?.(tabId);
-  };
+    const handleTabClick = (tabId: string) => {
+      if (controlledActiveTab === undefined) {
+        setInternalActiveTab(tabId);
+      }
+      onChange?.(tabId);
+    };
 
-  const handleKeyDown = (event: React.KeyboardEvent, _index: number) => {
-    const enabledTabs = tabs.filter(tab => !tab.disabled);
-    const currentIndex = enabledTabs.findIndex(tab => tab.id === activeTab);
+    const handleKeyDown = (event: React.KeyboardEvent, _index: number) => {
+      const enabledTabs = tabs.filter(tab => !tab.disabled);
+      const currentIndex = enabledTabs.findIndex(tab => tab.id === activeTab);
 
-    let nextIndex = currentIndex;
+      let nextIndex = currentIndex;
 
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      nextIndex = (currentIndex + 1) % enabledTabs.length;
-    } else if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      nextIndex = (currentIndex - 1 + enabledTabs.length) % enabledTabs.length;
-    } else if (event.key === 'Home') {
-      event.preventDefault();
-      nextIndex = 0;
-    } else if (event.key === 'End') {
-      event.preventDefault();
-      nextIndex = enabledTabs.length - 1;
-    }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        nextIndex = (currentIndex + 1) % enabledTabs.length;
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        nextIndex = (currentIndex - 1 + enabledTabs.length) % enabledTabs.length;
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        nextIndex = enabledTabs.length - 1;
+      }
 
-    if (nextIndex !== currentIndex && enabledTabs[nextIndex]) {
-      handleTabClick(enabledTabs[nextIndex]!.id);
-    }
-  };
+      if (nextIndex !== currentIndex && enabledTabs[nextIndex]) {
+        handleTabClick(enabledTabs[nextIndex]!.id);
+      }
+    };
 
-  // Design System: Ensure proper color contrast for all tab variants (light & dark mode)
-  const variantStyles = {
-    default: {
-      list: 'border-b border-slate-300 dark:border-slate-700',
-      button: (isActive: boolean) => twMerge(
-        'px-6 py-3 font-medium transition-colors border-b-2',
-        isActive
-          ? 'border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400'
-          : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600',
-      ),
-    },
-    pills: {
-      list: 'bg-slate-100 dark:bg-slate-800 rounded-lg p-1',
-      button: (isActive: boolean) => twMerge(
-        'px-6 py-2 rounded-md font-medium transition-all',
-        isActive
-          ? 'bg-white dark:bg-slate-900 text-primary-600 dark:text-primary-400 shadow-sm'
-          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white',
-      ),
-    },
-    underline: {
-      list: 'space-x-8',
-      button: (isActive: boolean) => twMerge(
-        'pb-3 font-medium transition-colors border-b-2',
-        isActive
-          ? 'border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400'
-          : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white',
-      ),
-    },
-  };
+    // Design System: Ensure proper color contrast for all tab variants (light & dark mode)
+    const variantStyles = {
+      default: {
+        list: 'border-b border-slate-300 dark:border-slate-700',
+        button: (isActive: boolean) =>
+          cn(
+            'px-6 py-3 font-medium transition-colors border-b-2',
+            isActive
+              ? 'border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400'
+              : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600',
+          ),
+      },
+      pills: {
+        list: 'bg-slate-100 dark:bg-slate-800 rounded-lg p-1',
+        button: (isActive: boolean) =>
+          cn(
+            'px-6 py-2 rounded-md font-medium transition-all',
+            isActive
+              ? 'bg-white dark:bg-slate-900 text-primary-600 dark:text-primary-400 shadow-sm'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white',
+          ),
+      },
+      underline: {
+        list: 'space-x-8',
+        button: (isActive: boolean) =>
+          cn(
+            'pb-3 font-medium transition-colors border-b-2',
+            isActive
+              ? 'border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400'
+              : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white',
+          ),
+      },
+    };
 
-  return (
-    <div className={className}>
-      {/* Tab List */}
-      <div
-        role="tablist"
-        className={variantStyles[variant].list}
-      >
-        {tabs.map((tab, index) => (
-          <button
+    return (
+      <div className={className}>
+        {/* Tab List */}
+        <div role="tablist" className={variantStyles[variant].list}>
+          {tabs.map((tab, index) => (
+            <button
+              key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              aria-controls={`tabpanel-${tab.id}`}
+              id={`tab-${tab.id}`}
+              tabIndex={activeTab === tab.id ? 0 : -1}
+              disabled={tab.disabled}
+              onClick={() => handleTabClick(tab.id)}
+              onKeyDown={e => handleKeyDown(e, index)}
+              className={cn(
+                variantStyles[variant].button(activeTab === tab.id),
+                'focus:ring-primary-500 rounded-t-lg focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+              )}
+            >
+              {tab.icon && (
+                <span className="mr-2" aria-hidden="true">
+                  {tab.icon}
+                </span>
+              )}
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Panels */}
+        {tabs.map(tab => (
+          <div
             key={tab.id}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            aria-controls={`tabpanel-${tab.id}`}
-            id={`tab-${tab.id}`}
-            tabIndex={activeTab === tab.id ? 0 : -1}
-            disabled={tab.disabled}
-            onClick={() => handleTabClick(tab.id)}
-            onKeyDown={e => handleKeyDown(e, index)}
-            className={twMerge(
-              variantStyles[variant].button(activeTab === tab.id),
-              'disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-t-lg',
-            )}
+            role="tabpanel"
+            id={`tabpanel-${tab.id}`}
+            aria-labelledby={`tab-${tab.id}`}
+            hidden={activeTab !== tab.id}
+            className="py-6"
           >
-            {tab.icon && <span className="mr-2" aria-hidden="true">{tab.icon}</span>}
-            {tab.label}
-          </button>
+            {activeTab === tab.id && tab.content}
+          </div>
         ))}
       </div>
-
-      {/* Tab Panels */}
-      {tabs.map(tab => (
-        <div
-          key={tab.id}
-          role="tabpanel"
-          id={`tabpanel-${tab.id}`}
-          aria-labelledby={`tab-${tab.id}`}
-          hidden={activeTab !== tab.id}
-          className="py-6"
-        >
-          {activeTab === tab.id && tab.content}
-        </div>
-      ))}
-    </div>
-  );
-});
+    );
+  },
+);
 
 Tabs.displayName = 'Tabs';
 

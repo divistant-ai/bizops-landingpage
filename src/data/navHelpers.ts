@@ -17,6 +17,8 @@ export function getModuleNavItems() {
     label: data.navLabel,
     desc: data.navDesc,
     icon: data.icon,
+    color: data.color,
+    bg: data.bgColor,
   }));
 }
 
@@ -26,7 +28,15 @@ export function getModuleNavItems() {
  */
 export function getCapabilityNavItems() {
   // Only include capabilities that are shown in the menu
-  const menuCapabilities = ['automation-ai', 'multi-company', 'portals', 'analytics', 'mobile', 'low-code', 'collaboration'];
+  const menuCapabilities = [
+    'automation-ai',
+    'multi-company',
+    'portals',
+    'analytics',
+    'mobile',
+    'low-code',
+    'collaboration',
+  ];
 
   return menuCapabilities
     .filter(slug => capabilitiesData[slug])

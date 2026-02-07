@@ -8,8 +8,22 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html', 'lcov'],
       include: ['src/**/*'],
-      exclude: ['src/**/*.stories.{js,jsx,ts,tsx}'],
+      exclude: [
+        'src/**/*.stories.{js,jsx,ts,tsx}',
+        'src/**/*.d.ts',
+        'src/**/types.ts',
+        'src/**/index.ts',
+        'src/libs/Env.ts',
+      ],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75,
+        statements: 80,
+      },
     },
     projects: [
       {
@@ -31,9 +45,7 @@ export default defineConfig({
             headless: true,
             provider: playwright(),
             screenshotDirectory: 'vitest-test-results',
-            instances: [
-              { browser: 'chromium' },
-            ],
+            instances: [{ browser: 'chromium' }],
           },
         },
       },

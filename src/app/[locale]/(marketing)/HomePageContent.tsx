@@ -40,6 +40,8 @@ export default function HomePageContent() {
           subtitle: p.subtitle,
           desc: p.desc,
           icon: p.icon,
+          stat: p.stat,
+          cost: p.cost,
         }))}
       />
 
@@ -82,7 +84,6 @@ export default function HomePageContent() {
         trustText2={t('trust_no_credit_card')}
         trustText3={t('trust_cancel_anytime' as any)}
       />
-
     </>
   );
 }

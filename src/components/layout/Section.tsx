@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Section component for page sections
@@ -34,10 +34,10 @@ const Section: React.FC<SectionProps> = ({
   return (
     <section
       id={id}
-      className={twMerge(bgClass, paddingClass, className, 'transition-colors duration-300')}
+      className={cn(bgClass, paddingClass, className, 'transition-colors duration-300')}
       {...props}
     >
-      <div className={twMerge('max-w-7xl mx-auto px-4 sm:px-6 lg:px-8', containerClassName)}>
+      <div className={cn('mx-auto max-w-7xl px-4 sm:px-6 lg:px-8', containerClassName)}>
         {children}
       </div>
     </section>

@@ -66,12 +66,14 @@ const CardSlider: React.FC<CardSliderProps> = ({
     }
   };
 
-  const resetClass = breakpoint === 'lg'
-    ? 'lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none'
-    : 'md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none';
+  const resetClass
+    = breakpoint === 'lg'
+      ? 'lg:mx-0 lg:px-0 lg:pb-0 lg:overflow-visible lg:snap-none'
+      : 'md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none';
 
   const defaultDesktopWidthClass = breakpoint === 'lg' ? 'lg:w-auto' : 'md:w-auto';
-  const finalDesktopWidth = desktopItemWidth !== undefined ? desktopItemWidth : defaultDesktopWidthClass;
+  const finalDesktopWidth
+    = desktopItemWidth !== undefined ? desktopItemWidth : defaultDesktopWidthClass;
 
   const indicatorHideClass = breakpoint === 'lg' ? 'lg:hidden' : 'md:hidden';
 
@@ -80,12 +82,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
       <div
         ref={sliderRef}
         onKeyDown={handleKeyDown}
-        className={`
-          -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-8
-          ${resetClass}
-          scrollbar-hide focus:ring-primary-500/20 rounded-xl focus:ring-2 focus:outline-none
-          ${desktopClassName}
-        `}
+        className={`-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-8 ${resetClass} scrollbar-hide focus:ring-primary-500/20 rounded-xl focus:ring-2 focus:outline-none ${desktopClassName} `}
         tabIndex={0}
       >
         {React.Children.map(children, (child, index) => {
@@ -99,14 +96,20 @@ const CardSlider: React.FC<CardSliderProps> = ({
           }
 
           return (
-            <div key={index} className={`shrink-0 snap-center ${mobileItemWidth} ${desktopClass} h-full`}>
+            <div
+              key={index}
+              className={`shrink-0 snap-center ${mobileItemWidth} ${desktopClass} h-full`}
+            >
               {child}
             </div>
           );
         })}
       </div>
 
-      <div className={`absolute right-0 bottom-0 left-0 flex justify-center gap-2 ${indicatorHideClass} pointer-events-none h-6`} aria-hidden="true">
+      <div
+        className={`absolute right-0 bottom-0 left-0 flex justify-center gap-2 ${indicatorHideClass} pointer-events-none h-6`}
+        aria-hidden="true"
+      >
         {Array.from({ length: childCount }).map((_, i) => (
           <button
             key={i}
@@ -122,5 +125,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
     </div>
   );
 };
+
+CardSlider.displayName = 'CardSlider';
 
 export default CardSlider;

@@ -4,7 +4,7 @@ import type { VariantProps } from 'class-variance-authority';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 const tooltipContent = cva([], {
   variants: {
@@ -42,7 +42,8 @@ export type TooltipProps = {
   className?: string;
   withArrow?: boolean;
   side?: 'top' | 'right' | 'bottom' | 'left';
-} & VariantProps<typeof tooltipContent> & RadixTooltip.TooltipProps;
+} & VariantProps<typeof tooltipContent>
+  & RadixTooltip.TooltipProps;
 
 export function Tooltip({
   children,
@@ -58,16 +59,23 @@ export function Tooltip({
 }: TooltipProps) {
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} delayDuration={200}>
+      <RadixTooltip.Root
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+        delayDuration={200}
+      >
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
             side={side}
             sideOffset={5}
-            className={twMerge(tooltipContent({ intent, size, className }))}
+            className={cn(tooltipContent({ intent, size, className }))}
           >
             {explainer}
-            {withArrow ? <RadixTooltip.Arrow className={twMerge(tooltipArrow({ intent, size, className }))} /> : null}
+            {withArrow ? (
+              <RadixTooltip.Arrow className={cn(tooltipArrow({ intent, size, className }))} />
+            ) : null}
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
       </RadixTooltip.Root>

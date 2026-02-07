@@ -7,6 +7,7 @@ import {
   ArrowRight,
   BarChart,
   BarChart2,
+  BookOpen,
   Bot,
   BrainCircuit,
   Briefcase,
@@ -14,7 +15,6 @@ import {
   Calculator,
   Calendar,
   CalendarRange,
-  ClipboardCheck,
   Clock,
   Cloud,
   Code,
@@ -28,11 +28,13 @@ import {
   FileText,
   FileWarning,
   Filter,
+  GanttChartSquare,
   GitMerge,
   Globe,
   GraduationCap,
   Headphones,
   Heart,
+  HelpCircle,
   History,
   Hourglass,
   Key,
@@ -53,6 +55,7 @@ import {
   Radio,
   Receipt,
   RefreshCw,
+  Repeat,
   ScanLine,
   Search,
   Server,
@@ -62,7 +65,6 @@ import {
   ShoppingBag,
   ShoppingCart,
   Smartphone,
-
   Tag,
   Target,
   Terminal,
@@ -79,10 +81,10 @@ import {
 
 // --- MODULES DATA ---
 export const modulesData: Record<string, ModuleData> = {
-  'hr': {
-    navLabel: 'Human Capital Management (HRIS)',
+  people: {
+    navLabel: 'People',
     navDesc: 'Payroll, Attendance, LMS',
-    title: 'Human Capital Management (HRIS)',
+    title: 'People (HRIS)',
     subtitle: 'Otomatisasi Admin HR. Fokus pada Manusia, Bukan Kertas.',
     description:
       'Tinggalkan spreadsheet yang rentan error. BizOps HRIS mengotomatiskan seluruh siklus karyawan—dari rekrutmen hingga pensiun—agar Anda bisa fokus membangun budaya juara.',
@@ -90,6 +92,8 @@ export const modulesData: Record<string, ModuleData> = {
     metaDesc:
       'Aplikasi HRIS lengkap dengan Payroll PPh 21 otomatis, Absensi GPS anti-fake, dan Manajemen KPI. Solusi HR strategis untuk perusahaan modern.',
     icon: Users,
+    color: 'text-blue-600',
+    bgColor: 'bg-blue-50',
     features: [
       {
         title: 'Manajemen Shift Kompleks',
@@ -196,10 +200,10 @@ export const modulesData: Record<string, ModuleData> = {
       },
     ],
   },
-  'finance': {
-    navLabel: 'Finance & Procurement',
+  money: {
+    navLabel: 'Money',
     navDesc: 'Accounting, Expense, Asset',
-    title: 'Finance & Procurement',
+    title: 'Money (Finance & Procurement)',
     subtitle: 'Kendali Penuh Atas Setiap Rupiah.',
     description:
       'Hilangkan kebocoran anggaran (Budget Leakage) dengan sistem persetujuan bertingkat. Integrasikan pembelian, aset, dan akuntansi dalam satu aliran data real-time.',
@@ -207,6 +211,8 @@ export const modulesData: Record<string, ModuleData> = {
     metaDesc:
       'Kontrol arus kas total, manajemen aset fisik, dan digitalisasi pengadaan barang (Procurement). Laporan keuangan real-time tanpa menunggu tutup buku.',
     icon: DollarSign,
+    color: 'text-emerald-600',
+    bgColor: 'bg-emerald-50',
     features: [
       {
         title: 'Budget Control & Procurement',
@@ -313,127 +319,129 @@ export const modulesData: Record<string, ModuleData> = {
       avatar: 'https://ui-avatars.com/api/?name=Sari+Wulandari&background=10B981&color=fff',
     },
   },
-  'operations': {
-    navLabel: 'Operations & Project Management',
-    navDesc: 'Timesheet, Project, S-Curve',
-    title: 'Operations & Project Management',
-    subtitle: 'Deliver Projects On Time, On Budget.',
+  supply: {
+    navLabel: 'Supply',
+    navDesc: 'Inventory, Procurement, Supply Chain',
+    title: 'Supply (Inventory & Procurement)',
+    subtitle: 'Akurasi Stok Mutlak. Minimalkan Dead Stock.',
     description:
-      'Visibilitas penuh dari kantor pusat ke lapangan. Pantau progres fisik, realisasi material, dan jam kerja tim dalam satu dashboard terpusat.',
-    metaTitle: 'Project Management, Timesheet & Field Report',
+      'Kelola ribuan SKU di berbagai lokasi gudang dengan presisi tinggi. Cegah kerugian akibat barang hilang, kadaluarsa, atau selisih stok yang tak terdeteksi.',
+    metaTitle: 'Multi-Warehouse Inventory & Stock Management',
     metaDesc:
-      'Pantau progres kurva-S proyek, kontrol RAB, dan produktivitas tim lapangan. Solusi Timesheet terintegrasi untuk perusahaan jasa konstruksi.',
-    icon: Briefcase,
+      'Sistem manajemen stok multi-gudang dengan Stock Opname QR Code. Lacak pergerakan barang, batch number, dan expiry date secara akurat.',
+    icon: Package,
+    color: 'text-amber-600',
+    bgColor: 'bg-amber-50',
     features: [
       {
-        title: 'Project Budgeting (RAB)',
-        desc: 'Kendalikan margin laba. Sistem memberi peringatan dini (Early Warning) jika biaya aktual mendekati batas RAB sebelum kerugian terjadi.',
-        icon: Calculator,
+        title: 'Multi-Warehouse',
+        desc: 'Pantau stok di Gudang Pusat, Cabang, hingga stok konsinyasi secara real-time. Transfer antar gudang tercatat rapi dengan approval.',
+        icon: Layers,
       },
       {
-        title: 'Geo-Tagged Timesheet',
-        desc: 'Tim mencatat waktu kerja via mobile dengan validasi GPS. Data ini menjadi dasar perhitungan biaya tenaga kerja (Man-Hour Cost) yang presisi.',
-        icon: MapPin,
+        title: 'QR Stock Opname',
+        desc: 'Percepat audit stok hingga 50%. Gunakan kamera HP untuk scan barang. Sistem otomatis menghitung selisih dan jurnal penyesuaian.',
+        icon: Smartphone,
       },
       {
-        title: 'Laporan Harian Proyek (LHP)',
-        desc: 'Pelaksana lapangan input cuaca, volume kerja, dan kendala + foto bukti. Data dikompilasi otomatis menjadi Kurva-S progres proyek.',
-        icon: ClipboardCheck,
-      },
-      {
-        title: 'Resource Planning',
-        desc: 'Alokasikan alat berat dan teknisi antar proyek dengan visualisasi Gantt Chart. Hindari bentrok jadwal dan optimalkan utilitas aset.',
+        title: 'Batch & Expiry Tracking',
+        desc: 'Prioritaskan barang yang akan expired duluan (FEFO). Lacak riwayat pergerakan setiap batch jika terjadi recall produk.',
         icon: CalendarRange,
       },
       {
-        title: 'Manajemen Termin & BAST',
-        desc: 'Tagih klien berdasarkan persentase penyelesaian fisik (Opname) atau milestone. Lampirkan BAST digital sebagai pendukung invoice.',
-        icon: FileText,
+        title: 'Auto-Reorder Point',
+        desc: 'Sistem memberi notifikasi otomatis atau membuat draft pembelian (PR) saat stok menipis di bawah batas minimum.',
+        icon: RefreshCw,
       },
       {
-        title: 'Asset & Equipment Maintenance',
-        desc: 'Jadwalkan perawatan rutin (Preventive) alat berat dan mesin proyek. Catat riwayat servis dan biaya sparepart untuk analisa umur aset.',
-        icon: Wrench,
+        title: 'Production & Assembly (BOM)',
+        desc: 'Kelola Bill of Materials (BOM) untuk perakitan/bundling produk. Potong stok bahan baku otomatis saat barang jadi diproduksi (Backflush).',
+        icon: Factory,
+      },
+      {
+        title: 'Quality Control (QC)',
+        desc: 'Wajibkan inspeksi kualitas saat barang masuk (Inbound) atau selesai produksi. Barang reject otomatis terpisahkan ke gudang karantina.',
+        icon: Microscope,
       },
     ],
     metrics: [
-      { value: '0%', label: 'Cost Overrun (Budget Lock)' },
-      { value: 'Real-time', label: 'Visibility Progress Fisik' },
-      { value: '100%', label: 'Akurasi Penagihan Termin' },
+      { value: '99.8%', label: 'Akurasi Stok Fisik vs Sistem' },
+      { value: '20%', label: 'Penurunan Nilai Dead Stock' },
+      { value: '50%', label: 'Lebih Cepat Stock Opname' },
     ],
     problems: [
       {
-        title: 'Proyek Molor',
-        desc: 'Keterlambatan material dan miskoordinasi tim lapangan membuat jadwal proyek berantakan.',
-        icon: Clock,
+        title: 'Selisih Stok',
+        desc: 'Barang di sistem ada 10, di gudang cuma 8. Selisih ini memakan profit margin Anda secara diam-diam.',
+        icon: AlertTriangle,
       },
       {
-        title: 'Cost Overrun',
-        desc: 'Biaya membengkak tanpa disadari sampai akhir proyek. Margin keuntungan tergerus habis.',
-        icon: TrendingDown,
+        title: 'Barang Expired',
+        desc: 'Produk lama tertimbun di belakang gudang dan kadaluarsa karena tidak menerapkan FEFO dengan ketat.',
+        icon: AlertOctagon,
       },
       {
-        title: 'Laporan Fiktif',
-        desc: 'Laporan harian manual yang tidak akurat dan sulit divalidasi kebenarannya.',
+        title: 'Salah Kirim',
+        desc: 'Picker mengambil barang yang salah karena kemasan mirip. Retur barang meningkat dan pelanggan kecewa.',
         icon: FileWarning,
       },
     ],
     mobileAdvantage: {
-      title: 'Update Progres Langsung dari Site',
-      desc: 'BizOps Mobile didesain untuk kondisi lapangan. Upload foto progres, update status tugas, dan catat material langsung di lokasi. Mendukung Offline Mode untuk area terpencil (Blank Spot).',
+      title: 'Gudang Paperless',
+      desc: 'Staf gudang menerima perintah Picking/Packing langsung di aplikasi. Scan barcode barang sebelum dikirim untuk memastikan 100% akurasi pengiriman.',
     },
     connections: [
       {
-        target: 'Procurement',
-        desc: 'Material request lapangan langsung memotong stok gudang proyek atau memicu PR ke pusat.',
-      },
-      {
-        target: 'HR',
-        desc: 'Data Timesheet proyek tervalidasi menjadi dasar perhitungan upah lembur & KPI produktivitas.',
+        target: 'Sales',
+        desc: 'Memberikan data stok tersedia (ATP) yang akurat ke tim sales agar tidak overselling.',
       },
       {
         target: 'Finance',
-        desc: 'Progress fisik yang disetujui (Opname) otomatis men-trigger tagihan termin ke klien.',
+        desc: 'Nilai persediaan terhitung otomatis (Average/FIFO) setiap detik, menghasilkan laporan HPP yang presisi.',
+      },
+      {
+        target: 'Procurement',
+        desc: 'Notifikasi stok minimum (Reorder Point) otomatis memicu permintaan pembelian ke tim purchasing.',
       },
     ],
     cta: {
-      text: 'Tingkatkan profitabilitas dan ketepatan waktu proyek Anda.',
-      buttonLabel: 'Demo Modul Ops',
+      text: 'Rapikan manajemen stok dan gudang Anda sekarang.',
+      buttonLabel: 'Demo Modul Inventory',
     },
     testimonial: {
       quote:
-        'Dulu kami baru sadar rugi setelah proyek selesai. Sekarang dengan BizOps, kami bisa tahu profit/loss per proyek setiap hari secara real-time.',
-      author: 'Hendra Gunawan',
-      role: 'Project Manager at Konstruksi Jaya',
-      avatar: 'https://ui-avatars.com/api/?name=Hendra+Gunawan&background=F59E0B&color=fff',
+        'Dulu Stock Opname butuh 3 hari tutup toko. Sekarang pakai QR Scan, selesai dalam setengah hari tanpa menghentikan operasional.',
+      author: 'Surya Kencana',
+      role: 'Logistics Manager at Retail Chain',
+      avatar: 'https://ui-avatars.com/api/?name=Surya+Kencana&background=10B981&color=fff',
     },
     faqs: [
       {
-        question: 'Apakah bisa digunakan di lokasi tanpa sinyal internet?',
+        question: 'Apakah mendukung metode Average dan FIFO?',
         answer:
-          'Ya, aplikasi mobile kami memiliki fitur Offline Mode. Data akan tersimpan lokal dan otomatis sinkronisasi saat sinyal kembali tersedia.',
+          'Ya, Anda bisa memilih metode penilaian persediaan yang sesuai dengan kebijakan akuntansi perusahaan (Moving Average atau FIFO).',
       },
       {
-        question: 'Apakah mendukung Kurva-S?',
+        question: 'Bagaimana jika barang punya varian (Warna/Ukuran)?',
         answer:
-          'Tentu. Sistem otomatis menghasilkan Kurva-S (Rencana vs Realisasi) berdasarkan input bobot pekerjaan harian dari lapangan.',
+          'Sistem mendukung Item Variant. Anda bisa membuat satu template induk (Kaos Polos) dan generate ribuan SKU varian (Merah-S, Biru-XL) otomatis.',
       },
       {
-        question: 'Bagaimana dengan material sisa proyek?',
+        question: 'Apakah bisa cetak label barcode sendiri?',
         answer:
-          'Sistem mendukung fitur Material Transfer antar-proyek atau Return to Warehouse untuk memastikan sisa material tercatat kembali sebagai aset.',
+          'Bisa. Sistem memiliki fitur Barcode Label Printing yang bisa dikustomisasi ukuran dan informasinya untuk ditempel di rak atau produk.',
       },
       {
-        question: 'Apakah bisa integrasi dengan software desain (AutoCAD)?',
+        question: 'Apakah butuh alat scanner khusus mahal?',
         answer:
-          'Anda bisa melampirkan file gambar kerja (DWG/PDF) ke dalam Task Proyek. Untuk integrasi BIM tingkat lanjut, kami menyediakan API terbuka.',
+          'Tidak wajib. Aplikasi mobile kami bisa menggunakan kamera HP biasa untuk scan barcode. Namun kami juga mendukung PDA Scanner industri (Zebra/Honeywell) untuk throughput tinggi.',
       },
     ],
   },
-  'sales': {
-    navLabel: 'Sales & CRM',
+  growth: {
+    navLabel: 'Growth',
     navDesc: 'CRM, Quotation, POS',
-    title: 'Sales & CRM',
+    title: 'Growth (Sales & CRM)',
     subtitle: 'Tutup Deal Lebih Cepat, Di Mana Saja.',
     description:
       'Berdayakan tim sales dengan data real-time. Kelola pipeline penjualan, buat penawaran instan, dan pantau target harian dari aplikasi mobile.',
@@ -441,6 +449,8 @@ export const modulesData: Record<string, ModuleData> = {
     metaDesc:
       'Aplikasi Sales Canvas dengan fitur Check-in GPS, Quotation Generator, dan Live Stock View. Tingkatkan omzet dengan CRM yang terintegrasi Inventory.',
     icon: TrendingUp,
+    color: 'text-purple-600',
+    bgColor: 'bg-purple-50',
     features: [
       {
         title: 'Visual Sales Pipeline',
@@ -547,127 +557,10 @@ export const modulesData: Record<string, ModuleData> = {
       },
     ],
   },
-  'supply-chain': {
-    navLabel: 'Supply Chain & Inventory',
-    navDesc: 'Inventory, Warehouse, BOM',
-    title: 'Supply Chain & Inventory',
-    subtitle: 'Akurasi Stok Mutlak. Minimalkan Dead Stock.',
-    description:
-      'Kelola ribuan SKU di berbagai lokasi gudang dengan presisi tinggi. Cegah kerugian akibat barang hilang, kadaluarsa, atau selisih stok yang tak terdeteksi.',
-    metaTitle: 'Multi-Warehouse Inventory & Stock Management',
-    metaDesc:
-      'Sistem manajemen stok multi-gudang dengan Stock Opname QR Code. Lacak pergerakan barang, batch number, dan expiry date secara akurat.',
-    icon: Package,
-    features: [
-      {
-        title: 'Multi-Warehouse',
-        desc: 'Pantau stok di Gudang Pusat, Cabang, hingga stok konsinyasi secara real-time. Transfer antar gudang tercatat rapi dengan approval.',
-        icon: Layers,
-      },
-      {
-        title: 'QR Stock Opname',
-        desc: 'Percepat audit stok hingga 50%. Gunakan kamera HP untuk scan barang. Sistem otomatis menghitung selisih dan jurnal penyesuaian.',
-        icon: Smartphone,
-      },
-      {
-        title: 'Batch & Expiry Tracking',
-        desc: 'Prioritaskan barang yang akan expired duluan (FEFO). Lacak riwayat pergerakan setiap batch jika terjadi recall produk.',
-        icon: CalendarRange,
-      },
-      {
-        title: 'Auto-Reorder Point',
-        desc: 'Sistem memberi notifikasi otomatis atau membuat draft pembelian (PR) saat stok menipis di bawah batas minimum.',
-        icon: RefreshCw, // Need to ensure this exists or use suitable alternative
-      },
-      {
-        title: 'Production & Assembly (BOM)',
-        desc: 'Kelola Bill of Materials (BOM) untuk perakitan/bundling produk. Potong stok bahan baku otomatis saat barang jadi diproduksi (Backflush).',
-        icon: Factory,
-      },
-      {
-        title: 'Quality Control (QC)',
-        desc: 'Wajibkan inspeksi kualitas saat barang masuk (Inbound) atau selesai produksi. Barang reject otomatis terpisahkan ke gudang karantina.',
-        icon: Microscope,
-      },
-    ],
-    metrics: [
-      { value: '99.8%', label: 'Akurasi Stok Fisik vs Sistem' },
-      { value: '20%', label: 'Penurunan Nilai Dead Stock' },
-      { value: '50%', label: 'Lebih Cepat Stock Opname' },
-    ],
-    problems: [
-      {
-        title: 'Selisih Stok',
-        desc: 'Barang di sistem ada 10, di gudang cuma 8. Selisih ini memakan profit margin Anda secara diam-diam.',
-        icon: AlertTriangle,
-      },
-      {
-        title: 'Barang Expired',
-        desc: 'Produk lama tertimbun di belakang gudang dan kadaluarsa karena tidak menerapkan FEFO dengan ketat.',
-        icon: AlertOctagon,
-      },
-      {
-        title: 'Salah Kirim',
-        desc: 'Picker mengambil barang yang salah karena kemasan mirip. Retur barang meningkat dan pelanggan kecewa.',
-        icon: FileWarning,
-      },
-    ],
-    mobileAdvantage: {
-      title: 'Gudang Paperless',
-      desc: 'Staf gudang menerima perintah Picking/Packing langsung di aplikasi. Scan barcode barang sebelum dikirim untuk memastikan 100% akurasi pengiriman.',
-    },
-    connections: [
-      {
-        target: 'Sales',
-        desc: 'Memberikan data stok tersedia (ATP) yang akurat ke tim sales agar tidak overselling.',
-      },
-      {
-        target: 'Finance',
-        desc: 'Nilai persediaan terhitung otomatis (Average/FIFO) setiap detik, menghasilkan laporan HPP yang presisi.',
-      },
-      {
-        target: 'Procurement',
-        desc: 'Notifikasi stok minimum (Reorder Point) otomatis memicu permintaan pembelian ke tim purchasing.',
-      },
-    ],
-    cta: {
-      text: 'Rapikan manajemen stok dan gudang Anda sekarang.',
-      buttonLabel: 'Demo Modul Inventory',
-    },
-    testimonial: {
-      quote:
-        'Dulu Stock Opname butuh 3 hari tutup toko. Sekarang pakai QR Scan, selesai dalam setengah hari tanpa menghentikan operasional.',
-      author: 'Surya Kencana',
-      role: 'Logistics Manager at Retail Chain',
-      avatar: 'https://ui-avatars.com/api/?name=Surya+Kencana&background=10B981&color=fff',
-    },
-    faqs: [
-      {
-        question: 'Apakah mendukung metode Average dan FIFO?',
-        answer:
-          'Ya, Anda bisa memilih metode penilaian persediaan yang sesuai dengan kebijakan akuntansi perusahaan (Moving Average atau FIFO).',
-      },
-      {
-        question: 'Bagaimana jika barang punya varian (Warna/Ukuran)?',
-        answer:
-          'Sistem mendukung Item Variant. Anda bisa membuat satu template induk (Kaos Polos) dan generate ribuan SKU varian (Merah-S, Biru-XL) otomatis.',
-      },
-      {
-        question: 'Apakah bisa cetak label barcode sendiri?',
-        answer:
-          'Bisa. Sistem memiliki fitur Barcode Label Printing yang bisa dikustomisasi ukuran dan informasinya untuk ditempel di rak atau produk.',
-      },
-      {
-        question: 'Apakah butuh alat scanner khusus mahal?',
-        answer:
-          'Tidak wajib. Aplikasi mobile kami bisa menggunakan kamera HP biasa untuk scan barcode. Namun kami juga mendukung PDA Scanner industri (Zebra/Honeywell) untuk throughput tinggi.',
-      },
-    ],
-  },
-  'governance': {
-    navLabel: 'Governance & Insight',
-    navDesc: 'BI Dashboard, Audit Trail',
-    title: 'Governance & Insight',
+  hub: {
+    navLabel: 'Hub',
+    navDesc: 'BI Dashboard, Audit Trail, Settings',
+    title: 'Hub (Governance & Insight)',
     subtitle: 'Kontrol Penuh, Tanpa Kompromi.',
     description:
       'Solusi bagi pemimpin yang membutuhkan pandangan helikopter (Helicopter View) dan kepastian bahwa seluruh operasional berjalan sesuai koridor kepatuhan (Compliance).',
@@ -675,6 +568,8 @@ export const modulesData: Record<string, ModuleData> = {
     metaDesc:
       'Dashboard manajemen strategis dengan Audit Trail lengkap. Fitur keamanan Role-Based Access Control (RBAC) untuk kepatuhan GCG perusahaan.',
     icon: ShieldCheck,
+    color: 'text-slate-600',
+    bgColor: 'bg-slate-50',
     features: [
       {
         title: 'Executive BI Dashboard',
@@ -756,8 +651,7 @@ export const modulesData: Record<string, ModuleData> = {
         'Fitur Audit Trail-nya penyelamat saat audit pajak. Kami bisa buktikan validitas setiap transaksi hingga ke user yang menginputnya.',
       author: 'Robert Tjahjadi',
       role: 'CIO at Manufaktur Otomotif',
-      avatar:
-        'https://ui-avatars.com/api/?name=Robert+Tjahjadi&background=6366F1&color=fff',
+      avatar: 'https://ui-avatars.com/api/?name=Robert+Tjahjadi&background=6366F1&color=fff',
     },
     faqs: [
       {
@@ -779,6 +673,154 @@ export const modulesData: Record<string, ModuleData> = {
         question: 'Apakah user bisa mengakses sistem dari luar kantor?',
         answer:
           'Bisa diatur. Anda bisa menerapkan kebijakan IP Restriction agar sistem hanya bisa diakses dari jaringan kantor, atau izinkan akses publik dengan wajib 2FA (OTP).',
+      },
+    ],
+  },
+  work: {
+    navLabel: 'Work',
+    navDesc: 'Projects, Tasks, Production, Assets',
+    title: 'Work (Project & Operations)',
+    subtitle: 'Eksekusi Pekerjaan yang Terstruktur.',
+    description:
+      'Manajemen proyek dan operasional harian yang terintegrasi. Pantau progress, alokasikan sumber daya, dan pastikan delivery tepat waktu.',
+    metaTitle: 'Project Management & Task Tracking | BizOps',
+    metaDesc:
+      'Kelola proyek jasa, produksi, dan maintenance. Timesheet, task assignment, dan job costing dalam satu platform.',
+    icon: Wrench,
+    color: 'text-indigo-600',
+    bgColor: 'bg-indigo-50',
+    features: [
+      {
+        title: 'Project Management',
+        desc: 'Kelola proyek jasa dengan kurva-S, RAB tracking, dan progress billing. Pantau margin proyek real-time.',
+        icon: GanttChartSquare,
+      },
+      {
+        title: 'Task & Timesheet',
+        desc: 'Assign task ke tim, track timesheet digital, dan hitung produktivitas karyawan per proyek.',
+        icon: Clock,
+      },
+      {
+        title: 'Production Control',
+        desc: 'Work orders, BOM (Bill of Materials), dan quality control untuk manufaktur (integrasi dengan modul Manufacturing).',
+        icon: Factory,
+      },
+      {
+        title: 'Asset Management',
+        desc: 'Tracking aset fisik (kendaraan, mesin, alat), jadwal maintenance, dan perhitungan depresiasi otomatis.',
+        icon: Building,
+      },
+    ],
+    metrics: [
+      { value: '95%', label: 'On-Time Delivery' },
+      { value: '+40%', label: 'Resource Efficiency' },
+      { value: 'Real-time', label: 'Project Visibility' },
+    ],
+    problems: [
+      {
+        title: 'Proyek Overrun',
+        desc: 'Biaya proyek membengkak karena tidak ada kontrol RAB vs realisasi real-time.',
+        icon: TrendingUp,
+      },
+      {
+        title: 'Timesheet Manual',
+        desc: 'Karyawan isi timesheet di Excel akhir minggu, data tidak akurat dan sulit di-approval.',
+        icon: Clock,
+      },
+      {
+        title: 'Aset Hilang',
+        desc: 'Tidak tahu lokasi aset perusahaan, jadwal service terlewat, dan umur aset tidak ter-tracking.',
+        icon: Search,
+      },
+    ],
+    cta: {
+      text: 'Optimalkan eksekusi proyek dan operasional Anda.',
+      buttonLabel: 'Lihat Work Demo',
+    },
+    faqs: [
+      {
+        question: 'Apakah bisa tracking proyek multi-currency?',
+        answer:
+          'Bisa. Proyek dengan klien luar negeri bisa di-set dalam mata uang asing, dan laporan keuangan akan otomatis mengkonversi ke base currency.',
+      },
+      {
+        question: 'Bagaimana dengan mobile app untuk field worker?',
+        answer:
+          'Tersedia aplikasi mobile khusus untuk field staff. Bisa check-in dengan GPS, foto progress, dan update status task langsung dari lapangan.',
+      },
+    ],
+  },
+  care: {
+    navLabel: 'Care',
+    navDesc: 'Tickets, Issues, Feedback, Portal',
+    title: 'Care (Customer Support)',
+    subtitle: 'Layanan Pelanggan yang Responsif.',
+    description:
+      'Sistem helpdesk dan customer portal untuk menjaga kepuasan pelanggan pasca-transaksi. Handle komplain cepat dan bangun loyalitas.',
+    metaTitle: 'Helpdesk & Customer Portal | BizOps',
+    metaDesc:
+      'Ticket management, knowledge base, dan customer self-service portal. Tingkatkan CSAT dan kurangi beban tim support.',
+    icon: Headphones,
+    color: 'text-rose-600',
+    bgColor: 'bg-rose-50',
+    features: [
+      {
+        title: 'Ticket Management',
+        desc: 'Routing tiket otomatis ke departemen terkait, SLA tracking, dan escalation matrix. Pelanggan tidak perlu menunggu lama.',
+        icon: FileCheck,
+      },
+      {
+        title: 'Knowledge Base',
+        desc: 'Buat artikel bantuan (FAQ, SOP) yang bisa diakses pelanggan 24/7 untuk self-service. Kurangi ticket repetitif.',
+        icon: BookOpen,
+      },
+      {
+        title: 'Customer Portal',
+        desc: 'Portal mandiri bagi pelanggan untuk cek status order, submit ticket, dan download invoice tanpa kontak CS.',
+        icon: Users,
+      },
+      {
+        title: 'Feedback & NPS',
+        desc: 'Kirim survey otomatis setelah transaksi selesai. Hitung NPS score dan analisis sentimen feedback.',
+        icon: MessageSquare,
+      },
+    ],
+    metrics: [
+      { value: '<2h', label: 'First Response Time' },
+      { value: '95%', label: 'CSAT Score' },
+      { value: '-60%', label: 'Support Tickets' },
+    ],
+    problems: [
+      {
+        title: 'Response Lama',
+        desc: 'Pelanggan komplain via WhatsApp tidak ter-tracking, sering terlewat, dan tidak ada histori komunikasi.',
+        icon: MessageCircle,
+      },
+      {
+        title: 'Pertanyaan Berulang',
+        desc: '80% pertanyaan support adalah hal yang sama (cara pakai, status order) tapi tidak ada sistem self-service.',
+        icon: Repeat,
+      },
+      {
+        title: 'Tidak Ada Feedback Loop',
+        desc: 'Tidak pernah survey kepuasan pelanggan, tidak tahu NPS score, dan tidak bisa improve service.',
+        icon: HelpCircle,
+      },
+    ],
+    cta: {
+      text: 'Bangun layanan pelanggan yang membuat mereka kembali.',
+      buttonLabel: 'Lihat Care Demo',
+    },
+    faqs: [
+      {
+        question: 'Apakah bisa integrasi dengan WhatsApp Business?',
+        answer:
+          'Bisa. Tiket bisa masuk dari WhatsApp, email, atau form web. Semua ter-centralisasi dalam satu dashboard.',
+      },
+      {
+        question: 'Bagaimana dengan SLA monitoring?',
+        answer:
+          'Setiap ticket punya SLA berdasarkan prioritas (High/Medium/Low). System warning jika akan breached dan auto-escalate ke supervisor.',
       },
     ],
   },
@@ -971,12 +1013,7 @@ export const capabilitiesData: Record<string, any> = {
       rows: [
         ['Small', '< 50', '2 vCPU, 4GB RAM', 'Single Node (All-in-One)'],
         ['Medium', '50 - 200', '4 vCPU, 8GB RAM', 'Single Node + Redis Cache'],
-        [
-          'Enterprise',
-          '> 500',
-          '8 vCPU, 16GB RAM, DB Dedicated',
-          'Multi-tier (LB + App + DB)',
-        ],
+        ['Enterprise', '> 500', '8 vCPU, 16GB RAM, DB Dedicated', 'Multi-tier (LB + App + DB)'],
       ],
     },
   },
@@ -1159,8 +1196,7 @@ export const capabilitiesData: Record<string, any> = {
       },
       {
         question: 'Bisa kirim file besar?',
-        answer:
-          'Bisa. Batas ukuran file mengikuti konfigurasi server (default 10MB per file).',
+        answer: 'Bisa. Batas ukuran file mengikuti konfigurasi server (default 10MB per file).',
       },
       {
         question: 'Apakah ada fitur video call?',
@@ -1972,11 +2008,13 @@ export const featuresData: Record<string, FeaturePageData> = {
     title: 'Your Reports, Your Way.',
     titleHighlight: 'No Coding.',
     subtitle: 'Analytics & Reports',
-    description: 'Every business has a unique way of viewing data. Don\'t be stuck with rigid standard reports. With Report Builder, you become the data analyst for your own company.',
+    description:
+      'Every business has a unique way of viewing data. Don\'t be stuck with rigid standard reports. With Report Builder, you become the data analyst for your own company.',
     icon: BarChart2,
     heroVariant: 'dark',
     metaTitle: 'Real-time Dashboard & Custom Report Builder | BizOps',
-    metaDesc: 'Create custom reports without coding. Real-time dashboards, drag-and-drop builder, and automated scheduled reports.',
+    metaDesc:
+      'Create custom reports without coding. Real-time dashboards, drag-and-drop builder, and automated scheduled reports.',
 
     featuresBadge: 'Key Features',
     featuresTitle: 'Build Reports Your Way',
@@ -2042,11 +2080,13 @@ export const featuresData: Record<string, FeaturePageData> = {
     title: 'Let the System Work,',
     titleHighlight: 'Not You.',
     subtitle: 'Automation & AI',
-    description: 'Reduce repetitive manual work by up to 80%. BizOps comes with Workflow Builder and practical Applied AI.',
+    description:
+      'Reduce repetitive manual work by up to 80%. BizOps comes with Workflow Builder and practical Applied AI.',
     icon: Zap,
     heroVariant: 'dark',
     metaTitle: 'Workflow Automation & Applied AI | BizOps',
-    metaDesc: 'Automate business processes with no-code workflow builder. OCR for invoices, auto-assignment, and intelligent automation.',
+    metaDesc:
+      'Automate business processes with no-code workflow builder. OCR for invoices, auto-assignment, and intelligent automation.',
 
     featuresBadge: 'Workflow Automation',
     featuresTitle: 'No-Code Business Logic',
@@ -2112,11 +2152,13 @@ export const featuresData: Record<string, FeaturePageData> = {
     title: 'One Platform for',
     titleHighlight: 'Your Entire Business Group.',
     subtitle: 'Multi-Company',
-    description: 'Have multiple PTs, CVs, or different business units? Unify your group company management with native Multi-Company structure.',
+    description:
+      'Have multiple PTs, CVs, or different business units? Unify your group company management with native Multi-Company structure.',
     icon: Network,
     heroVariant: 'dark',
     metaTitle: 'Multi-Company Management & Financial Consolidation | BizOps',
-    metaDesc: 'Manage multiple companies in one platform. Unified login, financial consolidation, and automatic inter-company transactions.',
+    metaDesc:
+      'Manage multiple companies in one platform. Unified login, financial consolidation, and automatic inter-company transactions.',
 
     featuresBadge: 'Core Features',
     featuresTitle: 'Holding Company Management',
@@ -2159,11 +2201,13 @@ export const featuresData: Record<string, FeaturePageData> = {
     title: 'Stop Being Admin',
     titleHighlight: 'for Your Clients.',
     subtitle: 'B2B Portals',
-    description: 'Free your CS, Sales Admin, and Purchasing teams from repetitive questions. Give your business partners 24/7 self-service portal access.',
+    description:
+      'Free your CS, Sales Admin, and Purchasing teams from repetitive questions. Give your business partners 24/7 self-service portal access.',
     icon: Globe,
     heroVariant: 'dark',
     metaTitle: 'B2B Customer & Vendor Portal | BizOps',
-    metaDesc: 'Self-service portals for customers and vendors. B2B e-commerce experience, invoice downloads, and payment status tracking.',
+    metaDesc:
+      'Self-service portals for customers and vendors. B2B e-commerce experience, invoice downloads, and payment status tracking.',
 
     featuresBadge: 'Portal Types',
     featuresTitle: 'Self-Service for Business Partners',
@@ -2185,7 +2229,8 @@ export const featuresData: Record<string, FeaturePageData> = {
 
     cta: {
       title: 'Enhance Business Collaboration',
-      subtitle: 'See how B2B portals can increase team efficiency and business partner satisfaction.',
+      subtitle:
+        'See how B2B portals can increase team efficiency and business partner satisfaction.',
       badge: 'B2B Portals',
       demoBtn: 'Request Portal Demo',
       pricingBtn: 'View Pricing',
@@ -2199,11 +2244,13 @@ export const featuresData: Record<string, FeaturePageData> = {
     title: 'Bank-Grade Security',
     titleHighlight: 'for Your Enterprise.',
     subtitle: 'Enterprise Security Shield',
-    description: 'We treat security as a feature, not an afterthought. Protect your business with the same standards used by financial institutions.',
+    description:
+      'We treat security as a feature, not an afterthought. Protect your business with the same standards used by financial institutions.',
     icon: ShieldCheck,
     heroVariant: 'dark',
     metaTitle: 'Enterprise ERP Security: SSO, Encryption & Audit Logs | BizOps',
-    metaDesc: 'Enterprise-grade security features including Single Sign-On (SSO), AES-256 Encryption, Immutable Audit Logs, and Role-Based Access Control.',
+    metaDesc:
+      'Enterprise-grade security features including Single Sign-On (SSO), AES-256 Encryption, Immutable Audit Logs, and Role-Based Access Control.',
 
     featuresBadge: 'Security Features',
     featuresTitle: 'Uncompromising Protection',

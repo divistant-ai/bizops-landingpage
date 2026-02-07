@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -33,9 +32,12 @@ describe('Custom Hooks', () => {
     });
 
     it('should use default delay of 500ms', async () => {
-      const { result, rerender } = renderHook(({ value }: { value: string }) => useDebounce(value), {
-        initialProps: { value: 'initial' },
-      });
+      const { result, rerender } = renderHook(
+        ({ value }: { value: string }) => useDebounce(value),
+        {
+          initialProps: { value: 'initial' },
+        },
+      );
 
       rerender({ value: 'updated' });
 

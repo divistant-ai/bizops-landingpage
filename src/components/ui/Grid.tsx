@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Grid component for responsive grid layouts
@@ -36,20 +36,9 @@ const Grid: React.FC<GridProps> = ({
   const lgClass = getColsClass(lgCols || cols, 'lg');
   const gapClass = `gap-${gap}`;
 
-  const classes = twMerge(
-    'grid',
-    baseClass,
-    mdClass,
-    lgClass,
-    gapClass,
-    className,
-  );
+  const classes = cn('grid', baseClass, mdClass, lgClass, gapClass, className);
 
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 };
 
 Grid.displayName = 'Grid';

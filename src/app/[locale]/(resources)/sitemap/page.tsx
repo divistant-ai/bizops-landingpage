@@ -1,4 +1,14 @@
-import { BookOpen, Briefcase, Code, Globe, HelpCircle, Layers, Shield, Users, Wrench } from 'lucide-react';
+import {
+  BookOpen,
+  Briefcase,
+  Code,
+  Globe,
+  HelpCircle,
+  Layers,
+  Shield,
+  Users,
+  Wrench,
+} from 'lucide-react';
 import Link from 'next/link';
 import Container from '@/components/layout/Container';
 import { Grid, Typography } from '@/components/ui';
@@ -31,12 +41,13 @@ export default function SitemapPage() {
       color: 'text-blue-600 dark:text-slate-300 bg-blue-50',
       links: [
         { label: 'Platform Overview', href: '/platform' },
-        { label: 'Human Capital Management (HRIS)', href: '/platform/modules/hr' },
-        { label: 'Finance & Procurement', href: '/platform/modules/finance' },
-        { label: 'Operations & Project Management', href: '/platform/modules/operations' },
-        { label: 'Sales & CRM', href: '/platform/modules/sales' },
-        { label: 'Supply Chain & Inventory', href: '/platform/modules/supply-chain' },
-        { label: 'Governance & Insight', href: '/platform/modules/governance' },
+        { label: 'People (HR & Payroll)', href: '/platform/modules/people' },
+        { label: 'Money (Finance & Accounting)', href: '/platform/modules/money' },
+        { label: 'Supply (Inventory & Procurement)', href: '/platform/modules/supply' },
+        { label: 'Growth (Sales & CRM)', href: '/platform/modules/growth' },
+        { label: 'Work (Project & Operations)', href: '/platform/modules/work' },
+        { label: 'Care (Customer Support)', href: '/platform/modules/care' },
+        { label: 'Hub (Governance & BI)', href: '/platform/modules/hub' },
         { label: 'Capabilities', href: '/platform#capabilities' },
         { label: 'Technology Stack', href: '/platform/technologies/architecture' },
         { label: 'Integrations Library', href: '/platform/technologies/integration' },
@@ -155,7 +166,9 @@ export default function SitemapPage() {
     <div className="min-h-screen bg-white pt-24 pb-24 transition-colors dark:bg-slate-950">
       <Container className="px-4 md:px-6 lg:px-8" size="7xl">
         <div className="mb-16 text-center">
-          <Typography variant="h1" as="h1">Sitemap</Typography>
+          <Typography variant="h1" as="h1">
+            Sitemap
+          </Typography>
           <Typography variant="body" className="text-slate-600 dark:text-slate-400">
             Jelajahi seluruh halaman dan fitur yang tersedia di ekosistem BizOps.
           </Typography>
@@ -163,15 +176,29 @@ export default function SitemapPage() {
 
         <Grid cols={3} gap={8}>
           {sitemapData.map((section, idx) => (
-            <div key={idx} className="rounded-2xl border border-slate-100 bg-white p-6 transition-all duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-slate-900/50">
-              <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${section.color}`}>
+            <div
+              key={idx}
+              className="rounded-2xl border border-slate-100 bg-white p-6 transition-all duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-slate-900/50"
+            >
+              <div
+                className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${section.color}`}
+              >
                 <section.icon className="h-5 w-5" />
               </div>
-              <Typography variant="h2" as="h2" className="mb-4 font-bold text-slate-900 dark:text-white">{section.title}</Typography>
+              <Typography
+                variant="h2"
+                as="h2"
+                className="mb-4 font-bold text-slate-900 dark:text-white"
+              >
+                {section.title}
+              </Typography>
               <ul className="space-y-2.5">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
-                    <Link href={link.href} className="hover:text-primary-600 dark:hover:text-primary-400 group flex items-center gap-2 text-sm text-slate-600 transition-colors hover:underline dark:text-slate-400">
+                    <Link
+                      href={link.href}
+                      className="hover:text-primary-600 dark:hover:text-primary-400 group flex items-center gap-2 text-sm text-slate-600 transition-colors hover:underline dark:text-slate-400"
+                    >
                       <span className="group-hover:bg-primary-500 h-1 w-1 rounded-full bg-slate-300 transition-colors dark:bg-slate-700"></span>
                       {link.label}
                     </Link>

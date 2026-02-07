@@ -4,5 +4,5 @@
  */
 
 export { default as Container } from './Container';
-export { default as Footer } from './Footer';
 export { default as Section } from './Section';
+export { Footer } from '@/components/Footer';

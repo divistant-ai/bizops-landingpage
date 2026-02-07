@@ -2,6 +2,7 @@
 /**
  * Export and sharing utilities for calculator tools
  */
+import { SITE_URL } from '@/libs/utils/helpers';
 
 /**
  * Generate PDF-like content and trigger download
@@ -63,7 +64,7 @@ export function formatResultAsText(
   text += `dengan profesional terkait.\n`;
   text += `========================================\n\n`;
   text += `Powered by BizOps\n`;
-  text += `https://bizops.id\n`;
+  text += `${SITE_URL}\n`;
 
   return text;
 }

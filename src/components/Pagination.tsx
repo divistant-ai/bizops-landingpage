@@ -62,18 +62,24 @@ const Pagination: React.FC<PaginationProps> = ({
 
     return pages.map((page, index) => {
       if (page === -1) {
-        return <span key={`ellipsis-${index}`} className="flex h-10 w-10 items-center justify-center text-slate-400">...</span>;
+        return (
+          <span
+            key={`ellipsis-${index}`}
+            className="flex h-10 w-10 items-center justify-center text-slate-400"
+          >
+            ...
+          </span>
+        );
       }
       return (
         <button
           key={page}
           onClick={() => handlePageChange(page)}
-          className={`
-                    h-10 w-10 rounded-xl text-sm font-bold shadow-sm transition-all
-                    ${currentPage === page
-          ? 'scale-110 bg-slate-900 text-white'
-          : 'border border-slate-300 bg-white text-slate-600 hover:bg-slate-50'}
-                `}
+          className={`h-10 w-10 rounded-xl text-sm font-bold shadow-sm transition-all ${
+            currentPage === page
+              ? 'scale-110 bg-slate-900 text-white'
+              : 'border border-slate-300 bg-white text-slate-600 hover:bg-slate-50'
+          } `}
         >
           {page}
         </button>
@@ -92,9 +98,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <ChevronLeft className="h-5 w-5" />
       </button>
 
-      <div className="flex flex-wrap justify-center gap-2">
-        {renderPageNumbers()}
-      </div>
+      <div className="flex flex-wrap justify-center gap-2">{renderPageNumbers()}</div>
 
       <button
         onClick={() => handlePageChange(currentPage + 1)}
@@ -107,5 +111,7 @@ const Pagination: React.FC<PaginationProps> = ({
     </div>
   );
 };
+
+Pagination.displayName = 'Pagination';
 
 export default Pagination;

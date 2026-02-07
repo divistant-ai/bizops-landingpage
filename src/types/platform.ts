@@ -57,6 +57,9 @@ export type ModuleData = {
   metaTitle?: string;
   metaDesc?: string;
   icon: LucideIcon;
+  // UI colors for consistency
+  color?: string;
+  bgColor?: string;
   features: ModuleFeature[];
   metrics?: ModuleMetric[];
   problems?: ModuleProblem[];

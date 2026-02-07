@@ -1,6 +1,6 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 import { typography } from '@/design-tokens';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Typography component for consistent text styling
@@ -96,7 +96,7 @@ const Typography: React.FC<TypographyProps> = ({
 
   return (
     <Component
-      className={twMerge(
+      className={cn(
         typography[variant],
         colorClasses[color],
         align ? alignClasses[align] : '',

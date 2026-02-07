@@ -64,7 +64,6 @@ const NPSModal: React.FC = () => {
   return (
     <div className="animate-fade-in-up fixed bottom-4 left-4 z-60 w-full max-w-sm">
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl ring-1 ring-black/5 dark:border-slate-800 dark:bg-slate-900">
-
         {/* Header with Close */}
         <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-6 py-4 dark:border-slate-800 dark:bg-slate-800/50">
           <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
@@ -72,7 +71,11 @@ const NPSModal: React.FC = () => {
             {' '}
             Feedback
           </h3>
-          <button onClick={handleDismiss} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Dismiss feedback">
+          <button
+            onClick={handleDismiss}
+            className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            aria-label="Dismiss feedback"
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -88,19 +91,19 @@ const NPSModal: React.FC = () => {
                   <button
                     key={num}
                     onClick={() => handleRate(num)}
-                    className={`flex aspect-square items-center justify-center rounded text-xs font-bold transition-all
-                      ${num <= 6
-                    ? 'bg-slate-50 text-slate-500 hover:bg-red-100 hover:text-red-700 dark:bg-slate-800'
-                    : num <= 8
-                      ? 'bg-slate-50 text-slate-500 hover:bg-amber-100 hover:text-amber-700 dark:bg-slate-800'
-                      : 'bg-slate-50 text-slate-500 hover:bg-green-100 hover:text-green-700 dark:bg-slate-800'}
-                    `}
+                    className={`flex aspect-square items-center justify-center rounded text-xs font-bold transition-all ${
+                      num <= 6
+                        ? 'bg-slate-50 text-slate-500 hover:bg-red-100 hover:text-red-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-red-900/30 dark:hover:text-red-400'
+                        : num <= 8
+                          ? 'bg-slate-50 text-slate-500 hover:bg-amber-100 hover:text-amber-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-amber-900/30 dark:hover:text-amber-400'
+                          : 'bg-slate-50 text-slate-500 hover:bg-green-100 hover:text-green-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-green-900/30 dark:hover:text-green-400'
+                    } `}
                   >
                     {num}
                   </button>
                 ))}
               </div>
-              <div className="flex justify-between text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+              <div className="flex justify-between text-[10px] font-bold tracking-wider text-slate-400 uppercase dark:text-slate-500">
                 <span>Tidak Mungkin</span>
                 <span>Sangat Mungkin</span>
               </div>
@@ -119,19 +122,25 @@ const NPSModal: React.FC = () => {
               >
               </textarea>
               <div className="flex justify-end gap-2">
-                <Button variant="ghost" size="sm" type="button" onClick={() => setStep('rating')}>Back</Button>
-                <Button size="sm" type="submit">Kirim Feedback</Button>
+                <Button variant="ghost" size="sm" type="button" onClick={() => setStep('rating')}>
+                  Back
+                </Button>
+                <Button size="sm" type="submit">
+                  Kirim Feedback
+                </Button>
               </div>
             </form>
           )}
 
           {step === 'thanks' && (
             <div className="py-4 text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 animate-bounce items-center justify-center rounded-full bg-green-100 text-green-600">
+              <div className="mx-auto mb-3 flex h-12 w-12 animate-bounce items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
                 <ThumbsUp className="h-6 w-6" />
               </div>
               <h4 className="mb-1 font-bold text-slate-900 dark:text-white">Terima Kasih!</h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Masukan Anda membantu kami berkembang.</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Masukan Anda membantu kami berkembang.
+              </p>
             </div>
           )}
         </div>

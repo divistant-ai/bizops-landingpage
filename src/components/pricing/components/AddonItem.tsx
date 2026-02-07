@@ -29,6 +29,10 @@ export function AddonItem({
   return (
     <div
       onClick={() => !isConfigurable && onToggle(addon.id, isSelected)}
+      onKeyDown={e =>
+        !isConfigurable && (e.key === 'Enter' || e.key === ' ') && onToggle(addon.id, isSelected)}
+      role={!isConfigurable ? 'button' : undefined}
+      tabIndex={!isConfigurable ? 0 : undefined}
       className={`group flex items-center justify-between rounded-xl border p-4 transition-all ${isSelected ? 'border-primary-500 bg-primary-100 dark:border-primary-500/40 dark:bg-primary-900/10 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/10 dark:hover:bg-white/10'} ${!isConfigurable ? 'cursor-pointer' : ''}`}
     >
       <div className="flex grow items-center gap-4">
@@ -71,6 +75,7 @@ export function AddonItem({
               onClick={() => onQuantityChange(addon.id, -1)}
               className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
               disabled={quantity === 0}
+              aria-label="Decrease quantity"
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
@@ -82,6 +87,7 @@ export function AddonItem({
             <button
               onClick={() => onQuantityChange(addon.id, 1)}
               className={`rounded-md p-1.5 transition-colors ${isSelected ? 'hover:bg-primary-200 text-slate-800 dark:text-white dark:hover:bg-white/10' : 'text-slate-600 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'}`}
+              aria-label="Increase quantity"
             >
               <Plus className="h-3.5 w-3.5" />
             </button>

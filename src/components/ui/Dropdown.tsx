@@ -2,9 +2,9 @@
 
 import { ChevronDown } from 'lucide-react';
 
-import React, { memo, useRef, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import React, { memo, useId, useRef, useState } from 'react';
 import { useOnClickOutside } from '@/hooks';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Dropdown component for menus and selections
@@ -41,115 +41,122 @@ type DropdownProps = {
   className?: string;
 };
 
-const Dropdown: React.FC<DropdownProps> = memo(({
-  trigger,
-  label,
-  items,
-  position = 'left',
-  className = '',
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const dropdownId = useRef(`dropdown-${Math.random().toString(36).substr(2, 9)}`);
+const Dropdown: React.FC<DropdownProps> = memo(
+  ({ trigger, label, items, position = 'left', className = '' }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const baseId = useId();
+    const dropdownId = `dropdown-${baseId}`;
 
-  useOnClickOutside<HTMLDivElement>(dropdownRef, () => setIsOpen(false));
+    useOnClickOutside<HTMLDivElement>(dropdownRef, () => setIsOpen(false));
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+    const handleToggle = () => {
+      setIsOpen(!isOpen);
+    };
 
-  const handleItemClick = (item: DropdownItem) => {
-    if (!item.disabled) {
-      item.onClick();
-      setIsOpen(false);
-    }
-  };
+    const handleItemClick = (item: DropdownItem) => {
+      if (!item.disabled) {
+        item.onClick();
+        setIsOpen(false);
+      }
+    };
 
-  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
-    const enabledItems = items.filter(item => !item.disabled);
+    const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+      const enabledItems = items.filter(item => !item.disabled);
 
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      const nextIndex = (index + 1) % enabledItems.length;
-      const nextButton = dropdownRef.current?.querySelectorAll('[role="menuitem"]')[nextIndex] as HTMLElement;
-      nextButton?.focus();
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      const prevIndex = (index - 1 + enabledItems.length) % enabledItems.length;
-      const prevButton = dropdownRef.current?.querySelectorAll('[role="menuitem"]')[prevIndex] as HTMLElement;
-      prevButton?.focus();
-    } else if (event.key === 'Escape') {
-      setIsOpen(false);
-    }
-  };
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const nextIndex = (index + 1) % enabledItems.length;
+        const nextButton = dropdownRef.current?.querySelectorAll('[role="menuitem"]')[
+          nextIndex
+        ] as HTMLElement;
+        nextButton?.focus();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const prevIndex = (index - 1 + enabledItems.length) % enabledItems.length;
+        const prevButton = dropdownRef.current?.querySelectorAll('[role="menuitem"]')[
+          prevIndex
+        ] as HTMLElement;
+        prevButton?.focus();
+      } else if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
 
-  const positionClasses = {
-    left: 'left-0',
-    right: 'right-0',
-    center: 'left-1/2 -translate-x-1/2',
-  };
+    const positionClasses = {
+      left: 'left-0',
+      right: 'right-0',
+      center: 'left-1/2 -translate-x-1/2',
+    };
 
-  const defaultTrigger = (
-    <button
-      onClick={handleToggle}
-      aria-expanded={isOpen}
-      aria-controls={dropdownId.current}
-      aria-haspopup="true"
-      className="focus:ring-primary-500 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 focus:ring-2 focus:ring-offset-2 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-    >
-      {label || 'Menu'}
-      <ChevronDown className={twMerge('w-4 h-4 transition-transform', isOpen ? 'rotate-180' : '')} aria-hidden="true" />
-    </button>
-  );
+    const defaultTrigger = (
+      <button
+        onClick={handleToggle}
+        aria-expanded={isOpen}
+        aria-controls={dropdownId}
+        aria-haspopup="true"
+        className="focus:ring-primary-500 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 focus:ring-2 focus:ring-offset-2 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+      >
+        {label || 'Menu'}
+        <ChevronDown
+          className={cn('h-4 w-4 transition-transform', isOpen ? 'rotate-180' : '')}
+          aria-hidden="true"
+        />
+      </button>
+    );
 
-  const triggerElement = trigger
-    ? React.cloneElement(trigger as React.ReactElement<Record<string, unknown>>, {
-        'onClick': handleToggle,
-        'aria-expanded': isOpen,
-        'aria-controls': dropdownId.current,
-        'aria-haspopup': 'true',
-      } as Record<string, unknown>)
-    : defaultTrigger;
+    const triggerElement = trigger
+      ? React.cloneElement(
+          trigger as React.ReactElement<Record<string, unknown>>,
+          {
+            'onClick': handleToggle,
+            'aria-expanded': isOpen,
+            'aria-controls': dropdownId,
+            'aria-haspopup': 'true',
+          } as Record<string, unknown>,
+        )
+      : defaultTrigger;
 
-  return (
-    <div ref={dropdownRef} className={twMerge('relative inline-block', className)}>
-      {triggerElement}
+    return (
+      <div ref={dropdownRef} className={cn('relative inline-block', className)}>
+        {triggerElement}
 
-      {isOpen && (
-        <div
-          id={dropdownId.current}
-          role="menu"
-          aria-orientation="vertical"
-          className={twMerge(
-            'absolute mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-xl z-50 py-1 animate-fade-in',
-            positionClasses[position],
-          )}
-        >
-          {items.map((item, index) => (
-            <button
-              key={index}
-              role="menuitem"
-              disabled={item.disabled}
-              onClick={() => handleItemClick(item)}
-              onKeyDown={e => handleKeyDown(e, index)}
-              className={twMerge(
-                'w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left transition-colors focus:outline-none focus:bg-slate-100 dark:focus:bg-slate-800',
-                item.disabled
-                  ? 'opacity-50 cursor-not-allowed'
-                  : item.danger
-                    ? 'text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800',
-              )}
-            >
-              {item.icon && <span aria-hidden="true">{item.icon}</span>}
-              {item.label}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-});
+        {isOpen && (
+          <div
+            id={dropdownId}
+            role="menu"
+            aria-orientation="vertical"
+            className={cn(
+              'animate-fade-in absolute z-50 mt-2 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-xl dark:border-slate-800 dark:bg-slate-900',
+              positionClasses[position],
+            )}
+          >
+            {items.map((item, index) => (
+              <button
+                key={index}
+                role="menuitem"
+                disabled={item.disabled}
+                onClick={() => handleItemClick(item)}
+                onKeyDown={e => handleKeyDown(e, index)}
+                className={cn(
+                  'flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors focus:bg-slate-100 focus:outline-none dark:focus:bg-slate-800',
+                  item.disabled
+                    ? 'cursor-not-allowed opacity-50'
+                    : item.danger
+                      ? 'text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20'
+                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+                )}
+              >
+                {item.icon && <span aria-hidden="true">{item.icon}</span>}
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  },
+);
 
 Dropdown.displayName = 'Dropdown';
 

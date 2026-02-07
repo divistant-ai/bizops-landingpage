@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/libs/utils/helpers';
 
 type MetadataProps = {
   title?: string;
@@ -22,7 +23,7 @@ export function generateMetadata({
   type = 'website',
   noIndex = false,
 }: MetadataProps = {}): Metadata {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bizops.id';
+  const siteUrl = SITE_URL;
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 

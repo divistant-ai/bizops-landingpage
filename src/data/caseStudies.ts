@@ -54,7 +54,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     challenge: {
       title: 'Tantangan Bisnis',
-      description: 'PT Teknologi Maju menghadapi kesulitan dalam mengelola operasional yang berkembang pesat dengan sistem yang terpisah-pisah.',
+      description:
+        'PT Teknologi Maju menghadapi kesulitan dalam mengelola operasional yang berkembang pesat dengan sistem yang terpisah-pisah.',
       painPoints: [
         'Data HR, Finance, dan Operasional tersebar di 7 sistem berbeda',
         'Proses approval memakan waktu 5-7 hari',
@@ -65,14 +66,9 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     solution: {
       title: 'Solusi BizOps',
-      description: 'Implementasi platform BizOps terintegrasi dengan fokus pada otomatisasi dan real-time visibility.',
-      modules: [
-        'HR & Payroll Management',
-        'Finance & Accounting',
-        'Project Management',
-        'Time Tracking & Attendance',
-        'Advanced Analytics',
-      ],
+      description:
+        'Implementasi platform BizOps terintegrasi dengan fokus pada otomatisasi dan real-time visibility.',
+      modules: ['People', 'Money', 'Project', 'Time Tracking & Attendance', 'Advanced Analytics'],
       implementation: '3 bulan implementasi dengan training komprehensif untuk 250+ users',
     },
     results: {
@@ -100,12 +96,13 @@ export const caseStudiesData: Record<string, CaseStudy> = {
         },
       ],
       testimonial: {
-        quote: 'BizOps mengubah cara kami bekerja secara fundamental. Yang tadinya memakan waktu berhari-hari, sekarang bisa diselesaikan dalam hitungan jam. ROI yang kami dapatkan jauh melebihi ekspektasi.',
+        quote:
+          'BizOps mengubah cara kami bekerja secara fundamental. Yang tadinya memakan waktu berhari-hari, sekarang bisa diselesaikan dalam hitungan jam. ROI yang kami dapatkan jauh melebihi ekspektasi.',
         author: 'Budi Santoso',
         role: 'CEO',
       },
     },
-    tags: ['Technology', 'HR', 'Finance', 'Project Management'],
+    tags: ['Technology', 'People', 'Money', 'Project'],
   },
   'cv-manufaktur-jaya': {
     slug: 'cv-manufaktur-jaya',
@@ -118,7 +115,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     challenge: {
       title: 'Tantangan Bisnis',
-      description: 'CV Manufaktur Jaya kesulitan mengelola inventory dan production planning dengan sistem manual.',
+      description:
+        'CV Manufaktur Jaya kesulitan mengelola inventory dan production planning dengan sistem manual.',
       painPoints: [
         'Stock opname manual memakan waktu 2 minggu setiap bulan',
         'Sering terjadi stockout dan overstock',
@@ -129,7 +127,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     solution: {
       title: 'Solusi BizOps',
-      description: 'Implementasi modul Supply Chain dan Manufacturing dengan fokus pada inventory optimization.',
+      description:
+        'Implementasi modul Supply Chain dan Manufacturing dengan fokus pada inventory optimization.',
       modules: [
         'Inventory Management',
         'Production Planning',
@@ -164,7 +163,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
         },
       ],
       testimonial: {
-        quote: 'Sebelum BizOps, kami seperti mengemudi dengan mata tertutup. Sekarang kami punya visibility penuh atas seluruh operasi. Profit margin kami naik 40% dalam 6 bulan pertama.',
+        quote:
+          'Sebelum BizOps, kami seperti mengemudi dengan mata tertutup. Sekarang kami punya visibility penuh atas seluruh operasi. Profit margin kami naik 40% dalam 6 bulan pertama.',
         author: 'Siti Rahayu',
         role: 'Operations Director',
       },
@@ -182,7 +182,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     challenge: {
       title: 'Tantangan Bisnis',
-      description: 'PT Retail Indonesia perlu mengintegrasikan 25 toko fisik dengan platform e-commerce dan marketplace.',
+      description:
+        'PT Retail Indonesia perlu mengintegrasikan 25 toko fisik dengan platform e-commerce dan marketplace.',
       painPoints: [
         'Inventory tidak sinkron antara online dan offline',
         'Customer data tersebar di multiple systems',
@@ -193,7 +194,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
     },
     solution: {
       title: 'Solusi BizOps',
-      description: 'Implementasi platform omnichannel dengan integrasi ke marketplace dan payment gateways.',
+      description:
+        'Implementasi platform omnichannel dengan integrasi ke marketplace dan payment gateways.',
       modules: [
         'Point of Sale (POS)',
         'E-Commerce Integration',
@@ -228,7 +230,8 @@ export const caseStudiesData: Record<string, CaseStudy> = {
         },
       ],
       testimonial: {
-        quote: 'BizOps memungkinkan kami memberikan pengalaman seamless kepada customer, baik mereka belanja online atau offline. Inventory sync real-time adalah game changer untuk bisnis retail kami.',
+        quote:
+          'BizOps memungkinkan kami memberikan pengalaman seamless kepada customer, baik mereka belanja online atau offline. Inventory sync real-time adalah game changer untuk bisnis retail kami.',
         author: 'Ahmad Wijaya',
         role: 'Chief Digital Officer',
       },

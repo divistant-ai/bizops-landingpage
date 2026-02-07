@@ -28,7 +28,10 @@ export function SelectableCard({
     <motion.div
       whileHover={{ y: -2, scale: 1.02 }}
       whileTap={{ scale: 0.96, y: 0 }}
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e: React.KeyboardEvent) => (e.key === 'Enter' || e.key === ' ') && onClick()}
       className={`group relative flex h-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border p-4 text-center transition-all duration-200 active:scale-95 ${selected ? 'border-2 border-slate-900 bg-slate-100 shadow-[0_0_0_3px_rgba(15,23,42,0.1)] dark:border-white dark:bg-slate-800 dark:shadow-[0_0_0_3px_rgba(255,255,255,0.1)]' : 'border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 hover:shadow-md dark:border-slate-600 dark:bg-slate-800/50 dark:hover:border-slate-500 dark:hover:bg-slate-800'}`}
     >
       {selected && (

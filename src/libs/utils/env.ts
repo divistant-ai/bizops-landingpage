@@ -3,6 +3,7 @@
  * Provides type-safe access to environment variables with validation
  * Adapted for Next.js (NEXT_PUBLIC_* prefix)
  */
+import { SITE_URL } from '@/libs/utils/helpers';
 
 type EnvConfig = {
   // Monitoring
@@ -111,7 +112,7 @@ export const getEnvConfig = (): EnvConfig => {
     zendeskKey: getEnvVar('NEXT_PUBLIC_ZENDESK_KEY'),
 
     // SEO
-    siteUrl: getEnvVar('NEXT_PUBLIC_SITE_URL') || 'https://bizops.id',
+    siteUrl: SITE_URL,
     googleSiteVerification: getEnvVar('NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'),
     bingSiteVerification: getEnvVar('NEXT_PUBLIC_BING_SITE_VERIFICATION'),
 

@@ -3,14 +3,9 @@
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
-import {
-  Controller,
-
-  FormProvider,
-  useFormContext,
-} from 'react-hook-form';
-import { twMerge } from 'tailwind-merge';
+import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/libs/utils/cn';
 
 const Form = FormProvider;
 
@@ -21,9 +16,7 @@ type FormFieldContextValue<
   name: TName;
 };
 
-const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
-);
+const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue);
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -65,28 +58,36 @@ type FormItemContextValue = {
   id: string;
 };
 
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
+const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue);
 
-const FormItem = ({ ref, className, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.RefObject<HTMLDivElement | null> }) => {
+const FormItem = ({
+  ref,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.RefObject<HTMLDivElement | null> }) => {
   const id = React.useId();
 
   return (
     <FormItemContext value={{ id }}>
-      <div ref={ref} className={twMerge('space-y-2', className)} {...props} />
+      <div ref={ref} className={cn('space-y-2', className)} {...props} />
     </FormItemContext>
   );
 };
 FormItem.displayName = 'FormItem';
 
-const FormLabel = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof Label> & { ref?: React.RefObject<React.ElementRef<typeof Label> | null> }) => {
+const FormLabel = ({
+  ref,
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Label> & {
+  ref?: React.RefObject<React.ElementRef<typeof Label> | null>;
+}) => {
   const { error, formItemId } = useFormField();
 
   return (
     <Label
       ref={ref}
-      className={twMerge(error && 'text-red-500 dark:text-red-400', className)}
+      className={cn(error && 'text-red-500 dark:text-red-400', className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -94,18 +95,19 @@ const FormLabel = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<
 };
 FormLabel.displayName = 'FormLabel';
 
-const FormControl = ({ ref, ...props }: React.ComponentPropsWithoutRef<typeof Slot> & { ref?: React.RefObject<React.ElementRef<typeof Slot> | null> }) => {
+const FormControl = ({
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Slot> & {
+  ref?: React.RefObject<React.ElementRef<typeof Slot> | null>;
+}) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
+      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
       aria-invalid={!!error}
       {...props}
     />
@@ -113,21 +115,34 @@ const FormControl = ({ ref, ...props }: React.ComponentPropsWithoutRef<typeof Sl
 };
 FormControl.displayName = 'FormControl';
 
-const FormDescription = ({ ref, className, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.RefObject<HTMLParagraphElement | null> }) => {
+const FormDescription = ({
+  ref,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & {
+  ref?: React.RefObject<HTMLParagraphElement | null>;
+}) => {
   const { formDescriptionId } = useFormField();
 
   return (
     <p
       ref={ref}
       id={formDescriptionId}
-      className={twMerge('text-sm text-slate-500 dark:text-slate-400', className)}
+      className={cn('text-sm text-slate-500 dark:text-slate-400', className)}
       {...props}
     />
   );
 };
 FormDescription.displayName = 'FormDescription';
 
-const FormMessage = ({ ref, className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.RefObject<HTMLParagraphElement | null> }) => {
+const FormMessage = ({
+  ref,
+  className,
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & {
+  ref?: React.RefObject<HTMLParagraphElement | null>;
+}) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 
@@ -139,7 +154,7 @@ const FormMessage = ({ ref, className, children, ...props }: React.HTMLAttribute
     <p
       ref={ref}
       id={formMessageId}
-      className={twMerge('text-sm font-medium text-red-500 dark:text-red-400', className)}
+      className={cn('text-sm font-medium text-red-500 dark:text-red-400', className)}
       {...props}
     />
   );

@@ -4,6 +4,24 @@ import { withSentryConfig } from '@sentry/nextjs';
 import createNextIntlPlugin from 'next-intl/plugin';
 import './src/libs/Env';
 
+// Content Security Policy (CSP) configuration
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://*.posthog.com https://*.sentry.io https://*.clerk.com https://*.clerk.accounts.dev https://challenges.cloudflare.com https://js.stripe.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' blob: data: https://*.unsplash.com https://*.pravatar.cc https://ui-avatars.com https://images.unsplash.com;
+  font-src 'self' https://fonts.gstatic.com;
+  connect-src 'self' https://*.posthog.com https://*.sentry.io https://*.clerk.com https://*.clerk.accounts.dev https://api.betterstack.com wss://*.clerk.com;
+  frame-src 'self' https://challenges.cloudflare.com https://js.stripe.com https://*.clerk.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;
+`
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+
 // Define the base Next.js configuration
 const baseConfig: NextConfig = {
   output: 'standalone',
@@ -19,6 +37,7 @@ const baseConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
+    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
     remotePatterns: [
       {
         protocol: 'https',
@@ -70,6 +89,10 @@ const baseConfig: NextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy,
           },
         ],
       },

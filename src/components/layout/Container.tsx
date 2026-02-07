@@ -1,5 +1,5 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/libs/utils/cn';
 
 /**
  * Container component for consistent max-width and padding
@@ -50,7 +50,7 @@ const Container: React.FC<ContainerProps> = ({
   const paddingClass = noPadding ? '' : 'px-5 sm:px-6 md:px-8 lg:px-12';
 
   return (
-    <Component className={twMerge(maxWidthClass, 'mx-auto', paddingClass, className)}>
+    <Component className={cn(maxWidthClass, 'mx-auto', paddingClass, className)}>
       {children}
     </Component>
   );

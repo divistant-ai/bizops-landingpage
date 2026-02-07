@@ -119,24 +119,27 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
 
   // Helper to get translation key from URL path
   const getItemKeyFromUrl = (url: string): string | null => {
-    // Platform modules
-    if (url.includes('/hr')) {
-      return 'hr';
+    // Platform modules (7 horizontal modules)
+    if (url.includes('/people')) {
+      return 'people';
     }
-    if (url.includes('/finance')) {
-      return 'finance';
+    if (url.includes('/money')) {
+      return 'money';
     }
-    if (url.includes('/operations')) {
-      return 'operations';
+    if (url.includes('/growth')) {
+      return 'growth';
     }
-    if (url.includes('/sales')) {
-      return 'sales';
+    if (url.includes('/supply')) {
+      return 'supply';
     }
-    if (url.includes('/supply-chain')) {
-      return 'supplyChain';
+    if (url.includes('/work')) {
+      return 'work';
     }
-    if (url.includes('/governance')) {
-      return 'governance';
+    if (url.includes('/care')) {
+      return 'care';
+    }
+    if (url.includes('/hub')) {
+      return 'hub';
     }
 
     // Platform capabilities
@@ -486,7 +489,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ type, isOpen = false, onClose }) =>
                     {activeContent.items.map((item: any, idx: number) => {
                       const bgColor
                         = item.bg
-                          || 'bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm';
+                        || 'bg-slate-100 dark:bg-slate-800 group-hover/item:bg-white dark:group-hover/item:bg-slate-700 shadow-sm';
                       const iconColor = item.color || 'text-slate-600 dark:text-slate-400';
 
                       // Get translated item

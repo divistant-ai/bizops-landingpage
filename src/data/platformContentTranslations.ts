@@ -1,6 +1,6 @@
 export const platformModulesTranslations = {
   en: {
-    'hr': {
+    hr: {
       title: 'Human Capital Management (HRIS)',
       subtitle: 'Automate HR Admin. Focus on People, Not Paper.',
       description:
@@ -102,7 +102,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'finance': {
+    finance: {
       title: 'Finance & Procurement',
       subtitle: 'Complete Control Over Every Dollar.',
       description:
@@ -204,7 +204,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'operations': {
+    operations: {
       title: 'Operations & Project Management',
       subtitle: 'Deliver Projects On Time, On Budget.',
       description:
@@ -306,7 +306,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'sales': {
+    sales: {
       title: 'Sales & CRM',
       subtitle: 'Close Deals Faster, Anywhere.',
       description:
@@ -408,7 +408,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'supply-chain': {
+    supply: {
       title: 'Supply Chain & Inventory',
       subtitle: 'Absolute Stock Accuracy. Minimize Dead Stock.',
       description:
@@ -513,7 +513,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'governance': {
+    governance: {
       title: 'Governance & Insight',
       subtitle: 'Full Control, Without Compromise.',
       description:
@@ -620,31 +620,31 @@ export const platformModulesTranslations = {
     },
   },
   id: {
-    'hr': {
+    hr: {
       title: 'Human Capital Management (HRIS)',
       subtitle: 'Otomatisasi Admin HR. Fokus pada Manusia, Bukan Kertas.',
       description:
         'Tinggalkan spreadsheet yang rentan error. BizOps HRIS mengotomatiskan seluruh siklus karyawan—dari rekrutmen hingga pensiun—agar Anda bisa fokus membangun budaya juara.',
     },
-    'finance': {
+    finance: {
       title: 'Finance & Procurement',
       subtitle: 'Kendali Penuh Atas Setiap Rupiah.',
       description:
         'Hilangkan kebocoran anggaran (Budget Leakage) dengan sistem persetujuan bertingkat. Integrasikan pembelian, aset, dan akuntansi dalam satu aliran data real-time.',
     },
-    'operations': {
+    operations: {
       title: 'Operations & Project Management',
       subtitle: 'Eksekusi Proyek Tepat Waktu dan Sesuai Budget.',
       description:
         'Stop kelola proyek via grup WhatsApp. Lacak biaya, material, dan progress tim secara real-time dengan sistem terintegrasi.',
     },
-    'sales': {
+    sales: {
       title: 'Sales & CRM',
       subtitle: 'Revenue yang Predictable, Bukan Sekadar Harapan.',
       description:
         'Ubah sales pipeline jadi forecast akurat. Automate follow-up dan pastikan tidak ada peluang yang terlewat.',
     },
-    'supply-chain': {
+    supply: {
       title: 'Supply Chain & Inventory',
       subtitle: 'Akurasi Stok Mutlak. Minimalkan Dead Stock.',
       description:
@@ -749,7 +749,7 @@ export const platformModulesTranslations = {
         },
       ],
     },
-    'governance': {
+    governance: {
       title: 'Governance & Insight',
       subtitle: 'Kontrol Penuh, Tanpa Kompromi.',
       description:
@@ -2792,7 +2792,8 @@ export const featuresPagesTranslations = {
       title: 'Laporan Anda, Cara Anda.',
       titleHighlight: 'Tanpa Coding.',
       subtitle: 'Analytics & Reports',
-      description: 'Setiap bisnis punya cara unik melihat data. Jangan terpaku pada laporan standar yang kaku. Dengan Report Builder, Anda menjadi analis data bagi perusahaan Anda sendiri.',
+      description:
+        'Setiap bisnis punya cara unik melihat data. Jangan terpaku pada laporan standar yang kaku. Dengan Report Builder, Anda menjadi analis data bagi perusahaan Anda sendiri.',
 
       featuresBadge: 'Fitur Utama',
       featuresTitle: 'Bangun Laporan Sesuai Kebutuhan',
@@ -2832,7 +2833,8 @@ export const featuresPagesTranslations = {
 
       cta: {
         title: 'Ubah Data Menjadi Insight',
-        subtitle: 'Lihat betapa mudahnya membuat laporan custom tanpa perlu bantuan IT atau konsultan.',
+        subtitle:
+          'Lihat betapa mudahnya membuat laporan custom tanpa perlu bantuan IT atau konsultan.',
         badge: 'Analytics & Reports',
         demoBtn: 'Jadwalkan Demo Analytics',
         pricingBtn: 'Lihat Pricing',
@@ -2845,7 +2847,8 @@ export const featuresPagesTranslations = {
       title: 'Biarkan Agen AI yang Bekerja,',
       titleHighlight: 'Bukan Anda.',
       subtitle: 'BizOps Copilot',
-      description: 'Delegasikan pekerjaan operasional yang membosankan kepada Autonomous Agents. BizOps Copilot bukan sekadar menjawab pertanyaan, tapi melakukan tindakan nyata.',
+      description:
+        'Delegasikan pekerjaan operasional yang membosankan kepada Autonomous Agents. BizOps Copilot bukan sekadar menjawab pertanyaan, tapi melakukan tindakan nyata.',
 
       featuresBadge: 'Agentic AI',
       featuresTitle: 'Rekan Kerja Digital Otonom',
@@ -2888,7 +2891,8 @@ export const featuresPagesTranslations = {
 
       cta: {
         title: 'Siap Punya Karyawan Digital Baru?',
-        subtitle: 'Lihat bagaimana BizOps Copilot menyelesaikan pekerjaan administrasi Anda secara real-time.',
+        subtitle:
+          'Lihat bagaimana BizOps Copilot menyelesaikan pekerjaan administrasi Anda secara real-time.',
         badge: 'BizOps Copilot',
         demoBtn: 'Jadwalkan Demo Sekarang',
         pricingBtn: 'Lihat Pricing',
@@ -2901,7 +2905,8 @@ export const featuresPagesTranslations = {
       title: 'Satu Platform untuk',
       titleHighlight: 'Seluruh Grup Bisnis Anda.',
       subtitle: 'Multi-Company',
-      description: 'Punya banyak PT, CV, atau unit bisnis berbeda? Satukan manajemen grup perusahaan Anda dengan struktur Multi-Company yang native.',
+      description:
+        'Punya banyak PT, CV, atau unit bisnis berbeda? Satukan manajemen grup perusahaan Anda dengan struktur Multi-Company yang native.',
 
       featuresBadge: 'Fitur Inti',
       featuresTitle: 'Manajemen Holding Company',
@@ -2923,7 +2928,8 @@ export const featuresPagesTranslations = {
 
       cta: {
         title: 'Kelola Grup Bisnis dengan Efisien',
-        subtitle: 'Jadwalkan demo untuk melihat bagaimana multi-company management bekerja untuk bisnis Anda.',
+        subtitle:
+          'Jadwalkan demo untuk melihat bagaimana multi-company management bekerja untuk bisnis Anda.',
         badge: 'Multi-Company',
         demoBtn: 'Request Demo Enterprise',
         pricingBtn: 'Lihat Pricing',
@@ -2936,7 +2942,8 @@ export const featuresPagesTranslations = {
       title: 'Berhenti Menjadi Admin',
       titleHighlight: 'untuk Klien Anda.',
       subtitle: 'B2B Portals',
-      description: 'Bebaskan tim CS, Sales Admin, dan Purchasing Anda dari pertanyaan berulang. Berikan akses portal mandiri 24/7 kepada mitra bisnis Anda.',
+      description:
+        'Bebaskan tim CS, Sales Admin, dan Purchasing Anda dari pertanyaan berulang. Berikan akses portal mandiri 24/7 kepada mitra bisnis Anda.',
 
       featuresBadge: 'Jenis Portal',
       featuresTitle: 'Self-Service untuk Mitra Bisnis',
@@ -2954,7 +2961,8 @@ export const featuresPagesTranslations = {
 
       cta: {
         title: 'Tingkatkan Kolaborasi Bisnis',
-        subtitle: 'Lihat bagaimana portal B2B dapat meningkatkan efisiensi tim dan kepuasan mitra bisnis Anda.',
+        subtitle:
+          'Lihat bagaimana portal B2B dapat meningkatkan efisiensi tim dan kepuasan mitra bisnis Anda.',
         badge: 'B2B Portals',
         demoBtn: 'Request Demo Portal',
         pricingBtn: 'Lihat Pricing',
@@ -2966,7 +2974,8 @@ export const featuresPagesTranslations = {
       title: 'Keamanan Kelas Bank',
       titleHighlight: 'untuk Enterprise Anda.',
       subtitle: 'Enterprise Security Shield',
-      description: 'Kami menganggap keamanan sebagai fitur utama, bukan pelengkap. Lindungi bisnis Anda dengan standar yang sama digunakan oleh institusi keuangan.',
+      description:
+        'Kami menganggap keamanan sebagai fitur utama, bukan pelengkap. Lindungi bisnis Anda dengan standar yang sama digunakan oleh institusi keuangan.',
 
       featuresBadge: 'Fitur Keamanan',
       featuresTitle: 'Perlindungan Menyeluruh',

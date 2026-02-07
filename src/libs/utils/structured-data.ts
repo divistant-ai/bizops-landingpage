@@ -4,7 +4,8 @@
  * @see https://schema.org/
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bizops.id';
+import { SITE_URL } from '@/libs/utils/helpers';
+
 const SITE_NAME = 'BizOps';
 
 /**
@@ -24,7 +25,8 @@ export function getOrganizationSchema() {
       'width': '512',
       'height': '512',
     },
-    'description': 'Platform ERP Indonesia yang menyatukan HR, Finance, Operations, Sales, dan Supply Chain dalam satu sistem terintegrasi.',
+    'description':
+      'Platform ERP Indonesia yang menyatukan HR, Finance, Operations, Sales, dan Supply Chain dalam satu sistem terintegrasi.',
     'email': 'sales@bizops.id',
     'telephone': '+62-21-3970-2834',
     'address': {
@@ -57,7 +59,8 @@ export function getWebSiteSchema() {
     '@id': `${SITE_URL}/#website`,
     'url': SITE_URL,
     'name': SITE_NAME,
-    'description': 'Platform ERP Indonesia - Business Operating System untuk transformasi digital bisnis Anda',
+    'description':
+      'Platform ERP Indonesia - Business Operating System untuk transformasi digital bisnis Anda',
     'publisher': {
       '@id': `${SITE_URL}/#organization`,
     },

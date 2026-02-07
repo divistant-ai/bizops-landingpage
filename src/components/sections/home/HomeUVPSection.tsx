@@ -3,9 +3,9 @@
 import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Section } from '@/components/layout';
+import { Typography } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { getHomeUVP } from '@/data/homeContent';
-import { sectionPaddingHybrid } from '@/design-tokens';
 
 const BENTO_CONFIGS = [
   {
@@ -53,41 +53,41 @@ export function HomeUVPSection() {
   return (
     <Section
       id="uvp"
-      className="relative overflow-hidden bg-slate-50 dark:bg-slate-950"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-slate-50 dark:bg-slate-950"
       noPadding
-      containerClassName={sectionPaddingHybrid.default}
+      containerClassName="px-4 py-8 sm:py-10 lg:py-12"
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
-        <div className="absolute -right-20 bottom-1/4 h-96 w-96 rounded-full bg-purple-500/5 blur-3xl" />
+        <div className="absolute top-1/4 -left-20 h-64 w-64 rounded-full bg-blue-500/5 blur-3xl" />
+        <div className="absolute -right-20 bottom-1/4 h-64 w-64 rounded-full bg-purple-500/5 blur-3xl" />
       </div>
 
-      {/* Header */}
-      <div className="relative z-10 mb-12 text-center lg:mb-16">
-        <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold tracking-wider uppercase">
+      {/* Compact Header */}
+      <div className="relative z-10 mb-6 text-center sm:mb-8">
+        <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold tracking-wider uppercase sm:mb-4">
           <span className="bg-primary-500 h-2 w-2 animate-pulse rounded-full" />
           Keunggulan Kami
         </div>
-        <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+        <Typography variant="h2" as="h2" color="default" className="mb-2 sm:mb-3">
           {t('uvp_title')}
-        </h2>
-        <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+        </Typography>
+        <Typography variant="body" color="muted" className="mx-auto max-w-2xl">
           {t('uvp_desc')}
-        </p>
+        </Typography>
       </div>
 
-      {/* Bento Grid - 2x2 Layout */}
-      <div className="relative z-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
+      {/* Bento Grid - 2x2 Layout - Compact Cards */}
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-2 gap-3 md:gap-4">
         {homeUVP.map((uvp, idx) => {
           const Icon = uvp.icon;
           const config = BENTO_CONFIGS[idx % BENTO_CONFIGS.length]!;
 
           return (
-            <FadeIn key={idx} delay={0.1 + idx * 0.1}>
+            <FadeIn key={idx} delay={0.05 + idx * 0.05}>
               <div className="group h-full">
                 <div
-                  className={`relative h-full overflow-hidden rounded-3xl bg-linear-to-br transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${config.bg} min-h-[280px] p-6 sm:min-h-[300px] sm:p-8 lg:p-10`}
+                  className={`relative h-full overflow-hidden rounded-2xl bg-linear-to-br transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl ${config.bg} p-4 sm:p-5 lg:p-6`}
                 >
                   {/* Background pattern */}
                   <div className="absolute inset-0 opacity-10">
@@ -96,56 +96,56 @@ export function HomeUVPSection() {
                       style={{
                         backgroundImage:
                           'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                        backgroundSize: '24px 24px',
+                        backgroundSize: '20px 20px',
                       }}
                     />
                   </div>
 
-                  {/* Decorative blurs */}
-                  <div className="absolute -right-16 -bottom-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
-                  <div className="absolute -top-8 -left-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+                  {/* Decorative blurs - smaller */}
+                  <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+                  <div className="absolute -top-4 -left-4 h-20 w-20 rounded-full bg-white/10 blur-2xl" />
 
-                  {/* Floating icon decoration */}
-                  <div className="pointer-events-none absolute -right-6 -bottom-6">
+                  {/* Floating icon decoration - smaller */}
+                  <div className="pointer-events-none absolute -right-3 -bottom-3">
                     <Icon
-                      className="h-32 w-32 transform text-white/10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 sm:h-36 sm:w-36"
+                      className="h-16 w-16 transform text-white/10 transition-all duration-500 group-hover:scale-110 sm:h-20 sm:w-20"
                       strokeWidth={0.5}
                     />
                   </div>
 
-                  {/* Content */}
+                  {/* Content - Compact */}
                   <div className="relative z-10 flex h-full flex-col">
-                    {/* Icon */}
+                    {/* Icon - Smaller */}
                     <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-2xl ${config.iconBg} mb-5 shadow-lg backdrop-blur-sm`}
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${config.iconBg} mb-3 shadow-lg backdrop-blur-sm sm:h-12 sm:w-12`}
                     >
-                      <Icon className="h-7 w-7 text-white" />
+                      <Icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
                     </div>
 
-                    {/* Text */}
+                    {/* Text - Compact */}
                     <div className="flex-1">
                       <h3
-                        className={`text-xl font-bold sm:text-2xl lg:text-2xl ${config.textColor} mb-2`}
+                        className={`text-sm font-bold sm:text-base lg:text-lg ${config.textColor} mb-1`}
                       >
                         {uvp.title}
                       </h3>
                       <p
-                        className={`text-xs font-bold tracking-wide uppercase sm:text-sm ${config.subtitleColor} mb-3`}
+                        className={`text-[10px] font-bold tracking-wide uppercase sm:text-xs ${config.subtitleColor} mb-2`}
                       >
                         {uvp.subtitle}
                       </p>
                       <p
-                        className={`text-sm sm:text-base ${config.descColor} line-clamp-3 leading-relaxed`}
+                        className={`text-xs sm:text-sm ${config.descColor} line-clamp-2 leading-snug sm:line-clamp-3`}
                       >
                         {uvp.desc}
                       </p>
                     </div>
 
-                    {/* CTA */}
-                    <div className="mt-5 border-t border-white/20 pt-4">
-                      <button className="group/btn inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 hover:gap-3">
+                    {/* CTA - Compact */}
+                    <div className="mt-3 border-t border-white/20 pt-2 sm:mt-4 sm:pt-3">
+                      <button className="group/btn inline-flex items-center gap-1 text-xs font-semibold text-white transition-all duration-300 hover:gap-2 sm:text-sm">
                         {t('learn_more_short' as any)}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                        <ArrowRight className="h-3 w-3 transition-transform group-hover/btn:translate-x-1 sm:h-4 sm:w-4" />
                       </button>
                     </div>
                   </div>

@@ -33,4 +33,6 @@ const InfiniteScrollLoop: React.FC<InfiniteScrollLoopProps> = ({
   );
 };
 
+InfiniteScrollLoop.displayName = 'InfiniteScrollLoop';
+
 export default InfiniteScrollLoop;

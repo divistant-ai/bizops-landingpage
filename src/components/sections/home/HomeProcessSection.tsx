@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Section } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Button, Typography } from '@/components/ui';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { getHomeProcess } from '@/data/homeContent';
 import { sectionPaddingHybrid } from '@/design-tokens';
@@ -21,8 +21,7 @@ const STEP_COLORS = [
     bgLight: 'bg-emerald-50 dark:bg-emerald-900/20',
     text: 'text-emerald-600 dark:text-emerald-400',
     border: 'border-emerald-100 dark:border-emerald-900',
-    hoverBorder:
-      'group-hover:border-emerald-300 dark:group-hover:border-emerald-700',
+    hoverBorder: 'group-hover:border-emerald-300 dark:group-hover:border-emerald-700',
   },
   {
     bg: 'bg-amber-500',
@@ -66,27 +65,27 @@ export function HomeProcessSection() {
 
       <div className="relative z-10">
         {/* Centered Header */}
-        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
-          <div className="to-primary-50 dark:to-primary-900/20 mb-6 inline-flex items-center gap-3 rounded-full border border-blue-100 bg-linear-to-r from-blue-50 px-5 py-2.5 text-sm font-bold tracking-wider uppercase dark:border-blue-800 dark:from-blue-900/20">
-            <span className="to-primary-600 flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-blue-500 text-sm font-bold text-white shadow-lg shadow-blue-500/30">
+        <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
+          <div className="border-primary-100 bg-primary-50 dark:border-primary-800 dark:bg-primary-900/20 mb-6 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm font-bold tracking-wider uppercase">
+            <span className="bg-primary-500 shadow-primary-500/30 flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white shadow-lg">
               30
             </span>
-            <span className="text-blue-600 dark:text-blue-400">
+            <span className="text-primary-600 dark:text-primary-400">
               {t('process_days_badge') || 'Hari Go-Live'}
             </span>
           </div>
-          <h2 className="mb-6 text-3xl leading-tight font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+          <Typography variant="h2" as="h2" color="default" className="mb-6">
             {t('process_title').replace(t('process_days'), '')}
             {' '}
             <span className="text-blue-600 dark:text-blue-400">{t('process_days')}</span>
-          </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          </Typography>
+          <Typography variant="body" color="muted" className="mx-auto mb-8 max-w-2xl">
             {t('process_desc_1')}
             {' '}
             {t('process_desc_2')}
             {' '}
             {t('process_desc_3')}
-          </p>
+          </Typography>
           <Button
             asChild
             size="md"

@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
 
 describe('Button Component', () => {
   it('renders with children text', () => {
@@ -12,8 +11,8 @@ describe('Button Component', () => {
   });
 
   it('applies variant styles correctly', () => {
-    const { rerender } = render(<Button variant="default">Default</Button>);
-    let button = screen.getByText('Default');
+    const { rerender } = render(<Button variant="primary">Primary</Button>);
+    let button = screen.getByText('Primary');
 
     expect(button).toBeInTheDocument();
 
@@ -34,8 +33,8 @@ describe('Button Component', () => {
 
     expect(button).toBeInTheDocument();
 
-    rerender(<Button size="default">Default</Button>);
-    button = screen.getByText('Default');
+    rerender(<Button size="md">Medium</Button>);
+    button = screen.getByText('Medium');
 
     expect(button).toBeInTheDocument();
 

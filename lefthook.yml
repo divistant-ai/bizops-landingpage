@@ -7,6 +7,10 @@ commit-msg:
 # Validate content before committing
 pre-commit:
   commands:
+    secrets-scan:
+      glob: '*'
+      run: npx --no -- gitleaks protect --staged --verbose
+      priority: 0
     lint:
       glob: '*'
       run: npx --no -- eslint --fix --no-warn-ignored {staged_files}

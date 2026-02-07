@@ -1,0 +1,6 @@
+Contact: security@bizops.id
+Expires: 2025-12-31T23:59:59.000Z
+Acknowledgments: https://bizops.id/security/acknowledgments
+Policy: https://bizops.id/security-policy
+Preferred-Languages: en, id
+Canonical: https://bizops.id/.well-known/security.txt

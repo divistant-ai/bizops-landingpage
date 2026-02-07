@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Section } from '@/components/layout';
+import { Typography } from '@/components/ui';
 import { InfiniteScrollLoop } from '@/components/ui/LazyComponents';
 import { getHomeIndustriesData, getHomeRolesData } from '@/data/homeContent';
 import { sectionPaddingHybrid } from '@/design-tokens';
@@ -18,20 +19,75 @@ const INDUSTRY_IMAGES = [
 ];
 
 const COLOR_THEMES = [
-  { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', overlay: 'from-blue-900/60' },
-  { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', overlay: 'from-emerald-900/60' },
-  { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', overlay: 'from-amber-900/60' },
-  { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', overlay: 'from-purple-900/60' },
-  { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', overlay: 'from-rose-900/60' },
-  { bg: 'bg-cyan-600', text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-100 dark:border-cyan-900', overlay: 'from-cyan-900/60' },
+  {
+    bg: 'bg-blue-600',
+    text: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-100 dark:border-blue-900',
+    overlay: 'from-blue-900/60',
+  },
+  {
+    bg: 'bg-emerald-600',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    border: 'border-emerald-100 dark:border-emerald-900',
+    overlay: 'from-emerald-900/60',
+  },
+  {
+    bg: 'bg-amber-500',
+    text: 'text-amber-600 dark:text-amber-400',
+    border: 'border-amber-100 dark:border-amber-900',
+    overlay: 'from-amber-900/60',
+  },
+  {
+    bg: 'bg-purple-600',
+    text: 'text-purple-600 dark:text-purple-400',
+    border: 'border-purple-100 dark:border-purple-900',
+    overlay: 'from-purple-900/60',
+  },
+  {
+    bg: 'bg-rose-600',
+    text: 'text-rose-600 dark:text-rose-400',
+    border: 'border-rose-100 dark:border-rose-900',
+    overlay: 'from-rose-900/60',
+  },
+  {
+    bg: 'bg-cyan-600',
+    text: 'text-cyan-600 dark:text-cyan-400',
+    border: 'border-cyan-100 dark:border-cyan-900',
+    overlay: 'from-cyan-900/60',
+  },
 ];
 
 const ROLE_COLORS = [
-  { bg: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-100 dark:border-blue-900', gradient: 'from-blue-500 to-blue-600' },
-  { bg: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-100 dark:border-emerald-900', gradient: 'from-emerald-500 to-emerald-600' },
-  { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-100 dark:border-amber-900', gradient: 'from-amber-500 to-amber-600' },
-  { bg: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-100 dark:border-purple-900', gradient: 'from-purple-500 to-purple-600' },
-  { bg: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-100 dark:border-rose-900', gradient: 'from-rose-500 to-rose-600' },
+  {
+    bg: 'bg-blue-600',
+    text: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-100 dark:border-blue-900',
+    gradient: 'from-blue-500 to-blue-600',
+  },
+  {
+    bg: 'bg-emerald-600',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    border: 'border-emerald-100 dark:border-emerald-900',
+    gradient: 'from-emerald-500 to-emerald-600',
+  },
+  {
+    bg: 'bg-amber-500',
+    text: 'text-amber-600 dark:text-amber-400',
+    border: 'border-amber-100 dark:border-amber-900',
+    gradient: 'from-amber-500 to-amber-600',
+  },
+  {
+    bg: 'bg-purple-600',
+    text: 'text-purple-600 dark:text-purple-400',
+    border: 'border-purple-100 dark:border-purple-900',
+    gradient: 'from-purple-500 to-purple-600',
+  },
+  {
+    bg: 'bg-rose-600',
+    text: 'text-rose-600 dark:text-rose-400',
+    border: 'border-rose-100 dark:border-rose-900',
+    gradient: 'from-rose-500 to-rose-600',
+  },
 ];
 
 export function HomeIndustriesSection() {
@@ -61,9 +117,9 @@ export function HomeIndustriesSection() {
           <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold tracking-wider uppercase">
             {t('industries_title')}
           </div>
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+          <Typography variant="h2" as="h2" color="default" className="mb-4">
             {t('industries_desc')}
-          </h2>
+          </Typography>
         </div>
 
         {/* Industries Slider */}
@@ -112,7 +168,9 @@ export function HomeIndustriesSection() {
                       <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         {ind.description}
                       </p>
-                      <div className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}>
+                      <div
+                        className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}
+                      >
                         <span>{t('learn_more_short' as any)}</span>
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </div>

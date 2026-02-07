@@ -1,0 +1,32 @@
+[
+  {
+    "path": "build/**/*.js",
+    "maxSize": "150 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "build/**/*.css",
+    "maxSize": "50 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "build/**/*.html",
+    "maxSize": "100 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "build/static/media/*.svg",
+    "maxSize": "10 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "build/static/media/*.png",
+    "maxSize": "100 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "build/static/media/*.jpg",
+    "maxSize": "100 kB",
+    "compression": "gzip"
+  }
+]

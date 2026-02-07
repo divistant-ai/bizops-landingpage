@@ -50,4 +50,6 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   );
 };
 
+SpotlightCard.displayName = 'SpotlightCard';
+
 export default SpotlightCard;

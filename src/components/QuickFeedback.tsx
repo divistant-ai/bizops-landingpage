@@ -26,7 +26,7 @@ const QuickFeedback: React.FC<QuickFeedbackProps> = ({ contextId }) => {
 
   if (rating) {
     return (
-      <div className="animate-fade-in-up mx-auto flex w-fit items-center gap-2 rounded-full border border-green-100 bg-green-50 px-4 py-2 text-sm text-green-600">
+      <div className="animate-fade-in-up mx-auto flex w-fit items-center gap-2 rounded-full border border-green-100 bg-green-50 px-4 py-2 text-sm text-green-600 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400">
         <Check className="h-4 w-4" />
         {' '}
         Terima kasih atas feedback Anda!
@@ -36,25 +36,27 @@ const QuickFeedback: React.FC<QuickFeedbackProps> = ({ contextId }) => {
 
   return (
     <div className="mx-auto flex max-w-sm flex-col items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/50">
-      <span className="text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">Apakah halaman ini membantu?</span>
+      <span className="text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">
+        Apakah halaman ini membantu?
+      </span>
       <div className="flex gap-4">
         <button
           onClick={() => handleRate('sad')}
-          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-red-100 hover:text-red-600"
+          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-red-100 hover:text-red-600 dark:text-slate-500 dark:hover:bg-red-900/30 dark:hover:text-red-400"
           aria-label="Tidak membantu"
         >
           <Frown className="h-6 w-6" />
         </button>
         <button
           onClick={() => handleRate('neutral')}
-          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-amber-100 hover:text-amber-600"
+          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-amber-100 hover:text-amber-600 dark:text-slate-500 dark:hover:bg-amber-900/30 dark:hover:text-amber-400"
           aria-label="Biasa saja"
         >
           <Meh className="h-6 w-6" />
         </button>
         <button
           onClick={() => handleRate('happy')}
-          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-green-100 hover:text-green-600"
+          className="rounded-full p-2 text-slate-400 transition-colors hover:bg-green-100 hover:text-green-600 dark:text-slate-500 dark:hover:bg-green-900/30 dark:hover:text-green-400"
           aria-label="Sangat membantu"
         >
           <Smile className="h-6 w-6" />
@@ -63,5 +65,7 @@ const QuickFeedback: React.FC<QuickFeedbackProps> = ({ contextId }) => {
     </div>
   );
 };
+
+QuickFeedback.displayName = 'QuickFeedback';
 
 export default QuickFeedback;

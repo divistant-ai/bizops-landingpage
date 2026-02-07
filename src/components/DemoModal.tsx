@@ -43,15 +43,15 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
     // Construct a professional WhatsApp message
     const text
       = `*New Demo Request*\n\n`
-        + `${t('whatsapp_greeting')}\n\n`
-        + `*${t('whatsapp_contact_details')}*\n`
-        + `${t('whatsapp_name')}: ${name}\n`
-        + `${t('whatsapp_job_title')}: ${jobTitle}\n`
-        + `${t('whatsapp_company')}: ${company}\n`
-        + `${t('whatsapp_email')}: ${email}\n`
-        + `${t('whatsapp_phone')}: ${phoneInput}\n\n`
-        + `*${t('whatsapp_business_profile')}*\n`
-        + `${t('whatsapp_size')}: ${employees} ${t('whatsapp_employees')}\n`
+      + `${t('whatsapp_greeting')}\n\n`
+      + `*${t('whatsapp_contact_details')}*\n`
+      + `${t('whatsapp_name')}: ${name}\n`
+      + `${t('whatsapp_job_title')}: ${jobTitle}\n`
+      + `${t('whatsapp_company')}: ${company}\n`
+      + `${t('whatsapp_email')}: ${email}\n`
+      + `${t('whatsapp_phone')}: ${phoneInput}\n\n`
+      + `*${t('whatsapp_business_profile')}*\n`
+      + `${t('whatsapp_size')}: ${employees} ${t('whatsapp_employees')}\n`
       + `${t('whatsapp_interest')}: ${interest}\n\n`
       + `*${t('whatsapp_notes')}*\n${message || '-'}\n\n`
       + `${t('whatsapp_closing')}`;
@@ -242,12 +242,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="modalEmployees">{t('label_company_size')}</Label>
-                    <Select
-                      id="modalEmployees"
-                      name="modalEmployees"
-                      required
-                      icon={<Users />}
-                    >
+                    <Select id="modalEmployees" name="modalEmployees" required icon={<Users />}>
                       {[
                         { value: '1-10', label: t('size_1_10') },
                         { value: '11-50', label: t('size_11_50') },
@@ -256,7 +251,9 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                         { value: '501-1000', label: t('size_501_1000') },
                         { value: '1000+', label: t('size_1000_plus') },
                       ].map(opt => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
                       ))}
                     </Select>
                   </div>
@@ -264,20 +261,21 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
                 <div className="space-y-2">
                   <Label htmlFor="modalInterest">{t('label_interest')}</Label>
-                  <Select
-                    id="modalInterest"
-                    name="modalInterest"
-                    required
-                  >
+                  <Select id="modalInterest" name="modalInterest" required>
                     {[
                       { value: 'General Overview', label: t('interest_general') },
-                      { value: 'HR & Payroll', label: t('interest_hr') },
-                      { value: 'Finance & Accounting', label: t('interest_finance') },
-                      { value: 'Supply Chain', label: t('interest_supply') },
-                      { value: 'CRM & Sales', label: t('interest_crm') },
+                      { value: 'People', label: t('interest_hr') },
+                      { value: 'Money', label: t('interest_finance') },
+                      { value: 'Supply', label: t('interest_supply') },
+                      { value: 'Growth', label: t('interest_growth') },
+                      { value: 'Work', label: t('interest_work') },
+                      { value: 'Care', label: t('interest_care') },
+                      { value: 'Hub', label: t('interest_hub') },
                       { value: 'Custom Solution', label: t('interest_custom') },
                     ].map(opt => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
                     ))}
                   </Select>
                 </div>
@@ -301,17 +299,15 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
                     disabled={isLoading}
                     className="h-12 border border-slate-300 dark:border-slate-600"
                   >
-                    {isLoading
-                      ? (
-                          t('button_loading')
-                        )
-                      : (
-                          <span className="flex items-center gap-2 text-slate-700 dark:text-white">
-                            <Send className="h-5 w-5" />
-                            {' '}
-                            {t('button_submit')}
-                          </span>
-                        )}
+                    {isLoading ? (
+                      t('button_loading')
+                    ) : (
+                      <span className="flex items-center gap-2 text-slate-700 dark:text-white">
+                        <Send className="h-5 w-5" />
+                        {' '}
+                        {t('button_submit')}
+                      </span>
+                    )}
                   </Button>
                   <p className="mt-3 text-center text-[10px] text-slate-600 dark:text-slate-400">
                     {t('privacy_notice')}

@@ -10,8 +10,6 @@ import {
   Linkedin,
   MapPin,
   Moon,
-  ShieldCheck,
-  Signal,
   Sun,
   Twitter,
   Youtube,
@@ -240,7 +238,7 @@ export const Footer: React.FC = () => {
                 <SocialLink href="https://twitter.com/bizops" icon={Twitter} label="Twitter" />
                 <SocialLink href="https://youtube.com/@bizops" icon={Youtube} label="YouTube" />
                 <SocialLink
-                  href="https://instagram.com/bizops.id"
+                  href="https://instagram.com/bizops"
                   icon={Instagram}
                   label="Instagram"
                 />
@@ -253,22 +251,24 @@ export const Footer: React.FC = () => {
             <FooterLinkGroup title={t('platform')}>
               <ul className="space-y-3">
                 <FooterLink href="/platform">{t('overview')}</FooterLink>
-                <FooterLink href="/platform/modules/hr">{t('hr_system')}</FooterLink>
-                <FooterLink href="/platform/modules/finance">{t('finance')}</FooterLink>
-                <FooterLink href="/platform/modules/operations">{t('operations')}</FooterLink>
-                <FooterLink href="/platform/technologies/integration">
-                  {t('integrations')}
-                </FooterLink>
-                <FooterLink href="/pricing">{t('pricing')}</FooterLink>
+                <FooterLink href="/platform/modules/people">{t('people')}</FooterLink>
+                <FooterLink href="/platform/modules/money">{t('money')}</FooterLink>
+                <FooterLink href="/platform/modules/growth">{t('growth')}</FooterLink>
+                <FooterLink href="/platform/modules/supply">{t('supply')}</FooterLink>
+                <FooterLink href="/platform/modules/work">{t('work')}</FooterLink>
+                <FooterLink href="/platform/modules/care">{t('care')}</FooterLink>
+                <FooterLink href="/platform/modules/hub">{t('hub')}</FooterLink>
               </ul>
             </FooterLinkGroup>
 
             <FooterLinkGroup title={t('company')}>
               <ul className="space-y-3">
                 <FooterLink href="/about">{t('about_us')}</FooterLink>
+                <FooterLink href="/why-bizops">{t('why_bizops')}</FooterLink>
                 <FooterLink href="/customers">{t('customers')}</FooterLink>
                 <FooterLink href="/partners">{t('partners')}</FooterLink>
                 <FooterLink href="/careers">{t('careers')}</FooterLink>
+                <FooterLink href="/trust">{t('trust_center')}</FooterLink>
                 <FooterLink href="/media-kit">{t('media_kit')}</FooterLink>
                 <FooterLink href="/contact">{t('contact')}</FooterLink>
               </ul>
@@ -277,15 +277,13 @@ export const Footer: React.FC = () => {
             <FooterLinkGroup title={t('resources')}>
               <ul className="space-y-3">
                 <FooterLink href="/blog">{t('blog')}</FooterLink>
+                <FooterLink href="/use-cases">{t('use_cases')}</FooterLink>
                 <FooterLink href="/docs">{t('docs')}</FooterLink>
+                <FooterLink href="/events">{t('events')}</FooterLink>
                 <FooterLink href="/tools/roi-calculator">{t('roi_calc')}</FooterLink>
                 <FooterLink href="/tools/assessment">{t('assessment')}</FooterLink>
-                <FooterLink href="/trust" icon={ShieldCheck}>
-                  {t('trust_center')}
-                </FooterLink>
-                <FooterLink href="/status" icon={Signal}>
-                  {t('status')}
-                </FooterLink>
+                <FooterLink href="/pricing">{t('pricing')}</FooterLink>
+                <FooterLink href="/status">{t('status')}</FooterLink>
               </ul>
             </FooterLinkGroup>
           </div>
@@ -297,44 +295,38 @@ export const Footer: React.FC = () => {
                 {t('stay_updated')}
               </h3>
 
-              {subscribed
-                ? (
-                    <div className="flex items-center gap-3 rounded-xl bg-green-50 p-4 text-green-700 dark:bg-green-500/10 dark:text-green-400">
-                      <CheckCircle className="h-5 w-5 shrink-0" />
-                      <span className="text-sm font-medium">{t('subscribed_success')}</span>
-                    </div>
-                  )
-                : (
-                    <form onSubmit={handleSubscribe} className="relative">
-                      <div className="relative flex items-center">
-                        <input
-                          type="email"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value);
-                            setError(null);
-                          }}
-                          placeholder={t('email_placeholder')}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-500"
-                          required
-                          disabled={isPending}
-                        />
-                        <button
-                          type="submit"
-                          aria-label="Subscribe"
-                          disabled={isPending}
-                          className="absolute right-1.5 rounded-lg bg-slate-900 p-1.5 text-white transition-all hover:bg-slate-800 disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-500"
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </button>
-                      </div>
-                      {error && (
-                        <p className="mt-2 text-xs text-red-500 dark:text-red-400">
-                          {error}
-                        </p>
-                      )}
-                    </form>
-                  )}
+              {subscribed ? (
+                <div className="flex items-center gap-3 rounded-xl bg-green-50 p-4 text-green-700 dark:bg-green-500/10 dark:text-green-400">
+                  <CheckCircle className="h-5 w-5 shrink-0" />
+                  <span className="text-sm font-medium">{t('subscribed_success')}</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="relative">
+                  <div className="relative flex items-center">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setError(null);
+                      }}
+                      placeholder={t('email_placeholder')}
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pr-12 pl-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-500"
+                      required
+                      disabled={isPending}
+                    />
+                    <button
+                      type="submit"
+                      aria-label="Subscribe"
+                      disabled={isPending}
+                      className="absolute right-1.5 rounded-lg bg-slate-900 p-1.5 text-white transition-all hover:bg-slate-800 disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-500"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                  {error && <p className="mt-2 text-xs text-red-500 dark:text-red-400">{error}</p>}
+                </form>
+              )}
             </div>
 
             {/* Mobile Apps */}
@@ -423,8 +415,18 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex gap-6 text-sm">
-            <Link href="/legal/privacy" className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white">{t('privacy')}</Link>
-            <Link href="/legal/terms" className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white">{t('terms')}</Link>
+            <Link
+              href="/legal/privacy"
+              className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white"
+            >
+              {t('privacy')}
+            </Link>
+            <Link
+              href="/legal/terms"
+              className="text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white"
+            >
+              {t('terms')}
+            </Link>
           </div>
         </div>
       </div>

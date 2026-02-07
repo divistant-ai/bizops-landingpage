@@ -358,8 +358,8 @@ export const eventsData = {
         {
           time: '14:10',
           activity: {
-            en: 'Finance & Accounting Module Demo',
-            id: 'Demo Modul Finance & Accounting',
+            en: 'Money Module Demo',
+            id: 'Demo Modul Money',
           },
         },
         {
@@ -605,7 +605,7 @@ export const docsData = {
         icon: Flag,
       },
       { title: 'Human Capital', desc: 'Payroll, PPh 21, Attendance guides.', icon: Users },
-      { title: 'Finance & Accounting', desc: 'Journal, COA, Financial Reports.', icon: DollarSign },
+      { title: 'Money', desc: 'Journal, COA, Financial Reports.', icon: DollarSign },
       { title: 'Supply Chain', desc: 'Stock Opname, Warehouse Transfer.', icon: Package },
       { title: 'API Reference', desc: 'Endpoints, Auth, Webhooks.', icon: Code },
       { title: 'Troubleshooting', desc: 'Error codes and self-service solutions.', icon: Wrench },
@@ -613,7 +613,7 @@ export const docsData = {
     id: [
       { title: 'Getting Started', desc: 'Setup akun, impor data, konfigurasi awal.', icon: Flag },
       { title: 'Human Capital', desc: 'Panduan Payroll, PPh 21, Absensi.', icon: Users },
-      { title: 'Finance & Accounting', desc: 'Jurnal, COA, Laporan Keuangan.', icon: DollarSign },
+      { title: 'Money', desc: 'Jurnal, COA, Laporan Keuangan.', icon: DollarSign },
       { title: 'Supply Chain', desc: 'Stok Opname, Transfer Gudang.', icon: Package },
       { title: 'API Reference', desc: 'Endpoints, Auth, Webhooks.', icon: Code },
       { title: 'Troubleshooting', desc: 'Kode error dan solusi mandiri.', icon: Wrench },

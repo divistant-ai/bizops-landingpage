@@ -9,21 +9,7 @@ import Pagination from '@/components/Pagination';
 import { CTABannerSection } from '@/components/sections/CTABannerSection';
 import Button from '@/components/ui/Button';
 import { useCasesData } from '@/data/useCasesContent';
-
-const FADE_UP_VARIANTS = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const STAGGER_CONTAINER = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER } from '@/libs/animations';
 
 // SpotlightCard Component
 const SpotlightCard = ({
@@ -87,8 +73,8 @@ export default function UseCasesContent() {
     const matchCategory = selectedCategory === 'All' || c.category === selectedCategory;
     const matchSearch
       = c.title[locale].toLowerCase().includes(searchQuery.toLowerCase())
-        || c.subtitle[locale].toLowerCase().includes(searchQuery.toLowerCase())
-        || c.challenge[locale].toLowerCase().includes(searchQuery.toLowerCase());
+      || c.subtitle[locale].toLowerCase().includes(searchQuery.toLowerCase())
+      || c.challenge[locale].toLowerCase().includes(searchQuery.toLowerCase());
     return matchIndustry && matchCategory && matchSearch;
   });
 

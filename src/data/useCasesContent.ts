@@ -62,12 +62,12 @@ export type UseCase = {
   techStack: string[];
   color: string; // tailwind color class e.g. "blue"
   category:
-    | 'Finance & Accounting'
-    | 'Supply Chain Management'
+    | 'Money'
+    | 'Operation'
     | 'Human Resources'
     | 'Sales & CRM'
     | 'Manufacturing & Production'
-    | 'Project Management'
+    | 'Project'
     | 'Asset Management'
     | 'Operations'; // Core Modules + Operations fallback
 };
@@ -159,7 +159,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Retail & Distribution',
     icon: RefreshCw,
     color: 'cyan',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Minimarket chain often experiences stock-outs of fast-moving items (Pareto A) on shelves, while slow-moving items pile up in store warehouses.',
       id: 'Jaringan minimarket sering mengalami kekosongan stok barang laku (Pareto A) di rak, sementara barang lambat laku menumpuk di gudang toko.',
@@ -305,7 +305,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Manufacturing',
     icon: Factory,
     color: 'slate',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Automotive factory struggles to track raw material stock sent to subcontracting vendors. Stock discrepancies often occur between factory and vendor records.',
       id: 'Pabrik otomotif kesulitan melacak stok bahan baku yang dikirim ke vendor makloon (subkon). Sering terjadi selisih stok antara catatan pabrik dan vendor.',
@@ -343,7 +343,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Supply Chain',
     icon: LinkIcon,
     color: 'amber',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Procurement process involves hundreds of emails and phone calls to suppliers. Price transparency and bidding history are difficult to track.',
       id: 'Proses pengadaan barang melibatkan ratusan email dan telepon ke supplier. Transparansi harga dan riwayat penawaran sulit dilacak.',
@@ -379,7 +379,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Supply Chain',
     icon: TrendingUp,
     color: 'purple',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Distributor often overstocks seasonal items after the season ends, causing significant dead stock losses.',
       id: 'Distributor sering overstock barang seasonal setelah musim berakhir, menyebabkan kerugian dead stock yang besar.',
@@ -527,7 +527,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Logistics',
     icon: Box,
     color: 'orange',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Customers often complain goods have not arrived even though status shows \'delivered\'. Couriers find it difficult to prove successful delivery because physical proof is lost.',
       id: 'Customer sering komplain barang belum sampai padahal status \'delivered\'. Kurir sulit membuktikan pengiriman sukses karena bukti fisik hilang.',
@@ -565,7 +565,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Construction',
     icon: Hammer,
     color: 'orange',
-    category: 'Project Management',
+    category: 'Project',
     challenge: {
       en: 'Contractors often experience over-budget because material and labor cost realization is only known when the project is complete. Difficult to monitor physical progress vs cost in real-time.',
       id: 'Kontraktor sering mengalami over-budget karena realisasi biaya material dan upah tukang baru ketahuan saat proyek selesai. Sulit memantau progress fisik vs biaya secara real-time.',
@@ -601,7 +601,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Construction',
     icon: HardHat,
     color: 'yellow',
-    category: 'Project Management',
+    category: 'Project',
     challenge: {
       en: 'Daily project reports (LHP) from the field are often delayed for days and handwriting is hard to read. Project progress at head office is not updated.',
       id: 'Laporan harian proyek (LHP) dari lapangan sering terlambat berhari-hari dan tulisan tangan sulit dibaca. Progress proyek di kantor pusat tidak update.',
@@ -713,7 +713,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Healthcare',
     icon: Activity,
     color: 'teal',
-    category: 'Supply Chain Management',
+    category: 'Operation',
     challenge: {
       en: 'Hospital pharmacy often suffers losses from expired drugs that are not monitored and stock-outs of vital medicines.',
       id: 'Apotek rumah sakit sering mengalami kerugian akibat obat kadaluarsa (expired) yang tidak terpantau dan stok out-of-stock untuk obat vital.',
@@ -823,7 +823,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Services',
     icon: CalendarCheck,
     color: 'violet',
-    category: 'Finance & Accounting',
+    category: 'Money',
     challenge: {
       en: 'Digital marketing agency overwhelmed managing hundreds of monthly invoices (retainers) with varying due dates. Billing is often late.',
       id: 'Agensi digital marketing kewalahan mengelola ratusan invoice bulanan (retainer) dengan tanggal jatuh tempo berbeda-beda. Penagihan sering telat.',
@@ -1157,7 +1157,7 @@ export const useCasesData: Record<string, UseCase> = {
     industry: 'Non-Profit',
     icon: HeartHandshake,
     color: 'pink',
-    category: 'Finance & Accounting',
+    category: 'Money',
     challenge: {
       en: 'International NGO struggles to create fund accountability reports to donors specific per program/country. Operational funds and aid funds are often mixed.',
       id: 'NGO internasional kesulitan membuat laporan pertanggungjawaban dana ke donor yang spesifik per program/negara. Dana operasional dan dana bantuan sering tercampur.',
