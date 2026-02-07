@@ -14,14 +14,17 @@ import { servicesTranslations } from '@/data/servicesContentTranslations';
 export const ServicesGridSection = () => {
   const t = useTranslations('Services');
   const locale = useLocale();
-  const safeLocale = (locale === 'en' || locale === 'id') ? locale : 'id';
+  const safeLocale = locale === 'en' || locale === 'id' ? locale : 'id';
   const textData = servicesTranslations[safeLocale];
 
   const serviceOrder = [
     'consulting',
     'implementation',
-    'custom-dev',
-    'managed-business-services',
+    'custom-development',
+    'data-migration',
+    'integration',
+    'security-audit',
+    'managed-services',
     'training',
     'support',
   ];
@@ -31,8 +34,11 @@ export const ServicesGridSection = () => {
     const keyMap = {
       'consulting': 'service_consulting_desc',
       'implementation': 'service_implementation_desc',
-      'custom-dev': 'service_custom_dev_desc',
-      'managed-business-services': 'service_managed_desc',
+      'custom-development': 'service_custom_development_desc',
+      'data-migration': 'service_data_migration_desc',
+      'integration': 'service_integration_desc',
+      'security-audit': 'service_security_audit_desc',
+      'managed-services': 'service_managed_desc',
       'training': 'service_training_desc',
       'support': 'service_support_desc',
     } as const;
@@ -56,9 +62,7 @@ export const ServicesGridSection = () => {
           <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
             {t('services_title')}
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            {t('services_description')}
-          </p>
+          <p className="text-lg text-slate-600 dark:text-slate-400">{t('services_description')}</p>
         </FadeIn>
 
         <FadeInStagger>

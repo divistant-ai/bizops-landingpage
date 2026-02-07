@@ -117,7 +117,10 @@
     "services_implementation": "Implementation",
     "services_custom_dev": "Custom Development",
     "services_training": "Training & Academy",
-    "services_support": "Support & Maintenance"
+    "services_support": "Support & Maintenance",
+    "services_data_migration": "Data Migration",
+    "services_integration": "System Integration",
+    "services_security_audit": "Security Audit"
   },
   "Footer": {
     "description": "All-in-one business operating system. Manage People, Money, Supply, Growth, Work, Care, and Hub in one integrated platform.",
@@ -1201,10 +1204,13 @@
     "cta_footer": "Free consultation • No obligation • Confidential",
     "service_consulting_desc": "Many digital transformation projects fail due to 'Technology First, Process Later'. We reverse that paradigm. We start with deep diagnosis of your business process health, then recommend the right technology.",
     "service_implementation_desc": "Industry statistics show 60% of ERP implementations fail or exceed budget. Our 'BizOps Agile Sprint' approach is designed to mitigate that risk with measurable, transparent, staged deliverables focused on Business Continuity.",
-    "service_custom_dev_desc": "'Vanilla' ERP often forces you to change unique business processes that are actually your company's strength. Our Custom Development service builds a bridge between industry standards and your operational uniqueness, without sacrificing system upgrade-ability.",
+    "service_custom_development_desc": "'Vanilla' ERP often forces you to change unique business processes that are actually your company's strength. Our Custom Development service builds a bridge between industry standards and your operational uniqueness, without sacrificing system upgrade-ability.",
     "service_managed_desc": "End-to-end operational management service supported by a network of expert consultants in Finance, HR, Legal, and IT. We don't just provide software, but also professional staff to run it.",
     "service_training_desc": "The world's most advanced system won't be useful if your team refuses to use it. Our program isn't just 'How to Use Training', but 'Change Management' to transform your team's mindset and work culture towards digitalization.",
-    "service_support_desc": "Don't let your internal team waste time dealing with server downtime or system bugs. Focus them on business innovation, let us handle the 'messy cables' and routine ERP infrastructure maintenance with strict SLA."
+    "service_support_desc": "Don't let your internal team waste time dealing with server downtime or system bugs. Focus them on business innovation, let us handle the 'messy cables' and routine ERP infrastructure maintenance with strict SLA.",
+    "service_data_migration_desc": "Moving data from old systems to new ERP is risky. 40% of migration projects fail due to data corruption or loss. Our Data Migration service uses proven ETL methodology with 100% data integrity guarantee.",
+    "service_integration_desc": "Your business uses many software - marketplace, banks, logistics, accounting. Stop manual data entry between systems. Our Integration service connects everything to BizOps via API, creating seamless data flow.",
+    "service_security_audit_desc": "Data breaches cost businesses millions and destroy reputation. Our Security Audit service identifies vulnerabilities in your ERP system before attackers do, ensuring your business data stays protected."
   },
   "ServicesDetail": {
     "consulting": {
@@ -1238,7 +1244,7 @@
       "benefits_3_desc": "Our cut-over strategy minimizes operational downtime during system transition.",
       "cta": "Schedule Discovery Call Session"
     },
-    "custom-dev": {
+    "custom-development": {
       "subtitle": "Unique Features are Your Competitive Advantage. Don't Throw Them Away.",
       "description": "'Vanilla' ERP often forces you to change unique business processes that are actually your company's strength. Our Custom Development service builds a bridge between industry standards and your operational uniqueness, without sacrificing system upgrade-ability.",
       "methodology_1_desc": "Design efficient and scalable database structure and business logic.",
@@ -1250,7 +1256,7 @@
       "benefits_3_desc": "Custom feature display integrates perfectly with system's native design, users won't realize it's custom.",
       "cta": "Free Technical Consultation"
     },
-    "managed-business-services": {
+    "managed-services": {
       "subtitle": "Your Virtual Head Office. Focus on Core Business.",
       "description": "End-to-end operational management service supported by a network of expert consultants in Finance, HR, Legal, and IT. We don't just provide software, but also professional staff to run it.",
       "methodology_1_desc": "Deep audit of your non-core operational needs.",

@@ -32,9 +32,12 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
   const getServiceLabel = (item: (typeof servicesItems)[0]) => {
     const labelMap: Record<string, string> = {
       '/services/consulting': t('services_consulting'),
-      '/services/managed-business-services': t('services_managed'),
       '/services/implementation': t('services_implementation'),
-      '/services/custom-dev': t('services_custom_dev'),
+      '/services/custom-development': t('services_custom_dev'),
+      '/services/data-migration': t('services_data_migration'),
+      '/services/integration': t('services_integration'),
+      '/services/security-audit': t('services_security_audit'),
+      '/services/managed-services': t('services_managed'),
       '/services/training': t('services_training'),
       '/services/support': t('services_support'),
     };
@@ -129,23 +132,25 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ onDemoClick }) => {
             />
           </button>
           <div
-            className={`absolute top-full left-0 z-50 mt-2 w-72 origin-top-left transform rounded-xl border border-slate-200/80 bg-white/95 p-2 shadow-xl backdrop-blur-xl transition-all duration-200 dark:border-slate-700/50 dark:bg-slate-900/95 ${
+            className={`absolute top-full left-1/2 z-50 mt-2 w-[40rem] -translate-x-1/2 transform rounded-xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-xl transition-all duration-200 dark:border-slate-700/50 dark:bg-slate-900/95 ${
               isMenuOpen('services')
                 ? 'visible translate-y-0 opacity-100'
                 : 'invisible translate-y-1 opacity-0'
             }`}
           >
-            {servicesItems.map(item => (
-              <Link
-                key={item.to}
-                href={item.to}
-                className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-all hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50"
-                onClick={handleCloseMenu}
-              >
-                <item.icon className="h-4 w-4 shrink-0 opacity-70" />
-                {getServiceLabel(item)}
-              </Link>
-            ))}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+              {servicesItems.map(item => (
+                <Link
+                  key={item.to}
+                  href={item.to}
+                  className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-all hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50"
+                  onClick={handleCloseMenu}
+                >
+                  <item.icon className="h-4 w-4 shrink-0 opacity-70" />
+                  <span className="truncate">{getServiceLabel(item)}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 

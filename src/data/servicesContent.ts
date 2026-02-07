@@ -1,18 +1,43 @@
 import type { ServiceData } from '../types';
-import { Building, Code, Compass, GraduationCap, Headphones, Wrench } from 'lucide-react';
+import {
+  Building,
+  Code,
+  Compass,
+  Database,
+  GraduationCap,
+  Headphones,
+  Network,
+  Shield,
+  Wrench,
+} from 'lucide-react';
 
 // --- SERVICES DATA ---
-export const servicesData: Record<string, Omit<ServiceData, 'title' | 'subtitle' | 'description' | 'cta' | 'methodology' | 'benefits' | 'deliverables'> & { icon: any }> = {
+export const servicesData: Record<
+  string,
+  Omit<
+    ServiceData,
+    'title' | 'subtitle' | 'description' | 'cta' | 'methodology' | 'benefits' | 'deliverables'
+  > & { icon: any }
+> = {
   'consulting': {
     icon: Compass,
   },
   'implementation': {
     icon: Wrench,
   },
-  'custom-dev': {
+  'custom-development': {
     icon: Code,
   },
-  'managed-business-services': {
+  'data-migration': {
+    icon: Database,
+  },
+  'integration': {
+    icon: Network,
+  },
+  'security-audit': {
+    icon: Shield,
+  },
+  'managed-services': {
     icon: Building,
   },
   'training': {

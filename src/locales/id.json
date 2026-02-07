@@ -117,7 +117,10 @@
     "services_implementation": "Implementasi",
     "services_custom_dev": "Pengembangan Custom",
     "services_training": "Pelatihan & Akademi",
-    "services_support": "Dukungan & Maintenance"
+    "services_support": "Dukungan & Maintenance",
+    "services_data_migration": "Migrasi Data",
+    "services_integration": "Integrasi Sistem",
+    "services_security_audit": "Audit Keamanan"
   },
   "Footer": {
     "description": "Sistem operasi bisnis terpadu. Kelola People, Money, Supply, Growth, Work, Care, dan Hub dalam satu platform.",
@@ -1200,10 +1203,13 @@
     "cta_footer": "Free consultation • No obligation • Confidential",
     "service_consulting_desc": "Banyak proyek transformasi digital gagal karena 'Technology First, Process Later'. Kami membalik paradigma itu. Kami mulai dengan diagnosis mendalam terhadap kesehatan proses bisnis Anda, baru merekomendasikan teknologi yang tepat.",
     "service_implementation_desc": "Statistik industri menunjukkan 60% implementasi ERP gagal atau melebihi budget. Pendekatan 'BizOps Agile Sprint' kami dirancang untuk memitigasi risiko tersebut dengan deliverable bertahap yang terukur, transparan, dan fokus pada Business Continuity.",
-    "service_custom_dev_desc": "ERP 'Vanilla' seringkali memaksa Anda mengubah proses bisnis unik yang justru menjadi kekuatan perusahaan. Layanan Custom Development kami membangun jembatan antara standar industri dan keunikan operasional Anda, tanpa mengorbankan upgrade-ability sistem.",
+    "service_custom_development_desc": "ERP 'Vanilla' seringkali memaksa Anda mengubah proses bisnis unik yang justru menjadi kekuatan perusahaan. Layanan Custom Development kami membangun jembatan antara standar industri dan keunikan operasional Anda, tanpa mengorbankan upgrade-ability sistem.",
     "service_managed_desc": "Layanan pengelolaan operasional end-to-end yang didukung oleh jaringan konsultan ahli di bidang Finance, HR, Legal, dan IT. Kami tidak hanya menyediakan software, tapi juga SDM profesional untuk menjalankannya.",
     "service_training_desc": "Sistem tercanggih di dunia tidak akan berguna jika tim Anda menolak menggunakannya. Program kami bukan sekadar 'Training Cara Pakai', tapi 'Change Management' untuk mengubah mindset dan budaya kerja tim Anda menuju digitalisasi.",
-    "service_support_desc": "Jangan biarkan tim internal Anda habis waktu mengurus server down atau bug sistem. Fokuskan mereka pada inovasi bisnis, biarkan kami yang menangani 'kabel ruwet' dan pemeliharaan rutin infrastruktur ERP Anda dengan SLA yang ketat."
+    "service_support_desc": "Jangan biarkan tim internal Anda habis waktu mengurus server down atau bug sistem. Fokuskan mereka pada inovasi bisnis, biarkan kami yang menangani 'kabel ruwet' dan pemeliharaan rutin infrastruktur ERP Anda dengan SLA yang ketat.",
+    "service_data_migration_desc": "Memindahkan data dari sistem lama ke ERP baru itu berisiko. 40% proyek migrasi gagal karena korupsi atau kehilangan data. Layanan Migrasi Data kami menggunakan metodologi ETL yang terbukti dengan garansi integritas data 100%.",
+    "service_integration_desc": "Bisnis Anda menggunakan banyak software - marketplace, bank, logistik, akuntansi. Hentikan entry data manual antar sistem. Layanan Integrasi kami menghubungkan semuanya ke BizOps via API, menciptakan aliran data yang mulus.",
+    "service_security_audit_desc": "Pelanggaran data menelan biaya jutaan dan menghancurkan reputasi. Layanan Audit Keamanan kami mengidentifikasi kerentanan di sistem ERP Anda sebelum penyerang melakukannya, memastikan data bisnis Anda tetap terlindungi."
   },
   "ServicesDetail": {
     "consulting": {
@@ -1237,7 +1243,7 @@
       "benefits_3_desc": "Strategi cut-over kami meminimalkan downtime operasional saat perpindahan sistem.",
       "cta": "Jadwalkan Sesi Discovery Call"
     },
-    "custom-dev": {
+    "custom-development": {
       "subtitle": "Fitur Unik adalah Competitive Advantage Anda. Jangan Dibuang.",
       "description": "ERP 'Vanilla' seringkali memaksa Anda mengubah proses bisnis unik yang justru menjadi kekuatan perusahaan. Layanan Custom Development kami membangun jembatan antara standar industri dan keunikan operasional Anda, tanpa mengorbankan upgrade-ability sistem.",
       "methodology_1_desc": "Mendesain struktur database dan logika bisnis yang efisien dan scalable.",
@@ -1249,7 +1255,7 @@
       "benefits_3_desc": "Tampilan fitur kustom menyatu sempurna dengan desain bawaan sistem, user tidak akan sadar itu kustom.",
       "cta": "Konsultasi Teknis Gratis"
     },
-    "managed-business-services": {
+    "managed-services": {
       "subtitle": "Your Virtual Head Office. Fokus pada Inti Bisnis.",
       "description": "Layanan pengelolaan operasional end-to-end yang didukung oleh jaringan konsultan ahli di bidang Finance, HR, Legal, dan IT. Kami tidak hanya menyediakan software, tapi juga SDM profesional untuk menjalankannya.",
       "methodology_1_desc": "Audit mendalam kebutuhan operasional non-core Anda.",

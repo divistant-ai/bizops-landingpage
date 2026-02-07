@@ -33,6 +33,24 @@ export default async function proxy(request: NextRequest, _event: NextFetchEvent
     }
   }
 
+  // Service URL redirects (old → new)
+  const serviceRedirects: Record<string, string> = {
+    '/services/custom-dev': '/services/custom-development',
+    '/services/managed-business-services': '/services/managed-services',
+  };
+
+  for (const [oldPath, newPath] of Object.entries(serviceRedirects)) {
+    if (pathname === oldPath) {
+      return NextResponse.redirect(new URL(newPath, request.url), 308);
+    }
+    const localePattern = new RegExp(`^/([a-z]{2})${oldPath}$`);
+    const match = pathname.match(localePattern);
+    if (match) {
+      const locale = match[1];
+      return NextResponse.redirect(new URL(`/${locale}${newPath}`, request.url), 308);
+    }
+  }
+
   return handleI18nRouting(request);
 }
 

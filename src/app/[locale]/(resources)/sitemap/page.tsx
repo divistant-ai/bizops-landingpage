@@ -83,7 +83,7 @@ export default function SitemapPage() {
         { label: 'Professional Services Overview', href: '/services' },
         { label: 'Strategic Consulting', href: '/services/consulting' },
         { label: 'Implementation & Migration', href: '/services/implementation' },
-        { label: 'Custom Development', href: '/services/custom-dev' },
+        { label: 'Custom Development', href: '/services/custom-development' },
         { label: 'Training & Adoption', href: '/services/training' },
         { label: 'Managed Support (SLA)', href: '/services/support' },
       ],
