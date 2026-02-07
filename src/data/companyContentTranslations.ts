@@ -2,8 +2,8 @@ export const careersContentTranslations = {
   en: {
     culture: [
       {
-        title: 'Open Source DNA',
-        desc: 'We are active contributors to the global Open Source community (Frappe/ERPNext). The code you write may be adopted by thousands of developers worldwide. We encourage you to commit upstream and build an international reputation.',
+        title: 'Open Standard DNA',
+        desc: 'We are active contributors to the global Open Standard community (Frappe/ERPNext). The code you write may be adopted by thousands of developers worldwide. We encourage you to commit upstream and build an international reputation.',
       },
       {
         title: 'Remote-First, Async',
@@ -36,8 +36,8 @@ export const careersContentTranslations = {
   id: {
     culture: [
       {
-        title: 'Open Source DNA',
-        desc: 'Kami kontributor aktif komunitas Open Source global (Frappe/ERPNext). Kode yang Anda tulis mungkin diadopsi oleh ribuan developer global. Kami mendorong Anda melakukan commit upstream dan membangun reputasi internasional.',
+        title: 'Open Standard DNA',
+        desc: 'Kami kontributor aktif komunitas Open Standard global (Frappe/ERPNext). Kode yang Anda tulis mungkin diadopsi oleh ribuan developer global. Kami mendorong Anda melakukan commit upstream dan membangun reputasi internasional.',
       },
       {
         title: 'Remote-First, Async',

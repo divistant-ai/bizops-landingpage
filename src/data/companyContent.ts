@@ -36,7 +36,7 @@ export const aboutContent = {
     {
       year: 'The Philosophy',
       title: 'Pendekatan Hybrid',
-      desc: 'Kami menolak kompromi. Kami menggabungkan kekuatan teknologi Open Source kelas dunia (Frappe Framework) dengan pemahaman mendalam tentang nuansa lokal—seperti perhitungan Pajak PPh 21/23, aturan BPJS, Faktur Pajak, hingga budaya kasbon. Lahirlah BizOps: Sistem yang beradaptasi dengan bisnis Anda, bukan sebaliknya.',
+      desc: 'Kami menolak kompromi. Kami menggabungkan kekuatan teknologi Open Standard kelas dunia (Frappe Framework) dengan pemahaman mendalam tentang nuansa lokal—seperti perhitungan Pajak PPh 21/23, aturan BPJS, Faktur Pajak, hingga budaya kasbon. Lahirlah BizOps: Sistem yang beradaptasi dengan bisnis Anda, bukan sebaliknya.',
     },
     {
       year: 'The Mission',
@@ -86,8 +86,8 @@ export const careersContent = {
   },
   culture: [
     {
-      title: 'Open Source DNA',
-      desc: 'Kami kontributor aktif komunitas Open Source global (Frappe/ERPNext). Kode yang Anda tulis mungkin diadopsi oleh ribuan developer global. Kami mendorong Anda melakukan commit upstream dan membangun reputasi internasional.',
+      title: 'Open Standard DNA',
+      desc: 'Kami kontributor aktif komunitas Open Standard global (Frappe/ERPNext). Kode yang Anda tulis mungkin diadopsi oleh ribuan developer global. Kami mendorong Anda melakukan commit upstream dan membangun reputasi internasional.',
     },
     {
       title: 'Remote-First, Async',

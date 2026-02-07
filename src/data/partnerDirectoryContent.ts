@@ -78,7 +78,7 @@ export const partnerDirectoryData: PartnerProfile[] = [
     logo: 'https://ui-avatars.com/api/?name=FT&background=0080ff&color=fff&size=128',
     type: 'technology',
     tier: 'official',
-    industries: ['Technology', 'Open Source'],
+    industries: ['Technology', 'Open Standard'],
     location: 'Mumbai, India',
     description: {
       en: 'Principal developer of Frappe Framework, the open-source technology foundation that powers BizOps Engine.',
@@ -116,7 +116,7 @@ export const partnerDirectoryData: PartnerProfile[] = [
     location: 'Belgium',
     description: {
       en: 'Open source business application suite. BizOps is in the process of strategic integration for module interoperability.',
-      id: 'Suite aplikasi bisnis open source. BizOps sedang dalam proses integrasi strategis untuk interoperabilitas modul.',
+      id: 'Suite aplikasi bisnis open standard. BizOps sedang dalam proses integrasi strategis untuk interoperabilitas modul.',
     },
     website: 'https://odoo.com',
     certified: false,
@@ -276,7 +276,7 @@ export const industriesList = [
   'Technology',
   'Cloud Infrastructure',
   'Fintech',
-  'Open Source',
+  'Open Standard',
   'Low-Code',
   'Manufacturing',
   'Retail',

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import ModulePage from '@/components/templates/ModulePage';
 import { capabilitiesData, modulesData } from '@/data/platformContent';
 import { generateMetadata as genMeta } from '@/libs/utils/metadata';
+import IntegrationsLibrary from './IntegrationsLibrary';
 
 export function generateStaticParams() {
   return Object.keys(capabilitiesData).map(slug => ({
@@ -26,7 +27,11 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 // Helper function to get related items (moved from client)
 function getRelatedItems(slug: string) {
   const allItems = [
-    ...Object.entries(capabilitiesData).map(([key, val]) => ({ id: key, ...val, type: 'capability' })),
+    ...Object.entries(capabilitiesData).map(([key, val]) => ({
+      id: key,
+      ...val,
+      type: 'capability',
+    })),
     ...Object.entries(modulesData).map(([key, val]) => ({ id: key, ...val, type: 'module' })),
   ];
 
@@ -50,6 +55,11 @@ export default async function TechnologyPageRoute(props: { params: Promise<{ slu
 
   if (!data) {
     notFound();
+  }
+
+  // Special case for integration - show library view instead of module page
+  if (slug === 'integration') {
+    return <IntegrationsLibrary />;
   }
 
   // Get related items on server and pass only IDs

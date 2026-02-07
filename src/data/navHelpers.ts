@@ -5,6 +5,7 @@
  * in sync with page content by deriving items from the canonical data source.
  */
 
+import { Code } from 'lucide-react';
 import { capabilitiesData, modulesData } from './platformContent';
 
 /**
@@ -59,7 +60,7 @@ export function getTechnologyNavItems() {
   // Technologies are a subset of capabilities that appear in the Technology tab
   const techSlugs = ['security', 'integration', 'self-hosted', 'architecture'];
 
-  return techSlugs
+  const techItems = techSlugs
     .filter(slug => capabilitiesData[slug])
     .map((slug) => {
       const data = capabilitiesData[slug];
@@ -70,4 +71,14 @@ export function getTechnologyNavItems() {
         icon: data.icon,
       };
     });
+
+  // Add overview item at the beginning
+  const overviewItem = {
+    to: '/platform/technologies',
+    label: 'Technology Overview',
+    desc: 'Explore our complete technology stack and infrastructure',
+    icon: Code,
+  };
+
+  return [overviewItem, ...techItems];
 }

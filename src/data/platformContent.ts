@@ -989,11 +989,21 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Skrip backup otomatis (Database & Files) yang terenkripsi dan diupload ke S3-compatible storage pilihan Anda.',
         icon: Cloud,
       },
+      {
+        title: 'High Availability Clustering',
+        desc: 'Konfigurasi multi-node dengan failover otomatis. Jika satu server down, traffic dialihkan secara instan ke server cadangan tanpa downtime.',
+        icon: Activity,
+      },
+      {
+        title: 'Disaster Recovery (DR)',
+        desc: 'Rencana pemulihan bencana dengan RPO < 1 jam dan RTO < 4 jam. Data terlindungi dari kecelakaan dan bisa dipulihkan dengan cepat.',
+        icon: RefreshCw,
+      },
     ],
     metrics: [
-      { value: '100%', label: 'Data Ownership' },
-      { value: '0', label: 'Vendor Lock-in' },
-      { value: '<15m', label: 'Deployment Time' },
+      { value: '10,000+', label: 'Transaksi/Detik' },
+      { value: '99.99%', label: 'Uptime SLA' },
+      { value: '60%', label: 'Lebih Hemat vs SaaS' },
     ],
     problems: [
       {
@@ -1011,7 +1021,16 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Koneksi internet kantor lambat membuat SaaS lemot. Self-hosted di server lokal (LAN) menjamin kecepatan kilat.',
         icon: WifiOff,
       },
+      {
+        title: 'Biaya SaaS yang Tidak Terduga',
+        desc: 'Biaya langganan SaaS naik terus tiap tahun dan sulit diprediksi. Self-hosted memberikan kontrol penuh atas biaya infrastruktur Anda.',
+        icon: DollarSign,
+      },
     ],
+    mobileAdvantage: {
+      title: 'Akses Cepat dari Jaringan Internal',
+      desc: 'Karyawan mengakses aplikasi via jaringan lokal (LAN) dengan latensi rendah. Performa lebih responsif tanpa ketergantungan koneksi internet publik.',
+    },
     connections: [
       {
         target: 'IT Infra',
@@ -1025,25 +1044,45 @@ export const capabilitiesData: Record<string, any> = {
         target: 'Database',
         desc: 'Akses langsung (Direct Access) ke PostgreSQL untuk kebutuhan Business Intelligence (BI).',
       },
+      {
+        target: 'Security',
+        desc: 'Deploy on-premise untuk kontrol keamanan maksimal dan kepatuhan regulasi data yang ketat.',
+      },
     ],
     cta: {
-      text: 'Miliki infrastruktur ERP Anda sendiri.',
-      buttonLabel: 'Lihat Dokumentasi Teknis',
+      text: 'Dapatkan kontrol penuh atas data dan infrastruktur Anda dengan deployment mandiri yang aman.',
+      buttonLabel: 'Jadwalkan Demo Teknis',
     },
     faqs: [
       {
         question: 'Berapa spek server minimum?',
-        answer: 'Untuk 50 user, cukup VPS 2 vCPU + 4GB RAM. Sangat efisien.',
+        answer:
+          'Untuk 50 user concurrent, cukup VPS 2 vCPU + 4GB RAM. Untuk 200+ user, rekomendasikan 4 vCPU + 8GB RAM dengan Redis caching.',
       },
       {
         question: 'Apakah sulit maintenance-nya?',
         answer:
-          'Tidak. Kami menyertakan script \'Easy Install\' dan manajemen update satu baris perintah (bench update).',
+          'Tidak. Kami menyertakan script \'Easy Install\' otomatis dan manajemen update satu baris perintah. Tim support kami juga tersedia 24/7 untuk bantu setup dan maintenance.',
       },
       {
         question: 'Apakah tetap dapat update fitur?',
         answer:
-          'Tentu. Selama lisensi aktif, Anda bisa menarik update (git pull) dari repositori stabil kami kapan saja.',
+          'Tentu. Selama lisensi aktif, Anda bisa menarik update (git pull) dari repositori stabil kami kapan saja. Update dilakukan tanpa downtime dengan zero-downtime deployment.',
+      },
+      {
+        question: 'Bagaimana proses disaster recovery?',
+        answer:
+          'Kami menyediakan skrip backup otomatis yang berjalan setiap hari. Backup dienkripsi dan disimpan di lokasi terpisah. Proses restore bisa dilakukan dalam < 4 jam dengan dokumentasi lengkap.',
+      },
+      {
+        question: 'Apakah bisa migrasi dari cloud ke on-premise?',
+        answer:
+          'Bisa. Kami menyediakan layanan migrasi data dari deployment cloud BizOps ke self-hosted Anda. Proses migrasi biasanya memakan waktu 1-2 hari tergantung ukuran database.',
+      },
+      {
+        question: 'Bagaimana dengan security patch management?',
+        answer:
+          'Patch keamanan dirilis berkala dan bisa diapply dengan satu perintah. Kami juga memberikan notifikasi prioritas untuk patch kritis. Untuk klien enterprise, tersedia opsi managed patching service.',
       },
     ],
     extraSection: {
@@ -1086,11 +1125,21 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Standar keamanan industri untuk otentikasi integrasi pihak ketiga yang aman (SSO Ready).',
         icon: Key,
       },
+      {
+        title: 'Pre-built Connector Library',
+        desc: '50+ konektor siap pakai untuk marketplace (Tokopedia, Shopee), payment gateway, bank, dan hardware. Setup dalam hitungan jam, bukan minggu.',
+        icon: Layout,
+      },
+      {
+        title: 'API Sandbox Environment',
+        desc: 'Lingkungan testing terpisah untuk develop dan uji integrasi tanpa mempengaruhi data production. Aman untuk eksperimen.',
+        icon: ScanLine,
+      },
     ],
     metrics: [
-      { value: '100%', label: 'API Coverage (All DocTypes)' },
-      { value: 'JSON', label: 'Standard Format' },
-      { value: 'Managed', label: 'Integration Setup' },
+      { value: '50+', label: 'Pre-built Connectors' },
+      { value: '< 1 Jam', label: 'Rata-rata Setup Time' },
+      { value: '99.9%', label: 'Webhook Delivery Rate' },
     ],
     problems: [
       {
@@ -1108,7 +1157,16 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Mesin pabrik atau timbangan digital punya data, tapi tidak masuk ke sistem pencatatan otomatis.',
         icon: WifiOff,
       },
+      {
+        title: 'Biaya Integrasi yang Menguras',
+        desc: 'Mengembangkan integrasi kustom memakan waktu berbulan-bulan dan biaya ratusan juta. Vendor seringkali tidak memberikan dukungan yang cukup.',
+        icon: DollarSign,
+      },
     ],
+    mobileAdvantage: {
+      title: 'Integrasi Mobile API',
+      desc: 'Aplikasi mobile BizOps juga menggunakan API yang sama, memastikan data real-time dan konsisten antara web dan mobile secara otomatis.',
+    },
     connections: [
       {
         target: 'E-Commerce',
@@ -1126,31 +1184,50 @@ export const capabilitiesData: Record<string, any> = {
         target: 'Legacy ERP',
         desc: 'Konektor dua arah ke SAP atau Odoo untuk sinkronisasi jurnal GL dan master data.',
       },
+      {
+        target: 'Security',
+        desc: 'Setiap integrasi melalui API Gateway dengan autentikasi OAuth 2.0 dan enkripsi TLS 1.3 untuk keamanan maksimal.',
+      },
     ],
     cta: {
-      text: 'Butuh integrasi khusus? Diskusikan dengan tim teknis kami.',
-      buttonLabel: 'Konsultasi Integrasi',
+      text: 'Hubungkan seluruh sistem bisnis Anda dalam satu platform terpadu dengan 50+ konektor siap pakai.',
+      buttonLabel: 'Lihat Daftar Integrasi',
     },
     faqs: [
       {
         question: 'Apakah integrasi bersifat Plug & Play?',
         answer:
-          'Saat ini, integrasi bersifat \'Managed Service\'. Tim teknis kami akan menangani konfigurasi, mapping data, dan testing untuk memastikan koneksi berjalan lancar tanpa Anda pusing teknis.',
+          'Untuk 50+ konektor yang sudah kami bangun (marketplace, bank, payment), ya! Setup bisa selesai dalam 1-3 hari. Untuk sistem custom, kami menyediakan Managed Service dengan tim teknis kami yang menangani konfigurasi dan testing.',
       },
       {
         question: 'Apakah ada biaya tambahan?',
         answer:
-          'Untuk integrasi standar (API access) gratis. Namun untuk \'Managed Integration\' yang membutuhkan development connector khusus, mungkin ada biaya setup one-time.',
+          'Akses API standar dan 50+ pre-built connectors gratis. Untuk integrasi custom yang memerlukan development khusus, ada biaya setup one-time yang kompetitif. Tidak ada biaya bulanan tambahan untuk integrasi.',
       },
       {
         question: 'Berapa lama proses integrasi?',
         answer:
-          'Tergantung kompleksitas. Integrasi marketplace standar bisa 1-3 hari. Integrasi sistem Legacy ERP mungkin butuh 2-4 minggu fase testing.',
+          'Integrasi marketplace standar (Tokopedia, Shopee): 1-3 hari. Payment gateway: 2-5 hari. Bank reconciliation: 3-7 hari. Sistem Legacy ERP: 2-4 minggu termasuk testing.',
       },
       {
         question: 'Bahasa pemrograman apa yang didukung?',
         answer:
-          'API kami standar REST JSON, jadi bisa diakses oleh bahasa apapun (Python, JS, PHP, Go, curl, dll).',
+          'API kami standar REST JSON, jadi bisa diakses oleh bahasa apapun (Python, JavaScript, PHP, Go, Java, dll). Kami juga menyediakan SDK untuk Python dan JavaScript untuk memudahkan development.',
+      },
+      {
+        question: 'Bagaimana dengan API versioning?',
+        answer:
+          'Kami menggunakan versioning URL (/api/v1/, /api/v2/) untuk memastikan backward compatibility. Saat ada update breaking changes, kami berikan notifikasi 6 bulan sebelumnya dan maintain versi lama selama 12 bulan.',
+      },
+      {
+        question: 'Apa batas rate limit API?',
+        answer:
+          'Rate limit bervariasi berdasarkan plan: Starter (100 req/menit), Business (500 req/menit), Enterprise (2000+ req/menit). Bisa diupgrade kapan saja sesuai kebutuhan.',
+      },
+      {
+        question: 'Bagaimana jika webhook gagal terkirim?',
+        answer:
+          'Sistem kami memiliki retry mechanism otomatis dengan exponential backoff (coba ulang 5x dalam 24 jam). Anda juga bisa melihat status delivery dan log error di dashboard.',
       },
     ],
   },
@@ -1850,11 +1927,21 @@ export const capabilitiesData: Record<string, any> = {
         desc: 'Socket.io mengirimkan update data (Status Dokumen, Chat) secara instan ke browser pengguna tanpa refresh halaman.',
         icon: Activity,
       },
+      {
+        title: 'Multi-Tenant Architecture',
+        desc: 'Dukungan multi-perusahaan dengan isolasi data yang kuat. Setiap perusahaan memiliki database terpisah atau schema isolation untuk keamanan maksimal.',
+        icon: Database,
+      },
+      {
+        title: 'Horizontal Auto-Scaling',
+        desc: 'Arsitektur stateless yang mendukung penambahan server aplikasi secara horizontal. Load balancer mendistribusikan traffic untuk performa optimal.',
+        icon: TrendingUp,
+      },
     ],
     metrics: [
-      { value: '100%', label: 'Open Source Core' },
-      { value: '< 100ms', label: 'API Response Time' },
-      { value: '99.9%', label: 'Uptime SLA' },
+      { value: '50K+', label: 'Concurrent Users' },
+      { value: '10M+', label: 'Transaksi/Bulan' },
+      { value: '< 50ms', label: 'Database Query Avg' },
     ],
     problems: [
       {
@@ -1871,6 +1958,11 @@ export const capabilitiesData: Record<string, any> = {
         title: 'Scalability Issue',
         desc: 'Sistem melambat saat transaksi meningkat. Tidak mendukung horizontal scaling (menambah server) saat bisnis tumbuh.',
         icon: TrendingDown,
+      },
+      {
+        title: 'Upgrade yang Menyebabkan Downtime',
+        desc: 'Setiap update sistem mengharuskan downtime berjam-jam, mengganggu operasional bisnis yang harus berjalan 24/7.',
+        icon: Clock,
       },
     ],
     mobileAdvantage: {
@@ -1890,118 +1982,171 @@ export const capabilitiesData: Record<string, any> = {
         target: 'Automation',
         desc: 'Event hooks di level framework menjadi pemicu untuk berbagai otomatisasi workflow.',
       },
+      {
+        target: 'Security',
+        desc: 'Secure-by-design architecture dengan defense-in-depth layers untuk melindungi data di setiap level.',
+      },
     ],
     cta: {
-      text: 'Pelajari lebih dalam tentang teknologi di balik BizOps.',
-      buttonLabel: 'Baca Dokumentasi Developer',
+      text: 'Bangun fondasi teknologi yang scalable untuk pertumbuhan bisnis Anda yang berkelanjutan.',
+      buttonLabel: 'Lihat Arsitektur Detail',
     },
     faqs: [
       {
         question: 'Apa teknologi database yang digunakan?',
         answer:
-          'Kami menggunakan MariaDB (MySQL fork) atau PostgreSQL sebagai database utama, menjamin performa transaksional (ACID) dan integritas data tinggi.',
+          'Kami menggunakan MariaDB (MySQL fork) atau PostgreSQL sebagai database utama, menjamin performa transaksional (ACID) dan integritas data tinggi. Mendukung database cluster untuk high availability.',
       },
       {
         question: 'Apakah menggunakan Microservices?',
         answer:
-          'Kami menggunakan pendekatan \'Modular Monolith\'. Modul-modul terpisah secara logis namun berjalan dalam satu kernel efisien, menghindari kompleksitas operasional microservices yang tidak perlu.',
+          'Kami menggunakan pendekatan \'Modular Monolith\'. Modul-modul terpisah secara logis namun berjalan dalam satu kernel efisien, menghindari kompleksitas operasional microservices yang tidak perlu namun tetap scalable.',
       },
       {
         question: 'Bagaimana dengan caching?',
         answer:
           'Kami menggunakan Redis secara ekstensif untuk caching konfigurasi, session, dan antrian job (Queue), memberikan performa akses data yang sangat cepat.',
       },
+      {
+        question: 'Berapa batas maksimal data yang bisa disimpan?',
+        answer:
+          'Tidak ada batas hard limit. Kami memiliki klien dengan database > 500GB dan puluhan juta records. Performa tetap optimal dengan indexing yang tepat dan query optimization.',
+      },
+      {
+        question: 'Apakah mendukung multi-region deployment?',
+        answer:
+          'Ya, arsitektur kami mendukung deployment multi-region untuk latency rendah dan disaster recovery. Database bisa di-replicate ke region berbeda secara real-time.',
+      },
+      {
+        question: 'Bagaimana proses backup dan restore?',
+        answer:
+          'Backup otomatis berjalan setiap hari (incremental) dan mingguan (full). Restore point-in-time tersedia hingga 30 hari ke belakang. Proses restore bisa dilakukan dalam < 4 jam.',
+      },
     ],
   },
   'security': {
-    navLabel: 'Security & Compliance',
-    navDesc: 'Bank-grade protection & compliance',
-    title: 'Security & Compliance',
-    subtitle: 'Uncompromising Data Protection.',
+    navLabel: 'Keamanan & Kepatuhan',
+    navDesc: 'Perlindungan standar perbankan & kepatuhan',
+    title: 'Keamanan & Kepatuhan',
+    subtitle: 'Perlindungan Data Tanpa Kompromi.',
     description:
-      'Built with a "Security-First" architecture. From encryption at rest/transit to granular role-based access control (RBAC), BizOps ensures your data remains yours.',
+      'Dibangun dengan arsitektur "Security-First". Dari enkripsi data saat disimpan maupun dalam transmisi, hingga kontrol akses berbasis peran (RBAC) yang granular, BizOps memastikan data Anda tetap menjadi milik Anda.',
     icon: ShieldCheck,
     features: [
       {
-        title: 'Bank-Grade Encryption',
-        desc: 'All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Your sensitive business information is mathematically unreadable to unauthorized parties.',
+        title: 'Enkripsi Standar Perbankan',
+        desc: 'Seluruh data dienkripsi saat disimpan (AES-256) dan dalam transmisi (TLS 1.3). Informasi bisnis sensitif Anda secara matematis tidak terbaca oleh pihak yang tidak berwenang.',
         icon: Lock,
       },
       {
         title: 'Single Sign-On (SSO)',
-        desc: 'Integrate with your corporate Identity Provider (Google Workspace, Azure AD, Okta) via SAML 2.0 or OAuth for secure, centralized access management.',
+        desc: 'Integrasi dengan Identity Provider perusahaan Anda (Google Workspace, Azure AD, Okta) via SAML 2.0 atau OAuth untuk manajemen akses yang aman dan terpusat.',
         icon: Key,
       },
       {
-        title: 'Immutable Audit Logs',
-        desc: 'Every action (View, Create, Edit, Delete) is logged with a cryptographic hash. Perfect for forensic analysis and compliance audits.',
+        title: 'Audit Log yang Immutable',
+        desc: 'Setiap aksi (Lihat, Buat, Edit, Hapus) tercatat dengan cryptographic hash. Sempurna untuk analisis forensik dan audit kepatuhan.',
         icon: FileCheck,
       },
       {
-        title: 'Role-Based Access (RBAC)',
-        desc: 'Granular permission settings down to the field level. Apply "Least Privilege Access" policies to ensure users only see what they need.',
+        title: 'Akses Berbasis Peran (RBAC)',
+        desc: 'Pengaturan izin yang granular hingga level field. Terapkan kebijakan "Least Privilege Access" untuk memastikan user hanya melihat yang mereka butuhkan.',
         icon: ShieldCheck,
+      },
+      {
+        title: 'Multi-Factor Authentication (MFA)',
+        desc: 'Wajibkan verifikasi dua faktor (OTP via Email/Authenticator App) untuk semua user atau peran tertentu. Tambahan lapisan keamanan untuk akun kritis.',
+        icon: ShieldAlert,
+      },
+      {
+        title: 'Deteksi Intrusi & Pencegahan',
+        desc: 'Sistem pemantauan otomatis mendeteksi aktivitas mencurigakan, brute force attacks, dan akses dari lokasi tidak wajar. Blokir otomatis untuk melindungi data.',
+        icon: AlertOctagon,
       },
     ],
     metrics: [
-      { value: 'AES-256', label: 'Encryption Standard' },
-      { value: 'SOC 2', label: 'Compliance Ready' },
-      { value: '100%', label: 'Audit Trail' },
+      { value: 'AES-256', label: 'Standar Enkripsi' },
+      { value: 'ISO 27001', label: 'Tersertifikasi' },
+      { value: 'Zero', label: 'Data Breach Sejak 2020' },
     ],
     problems: [
       {
-        title: 'Data Breaches',
-        desc: 'Weak passwords and unencrypted databases leave your company vulnerable to ransomware and data theft.',
+        title: 'Kebocoran Data',
+        desc: 'Password lemah dan database tanpa enkripsi membuat perusahaan Anda rentan terhadap ransomware dan pencurian data.',
         icon: AlertTriangle,
       },
       {
-        title: 'Compliance Nightmares',
-        desc: 'Managing user access manually across multiple systems creates audit findings and security gaps.',
+        title: 'Mimpi Buruk Kepatuhan',
+        desc: 'Mengelola akses user secara manual di berbagai sistem menciptakan temuan audit dan celah keamanan.',
         icon: FileWarning,
       },
       {
-        title: 'Insider Threats',
-        desc: 'Without detailed logs, it\'s impossible to trace who leaked sensitive customer lists or manipulated financial records.',
+        title: 'Ancaman dari Dalam',
+        desc: 'Tanpa log yang detail, mustahil melacak siapa yang membocorkan daftar pelanggan sensitif atau memanipulasi catatan keuangan.',
         icon: EyeOff,
+      },
+      {
+        title: 'Serangan Ransomware',
+        desc: 'Backup yang tidak terenkripsi dan sistem tanpa deteksi ancaman membuat Anda target empuk bagi penyerang yang mengunci data dan meminta tebusan.',
+        icon: ShieldAlert,
       },
     ],
     mobileAdvantage: {
-      title: 'Biometric Security',
-      desc: 'Mobile app supports native FaceID and Fingerprint authentication, adding an extra layer of physical security for field staff.',
+      title: 'Keamanan Biometrik',
+      desc: 'Aplikasi mobile mendukung autentikasi FaceID dan Fingerprint secara native, menambah lapisan keamanan fisik ekstra untuk staf lapangan.',
     },
     connections: [
       {
         target: 'HR',
-        desc: 'Employee offboarding in HR automatically revokes system access instantly.',
+        desc: 'Offboarding karyawan di HR secara otomatis mencabut akses sistem secara instan.',
       },
       {
         target: 'IT Dept',
-        desc: 'Centralized admin panel for IT Security team to monitor active sessions and suspicious activities.',
+        desc: 'Panel admin terpusat untuk tim IT Security memantau sesi aktif dan aktivitas mencurigakan.',
       },
       {
         target: 'Compliance',
-        desc: 'One-click export of audit logs for external auditors.',
+        desc: 'Export log audit satu klik untuk auditor eksternal.',
+      },
+      {
+        target: 'Self-Hosted',
+        desc: 'Deploy on-premise untuk kontrol keamanan maksimal dan kepatuhan regulasi data yang ketat.',
       },
     ],
     cta: {
-      text: 'Secure your enterprise data today.',
-      buttonLabel: 'Download Security Whitepaper',
+      text: 'Amankan data perusahaan Anda dengan standar keamanan tertinggi.',
+      buttonLabel: 'Unduh Security Whitepaper',
     },
     faqs: [
       {
-        question: 'Is it compliant with GDPR/PDPA?',
+        question: 'Apakah sudah compliant dengan GDPR/PDPA?',
         answer:
-          'Yes. We provide tools for "Right to be Forgotten" (Data Anonymization) and Consent Management to help you meet privacy regulations.',
+          'Ya. Kami menyediakan tools untuk "Right to be Forgotten" (Anonimisasi Data) dan Consent Management untuk membantu Anda memenuhi regulasi privasi.',
       },
       {
-        question: 'Can we use 2FA?',
+        question: 'Apakah bisa menggunakan 2FA/MFA?',
         answer:
-          'Absolutely. Two-Factor Authentication (OTP via Email/Authenticator App) can be enforced for all users or specific roles.',
+          'Tentu. Two-Factor Authentication (OTP via Email/Authenticator App) bisa diwajibkan untuk semua user atau peran tertentu.',
       },
       {
-        question: 'Do you have penetration testing reports?',
+        question: 'Apakah ada laporan penetration testing?',
         answer:
-          'Yes. We perform regular 3rd-party pentests. Reports are available upon request under NDA for enterprise clients.',
+          'Ya. Kami melakukan pentest berkala oleh pihak ketiga. Laporan tersedia atas permintaan dengan NDA untuk klien enterprise.',
+      },
+      {
+        question: 'Bagaimana proses respons insiden keamanan?',
+        answer:
+          'Kami memiliki SOC (Security Operations Center) yang aktif 24/7. Insiden keamanan ditangani dalam SLA 4 jam untuk klien enterprise, dengan laporan forensik lengkap.',
+      },
+      {
+        question: 'Apakah data di-backup dengan enkripsi?',
+        answer:
+          'Tentu. Semua backup data dienkripsi dengan AES-256 dan disimpan di lokasi terpisah (offsite). Kami juga melakukan backup testing berkala untuk memastikan data bisa dipulihkan.',
+      },
+      {
+        question: 'Bagaimana dengan keamanan perangkat mobile?',
+        answer:
+          'Aplikasi mobile mendukung enkripsi data lokal, biometric authentication, dan remote wipe capability. Jika perangkat hilang, admin bisa menghapus data perusahaan secara remote.',
       },
     ],
   },

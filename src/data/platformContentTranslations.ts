@@ -2270,7 +2270,7 @@ export const platformCapabilitiesTranslations = {
       metrics: [
         { value: 'Python', label: 'Backend Language' },
         { value: 'PostgreSQL', label: 'Primary Database' },
-        { value: 'Open Source', label: 'Core Stack' },
+        { value: 'Open Standard', label: 'Core Stack' },
       ],
       problems: [
         {
@@ -3187,7 +3187,7 @@ export const platformCapabilitiesTranslations = {
       metrics: [
         { value: 'Python', label: 'Backend Language' },
         { value: 'PostgreSQL', label: 'Primary Database' },
-        { value: 'Open Source', label: 'Core Stack' },
+        { value: 'Open Standard', label: 'Core Stack' },
       ],
       problems: [
         {

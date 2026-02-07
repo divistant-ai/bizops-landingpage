@@ -222,8 +222,8 @@ export default function PlatformContent() {
               className="border-slate-700 bg-transparent text-white hover:bg-slate-800"
               asChild
             >
-              <Link href="/platform/technology">
-                {t('learn_more')}
+              <Link href="/platform/technologies">
+                {locale === 'id' ? 'Jelajahi Teknologi' : 'Explore Technology'}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
