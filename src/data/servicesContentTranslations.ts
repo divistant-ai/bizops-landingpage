@@ -1,9 +1,9 @@
 export const servicesTranslations = {
   id: {
     'consulting': {
-      title: 'Hentikan Pemborosan Teknologi.',
+      title: 'Strategic Consulting',
       subtitle:
-        'Bergabunglah dengan 500+ bisnis yang menghindari kegagalan ERP lewat diagnosis yang tepat. Lihat hasil dalam 30 hari.',
+        'Hentikan pemborosan investasi pada teknologi yang salah. Bergabunglah dengan 500+ bisnis yang menghindari kegagalan ERP lewat diagnosis yang tepat.',
       description:
         '60% proyek transformasi digital gagal karena "Technology First, Process Later". Kami membalik paradigma itu. Kami mulai dengan diagnosis mendalam terhadap kesehatan proses bisnis Anda, baru merekomendasikan teknologi yang tepat.',
       methodology: [
@@ -810,9 +810,9 @@ export const servicesTranslations = {
   },
   en: {
     'consulting': {
-      title: 'Stop Wasting Money on Wrong Tech.',
+      title: 'Strategic Consulting',
       subtitle:
-        'Join 500+ businesses that avoided costly ERP failures with our diagnosis-first approach. See results in 30 days.',
+        'Stop wasting money on wrong technology. Join 500+ businesses that avoided costly ERP failures with our diagnosis-first approach.',
       description:
         '60% of ERP projects fail because companies buy technology before understanding their processes. We flip that paradigm by starting with a deep diagnosis of your business process health first.',
       methodology: [
