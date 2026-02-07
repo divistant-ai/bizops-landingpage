@@ -49,6 +49,10 @@ export const platformModulesTranslations = {
           title: 'High Turnover',
           desc: 'Employees resign due to complicated leave/reimbursement processes and lack of development programs.',
         },
+        {
+          title: 'Talent Gap',
+          desc: 'Key positions remain vacant too long due to lack of internal talent pool and succession planning.',
+        },
       ],
       mobileAdvantage: {
         title: 'Self-Service HR (ESS)',
@@ -150,6 +154,10 @@ export const platformModulesTranslations = {
         {
           title: 'Manual Reconciliation',
           desc: 'Matching thousands of bank transactions with accounting journals manually is a recipe for disaster.',
+        },
+        {
+          title: 'Late Penalties',
+          desc: 'Frequent late payment penalties caused by misplaced vendor invoices or forgotten processing.',
         },
       ],
       mobileAdvantage: {
@@ -253,6 +261,10 @@ export const platformModulesTranslations = {
           title: 'Fictitious Reports',
           desc: 'Inaccurate manual daily reports that are difficult to validate for accuracy.',
         },
+        {
+          title: 'Resource Conflict',
+          desc: 'Conflicts over heavy equipment or technicians between projects cause downtime and schedule delays.',
+        },
       ],
       mobileAdvantage: {
         title: 'Update Progress Directly from Site',
@@ -354,6 +366,10 @@ export const platformModulesTranslations = {
         {
           title: 'Stock Blindness',
           desc: 'Sales sell items that are actually out of stock, causing complaints and order cancellations.',
+        },
+        {
+          title: 'Missed Forecast',
+          desc: 'Sales targets missed significantly due to inaccurate and overly optimistic pipeline data.',
         },
       ],
       mobileAdvantage: {
@@ -460,6 +476,10 @@ export const platformModulesTranslations = {
           title: 'Wrong Shipment',
           desc: 'Pickers take the wrong items because packaging looks similar. Product returns increase and customers are disappointed.',
         },
+        {
+          title: 'Slow Moving',
+          desc: 'Working capital tied up in undetected old stock, reducing company cashflow.',
+        },
       ],
       mobileAdvantage: {
         title: 'Paperless Warehouse',
@@ -565,6 +585,10 @@ export const platformModulesTranslations = {
           title: 'Slow Decision-Making',
           desc: 'Directors must wait for manual end-of-month reports to know company status. Too late to maneuver.',
         },
+        {
+          title: 'Siloed Data',
+          desc: 'Slow decision-making because data across divisions is disconnected and requires manual consolidation.',
+        },
       ],
       mobileAdvantage: {
         title: 'Data Sovereignty & Analysis',
@@ -618,6 +642,69 @@ export const platformModulesTranslations = {
         },
       ],
     },
+    care: {
+      title: 'Care (Customer Support)',
+      subtitle: 'Responsive Customer Service.',
+      description:
+        'Helpdesk system and customer portal to maintain post-transaction customer satisfaction. Handle complaints fast and build loyalty.',
+      features: [
+        {
+          title: 'Ticket Management',
+          desc: 'Automatic ticket routing to related departments, SLA tracking, and escalation matrix. Customers don\'t wait long.',
+        },
+        {
+          title: 'Knowledge Base',
+          desc: 'Create help articles (FAQ, SOP) accessible 24/7 for self-service. Reduce repetitive tickets.',
+        },
+        {
+          title: 'Customer Portal',
+          desc: 'Self-service portal for customers to check order status, submit tickets, and download invoices without contacting CS.',
+        },
+        {
+          title: 'Feedback & NPS',
+          desc: 'Send automatic surveys after transaction. Calculate NPS score and analyze feedback sentiment.',
+        },
+      ],
+      metrics: [
+        { value: '<2h', label: 'First Response Time' },
+        { value: '95%', label: 'CSAT Score' },
+        { value: '-60%', label: 'Support Tickets' },
+      ],
+      problems: [
+        {
+          title: 'Slow Response',
+          desc: 'Customer complaints via WhatsApp are untracked, missed, and lack history.',
+        },
+        {
+          title: 'Repetitive Questions',
+          desc: '80% of support questions are the same (how to use, order status) but no self-service system.',
+        },
+        {
+          title: 'No Feedback Loop',
+          desc: 'Never survey customer satisfaction, don\'t know NPS score, unable to improve service.',
+        },
+        {
+          title: 'Manual Ticketing',
+          desc: 'Support team manually inputs tickets from WhatsApp to Excel. High risk of lost data and double handling.',
+        },
+      ],
+      cta: {
+        text: 'Build customer service that makes them return.',
+        buttonLabel: 'View Care Demo',
+      },
+      faqs: [
+        {
+          question: 'Can it integrate with WhatsApp Business?',
+          answer:
+            'Yes. Tickets can come from WhatsApp, email, or web forms. All centralized in one dashboard.',
+        },
+        {
+          question: 'What about SLA monitoring?',
+          answer:
+            'Each ticket has SLA based on priority (High/Medium/Low). System warns if about to breach and auto-escalates to supervisor.',
+        },
+      ],
+    },
   },
   id: {
     hr: {
@@ -625,24 +712,487 @@ export const platformModulesTranslations = {
       subtitle: 'Otomatisasi Admin HR. Fokus pada Manusia, Bukan Kertas.',
       description:
         'Tinggalkan spreadsheet yang rentan error. BizOps HRIS mengotomatiskan seluruh siklus karyawan—dari rekrutmen hingga pensiun—agar Anda bisa fokus membangun budaya juara.',
+      features: [
+        {
+          title: 'Manajemen Shift Kompleks',
+          desc: 'Kelola ribuan jadwal shift (Rostering) tanpa konflik. Validasi kehadiran via Geofencing & Liveness Face Recognition untuk cegah titip absen.',
+        },
+        {
+          title: 'Payroll 1-Klik & Pajak Auto',
+          desc: 'Hitung gaji, lembur, BPJS, dan PPh 21 (TER Terbaru) dalam hitungan detik. Slip gaji dan file transfer bank digenerate otomatis tanpa rekonsiliasi manual.',
+        },
+        {
+          title: 'Pengembangan Talenta & LMS',
+          desc: 'Onboarding digital cepat. Distribusi materi training (SOP/Video) langsung ke aplikasi karyawan untuk standarisasi kompetensi.',
+        },
+        {
+          title: 'Manajemen Performa (KPI)',
+          desc: 'Pantau pencapaian OKR/KPI individu secara transparan. Ubah penilaian subjektif menjadi data kinerja objektif.',
+        },
+        {
+          title: 'Rekrutmen & Onboarding',
+          desc: 'Pipeline pelamar terpusat (ATS). Data kandidat terpilih langsung konversi jadi database karyawan tanpa input ulang.',
+        },
+        {
+          title: 'Kultur & Engagement',
+          desc: 'Deteksi potensi turnover sejak dini lewat Pulse Survey. Bangun budaya apresiasi dengan sistem Reward Point peer-to-peer.',
+        },
+      ],
+      metrics: [
+        { value: '90%', label: 'Hemat Waktu Admin' },
+        { value: '100%', label: 'Akurasi PPh 21' },
+        { value: '0', label: 'Kertas (Paperless)' },
+      ],
+      problems: [
+        {
+          title: 'Jebakan Administratif',
+          desc: 'HR terjebak pekerjaan klerikal (input data, rekap absen) tanpa waktu untuk strategi.',
+        },
+        {
+          title: 'Risiko Kepatuhan',
+          desc: 'Salah hitung PPh 21 atau upah lembur bisa berujung denda pajak dan tuntutan hukum.',
+        },
+        {
+          title: 'Turnover Tinggi',
+          desc: 'Karyawan resign karena proses cuti/reimburse yang ribet dan kurangnya program pengembangan.',
+        },
+        {
+          title: 'Krisis Talenta',
+          desc: 'Posisi kunci kosong terlalu lama karena tidak ada talent pool internal dan perencanaan suksesi.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Self-Service HR (ESS)',
+        desc: 'Berdayakan karyawan dengan aplikasi Employee Self-Service (ESS). Mereka bisa request cuti, tukar shift, klaim reimburse, dan download formulir pajak (SPT 1721-A1) sendiri tanpa merepotkan tim HR.',
+      },
+      connections: [
+        {
+          target: 'Operations',
+          desc: 'Jam kerja aktual dari absen langsung jadi dasar perhitungan Biaya Tenaga Kerja di modul Project Costing.',
+        },
+        {
+          target: 'Finance',
+          desc: 'Jurnal gaji, tunjangan, dan hutang pajak otomatis terbentuk di GL saat payroll disetujui (Post Payroll).',
+        },
+        {
+          target: 'Sales',
+          desc: 'Perhitungan komisi tim sales otomatis masuk ke komponen gaji bulanan berdasarkan capaian target di CRM.',
+        },
+      ],
+      cta: {
+        text: 'Saatnya HR beralih ke tugas yang lebih berdampak.',
+        buttonLabel: 'Lihat Demo HRIS',
+      },
+      testimonial: {
+        quote:
+          'Proses payroll yang dulu butuh 5 hari kerja sekarang selesai dalam hitungan jam. Akurasi pajak juga tidak lagi jadi masalah.',
+        author: 'Budi Santoso',
+        role: 'HR Director at FastMoving FMCG',
+        avatar: 'https://ui-avatars.com/api/?name=Budi+Santoso&background=0D8ABC&color=fff',
+      },
+      faqs: [
+        {
+          question: 'Apakah hitungan PPh 21 sesuai regulasi TER terbaru?',
+          answer:
+            'Ya, sistem kami selalu update otomatis sesuai peraturan pemerintah (UU HPP & PMK Terbaru) tanpa biaya tambahan. Perhitungan TER A/B/C dilakukan otomatis.',
+        },
+        {
+          question: 'Apakah data karyawan dan gaji aman?',
+          answer:
+            'Sangat aman. Kami menggunakan enkripsi standar perbankan (AES-256) untuk data sensitif dan membatasi akses berdasarkan peran (Role-Based Access Control).',
+        },
+        {
+          question: 'Berapa lama migrasi dari Excel/sistem lama?',
+          answer:
+            'Rata-rata klien kami bisa go-live dalam 1-2 minggu. Kami sediakan template import massal untuk migrasi data karyawan, shift, dan komponen gaji dengan cepat.',
+        },
+        {
+          question: 'Apakah support sistem kerja shift yang rumit?',
+          answer:
+            'Sangat bisa. Modul Time Management kami mendukung berbagai pola shift (3 shift, long shift, roster) dan lembur otomatis yang terintegrasi langsung ke payroll.',
+        },
+      ],
     },
     finance: {
       title: 'Finance & Procurement',
       subtitle: 'Kendali Penuh Atas Setiap Rupiah.',
       description:
         'Hilangkan kebocoran anggaran (Budget Leakage) dengan sistem persetujuan bertingkat. Integrasikan pembelian, aset, dan akuntansi dalam satu aliran data real-time.',
+      features: [
+        {
+          title: 'Kontrol Anggaran & Pengadaan',
+          desc: 'Sistem otomatis tolak Purchase Request (PR) jika melebihi sisa budget departemen. Cegah pemborosan sebelum uang keluar.',
+        },
+        {
+          title: 'Manajemen Klaim & Expense',
+          desc: 'Klaim reimbursement semudah foto struk. OCR otomatis baca nominal. Approval transparan via aplikasi mobile.',
+        },
+        {
+          title: 'Akuntansi Real-Time',
+          desc: 'Setiap transaksi operasional (Jual, Stok, Biaya) otomatis menjurnal dirinya sendiri. Laporan Laba Rugi tersedia detik itu juga.',
+        },
+        {
+          title: 'Manajemen Aset (Asset Lifecycle)',
+          desc: 'Lacak lokasi dan penanggung jawab aset fisik via QR Code. Penyusutan aset dihitung otomatis setiap bulan.',
+        },
+        {
+          title: 'Multi-Mata Uang (Multi-Currency)',
+          desc: 'Transaksi global dengan kurs otomatis. Sistem menangani laba/rugi selisih kurs tanpa hitungan manual rumit.',
+        },
+        {
+          title: 'Rekonsiliasi Bank Pintar',
+          desc: 'Upload mutasi bank (MT940/CSV) dan biarkan sistem mencocokkan dengan transaksi tercatat. Hemat 90% waktu rekonsiliasi.',
+        },
+      ],
+      metrics: [
+        { value: '3 Hari', label: 'Closing Bulanan (vs 10+ Hari)' },
+        { value: '100%', label: 'Akurasi Kontrol Budget' },
+        { value: '0', label: 'Selisih Kas (Auto-Recon)' },
+      ],
+      problems: [
+        {
+          title: 'Kebocoran Anggaran',
+          desc: 'Pengeluaran liar sulit dideteksi sampai tagihan menumpuk.',
+        },
+        {
+          title: 'Buta Finansial',
+          desc: 'CEO tanya "Berapa cash kita?", Finance butuh 2 hari untuk jawab karena data tersebar.',
+        },
+        {
+          title: 'Rekonsiliasi Manual',
+          desc: 'Mencocokkan ribuan transaksi bank dengan jurnal akuntansi secara manual adalah resep bencana.',
+        },
+        {
+          title: 'Denda Keterlambatan',
+          desc: 'Sering kena denda telat bayar karena invoice vendor terselip atau lupa diproses.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Approval Keuangan Tanpa Hambatan',
+        desc: 'Direktur Keuangan sering jadi bottleneck karena mobilitas. Dengan BizOps, setujui PO besar atau reimbursement urgent langsung dari notifikasi HP di sela meeting.',
+      },
+      connections: [
+        {
+          target: 'Sales',
+          desc: 'Invoice otomatis terbentuk saat Surat Jalan (Delivery Note) dibuat, mempercepat perputaran AR.',
+        },
+        {
+          target: 'Supply Chain',
+          desc: 'Nilai persediaan di Neraca selalu sinkron real-time dengan stok fisik di Gudang.',
+        },
+        {
+          target: 'HR & Payroll',
+          desc: 'Jurnal gaji dan tunjangan otomatis terposting ke akun biaya yang tepat setiap bulan.',
+        },
+      ],
+      cta: {
+        text: 'Dapatkan visibilitas keuangan penuh yang Anda butuhkan.',
+        buttonLabel: 'Demo Modul Finance',
+      },
+      testimonial: {
+        quote:
+          'Fitur Budget Control otomatisnya menyelamatkan kami dari overspending miliaran rupiah per tahun. Audit trail-nya juga sangat membantu saat audit eksternal.',
+        author: 'Sari Wulandari',
+        role: 'CFO at Retail Nasional Group',
+        avatar: 'https://ui-avatars.com/api/?name=Sari+Wulandari&background=10B981&color=fff',
+      },
+      faqs: [
+        {
+          question: 'Apakah support perpajakan Indonesia (PPN, PPh 23)?',
+          answer:
+            'Ya, sistem mendukung perhitungan PPN 11%, PPh 23, dan PPh Final. e-Faktur bisa digenerate langsung dari sistem untuk pelaporan pajak.',
+        },
+        {
+          question: 'Bagaimana jika ada anak perusahaan (Multi-Company)?',
+          answer:
+            'Sangat mudah. Anda bisa kelola banyak PT dalam satu sistem. Transaksi antar-perusahaan (inter-company) otomatis dieliminasi saat konsolidasi.',
+        },
+        {
+          question: 'Bisa integrasi dengan KlikBCA Bisnis?',
+          answer:
+            'Bisa. Kami sediakan fitur upload file CSV dari KlikBCA/MCM untuk auto-reconcile bank, atau payment gateway (Xendit/Midtrans) untuk penerimaan.',
+        },
+        {
+          question: 'Apakah data keuangan bisa diakses dari HP?',
+          answer:
+            'Ya, Direktur Keuangan bisa melihat Dashboard Cashflow real-time dan menyetujui pembayaran besar dari aplikasi mobile di mana saja.',
+        },
+      ],
     },
     operations: {
       title: 'Operations & Project Management',
       subtitle: 'Eksekusi Proyek Tepat Waktu dan Sesuai Budget.',
       description:
         'Stop kelola proyek via grup WhatsApp. Lacak biaya, material, dan progress tim secara real-time dengan sistem terintegrasi.',
+      features: [
+        {
+          title: 'Budgeting Proyek (RAB)',
+          desc: 'Jaga margin profit. Sistem memberi peringatan dini jika biaya aktual mendekati batas budget sebelum kerugian terjadi.',
+        },
+        {
+          title: 'Geo-Tagged Timesheet',
+          desc: 'Tim mencatat jam kerja via HP dengan validasi GPS. Data ini menjadi dasar perhitungan biaya tenaga kerja (Man-Hour Cost) yang presisi.',
+        },
+        {
+          title: 'Laporan Harian Proyek (LHP)',
+          desc: 'Pelaksana lapangan input cuaca, volume kerja, dan kendala dengan bukti foto. Data otomatis terkompilasi menjadi kurva S progress proyek.',
+        },
+        {
+          title: 'Perencanaan Sumber Daya',
+          desc: 'Alokasikan alat berat dan teknisi antar proyek dengan visualisasi Gantt Chart. Hindari konflik jadwal dan optimalkan penggunaan aset.',
+        },
+        {
+          title: 'Progress Billing & BAST',
+          desc: 'Tagih klien berdasarkan persentase penyelesaian fisik (Opname) atau termin. Lampirkan BAST digital sebagai pendukung invoice.',
+        },
+        {
+          title: 'Contextual Chat',
+          desc: 'Diskusikan masalah teknis langsung pada Task terkait. Hentikan miskomunikasi di grup WhatsApp yang berantakan.',
+        },
+      ],
+      metrics: [
+        { value: '0%', label: 'Cost Overrun (Budget Lock)' },
+        { value: 'Real-time', label: 'Visibilitas Progress Fisik' },
+        { value: '100%', label: 'Akurasi Penagihan Termin' },
+      ],
+      problems: [
+        {
+          title: 'Proyek Molor',
+          desc: 'Keterlambatan material dan miskoordinasi tim lapangan membuat jadwal proyek berantakan.',
+        },
+        {
+          title: 'Biaya Membengkak',
+          desc: 'Cost overrun tidak ketahuan sampai proyek selesai. Margin profit tergerus habis.',
+        },
+        {
+          title: 'Laporan Fiktif',
+          desc: 'Laporan harian manual yang tidak akurat dan sulit divalidasi kebenarannya.',
+        },
+        {
+          title: 'Rebutan Alat',
+          desc: 'Konflik penggunaan alat berat atau teknisi antar proyek menyebabkan downtime dan keterlambatan jadwal.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Update Progress Langsung dari Site',
+        desc: 'BizOps Mobile didesain untuk kondisi lapangan. Upload foto progress, update status tugas, dan catat material langsung di lokasi. Support Offline Mode untuk area terpencil (Blank Spot).',
+      },
+      connections: [
+        {
+          target: 'Procurement',
+          desc: 'Permintaan material lapangan langsung memotong stok gudang proyek atau memicu PR ke kantor pusat.',
+        },
+        {
+          target: 'HR',
+          desc: 'Data Timesheet proyek yang tervalidasi menjadi dasar perhitungan upah lembur & KPI produktivitas.',
+        },
+        {
+          target: 'Finance',
+          desc: 'Progress fisik yang disetujui (Opname) otomatis memicu penagihan termin (Progress Billing) ke klien.',
+        },
+      ],
+      cta: {
+        text: 'Tingkatkan profitabilitas dan ketepatan waktu proyek Anda.',
+        buttonLabel: 'Demo Modul Operations',
+      },
+      testimonial: {
+        quote:
+          'Dulu kami baru sadar rugi setelah proyek selesai. Sekarang dengan BizOps, kami bisa pantau untung/rugi per proyek setiap hari secara real-time.',
+        author: 'Hendra Gunawan',
+        role: 'Project Manager at Konstruksi Jaya',
+        avatar: 'https://ui-avatars.com/api/?name=Hendra+Gunawan&background=F59E0B&color=fff',
+      },
+      faqs: [
+        {
+          question: 'Bisa dipakai di lokasi tanpa sinyal?',
+          answer:
+            'Bisa, aplikasi mobile kami punya Offline Mode. Data akan disimpan lokal dan otomatis sync saat sinyal tersedia.',
+        },
+        {
+          question: 'Apakah support Kurva S?',
+          answer:
+            'Sangat support. Sistem otomatis generate Kurva S (Plan vs Actual) berdasarkan input bobot pekerjaan harian dari lapangan.',
+        },
+        {
+          question: 'Bagaimana sisa material proyek?',
+          answer:
+            'Sistem mendukung Transfer Material antar proyek atau Retur ke Gudang untuk memastikan sisa material tercatat kembali sebagai aset.',
+        },
+        {
+          question: 'Bisa integrasi dengan software desain (AutoCAD)?',
+          answer:
+            'Anda bisa melampirkan file gambar kerja (DWG/PDF) pada Task Proyek. Untuk integrasi BIM tingkat lanjut, kami sediakan open API.',
+        },
+      ],
     },
     sales: {
       title: 'Sales & CRM',
       subtitle: 'Revenue yang Predictable, Bukan Sekadar Harapan.',
       description:
         'Ubah sales pipeline jadi forecast akurat. Automate follow-up dan pastikan tidak ada peluang yang terlewat.',
+      features: [
+        {
+          title: 'Visual Sales Pipeline',
+          desc: 'Pantau pergerakan setiap prospek dari \'New Lead\' hingga \'Won\'. Drag-and-drop deal di papan Kanban untuk update status instan.',
+        },
+        {
+          title: 'Mobile Quotation',
+          desc: 'Buat penawaran harga resmi (PDF) lengkap dengan tanda tangan digital langsung di depan klien. Kirim via WhatsApp tanpa menunggu admin kantor.',
+        },
+        {
+          title: 'Cek Stok Live (ATP)',
+          desc: 'Salesman bisa lihat stok tersedia (Available-to-Promise) real-time di gudang mana saja. Jangan pernah jualan barang kosong lagi.',
+        },
+        {
+          title: 'Target Sales & Komisi',
+          desc: 'Gamifikasi kinerja tim. Salesman bisa lihat pencapaian target pribadi dan estimasi komisi mereka secara transparan.',
+        },
+        {
+          title: 'Manajemen Kunjungan (GPS)',
+          desc: 'Validasi kunjungan harian dengan Check-in berbasis lokasi (Geofencing). Pastikan tim sales benar-benar mengunjungi klien.',
+        },
+        {
+          title: 'Omnichannel Helpdesk',
+          desc: 'Sentralisasi komplain pelanggan dari WhatsApp, Email, dan Sosmed ke satu sistem tiket. CS bisa lihat riwayat belanja pelanggan saat merespon.',
+        },
+      ],
+      metrics: [
+        { value: '2x', label: 'Closing Deal Lebih Cepat' },
+        { value: '30%', label: 'Kenaikan Win Rate' },
+        { value: '100%', label: 'Visibilitas Aktivitas Tim' },
+      ],
+      problems: [
+        {
+          title: 'Lead Hilang',
+          desc: 'Potensi prospek hilang karena lupa follow-up atau tertimbun di chat WhatsApp pribadi sales.',
+        },
+        {
+          title: 'Respon Lambat',
+          desc: 'Klien menunggu seharian hanya untuk dapat harga, memberi kesempatan kompetitor masuk.',
+        },
+        {
+          title: 'Buta Stok',
+          desc: 'Sales menjual barang yang sebenarnya kosong, menyebabkan komplain dan pembatalan order.',
+        },
+        {
+          title: 'Forecast Meleset',
+          desc: 'Target penjualan meleset jauh karena data pipeline tidak akurat dan terlalu optimis.',
+        },
+      ],
+      mobileAdvantage: {
+        title: 'Kantor Salesman adalah Jalanan',
+        desc: 'Aplikasi Sales Force Automation (SFA) kami bekerja offline-first. Salesman tetap bisa input order dan update status kunjungan meski di area basement atau pelosok.',
+      },
+      connections: [
+        {
+          target: 'Inventory',
+          desc: 'Sistem otomatis melakukan reservasi stok (Soft Booking) saat Sales Order dibuat, mengamankan barang untuk klien.',
+        },
+        {
+          target: 'Finance',
+          desc: 'Sales Order yang disetujui otomatis memicu pembuatan Invoice dan mencatat Piutang (AR).',
+        },
+        {
+          target: 'HR',
+          desc: 'Pencapaian revenue salesman otomatis dihitung untuk skema insentif/komisi di modul Payroll.',
+        },
+      ],
+      cta: {
+        text: 'Akselerasi pertumbuhan revenue penjualan Anda.',
+        buttonLabel: 'Demo Modul Sales',
+      },
+      testimonial: {
+        quote:
+          'Omzet kami naik 40% karena tidak ada order yang terlewat lagi. Salesman juga lebih semangat karena bisa lihat komisi mereka setiap hari.',
+        author: 'Denny Sumargo',
+        role: 'VP of Sales at Distributor Nasional',
+        avatar: 'https://ui-avatars.com/api/?name=Denny+Sumargo&background=F97316&color=fff',
+      },
+      faqs: [
+        {
+          question: 'Apakah bisa untuk Sales Kanvas (Van Sales)?',
+          answer:
+            'Bisa. Modul ini mendukung stok di kendaraan (Mobile Warehouse) dan cetak struk langsung di tempat menggunakan printer bluetooth thermal.',
+        },
+        {
+          question: 'Apakah support multi-price list?',
+          answer:
+            'Ya. Anda bisa atur harga beda untuk Ritel, Grosir, atau Distributor. Sistem otomatis mendeteksi harga yang tepat berdasarkan tipe pelanggan.',
+        },
+        {
+          question: 'Bisa batasi diskon yang diberikan sales?',
+          answer:
+            'Sangat bisa. Anda bisa set batas diskon maksimal per level sales. Jika melebihi, sistem akan otomatis minta Approval Manajer.',
+        },
+        {
+          question: 'Bagaimana jika Salesman resign? Datanya aman?',
+          answer:
+            'Admin bisa langsung non-aktifkan akun sales tersebut. Seluruh data prospek dan histori komunikasi otomatis dialihkan ke Sales Manager atau penggantinya.',
+        },
+      ],
+    },
+    care: {
+      title: 'Care (Customer Support)',
+      subtitle: 'Layanan Pelanggan yang Responsif.',
+      description:
+        'Sistem helpdesk dan customer portal untuk menjaga kepuasan pelanggan pasca-transaksi. Handle komplain cepat dan bangun loyalitas.',
+      features: [
+        {
+          title: 'Ticket Management',
+          desc: 'Routing tiket otomatis ke departemen terkait, SLA tracking, dan escalation matrix. Pelanggan tidak perlu menunggu lama.',
+        },
+        {
+          title: 'Knowledge Base',
+          desc: 'Buat artikel bantuan (FAQ, SOP) yang bisa diakses pelanggan 24/7 untuk self-service. Kurangi ticket repetitif.',
+        },
+        {
+          title: 'Customer Portal',
+          desc: 'Portal mandiri bagi pelanggan untuk cek status order, submit ticket, dan download invoice tanpa kontak CS.',
+        },
+        {
+          title: 'Feedback & NPS',
+          desc: 'Kirim survey otomatis setelah transaksi selesai. Hitung NPS score dan analisis sentimen feedback.',
+        },
+      ],
+      metrics: [
+        { value: '<2h', label: 'First Response Time' },
+        { value: '95%', label: 'CSAT Score' },
+        { value: '-60%', label: 'Support Tickets' },
+      ],
+      problems: [
+        {
+          title: 'Response Lama',
+          desc: 'Pelanggan komplain via WhatsApp tidak ter-tracking, sering terlewat, dan tidak ada histori komunikasi.',
+        },
+        {
+          title: 'Pertanyaan Berulang',
+          desc: '80% pertanyaan support adalah hal yang sama (cara pakai, status order) tapi tidak ada sistem self-service.',
+        },
+        {
+          title: 'Tidak Ada Feedback Loop',
+          desc: 'Tidak pernah survey kepuasan pelanggan, tidak tahu NPS score, dan tidak bisa improve service.',
+        },
+        {
+          title: 'Tiket Manual',
+          desc: 'Tim support input tiket manual dari WhatsApp ke Excel. Risiko data hilang tinggi dan kerja dua kali.',
+        },
+      ],
+      cta: {
+        text: 'Bangun layanan pelanggan yang membuat mereka kembali.',
+        buttonLabel: 'Lihat Demo Care',
+      },
+      faqs: [
+        {
+          question: 'Apakah bisa integrasi dengan WhatsApp Business?',
+          answer:
+            'Bisa. Tiket bisa masuk dari WhatsApp, email, atau form web. Semua ter-centralisasi dalam satu dashboard.',
+        },
+        {
+          question: 'Bagaimana dengan SLA monitoring?',
+          answer:
+            'Setiap ticket punya SLA berdasarkan prioritas (High/Medium/Low). System warning jika akan breached dan auto-escalate ke supervisor.',
+        },
+      ],
     },
     supply: {
       title: 'Supply Chain & Inventory',
@@ -695,6 +1245,10 @@ export const platformModulesTranslations = {
         {
           title: 'Salah Kirim',
           desc: 'Picker mengambil barang yang salah karena kemasan mirip. Retur barang meningkat dan pelanggan kecewa.',
+        },
+        {
+          title: 'Stok Mati',
+          desc: 'Modal kerja tertahan di stok lama yang tidak terdeteksi, mengganggu arus kas perusahaan.',
         },
       ],
       mobileAdvantage: {
@@ -800,6 +1354,10 @@ export const platformModulesTranslations = {
         {
           title: 'Keputusan Lambat',
           desc: 'Direksi harus menunggu laporan manual akhir bulan untuk tahu kondisi perusahaan. Terlambat untuk bermanuver.',
+        },
+        {
+          title: 'Data Terisolasi',
+          desc: 'Pengambilan keputusan lambat karena data antar divisi terputus dan mengharuskan konsolidasi manual.',
         },
       ],
       mobileAdvantage: {

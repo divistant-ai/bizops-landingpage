@@ -96,6 +96,11 @@ export const industriesTranslations: {
           desc: 'Manage Subcontractor SPK, monitor progress, and automatically calculate 5% retention deductions and PPh 4(2).',
           icon: Users,
         },
+        {
+          title: 'Material Transfer',
+          desc: 'Prevent waste by transferring usable leftover materials to other projects with proper administration.',
+          icon: ArrowLeftRight,
+        },
       ],
       faqs: [
         {
@@ -173,6 +178,11 @@ export const industriesTranslations: {
           desc: 'System notifies what items to purchase (Restock) based on bestseller sales trends.',
           icon: RefreshCw,
         },
+        {
+          title: 'Loyalty Program',
+          desc: 'Increase customer retention with member point systems and promo vouchers integrated at POS.',
+          icon: Target,
+        },
       ],
       faqs: [
         {
@@ -249,6 +259,11 @@ export const industriesTranslations: {
           title: 'Employee App',
           desc: 'Employees check shift schedules, pay slips, and remaining leave directly from their phones. Reduces admin inquiries.',
           icon: Smartphone,
+        },
+        {
+          title: 'Digital Contract',
+          desc: 'Manage PKWT contracts for thousands of employees with automatic notifications 30 days before expiration.',
+          icon: FileText,
         },
       ],
       faqs: [
@@ -328,6 +343,11 @@ export const industriesTranslations: {
           desc: 'Profit and loss calculated automatically per departure (Revenue from Pilgrims - Vendor Cost) accurately.',
           icon: PieChart,
         },
+        {
+          title: 'Pilgrim App',
+          desc: 'Manasik guide, activity schedule, and daily prayers in pilgrims\' hands. Enhance spiritual experience.',
+          icon: Smartphone,
+        },
       ],
       faqs: [
         {
@@ -405,6 +425,11 @@ export const industriesTranslations: {
           desc: 'Visualize who\'s overloaded and who\'s idle. Allocate team more wisely.',
           icon: Users,
         },
+        {
+          title: 'CRM Integration',
+          desc: 'Automatic conversion from \'Won Deal\' in CRM to \'Active Project\' complete with budget and team setup.',
+          icon: ArrowLeftRight,
+        },
       ],
       faqs: [
         {
@@ -480,6 +505,11 @@ export const industriesTranslations: {
           title: 'Work Order Tracking',
           desc: 'Monitor item status at each work station (Cut, Sew, Pack) in real-time via tablet.',
           icon: Clipboard,
+        },
+        {
+          title: 'Machine Care',
+          desc: 'Automated preventive machine maintenance schedule. Reduce unexpected downtime that disrupts production.',
+          icon: Wrench,
         },
       ],
       faqs: [
@@ -557,6 +587,11 @@ export const industriesTranslations: {
           title: 'Standardized Master',
           desc: 'Force COA, Item Code, and Vendor standardization across entire group for clean data.',
           icon: Database,
+        },
+        {
+          title: 'Group Budget',
+          desc: 'Control budget ceilings across subsidiaries. Prevent overspending at the group level.',
+          icon: ShieldCheck,
         },
       ],
       faqs: [
@@ -636,6 +671,11 @@ export const industriesTranslations: {
           title: 'Subkon & Retensi',
           desc: 'Kelola SPK Subkon, pantau progress, dan hitung otomatis potongan retensi 5% serta PPh 4(2).',
           icon: Users,
+        },
+        {
+          title: 'Material Transfer',
+          desc: 'Cegah pemborosan dengan memindahkan sisa material layak pakai ke proyek lain secara teradministrasi.',
+          icon: ArrowLeftRight,
         },
       ],
       apps: [
@@ -759,6 +799,11 @@ export const industriesTranslations: {
           desc: 'Sistem memberitahu barang apa yang harus dibeli (Restock) berdasarkan tren penjualan terlaris.',
           icon: RefreshCw,
         },
+        {
+          title: 'Loyalty Program',
+          desc: 'Tingkatkan retensi pelanggan dengan sistem poin member dan voucher promo yang terintegrasi di POS.',
+          icon: Target,
+        },
       ],
       apps: [
         {
@@ -860,6 +905,10 @@ export const industriesTranslations: {
           title: 'Tagihan Telat',
           desc: 'Cashflow terganggu karena invoice ke klien baru bisa dikirim setelah rekap absensi manual selesai (bisa 2 minggu).',
         },
+        {
+          title: 'Komplain Klien',
+          desc: 'Klien sering komplain karena tidak ada transparansi data kehadiran personil. Sulit membuktikan personil hadir sesuai kontrak.',
+        },
       ],
       solutions: [
         {
@@ -876,6 +925,11 @@ export const industriesTranslations: {
           title: 'Employee App',
           desc: 'Karyawan cek jadwal shift, slip gaji, dan sisa cuti langsung dari HP sendiri. Kurangi tanya-tanya ke admin.',
           icon: Smartphone,
+        },
+        {
+          title: 'Digital Contract',
+          desc: 'Kelola kontrak PKWT ribuan karyawan dengan notifikasi otomatis 30 hari sebelum masa kontrak habis.',
+          icon: FileText,
         },
       ],
       apps: [
@@ -978,6 +1032,10 @@ export const industriesTranslations: {
           title: 'Keuangan Berantakan',
           desc: 'Sulit menghitung HPP per pax (Komponen Visa, Handling, Perlengkapan) sehingga margin keuntungan tidak jelas.',
         },
+        {
+          title: 'CS Kewalahan',
+          desc: 'Ribuan jamaah menghubungi CS untuk tanya status dokumen, pembayaran, dan jadwal. Tim CS kewalahan melayani manual.',
+        },
       ],
       solutions: [
         {
@@ -994,6 +1052,11 @@ export const industriesTranslations: {
           title: 'Profit per Group',
           desc: 'Laba rugi dihitung otomatis per keberangkatan (Revenue dari Jamaah - Cost Vendor) secara akurat.',
           icon: TrendingUp,
+        },
+        {
+          title: 'Jamaah App',
+          desc: 'Panduan manasik, jadwal kegiatan, dan do\'a harian dalam genggaman jamaah. Tingkatkan pengalaman spiritual.',
+          icon: Smartphone,
         },
       ],
       apps: [
@@ -1120,6 +1183,11 @@ export const industriesTranslations: {
           desc: 'Visualisasi siapa yang overload dan siapa yang idle. Alokasikan tim dengan lebih bijak.',
           icon: Users,
         },
+        {
+          title: 'CRM Integration',
+          desc: 'Konversi otomatis dari \'Won Deal\' di CRM menjadi \'Active Project\' lengkap dengan budget dan team.',
+          icon: ArrowLeftRight,
+        },
       ],
       apps: [
         {
@@ -1220,6 +1288,10 @@ export const industriesTranslations: {
           title: 'Waste Tinggi',
           desc: 'Pemakaian bahan baku melebihi standar resep (BOM) tapi tidak terlacak di mana borosnya.',
         },
+        {
+          title: 'Mesin Rusak',
+          desc: 'Mesin sering rusak di tengah produksi karena tidak ada jadwal maintenance preventif. Kerugian produksi besar.',
+        },
       ],
       solutions: [
         {
@@ -1236,6 +1308,11 @@ export const industriesTranslations: {
           title: 'Work Order Tracking',
           desc: 'Pantau status barang di setiap stasiun kerja (Potong, Jahit, Packing) secara real-time via tablet.',
           icon: Clipboard,
+        },
+        {
+          title: 'Machine Care',
+          desc: 'Jadwal maintenance mesin preventif otomatis. Kurangi downtime tak terduga yang mengganggu produksi.',
+          icon: Wrench,
         },
       ],
       apps: [
@@ -1338,6 +1415,10 @@ export const industriesTranslations: {
           title: 'Buta Data Cabang',
           desc: 'Direksi holding sulit memantau kinerja harian anak usaha karena laporan selalu terlambat.',
         },
+        {
+          title: 'Standarisasi Sulit',
+          desc: 'Tiap anak usaha punya format kode barang dan akun berbeda. Sulit konsolidasi dan bandingkan performa apple-to-apple.',
+        },
       ],
       solutions: [
         {
@@ -1354,6 +1435,11 @@ export const industriesTranslations: {
           title: 'Standardized Master',
           desc: 'Paksa standarisasi COA, Kode Barang, dan Vendor di seluruh grup untuk data yang bersih.',
           icon: Database,
+        },
+        {
+          title: 'Group Budget',
+          desc: 'Kontrol pagu anggaran (Budget Ceiling) lintas anak perusahaan. Cegah overspending di level grup.',
+          icon: ShieldCheck,
         },
       ],
       apps: [
@@ -1886,6 +1972,18 @@ export const rolesTranslations: {
           gain: 'Total Transparency',
           gainDesc: 'Drill-down from global report to single transaction level for instant audit.',
         },
+        {
+          pain: 'Siloed Culture',
+          context: 'Departments running their own race versus Unified Goal (OKR tracking).',
+          gain: 'Unified Alignment',
+          gainDesc: 'Cascade OKRs from top to bottom. ensure everyone is moving towards the same strategic objectives.',
+        },
+        {
+          pain: 'Slow Execution',
+          context: 'Great ideas take months to execute due to bureaucratic approval layers.',
+          gain: 'Agile Speed',
+          gainDesc: 'Flatten approval hierarchies with automated workflows. Fast-track critical decisions.',
+        },
       ],
     },
     finance: {
@@ -1917,11 +2015,21 @@ export const rolesTranslations: {
         },
         {
           pain: 'Budget Leakage',
-          context:
-            'Operational expenses often over-budget without early warning, eating into profits.',
+          context: 'Operational expenses often over-budget without early warning, eating into profits.',
           gain: 'Hard Budget Control',
-          gainDesc:
-            'System automatically blocks PO/PR if that budget post is exhausted. Zero leakage.',
+          gainDesc: 'System automatically blocks PO/PR if that budget post is exhausted. Zero leakage.',
+        },
+        {
+          pain: 'Cash Trapped',
+          context: 'High AR days and slow collections trap working capital unnecessarily.',
+          gain: 'Faster Cashflow',
+          gainDesc: 'Automated dunning and payment reminders reduce Days Sales Outstanding (DSO) significantly.',
+        },
+        {
+          pain: 'Fraud Risk',
+          context: 'Manual payment processing susceptible to internal fraud or phishing attacks.',
+          gain: 'Secure Payment',
+          gainDesc: 'Digital approval matrix and 3-way matching ensure every penny is accounted for and authorized.',
         },
       ],
     },
@@ -1955,8 +2063,19 @@ export const rolesTranslations: {
           pain: 'Compliance Risk',
           context: 'Fear of miscalculating taxes or late BPJS penalties that can harm company.',
           gain: 'Auto Compliance',
-          gainDesc:
-            'System always updated following latest PPh 21 tax rate and BPJS Employment regulations.',
+          gainDesc: 'System always updated following latest PPh 21 tax rate and BPJS Employment regulations.',
+        },
+        {
+          pain: 'Recruitment Chaos',
+          context: 'Lost CVs and forgotten interview schedules lead to losing top talent candidates.',
+          gain: 'Talent Pipeline',
+          gainDesc: 'Centralized Applicant Tracking System (ATS) keeps candidate data organized and accessible.',
+        },
+        {
+          pain: 'Low Engagement',
+          context: 'Silent employees and high turnover due to lack of feedback channels.',
+          gain: 'Pulse Feedback',
+          gainDesc: 'Regular pulse surveys and anonymous feedback loops to measure and improve employee sentiment.',
         },
       ],
     },
@@ -1988,11 +2107,21 @@ export const rolesTranslations: {
         },
         {
           pain: 'Maintenance Hell',
-          context:
-            'IT team spends time just manually patching servers and fixing old legacy system bugs.',
+          context: 'IT team spends time just manually patching servers and fixing old legacy system bugs.',
           gain: 'Low Maintenance',
-          gainDesc:
-            'Stable Docker architecture, CI/CD ready, and smooth OTA (Over-The-Air) updates.',
+          gainDesc: 'Stable Docker architecture, CI/CD ready, and smooth OTA (Over-The-Air) updates.',
+        },
+        {
+          pain: 'Security Gaps',
+          context: 'Sensitive company data vulnerable to leaks due to loose access controls.',
+          gain: 'Enterprise Security',
+          gainDesc: 'Role-Based Access Control (RBAC) and detailed audit logs ensuring data sovereignty.',
+        },
+        {
+          pain: 'Integrations',
+          context: 'Point-to-point integration nightmare between disparate legacy systems.',
+          gain: 'Seamless API',
+          gainDesc: 'Standardized REST APIs and webhooks make connecting with 3rd party apps effortless.',
         },
       ],
     },
@@ -2025,195 +2154,21 @@ export const rolesTranslations: {
         },
         {
           pain: 'Messy Stock',
-          context:
-            'Often lose sales due to out-of-stock, or conversely capital dies in slow-moving items.',
+          context: 'Often lose sales due to out-of-stock, or conversely capital dies in slow-moving items.',
           gain: 'Smart Inventory Control',
-          gainDesc:
-            'System automatically calculates re-order point based on historical sales trends. Prevent stockout without overstock.',
-        },
-      ],
-    },
-  },
-  id: {
-    ceo: {
-      title: 'CEO & Founders',
-      subtitle: 'The Captain\'s View',
-      icon: TrendingUp,
-      metaTitle: 'Dashboard CEO & Business Intelligence',
-      metaDesc:
-        'Pantau kesehatan bisnis secara real-time. Cashflow, Profitabilitas, dan Sales Pipeline dalam satu layar.',
-      heroHeadline: 'Kendali Penuh di Ujung Jari. Tanpa Menebak.',
-      heroSub:
-        'Berhenti mengandalkan laporan Excel akhir bulan yang terlambat. Dapatkan denyut nadi bisnis Anda secara real-time untuk keputusan yang lebih cepat.',
-      cta: { btn: 'Lihat Dashboard CEO', head: 'Siap Mengambil Kendali Penuh?' },
-      dashboardInsight: 'Helicopter View: Your Business Cockpit',
-      dashboardFeatures: [
-        'Live Cashflow Status',
-        'Profit & Loss Daily Estimate',
-        'Top Expense Alert',
-        'Sales Trend Analysis',
-      ],
-      challenges: [
-        {
-          pain: 'Keputusan Buta',
-          context:
-            'Membuat keputusan strategis hanya berdasarkan intuisi atau data basi bulan lalu.',
-          gain: 'Data-Driven Confidence',
-          gainDesc:
-            'Akses metrik kunci kapan saja dari HP. Putuskan ekspansi atau efisiensi dengan data valid detik ini juga.',
+          gainDesc: 'System automatically calculates re-order point based on historical sales trends. Prevent stockout without overstock.',
         },
         {
-          pain: 'Operasional Gelap',
-          context: 'Tidak tahu apa yang sebenarnya terjadi di lapangan, cabang, atau gudang.',
-          gain: 'Total Transparency',
-          gainDesc:
-            'Drill-down dari laporan global hingga ke level transaksi tunggal untuk audit instan.',
-        },
-      ],
-    },
-    finance: {
-      title: 'Finance (CFO)',
-      subtitle: 'Guardian of Value',
-      icon: DollarSign,
-      metaTitle: 'Software Accounting & Finance Manager',
-      metaDesc:
-        'Otomatisasi jurnal, kontrol budget, dan manajemen cashflow untuk tim keuangan modern.',
-      heroHeadline: 'Bukan Sekadar Pembukuan. Ini Pusat Strategi.',
-      heroSub:
-        'Transformasi tim finance dari sekadar \'tukang input\' menjadi penasihat strategis perusahaan yang menjaga profitabilitas.',
-      cta: { btn: 'Demo Modul Finance', head: 'Modernisasi Departemen Keuangan Anda' },
-      dashboardInsight: 'Financial Health Command Center',
-      dashboardFeatures: [
-        'Budget vs Actual Real-time',
-        'Automated Bank Reconciliation',
-        'Aging AP/AR Monitoring',
-        'Cost Center Analysis',
-      ],
-      challenges: [
-        {
-          pain: 'Closing Neraka',
-          context:
-            'Tim lembur berhari-hari setiap akhir bulan hanya untuk rekap data dari divisi lain yang berantakan.',
-          gain: 'Continuous Closing',
-          gainDesc:
-            'Jurnal terbentuk otomatis saat transaksi operasional terjadi. Closing akhir bulan tinggal validasi satu klik.',
+          pain: 'Cost Overrun',
+          context: 'Projects frequently go over budget due to lack of real-time expense tracking.',
+          gain: 'Real-time Costing',
+          gainDesc: 'Track actual vs budget costs in real-time. Get alerts before budget is exceeded.',
         },
         {
-          pain: 'Kebocoran Budget',
-          context:
-            'Pengeluaran operasional sering over-budget tanpa peringatan dini, menggerus laba.',
-          gain: 'Hard Budget Control',
-          gainDesc:
-            'Sistem memblokir PO/PR secara otomatis jika budget pos tersebut sudah habis. Zero leakage.',
-        },
-      ],
-    },
-    hr: {
-      title: 'HR Leaders',
-      subtitle: 'People Champion',
-      icon: Users,
-      metaTitle: 'Aplikasi HRD & Payroll Manager',
-      metaDesc: 'Kelola administrasi karyawan, payroll, dan performa tim dengan efisien.',
-      heroHeadline: 'Administrasi Selesai Otomatis. Fokus ke Manusia.',
-      heroSub:
-        'Kurangi beban administrasi klerikal hingga 70%. Alihkan waktu Anda untuk pengembangan talenta dan membangun budaya juara.',
-      cta: { btn: 'Demo HRIS', head: 'Bangun Pengalaman Karyawan Terbaik' },
-      dashboardInsight: 'Workforce Analytics & Engagement',
-      dashboardFeatures: [
-        'Real-time Turnover Rate',
-        'Attendance Heatmap',
-        'Payroll Cost Projection',
-        'Employee NPS Score',
-      ],
-      challenges: [
-        {
-          pain: 'Drama Payroll',
-          context:
-            'Stres tinggi setiap tanggal cut-off gaji karena data absensi, lembur, dan pinjaman karyawan berantakan.',
-          gain: '1-Click Payroll',
-          gainDesc:
-            'Tarik data absensi, hitung PPh 21 (TER), BPJS, dan generate file transfer bank dalam hitungan menit.',
-        },
-        {
-          pain: 'Risiko Kepatuhan',
-          context:
-            'Takut salah hitung pajak atau denda keterlambatan BPJS yang bisa merugikan perusahaan.',
-          gain: 'Auto Compliance',
-          gainDesc:
-            'Sistem selalu diperbarui mengikuti regulasi tarif pajak PPh 21 dan BPJS Ketenagakerjaan terbaru.',
-        },
-      ],
-    },
-    it: {
-      title: 'IT Managers (CTO)',
-      subtitle: 'Technology Architect',
-      icon: Server,
-      metaTitle: 'ERP Architecture & Security for IT Manager',
-      metaDesc: 'Platform ERP yang aman, scalable, dan developer-friendly. Self-hosted atau Cloud.',
-      heroHeadline: 'Platform Modern yang Developer-Friendly.',
-      heroSub:
-        'Dibangun dengan stack modern (Python/JS/Postgres), API-first, dan container-ready. Bukan sistem legacy \'kotak hitam\' yang kaku.',
-      cta: { btn: 'Baca Dokumentasi Teknis', head: 'Evaluasi Arsitektur Kami' },
-      dashboardInsight: 'System Health & Security Monitor',
-      dashboardFeatures: [
-        'API Performance Metrics',
-        'Real-time Error Logs',
-        'User Access Audit Trail',
-        'Integration Status Health',
-      ],
-      challenges: [
-        {
-          pain: 'Shadow IT',
-          context:
-            'User menggunakan aplikasi liar (SaaS tak dikenal) karena sistem kantor sulit digunakan.',
-          gain: 'Unified Ecosystem',
-          gainDesc:
-            'Satu platform modern dengan UX setara aplikasi konsumen yang disukai user, mengurangi kebutuhan aplikasi pihak ketiga.',
-        },
-        {
-          pain: 'Maintenance Hell',
-          context:
-            'Tim IT habis waktu hanya untuk patching server manual dan fix bug sistem legacy tua.',
-          gain: 'Low Maintenance',
-          gainDesc:
-            'Arsitektur Docker yang stabil, CI/CD ready, dan update OTA (Over-The-Air) yang mulus.',
-        },
-      ],
-    },
-    ops: {
-      title: 'Ops Managers',
-      subtitle: 'Execution Excellence',
-      icon: Package,
-      metaTitle: 'Operations Management & Supply Chain Software',
-      metaDesc:
-        'Kelola proyek, inventory, dan supply chain dengan visibilitas real-time. Kontrol biaya operasional dan pastikan on-time delivery.',
-      heroHeadline: 'Eksekusi Sempurna. Tepat Waktu, Setiap Waktu.',
-      heroSub:
-        'Hilangkan blind spot operasional. Pantau progres proyek, kontrol stok gudang, dan kelola logistik dari satu dashboard terpusat.',
-      cta: { btn: 'Demo Modul Operations', head: 'Tingkatkan Efisiensi Operasional Anda' },
-      dashboardInsight: 'Real-time Operations Command Center',
-      dashboardFeatures: [
-        'Live Project S-Curve',
-        'Low Stock Alert',
-        'On-Time Delivery Rate',
-        'Cost Variance Analysis',
-      ],
-      challenges: [
-        {
-          pain: 'Proyek Molor',
-          context:
-            'Proyek sering terlambat karena tidak ada visibilitas real-time terhadap progres dan kendala lapangan.',
-          gain: 'Real-time Visibility',
-          gainDesc:
-            'Pantau kurva-S proyek dan terima laporan harian langsung dari lapangan via mobile app. Deteksi masalah sebelum jadi krisis.',
-        },
-        {
-          pain: 'Stok Berantakan',
-          context:
-            'Sering kehilangan penjualan karena stok kosong, atau sebaliknya modal mati di barang tidak laku.',
-          gain: 'Smart Inventory Control',
-          gainDesc:
-            'Sistem menghitung re-order point otomatis berdasarkan tren penjualan historis. Cegah stockout tanpa overstock.',
+          pain: 'Vendor Issues',
+          context: 'Missed deliveries and poor quality from vendors impacting production schedule.',
+          gain: 'Vendor Scorecard',
+          gainDesc: 'Data-backed vendor evaluation based on delivery performance and quality metrics.',
         },
       ],
     },
@@ -2252,6 +2207,18 @@ export const rolesTranslations: {
           gainDesc:
             'AI-powered forecasting berdasarkan historical data dan pipeline velocity. Prediksi revenue akurat untuk planning bisnis.',
         },
+        {
+          pain: 'Slow Response',
+          context: 'Inbound leads go cold because sales reps take too long to respond.',
+          gain: 'Instant Engagement',
+          gainDesc: 'Auto-routing leads to the right rep immediately with notification alerts.',
+        },
+        {
+          pain: 'Manual Admin',
+          context: 'Sales reps hate data entry, leading to incomplete CRM data.',
+          gain: 'Auto-Logging',
+          gainDesc: 'Automatically sync emails and calendar meetings to deal timeline. No more manual entry.',
+        },
       ],
     },
     procurement: {
@@ -2288,6 +2255,357 @@ export const rolesTranslations: {
           gain: 'Price Intelligence',
           gainDesc:
             'Tracking harga historis per item dan vendor. Analisis trend untuk leverage negosiasi dan achieve cost savings.',
+        },
+        {
+          pain: 'Vendor Risk',
+          context: 'Reliance on single supplier or financially unstable vendors.',
+          gain: 'Risk Mitigation',
+          gainDesc: 'Monitor vendor health and diversify supply chain with multi-sourcing strategies.',
+        },
+        {
+          pain: 'Slow PO Process',
+          context: 'Manual wet signatures for PO approval delay critical purchases.',
+          gain: 'Digital Approval',
+          gainDesc: 'Mobile-first approval workflows let managers approve POs from anywhere, anytime.',
+        },
+      ],
+    },
+  },
+  id: {
+    ceo: {
+      title: 'CEO & Founders',
+      subtitle: 'The Captain\'s View',
+      icon: TrendingUp,
+      metaTitle: 'Dashboard CEO & Business Intelligence',
+      metaDesc:
+        'Pantau kesehatan bisnis secara real-time. Cashflow, Profitabilitas, dan Sales Pipeline dalam satu layar.',
+      heroHeadline: 'Kendali Penuh di Ujung Jari. Tanpa Menebak.',
+      heroSub:
+        'Berhenti mengandalkan laporan Excel akhir bulan yang terlambat. Dapatkan denyut nadi bisnis Anda secara real-time untuk keputusan yang lebih cepat.',
+      cta: { btn: 'Lihat Dashboard CEO', head: 'Siap Mengambil Kendali Penuh?' },
+      dashboardInsight: 'Helicopter View: Your Business Cockpit',
+      dashboardFeatures: [
+        'Live Cashflow Status',
+        'Profit & Loss Daily Estimate',
+        'Top Expense Alert',
+        'Sales Trend Analysis',
+      ],
+      challenges: [
+        {
+          pain: 'Keputusan Buta',
+          context:
+            'Membuat keputusan strategis hanya berdasarkan intuisi atau data basi bulan lalu.',
+          gain: 'Data-Driven Confidence',
+          gainDesc:
+            'Akses metrik kunci kapan saja dari HP. Putuskan ekspansi atau efisiensi dengan data valid detik ini juga.',
+        },
+        {
+          pain: 'Operasional Gelap',
+          context: 'Tidak tahu apa yang sebenarnya terjadi di lapangan, cabang, atau gudang.',
+          gain: 'Total Transparency',
+          gainDesc: 'Drill-down dari laporan global hingga ke level transaksi tunggal untuk audit instan.',
+        },
+        {
+          pain: 'Budaya Silo',
+          context: 'Departemen berjalan sendiri-sendiri vs Satu Tujuan (OKR tracking).',
+          gain: 'Penyelarasan Terpadu',
+          gainDesc: 'Turunkan OKR dari atas ke bawah. Pastikan semua orang bergerak ke tujuan strategis yang sama.',
+        },
+        {
+          pain: 'Eksekusi Lambat',
+          context: 'Ide bagus butuh berbulan-bulan untuk dieksekusi karena birokrasi persetujuan.',
+          gain: 'Kecepatan Agile',
+          gainDesc: 'Ratakan hirarki persetujuan dengan alur kerja otomatis. Percepat keputusan kritis.',
+        },
+      ],
+    },
+    finance: {
+      title: 'Finance (CFO)',
+      subtitle: 'Guardian of Value',
+      icon: DollarSign,
+      metaTitle: 'Software Accounting & Finance Manager',
+      metaDesc:
+        'Otomatisasi jurnal, kontrol budget, dan manajemen cashflow untuk tim keuangan modern.',
+      heroHeadline: 'Bukan Sekadar Pembukuan. Ini Pusat Strategi.',
+      heroSub:
+        'Transformasi tim finance dari sekadar \'tukang input\' menjadi penasihat strategis perusahaan yang menjaga profitabilitas.',
+      cta: { btn: 'Demo Modul Finance', head: 'Modernisasi Departemen Keuangan Anda' },
+      dashboardInsight: 'Financial Health Command Center',
+      dashboardFeatures: [
+        'Budget vs Actual Real-time',
+        'Automated Bank Reconciliation',
+        'Aging AP/AR Monitoring',
+        'Cost Center Analysis',
+      ],
+      challenges: [
+        {
+          pain: 'Closing Neraka',
+          context:
+            'Tim lembur berhari-hari setiap akhir bulan hanya untuk rekap data dari divisi lain yang berantakan.',
+          gain: 'Continuous Closing',
+          gainDesc:
+            'Jurnal terbentuk otomatis saat transaksi operasional terjadi. Closing akhir bulan tinggal validasi satu klik.',
+        },
+        {
+          pain: 'Kebocoran Budget',
+          context:
+            'Pengeluaran operasional sering over-budget tanpa peringatan dini, menggerus laba.',
+          gain: 'Hard Budget Control',
+          gainDesc:
+            'Sistem memblokir PO/PR secara otomatis jika budget pos tersebut sudah habis. Zero leakage.',
+        },
+        {
+          pain: 'Kas Terjerat',
+          context: 'AR days tinggi dan penagihan lambat menjebak modal kerja.',
+          gain: 'Cashflow Lebih Cepat',
+          gainDesc: 'Penagihan otomatis dan pengingat pembayaran mengurangi Days Sales Outstanding (DSO) secara signifikan.',
+        },
+        {
+          pain: 'Risiko Fraud',
+          context: 'Pembayaran manual rawan kecurangan internal atau serangan phishing.',
+          gain: 'Pembayaran Aman',
+          gainDesc: 'Matriks persetujuan digital dan pencocokan 3 arah memastikan setiap sen terverifikasi.',
+        },
+      ],
+    },
+    hr: {
+      title: 'HR Leaders',
+      subtitle: 'People Champion',
+      icon: Users,
+      metaTitle: 'Aplikasi HRD & Payroll Manager',
+      metaDesc: 'Kelola administrasi karyawan, payroll, dan performa tim dengan efisien.',
+      heroHeadline: 'Administrasi Selesai Otomatis. Fokus ke Manusia.',
+      heroSub:
+        'Kurangi beban administrasi klerikal hingga 70%. Alihkan waktu Anda untuk pengembangan talenta dan membangun budaya juara.',
+      cta: { btn: 'Demo HRIS', head: 'Bangun Pengalaman Karyawan Terbaik' },
+      dashboardInsight: 'Workforce Analytics & Engagement',
+      dashboardFeatures: [
+        'Real-time Turnover Rate',
+        'Attendance Heatmap',
+        'Payroll Cost Projection',
+        'Employee NPS Score',
+      ],
+      challenges: [
+        {
+          pain: 'Drama Payroll',
+          context:
+            'Stres tinggi setiap tanggal cut-off gaji karena data absensi, lembur, dan pinjaman karyawan berantakan.',
+          gain: '1-Click Payroll',
+          gainDesc:
+            'Tarik data absensi, hitung PPh 21 (TER), BPJS, dan generate file transfer bank dalam hitungan menit.',
+        },
+        {
+          pain: 'Risiko Kepatuhan',
+          context:
+            'Takut salah hitung pajak atau denda keterlambatan BPJS yang bisa merugikan perusahaan.',
+          gain: 'Auto Compliance',
+          gainDesc:
+            'Sistem selalu diperbarui mengikuti regulasi tarif pajak PPh 21 dan BPJS Ketenagakerjaan terbaru.',
+        },
+        {
+          pain: 'Kekacauan Rekrutmen',
+          context: 'CV hilang dan jadwal interview terlupakan membuat kandidat terbaik lepas.',
+          gain: 'Pipeline Talenta',
+          gainDesc: 'Applicant Tracking System (ATS) terpusat menjaga data kandidat tetap terorganisir.',
+        },
+        {
+          pain: 'Keterlibatan Rendah',
+          context: 'Karyawan diam dan turnover tinggi karena kurangnya saluran umpan balik.',
+          gain: 'Umpan Balik Rutin',
+          gainDesc: 'Survei rutin dan umpan balik anonim untuk mengukur dan meningkatkan sentimen karyawan.',
+        },
+      ],
+    },
+    it: {
+      title: 'IT Managers (CTO)',
+      subtitle: 'Technology Architect',
+      icon: Server,
+      metaTitle: 'ERP Architecture & Security for IT Manager',
+      metaDesc: 'Platform ERP yang aman, scalable, dan developer-friendly. Self-hosted atau Cloud.',
+      heroHeadline: 'Platform Modern yang Developer-Friendly.',
+      heroSub:
+        'Dibangun dengan stack modern (Python/JS/Postgres), API-first, dan container-ready. Bukan sistem legacy \'kotak hitam\' yang kaku.',
+      cta: { btn: 'Baca Dokumentasi Teknis', head: 'Evaluasi Arsitektur Kami' },
+      dashboardInsight: 'System Health & Security Monitor',
+      dashboardFeatures: [
+        'API Performance Metrics',
+        'Real-time Error Logs',
+        'User Access Audit Trail',
+        'Integration Status Health',
+      ],
+      challenges: [
+        {
+          pain: 'Shadow IT',
+          context:
+            'User menggunakan aplikasi liar (SaaS tak dikenal) karena sistem kantor sulit digunakan.',
+          gain: 'Unified Ecosystem',
+          gainDesc:
+            'Satu platform modern dengan UX setara aplikasi konsumen yang disukai user, mengurangi kebutuhan aplikasi pihak ketiga.',
+        },
+        {
+          pain: 'Maintenance Hell',
+          context:
+            'Tim IT habis waktu hanya untuk patching server manual dan fix bug sistem legacy tua.',
+          gain: 'Low Maintenance',
+          gainDesc:
+            'Arsitektur Docker yang stabil, CI/CD ready, dan update OTA (Over-The-Air) yang mulus.',
+        },
+        {
+          pain: 'Celah Keamanan',
+          context: 'Data sensitif perusahaan rawan bocor karena kontrol akses yang lemah.',
+          gain: 'Keamanan Enterprise',
+          gainDesc: 'Role-Based Access Control (RBAC) dan log audit terperinci memastikan kedaulatan data.',
+        },
+        {
+          pain: 'Integrasi Rumit',
+          context: 'Mimpi buruk integrasi point-to-point antara sistem legacy yang terpisah.',
+          gain: 'API Mulus',
+          gainDesc: 'REST API standar dan webhooks membuat koneksi dengan aplikasi pihak ketiga jadi mudah.',
+        },
+      ],
+    },
+    ops: {
+      title: 'Ops Managers',
+      subtitle: 'Execution Excellence',
+      icon: Package,
+      metaTitle: 'Operations Management & Supply Chain Software',
+      metaDesc:
+        'Kelola proyek, inventory, dan supply chain dengan visibilitas real-time. Kontrol biaya operasional dan pastikan on-time delivery.',
+      heroHeadline: 'Eksekusi Sempurna. Tepat Waktu, Setiap Waktu.',
+      heroSub:
+        'Hilangkan blind spot operasional. Pantau progres proyek, kontrol stok gudang, dan kelola logistik dari satu dashboard terpusat.',
+      cta: { btn: 'Demo Modul Operations', head: 'Tingkatkan Efisiensi Operasional Anda' },
+      dashboardInsight: 'Real-time Operations Command Center',
+      dashboardFeatures: [
+        'Live Project S-Curve',
+        'Low Stock Alert',
+        'On-Time Delivery Rate',
+        'Cost Variance Analysis',
+      ],
+      challenges: [
+        {
+          pain: 'Proyek Molor',
+          context:
+            'Proyek sering terlambat karena tidak ada visibilitas real-time terhadap progres dan kendala lapangan.',
+          gain: 'Real-time Visibility',
+          gainDesc:
+            'Pantau kurva-S proyek dan terima laporan harian langsung dari lapangan via mobile app. Deteksi masalah sebelum jadi krisis.',
+        },
+        {
+          pain: 'Stok Berantakan',
+          context:
+            'Sering kehilangan penjualan karena stok kosong, atau sebaliknya modal mati di barang tidak laku.',
+          gain: 'Smart Inventory Control',
+          gainDesc:
+            'Sistem menghitung re-order point otomatis berdasarkan tren penjualan historis. Cegah stockout tanpa overstock.',
+        },
+        {
+          pain: 'Biaya Bengkak',
+          context: 'Proyek sering over budget karena kurangnya pelacakan biaya real-time.',
+          gain: 'Costing Real-time',
+          gainDesc: 'Lacak biaya aktual vs budget secara real-time. Dapatkan peringatan sebelum budget terlampaui.',
+        },
+        {
+          pain: 'Masalah Vendor',
+          context: 'Pengiriman terlambat dan kualitas buruk dari vendor mengganggu jadwal produksi.',
+          gain: 'Skor Vendor',
+          gainDesc: 'Evaluasi vendor berbasis data berdasarkan performa pengiriman dan metrik kualitas.',
+        },
+      ],
+    },
+    sales: {
+      title: 'Sales Leaders',
+      subtitle: 'Revenue Growth Engine',
+      icon: Target,
+      metaTitle: 'CRM & Sales Management Dashboard',
+      metaDesc:
+        'Kelola pipeline, forecast revenue, dan track performance tim sales secara real-time. Maksimalkan conversion dan minimalisasi lost deals.',
+      heroHeadline: 'Pipeline Jelas. Forecast Akurat. Closing Lebih Cepat.',
+      heroSub:
+        'Berhenti menebak target. Dapatkan visibilitas penuh terhadap setiap opportunity, prediksi revenue dengan data, dan pastikan tidak ada leads yang terlewat.',
+      cta: { btn: 'Demo CRM & Sales', head: 'Tingkatkan Performance Sales Team Anda' },
+      dashboardInsight: 'Sales Pipeline & Revenue Intelligence',
+      dashboardFeatures: [
+        'Pipeline Visibility & Forecasting',
+        'Lead Scoring & Prioritization',
+        'Automated Follow-up Reminders',
+        'Sales Team Performance Analytics',
+      ],
+      challenges: [
+        {
+          pain: 'Lost Leads',
+          context:
+            'Leads dari marketing masuk tapi tidak di-follow-up dengan baik. Banyak opportunity hilang karena tidak ada sistem tracking.',
+          gain: 'Zero Lead Leakage',
+          gainDesc:
+            'Setiap leads tercatat dan di-assign otomatis. Reminder follow-up memastikan tidak ada opportunity yang terlewat.',
+        },
+        {
+          pain: 'Forecast Inaccuracy',
+          context:
+            'Prediksi revenue sering meleset karena tidak ada visibility real-time terhadap progress deals di pipeline.',
+          gain: 'Predictive Forecasting',
+          gainDesc:
+            'AI-powered forecasting berdasarkan historical data dan pipeline velocity. Prediksi revenue akurat untuk planning bisnis.',
+        },
+        {
+          pain: 'Respon Lambat',
+          context: 'Leads masuk jadi dingin karena sales reps terlalu lama merespon.',
+          gain: 'Engagement Instan',
+          gainDesc: 'Routing otomatis leads ke rep yang tepat dengan notifikasi instan.',
+        },
+        {
+          pain: 'Admin Manual',
+          context: 'Sales reps benci input data, menyebabkan data CRM tidak lengkap.',
+          gain: 'Auto-Logging',
+          gainDesc: 'Sinkronisasi email dan meeting kalender ke timeline deal secara otomatis. Tidak ada lagi input manual.',
+        },
+      ],
+    },
+    procurement: {
+      title: 'Procurement Leaders',
+      subtitle: 'Strategic Cost Optimization',
+      icon: ShoppingBag,
+      metaTitle: 'Procurement & Vendor Management System',
+      metaDesc:
+        'Kelola purchasing, vendor relationships, dan cost optimization. Pastikan best price dan on-time delivery dari supplier.',
+      heroHeadline: 'Belanja Pintar. Biaya Minim. Supplier Terkontrol.',
+      heroSub:
+        'Transformasi purchasing dari cost center menjadi strategic advantage. Dapatkan best price, kontrol budget, dan pastikan supply chain yang reliable.',
+      cta: { btn: 'Demo Procurement', head: 'Optimalkan Purchasing & Supply Chain' },
+      dashboardInsight: 'Procurement Intelligence Dashboard',
+      dashboardFeatures: [
+        'Vendor Performance Scorecard',
+        'Purchase Order Tracking',
+        'Budget Control & Compliance',
+        'Contract & Pricing Management',
+      ],
+      challenges: [
+        {
+          pain: 'Maverick Buying',
+          context:
+            'User membeli barang tanpa melalui procurement, seringkali dengan harga lebih mahal dan tanpa approval yang benar.',
+          gain: 'Centralized Purchasing',
+          gainDesc:
+            'Sistem memastikan semua purchasing melalui approved vendor list dengan harga kontrak. Block unauthorized purchases.',
+        },
+        {
+          pain: 'Price Variance',
+          context: 'Harga barang yang sama berbeda-beda antar transaksi. Sulit menegosiasi best price tanpa historical data.',
+          gain: 'Price Intelligence',
+          gainDesc: 'Tracking harga historis per item dan vendor. Analisis trend untuk leverage negosiasi dan achieve cost savings.',
+        },
+        {
+          pain: 'Risiko Vendor',
+          context: 'Ketergantungan pada satu supplier atau vendor yang tidak stabil secara finansial.',
+          gain: 'Mitigasi Risiko',
+          gainDesc: 'Pantau kesehatan vendor dan diversifikasi rantai pasok dengan strategi multi-sourcing.',
+        },
+        {
+          pain: 'Proses PO Lambat',
+          context: 'Tanda tangan basah manual untuk persetujuan PO menunda pembelian kritis.',
+          gain: 'Persetujuan Digital',
+          gainDesc: 'Alur kerja persetujuan mobile-first membiarkan manajer menyetujui PO dari mana saja, kapan saja.',
         },
       ],
     },

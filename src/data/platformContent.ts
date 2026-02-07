@@ -147,6 +147,11 @@ export const modulesData: Record<string, ModuleData> = {
         desc: 'Karyawan resign karena proses cuti/reimburse yang ribet dan kurangnya program pengembangan.',
         icon: TrendingDown,
       },
+      {
+        title: 'Krisis Talenta',
+        desc: 'Posisi kunci kosong terlalu lama karena tidak ada talent pool internal dan perencanaan suksesi.',
+        icon: UserPlus,
+      },
     ],
     mobileAdvantage: {
       title: 'Layanan HR Mandiri (ESS)',
@@ -265,6 +270,11 @@ export const modulesData: Record<string, ModuleData> = {
         title: 'Manual Reconciliation',
         desc: 'Mencocokkan ribuan transaksi bank dengan jurnal akuntansi secara manual adalah resep bencana.',
         icon: FileWarning,
+      },
+      {
+        title: 'Denda Keterlambatan',
+        desc: 'Sering kena denda telat bayar karena invoice vendor terselip atau lupa diproses.',
+        icon: Calendar,
       },
     ],
     faqs: [
@@ -385,6 +395,11 @@ export const modulesData: Record<string, ModuleData> = {
         desc: 'Picker mengambil barang yang salah karena kemasan mirip. Retur barang meningkat dan pelanggan kecewa.',
         icon: FileWarning,
       },
+      {
+        title: 'Stok Mati',
+        desc: 'Modal kerja tertahan di stok lama yang tidak terdeteksi, mengganggu arus kas perusahaan.',
+        icon: TrendingDown,
+      },
     ],
     mobileAdvantage: {
       title: 'Gudang Paperless',
@@ -503,6 +518,11 @@ export const modulesData: Record<string, ModuleData> = {
         title: 'Buta Stok',
         desc: 'Sales menjual barang yang sebenarnya sudah habis, menyebabkan komplain dan pembatalan pesanan.',
         icon: Package,
+      },
+      {
+        title: 'Forecast Meleset',
+        desc: 'Target penjualan meleset jauh karena data pipeline tidak akurat dan terlalu optimis.',
+        icon: PieChart,
       },
     ],
     mobileAdvantage: {
@@ -623,6 +643,11 @@ export const modulesData: Record<string, ModuleData> = {
         desc: 'Direksi harus menunggu laporan manual akhir bulan untuk tahu kondisi perusahaan. Terlambat untuk bermanuver.',
         icon: Hourglass,
       },
+      {
+        title: 'Data Terisolasi',
+        desc: 'Pengambilan keputusan lambat karena data antar divisi terputus dan mengharuskan konsolidasi manual.',
+        icon: Network,
+      },
     ],
     mobileAdvantage: {
       title: 'Kedaulatan Data & Analisis',
@@ -732,6 +757,11 @@ export const modulesData: Record<string, ModuleData> = {
         desc: 'Tidak tahu lokasi aset perusahaan, jadwal service terlewat, dan umur aset tidak ter-tracking.',
         icon: Search,
       },
+      {
+        title: 'Rebutan Alat',
+        desc: 'Konflik penggunaan alat berat atau teknisi antar proyek menyebabkan downtime dan keterlambatan jadwal.',
+        icon: Users,
+      },
     ],
     cta: {
       text: 'Optimalkan eksekusi proyek dan operasional Anda.',
@@ -805,6 +835,11 @@ export const modulesData: Record<string, ModuleData> = {
         title: 'Tidak Ada Feedback Loop',
         desc: 'Tidak pernah survey kepuasan pelanggan, tidak tahu NPS score, dan tidak bisa improve service.',
         icon: HelpCircle,
+      },
+      {
+        title: 'Tiket Manual',
+        desc: 'Tim support input tiket manual dari WhatsApp ke Excel. Risiko data hilang tinggi dan kerja dua kali.',
+        icon: FileSpreadsheet,
       },
     ],
     cta: {

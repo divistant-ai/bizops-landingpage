@@ -97,6 +97,11 @@ export const industriesData: Record<string, IndustryData> = {
         desc: 'Kelola SPK Subkon, pantau progress, dan hitung otomatis potongan retensi 5% serta PPh 4(2).',
         icon: Users,
       },
+      {
+        title: 'Material Transfer',
+        desc: 'Cegah pemborosan dengan memindahkan sisa material layak pakai ke proyek lain secara teradministrasi.',
+        icon: ArrowLeftRight,
+      },
     ],
     faqs: [
       {
@@ -218,6 +223,11 @@ export const industriesData: Record<string, IndustryData> = {
         title: 'Smart Reorder',
         desc: 'Sistem memberitahu barang apa yang harus dibeli (Restock) berdasarkan tren penjualan terlaris.',
         icon: RefreshCw,
+      },
+      {
+        title: 'Loyalty Program',
+        desc: 'Tingkatkan retensi pelanggan dengan sistem poin member dan voucher promo yang terintegrasi di POS.',
+        icon: Target,
       },
     ],
     faqs: [
@@ -341,6 +351,11 @@ export const industriesData: Record<string, IndustryData> = {
         desc: 'Karyawan cek jadwal shift, slip gaji, dan sisa cuti langsung dari HP sendiri. Kurangi tanya-tanya ke admin.',
         icon: Smartphone,
       },
+      {
+        title: 'Digital Contract',
+        desc: 'Kelola kontrak PKWT ribuan karyawan dengan notifikasi otomatis 30 hari sebelum masa kontrak habis.',
+        icon: FileText,
+      },
     ],
     faqs: [
       {
@@ -463,6 +478,11 @@ export const industriesData: Record<string, IndustryData> = {
         title: 'Profit per Group',
         desc: 'Laba rugi dihitung otomatis per keberangkatan (Revenue dari Jamaah - Cost Vendor) secara akurat.',
         icon: PieChart,
+      },
+      {
+        title: 'Jamaah App',
+        desc: 'Panduan manasik, jadwal kegiatan, dan do\'a harian dalam genggaman jamaah. Tingkatkan pengalaman spiritual.',
+        icon: Smartphone,
       },
     ],
     faqs: [
@@ -591,6 +611,11 @@ export const industriesData: Record<string, IndustryData> = {
         desc: 'Visualisasi siapa yang overload dan siapa yang idle. Alokasikan tim dengan lebih bijak.',
         icon: Users,
       },
+      {
+        title: 'CRM Integration',
+        desc: 'Konversi otomatis dari \'Won Deal\' di CRM menjadi \'Active Project\' lengkap dengan budget dan team.',
+        icon: ArrowLeftRight,
+      },
     ],
     faqs: [
       {
@@ -711,6 +736,11 @@ export const industriesData: Record<string, IndustryData> = {
         title: 'Work Order Tracking',
         desc: 'Pantau status barang di setiap stasiun kerja (Potong, Jahit, Packing) secara real-time via tablet.',
         icon: Clipboard,
+      },
+      {
+        title: 'Machine Care',
+        desc: 'Jadwal maintenance mesin preventif otomatis. Kurangi downtime tak terduga yang mengganggu produksi.',
+        icon: Wrench,
       },
     ],
     faqs: [
@@ -833,6 +863,11 @@ export const industriesData: Record<string, IndustryData> = {
         title: 'Standardized Master',
         desc: 'Paksa standarisasi COA, Kode Barang, dan Vendor di seluruh grup untuk data yang bersih.',
         icon: Database,
+      },
+      {
+        title: 'Group Budget',
+        desc: 'Kontrol pagu anggaran (Budget Ceiling) lintas anak perusahaan. Cegah overspending di level grup.',
+        icon: ShieldCheck,
       },
     ],
     faqs: [
@@ -1561,6 +1596,18 @@ export const rolesData: Record<string, RoleData> = {
         gainDesc:
           'Drill-down dari laporan global hingga ke level transaksi tunggal untuk audit instan.',
       },
+      {
+        pain: 'Budaya Silo',
+        context: 'Departemen berjalan sendiri-sendiri vs Satu Tujuan (OKR tracking).',
+        gain: 'Penyelarasan Terpadu',
+        gainDesc: 'Turunkan OKR dari atas ke bawah. Pastikan semua orang bergerak ke tujuan strategis yang sama.',
+      },
+      {
+        pain: 'Eksekusi Lambat',
+        context: 'Ide bagus butuh berbulan-bulan untuk dieksekusi karena birokrasi persetujuan.',
+        gain: 'Kecepatan Agile',
+        gainDesc: 'Ratakan hirarki persetujuan dengan alur kerja otomatis. Percepat keputusan kritis.',
+      },
     ],
     metrics: [
       { value: 'Real-time', label: 'Cashflow Visibility' },
@@ -1604,6 +1651,18 @@ export const rolesData: Record<string, RoleData> = {
         gainDesc:
           'Sistem memblokir PO/PR secara otomatis jika budget pos tersebut sudah habis. Zero leakage.',
       },
+      {
+        pain: 'Kas Terjerat',
+        context: 'AR days tinggi dan penagihan lambat menjebak modal kerja.',
+        gain: 'Cashflow Lebih Cepat',
+        gainDesc: 'Penagihan otomatis dan pengingat pembayaran mengurangi Days Sales Outstanding (DSO) secara signifikan.',
+      },
+      {
+        pain: 'Risiko Fraud',
+        context: 'Pembayaran manual rawan kecurangan internal atau serangan phishing.',
+        gain: 'Pembayaran Aman',
+        gainDesc: 'Matriks persetujuan digital dan pencocokan 3 arah memastikan setiap sen terverifikasi.',
+      },
     ],
     metrics: [
       { value: '100%', label: 'Budget Accuracy' },
@@ -1645,6 +1704,18 @@ export const rolesData: Record<string, RoleData> = {
         gain: 'Auto Compliance',
         gainDesc:
           'Sistem selalu diperbarui mengikuti regulasi tarif pajak PPh 21 dan BPJS Ketenagakerjaan terbaru.',
+      },
+      {
+        pain: 'Kekacauan Rekrutmen',
+        context: 'CV hilang dan jadwal interview terlupakan membuat kandidat terbaik lepas.',
+        gain: 'Pipeline Talenta',
+        gainDesc: 'Applicant Tracking System (ATS) terpusat menjaga data kandidat tetap terorganisir.',
+      },
+      {
+        pain: 'Keterlibatan Rendah',
+        context: 'Karyawan diam dan turnover tinggi karena kurangnya saluran umpan balik.',
+        gain: 'Umpan Balik Rutin',
+        gainDesc: 'Survei rutin dan umpan balik anonim untuk mengukur dan meningkatkan sentimen karyawan.',
       },
     ],
     metrics: [
@@ -1688,6 +1759,18 @@ export const rolesData: Record<string, RoleData> = {
         gainDesc:
           'Arsitektur Docker yang stabil, CI/CD ready, dan update OTA (Over-The-Air) yang mulus.',
       },
+      {
+        pain: 'Celah Keamanan',
+        context: 'Data sensitif perusahaan rawan bocor karena kontrol akses yang lemah.',
+        gain: 'Keamanan Enterprise',
+        gainDesc: 'Role-Based Access Control (RBAC) dan log audit terperinci memastikan kedaulatan data.',
+      },
+      {
+        pain: 'Integrasi Rumit',
+        context: 'Mimpi buruk integrasi point-to-point antara sistem legacy yang terpisah.',
+        gain: 'API Mulus',
+        gainDesc: 'REST API standar dan webhooks membuat koneksi dengan aplikasi pihak ketiga jadi mudah.',
+      },
     ],
     metrics: [
       { value: '99.9%', label: 'System Uptime' },
@@ -1730,6 +1813,18 @@ export const rolesData: Record<string, RoleData> = {
         gain: 'Smart Inventory Control',
         gainDesc:
           'Sistem menghitung re-order point otomatis berdasarkan tren penjualan historis. Cegah stockout tanpa overstock.',
+      },
+      {
+        pain: 'Biaya Bengkak',
+        context: 'Proyek sering over budget karena kurangnya pelacakan biaya real-time.',
+        gain: 'Costing Real-time',
+        gainDesc: 'Lacak biaya aktual vs budget secara real-time. Dapatkan peringatan sebelum budget terlampaui.',
+      },
+      {
+        pain: 'Masalah Vendor',
+        context: 'Pengiriman terlambat dan kualitas buruk dari vendor mengganggu jadwal produksi.',
+        gain: 'Skor Vendor',
+        gainDesc: 'Evaluasi vendor berbasis data berdasarkan performa pengiriman dan metrik kualitas.',
       },
     ],
     metrics: [
@@ -1776,6 +1871,18 @@ export const rolesData: Record<string, RoleData> = {
         gainDesc:
           'AI-powered forecasting berdasarkan historical data dan pipeline velocity. Prediksi revenue akurat untuk planning bisnis.',
       },
+      {
+        pain: 'Respon Lambat',
+        context: 'Leads masuk jadi dingin karena sales reps terlalu lama merespon.',
+        gain: 'Engagement Instan',
+        gainDesc: 'Routing otomatis leads ke rep yang tepat dengan notifikasi instan.',
+      },
+      {
+        pain: 'Admin Manual',
+        context: 'Sales reps benci input data, menyebabkan data CRM tidak lengkap.',
+        gain: 'Auto-Logging',
+        gainDesc: 'Sinkronisasi email dan meeting kalender ke timeline deal secara otomatis. Tidak ada lagi input manual.',
+      },
     ],
     metrics: [
       { value: '3x', label: 'Conversion Rate' },
@@ -1818,6 +1925,18 @@ export const rolesData: Record<string, RoleData> = {
         gain: 'Price Intelligence',
         gainDesc:
           'Tracking harga historis per item dan vendor. Analisis trend untuk leverage negosiasi dan achieve cost savings.',
+      },
+      {
+        pain: 'Risiko Vendor',
+        context: 'Ketergantungan pada satu supplier atau vendor yang tidak stabil secara finansial.',
+        gain: 'Mitigasi Risiko',
+        gainDesc: 'Pantau kesehatan vendor dan diversifikasi rantai pasok dengan strategi multi-sourcing.',
+      },
+      {
+        pain: 'Proses PO Lambat',
+        context: 'Tanda tangan basah manual untuk persetujuan PO menunda pembelian kritis.',
+        gain: 'Persetujuan Digital',
+        gainDesc: 'Alur kerja persetujuan mobile-first membiarkan manajer menyetujui PO dari mana saja, kapan saja.',
       },
     ],
     metrics: [

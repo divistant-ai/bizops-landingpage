@@ -26,7 +26,7 @@ export default function RolePage({ data }: RolePageProps) {
   // Breadcrumbs
   const heroBreadcrumbs = [
     { label: 'Roles', path: '#' }, // Could point to a roles overview if it existed
-    { label: data.title, path: '#' },
+    { label: data.title, path: `/role/${data.title.toLowerCase().replace(/\s+/g, '-')}` }, // Placeholder slug generation
   ];
 
   // Map app IDs to actual App Data for AppsGridSection

@@ -66,7 +66,7 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
             </Link>
           </li>
           {defaultItems.map((item, index) => (
-            <li key={item.path} className="flex items-center">
+            <li key={`${item.path}-${index}`} className="flex items-center">
               <ChevronRight className="mx-1 h-4 w-4 text-slate-400 dark:text-slate-600" />
               <Link
                 href={item.path}
