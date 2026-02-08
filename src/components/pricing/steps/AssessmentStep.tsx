@@ -2,40 +2,134 @@
 
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Rocket } from 'lucide-react';
-import React from 'react';
+import dynamic from 'next/dynamic';
+import React, { Suspense, useState } from 'react';
 
 import Button from '../../ui/Button';
-import { StepIndicator, SummaryPanel } from '../components';
+import { EmailCaptureModal, StepIndicator, SummaryPanel } from '../components';
 import { usePricingContext } from '../PricingContext';
-import {
-  BusinessModulesStep,
-  CompanyProfileStep,
-  InfrastructureStep,
-  IntegrationStep,
-  ReviewDataStep,
-  TimelineSLAStep,
-} from './assessment';
+
+// Dynamic imports untuk code splitting
+const CurrentSoftwareStep = dynamic(
+  () => import('./assessment/CurrentSoftwareStep').then(mod => mod.CurrentSoftwareStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const CompanyProfileStep = dynamic(
+  () => import('./assessment/CompanyProfileStep').then(mod => mod.CompanyProfileStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const InfrastructureStep = dynamic(
+  () => import('./assessment/InfrastructureStep').then(mod => mod.InfrastructureStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const BusinessModulesStep = dynamic(
+  () => import('./assessment/BusinessModulesStep').then(mod => mod.BusinessModulesStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const IntegrationStep = dynamic(
+  () => import('./assessment/IntegrationStep').then(mod => mod.IntegrationStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const TimelineSLAStep = dynamic(
+  () => import('./assessment/TimelineSLAStep').then(mod => mod.TimelineSLAStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+const ReviewDataStep = dynamic(
+  () => import('./assessment/ReviewDataStep').then(mod => mod.ReviewDataStep),
+  { loading: () => <StepSkeleton /> },
+);
+
+// Loading skeleton untuk dynamic imports
+function StepSkeleton() {
+  return (
+    <div className="space-y-6 p-4">
+      <div className="h-8 w-3/4 animate-pulse rounded-lg bg-slate-200 dark:bg-slate-800" />
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="h-32 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />
+        <div className="h-32 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />
+      </div>
+      <div className="h-24 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />
+    </div>
+  );
+}
 
 const AssessmentStep: React.FC = () => {
-  const {
-    assessmentStep,
-    isTransitioning,
-    changeStep,
-  } = usePricingContext();
+  const { assessmentStep, setAssessmentStep, isTransitioning, changeStep, setContactInfo }
+    = usePricingContext();
+  const [showEmailModal, setShowEmailModal] = useState(false);
+
+  // Handle next step with email capture logic
+  const handleNextStep = () => {
+    if (assessmentStep < 7) {
+      setAssessmentStep(assessmentStep + 1);
+    } else {
+      changeStep('jump', 'recommendation');
+    }
+  };
+
+  // Handle email submission
+  const handleEmailSubmit = (email: string) => {
+    setContactInfo(prev => ({ ...prev, email }));
+    setShowEmailModal(false);
+
+    // Track email capture
+    if (typeof window !== 'undefined') {
+      if ((window as any).posthog) {
+        (window as any).posthog.capture('pricing_email_captured', {
+          step: assessmentStep,
+          source: 'step_1_to_2_modal',
+        });
+      }
+      if ((window as any).gtag) {
+        (window as any).gtag('event', 'pricing_email_captured', {
+          step: assessmentStep,
+          source: 'step_1_to_2_modal',
+        });
+      }
+    }
+
+    // Continue to next step
+    setAssessmentStep(assessmentStep + 1);
+  };
+
+  // Handle skip email capture
+  const handleEmailSkip = () => {
+    setShowEmailModal(false);
+
+    // Track skip
+    if (typeof window !== 'undefined') {
+      if ((window as any).posthog) {
+        (window as any).posthog.capture('pricing_email_skipped', {
+          step: assessmentStep,
+        });
+      }
+    }
+
+    // Still continue to next step
+    setAssessmentStep(assessmentStep + 1);
+  };
 
   const renderStepContent = () => {
     switch (assessmentStep) {
       case 1:
-        return <CompanyProfileStep />;
+        return <CurrentSoftwareStep />;
       case 2:
-        return <InfrastructureStep />;
+        return <CompanyProfileStep />;
       case 3:
-        return <BusinessModulesStep />;
+        return <InfrastructureStep />;
       case 4:
-        return <IntegrationStep />;
+        return <BusinessModulesStep />;
       case 5:
-        return <TimelineSLAStep />;
+        return <IntegrationStep />;
       case 6:
+        return <TimelineSLAStep />;
+      case 7:
         return <ReviewDataStep />;
       default:
         return null;
@@ -43,62 +137,75 @@ const AssessmentStep: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full flex-col overflow-hidden pb-20 lg:pb-0">
+    <div className="flex h-full flex-col overflow-hidden bg-slate-50 pb-20 lg:pb-0 dark:bg-slate-950">
       <div className="shrink-0 pt-4 pb-2">
         <StepIndicator />
       </div>
 
-      <div className="flex grow overflow-hidden">
-        {/* Left Panel: Interaction */}
-        <motion.div
-          key={assessmentStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-          className="scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex-1 overflow-y-auto px-4 py-6"
-        >
-          <div className="mx-auto max-w-2xl">
-            {renderStepContent()}
-          </div>
-        </motion.div>
+      <div className="grid flex-1 gap-6 overflow-hidden lg:grid-cols-12 lg:gap-0">
+        {/* Main Content Area */}
+        <div className="relative flex flex-col overflow-hidden lg:col-span-9">
+          <motion.div
+            key={assessmentStep}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: isTransitioning ? 0 : 1, x: isTransitioning ? -20 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex-1 overflow-y-auto px-6 py-4"
+          >
+            <Suspense fallback={<StepSkeleton />}>{renderStepContent()}</Suspense>
+          </motion.div>
+        </div>
 
-        {/* Right Panel: Summary */}
-        <div className="hidden w-[320px] shrink-0 lg:block">
-          <SummaryPanel />
+        {/* Summary Panel - Desktop Only */}
+        <div className="hidden lg:col-span-3 lg:block">
+          <div className="sticky top-0 h-full">
+            <SummaryPanel />
+          </div>
         </div>
       </div>
 
-      {/* Footer Nav (Mobile Only) */}
-      <div className="bg-dark-bg/80 fixed right-0 bottom-0 left-0 z-20 flex items-center justify-between border-t border-white/10 p-4 backdrop-blur-md lg:hidden">
-        <Button
-          variant="ghost"
-          onClick={() => changeStep('prev')}
-          disabled={assessmentStep === 1 || isTransitioning}
-          className="h-10 px-4 text-sm font-medium text-slate-400 hover:text-white"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
-        </Button>
-        {assessmentStep < 6 ? (
+      {/* Navigation Buttons */}
+      <div className="shrink-0 border-t border-slate-200 bg-white pt-4 pb-4 dark:border-slate-800 dark:bg-slate-950">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4">
           <Button
-            variant="primary"
-            onClick={() => changeStep('next')}
-            className="shadow-primary-500/20 h-10 rounded-full bg-white px-6 text-sm font-bold text-slate-900 shadow-lg hover:bg-slate-200"
+            variant="ghost"
+            onClick={() => changeStep('prev')}
+            disabled={assessmentStep === 1}
+            className="gap-2"
           >
-            Next Step
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" />
+            Sebelumnya
           </Button>
-        ) : (
+
           <Button
-            variant="primary"
-            onClick={() => changeStep('jump', 'recommendation')}
-            className="h-10 rounded-full bg-emerald-500 px-8 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-400"
+            onClick={handleNextStep}
+            className="gap-2 bg-blue-600 text-white hover:bg-blue-700"
           >
-            Calculate Price
-            <Rocket className="ml-2 h-4 w-4" />
+            {assessmentStep === 7 ? (
+              <>
+                Lihat Rekomendasi
+                <Rocket className="h-4 w-4" />
+              </>
+            ) : (
+              <>
+                Selanjutnya
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
           </Button>
-        )}
+        </div>
+      </div>
+
+      {/* Email Capture Modal */}
+      <EmailCaptureModal
+        isOpen={showEmailModal}
+        onClose={handleEmailSkip}
+        onSubmit={handleEmailSubmit}
+      />
+
+      {/* Mobile Summary Panel */}
+      <div className="fixed right-0 bottom-0 left-0 border-t border-slate-200 bg-white lg:hidden dark:border-slate-800 dark:bg-slate-950">
+        <SummaryPanel />
       </div>
     </div>
   );

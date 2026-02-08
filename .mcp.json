@@ -3,6 +3,10 @@
     "next-devtools": {
       "command": "npx",
       "args": ["-y", "next-devtools-mcp@latest"]
+    },
+    "qmd": {
+      "command": "bash",
+      "args": ["scripts/qmd-mcp.sh"]
     }
   }
 }

@@ -1,90 +1,76 @@
 'use client';
 
-import {
-  Activity,
-  BarChart3,
-  Briefcase,
-  Factory,
-  FileCheck,
-  Globe,
-  Headphones,
-  LayoutGrid,
-  Package,
-  PieChart,
-  Settings,
-  ShoppingCart,
-  Store,
-  Truck,
-  UserCheck,
-  Users,
-  Wallet,
-} from 'lucide-react';
+import { Activity, LayoutGrid, Settings } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
+import {
+  ADVANCED_MODULES,
+  CORE_MODULES,
+  SPECIALIZED_MODULES,
+} from '../../../../data/pricingAssessmentModules';
 import { ModuleSelector } from '../../components/ModuleSelector';
 
-const CORE_MODULES = [
-  { key: 'needsCRM' as const, label: 'CRM & Sales', desc: 'Leads, Pipeline, Quotation', icon: UserCheck },
-  { key: 'needsAccounting' as const, label: 'Finance', desc: 'Jurnal, Neraca, Laba Rugi', icon: Wallet },
-  { key: 'needsInventory' as const, label: 'Inventory', desc: 'Stock, Warehouse, Transfer', icon: Package },
-  { key: 'needsProcurement' as const, label: 'Procurement', desc: 'PO, PR, Supplier Portal', icon: ShoppingCart },
-  { key: 'needsHRM' as const, label: 'HRM & Payroll', desc: 'Absensi, Cuti, Gaji, PPh21', icon: Users },
-];
-
-const SPECIALIZED_MODULES = [
-  { key: 'needsManufacturing' as const, label: 'Manufacturing', desc: 'BOM, Work Order, Planning', icon: Factory },
-  { key: 'needsProjectMgmt' as const, label: 'Project Management', desc: 'Task, Timesheet, Costing', icon: Briefcase },
-  { key: 'needsAssetMgmt' as const, label: 'Asset Management', desc: 'Maintenance, Depreciation', icon: BarChart3 },
-  { key: 'needsHelpdesk' as const, label: 'Helpdesk', desc: 'Ticket, SLA, Customer Portal', icon: Headphones },
-  { key: 'needsPOS' as const, label: 'Point of Sales', desc: 'Kasir Retail / F&B', icon: Store },
-  { key: 'needsEcommerce' as const, label: 'E-Commerce', desc: 'Webstore & Payment Gateway', icon: Globe },
-];
-
-const ADVANCED_MODULES = [
-  { key: 'needsQualityControl' as const, label: 'Quality Control', desc: 'Inspections & Goals', icon: Activity },
-  { key: 'needsFleet' as const, label: 'Fleet Management', desc: 'Vehicle Tracking & Fuel', icon: Truck },
-  { key: 'needsDMS' as const, label: 'Document Management', desc: 'Digital Archive & Versioning', icon: FileCheck },
-  { key: 'needsBI' as const, label: 'Business Intelligence', desc: 'Advanced Dashboard', icon: PieChart },
-];
-
 export function BusinessModulesStep() {
+  const t = useTranslations('Pricing');
   return (
-    <div className="space-y-8">
-      <div className="mb-6 text-center">
-        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-          Business Modules
+    <div className="mx-auto max-w-5xl space-y-12">
+      <div className="text-center">
+        <h2 className="bg-linear-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:via-slate-200 dark:to-white">
+          {t('calculator_step_modules')}
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          Pilih fungsionalitas yang dibutuhkan operasional Anda.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+          Pilih modul yang sesuai dengan kebutuhan operasional bisnis Anda.
+          <br className="hidden sm:block" />
+          <span className="text-sm font-medium text-slate-500">
+            Biaya disesuaikan dengan kompleksitas modul yang dipilih.
+          </span>
         </p>
       </div>
 
-      {/* Core Operations */}
-      <div>
-        <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-          <LayoutGrid className="h-3 w-3" />
-          Core Operations
-        </h4>
-        <ModuleSelector modules={CORE_MODULES} />
-      </div>
+      <div className="space-y-10">
+        {/* Core Operations */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3 dark:border-white/10">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100/50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+              <LayoutGrid className="h-5 w-5" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white">Core Operations</h4>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Modul dasar untuk fondasi operasional perusahaan.</p>
+            </div>
+          </div>
+          <ModuleSelector modules={CORE_MODULES} />
+        </section>
 
-      {/* Specialized */}
-      <div>
-        <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-          <Settings className="h-3 w-3" />
-          Specialized
-        </h4>
-        <ModuleSelector modules={SPECIALIZED_MODULES} />
-      </div>
+        {/* Specialized */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3 dark:border-white/10">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100/50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400">
+              <Settings className="h-5 w-5" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white">Specialized Modules</h4>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Fungsionalitas spesifik untuk industri tertentu.</p>
+            </div>
+          </div>
+          <ModuleSelector modules={SPECIALIZED_MODULES} />
+        </section>
 
-      {/* Advanced */}
-      <div>
-        <h4 className="mb-3 flex items-center gap-2 text-xs font-bold tracking-wider text-slate-900 uppercase dark:text-white">
-          <Activity className="h-3 w-3" />
-          Advanced
-        </h4>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
-          <ModuleSelector modules={ADVANCED_MODULES} />
-        </div>
+        {/* Advanced */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3 dark:border-white/10">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100/50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400">
+              <Activity className="h-5 w-5" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white">Advanced Add-ons</h4>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Tingkatkan efisiensi dengan otomatisasi dan analitik.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ModuleSelector modules={ADVANCED_MODULES} />
+          </div>
+        </section>
       </div>
     </div>
   );

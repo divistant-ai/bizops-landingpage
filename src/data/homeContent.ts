@@ -1,22 +1,25 @@
 import {
   BarChart,
   Briefcase,
+  Building,
+  Building2,
   Calculator,
   Code,
-  Coffee,
   CreditCard,
   Database,
   DollarSign,
+  Factory,
   FileText,
   Fingerprint,
   HardHat,
   HeadphonesIcon,
-  Heart,
+  HeartPulse,
+  Landmark,
   LayoutDashboard,
   Link as LinkIcon,
   MessageCircle,
   MonitorPlay,
-  Puzzle,
+  Plane,
   Rocket,
   ShieldCheck,
   ShoppingBag,
@@ -24,7 +27,9 @@ import {
   Smartphone,
   TrendingUp,
   Truck,
+  UserCheck,
   Users,
+  UtensilsCrossed,
   Zap,
 } from 'lucide-react';
 
@@ -315,35 +320,65 @@ export const homeIntegrations = [
 ];
 
 export const getHomeIndustriesData = (t: (key: string) => string) => ({
-  manufacturing: {
-    title: t('Homepage.industries_data.manufacturing_title'),
-    description: t('Homepage.industries_data.manufacturing_desc'),
-    icon: Puzzle,
-  },
-  retail: {
-    title: t('Homepage.industries_data.retail_title'),
-    description: t('Homepage.industries_data.retail_desc'),
-    icon: Truck,
-  },
-  services: {
-    title: t('Homepage.industries_data.services_title'),
-    description: t('Homepage.industries_data.services_desc'),
-    icon: Briefcase,
-  },
   construction: {
     title: t('Homepage.industries_data.construction_title'),
     description: t('Homepage.industries_data.construction_desc'),
     icon: HardHat,
   },
-  fnb: {
-    title: t('Homepage.industries_data.fnb_title'),
-    description: t('Homepage.industries_data.fnb_desc'),
-    icon: Coffee,
+  retail: {
+    title: t('Homepage.industries_data.retail_title'),
+    description: t('Homepage.industries_data.retail_desc'),
+    icon: ShoppingCart,
+  },
+  outsourcing: {
+    title: t('Homepage.industries_data.outsourcing_title'),
+    description: t('Homepage.industries_data.outsourcing_desc'),
+    icon: UserCheck,
+  },
+  travel: {
+    title: t('Homepage.industries_data.travel_title'),
+    description: t('Homepage.industries_data.travel_desc'),
+    icon: Plane,
+  },
+  consulting: {
+    title: t('Homepage.industries_data.consulting_title'),
+    description: t('Homepage.industries_data.consulting_desc'),
+    icon: Briefcase,
+  },
+  manufacturing: {
+    title: t('Homepage.industries_data.manufacturing_title'),
+    description: t('Homepage.industries_data.manufacturing_desc'),
+    icon: Factory,
+  },
+  enterprise: {
+    title: t('Homepage.industries_data.enterprise_title'),
+    description: t('Homepage.industries_data.enterprise_desc'),
+    icon: Building,
+  },
+  bfsi: {
+    title: t('Homepage.industries_data.bfsi_title'),
+    description: t('Homepage.industries_data.bfsi_desc'),
+    icon: Landmark,
+  },
+  realestate: {
+    title: t('Homepage.industries_data.realestate_title'),
+    description: t('Homepage.industries_data.realestate_desc'),
+    icon: Building2,
   },
   healthcare: {
     title: t('Homepage.industries_data.healthcare_title'),
     description: t('Homepage.industries_data.healthcare_desc'),
-    icon: Heart,
+    icon: HeartPulse,
+  },
+  fnb: {
+    title: t('Homepage.industries_data.fnb_title'),
+    description: t('Homepage.industries_data.fnb_desc'),
+    icon: UtensilsCrossed,
+  },
+  logistics: {
+    title: t('Homepage.industries_data.logistics_title'),
+    description: t('Homepage.industries_data.logistics_desc'),
+    icon: Truck,
   },
 });
 

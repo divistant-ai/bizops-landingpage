@@ -41,6 +41,10 @@ export type AssessmentData = {
   supportLevel: string;
   goLiveTimeline: string;
   trainingPreference: 'online' | 'hybrid' | 'onsite';
+  currentSoftware: string;
+  currentPainPoints: string[];
+  otherSoftwareUsed: string[];
+  servicesInterest?: string[];
 };
 
 // Contact info type
@@ -95,6 +99,10 @@ export const defaultAssessment: AssessmentData = {
   supportLevel: 'standard',
   goLiveTimeline: '3months',
   trainingPreference: 'online',
+  currentSoftware: '',
+  currentPainPoints: [],
+  otherSoftwareUsed: [],
+  servicesInterest: [],
 };
 
 // Default contact info

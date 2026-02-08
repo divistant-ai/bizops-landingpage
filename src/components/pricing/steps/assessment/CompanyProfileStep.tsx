@@ -1,157 +1,136 @@
 'use client';
 
-import {
-  Building2,
-  Factory,
-  Globe,
-  GraduationCap,
-  HardHat,
-  Info,
-  MapPin,
-  MoreHorizontal,
-  Rocket,
-  Stethoscope,
-  Store,
-  UserCheck,
-  Users,
-} from 'lucide-react';
+import { Building2, Globe, Rocket } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-import { SelectableCard, Tooltip } from '../../components';
+import { industriesData as solutionsContent } from '@/data/solutionsContent';
+
 import { usePricingContext } from '../../PricingContext';
 
-const COMPANY_SIZES = [
-  { id: 'startup', title: 'Small Business', desc: 'Fokus pada efisiensi & growth.', icon: Rocket },
-  { id: 'sme', title: 'Medium (SME)', desc: 'Butuh kontrol operasional ketat.', icon: Building2 },
-  { id: 'enterprise', title: 'Large Enterprise', desc: 'Keamanan & kustomisasi tinggi.', icon: Globe },
-];
-
-const INDUSTRIES = [
-  { id: 'retail', name: 'Retail', icon: Store },
-  { id: 'manufacturing', name: 'Factory', icon: Factory },
-  { id: 'services', name: 'Service', icon: UserCheck },
-  { id: 'construction', name: 'Construction', icon: HardHat },
-  { id: 'education', name: 'Education', icon: GraduationCap },
-  { id: 'healthcare', name: 'Healthcare', icon: Stethoscope },
-  { id: 'fnb', name: 'Food & Beverage', icon: Info },
-  { id: 'other', name: 'Other', icon: MoreHorizontal },
-];
-
 export function CompanyProfileStep() {
+  const t = useTranslations('Pricing');
   const { assessment, updateAssessment } = usePricingContext();
 
+  const INDUSTRIES = Object.entries(solutionsContent).map(([id, content]) => ({
+    id,
+    name: content.title,
+    icon: content.icon,
+  }));
+
   return (
-    <div className="space-y-6">
-      <div className="mb-6 text-center">
-        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-          Company Profile
+    <div className="mx-auto max-w-4xl space-y-12">
+      <div className="text-center">
+        <h2 className="bg-linear-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:via-slate-200 dark:to-white">
+          {t('calculator_step_profile')}
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          Tentukan skala bisnis Anda untuk estimasi kapasitas server.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+          Mari mulai dengan memahami skala bisnis Anda untuk menentukan infrastruktur yang tepat.
         </p>
       </div>
 
-      {/* User Capacity Slider */}
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/5 dark:bg-white/5">
-        <div className="mb-4 flex items-center justify-between">
-          <label className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-            <Users className="text-primary-600 dark:text-primary-400 h-4 w-4" />
-            User Capacity
-            <Tooltip text="Jumlah total karyawan yang akan memiliki akses login ke sistem ERP." />
-          </label>
-          <span className="text-2xl font-black text-slate-800 dark:text-white">
-            {assessment.userCount}
-          </span>
-        </div>
-        <input
-          type="range"
-          min="5"
-          max="500"
-          step="5"
-          value={assessment.userCount}
-          onChange={e => updateAssessment('userCount', Number.parseInt(e.target.value))}
-          className="accent-primary-500 hover:accent-primary-600 dark:hover:accent-primary-400 h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 transition-all dark:bg-slate-700"
-        />
-        <div className="mt-2 flex justify-between text-[10px] font-medium tracking-wider text-slate-500 uppercase">
-          <span>Small Team (5-20)</span>
-          <span>Growing (50-100)</span>
-          <span>Enterprise (200+)</span>
-        </div>
-      </div>
+      <div className="grid gap-8 md:grid-cols-2">
+        {/* User Capacity Slider */}
+        <div className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-white/10 dark:bg-slate-900">
+          <div className="mb-6 flex items-center justify-between">
+            <label className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+              <div className="bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400 flex h-8 w-8 items-center justify-center rounded-lg">
+                <Rocket className="h-5 w-5" />
+              </div>
+              User Capacity
+            </label>
+            <div className="flex items-baseline gap-1">
+              <span className="text-3xl font-black text-slate-900 dark:text-white">
+                {assessment.userCount}
+              </span>
+              <span className="text-sm font-medium text-slate-500">users</span>
+            </div>
+          </div>
 
-      {/* Branch Count Slider */}
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/5 dark:bg-white/5">
-        <div className="mb-4 flex items-center justify-between">
-          <label className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-            <MapPin className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-            Branch / Warehouse
-            <Tooltip text="Jumlah lokasi fisik (kantor cabang, gudang, pabrik) yang akan terhubung." />
-          </label>
-          <span className="text-2xl font-black text-amber-600 dark:text-amber-400">
-            {assessment.branchCount}
-          </span>
+          <div className="relative mb-2 h-12 pt-4">
+            <input
+              type="range"
+              min="5"
+              max="500"
+              step="5"
+              value={assessment.userCount}
+              onChange={e => updateAssessment('userCount', Number.parseInt(e.target.value))}
+              className="accent-primary-600 hover:accent-primary-500 h-3 w-full cursor-pointer appearance-none rounded-full bg-slate-100 transition-all outline-none focus:ring-0 dark:bg-slate-800"
+            />
+            {/* Range Labels */}
+            <div className="mt-4 flex justify-between text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+              <span>Startup (5)</span>
+              <span>SME (50+)</span>
+              <span>Enterprise (200+)</span>
+            </div>
+          </div>
         </div>
-        <input
-          type="range"
-          min="1"
-          max="50"
-          step="1"
-          value={assessment.branchCount}
-          onChange={e => updateAssessment('branchCount', Number.parseInt(e.target.value))}
-          className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-amber-600 transition-all hover:accent-amber-700 dark:bg-slate-700 dark:accent-amber-500 dark:hover:accent-amber-400"
-        />
-      </div>
 
-      {/* Company Size Selection */}
-      <div className="grid grid-cols-3 gap-3">
-        {COMPANY_SIZES.map(opt => (
-          <SelectableCard
-            key={opt.id}
-            selected={assessment.companySize === opt.id}
-            onClick={() => updateAssessment('companySize', opt.id)}
-            {...opt}
-          />
-        ))}
+        {/* Branch Count Slider */}
+        <div className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-white/10 dark:bg-slate-900">
+          <div className="mb-6 flex items-center justify-between">
+            <label className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                <Building2 className="h-5 w-5" />
+              </div>
+              Locations
+            </label>
+            <div className="flex items-baseline gap-1">
+              <span className="text-3xl font-black text-slate-900 dark:text-white">
+                {assessment.branchCount}
+              </span>
+              <span className="text-sm font-medium text-slate-500">branches</span>
+            </div>
+          </div>
+
+          <div className="relative mb-2 h-12 pt-4">
+            <input
+              type="range"
+              min="1"
+              max="50"
+              step="1"
+              value={assessment.branchCount}
+              onChange={e => updateAssessment('branchCount', Number.parseInt(e.target.value))}
+              className="h-3 w-full cursor-pointer appearance-none rounded-full bg-slate-100 accent-amber-600 transition-all outline-none hover:accent-amber-500 focus:ring-0 dark:bg-slate-800"
+            />
+            <div className="mt-4 flex justify-between text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+              <span>Single HQ</span>
+              <span>Multi-Branch</span>
+              <span>National</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Industry Selection */}
-      <div>
-        <label className="mb-3 flex items-center gap-2 text-sm font-bold tracking-wider text-slate-700 uppercase dark:text-slate-400">
+      <div className="space-y-6">
+        <label className="flex items-center gap-2 text-sm font-bold tracking-wider text-slate-500 uppercase dark:text-slate-400">
+          <Globe className="h-4 w-4" />
           Industry Sector
-          <Tooltip text="Kami akan merekomendasikan modul spesifik berdasarkan industri Anda." />
         </label>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {INDUSTRIES.map(ind => (
             <div
               key={ind.id}
               onClick={() => updateAssessment('industry', ind.id)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  updateAssessment('industry', ind.id);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-pressed={assessment.industry === ind.id}
-              className={`flex cursor-pointer flex-col items-center gap-2 rounded-lg border p-2.5 transition-all duration-200 hover:scale-105 active:scale-95 ${
+              className={`group relative flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border p-4 text-center transition-all duration-300 ${
                 assessment.industry === ind.id
-                  ? 'scale-105 border-2 border-slate-900 bg-slate-100 shadow-[0_0_0_3px_rgba(15,23,42,0.1)] dark:border-white dark:bg-slate-800 dark:shadow-[0_0_0_3px_rgba(255,255,255,0.1)]'
-                  : 'border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 hover:shadow-md dark:border-slate-600 dark:bg-slate-800/50 dark:hover:border-slate-500 dark:hover:bg-slate-800'
+                  ? 'border-transparent bg-slate-900 shadow-xl ring-2 ring-slate-900 ring-offset-2 dark:bg-white dark:ring-white dark:ring-offset-slate-900'
+                  : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg dark:border-white/10 dark:bg-slate-900 dark:hover:border-white/20'
               }`}
             >
               <ind.icon
-                className={`h-4 w-4 transition-all duration-200 ${
+                className={`h-6 w-6 transition-transform duration-300 group-hover:scale-110 ${
                   assessment.industry === ind.id
-                    ? 'scale-110 text-slate-900 dark:text-white'
-                    : 'text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'
+                    ? 'text-white dark:text-slate-900'
+                    : 'text-slate-500 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'
                 }`}
               />
               <span
-                className={`text-xs font-semibold transition-colors ${
+                className={`text-xs leading-tight font-semibold ${
                   assessment.industry === ind.id
-                    ? 'text-slate-900 dark:text-white'
-                    : 'text-slate-700 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'
-                } text-center leading-tight`}
+                    ? 'text-white dark:text-slate-900'
+                    : 'text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'
+                }`}
               >
                 {ind.name}
               </span>

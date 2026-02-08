@@ -1,14 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, Printer } from 'lucide-react';
-import React, { useRef } from 'react';
+import { CheckCircle2, FileDown, FileSpreadsheet, MessageCircle, Printer } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import React, { useRef, useState } from 'react';
 import { addOns } from '../../../data/pricingData';
+import { bankAccount, contactWhatsApp } from '../../../data/siteConfig';
 import Button from '../../ui/Button';
 import { usePricingContext } from '../PricingContext';
+import { exportQuotationCsv } from '../utils/exportQuotationCsv';
+import { exportQuotationPdf } from '../utils/exportQuotationPdf';
 
 const ThankYouStep: React.FC = () => {
+  const t = useTranslations('Pricing');
   const quoteRef = useRef<HTMLDivElement>(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
   const {
     contactInfo,
     quotationId,
@@ -21,25 +27,46 @@ const ThankYouStep: React.FC = () => {
     handlePrint,
   } = usePricingContext();
 
+  const handleDownloadPdf = () => {
+    setPdfLoading(true);
+    exportQuotationPdf({
+      contactInfo,
+      quotationId,
+      selectedPlanData,
+      billingCycle,
+      selectedAddOns,
+      addOns,
+      calculations,
+      appliedDiscount,
+    }).finally(() => setPdfLoading(false));
+  };
+
+  const handleDownloadCsv = () => {
+    exportQuotationCsv({
+      contactInfo,
+      quotationId,
+      selectedPlanData,
+      billingCycle,
+      selectedAddOns,
+      addOns,
+      calculations,
+      appliedDiscount,
+    });
+  };
+
   return (
-    <div className="bg-dark-bg flex h-full items-center justify-center overflow-y-auto p-6">
+    <div className="dark:bg-dark-bg flex h-full items-center justify-center overflow-y-auto bg-slate-50 p-6">
       <div className="flex w-full max-w-4xl flex-col items-center">
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: 'spring', damping: 20 }}
-          className="mt-8 mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 shadow-[0_0_40px_rgba(16,185,129,0.3)] ring-1 ring-emerald-500/50"
+          className="mt-8 mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 shadow-xl ring-1 ring-emerald-500/20 dark:bg-emerald-500/10 dark:shadow-[0_0_40px_rgba(16,185,129,0.3)] dark:ring-emerald-500/50"
         >
-          <CheckCircle2 className="h-8 w-8 text-emerald-500" />
+          <CheckCircle2 className="h-8 w-8 text-emerald-600 dark:text-emerald-500" />
         </motion.div>
-        <h2 className="mb-2 text-3xl font-bold tracking-tight text-white">Penawaran Siap!</h2>
-        <p className="mb-8 text-base text-slate-400">
-          Dokumen resmi telah dikirim ke
-          <span className="font-bold text-white">
-            {' '}
-            {contactInfo.email}
-          </span>
-        </p>
+        <h2 className="mb-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{t('calculator_quote_ready')}</h2>
+        <p className="mb-8 text-base text-slate-600 dark:text-slate-400">{t('calculator_quote_subtitle')}</p>
 
         {/* Visible Quotation Preview */}
         <div className="relative mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-lg bg-white p-12 text-left text-slate-900 shadow-2xl">
@@ -206,7 +233,11 @@ const ThankYouStep: React.FC = () => {
               <h4 className="mb-2 font-sans text-sm font-bold text-slate-900">Payment Terms</h4>
               <ul className="list-disc space-y-1 pl-4 font-sans text-xs text-slate-600">
                 <li>Payment is due within 14 days of invoice date.</li>
-                <li>Bank transfer to BCA 1234567890 a/n PT Divistant Teknologi Indonesia.</li>
+                <li>
+                  Bank transfer to
+                  {bankAccount}
+                  .
+                </li>
                 <li>Please include invoice number in transfer description.</li>
               </ul>
             </div>
@@ -233,23 +264,66 @@ const ThankYouStep: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-12 flex gap-4">
+        <div className="mb-12 flex flex-wrap gap-4">
           <Button
             variant="primary"
-            onClick={handlePrint}
+            onClick={handleDownloadPdf}
+            disabled={pdfLoading}
             className="h-12 rounded-full bg-white px-8 font-bold text-slate-900 shadow-lg hover:bg-slate-200"
           >
+            <FileDown className="mr-2 h-4 w-4" />
+            {pdfLoading ? '...' : t('calculator_download_pdf')}
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleDownloadCsv}
+            className="h-12 rounded-full border border-white/30 bg-white/10 px-8 font-bold text-white hover:bg-white/20"
+          >
+            <FileSpreadsheet className="mr-2 h-4 w-4" />
+            {t('calculator_download_csv')}
+          </Button>
+          <Button
+            variant="outline"
+            onClick={handlePrint}
+            className="h-12 rounded-full border-slate-700 px-8 text-slate-300 hover:bg-white/5 hover:text-white"
+          >
             <Printer className="mr-2 h-4 w-4" />
-            {' '}
-            Download / Print PDF
+            {t('calculator_print')}
           </Button>
           <Button
             variant="outline"
             onClick={() => window.location.reload()}
             className="h-12 rounded-full border-slate-700 px-8 text-slate-300 hover:bg-white/5 hover:text-white"
           >
-            Buat Baru
+            {t('calculator_new')}
           </Button>
+          <a
+            href={`https://wa.me/${contactWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(
+              `Halo BizOps, saya ${contactInfo.firstName} dari ${contactInfo.company}. Saya sudah menerima penawaran ${quotationId} dan ingin berkonsultasi lebih lanjut.`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-12 items-center justify-center gap-2 rounded-full bg-linear-to-r from-green-500 to-emerald-600 px-8 font-bold text-white shadow-lg transition-transform hover:scale-105"
+            onClick={() => {
+              // Track WhatsApp click
+              if (typeof window !== 'undefined') {
+                if ((window as any).posthog) {
+                  (window as any).posthog.capture('pricing_whatsapp_clicked', {
+                    quotation_id: quotationId,
+                    session_id: (window as any).pricingSessionId,
+                  });
+                }
+                if ((window as any).gtag) {
+                  (window as any).gtag('event', 'pricing_whatsapp_clicked', {
+                    quotation_id: quotationId,
+                  });
+                }
+              }
+            }}
+          >
+            <MessageCircle className="h-5 w-5" />
+            {t('calculator_whatsapp')}
+          </a>
         </div>
       </div>
 
@@ -415,7 +489,11 @@ const ThankYouStep: React.FC = () => {
             <h4 className="mb-2 text-sm font-bold">Payment Terms</h4>
             <ul className="list-disc space-y-1 pl-4 text-xs text-slate-600">
               <li>Payment is due within 14 days of invoice date.</li>
-              <li>Bank transfer to BCA 1234567890 a/n PT Divistant Teknologi Indonesia.</li>
+              <li>
+                Bank transfer to
+                {bankAccount}
+                .
+              </li>
               <li>Please include invoice number in transfer description.</li>
             </ul>
           </div>

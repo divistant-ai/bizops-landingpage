@@ -6,6 +6,7 @@ import {
   HardDrive,
   Server,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { SelectableCard, Tooltip } from '../../components';
 import { OptionSelector } from '../../components/OptionSelector';
@@ -25,16 +26,17 @@ const SERVER_REGIONS = [
 ];
 
 export function InfrastructureStep() {
+  const t = useTranslations('Pricing');
   const { assessment, updateAssessment } = usePricingContext();
 
   return (
-    <div className="space-y-6">
-      <div className="mb-6 text-center">
-        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-          Infrastructure
+    <div className="mx-auto max-w-4xl space-y-12">
+      <div className="text-center">
+        <h2 className="bg-linear-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:via-slate-200 dark:to-white">
+          {t('calculator_step_tech')}
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          Pilih opsi hosting yang sesuai dengan kebijakan IT Anda.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+          Pilih opsi hosting yang sesuai dengan kebijakan IT dan kebutuhan performa Anda.
         </p>
       </div>
 
@@ -62,12 +64,12 @@ export function InfrastructureStep() {
         />
       </div>
 
-      {/* Multi-Entity Toggle */}
+      {/* Multi-Company Management — aligned with Platform capability multi-company-management */}
       <ToggleSwitch
         field="hasMultiCompany"
         icon={Globe2}
-        title="Multi-Entity Setup"
-        description="Untuk perusahaan holding dengan banyak anak perusahaan (PT) dalam satu sistem."
+        title="Multi-Company Management"
+        description="Untuk holding dengan banyak anak perusahaan (PT/CV) dalam satu sistem—konsolidasi laporan real-time. Selaras dengan capability Platform."
       />
     </div>
   );

@@ -1,19 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  Award,
-  Calculator,
-  Lock,
-  ShieldCheck,
-} from 'lucide-react';
+import { ArrowRight, Award, Calculator, Lock, ShieldCheck } from 'lucide-react';
 import React from 'react';
 import Container from '../../layout/Container';
 import { usePricingContext } from '../PricingContext';
+import { ResumeSessionBanner } from './ResumeSessionBanner';
 
 const PricingIntro: React.FC = () => {
-  const { setIsStarted } = usePricingContext();
+  const { setIsStarted, hasSavedData, clearSavedData } = usePricingContext();
 
   return (
     <motion.section
@@ -33,10 +28,21 @@ const PricingIntro: React.FC = () => {
         size="5xl"
         className="relative z-10 flex h-full flex-col items-center justify-center pb-20 text-center"
       >
+        {hasSavedData && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-2xl"
+          >
+            <ResumeSessionBanner onResume={() => setIsStarted(true)} onDismiss={clearSavedData} />
+          </motion.div>
+        )}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: hasSavedData ? 0.2 : 0 }}
           className="text-primary-600 dark:text-primary-300 mb-8 inline-flex cursor-default items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-bold tracking-widest uppercase shadow-lg backdrop-blur-md transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
         >
           <Calculator className="h-3 w-3" />

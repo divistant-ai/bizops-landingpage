@@ -816,6 +816,7 @@ export const industriesData: Record<string, IndustryData> = {
       },
     ],
   },
+
   enterprise: {
     title: 'Enterprise Group',
     subtitle: 'Satu Komando untuk Seluruh Gurita Bisnis.',

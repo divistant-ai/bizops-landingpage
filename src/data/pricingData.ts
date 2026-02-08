@@ -1,4 +1,5 @@
 // BizOps Pricing Model Data (Ultimate Version)
+import { BIZOPS_MODULES } from './modulesArchitecture';
 
 export type PricingPlan = {
   id: string;
@@ -25,6 +26,8 @@ export type FeatureCategory = {
   }[];
 };
 
+export type BillingType = 'recurring' | 'one-time';
+
 export type ServiceAddon = {
   id: string;
   name: string;
@@ -33,6 +36,7 @@ export type ServiceAddon = {
   unit: string;
   availableFor: string[];
   category: 'infrastructure' | 'implementation' | 'support' | 'integration' | 'managed-services';
+  billingType: BillingType;
   recommended?: boolean;
   tooltip?: string;
 };
@@ -67,11 +71,11 @@ export const pricingPlans: PricingPlan[] = [
     popular: true,
     cta: 'Konsultasi Paket Growth',
     features: [
-      'All ERP Modules (Manufacturing, Assets, Projects)',
+      'All 7 Core Modules (HR, Finance, CRM, Supply, etc.)',
+      'Industry Templates (Retail, Construction, Manufacturing)',
       'Recommended up to 200 Users',
       'Dedicated VPS Resource',
       'Priority Support (Chat/WA)',
-      'Advanced Reporting',
     ],
     recommendedFor: ['Multi-Branch', 'Manufacturing', 'Complex Workflow', 'API Integration'],
   },
@@ -96,73 +100,61 @@ export const pricingPlans: PricingPlan[] = [
 ];
 
 export const featureComparison: FeatureCategory[] = [
+
   {
-    category: 'Core ERP Features',
+    category: 'Core Modules (All 7 Modules Included)',
     features: [
-      { name: 'Accounting & Finance', business: true, growth: true, enterprise: true, description: 'GL, AP/AR, Banking, Tax' },
-      { name: 'HR & Payroll', business: true, growth: true, enterprise: true, description: 'Employee, Payroll, Leave' },
-      { name: 'Sales & CRM', business: true, growth: true, enterprise: true, description: 'Leads, Quotation, Invoice' },
-      { name: 'Procurement & Inventory', business: true, growth: true, enterprise: true, description: 'PO, Stock, Multi-warehouse' },
-      { name: 'Asset Management', business: false, growth: true, enterprise: true, description: 'Depreciation, Tracking' },
-      { name: 'Manufacturing', business: false, growth: true, enterprise: true, description: 'BOM, Production Planning' },
-      { name: 'Project Management', business: false, growth: true, enterprise: true, description: 'Tasks, Timesheets, Billing' },
-      { name: 'Quality Control', business: false, growth: true, enterprise: true, description: 'Inspections & Goals' },
-      { name: 'Helpdesk / Support', business: false, growth: true, enterprise: true, description: 'Ticketing System' },
-      { name: 'Website Builder', business: false, growth: true, enterprise: true, description: 'Company Profile / Portal' },
+      { name: `${BIZOPS_MODULES.people.name} (HRIS)`, business: true, growth: true, enterprise: true, description: 'Payroll, Attendance, Employee Self-Service, Recruitment' },
+      { name: `${BIZOPS_MODULES.money.name} (Finance)`, business: true, growth: true, enterprise: true, description: 'Accounting, Invoicing, Budgeting, Multi-Currency' },
+      { name: `${BIZOPS_MODULES.supply.name} (Inventory)`, business: true, growth: true, enterprise: true, description: 'Stock, Purchasing, Manufacturing, Quality Control' },
+      { name: `${BIZOPS_MODULES.growth.name} (CRM)`, business: true, growth: true, enterprise: true, description: 'Sales Pipeline, Quotation, Support Helpdesk' },
+      { name: `${BIZOPS_MODULES.work.name} (Projects)`, business: true, growth: true, enterprise: true, description: 'Project Management, Timesheets, Asset Management' },
+      { name: `${BIZOPS_MODULES.care.name} (Support)`, business: true, growth: true, enterprise: true, description: 'Ticketing System, Knowledge Base, Customer Portal' },
+      { name: `${BIZOPS_MODULES.hub.name} (Governance)`, business: true, growth: true, enterprise: true, description: 'Approval Matrix, Basic Audit Trail, User Rights' },
     ],
   },
   {
-    category: 'Employee Mobile App (ESS)',
+    category: 'Platform Capabilities',
     features: [
-      { name: 'Mobile Attendance (GPS)', business: true, growth: true, enterprise: true, description: 'Check-in/out via App' },
-      { name: 'Leave & Expense Request', business: true, growth: true, enterprise: true, description: 'Self-service submission' },
-      { name: 'Payslip Download', business: true, growth: true, enterprise: true, description: 'PDF Payslip access' },
-      { name: 'Approval Workflow', business: 'Standard', growth: 'Advanced Multi-level', enterprise: 'Custom Logic' },
-      { name: 'Team Dashboard', business: false, growth: true, enterprise: true, description: 'Manager view' },
-      { name: 'Shift Scheduling', business: false, growth: true, enterprise: true, description: 'Roster & swap request' },
-      { name: 'Overtime Request', business: false, growth: true, enterprise: true, description: 'Calculated overtime' },
-      { name: 'Company Announcement', business: false, growth: true, enterprise: true, description: 'Broadcast news' },
-      { name: 'Whitelabel App', business: false, growth: false, enterprise: true, description: 'Custom Logo & Branding' },
-      { name: 'Custom App Features', business: false, growth: false, enterprise: true, description: 'Bespoke development' },
+      { name: 'User & Role Management', business: 'Standard', growth: 'Advanced', enterprise: 'Unlimited Custom Roles' },
+      { name: 'Workflow Builder', business: 'Standard', growth: 'Multi-Level', enterprise: 'Conditional Logic' },
+      { name: 'Custom Fields', business: true, growth: true, enterprise: true, description: 'Add fields to any form' },
+      { name: 'Print Format Builder', business: true, growth: true, enterprise: true, description: 'Custom PDF Layouts' },
+      { name: 'Server Scripts', business: false, growth: 'Safe Mode (Restricted)', enterprise: 'Full Access' },
+      { name: 'Audit Trail', business: '7 Days Log', growth: '90 Days Log', enterprise: 'Unlimited / Immutable' },
+      { name: 'API Access', business: 'Standard', growth: 'High Volume', enterprise: 'Custom Limits' },
+      { name: 'Mobile App Access', business: 'Standard', growth: 'Offline-First (Sales)', enterprise: 'Full Offline Support' },
+      { name: 'AI Assistant (Copilot)', business: false, growth: 'Add-on', enterprise: 'Included' },
+      { name: 'Whitelabeling', business: false, growth: 'Logo Only', enterprise: 'Full Re-skin / Custom App' },
+      { name: 'Custom App Builder (No-code)', business: false, growth: 'Basic', enterprise: 'Advanced / Scripting' },
+      { name: 'Single Sign-On (SSO)', business: false, growth: 'Google/Microsoft', enterprise: 'SAML / LDAP' },
     ],
   },
   {
     category: 'Infrastructure & Performance',
     features: [
-      { name: 'Deployment Type', business: 'Shared Cloud', growth: 'Dedicated Cloud', enterprise: 'Private / On-Prem' },
-      { name: 'Computing Power', business: 'Standard', growth: 'High Performance', enterprise: 'Custom / Unlimited' },
+      { name: 'Deployment Architecture', business: 'Shared Container', growth: 'Dedicated VPS', enterprise: 'Private Cloud / On-Prem' },
+      { name: 'Background Workers', business: 'Shared Queue', growth: 'Dedicated Queue', enterprise: 'Custom / Scalable' },
+      { name: 'Database Access', business: 'No Access', growth: 'Read-Only Replica', enterprise: 'Full TCP/IP Access' },
       { name: 'Storage (SSD)', business: '20 GB', growth: '80 GB', enterprise: 'Custom / Scalable' },
-      { name: 'Database Access', business: false, growth: 'Read-Only (Add-on)', enterprise: 'Full Access' },
-      { name: 'Background Jobs', business: 'Shared Queue', growth: 'Dedicated Queue', enterprise: 'Custom Configuration' },
-      { name: 'Backup Frequency', business: 'Daily', growth: 'Daily + On-demand', enterprise: 'Real-time / Custom' },
-      { name: 'Server Location', business: 'Jakarta', growth: 'Jakarta', enterprise: 'Any Region / On-Prem' },
+      { name: 'Backup Policy', business: 'Daily', growth: 'Daily + On-Demand', enterprise: 'Real-time / Custom' },
     ],
   },
   {
-    category: 'Customization Capabilities',
-    features: [
-      { name: 'Custom Fields & Forms', business: 'Yes', growth: 'Yes', enterprise: 'Yes' },
-      { name: 'Print Format Builder', business: 'Yes', growth: 'Yes', enterprise: 'Yes' },
-      { name: 'Scripting / Logic', business: 'Restricted', growth: 'Safe Mode', enterprise: 'Full Access' },
-      { name: 'Install Custom Modules', business: false, growth: false, enterprise: true, description: 'Add-on modules' },
-      { name: 'API Integration', business: 'Standard API', growth: 'Full API Access', enterprise: 'Custom Endpoints' },
-      { name: 'Workflow Builder', business: 'Basic', growth: 'Advanced', enterprise: 'Unlimited' },
-      { name: 'Webhooks', business: '5 Hooks', growth: '20 Hooks', enterprise: 'Unlimited' },
-      { name: 'Module Configuration', business: true, growth: true, enterprise: true },
-    ],
-  },
-  {
-    category: 'Support & Implementation',
+    category: 'Services & Support',
     features: [
       { name: 'Support Channel', business: 'Email / Ticket', growth: 'WhatsApp / Chat', enterprise: 'Dedicated Team' },
-      { name: 'Response Time (SLA)', business: '48 Hours', growth: '12 Hours', enterprise: '4 Hours / Custom' },
-      { name: 'Implementation', business: 'Self-Service / Guide', growth: 'Assisted Setup', enterprise: 'Full Turnkey' },
-      { name: 'Training', business: 'Video Tutorials', growth: '2x Online Session', enterprise: 'On-site Training' },
+      { name: 'Support SLA', business: '48h (Email)', growth: '12h (Chat/WA)', enterprise: '4h (Dedicated Agent)' },
       { name: 'Bug Fix Priority', business: 'Standard', growth: 'High', enterprise: 'Critical' },
+      { name: 'Implementation', business: 'Self-Service / Guides', growth: 'Assisted Setup', enterprise: 'Full Turnkey Project' },
+      { name: 'Training Sessions', business: 'Videos / Docs', growth: '2x Online Sessions', enterprise: 'On-site / Custom' },
+      { name: 'Data Migration', business: 'Excel Template', growth: 'Assisted Import', enterprise: 'Custom Migration Service' },
       { name: 'Consultation', business: false, growth: 'Monthly Review', enterprise: 'Weekly / On-demand' },
-      { name: 'Data Migration', business: 'Excel Import', growth: 'Excel Import + Assist', enterprise: 'Custom Migration' },
+      { name: 'Custom Development', business: false, growth: 'Minor Tweaks', enterprise: 'Major Customization' },
+      { name: 'Managed Services', business: false, growth: 'Optional Add-on', enterprise: 'Available' },
     ],
   },
+
 ];
 
 export const addOns: ServiceAddon[] = [
@@ -175,6 +167,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per 10GB/bulan',
     availableFor: ['business', 'growth'],
     category: 'infrastructure',
+    billingType: 'recurring',
     tooltip: 'Ideal jika Anda menyimpan banyak lampiran file (PDF/Gambar) transaksi.',
   },
   {
@@ -185,6 +178,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'infrastructure',
+    billingType: 'recurring',
     tooltip: 'Wajib untuk integrasi API tertentu (Bank/Payment) yang membutuhkan IP Whitelist.',
   },
 
@@ -197,6 +191,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'one-time',
     availableFor: ['business'],
     category: 'implementation',
+    billingType: 'one-time',
     tooltip: 'Paket kilat untuk bisnis kecil yang data master-nya sudah rapi (Excel ready).',
   },
   {
@@ -207,6 +202,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'one-time',
     availableFor: ['business', 'growth'],
     category: 'implementation',
+    billingType: 'one-time',
     recommended: true,
     tooltip: 'Pilihan paling populer. Mencakup setup end-to-end standar.',
   },
@@ -218,6 +214,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'one-time',
     availableFor: ['growth', 'enterprise'],
     category: 'implementation',
+    billingType: 'one-time',
     tooltip: 'Untuk perusahaan yang butuh pendampingan intensif & migrasi data kompleks.',
   },
   {
@@ -228,6 +225,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per sistem',
     availableFor: ['business', 'growth', 'enterprise'],
     category: 'implementation',
+    billingType: 'one-time',
     tooltip: 'Layanan pemindahan data historis (Saldo Awal, Stok, Hutang/Piutang) dari software lama.',
   },
 
@@ -240,6 +238,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per sesi',
     availableFor: ['business', 'growth', 'enterprise'],
     category: 'support',
+    billingType: 'one-time',
     tooltip: 'Jika staff Anda butuh bimbingan ulang atau ada karyawan baru.',
   },
   {
@@ -250,6 +249,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per hari',
     availableFor: ['growth', 'enterprise'],
     category: 'support',
+    billingType: 'one-time',
     tooltip: 'Kunjungan fisik untuk troubleshooting jaringan/hardware atau training tatap muka.',
   },
   {
@@ -260,7 +260,30 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['enterprise'],
     category: 'support',
-    tooltip: 'Jaminan respon cepat untuk bisnis operasional 24 jam.',
+    billingType: 'recurring',
+    tooltip: 'Garansi response time < 2 jam untuk isu kritis, tersedia di hari libur.',
+  },
+  {
+    id: 'managed-integration',
+    name: 'Managed Integration Service',
+    description: 'Jasa integrasi sistem ke Bank, Marketplace, atau Software lain',
+    price: 15000000,
+    unit: 'per integrasi',
+    availableFor: ['growth', 'enterprise'],
+    category: 'implementation',
+    billingType: 'one-time',
+    tooltip: 'Tim kami yang bangun konektor kustom (API) sesuai kebutuhan bisnis Anda.',
+  },
+  {
+    id: 'security-audit',
+    name: 'Security Audit & Pen-Test',
+    description: 'Audit keamanan sistem periodik & VAPT Report',
+    price: 25000000,
+    unit: 'per event',
+    availableFor: ['enterprise'],
+    category: 'support',
+    billingType: 'one-time',
+    tooltip: 'Wajib untuk standar kepatuhan ISO 27001 atau regulasi industri tertentu.',
   },
 
   // Integration Services
@@ -272,6 +295,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per integrasi',
     availableFor: ['growth', 'enterprise'],
     category: 'integration',
+    billingType: 'one-time',
     tooltip: 'Menghubungkan ERP dengan Webstore, Marketplace, CRM lain, atau Logistics.',
   },
   {
@@ -282,6 +306,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per report',
     availableFor: ['growth', 'enterprise'],
     category: 'integration',
+    billingType: 'one-time',
     tooltip: 'Desain ulang format Invoice, PO, atau Laporan Management khusus.',
   },
 
@@ -294,6 +319,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'managed-services',
+    billingType: 'recurring',
     tooltip: 'Staff akuntan virtual untuk menangani pembukuan rutin (s/d 100 transaksi).',
   },
   {
@@ -304,6 +330,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'managed-services',
+    billingType: 'recurring',
     tooltip: 'Konsultan pajak tersertifikasi untuk memastikan kepatuhan regulasi.',
   },
   {
@@ -314,6 +341,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'managed-services',
+    billingType: 'recurring',
     tooltip: 'Pengelolaan payroll end-to-end yang akurat dan tepat waktu (s/d 50 karyawan).',
   },
   {
@@ -324,6 +352,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'managed-services',
+    billingType: 'recurring',
     tooltip: 'Tim teknis untuk memastikan uptime dan performa infrastruktur server Anda.',
   },
   {
@@ -334,6 +363,7 @@ export const addOns: ServiceAddon[] = [
     unit: 'per bulan',
     availableFor: ['growth', 'enterprise'],
     category: 'managed-services',
+    billingType: 'recurring',
     tooltip: 'Akses ke konsultan hukum untuk kebutuhan legal operasional sehari-hari.',
   },
 ];

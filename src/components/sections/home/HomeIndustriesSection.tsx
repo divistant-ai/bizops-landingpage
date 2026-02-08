@@ -133,13 +133,13 @@ export function HomeIndustriesSection() {
                 <Link
                   key={ind.id}
                   href={`/solutions/${ind.id}`}
-                  className="group mx-2 block w-[220px] shrink-0 py-2 sm:w-[250px]"
+                  className="group mx-2 flex w-[220px] shrink-0 flex-col py-2 sm:w-[250px]"
                 >
                   <div
-                    className={`relative overflow-visible rounded-2xl border bg-white dark:bg-slate-900 ${theme.border} shadow-lg transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-2xl`}
+                    className={`relative flex h-full flex-col overflow-visible rounded-2xl border bg-white dark:bg-slate-900 ${theme.border} shadow-lg transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-2xl`}
                   >
                     {/* Top image banner */}
-                    <div className="relative h-44 overflow-hidden rounded-t-2xl">
+                    <div className="relative h-44 shrink-0 overflow-hidden rounded-t-2xl">
                       <img
                         src={INDUSTRY_IMAGES[idx % INDUSTRY_IMAGES.length]}
                         alt={ind.title}
@@ -152,7 +152,7 @@ export function HomeIndustriesSection() {
                     </div>
 
                     {/* Icon */}
-                    <div className="relative -mt-8 px-5">
+                    <div className="relative -mt-8 shrink-0 px-5">
                       <div
                         className={`inline-flex h-16 w-16 items-center justify-center rounded-xl ${theme.bg} border-4 border-white shadow-xl dark:border-slate-900`}
                       >
@@ -161,15 +161,15 @@ export function HomeIndustriesSection() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 pt-3">
+                    <div className="flex flex-1 flex-col p-5 pt-3">
                       <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 text-lg font-bold text-slate-900 transition-colors dark:text-white">
                         {ind.title}
                       </h3>
-                      <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      <p className="mb-3 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         {ind.description}
                       </p>
                       <div
-                        className={`inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}
+                        className={`mt-auto inline-flex items-center gap-2 text-sm font-semibold ${theme.text}`}
                       >
                         <span>{t('learn_more_short' as any)}</span>
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

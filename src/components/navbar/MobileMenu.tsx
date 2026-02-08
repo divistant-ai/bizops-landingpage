@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, MousePointer, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { usePathname } from '@/libs/I18nNavigation';
@@ -13,6 +13,7 @@ import {
   servicesContent,
   solutionsContent,
 } from '../../data/navData';
+import { navDataTranslations } from '../../data/navDataTranslations';
 import Button from '../ui/Button';
 
 type MobileMenuProps = {
@@ -28,6 +29,112 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
+  const locale = useLocale() as 'en' | 'id';
+  const nt = navDataTranslations[locale];
+
+  // Helper to get translation key from URL path
+  const getItemKeyFromUrl = (url: string): string | null => {
+    // Platform modules
+    if (url.includes('/people')) {
+      return 'people';
+    }
+    if (url.includes('/money')) {
+      return 'money';
+    }
+    if (url.includes('/growth')) {
+      return 'growth';
+    }
+    if (url.includes('/supply')) {
+      return 'supply';
+    }
+    if (url.includes('/work')) {
+      return 'work';
+    }
+    if (url.includes('/care')) {
+      return 'care';
+    }
+    if (url.includes('/hub')) {
+      return 'hub';
+    }
+
+    // Platform capabilities
+    if (url.includes('/ai-assistant')) {
+      return 'automation';
+    }
+    if (url.includes('/multi-company-management')) {
+      return 'multiCompany';
+    }
+    if (url.includes('/portals')) {
+      return 'portals';
+    }
+    if (url.includes('/analytics')) {
+      return 'analytics';
+    }
+    if (url.includes('/mobile')) {
+      return 'mobile';
+    }
+    if (url.includes('/low-code')) {
+      return 'lowCode';
+    }
+    if (url.includes('/collaboration')) {
+      return 'collaboration';
+    }
+
+    // Solutions - industry
+    if (url.includes('/construction')) {
+      return 'construction';
+    }
+    if (url.includes('/retail')) {
+      return 'retail';
+    }
+    if (url.includes('/outsourcing')) {
+      return 'outsourcing';
+    }
+    if (url.includes('/manufacturing')) {
+      return 'manufacturing';
+    }
+    if (url.includes('/consulting')) {
+      return 'consulting';
+    }
+    if (url.includes('/enterprise')) {
+      return 'enterprise';
+    }
+    if (url.includes('/travel')) {
+      return 'travel';
+    }
+    if (url.includes('/bfsi')) {
+      return 'bfsi';
+    }
+    if (url.includes('/realestate')) {
+      return 'realestate';
+    }
+    if (url.includes('/healthcare')) {
+      return 'healthcare';
+    }
+    if (url.includes('/fnb')) {
+      return 'fnb';
+    }
+    if (url.includes('/logistics')) {
+      return 'logistics';
+    }
+
+    return null;
+  };
+
+  const getTranslatedItem = (type: string, url: string) => {
+    const key = getItemKeyFromUrl(url);
+    if (!key) {
+      return null;
+    }
+
+    if (type === 'platform') {
+      return (nt.platform.modules.items as any)[key] || (nt.platform.capabilities.items as any)[key] || (nt.platform.technology.items as any)[key];
+    }
+    if (type === 'solutions') {
+      return (nt.solutions.industry.items as any)[key] || (nt.solutions.role.items as any)[key];
+    }
+    return null;
+  };
 
   const location = usePathname();
 
@@ -144,10 +251,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -171,10 +278,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -198,10 +305,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -246,10 +353,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('solutions', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('solutions', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -273,10 +380,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('solutions', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('solutions', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -309,10 +416,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -336,10 +443,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -372,10 +479,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -399,10 +506,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -433,10 +540,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -460,10 +567,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -496,10 +603,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>
@@ -523,10 +630,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onDemoClick })
                         >
                           <item.icon className="h-5 w-5 text-slate-400" />
                           <div className="flex flex-col">
-                            <span>{item.label}</span>
+                            <span>{getTranslatedItem('platform', item.to)?.label || item.label}</span>
                             {item.desc && (
                               <span className="text-xs text-slate-400 dark:text-slate-500">
-                                {item.desc}
+                                {getTranslatedItem('platform', item.to)?.desc || item.desc}
                               </span>
                             )}
                           </div>

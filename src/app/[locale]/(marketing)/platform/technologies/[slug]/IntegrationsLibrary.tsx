@@ -306,7 +306,7 @@ export default function IntegrationsLibrary() {
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8 dark:border-slate-800 dark:bg-slate-900">
         {/* Decorative */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
         <div className="bg-primary-500/10 pointer-events-none absolute top-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full blur-[100px]" />
 
         <div className="relative z-10 mx-auto max-w-7xl text-center">
@@ -434,12 +434,13 @@ export default function IntegrationsLibrary() {
                 <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
                   Tim kami siap membantu setup integrasi.
                 </p>
-                <Button variant="primary" size="sm" className="w-full" asChild>
-                  <Link href="/contact">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Hubungi Sales
-                  </Link>
-                </Button>
+                <Link
+                  href="/contact"
+                  className="bg-primary-600 hover:bg-primary-700 inline-flex w-full items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                >
+                  <Phone className="mr-2 h-4 w-4" />
+                  Hubungi Sales
+                </Link>
               </div>
             </div>
           </aside>
@@ -547,12 +548,13 @@ export default function IntegrationsLibrary() {
                       )}
 
                       {/* CTA */}
-                      <Button variant="primary" size="sm" className="w-full" asChild>
-                        <Link href="/contact">
-                          Hubungi Sales
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
+                      <Link
+                        href="/contact"
+                        className="bg-primary-600 hover:bg-primary-700 inline-flex w-full items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                      >
+                        Hubungi Sales
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </div>
                   );
                 })}
@@ -603,9 +605,12 @@ export default function IntegrationsLibrary() {
                                 </p>
                               </div>
                             </div>
-                            <Button variant="primary" size="sm" className="shrink-0" asChild>
-                              <Link href="/contact">Hubungi Sales</Link>
-                            </Button>
+                            <Link
+                              href="/contact"
+                              className="bg-primary-600 hover:bg-primary-700 inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                            >
+                              Hubungi Sales
+                            </Link>
                           </div>
                         );
                       })}

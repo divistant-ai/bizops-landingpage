@@ -5,6 +5,7 @@ import {
   CreditCard,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { SelectableCard, Tooltip } from '../../components';
 import { OptionSelector } from '../../components/OptionSelector';
@@ -16,19 +17,33 @@ const TIMELINE_OPTIONS = [
   { id: '3months', title: 'Planned', desc: '3+ Months', icon: CreditCard, tooltip: 'Implementasi bertahap (Phased).' },
 ];
 
+/** Training options aligned with Services → Training (/services/training) */
 const TRAINING_OPTIONS = [
   { id: 'online', label: 'Online (Zoom)', sub: 'Flexible & Recorded' },
   { id: 'hybrid', label: 'Hybrid Mix', sub: 'Online + 1 Day Onsite' },
   { id: 'onsite', label: 'Full Onsite', sub: 'Intensive Face-to-Face' },
 ];
 
+/** Support levels aligned with Services → Support (/services/support) */
 const SUPPORT_DESCRIPTIONS: Record<string, { title: string; desc: string }> = {
   standard: { title: 'Email Support Only', desc: '. Response time max 2x24 jam kerja. Cocok untuk tim IT mandiri.' },
   priority: { title: 'Chat & Email Support', desc: '. Response time max 12 jam kerja. Bantuan kendala teknis operasional.' },
   premium: { title: 'Dedicated Account Manager & 24/7 Hotline', desc: '. Response time < 2 jam. Prioritas penanganan isu kritis.' },
 };
 
+const SERVICES_INTEREST_OPTIONS: { id: string; label: string }[] = [
+  { id: 'implementation', label: 'Implementation' },
+  { id: 'data-migration', label: 'Data Migration' },
+  { id: 'training', label: 'Training' },
+  { id: 'support', label: 'Support' },
+  { id: 'consulting', label: 'Consulting' },
+  { id: 'integration', label: 'Integration' },
+  { id: 'custom-development', label: 'Custom Development' },
+  { id: 'managed-services', label: 'Managed Services' },
+];
+
 export function TimelineSLAStep() {
+  const t = useTranslations('Pricing');
   const { assessment, updateAssessment } = usePricingContext();
   const supportInfo = (SUPPORT_DESCRIPTIONS[assessment.supportLevel] ?? SUPPORT_DESCRIPTIONS.standard)!;
 
@@ -36,7 +51,7 @@ export function TimelineSLAStep() {
     <div className="space-y-8">
       <div className="mb-6 text-center">
         <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-          Timeline & SLA
+          {t('calculator_step_time')}
         </h2>
         <p className="text-sm text-slate-600 dark:text-slate-400">
           Rencana Go-Live dan Tingkat Dukungan yang diharapkan.
@@ -59,7 +74,7 @@ export function TimelineSLAStep() {
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
         <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
           Training Preference
-          <Tooltip text="Metode pelatihan user yang diinginkan." />
+          <Tooltip text="Metode pelatihan user yang diinginkan. Selaras dengan layanan Training di /services." />
         </h4>
         <OptionSelector
           options={TRAINING_OPTIONS}
@@ -70,8 +85,9 @@ export function TimelineSLAStep() {
 
       {/* Support SLA Level */}
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
-        <h4 className="mb-4 text-center text-sm font-bold text-slate-900 dark:text-white">
+        <h4 className="mb-4 flex items-center justify-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
           Support SLA Level
+          <Tooltip text="Tingkat dukungan pasca go-live. Selaras dengan layanan Support di /services." />
         </h4>
         <div className="grid grid-cols-3 gap-2">
           {['standard', 'priority', 'premium'].map(lvl => (
@@ -95,6 +111,39 @@ export function TimelineSLAStep() {
             </span>
             {supportInfo.desc}
           </div>
+        </div>
+      </div>
+
+      {/* Layanan yang diminati — optional, for add-on recommendation; aligned with /services */}
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
+        <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
+          Layanan yang diminati
+          <Tooltip text="Pilih layanan yang ingin Anda pertimbangkan (untuk rekomendasi add-on). Selaras dengan halaman /services." />
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {SERVICES_INTEREST_OPTIONS.map((opt) => {
+            const selected = (assessment.servicesInterest ?? []).includes(opt.id);
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => {
+                  const current = assessment.servicesInterest ?? [];
+                  const next = selected
+                    ? current.filter(s => s !== opt.id)
+                    : [...current, opt.id];
+                  updateAssessment('servicesInterest', next);
+                }}
+                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${
+                  selected
+                    ? 'border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-white dark:text-slate-900'
+                    : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 dark:border-slate-600 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-slate-500'
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -63,32 +63,44 @@ const CustomizeStep: React.FC = () => {
   return (
     <div className="dark:bg-dark-bg flex h-full flex-col overflow-hidden bg-slate-50">
       <div className="scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/10 grow overflow-y-auto p-6">
-        <div className="mx-auto grid h-full max-w-6xl gap-8 lg:grid-cols-12">
-          <div className="space-y-8 pb-12 lg:col-span-8">
-            <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-linear-to-r from-white to-slate-50 p-6 shadow-lg dark:border-white/10 dark:from-slate-900 dark:to-slate-800">
-              <div className="flex items-center gap-4">
-                <div className="rounded-xl bg-blue-500/10 p-3 text-blue-500 dark:text-blue-400">
-                  <CreditCard className="h-5 w-5" />
+        <div className="mx-auto grid h-full max-w-7xl gap-10 lg:grid-cols-12">
+          <div className="space-y-10 pb-12 lg:col-span-8">
+
+            {/* Header */}
+            <div>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                Kustomisasi Tambahan
+              </h2>
+              <p className="mt-2 text-lg text-slate-600 dark:text-slate-400">
+                Lengkapi paket Anda dengan layanan dan infrastruktur tambahan.
+              </p>
+            </div>
+
+            {/* Billing Cycle Card */}
+            <div className="flex items-center justify-between rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-white/10 dark:bg-slate-900">
+              <div className="flex items-center gap-6">
+                <div className="rounded-2xl bg-blue-100 p-4 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                  <CreditCard className="h-8 w-8" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                     Siklus Pembayaran
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
                     Hemat 20% dengan pembayaran tahunan.
                   </p>
                 </div>
               </div>
-              <div className="flex rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-white/5 dark:bg-black/40">
+              <div className="flex rounded-xl border border-slate-200 bg-slate-100 p-1.5 dark:border-white/5 dark:bg-black/40">
                 <button
                   onClick={() => setBillingCycle('monthly')}
-                  className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'monthly' ? 'bg-white text-slate-900 shadow dark:bg-slate-700 dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
+                  className={`rounded-lg px-6 py-2.5 text-sm font-bold transition-all ${billingCycle === 'monthly' ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
                 >
                   Bulanan
                 </button>
                 <button
                   onClick={() => setBillingCycle('yearly')}
-                  className={`rounded-lg px-5 py-2 text-xs font-bold transition-all ${billingCycle === 'yearly' ? 'bg-primary-600 text-slate-800 shadow dark:text-white' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
+                  className={`rounded-lg px-6 py-2.5 text-sm font-bold transition-all ${billingCycle === 'yearly' ? 'bg-emerald-600 text-white shadow-sm dark:bg-emerald-500' : 'text-slate-600 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white'}`}
                 >
                   Tahunan (-20%)
                 </button>
@@ -96,14 +108,16 @@ const CustomizeStep: React.FC = () => {
             </div>
 
             {sections.map((section, idx) => (
-              <div key={idx} className="space-y-4">
-                <div className="flex items-center gap-2 border-b border-slate-200 pb-2 dark:border-white/5">
-                  <section.icon className={`h-4 w-4 ${section.color}`} />
-                  <h3 className="text-sm font-bold tracking-wider text-slate-900 uppercase dark:text-white">
+              <div key={idx} className="space-y-6">
+                <div className="flex items-center gap-3 border-b border-slate-200 pb-4 dark:border-white/10">
+                  <div className={`rounded-lg p-2 ${section.color.replace('text-', 'bg-').replace('400', '100')} ${section.color} dark:bg-opacity-10`}>
+                    <section.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     {section.title}
                   </h3>
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="grid gap-4 md:grid-cols-1">
                   {section.items.map((addon) => {
                     if (
                       addon.availableFor.includes(selectedPlanId)

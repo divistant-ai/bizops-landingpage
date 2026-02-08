@@ -6,6 +6,7 @@ import {
   FileText,
   Plug,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Tooltip } from '../../components';
 import { OptionSelector } from '../../components/OptionSelector';
@@ -19,16 +20,17 @@ const DATA_VOLUME_OPTIONS = [
 ];
 
 export function IntegrationStep() {
+  const t = useTranslations('Pricing');
   const { assessment, updateAssessment } = usePricingContext();
 
   return (
-    <div className="space-y-6">
-      <div className="mb-6 text-center">
-        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-          Integration & Customization
+    <div className="mx-auto max-w-4xl space-y-12">
+      <div className="text-center">
+        <h2 className="bg-linear-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl dark:from-white dark:via-slate-200 dark:to-white">
+          {t('calculator_step_integ')}
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          Kompleksitas ekosistem IT yang dibutuhkan.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+          Tentukan kompleksitas ekosistem IT dan kebutuhan integrasi sistem Anda.
         </p>
       </div>
 
@@ -36,7 +38,7 @@ export function IntegrationStep() {
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
         <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
           Data Migration Scope
-          <Tooltip text="Volume data yang akan dipindahkan dari sistem lama." />
+          <Tooltip text="Volume data yang akan dipindahkan dari sistem lama. Selaras dengan layanan Data Migration di Platform/Technology." />
         </h4>
         <OptionSelector
           options={DATA_VOLUME_OPTIONS}
@@ -81,7 +83,7 @@ export function IntegrationStep() {
           <label className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
             <Plug className="h-4 w-4 text-slate-900 dark:text-white" />
             API Integrations
-            <Tooltip text="Koneksi ke sistem lain seperti Marketplace (Tokopedia/Shopee), Bank, Payment Gateway, atau Logistics." />
+            <Tooltip text="Koneksi ke sistem lain (Marketplace, Bank, Payment Gateway, Logistics). Selaras dengan Technology Integration di Platform." />
           </label>
           <span className="rounded bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-900 dark:bg-slate-700 dark:text-white">
             {assessment.apiIntegrations}
@@ -124,12 +126,12 @@ export function IntegrationStep() {
         />
       </div>
 
-      {/* Custom Module Toggle */}
+      {/* Custom Apps — aligned with Platform capability custom-apps */}
       <ToggleSwitch
         field="needsCustomModule"
         icon={AppWindow}
-        title="Develop Custom Module"
-        description="Centang jika Anda memiliki alur bisnis unik yang tidak umum."
+        title="Custom Apps / Custom Module"
+        description="Alur bisnis unik yang membutuhkan aplikasi khusus. Selaras dengan capability Custom Apps di Platform."
       />
     </div>
   );

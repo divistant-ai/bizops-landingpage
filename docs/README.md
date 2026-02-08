@@ -5,6 +5,7 @@
 - [Testing](./guides/TESTING.md) - Testing instructions
 - [Animation](./guides/ANIMATION.md) - Animation patterns
 - [Deployment](./guides/DEPLOYMENT.md) - Deployment process
+- [QMD (Query Markup Documents)](./guides/QMD.md) - On-device search untuk docs & integrasi MCP
 
 ## 🏗️ Architecture
 
